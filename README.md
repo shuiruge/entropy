@@ -4,7 +4,8 @@ Notes about maximum-entropy (MaxEnt) principle.
 
 ## TODO
 
-- [ ] Explain KL-divergence as the relative surprise.
+- [ ] Explain [KL-divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) as the relative surprise.
+- [ ] Prove that there exists solutions for the Langrangian multipliers.
 
 ## References
 

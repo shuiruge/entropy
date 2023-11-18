@@ -3,7 +3,7 @@
 <style|generic>
 
 <\body>
-  <section|Kullback-Leibler Divergence>
+  <section|Relative Entropy>
 
   <subsection|Shannon Entropy Is Plausible for Discrete Variable>
 
@@ -87,8 +87,7 @@
   strengthened by adding locality; the second condition is absent since it is
   not well-defined for continuous variable.
 
-  <subsection|Kullback-Leibler Divergence is Unique Solution to Extended
-  Conditions>
+  <subsection|Relative Entropy is Unique Solution to Extended Conditions>
 
   Based on the first condition, <math|H> shall have the following expression
 

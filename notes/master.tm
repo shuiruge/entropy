@@ -3,7 +3,9 @@
 <style|generic>
 
 <\body>
-  <section|Master Equation, Detailed Balance, and Relative Entropy>
+  <section|Master Equation, Detailed Balance, and Relative
+  Entropy><label|section: Master Equation, Detailed Balance, and Relative
+  Entropy>
 
   <subsection|Conventions>
 
@@ -22,11 +24,17 @@
   The generic dynamics of Markov chain can be described by a
   <with|font-series|bold|transition rate> <math|W<around*|(|y\|x|)>> which is
   defined as the transition probability from <math|X=x> to <math|X=y> during
-  a unit of time <math|\<mathd\>t>. So, the change of probability at
-  <math|X=x> equals to the total probability that transits from any <math|y>
-  with <math|y\<neq\>x> to <math|x> subtracting the total probability that
-  transits from <math|x> to any <math|y> with <math|y\<neq\>x>. That is,
-  <\footnote>
+  a temporal unit <math|\<mathd\>t> <\footnote>
+    <with|color|red|Keep in mind that, throughout this section, this temporal
+    unit can be arbitrary, other than infinitesimal.> Here it is written as
+    <math|\<mathd\>t>, a formal infinitesimal, because it is convenient for
+    writing expressions. For example, we can write
+    <math|\<partial\>p/\<partial\>t> rather than
+    <math|\<Delta\>p/\<Delta\>t>, which looks ugly.
+  </footnote>. So, the change of probability at <math|X=x> equals to the
+  total probability that transits from any <math|y> with <math|y\<neq\>x> to
+  <math|x> subtracting the total probability that transits from <math|x> to
+  any <math|y> with <math|y\<neq\>x>. That is, <\footnote>
     Notice that in the case of <math|y=x>, the right hand side vanishes
     automatically. It is for this reason, the integral is over the whole
     alphabet <math|\<cal-X\>>.
@@ -161,7 +169,7 @@
 
       Since <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
       <around*|(|\<partial\>p/\<partial\>t|)><around*|(|x,t|)>=<around*|(|\<partial\>/\<partial\>t|)><big|int><rsub|\<cal-X\>>\<mathd\>x
-      p<around*|(|x,t|)>=0>, we arrive at
+      p<around*|(|x,t|)>=0>, the second term vanishes. Then, we get
 
       <\equation*>
         <frac|\<mathd\>|\<mathd\>t>H<around*|[|p,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -240,7 +248,97 @@
     </proof>
   </small>
 
-  \;
+  <section|Kramers-Moyal Expansion and Langevin Dynamics>
+
+  We follow the discussion in section <reference|section: Master Equation,
+  Detailed Balance, and Relative Entropy>, but focusing on the specific
+  situation where there is extra smooth structure on <math|X>. This
+  smoothness reflects on the connectivity of the alphabet <math|\<cal-X\>>,
+  and on the smooth \Pspatial\Q-dependence of the distribution <math|P> and
+  of the transition rate <math|W>. This means, the conclusions in section
+  <reference|section: Master Equation, Detailed Balance, and Relative
+  Entropy> hold in this section, but the inverse is not true.
+
+  <subsection|Spatial Expansion of Master Equation Gives Kramers-Moyal
+  Expansion>
+
+  Let the alphabet <math|\<cal-X\>=\<bbb-R\><rsup|n>> for some integer
+  <math|n\<geqslant\>1>, which has sufficient connectivity. In addition,
+  suppose that <math|p<around*|(|x,t|)>> and <math|W<around*|(|x\|y|)>> are
+  smooth on <math|x> and <math|y>.
+
+  Now, the master equation <reference|equation:Master Equation> becomes
+
+  <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    <around*|[|W<around*|(|x\|y|)> p<around*|(|y,t|)>-W<around*|(|y\|x|)>p<around*|(|x,t|)>|]>.
+  </equation*>
+
+  Letting <math|\<epsilon\>\<assign\>x-y> and
+  <math|\<omega\><around*|(|x,\<epsilon\>|)>\<assign\>W<around*|(|x+\<epsilon\>\|x|)>>.
+  we then have
+
+  <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    W<around*|(|x\|x-\<epsilon\>|)> p<around*|(|x-\<epsilon\>,t|)>-p<around*|(|x,t|)><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    W<around*|(|x-\<epsilon\>\|x|)>,
+  </equation*>
+
+  where we have employed the formula <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\><around*|(|-\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>>
+  (check this). For the second integral, using this formula again, we find
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    W<around*|(|x-\<epsilon\>\|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    W<around*|(|x+\<epsilon\>\|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<omega\><around*|(|x,\<epsilon\>|)>.
+  </equation*>
+
+  And for the first integral,
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    W<around*|(|<around*|(|x-\<epsilon\>|)>+\<epsilon\>\|x-\<epsilon\>|)>
+    p<around*|(|x-\<epsilon\>,t|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<omega\><around*|(|x-\<epsilon\>,\<epsilon\>|)>
+    p<around*|(|x-\<epsilon\>,t|)>.
+  </equation*>
+
+  Now, since <math|W> and <math|p> is smooth, we can Taylor expand the first
+  integrand, and find
+
+  <\equation*>
+    p<around*|(|x,t|)><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<omega\><around*|(|x,\<epsilon\>|)>+<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
+    <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
+    <around*|[|p<around*|(|x,t|)> <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    <around*|(|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|)>
+    \<omega\><around*|(|x,\<epsilon\>|)>|]>.
+  </equation*>
+
+  All together, we get
+
+  <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
+    <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
+    <around*|[|p<around*|(|x,t|)> <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    <around*|(|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|)>
+    \<omega\><around*|(|x,\<epsilon\>|)>|]>.
+  </equation*>
+
+  Recalling <math|\<omega\><around*|(|x,\<epsilon\>|)>=W<around*|(|x+\<epsilon\>\|x|)>>,
+  we arrive at
+
+  <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
+    <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
+    <around*|[|M<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>
+    p<around*|(|x,t|)>|]>,
+  </equation*>
+
+  where <math|M<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>\<assign\><around*|\<langle\>|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|\<rangle\>><rsub|W<around*|(|x+\<epsilon\>\|x|)>>>
+  is the <math|k>-order moment of <math|\<epsilon\>\<sim\>W<around*|(|x+\<epsilon\>\|x|)>>.
+  This is called the <with|font-series|bold|Kramers\UMoyal expansion>.
 </body>
 
 <\initial>
@@ -253,22 +351,28 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
-    <associate|auto-3|<tuple|1.2|2>>
+    <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|?>>
+    <associate|auto-5|<tuple|1.4|2>>
+    <associate|auto-6|<tuple|2|?>>
+    <associate|auto-7|<tuple|2.1|?>>
     <associate|equation:Detailed Balance|<tuple|2|2>>
     <associate|equation:Master Equation|<tuple|1|1>>
-    <associate|equation:Master Equation V2|<tuple|3|1>>
+    <associate|equation:Master Equation V2|<tuple|4|1>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|1>>
     <associate|footnote-4|<tuple|4|2>>
-    <associate|footnote-5|<tuple|5|?>>
+    <associate|footnote-5|<tuple|5|2>>
+    <associate|footnote-6|<tuple|6|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|1>>
     <associate|footnr-4|<tuple|4|2>>
-    <associate|footnr-5|<tuple|5|?>>
+    <associate|footnr-5|<tuple|5|2>>
+    <associate|footnr-6|<tuple|6|?>>
+    <associate|section: Master Equation, Detailed Balance, and Relative
+    Entropy|<tuple|1|?>>
   </collection>
 </references>
 
@@ -280,18 +384,22 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|1.1<space|2spc>Master Equation Describes
-      Generic Dynamics of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.1<space|2spc>Conventions
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>Detailed Balance Provides a
-      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Master Equation Describes
+      Generic Dynamics of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance Provides a
+      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4>>
+
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance
       Monotonically Reduces Relative Entropy
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-4>>
+      <no-break><pageref|auto-5>>
     </associate>
   </collection>
 </auxiliary>

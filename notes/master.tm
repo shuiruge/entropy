@@ -5,6 +5,8 @@
 <\body>
   <section|Master Equation, Detailed Balance, and Relative Entropy>
 
+  <subsection|Conventions>
+
   Let <math|X> a time-dependent random variables, being either discrete or
   continuous, with alphabet <math|\<cal-X\>> and distribution <math|P>. Even
   though the discussion applies to both discrete and continuous cases, we use
@@ -22,7 +24,7 @@
   defined as the transition probability from <math|X=x> to <math|X=y> during
   a unit of time <math|\<mathd\>t>. So, the change of probability at
   <math|X=x> equals to the total probability that transits from any <math|y>
-  with <math|y\<neq\>x> to <math|x> substracting the total probability that
+  with <math|y\<neq\>x> to <math|x> subtracting the total probability that
   transits from <math|x> to any <math|y> with <math|y\<neq\>x>. That is,
   <\footnote>
     Notice that in the case of <math|y=x>, the right hand side vanishes
@@ -37,7 +39,7 @@
   </equation>
 
   which is called the <with|font-series|bold|master equation>. <\footnote>
-    There is another way of writting master equation, as
+    There is another way of writing master equation, as
 
     <\equation*>
       <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -104,19 +106,27 @@
   which is called the <with|font-series|bold|detailed balance (condition)>.
 
   This condition also hints for reversibility: the probability of transition
-  <math|X=y\<rightarrow\>x> equals to the reverse one
+  <math|X=y\<rightarrow\>x> equals to the reversed one
   <math|X=x\<rightarrow\>y>. This reversibility, however, will furnishes a
   irreversibility in a subjective sense.
 
   <subsection|Detailed Balance Monotonically Reduces Relative Entropy>
 
   <\theorem>
-    If there exists a stationary distribution <math|\<pi\>> such that
-    detailed balance <reference|equation:Detailed Balance> is satisfied, then
-    for any distribution <math|p> obeying the master equation
-    <reference|equation:Master Equation> we have
-    <math|\<mathd\>H<around*|[|p,\<pi\>|]>/\<mathd\>t\<leqslant\>0> and the
-    only possibility of vanishing is <math|p=\<pi\>>.
+    If <math|W<around*|(|x\|y|)>\<gtr\>0> for each <math|x,y\<in\>\<cal-X\>>
+    and there is a stationary distribution <math|\<pi\>> such that detailed
+    balance <reference|equation:Detailed Balance> holds and that
+    <math|\<pi\><around*|(|x|)>\<gtr\>0> for each <math|x\<in\>\<cal-X\>>,
+    then for any distribution <math|p> obeying the master equation
+    <reference|equation:Master Equation>, we have
+    <math|\<mathd\>H<around*|[|p,\<pi\>|]>/\<mathd\>t\<leqslant\>0> and it
+    vanishes if and only if <math|p=\<pi\>>. <\footnote>
+      If conditions <math|W<around*|(|x\|y|)>\<gtr\>0> and
+      <math|\<pi\><around*|(|x|)>\<gtr\>0> do not hold for some subset of
+      <math|\<cal-X\>>, we can exclude this subset from <math|\<cal-X\>>,
+      which results in a new alphabet <math|\<cal-X\><rprime|'>> on which
+      this theorem will hold.
+    </footnote>
   </theorem>
 
   This means the distribution <math|p> will monotonically and constantly
@@ -125,9 +135,8 @@
   With an integral by part, we arrive a negative definite expression, which
   means the monotonic reduction. This proof needs smooth structure, which is
   employed by integral by part. Here, we provides a \Pdiscrete\Q, but more
-  generic, alternative to the proof, which employes detailed condition
-  instead of Fokker-Planck equation, which is a specific case of detailed
-  condition.
+  generic, alternative to the proof, which employs detailed condition instead
+  of Fokker-Planck equation, which is a specific case of detailed condition.
 
   The proof of this theorem is given as follow. <\footnote>
     As you will see, the proof is very tricky: it uses detailed balance
@@ -244,19 +253,22 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
-    <associate|auto-3|<tuple|1.2|1>>
-    <associate|auto-4|<tuple|1.3|1>>
-    <associate|equation:Detailed Balance|<tuple|2|1>>
+    <associate|auto-3|<tuple|1.2|2>>
+    <associate|auto-4|<tuple|1.3|2>>
+    <associate|auto-5|<tuple|1.4|?>>
+    <associate|equation:Detailed Balance|<tuple|2|2>>
     <associate|equation:Master Equation|<tuple|1|1>>
-    <associate|equation:Master Equation V2|<tuple|3|?>>
+    <associate|equation:Master Equation V2|<tuple|3|1>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
-    <associate|footnote-3|<tuple|3|2>>
-    <associate|footnote-4|<tuple|4|?>>
+    <associate|footnote-3|<tuple|3|1>>
+    <associate|footnote-4|<tuple|4|2>>
+    <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
-    <associate|footnr-3|<tuple|3|2>>
-    <associate|footnr-4|<tuple|4|?>>
+    <associate|footnr-3|<tuple|3|1>>
+    <associate|footnr-4|<tuple|4|2>>
+    <associate|footnr-5|<tuple|5|?>>
   </collection>
 </references>
 

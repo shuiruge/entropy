@@ -161,7 +161,7 @@
     p<around*|(|x,t|)> ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.
   </equation>
 
-  It describles the uncertainty (surprise) caused by
+  It describes the uncertainty (surprise) caused by
   <math|p<around*|(|\<cdummy\>,t|)>> when prior knowledge is given by
   <math|\<pi\>>. It is a plausible generalization of Shannon entropy to
   continuous random variables.
@@ -438,7 +438,7 @@
   Balance>
 
   Given a function <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
-  and a Weiner process <math|\<mathd\>\<xi\>> with variance
+  and a Wiener process <math|\<mathd\>\<xi\>> with variance
   <math|2T\<mathd\>t>, the <with|font-series|bold|Langevin dynamics> is
 
   <\equation*>
@@ -516,6 +516,7 @@
     <associate|auto-5|<tuple|2|4>>
     <associate|auto-6|<tuple|2.1|4>>
     <associate|auto-7|<tuple|2.2|5>>
+    <associate|auto-8|<tuple|2.2|?>>
     <associate|equation:Detailed Balance|<tuple|2|2>>
     <associate|equation:Detailed Balance V2|<tuple|3|2>>
     <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
@@ -534,6 +535,8 @@
     Balance|<tuple|2.2|5>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
+    <associate|section:Convention (Master Equation)|<tuple|1.1|?>>
+    <associate|section:Conventions (Master Equation)|<tuple|1|?>>
   </collection>
 </references>
 

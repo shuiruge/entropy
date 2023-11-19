@@ -3,7 +3,7 @@
 <style|generic>
 
 <\body>
-  <section|Relative Entropy>
+  <section|Relative Entropy><label|section: Relative Entropy>
 
   <subsection|Shannon Entropy Is Plausible for Discrete Variable>
 
@@ -22,7 +22,7 @@
   where <math|K> is any positive constant. Interestingly, this expression is
   unique given some plausible conditions, which can be qualitatively
   expressed as <\footnote>
-    For details and quantitive description, see the appendix A of
+    For details and quantitative description, see the appendix A of
     <hlink|Jaynes (1957)|https://bayes.wustl.edu/etj/articles/theory.1.pdf>.
   </footnote>
 
@@ -53,7 +53,7 @@
   <math|<big|int>\<mathd\>x p<around*|(|x|)>=1>. This means we put a
   dimensional quantity into logarithm, leading to a problem of dimension. The
   second issue is that the <math|H> defined so cannot be invariant under
-  inversed map <math|X\<rightarrow\>Y\<assign\>\<varphi\><around*|(|X|)>>
+  inverse map <math|X\<rightarrow\>Y\<assign\>\<varphi\><around*|(|X|)>>
   where <math|\<varphi\>> is a diffeomorphism. As a \Pphysical\Q quantity,
   <math|H> should be invariant under \Pnon-physical\Q transformations, such
   as coordinates transformation characterized by the <math|\<varphi\>>.
@@ -87,7 +87,7 @@
   strengthened by adding locality; the second condition is absent since it is
   not well-defined for continuous variable.
 
-  <subsection|Relative Entropy is Unique Solution to Extended Conditions>
+  <subsection|Relative Entropy is Unique Solution to the Extended Conditions>
 
   Based on the first condition, <math|H> shall have the following expression
 
@@ -165,6 +165,7 @@
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
+    <associate|section: Relative Entropy|<tuple|1|?>>
   </collection>
 </references>
 

@@ -6,7 +6,7 @@ Notes about maximum-entropy (MaxEnt) principle.
 
 - [ ] Explain [relative entropy](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) as the relative surprise.
 - [ ] Prove that there exists solutions for the Langrangian multipliers.
-- [ ] Derive Fokker-Planck equation from master equation; and prove that conservative Langevin dynamics satisfies detailed balance.
+- [x] Derive Fokker-Planck equation from master equation; and prove that conservative Langevin dynamics satisfies detailed balance.
 - [ ] Compute MaxEnt with relative entropy.
 
 ## References

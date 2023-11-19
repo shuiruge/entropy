@@ -7,38 +7,51 @@
   Entropy><label|section: Master Equation, Detailed Balance, and Relative
   Entropy>
 
-  <subsection|Conventions>
-
   Let <math|X> a time-dependent random variables, being either discrete or
   continuous, with alphabet <math|\<cal-X\>> and distribution <math|P>. Even
   though the discussion applies to both discrete and continuous cases, we use
   the notation of the continuous. The reason is that converting from discrete
   to continuous may cause problems <\footnote>
-    Such as the problem of Shannon entropy, which has no proper definition in
-    continuous case.
+    Such as the problem of Shannon entropy, which has no proper definition
+    for continuous random variable.
   </footnote> while the inverse will be safe and direct as long as any smooth
   structure of <math|X> is not employed throughout the discussion.
 
   <subsection|Master Equation Describes Generic Dynamics of Markov Chain>
 
-  The generic dynamics of Markov chain can be described by a
-  <with|font-series|bold|transition rate> <math|W<around*|(|y\|x|)>> which is
-  defined as the transition probability from <math|X=x> to <math|X=y> during
-  a temporal unit <math|\<mathd\>t> <\footnote>
-    <with|color|red|Keep in mind that, throughout this section, this temporal
-    unit can be arbitrary, other than infinitesimal.> Here it is written as
-    <math|\<mathd\>t>, a formal infinitesimal, because it is convenient for
-    writing expressions. For example, we can write
-    <math|\<partial\>p/\<partial\>t> rather than
-    <math|\<Delta\>p/\<Delta\>t>, which looks ugly.
-  </footnote>. So, the change of probability at <math|X=x> equals to the
-  total probability that transits from any <math|y> with <math|y\<neq\>x> to
-  <math|x> subtracting the total probability that transits from <math|x> to
-  any <math|y> with <math|y\<neq\>x>. That is, <\footnote>
+  The generic dynamics of continuous time Markov chain can be described by
+  transition probability <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>> which
+  describes the transition from <math|X=x> to <math|X=y> during a temporal
+  unit <math|\<Delta\>t>. When <math|\<Delta\>t=0>, we shall have
+  <math|q<rsub|0><around*|(|y\|x|)>=\<delta\><around*|(|y-x|)>>. When
+  <math|\<Delta\>t> tends to be infinitesimal, as <math|\<mathd\>t>, the
+  transition probability can be expanded by <math|\<mathd\>t> up to linear
+  order, as <math|q<rsub|\<mathd\>t><around*|(|y\|x|)>=\<delta\><around*|(|y-x|)>+W<around*|(|y\|x|)>\<mathd\>t>.
+  This <math|W<around*|(|y\|x|)>> is thus the transition rate from <math|X=x>
+  to <math|Y=y>. It is the speed of probabilistic transition.
+
+  During an infinitesimal temporal unit <math|\<mathd\>t>, the change of
+  probability at <math|X=x> equals to the total probability that transits
+  from any <math|y> with <math|y\<neq\>x> to <math|x> subtracting the total
+  probability that transits from <math|x> to any <math|y> with
+  <math|y\<neq\>x>. That is, <\footnote>
     Notice that in the case of <math|y=x>, the right hand side vanishes
     automatically. It is for this reason, the integral is over the whole
     alphabet <math|\<cal-X\>>.
   </footnote>
+
+  <\equation*>
+    p<around*|(|x,t+\<mathd\>t|)>-p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<around*|[|q<rsub|\<mathd\>t><around*|(|x\|y|)>p<around*|(|y,t|)>-q<rsub|\<mathd\>t><around*|(|y\|x|)>p<around*|(|x,t|)>|]>.
+  </equation*>
+
+  Expanding by <math|\<mathd\>t> up to linear order gives
+
+  <\align>
+    <tformat|<table|<row|<cell|p<around*|(|x,t+\<mathd\>t|)>-p<around*|(|x,t|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y<around*|[|\<delta\><around*|(|x-y|)>p<around*|(|y,t|)>-\<delta\><around*|(|x-y|)>p<around*|(|x,t|)>|]>>>|<row|<cell|+>|<cell|\<mathd\>t<big|int><rsub|\<cal-X\>>\<mathd\>y<around*|[|W<around*|(|x\|y|)>
+    p<around*|(|y,t|)>-W<around*|(|y\|x|)>p<around*|(|x,t|)>|]>,>>>>
+  </align>
+
+  where the first line vanishes. So, we get
 
   <\equation>
     <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -51,7 +64,14 @@
 
     <\equation*>
       <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-      W<around*|(|x\|y|)> p<around*|(|y,t|)>.
+      W<around*|(|x\|y|)> p<around*|(|y,t|)>,
+    </equation*>
+
+    which is a direct result of the fact
+
+    <\equation*>
+      p<around*|(|x,t+\<mathd\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+      q<rsub|\<mathd\>t><around*|(|x\|y|)> p<around*|(|y,t|)>.
     </equation*>
 
     In fact, these two definitions are equivalent, which is the result of
@@ -91,11 +111,12 @@
     <reference|equation:Master Equation>.
   </footnote>
 
-  The <math|W> may also depend on time. But since the underlying dynamics
-  which determines <math|W> is usually autonomous, supposing <math|W> as
-  time-independent will greatly reduce the complexity while covering most of
-  the important situations. So, throughout this note, without specific
-  declaration, <math|A> is always independent of time.
+  The <math|W>, or the transition probability <math|q<rsub|\<mathd\>t>>, may
+  also depend on time. But since the underlying dynamics which determines
+  <math|W> is usually autonomous, supposing <math|W> as time-independent will
+  greatly reduce the complexity while covering most of the important
+  situations. So, throughout this note, without specific declaration,
+  <math|A> is always independent of time.
 
   <subsection|Detailed Balance Provides a Stationary Distribution>
 
@@ -115,8 +136,17 @@
 
   This condition also hints for reversibility: the probability of transition
   <math|X=y\<rightarrow\>x> equals to the reversed one
-  <math|X=x\<rightarrow\>y>. This reversibility, however, will furnishes a
-  irreversibility in a subjective sense.
+  <math|X=x\<rightarrow\>y>. Indeed, directly from the definition of
+  <math|W>, we have
+
+  <\equation>
+    q<rsub|\<mathd\>t><around*|(|x\|y|)>\<pi\><around*|(|y|)>=q<rsub|\<mathd\>t><around*|(|y\|x|)>\<pi\><around*|(|x|)>,<label|equation:Detailed
+    Balance V2>
+  </equation>
+
+  where <math|q<rsub|\<mathd\>t>> is the transition probability during time
+  interval <math|\<mathd\>t>. This reversibility, however, will furnishes a
+  irreversibility in a subjective sense, shown as follow.
 
   <subsection|Detailed Balance Monotonically Reduces Relative Entropy>
 
@@ -271,13 +301,7 @@
     <math|\<cal-X\>>, <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
     is negative as long as <math|p<around*|(|\<cdummy\>,t|)>\<neq\>\<pi\>>
     and vanishes when <math|p<around*|(|\<cdummy\>,t|)>=\<pi\>> for some
-    <math|t>. <\footnote>
-      If conditions <math|W<around*|(|x\|y|)>\<gtr\>0> and
-      <math|\<pi\><around*|(|x|)>\<gtr\>0> do not hold for some subset of
-      <math|\<cal-X\>>, we can exclude this subset from <math|\<cal-X\>>,
-      which results in a new alphabet <math|\<cal-X\><rprime|'>> on which
-      this theorem will hold.
-    </footnote>
+    <math|t>.
   </corollary>
 
   This means the time-dependent distribution <math|p> will monotonically and
@@ -285,13 +309,26 @@
   <reference|equation:relative entropy derivative> gives an explicit
   estimation to the relaxation rate.
 
-  Generally, we prove the monotonic reduction of relative entropy by using
-  Fokker-Planck equation. With an integral by part, we arrive a negative
-  definite expression, which means the monotonic reduction. This proof needs
-  smooth structure, which is employed by integral by part. Here, we provides
-  a \Pdiscrete\Q, but more generic, alternative to the proof, which employs
-  detailed condition instead of Fokker-Planck equation, which is a specific
-  case of detailed condition.
+  <\remark>
+    Here is a remark on smooth structure.
+
+    Generally, we prove the monotonic reduction of relative entropy by using
+    Fokker-Planck equation. With an integral by part, we arrive a negative
+    definite expression, which means the monotonic reduction. This proof
+    needs smooth structure on <math|X>, which is employed by integral by
+    part. Here, we provides a \Pdiscrete\Q, but more generic, alternative to
+    the proof, which employs detailed condition instead of Fokker-Planck
+    equation, which is a specific case of detailed condition (section
+    <reference|section: Conservative Langevin Dynamics Satisfies Detailed
+    Balance>).
+
+    The smooth structure on time, however, cannot be avoided. Indeed, the
+    smoothness of transition probability on time is essential for defining
+    transition rate, thus master equation; and the smoothness of
+    <math|p<around*|(|x,t|)>> on time is essential for the monotonic
+    reduction of relative entropy, which is the essential end of our
+    discussion.
+  </remark>
 
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
@@ -371,19 +408,97 @@
     \<omega\><around*|(|x,\<epsilon\>|)>|]>.
   </equation*>
 
-  Recalling <math|\<omega\><around*|(|x,\<epsilon\>|)>=W<around*|(|x+\<epsilon\>\|x|)>>,
-  we arrive at
+  Recalling that <math|\<omega\><around*|(|x,\<epsilon\>|)>=W<around*|(|x+\<epsilon\>\|x|)>>
+  and that transition probability <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>=W<around*|(|x+\<epsilon\>\|x|)>
+  \<mathd\>t>, we have
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    <around*|(|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|)>
+    \<omega\><around*|(|x,\<epsilon\>|)>=<frac|1|\<mathd\>t><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    <around*|(|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|)>
+    q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>\<backassign\><frac|1|\<mathd\>t><around*|\<langle\>|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|\<rangle\>><rsub|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>>.
+  </equation*>
+
+  So, we arrive at
 
   <\equation>
-    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
+    p<around*|(|x,t+\<mathd\>t|)>-p<around*|(|x,t|)>=<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
     <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
     <around*|[|M<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>
     p<around*|(|x,t|)>|]>,<label|equation:Kramers-Moyal expansion>
   </equation>
 
-  where <math|M<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>\<assign\><around*|\<langle\>|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|\<rangle\>><rsub|W<around*|(|x+\<epsilon\>\|x|)>>>
-  is the <math|k>-order moment of <math|\<epsilon\>\<sim\>W<around*|(|x+\<epsilon\>\|x|)>>.
+  where <math|M<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>\<assign\><around*|\<langle\>|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|\<rangle\>><rsub|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>>>
+  is the <math|k>-order moment of <math|\<epsilon\>\<sim\>q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>>.
   This is called the <with|font-series|bold|Kramers\UMoyal expansion>.
+
+  <subsection|Conservative Langevin Dynamics Satisfies Detailed
+  Balance><label|section: Conservative Langevin Dynamics Satisfies Detailed
+  Balance>
+
+  Given a function <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
+  and a Weiner process <math|\<mathd\>\<xi\>> with variance
+  <math|2T\<mathd\>t>, the <with|font-series|bold|Langevin dynamics> is
+
+  <\equation*>
+    \<mathd\>X=f<around*|(|X|)>\<mathd\>t+\<mathd\>\<xi\>.
+  </equation*>
+
+  The transition probability <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>>
+  is <math|\<cal-N\><around*|(|f<around*|(|x|)>\<mathd\>t,2T\<mathd\>t|)>> on
+  <math|\<epsilon\>>. Thus, moments <math|M<rsup|\<alpha\>><around*|(|x|)>=f<rsup|\<alpha\>><around*|(|x|)>\<mathd\>t>,
+  <math|M<rsup|\<alpha\>\<beta\>>=2T \<delta\><rsup|\<alpha\>\<beta\>>\<mathd\>t>,
+  and higher orders are of <math|o<around*|(|\<mathd\>t|)>>. The
+  Kramers-Moyal expansion gives
+
+  <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=\<nabla\><rsub|\<alpha\>><around*|(|f<rsup|\<alpha\>><around*|(|x|)>
+    p<around*|(|x,t|)>|)>+T \<nabla\><rsup|2>p<around*|(|x,t|)>,
+  </equation*>
+
+  which is the <with|font-series|bold|Fokker-Planck equation>.
+
+  As a special case of master equation, we may wonder when Fokker-Planck
+  equation will satisfy detailed balance? For this question, we have the
+  following theorem.
+
+  <\theorem>
+    If there is a stationary distribution <math|\<pi\>> such that
+    Fokker-Planck equation satisfies detailed balance, then we have
+
+    <\equation>
+      f<around*|(|x|)>=T\<nabla\>ln\<pi\><around*|(|x|)>.
+    </equation>
+
+    This indicates that the corresponding Langevin dynamics is conservative.
+  </theorem>
+
+  <small|<\proof>
+    To check detailed balance, we can employ either equation
+    <reference|equation:Detailed Balance> or equation
+    <reference|equation:Detailed Balance V2>. Since <math|q<rsub|\<mathd\>t>>
+    is transparent, we check it using equation <reference|equation:Detailed
+    Balance V2>. That is, if there is a stationary distribution <math|\<pi\>>
+    such that <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>
+    \<pi\><around*|(|x|)>=q<rsub|\<mathd\>t><around*|(|x\|x+\<epsilon\>|)>\<pi\><around*|(|x+\<epsilon\>|)>>?
+    Since <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>> obeys
+    <math|\<cal-N\><around*|(|f<around*|(|x|)>\<mathd\>t,2T\<mathd\>t|)>> on
+    <math|\<epsilon\>>, the question becomes
+
+    <\equation*>
+      <frac|1|<sqrt|<around*|(|4\<pi\>T|)><rsup|n>>>exp<around*|(|-<frac|<around*|(|\<epsilon\>-f<around*|(|x|)>\<mathd\>t|)><rsup|2>|4T\<mathd\>t>|)>\<pi\><around*|(|x|)><above|=|?><frac|1|<sqrt|<around*|(|4\<pi\>T|)><rsup|n>>>exp<around*|(|-<frac|<around*|(|-\<epsilon\>-f<around*|(|x-\<epsilon\>|)>\<mathd\>t|)><rsup|2>|4T\<mathd\>t>|)>\<pi\><around*|(|x+\<epsilon\>|)>.
+    </equation*>
+
+    Expanding the both sides up to the first order of <math|\<mathd\>t> and
+    <math|\<epsilon\>>, we directly find
+
+    <\equation>
+      f<around*|(|x|)>=T\<nabla\>ln\<pi\><around*|(|x|)>.
+    </equation>
+
+    Thus proof ends.
+  </proof>>
 </body>
 
 <\initial>
@@ -396,28 +511,27 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
-    <associate|auto-3|<tuple|1.2|1>>
+    <associate|auto-3|<tuple|1.2|2>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|2>>
-    <associate|auto-6|<tuple|2|3>>
-    <associate|auto-7|<tuple|2.1|3>>
+    <associate|auto-5|<tuple|2|4>>
+    <associate|auto-6|<tuple|2.1|4>>
+    <associate|auto-7|<tuple|2.2|5>>
     <associate|equation:Detailed Balance|<tuple|2|2>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|5|?>>
+    <associate|equation:Detailed Balance V2|<tuple|3|2>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
     <associate|equation:Master Equation|<tuple|1|1>>
-    <associate|equation:Master Equation V2|<tuple|4|1>>
-    <associate|equation:relative entropy derivative|<tuple|4|?>>
+    <associate|equation:Master Equation V2|<tuple|3|2>>
+    <associate|equation:relative entropy derivative|<tuple|5|3>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
-    <associate|footnote-3|<tuple|3|1>>
-    <associate|footnote-4|<tuple|4|1>>
-    <associate|footnote-5|<tuple|5|2>>
-    <associate|footnote-6|<tuple|6|2>>
+    <associate|footnote-3|<tuple|3|2>>
+    <associate|footnote-4|<tuple|4|3>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
-    <associate|footnr-3|<tuple|3|1>>
-    <associate|footnr-4|<tuple|4|1>>
-    <associate|footnr-5|<tuple|5|2>>
-    <associate|footnr-6|<tuple|6|2>>
+    <associate|footnr-3|<tuple|3|2>>
+    <associate|footnr-4|<tuple|4|3>>
+    <associate|section: Conservative Langevin Dynamics Satisfies Detailed
+    Balance|<tuple|2.2|5>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
   </collection>
@@ -431,29 +545,30 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|1.1<space|2spc>Conventions
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.1<space|2spc>Master Equation Describes
+      Generic Dynamics of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>Master Equation Describes
-      Generic Dynamics of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Detailed Balance Provides a
+      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance Provides a
-      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-4>>
-
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance
       Monotonically Reduces Relative Entropy
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5>>
+      <no-break><pageref|auto-4>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Kramers-Moyal
       Expansion and Langevin Dynamics> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6><vspace|0.5fn>
+      <no-break><pageref|auto-5><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
       Equation Gives Kramers-Moyal Expansion
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Conservative Langevin
+      Dynamics Satisfies Detailed Balance
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
     </associate>

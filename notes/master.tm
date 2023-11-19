@@ -120,31 +120,43 @@
 
   <subsection|Detailed Balance Monotonically Reduces Relative Entropy>
 
-  <\theorem>
-    If <math|W<around*|(|x\|y|)>\<gtr\>0> for each <math|x,y\<in\>\<cal-X\>>
-    and there is a stationary distribution <math|\<pi\>> such that detailed
-    balance <reference|equation:Detailed Balance> holds and that
-    <math|\<pi\><around*|(|x|)>\<gtr\>0> for each <math|x\<in\>\<cal-X\>>,
-    then for any distribution <math|p> obeying the master equation
-    <reference|equation:Master Equation>, we have
-    <math|\<mathd\>H<around*|[|p,\<pi\>|]>/\<mathd\>t\<leqslant\>0> and it
-    vanishes if and only if <math|p=\<pi\>>. <\footnote>
-      If conditions <math|W<around*|(|x\|y|)>\<gtr\>0> and
-      <math|\<pi\><around*|(|x|)>\<gtr\>0> do not hold for some subset of
-      <math|\<cal-X\>>, we can exclude this subset from <math|\<cal-X\>>,
-      which results in a new alphabet <math|\<cal-X\><rprime|'>> on which
-      this theorem will hold.
-    </footnote>
-  </theorem>
+  If the time-dependent distribution <math|p<around*|(|\<cdummy\>,t|)>> and
+  the stationary distribution <math|\<pi\>> are both supported on
+  <math|\<cal-X\>>, which means <math|p<around*|(|x,t|)>\<gtr\>0> and
+  <math|\<pi\><around*|(|x|)>\<gtr\>0> for each <math|x\<in\>\<cal-X\>>, we
+  can define the relative entropy between them, as
 
-  This means the distribution <math|p> will monotonically and constantly
-  relax to the stationary distribution <math|\<pi\>>. Generally, we prove the
-  monotonic reduction of relative entropy by using Fokker-Planck equation.
-  With an integral by part, we arrive a negative definite expression, which
-  means the monotonic reduction. This proof needs smooth structure, which is
-  employed by integral by part. Here, we provides a \Pdiscrete\Q, but more
-  generic, alternative to the proof, which employs detailed condition instead
-  of Fokker-Planck equation, which is a specific case of detailed condition.
+  <\equation>
+    H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t|)> ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.
+  </equation>
+
+  It describles the uncertainty (surprise) caused by
+  <math|p<around*|(|\<cdummy\>,t|)>> when prior knowledge is given by
+  <math|\<pi\>>. It is a plausible generalization of Shannon entropy to
+  continuous random variables.
+
+  Since <math|p<around*|(|\<cdummy\>,t|)>> is time-dependent, so is the
+  relative entropy. Generally, the time-derivative of relative entropy has no
+  interesting property. But, if the <math|\<pi\>> is more than stationary but
+  satisfying a stronger condition: detailed balance, then we can express the
+  <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
+  in a regular form, as the following theorem shows.
+
+  <\theorem>
+    If there is a stationary distribution <math|\<pi\>> supported on
+    <math|\<cal-X\>> such that detailed balance <reference|equation:Detailed
+    Balance> holds, then for any time-dependent distribution
+    <math|p<around*|(|\<cdummy\>,t|)>> supported on <math|\<cal-X\>>, we have
+
+    <\equation>
+      <frac|\<mathd\>|\<mathd\>t>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=-<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y W<around*|(|y\|x|)>
+      \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
+      ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.<label|equation:relative
+      entropy derivative>
+    </equation>
+  </theorem>
 
   The proof of this theorem is given as follow. <\footnote>
     As you will see, the proof is very tricky: it uses detailed balance
@@ -154,9 +166,7 @@
 
   <\small>
     <\proof>
-      Recalling that <math|H<around*|[|p,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-      p<around*|(|x,t|)> ln<around*|(|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>|)>>,
-      we have
+      Directly, we have
 
       <\align>
         <tformat|<table|<row|<cell|>|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|[|p,\<pi\>|]>>>|<row|<cell|=>|<cell|<frac|\<mathd\>|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -231,22 +241,57 @@
         ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.>>>>
       </align>
 
-      In this expression, for each <math|x> and <math|y> in <math|\<cal-X\>>,
-      <math|W<around*|(|y\|x|)>\<gtr\>0> and
-      <math|\<pi\><around*|(|x|)>\<gtr\>0>. So,
-      <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>\<gtr\>p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>
-      implies <math|ln<around*|[|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>|]>\<gtr\>ln<around*|[|p<around*|(|y,t|)>/\<pi\><around*|(|y|)>|]>>,
-      so that the whole expression is negative. The same for
-      <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>\<less\>p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>.
-      Only when <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>=p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>
-      can it be zero; and this equation implies that <math|p=\<pi\>> since
-      <math|><math|<big|int><rsub|\<cal-X\>>\<mathd\>x
-      p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-      \<pi\><around*|(|x|)>=1>. So, we conclude that
-      <math|\<mathd\>H<around*|[|p,\<pi\>|]>/\<mathd\>t> is negative as long
-      as <math|p\<neq\>\<pi\>> and vanishes when <math|p=\<pi\>>.
+      Thus proof ends.
     </proof>
   </small>
+
+  If we further assume that the transition rate <math|W> is supported on
+  <math|\<cal-X\>>, which means <math|W<around*|(|x\|y|)>\<gtr\>0> for each
+  <math|x> and <math|y> in <math|\<cal-X\>>, then by equation
+  <reference|equation:relative entropy derivative>, the sign of
+  <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
+  is determined by the last two terms. If
+  <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>\<gtr\>p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>,
+  then <math|ln<around*|[|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>|]>\<gtr\>ln<around*|[|p<around*|(|y,t|)>/\<pi\><around*|(|y|)>|]>>,
+  so that the whole expression is negative. The same for
+  <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>\<less\>p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>.
+  Only when <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>=p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>
+  can it be zero; and this equation implies that
+  <math|p<around*|(|\<cdummy\>,t|)>=\<pi\>> since
+  <math|><math|<big|int><rsub|\<cal-X\>>\<mathd\>x
+  p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+  \<pi\><around*|(|x|)>=1>. So, we conclude that
+
+  <\corollary>
+    Suppose that the transition rate <math|W> is supported on
+    <math|\<cal-X\>>. If there is a stationary distribution <math|\<pi\>>
+    supported on <math|\<cal-X\>> such that detailed balance
+    <reference|equation:Detailed Balance> holds, then for any time-dependent
+    distribution <math|p<around*|(|\<cdummy\>,t|)>> supported on
+    <math|\<cal-X\>>, <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
+    is negative as long as <math|p<around*|(|\<cdummy\>,t|)>\<neq\>\<pi\>>
+    and vanishes when <math|p<around*|(|\<cdummy\>,t|)>=\<pi\>> for some
+    <math|t>. <\footnote>
+      If conditions <math|W<around*|(|x\|y|)>\<gtr\>0> and
+      <math|\<pi\><around*|(|x|)>\<gtr\>0> do not hold for some subset of
+      <math|\<cal-X\>>, we can exclude this subset from <math|\<cal-X\>>,
+      which results in a new alphabet <math|\<cal-X\><rprime|'>> on which
+      this theorem will hold.
+    </footnote>
+  </corollary>
+
+  This means the time-dependent distribution <math|p> will monotonically and
+  constantly relax to the stationary distribution <math|\<pi\>>. And equation
+  <reference|equation:relative entropy derivative> gives an explicit
+  estimation to the relaxation rate.
+
+  Generally, we prove the monotonic reduction of relative entropy by using
+  Fokker-Planck equation. With an integral by part, we arrive a negative
+  definite expression, which means the monotonic reduction. This proof needs
+  smooth structure, which is employed by integral by part. Here, we provides
+  a \Pdiscrete\Q, but more generic, alternative to the proof, which employs
+  detailed condition instead of Fokker-Planck equation, which is a specific
+  case of detailed condition.
 
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
@@ -329,12 +374,12 @@
   Recalling <math|\<omega\><around*|(|x,\<epsilon\>|)>=W<around*|(|x+\<epsilon\>\|x|)>>,
   we arrive at
 
-  <\equation*>
+  <\equation>
     <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
     <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
     <around*|[|M<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>
-    p<around*|(|x,t|)>|]>,
-  </equation*>
+    p<around*|(|x,t|)>|]>,<label|equation:Kramers-Moyal expansion>
+  </equation>
 
   where <math|M<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>\<assign\><around*|\<langle\>|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|\<rangle\>><rsub|W<around*|(|x+\<epsilon\>\|x|)>>>
   is the <math|k>-order moment of <math|\<epsilon\>\<sim\>W<around*|(|x+\<epsilon\>\|x|)>>.
@@ -354,25 +399,27 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
-    <associate|auto-6|<tuple|2|?>>
-    <associate|auto-7|<tuple|2.1|?>>
+    <associate|auto-6|<tuple|2|3>>
+    <associate|auto-7|<tuple|2.1|3>>
     <associate|equation:Detailed Balance|<tuple|2|2>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|5|?>>
     <associate|equation:Master Equation|<tuple|1|1>>
     <associate|equation:Master Equation V2|<tuple|4|1>>
+    <associate|equation:relative entropy derivative|<tuple|4|?>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|1>>
-    <associate|footnote-4|<tuple|4|2>>
+    <associate|footnote-4|<tuple|4|1>>
     <associate|footnote-5|<tuple|5|2>>
-    <associate|footnote-6|<tuple|6|?>>
+    <associate|footnote-6|<tuple|6|2>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|1>>
-    <associate|footnr-4|<tuple|4|2>>
+    <associate|footnr-4|<tuple|4|1>>
     <associate|footnr-5|<tuple|5|2>>
-    <associate|footnr-6|<tuple|6|?>>
+    <associate|footnr-6|<tuple|6|2>>
     <associate|section: Master Equation, Detailed Balance, and Relative
-    Entropy|<tuple|1|?>>
+    Entropy|<tuple|1|1>>
   </collection>
 </references>
 
@@ -400,6 +447,15 @@
       Monotonically Reduces Relative Entropy
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Kramers-Moyal
+      Expansion and Langevin Dynamics> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
+      Equation Gives Kramers-Moyal Expansion
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
     </associate>
   </collection>
 </auxiliary>

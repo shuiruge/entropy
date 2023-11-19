@@ -61,7 +61,7 @@
   To eliminate the two issues, we shall extends the axiomatic description of
   entropy. The key to this extension is introducing another distribution,
   <math|Q>; and instead considering <with|font-shape|italic|the uncertainty
-  (surprise) caused by <math|P> when prior knowledge is given as <math|Q>>.
+  (surprise) caused by <math|P> when prior knowledge is given by <math|Q>>.
   As we will see, this will solve the two issues altogether.
 
   Explicitly, we extends the conditions as <\footnote>
@@ -171,8 +171,8 @@
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Kullback-Leibler
-      Divergence> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Relative
+      Entropy> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|1.1<space|2spc>Shannon Entropy Is Plausible
@@ -183,9 +183,8 @@
       Continuous Random Variable <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Kullback-Leibler Divergence
-      is Unique Solution to Extended Conditions
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Relative Entropy is Unique
+      Solution to Extended Conditions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
     </associate>
   </collection>

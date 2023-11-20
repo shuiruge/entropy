@@ -7,6 +7,8 @@
   Entropy><label|section: Master Equation, Detailed Balance, and Relative
   Entropy>
 
+  <subsection|Conventions in This Section>
+
   Let <math|X> a time-dependent random variables, being either discrete or
   continuous, with alphabet <math|\<cal-X\>> and distribution <math|P>. Even
   though the discussion applies to both discrete and continuous cases, we use
@@ -513,9 +515,9 @@
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|2>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|2|4>>
-    <associate|auto-6|<tuple|2.1|4>>
-    <associate|auto-7|<tuple|2.2|5>>
+    <associate|auto-5|<tuple|1.4|4>>
+    <associate|auto-6|<tuple|2|4>>
+    <associate|auto-7|<tuple|2.1|5>>
     <associate|auto-8|<tuple|2.2|?>>
     <associate|equation:Detailed Balance|<tuple|2|2>>
     <associate|equation:Detailed Balance V2|<tuple|3|2>>
@@ -535,8 +537,6 @@
     Balance|<tuple|2.2|5>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
-    <associate|section:Convention (Master Equation)|<tuple|1.1|?>>
-    <associate|section:Conventions (Master Equation)|<tuple|1|?>>
   </collection>
 </references>
 

@@ -11,9 +11,10 @@
 
   Let <math|X> a time-dependent random variables, being either discrete or
   continuous, with alphabet <math|\<cal-X\>> and distribution <math|P>. Even
-  though the discussion applies to both discrete and continuous cases, we use
-  the notation of the continuous. The reason is that converting from discrete
-  to continuous may cause problems <\footnote>
+  though the discussion in this section applies to both discrete and
+  continuous random variables, we use the notation of the continuous. The
+  reason is that converting from discrete to continuous may cause problems
+  <\footnote>
     Such as the problem of Shannon entropy, which has no proper definition
     for continuous random variable.
   </footnote> while the inverse will be safe and direct as long as any smooth
@@ -21,16 +22,17 @@
 
   <subsection|Master Equation Describes Generic Dynamics of Markov Chain>
 
-  The generic dynamics of continuous time Markov chain can be described by
-  transition probability <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>> which
+  The generic dynamics of continuous time Markov chain can be characterized
+  by transition probability <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>> which
   describes the transition from <math|X=x> to <math|X=y> during a temporal
   unit <math|\<Delta\>t>. When <math|\<Delta\>t=0>, we shall have
   <math|q<rsub|0><around*|(|y\|x|)>=\<delta\><around*|(|y-x|)>>. When
   <math|\<Delta\>t> tends to be infinitesimal, as <math|\<mathd\>t>, the
   transition probability can be expanded by <math|\<mathd\>t> up to linear
   order, as <math|q<rsub|\<mathd\>t><around*|(|y\|x|)>=\<delta\><around*|(|y-x|)>+W<around*|(|y\|x|)>\<mathd\>t>.
-  This <math|W<around*|(|y\|x|)>> is thus the transition rate from <math|X=x>
-  to <math|Y=y>. It is the speed of probabilistic transition.
+  This <math|W<around*|(|y\|x|)>> is thus the
+  <with|font-series|bold|transition rate> from <math|X=x> to <math|Y=y>. It
+  is the speed of probabilistic transition.
 
   During an infinitesimal temporal unit <math|\<mathd\>t>, the change of
   probability at <math|X=x> equals to the total probability that transits
@@ -118,16 +120,16 @@
   <math|W> is usually autonomous, supposing <math|W> as time-independent will
   greatly reduce the complexity while covering most of the important
   situations. So, throughout this note, without specific declaration,
-  <math|A> is always independent of time.
+  <math|W> is always independent of time.
 
   <subsection|Detailed Balance Provides a Stationary Distribution>
 
-  When <math|\<mathd\>p<around*|(|x,t|)>/\<mathd\>t=0>, we get a stationary
-  distribution, denoted by <math|\<pi\><around*|(|x|)>>. The master equation
-  implies <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
-  <around*|[|W<around*|(|x\|y|)> \<pi\><around*|(|y|)>-W<around*|(|y\|x|)>\<pi\><around*|(|x|)>|]>=0>.
-  But, this condition is too weak to be used. A more useful condition, which
-  is stronger than this, is that the integrand vanishes everywhere. That is,
+  Let <math|\<pi\>> a stationary solution of master equation
+  <reference|equation:Master Equation>. Then, <math|\<pi\>> satisfies
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>y <around*|[|W<around*|(|x\|y|)>
+  \<pi\><around*|(|y|)>-W<around*|(|y\|x|)>\<pi\><around*|(|x|)>|]>=0>. But,
+  this condition is too weak to be used. A more useful condition, which is
+  stronger than this, is that the integrand vanishes everywhere. That is,
 
   <\equation>
     W<around*|(|x\|y|)> \<pi\><around*|(|y|)>=W<around*|(|y\|x|)>\<pi\><around*|(|x|)>,<label|equation:Detailed
@@ -201,7 +203,7 @@
       Directly, we have
 
       <\align>
-        <tformat|<table|<row|<cell|>|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|[|p,\<pi\>|]>>>|<row|<cell|=>|<cell|<frac|\<mathd\>|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
+        <tformat|<table|<row|<cell|>|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>>|<row|<cell|=>|<cell|<frac|\<mathd\>|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
         <around*|[|p<around*|(|x,t|)> ln p<around*|(|x,t|)>-p<around*|(|x,t|)>
         ln \<pi\><around*|(|x|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
         <around*|[|<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)> ln
@@ -318,11 +320,11 @@
     Fokker-Planck equation. With an integral by part, we arrive a negative
     definite expression, which means the monotonic reduction. This proof
     needs smooth structure on <math|X>, which is employed by integral by
-    part. Here, we provides a \Pdiscrete\Q, but more generic, alternative to
-    the proof, which employs detailed condition instead of Fokker-Planck
-    equation, which is a specific case of detailed condition (section
-    <reference|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance>).
+    part. Here, we provides a \Pdiscretizable\Q, but more generic,
+    alternative to the proof, which employs detailed condition instead of
+    Fokker-Planck equation, which is a specific case of detailed balance
+    (section <reference|section: Conservative Langevin Dynamics Satisfies
+    Detailed Balance>).
 
     The smooth structure on time, however, cannot be avoided. Indeed, the
     smoothness of transition probability on time is essential for defining
@@ -358,42 +360,46 @@
     <around*|[|W<around*|(|x\|y|)> p<around*|(|y,t|)>-W<around*|(|y\|x|)>p<around*|(|x,t|)>|]>.
   </equation*>
 
-  Letting <math|\<epsilon\>\<assign\>x-y> and
+  Let <math|\<epsilon\>\<assign\>x-y> and
   <math|\<omega\><around*|(|x,\<epsilon\>|)>\<assign\>W<around*|(|x+\<epsilon\>\|x|)>>.
-  we then have
+  We then have, for the first term,
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    W<around*|(|x\|y|)> p<around*|(|y,t|)>>>|<row|<cell|<around*|{|y=x-\<epsilon\>|}>=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    W<around*|(|x\|x-\<epsilon\>|)> p<around*|(|x-\<epsilon\>,t|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    W<around*|(|<around*|(|x-\<epsilon\>|)>+\<epsilon\>\|x-\<epsilon\>|)>
+    p<around*|(|x-\<epsilon\>,t|)>>>|<row|<cell|<around*|{|\<omega\>\<assign\>\<cdots\>|}>=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<omega\><around*|(|x-\<epsilon\>,\<epsilon\>|)>
+    p<around*|(|x-\<epsilon\>,t|)>.>>>>
+  </align>
+
+  And for the second term,
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    W<around*|(|y\|x|)>p<around*|(|x,t|)>>>|<row|<cell|<around*|{|y=x-\<epsilon\>|}>=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\><around*|(|-\<epsilon\>|)>
+    W<around*|(|x-\<epsilon\>\|x|)> p<around*|(|x,t|)>>>|<row|<cell|<around*|{|-\<epsilon\>\<rightarrow\>\<epsilon\>|}>=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    W<around*|(|x+\<epsilon\>\|x|)> p<around*|(|x,t|)>>>|<row|<cell|<around*|{|\<omega\>\<assign\>\<cdots\>|}>=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<omega\><around*|(|x,\<epsilon\>|)> p<around*|(|x,t|)>.>>>>
+  </align>
+
+  Altogether, we have
 
   <\equation*>
     <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    W<around*|(|x\|x-\<epsilon\>|)> p<around*|(|x-\<epsilon\>,t|)>-p<around*|(|x,t|)><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    W<around*|(|x-\<epsilon\>\|x|)>,
-  </equation*>
-
-  where we have employed the formula <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\><around*|(|-\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>>
-  (check this). For the second integral, using this formula again, we find
-
-  <\equation*>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    W<around*|(|x-\<epsilon\>\|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    W<around*|(|x+\<epsilon\>\|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<omega\><around*|(|x,\<epsilon\>|)>.
-  </equation*>
-
-  And for the first integral,
-
-  <\equation*>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    W<around*|(|<around*|(|x-\<epsilon\>|)>+\<epsilon\>\|x-\<epsilon\>|)>
-    p<around*|(|x-\<epsilon\>,t|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     \<omega\><around*|(|x-\<epsilon\>,\<epsilon\>|)>
-    p<around*|(|x-\<epsilon\>,t|)>.
+    p<around*|(|x-\<epsilon\>,t|)>-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<omega\><around*|(|x,\<epsilon\>|)> p<around*|(|x,t|)>.
   </equation*>
 
   Now, since <math|W> and <math|p> is smooth, we can Taylor expand the first
-  integrand, and find
+  term, and find
 
   <\equation*>
-    p<around*|(|x,t|)><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<omega\><around*|(|x,\<epsilon\>|)>+<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \ \<omega\><around*|(|x,\<epsilon\>|)>
+    p<around*|(|x,t|)>+<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
     <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
     <around*|[|p<around*|(|x,t|)> <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     <around*|(|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|)>
@@ -411,7 +417,7 @@
   </equation*>
 
   Recalling that <math|\<omega\><around*|(|x,\<epsilon\>|)>=W<around*|(|x+\<epsilon\>\|x|)>>
-  and that transition probability <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>=W<around*|(|x+\<epsilon\>\|x|)>
+  and that transition probability <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>=\<delta\><around*|(|\<epsilon\>|)>+W<around*|(|x+\<epsilon\>\|x|)>
   \<mathd\>t>, we have
 
   <\equation*>
@@ -449,7 +455,8 @@
 
   The transition probability <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>>
   is <math|\<cal-N\><around*|(|f<around*|(|x|)>\<mathd\>t,2T\<mathd\>t|)>> on
-  <math|\<epsilon\>>. Thus, moments <math|M<rsup|\<alpha\>><around*|(|x|)>=f<rsup|\<alpha\>><around*|(|x|)>\<mathd\>t>,
+  <math|\<epsilon\>>, where <math|T> is a positive constant. Thus, moments
+  <math|M<rsup|\<alpha\>><around*|(|x|)>=f<rsup|\<alpha\>><around*|(|x|)>\<mathd\>t>,
   <math|M<rsup|\<alpha\>\<beta\>>=2T \<delta\><rsup|\<alpha\>\<beta\>>\<mathd\>t>,
   and higher orders are of <math|o<around*|(|\<mathd\>t|)>>. The
   Kramers-Moyal expansion gives
@@ -513,12 +520,12 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
-    <associate|auto-3|<tuple|1.2|2>>
+    <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|4>>
+    <associate|auto-5|<tuple|1.4|2>>
     <associate|auto-6|<tuple|2|4>>
-    <associate|auto-7|<tuple|2.1|5>>
-    <associate|auto-8|<tuple|2.2|?>>
+    <associate|auto-7|<tuple|2.1|4>>
+    <associate|auto-8|<tuple|2.2|5>>
     <associate|equation:Detailed Balance|<tuple|2|2>>
     <associate|equation:Detailed Balance V2|<tuple|3|2>>
     <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
@@ -529,10 +536,12 @@
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|3>>
+    <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|3>>
+    <associate|footnr-5|<tuple|5|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|5>>
     <associate|section: Master Equation, Detailed Balance, and Relative
@@ -548,32 +557,36 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|1.1<space|2spc>Master Equation Describes
-      Generic Dynamics of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.1<space|2spc>Conventions in This Section
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>Detailed Balance Provides a
-      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Master Equation Describes
+      Generic Dynamics of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance Provides a
+      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4>>
+
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance
       Monotonically Reduces Relative Entropy
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-4>>
+      <no-break><pageref|auto-5>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Kramers-Moyal
       Expansion and Langevin Dynamics> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5><vspace|0.5fn>
+      <no-break><pageref|auto-6><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
       Equation Gives Kramers-Moyal Expansion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6>>
+      <no-break><pageref|auto-7>>
 
       <with|par-left|<quote|1tab>|2.2<space|2spc>Conservative Langevin
       Dynamics Satisfies Detailed Balance
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>>
+      <no-break><pageref|auto-8>>
     </associate>
   </collection>
 </auxiliary>

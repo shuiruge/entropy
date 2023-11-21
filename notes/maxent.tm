@@ -15,29 +15,32 @@
   as long as any smooth structure of <math|X> is not employed throughout the
   discussion.
 
-  <subsection|Maximum-Entropy Principle Maximizes Relative Entropy>
+  <subsection|Maximum-Entropy Principle Shall Minimize Relative Entropy>
 
   As discussed in section <reference|section: Relative Entropy>, Shannon
   entropy is not well-defined for continuous random variable, while the
   relative entropy is proper for both discrete and continuous random
   variables. For this reason, we suggest that the objective to be maximized
-  shall be relative entropy instead of Shannon entropy. Comparing with
-  Shannon entropy, relative entropy needs an extra distribution, which
-  describes the prior knowledge. It then characterizes the relative
-  uncertainty (surprise) of a distribution to the distribution of prior
-  knowledge.
+  shall be the negative relative entropy instead of Shannon entropy.
+  Comparing with Shannon entropy, relative entropy needs an extra
+  distribution, which describes the prior knowledge. It then characterizes
+  the relative uncertainty (surprise) of a distribution to the distribution
+  of prior knowledge. When the prior knowledge is unbiased and
+  <math|<around*|\||\<cal-X\>|\|>\<less\>+\<infty\>>, the negative relative
+  entropy reduces to Shannon entropy. So, maximum-entropy principle shall
+  minimize relative entropy.
 
   Given a distribution <math|Q> of <math|X> that describes the prior
   knowledge, the basic problem is to find a distribution <math|P> of <math|X>
-  such that the relative entropy <math|H<around*|[|p,q|]>> is maximized under
+  such that the relative entropy <math|H<around*|[|p,q|]>> is minimized under
   a set of restrictions <math|<around*|{|\<bbb-E\><rsub|p><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>\|\<alpha\>=1,\<ldots\>,m,f<rsub|\<alpha\>>:\<cal-X\>\<rightarrow\>\<bbb-R\>|}>>.
   The notation <math|\<bbb-E\><rsub|p><around*|[|\<cdots\>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
   p<around*|(|x|)>\<cdots\>> represents expectation under <math|p>; and the
   function <math|f<rsub|\<alpha\>>> is called
   <with|font-series|bold|observable> and the value
   <math|<wide|f|\<bar\>><rsub|\<alpha\>>> is called an
-  <with|font-series|bold|observation>. The <math|P>, thus, is the most
-  unbiased distribution relative to prior knowledge with the restrictions
+  <with|font-series|bold|observation>. The <math|P>, thus, is the
+  distribution which is closest to the prior knowledge with the restrictions
   fulfilled.
 
   To solve this problem, we use variational principle with Lagrangian
@@ -50,7 +53,7 @@
   Altogether, the loss functional becomes
 
   <\equation>
-    L<around*|[|p,\<lambda\>,\<mu\>|]>\<assign\>-<big|int><rsub|\<cal-X\>>\<mathd\>x
+    L<around*|[|p,\<lambda\>,\<mu\>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>ln<frac|p<around*|(|x|)>|q<around*|(|x|)>>+\<lambda\><rsup|\<alpha\>><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x|)>-<wide|f|\<bar\>><rsub|\<alpha\>>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1|)>.
@@ -59,8 +62,8 @@
   So, we have
 
   <\align>
-    <tformat|<table|<row|<cell|<frac|\<delta\>L|\<delta\>p<around*|(|x|)>><around*|[|p,\<lambda\>,\<mu\>|]>=>|<cell|-ln
-    p<around*|(|x|)>-1+ln q<around*|(|x|)>+\<lambda\><rsup|\<alpha\>>
+    <tformat|<table|<row|<cell|<frac|\<delta\>L|\<delta\>p<around*|(|x|)>><around*|[|p,\<lambda\>,\<mu\>|]>=>|<cell|ln
+    p<around*|(|x|)>+1-ln q<around*|(|x|)>+\<lambda\><rsup|\<alpha\>>
     f<rsub|\<alpha\>><around*|(|x|)>+\<mu\>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|[|p,\<lambda\>,\<mu\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x|)>-<wide|f|\<bar\>><rsub|\<alpha\>>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<mu\>><around*|[|p,\<lambda\>,\<mu\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1.>>>>
@@ -71,7 +74,7 @@
   is an extremum, then we shall have
 
   <\equation>
-    <frac|\<partial\>ln Z|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|\<lambda\><rsub|\<star\>>|)>=<wide|f|\<bar\>><rsub|\<alpha\>><label|equation:maxent
+    <frac|\<partial\>ln Z|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|\<lambda\><rsub|\<star\>>|)>+<wide|f|\<bar\>><rsub|\<alpha\>>=0<label|equation:maxent
     eq1>
   </equation>
 
@@ -79,7 +82,7 @@
 
   <\equation>
     Z<around*|(|\<lambda\>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> exp<around*|(|\<lambda\><rsup|\<alpha\>>
+    q<around*|(|x|)> exp<around*|(|-\<lambda\><rsup|\<alpha\>>
     f<rsub|\<alpha\>><around*|(|x|)>|)>;<label|equation:maxent partition
     function>
   </equation>
@@ -95,7 +98,7 @@
 
   <\equation>
     p<around*|(|x,\<lambda\>|)>\<assign\>Z<rsup|-1><around*|(|\<lambda\>|)>
-    q<around*|(|x|)> exp<around*|(|\<lambda\><rsup|\<alpha\>>
+    q<around*|(|x|)> exp<around*|(|-\<lambda\><rsup|\<alpha\>>
     f<rsub|\<alpha\>><around*|(|x|)>|)>.
   </equation>
 
@@ -112,7 +115,7 @@
   In physics, this prior knowledge can be viewed as free theory, a theory
   without interactions. Indeed, interaction shall be given by the
   restrictions, the expectations of observables. It is the factor
-  <math|exp<around*|(|\<lambda\><rsup|\<alpha\>>
+  <math|exp<around*|(|-\<lambda\><rsup|\<alpha\>>
   f<rsub|\<alpha\>><around*|(|x|)>|)>> in <math|p<around*|(|x,\<lambda\>|)>>.
   The <math|\<lambda\>> plays the role of couplings. This indicates that
   <math|q<around*|(|x|)>> shall be the free theory.\ 
@@ -145,20 +148,38 @@
   now becomes
 
   <\equation>
-    L<around*|[|p,\<lambda\>,\<varphi\>,\<mu\>|]>=-<big|int><rsub|\<cal-X\>>\<mathd\>x
+    L<around*|[|p,\<lambda\>,\<varphi\>,\<mu\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>ln<frac|p<around*|(|x|)>|q<around*|(|x|)>>+\<lambda\><rsup|\<alpha\>><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x,\<varphi\>|)>-<around*|\<langle\>|f<rsub|\<alpha\>><around*|(|\<cdummy\>,\<varphi\>|)>|\<rangle\>><rsub|p<rsub|D>>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x,\<varphi\>|)>-\<bbb-E\><rsub|p<rsub|D>><around*|[|f<rsub|\<alpha\>><around*|(|\<cdummy\>,\<varphi\>|)>|]>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1|)>.
   </equation>
 
   Following the same steps as before, denoting
   <math|\<theta\>\<assign\><around*|(|\<lambda\>,\<varphi\>|)>> and
-  <math|F<around*|(|x,\<theta\>|)>\<assign\>\<lambda\><rsup|\<alpha\>>f<rsub|\<alpha\>><around*|(|x,\<varphi\>|)>>,
+
+  <\equation*>
+    S<around*|(|x,\<theta\>|)>\<assign\>\<lambda\><rsup|\<alpha\>>f<rsub|\<alpha\>><around*|(|x,\<varphi\>|)>,
+  </equation*>
+
   the equation for an extremum <math|<around*|(|p<rsub|\<star\>>,\<theta\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>>
-  comes to be
+  comes to be <\footnote>
+    Explicitly, we have
+
+    <\align>
+      <tformat|<table|<row|<cell|<frac|\<delta\>L|\<delta\>p<around*|(|x|)>><around*|[|p,\<lambda\>,\<varphi\>,\<mu\>|]>=>|<cell|ln
+      p<around*|(|x|)>+1-ln q<around*|(|x|)>+\<lambda\><rsup|\<alpha\>>
+      f<rsub|\<alpha\>><around*|(|x,\<varphi\>|)>+\<mu\>>>|<row|<cell|=>|<cell|ln
+      p<around*|(|x|)>+1-ln q<around*|(|x|)>+S<around*|(|x,<around*|(|\<lambda\>,\<varphi\>|)>|)>+\<mu\>>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|[|p,\<lambda\>,\<varphi\>,\<mu\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x,\<varphi\>|)>-\<bbb-E\><rsub|p<rsub|D>><around*|[|f<rsub|\<alpha\>><around*|(|\<cdummy\>,\<varphi\>|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      p<around*|(|x|)><frac|\<partial\>S|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|x,<around*|(|\<lambda\>,\<varphi\>|)>|)>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|\<cdummy\>,<around*|(|\<lambda\>,\<varphi\>|)>|)>|]>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<varphi\><rsup|\<alpha\>>><around*|[|p,\<lambda\>,\<varphi\>,\<mu\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      p<around*|(|x|)>\<lambda\><rsup|\<beta\>><frac|\<partial\>f<rsub|\<beta\>>|\<partial\>\<varphi\><rsup|\<alpha\>>><around*|(|x,\<varphi\>|)>-\<bbb-E\><rsub|p<rsub|D>><around*|[|\<lambda\><rsup|\<beta\>><frac|\<partial\>f<rsub|\<beta\>>|\<partial\>\<varphi\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<varphi\>|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      p<around*|(|x|)><frac|\<partial\>S|\<partial\>\<varphi\><rsup|\<alpha\>>><around*|(|x,<around*|(|\<lambda\>,\<varphi\>|)>|)>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<varphi\><rsup|\<alpha\>>><around*|(|\<cdummy\>,<around*|(|\<lambda\>,\<varphi\>|)>|)>|]>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<mu\>><around*|[|p,\<lambda\>,\<varphi\>,\<mu\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      p<around*|(|x|)>-1.>>>>
+    </align>
+  </footnote>
 
   <\equation>
-    <frac|\<partial\>ln Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\><rsub|\<star\>>|)>=\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>F|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>,<label|equation:weak
+    <frac|\<partial\>ln Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\><rsub|\<star\>>|)>+\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=0,<label|equation:weak
     maxent eq1>
   </equation>
 
@@ -166,8 +187,7 @@
 
   <\equation>
     Z<around*|(|\<theta\>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> exp<around*|(|\<lambda\><rsup|\<alpha\>>
-    f<rsub|\<alpha\>><around*|(|x,\<varphi\>|)>|)>;<label|equation:weak
+    q<around*|(|x|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>;<label|equation:weak
     maxent partition function>
   </equation>
 
@@ -184,8 +204,8 @@
 
   Generally, it is hard to solve the equation <reference|equation:maxent eq1>
   and its weak version, equation <reference|equation:weak maxent eq1>. But,
-  we can solve it using computer by iterative method. We are to show how to
-  do this for the weak maximum-entropy principle, equation
+  we can solve them numerically by iterative method. We are to show how to do
+  this for the weak maximum-entropy principle, equation
   <reference|equation:weak maxent eq1>. Then, we will find that the equation
   <reference|equation:maxent eq1> is solved also.
 
@@ -202,7 +222,7 @@
 
   <\equation*>
     L<rsub|iter><around*|(|\<theta\>|)>\<assign\>ln
-    Z<around*|(|\<theta\>|)>-\<bbb-E\><rsub|p<rsub|D>><around*|[|F<around*|(|\<cdummy\>,\<theta\>|)>|]>,
+    Z<around*|(|\<theta\>|)>+\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>,
   </equation*>
 
   We find <math|\<partial\>L<rsub|iter>/\<partial\>\<theta\><rsup|\<alpha\>>=0>
@@ -215,16 +235,16 @@
   With a series of direct calculus, we find
 
   <\equation>
-    -<frac|\<partial\>L<rsub|iter>|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>F|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>F|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>.<label|equation:weak
+    -<frac|\<partial\>L<rsub|iter>|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>.<label|equation:weak
     maxent iteration>
   </equation>
 
   For equation <reference|equation:maxent eq1>, it becomes (now
   <math|\<theta\>> reduces to <math|\<lambda\>>, and
-  <math|\<partial\>F/\<partial\>\<lambda\><rsup|\<alpha\>>=f<rsub|\<alpha\>>>)
+  <math|\<partial\>S/\<partial\>\<lambda\><rsup|\<alpha\>>=f<rsub|\<alpha\>>>)
 
   <\equation>
-    -<frac|\<partial\>L<rsub|iter>|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|\<lambda\>|)>=<wide|f|\<bar\>><rsub|\<alpha\>>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<lambda\>|)>><around*|[|f<rsub|\<alpha\>>|]>.<label|equation:maxent
+    -<frac|\<partial\>L<rsub|iter>|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|\<lambda\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<lambda\>|)>><around*|[|f<rsub|\<alpha\>>|]>-<wide|f|\<bar\>><rsub|\<alpha\>>.<label|equation:maxent
     iteration>
   </equation>
 
@@ -262,17 +282,19 @@
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
     <associate|auto-6|<tuple|1.5|2>>
-    <associate|auto-7|<tuple|1.6|2>>
+    <associate|auto-7|<tuple|1.6|3>>
     <associate|equation:maxent eq1|<tuple|2|1>>
     <associate|equation:maxent eq2|<tuple|4|1>>
-    <associate|equation:maxent iteration|<tuple|11|?>>
+    <associate|equation:maxent iteration|<tuple|11|3>>
     <associate|equation:maxent partition function|<tuple|3|1>>
     <associate|equation:weak maxent eq1|<tuple|7|2>>
     <associate|equation:weak maxent eq2|<tuple|9|2>>
-    <associate|equation:weak maxent iteration|<tuple|10|?>>
+    <associate|equation:weak maxent iteration|<tuple|10|3>>
     <associate|equation:weak maxent partition function|<tuple|8|2>>
-    <associate|footnote-1|<tuple|1|?>>
-    <associate|footnr-1|<tuple|1|?>>
+    <associate|footnote-1|<tuple|1|3>>
+    <associate|footnote-2|<tuple|2|?>>
+    <associate|footnr-1|<tuple|1|3>>
+    <associate|footnr-2|<tuple|2|?>>
   </collection>
 </references>
 
@@ -288,7 +310,7 @@
       <no-break><pageref|auto-2>>
 
       <with|par-left|<quote|1tab>|1.2<space|2spc>Maximum-Entropy Principle
-      Maximize Relative Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Maximizes Relative Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
       <with|par-left|<quote|1tab>|1.3<space|2spc>Prior Knowledge Furnishes
@@ -299,9 +321,8 @@
       Principle Furnishes Observables <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>How to solve
-      <with|mode|<quote|math>|\<lambda\><rsub|\<star\>>>?
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Extremum Can Be Found by
+      Iteration Method <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|1.6<space|2spc>When

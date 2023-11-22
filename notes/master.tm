@@ -9,12 +9,12 @@
 
   <subsection|Conventions in This Section>
 
-  Let <math|X> a time-dependent random variables, being either discrete or
-  continuous, with alphabet <math|\<cal-X\>> and distribution <math|P>. Even
-  though the discussion in this section applies to both discrete and
-  continuous random variables, we use the notation of the continuous. The
-  reason is that converting from discrete to continuous may cause problems
-  <\footnote>
+  Let <math|X> a multi-dimensional time-dependent random variables, being,
+  discrete, continuous, or partially discrete and partially continuous, with
+  alphabet <math|\<cal-X\>> and distribution <math|P>. Even though the
+  discussion in this section applies to both discrete and continuous random
+  variables, we use the notation of the continuous. The reason is that
+  converting from discrete to continuous may cause problems <\footnote>
     Such as the problem of Shannon entropy, which has no proper definition
     for continuous random variable.
   </footnote> while the inverse will be safe and direct as long as any smooth
@@ -334,6 +334,54 @@
     discussion.
   </remark>
 
+  <subsection|Example: Gibbs Sampling Satisfies Detailed Balance>
+
+  Let <math|\<pi\>> a time-independent distribution of <math|X>. We can
+  update its <math|i>-th component by sampling from the condition probability
+  <math|\<pi\><around*|(|X<rsub|i>\|x<rsub|\\i>|)>>, where <math|x<rsub|\\i>>
+  denotes the collection of components with the <math|i>-th excluded. This
+  gives a transition probability of <math|X>. That is,
+  <math|X=<around*|(|x<rsub|1>,\<ldots\>,x<rsub|i>,\<ldots\>,x<rsub|n>|)>\<rightarrow\><around*|(|x<rsub|1>,\<ldots\>,x<rsub|i><rprime|'>,\<ldots\>,x<rsub|n>|)>>
+  during a time unit <\footnote>
+    You may argue that the time unit is not an infinitesimal. TODO
+  </footnote>, where <math|x<rprime|'><rsub|i>> denotes the updated value. It
+  is called <with|font-series|bold|Gibbs sampling>. The following theorem
+  highlights the importance of Gibbs sampling.
+
+  <\theorem>
+    \ Gibbs sampling satisfies detailed balance with the
+    <math|\<pi\><around*|(|x|)>> the stationary distribution.
+  </theorem>
+
+  <small|<\proof>
+    TODO
+  </proof>>
+
+  When <math|X> is discrete with <math|<around*|\||\<cal-X\>|\|>\<less\>+\<infty\>>,
+  the condition probability <math|\<pi\><around*|(|X<rsub|i>\|x<rsub|\\i>|)>>
+  can be calculated. Indeed, we start at encoding <math|X> by binaries, since
+  any variable with finite possible values can be encoded by binaries. Now,
+  for each component of <math|X>, it can either be zero or unit. Then, we
+  have (set <math|i=1> for simplicity)
+
+  <\align>
+    <tformat|<table|<row|<cell|\<pi\><around*|(|X<rsub|1>=1\|x<rsub|\\1>|)>=>|<cell|<frac|\<pi\><around*|(|X<rsub|1>=1\|x<rsub|2>,\<ldots\>,x<rsub|n>|)>|\<pi\><around*|(|X<rsub|1>=0\|x<rsub|2>,\<ldots\>,x<rsub|n>|)>+\<pi\><around*|(|X<rsub|1>=1\|x<rsub|2>,\<ldots\>,x<rsub|n>|)>>>>|<row|<cell|=>|<cell|<frac|\<pi\><around*|(|1,x<rsub|2>,\<ldots\>,x<rsub|n>|)>|\<pi\><around*|(|0,x<rsub|2>,\<ldots\>,x<rsub|n>|)>+\<pi\><around*|(|1,x<rsub|2>,\<ldots\>,x<rsub|n>|)>>>>|<row|<cell|=>|<cell|\<sigma\><around*|(|ln
+    \<pi\><around*|(|1,x<rsub|2>,\<ldots\>,x<rsub|n>|)>-ln
+    \<pi\><around*|(|0,x<rsub|2>,\<ldots\>,x<rsub|n>|)>|)>,>>>>
+  </align>
+
+  where <math|\<sigma\>> denotes the sigmoid function. So, to sample
+  <math|x<rsub|1>> for its update, we simply compute the value of
+  <math|\<sigma\><around*|(|ln \<pi\><around*|(|1,x<rsub|2>,\<ldots\>,x<rsub|n>|)>-ln
+  \<pi\><around*|(|0,x<rsub|2>,\<ldots\>,x<rsub|n>|)>|)>> which is then used
+  as the frequency of Bernoulli distribution to sample <math|x<rsub|1>>.
+
+  When <math|ln \<pi\><around*|(|x|)>> is quadratic, as <math|ln
+  \<pi\><around*|(|x|)>=A<rsub|\<alpha\>\<beta\>> x<rsup|\<alpha\>>
+  x<rsup|\<beta\>>+b<rsub|\<alpha\>> x<rsup|\<alpha\>>+c>, Gibbs sampling
+  turns out to be the stochastic update rule of <hlink|Hopfield
+  network|https://neuronaldynamics.epfl.ch/online/Ch17.S2.html>.
+
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
   We follow the discussion in section <reference|section: Master Equation,
@@ -522,10 +570,11 @@
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|2>>
-    <associate|auto-6|<tuple|2|4>>
-    <associate|auto-7|<tuple|2.1|4>>
-    <associate|auto-8|<tuple|2.2|5>>
+    <associate|auto-5|<tuple|1.4|3>>
+    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-7|<tuple|2|4>>
+    <associate|auto-8|<tuple|2.1|6>>
+    <associate|auto-9|<tuple|2.2|?>>
     <associate|equation:Detailed Balance|<tuple|2|2>>
     <associate|equation:Detailed Balance V2|<tuple|3|2>>
     <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
@@ -543,7 +592,7 @@
     <associate|footnr-4|<tuple|4|3>>
     <associate|footnr-5|<tuple|5|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance|<tuple|2.2|5>>
+    Balance|<tuple|2.2|6>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
   </collection>

@@ -564,6 +564,62 @@
 
   This indicates that, to satisfy detailed balance, Langevin dynamics shall
   be conservative.
+
+  <section|Draft: Discrete Time Master Equation>
+
+  <subsection|Transition Probability Shall Obey Time-Reversal Symmetry>
+
+  First consider an instance of deterministic situation. Let
+  <math|y=x+v*\<Delta\>t>. It can be viewed as a transition from <math|x> to
+  <math|y> after a time unit <math|\<Delta\>t> (velocity <math|v>). The
+  transition probability thus is a delta function
+  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>=\<delta\><around*|(|y-<around*|(|x+v
+  \<Delta\>t|)>|)>>. Since <math|\<delta\><around*|(|a-b|)>\<equiv\>\<delta\><around*|(|b-a|)>>,
+  we thus have
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|q<rsub|\<Delta\>t><around*|(|y\|x|)>>>|<row|<cell|<around*|{|definition|}>=>|<cell|\<delta\><around*|(|y-<around*|(|x+v
+    \<mathd\>t|)>|)>>>|<row|<cell|<around*|{|\<delta\><around*|(|a-b|)>\<equiv\>\<delta\><around*|(|b-a|)>|}>=>|<cell|\<delta\><around*|(|-y+<around*|(|x+v
+    \<mathd\>t|)>|)>>>|<row|<cell|=>|<cell|\<delta\><around*|(|x-<around*|(|y-v
+    \<mathd\>t|)>|)>>>|<row|<cell|<around*|{|definition|}>=>|<cell|q<rsub|-\<Delta\>t><around*|(|x\|y|)>.>>>>
+  </align>
+
+  We can generally suspect that transition probability for a physical system
+  shall obey
+
+  <\equation>
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>=q<rsub|-\<Delta\>t><around*|(|x\|y|)>,
+  </equation>
+
+  which is called <with|font-series|bold|time-reversal symmetry>.
+
+  But, not all important systems satisfy the time-reversal symmetry. Indeed,
+  a system that satisfy time-reversal symmetry, in the deterministic limit,
+  can uniquely determine the state before transition based on the current
+  transited state. This condition fails to be satisfied in many important
+  systems, such as Hopfield network.
+
+  <subsection|Master Equation and Detailed Balance>
+
+  Following the same discussion, we have
+
+  <\equation>
+    p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    <around*|[|q<rsub|\<Delta\>t><around*|(|x\|y|)>
+    p<around*|(|y,t|)>-q<rsub|\<Delta\>t><around*|(|y\|x|)>
+    p<around*|(|x,t|)>|]>.
+  </equation>
+
+  Then, detailed balance comes to be
+
+  <\equation>
+    q<rsub|\<Delta\>t><around*|(|x\|y|)> p<around*|(|y,t|)>=q<rsub|\<Delta\>t><around*|(|y\|x|)>
+    p<around*|(|x,t|)>.
+  </equation>
+
+  \;
+
+  \;
 </body>
 
 <\initial>

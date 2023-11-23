@@ -175,35 +175,14 @@
   interesting property. But, if the <math|\<pi\>> is more than stationary but
   satisfying a stronger condition: detailed balance, then we can express the
   <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
-  in a regular form, as the following theorem shows.
+  in a regular form, as <\footnote>
+    The proof is given as follow.
 
-  <\theorem>
-    If there is a stationary distribution <math|\<pi\>> supported on
-    <math|\<cal-X\>> such that detailed balance <reference|equation:Detailed
-    Balance> holds, then for any time-dependent distribution
-    <math|p<around*|(|\<cdummy\>,t|)>> supported on <math|\<cal-X\>>, we have
-
-    <\equation>
-      <frac|\<mathd\>|\<mathd\>t>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=-<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x
-      <big|int><rsub|\<cal-X\>>\<mathd\>y W<around*|(|y\|x|)>
-      \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
-      ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.<label|equation:relative
-      entropy derivative>
-    </equation>
-  </theorem>
-
-  The proof of this theorem is given as follow. <\footnote>
-    As you will see, the proof is very tricky: it uses detailed balance
-    twice, between which the expression is symmetrized. It is an ingenious
-    mathematical engineering.
-  </footnote>
-
-  <\small>
     <\proof>
       Directly, we have
 
       <\align>
-        <tformat|<table|<row|<cell|>|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>>|<row|<cell|=>|<cell|<frac|\<mathd\>|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
+        <tformat|<table|<row|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=>|<cell|<frac|\<mathd\>|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
         <around*|[|p<around*|(|x,t|)> ln p<around*|(|x,t|)>-p<around*|(|x,t|)>
         ln \<pi\><around*|(|x|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
         <around*|[|<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)> ln
@@ -275,13 +254,46 @@
         ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.>>>>
       </align>
 
+      Recalling that <math|q<rsub|\<mathd\>t><around*|(|y\|x|)>=\<delta\><around*|(|x-y|)>+W<around*|(|y\|x|)>
+      \<mathd\>t>, we then have
+
+      <\equation*>
+        2 <frac|\<mathd\>|\<mathd\>t>H<around*|[|p,\<pi\>|]>=-<frac|1|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
+        <big|int><rsub|\<cal-X\>>\<mathd\>y
+        q<rsub|\<mathd\>t><around*|(|y\|x|)>
+        \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
+        ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.
+      </equation*>
+
+      Indeed,
+
+      <\equation*>
+        <big|int><rsub|\<cal-X\>>\<mathd\>x
+        <big|int><rsub|\<cal-X\>>\<mathd\>y \<delta\><around*|(|x-y|)>
+        \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
+        ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>=0.
+      </equation*>
+
       Thus proof ends.
     </proof>
-  </small>
 
-  If we further assume that the transition rate <math|W> is supported on
-  <math|\<cal-X\>>, which means <math|W<around*|(|x\|y|)>\<gtr\>0> for each
-  <math|x> and <math|y> in <math|\<cal-X\>>, then by equation
+    This proof is very tricky: it uses detailed balance twice, between which
+    the expression is symmetrized. It is an ingenious mathematical
+    engineering.
+  </footnote>
+
+  <small|<\equation>
+    H<around*|[|p<around*|(|\<cdummy\>,t+\<mathd\>t|)>,\<pi\>|]>-H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=-<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x
+    <big|int><rsub|\<cal-X\>>\<mathd\>y q<rsub|\<mathd\>t><around*|(|y\|x|)>
+    \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
+    ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.<label|equation:relative
+    entropy derivative>
+  </equation>>
+
+  If we further assume that the transition rate
+  <math|q<rsub|\<mathd\>t><around*|(|x\|y|)>> is supported on
+  <math|\<cal-X\>>, which means <math|q<rsub|\<mathd\>t><around*|(|x\|y|)>\<gtr\>0>
+  for each <math|x> and <math|y> in <math|\<cal-X\>>, then by equation
   <reference|equation:relative entropy derivative>, the sign of
   <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
   is determined by the last two terms. If
@@ -296,8 +308,9 @@
   p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
   \<pi\><around*|(|x|)>=1>. So, we conclude that
 
-  <\corollary>
-    Suppose that the transition rate <math|W> is supported on
+  <\theorem>
+    Suppose that the transition probability
+    <math|q<rsub|\<mathd\>t><around*|(|x\|y|)>> is supported on
     <math|\<cal-X\>>. If there is a stationary distribution <math|\<pi\>>
     supported on <math|\<cal-X\>> such that detailed balance
     <reference|equation:Detailed Balance> holds, then for any time-dependent
@@ -306,12 +319,10 @@
     is negative as long as <math|p<around*|(|\<cdummy\>,t|)>\<neq\>\<pi\>>
     and vanishes when <math|p<around*|(|\<cdummy\>,t|)>=\<pi\>> for some
     <math|t>.
-  </corollary>
+  </theorem>
 
   This means the time-dependent distribution <math|p> will monotonically and
-  constantly relax to the stationary distribution <math|\<pi\>>. And equation
-  <reference|equation:relative entropy derivative> gives an explicit
-  estimation to the relaxation rate.
+  constantly relax to the stationary distribution <math|\<pi\>>.
 
   <\remark>
     Here is a remark on smooth structure.
@@ -334,7 +345,7 @@
     discussion.
   </remark>
 
-  <subsection|Example: Gibbs Sampling Satisfies Detailed Balance>
+  <subsection|Example of Detailed Balance: Gibbs Sampling>
 
   Let <math|\<pi\>> a time-independent distribution of <math|X>. We can
   update its <math|i>-th component by sampling from the condition probability
@@ -567,6 +578,9 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|3|?>>
+    <associate|auto-11|<tuple|3.1|?>>
+    <associate|auto-12|<tuple|3.2|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -586,11 +600,13 @@
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|3>>
     <associate|footnote-5|<tuple|5|?>>
+    <associate|footnote-6|<tuple|6|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|3>>
     <associate|footnr-5|<tuple|5|?>>
+    <associate|footnr-6|<tuple|6|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|6>>
     <associate|section: Master Equation, Detailed Balance, and Relative

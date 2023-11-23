@@ -144,7 +144,7 @@
   where <math|T> is an arbitrary positive number. This property of transition
   probability is called <with|font-series|bold|ergodicity>. Indeed, by
   repeatedly applying master equation <reference|equation:Master Equation
-  V2>, <math|p<around*|(|x,t<rprime|'>|)>> is found to be suppoted on
+  V2>, <math|p<around*|(|x,t<rprime|'>|)>> is found to be supported on
   <math|\<cal-X\>> for any <math|t<rprime|'>\<gtr\>t>. This keeps
   <math|H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>> well-defined as
   long as it is well-defined initially.
@@ -310,7 +310,7 @@
     You may wonder if the temporal smoothness implies the continuum of
     alphabet. Explicitly, if <math|p<around*|(|x,t|)>> is smooth on <math|t>,
     then does the value of <math|x> have to be continuous? The answer is no.
-    For example, you can consier 1-dimensional case where the alphabet
+    For example, you can consider 1-dimensional case where the alphabet
     <math|\<cal-X\>=<around*|{|0,1|}>>; the <math|p<around*|(|x,t|)>> is
     given by <math|\<sigma\><around*|(|\<zeta\><around*|(|t|)>|)>> where
     <math|\<sigma\>> denotes the sigmoid function and

@@ -9,12 +9,12 @@
 
   <subsection|Conventions in This Section>
 
-  Let <math|X> a multi-dimensional time-dependent random variables, being,
-  discrete, continuous, or partially discrete and partially continuous, with
-  alphabet <math|\<cal-X\>> and distribution <math|P>. Even though the
-  discussion in this section applies to both discrete and continuous random
-  variables, we use the notation of the continuous. The reason is that
-  converting from discrete to continuous may cause problems <\footnote>
+  Let <math|X> a multi-dimensional random variables, being, discrete,
+  continuous, or partially discrete and partially continuous, with alphabet
+  <math|\<cal-X\>> and distribution <math|P>. Even though the discussion in
+  this section applies to both discrete and continuous random variables, we
+  use the notation of the continuous. The reason is that converting from
+  discrete to continuous may cause problems <\footnote>
     Such as the problem of Shannon entropy, which has no proper definition
     for continuous random variable.
   </footnote> while the inverse will be safe and direct as long as any smooth
@@ -338,9 +338,9 @@
     Detailed Balance>).
 
     The smooth structure on time, however, cannot be avoided. Indeed, the
-    smoothness of transition probability on time is essential for defining
-    transition rate, thus master equation; and the smoothness of
-    <math|p<around*|(|x,t|)>> on time is essential for the monotonic
+    smoothness of transition probability on time and the smoothness of
+    <math|p<around*|(|x,t|)>> on time is essential (for equation
+    <reference|equation:relative entropy derivative>, thus) for the monotonic
     reduction of relative entropy, which is the essential end of our
     discussion.
   </remark>
@@ -500,9 +500,9 @@
   is the <math|k>-order moment of <math|\<epsilon\>\<sim\>q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>>.
   This is called the <with|font-series|bold|Kramers\UMoyal expansion>.
 
-  <subsection|Conservative Langevin Dynamics Satisfies Detailed
-  Balance><label|section: Conservative Langevin Dynamics Satisfies Detailed
-  Balance>
+  <subsection|Langevin Dynamics that Satisfies Detailed Balance Is
+  Conservative><label|section: Conservative Langevin Dynamics Satisfies
+  Detailed Balance>
 
   Given a function <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
   and a Wiener process <math|\<mathd\>\<xi\>> with variance
@@ -528,45 +528,42 @@
   which is the <with|font-series|bold|Fokker-Planck equation>.
 
   As a special case of master equation, we may wonder when Fokker-Planck
-  equation will satisfy detailed balance? For this question, we have the
-  following theorem.
+  equation will satisfy detailed balance? Directly from the form of
+  transition probability, we find that if there is a stationary distribution
+  <math|\<pi\>> such that Fokker-Planck equation satisfies detailed balance,
+  then we must have <\footnote>
+    <\small>
+      To check detailed balance, we can employ either equation
+      <reference|equation:Detailed Balance> or equation
+      <reference|equation:Detailed Balance V2>. Since
+      <math|q<rsub|\<mathd\>t>> is transparent, we check it using equation
+      <reference|equation:Detailed Balance V2>. That is, if there is a
+      stationary distribution <math|\<pi\>> such that
+      <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>
+      \<pi\><around*|(|x|)>=q<rsub|\<mathd\>t><around*|(|x\|x+\<epsilon\>|)>\<pi\><around*|(|x+\<epsilon\>|)>>?
+      Since <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>> obeys
+      <math|\<cal-N\><around*|(|f<around*|(|x|)>\<mathd\>t,2T\<mathd\>t|)>>
+      on <math|\<epsilon\>>, the question becomes
 
-  <\theorem>
-    If there is a stationary distribution <math|\<pi\>> such that
-    Fokker-Planck equation satisfies detailed balance, then we have
+      <\equation*>
+        <frac|1|<sqrt|<around*|(|4\<pi\>T|)><rsup|n>>>exp<around*|(|-<frac|<around*|(|\<epsilon\>-f<around*|(|x|)>\<mathd\>t|)><rsup|2>|4T\<mathd\>t>|)>\<pi\><around*|(|x|)><above|=|?><frac|1|<sqrt|<around*|(|4\<pi\>T|)><rsup|n>>>exp<around*|(|-<frac|<around*|(|-\<epsilon\>-f<around*|(|x-\<epsilon\>|)>\<mathd\>t|)><rsup|2>|4T\<mathd\>t>|)>\<pi\><around*|(|x+\<epsilon\>|)>.
+      </equation*>
 
-    <\equation>
-      f<around*|(|x|)>=T\<nabla\>ln\<pi\><around*|(|x|)>.
-    </equation>
+      Expanding the both sides up to the first order of <math|\<mathd\>t> and
+      <math|\<epsilon\>>, we directly find
 
-    This indicates that the corresponding Langevin dynamics is conservative.
-  </theorem>
+      <\equation>
+        f<around*|(|x|)>=T\<nabla\>ln\<pi\><around*|(|x|)>.
+      </equation>
+    </small>
+  </footnote>
 
-  <small|<\proof>
-    To check detailed balance, we can employ either equation
-    <reference|equation:Detailed Balance> or equation
-    <reference|equation:Detailed Balance V2>. Since <math|q<rsub|\<mathd\>t>>
-    is transparent, we check it using equation <reference|equation:Detailed
-    Balance V2>. That is, if there is a stationary distribution <math|\<pi\>>
-    such that <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>
-    \<pi\><around*|(|x|)>=q<rsub|\<mathd\>t><around*|(|x\|x+\<epsilon\>|)>\<pi\><around*|(|x+\<epsilon\>|)>>?
-    Since <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>> obeys
-    <math|\<cal-N\><around*|(|f<around*|(|x|)>\<mathd\>t,2T\<mathd\>t|)>> on
-    <math|\<epsilon\>>, the question becomes
+  <\equation>
+    f<around*|(|x|)>=T\<nabla\>ln\<pi\><around*|(|x|)>.
+  </equation>
 
-    <\equation*>
-      <frac|1|<sqrt|<around*|(|4\<pi\>T|)><rsup|n>>>exp<around*|(|-<frac|<around*|(|\<epsilon\>-f<around*|(|x|)>\<mathd\>t|)><rsup|2>|4T\<mathd\>t>|)>\<pi\><around*|(|x|)><above|=|?><frac|1|<sqrt|<around*|(|4\<pi\>T|)><rsup|n>>>exp<around*|(|-<frac|<around*|(|-\<epsilon\>-f<around*|(|x-\<epsilon\>|)>\<mathd\>t|)><rsup|2>|4T\<mathd\>t>|)>\<pi\><around*|(|x+\<epsilon\>|)>.
-    </equation*>
-
-    Expanding the both sides up to the first order of <math|\<mathd\>t> and
-    <math|\<epsilon\>>, we directly find
-
-    <\equation>
-      f<around*|(|x|)>=T\<nabla\>ln\<pi\><around*|(|x|)>.
-    </equation>
-
-    Thus proof ends.
-  </proof>>
+  This indicates that, to satisfy detailed balance, Langevin dynamics shall
+  be conservative.
 </body>
 
 <\initial>
@@ -606,7 +603,7 @@
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|3>>
     <associate|footnr-5|<tuple|5|?>>
-    <associate|footnr-6|<tuple|6|?>>
+    <associate|footnr-6|<tuple|7|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|6>>
     <associate|section: Master Equation, Detailed Balance, and Relative

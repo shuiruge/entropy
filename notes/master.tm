@@ -53,30 +53,23 @@
     There is another way of writing master equation, as
 
     <\equation>
-      p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-      q<rsub|\<Delta\>t><around*|(|x\|y|)>
-      p<around*|(|y,t|)><label|equation:Master Equation V2>,
-    </equation>
-
-    which is a direct result of the fact
-
-    <\equation*>
       p<around*|(|x,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-      q<rsub|\<Delta\>t><around*|(|x\|y|)> p<around*|(|y,t|)>.
-    </equation*>
+      q<rsub|\<Delta\>t><around*|(|x\|y|)>
+      p<around*|(|y,t|)><label|equation:Master Equation V2>.
+    </equation>
 
     In fact, these two definitions are equivalent, which is the result of
     <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x,t|)>=1>. To make
     it transparent, we use the discrete version, as
 
     <\equation*>
-      p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|sum><rsub|y\<in\>\<cal-X\>>q<rsub|\<Delta\>t><around*|(|x\|y|)>
+      p<around*|(|x,t+\<Delta\>t|)>=<big|sum><rsub|y\<in\>\<cal-X\>>q<rsub|\<Delta\>t><around*|(|x\|y|)>
       p<around*|(|y,t|)>.
     </equation*>
 
     Since <math|<big|sum><rsub|y\<in\>\<cal-X\>>q<rsub|\<Delta\>t><around*|(|y\|x|)>=1>,
     we have <math|q<rsub|\<Delta\>t><around*|(|x\|x|)>=1-<big|sum><rsub|y\<neq\>x>q<rsub|\<Delta\>t><around*|(|y\|x|)>>.
-    Thus
+    Thus,
 
     <\align>
       <tformat|<table|<row|<cell|p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=>|<cell|<big|sum><rsub|y\<in\>\<cal-X\>>q<rsub|\<Delta\>t><around*|(|x\|y|)>
@@ -109,20 +102,21 @@
   is stronger than this, is that the integrand vanishes everywhere. That is,
 
   <\equation>
-    q<rsub|\<Delta\>t><around*|(|x\|y|)> \<pi\><around*|(|y|)>=q<rsub|\<Delta\>t><around*|(|y\|x|)>\<pi\><around*|(|x|)>,<label|equation:Detailed
-    Balance>
+    q<rsub|\<Delta\>t><around*|(|x\|y|)> \<pi\><around*|(|y|)>=q<rsub|\<Delta\>t><around*|(|y\|x|)>\<pi\><around*|(|x|)><label|equation:Detailed
+    Balance>,
   </equation>
 
   which is called the <with|font-series|bold|detailed balance (condition)>.
 
   <subsection|Detailed Balance with Ergodicity Monotonically Reduces Relative
-  Entropy>
+  Entropy><label|section: Detailed Balance with Ergodicity Monotonically
+  Reduces Relative Entropy>
 
   Given the time <math|t>, if the time-dependent distribution
   <math|p<around*|(|\<cdummy\>,t|)>> and the stationary distribution
   <math|\<pi\>> are both supported on <math|\<cal-X\>>, which means
   <math|p<around*|(|x,t|)>\<gtr\>0> and <math|\<pi\><around*|(|x|)>\<gtr\>0>
-  for each <math|x\<in\>\<cal-X\>>, we can define the relative entropy
+  for each <math|x\<in\>\<cal-X\>>, we have defined the relative entropy
   between them, as
 
   <\equation>
@@ -274,13 +268,13 @@
 
   <\theorem>
     Suppose that the transition probability <math|q<rsub|\<Delta\>t>> is
-    smooth on <math|\<Delta\>t> and supported on <math|\<cal-X\>>. If there
-    is a stationary distribution <math|\<pi\>> supported on <math|\<cal-X\>>
-    such that detailed balance <reference|equation:Detailed Balance> holds,
-    then for any time-dependent distribution
-    <math|p<around*|(|\<cdummy\>,t|)>> initially supported on
-    <math|\<cal-X\>> and evolved by the master equation of
-    <math|q<rsub|\<Delta\>t>>, <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
+    ergodic and smooth on <math|\<Delta\>t>. If there is a stationary
+    distribution <math|\<pi\>> supported on <math|\<cal-X\>> such that
+    detailed balance <reference|equation:Detailed Balance> holds, then for
+    any time-dependent distribution <math|p<around*|(|\<cdummy\>,t|)>>
+    initially supported on <math|\<cal-X\>> and evolved by the master
+    equation of <math|q<rsub|\<Delta\>t>>,
+    <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
     is negative as long as <math|p<around*|(|\<cdummy\>,t|)>\<neq\>\<pi\>>
     and vanishes when <math|p<around*|(|\<cdummy\>,t|)>=\<pi\>> for some
     <math|t>.
@@ -304,9 +298,9 @@
 
   The temporal smooth structure, however, cannot be avoided. Indeed, the
   smoothness of transition probability on time and thus the smoothness of
-  <math|p<around*|(|x,t|)>> on time is essential for the monotonic reduction
-  of relative entropy, which is the essential end of our discussion.
-  <\footnote>
+  <math|p<around*|(|x,t|)>> on <math|t> is essential for the monotonic
+  reduction of relative entropy, which is the essential end of our
+  discussion. <\footnote>
     You may wonder if the temporal smoothness implies the continuum of
     alphabet. Explicitly, if <math|p<around*|(|x,t|)>> is smooth on <math|t>,
     then does the value of <math|x> have to be continuous? The answer is no.
@@ -346,8 +340,9 @@
   </align>
 
   The first line is recognized as <math|H<around*|[|p<around*|(|\<cdummy\>,t+\<Delta\>t|)>,p<around*|(|\<cdummy\>,t|)>|]>>,
-  which is non-negative. Following the same strategy as before, the second
-  line reduces to
+  which is non-negative. Following the same steps in section
+  <reference|section: Detailed Balance with Ergodicity Monotonically Reduces
+  Relative Entropy>, the second line reduces to
 
   <\equation*>
     -<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -473,7 +468,7 @@
     p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
     <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
     <around*|[|M<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>
-    p<around*|(|x,t|)>|]>,<label|equation:Kramers-Moyal expansion>
+    p<around*|(|x,t|)>|]><label|equation:Kramers-Moyal expansion>,
   </equation>
 
   This is called the <with|font-series|bold|Kramers\UMoyal expansion>.
@@ -547,56 +542,6 @@
 
   This indicates that, to satisfy detailed balance, Langevin dynamics shall
   be conservative.
-
-  <section|Drafts>
-
-  <subsection|Example of Detailed Balance: Gibbs Sampling>
-
-  Let <math|\<pi\>> a time-independent distribution of <math|X>. We can
-  update its <math|i>-th component by sampling from the condition probability
-  <math|\<pi\><around*|(|X<rsub|i>\|x<rsub|\\i>|)>>, where <math|x<rsub|\\i>>
-  denotes the collection of components with the <math|i>-th excluded. This
-  gives a transition probability of <math|X>. That is,
-  <math|X=<around*|(|x<rsub|1>,\<ldots\>,x<rsub|i>,\<ldots\>,x<rsub|n>|)>\<rightarrow\><around*|(|x<rsub|1>,\<ldots\>,x<rsub|i><rprime|'>,\<ldots\>,x<rsub|n>|)>>
-  during a time unit <\footnote>
-    You may argue that the time unit is not an infinitesimal. TODO
-  </footnote>, where <math|x<rprime|'><rsub|i>> denotes the updated value. It
-  is called <with|font-series|bold|Gibbs sampling>. The following theorem
-  highlights the importance of Gibbs sampling.
-
-  <\theorem>
-    \ Gibbs sampling satisfies detailed balance with the
-    <math|\<pi\><around*|(|x|)>> the stationary distribution.
-  </theorem>
-
-  <small|<\proof>
-    TODO
-  </proof>>
-
-  When <math|X> is discrete with <math|<around*|\||\<cal-X\>|\|>\<less\>+\<infty\>>,
-  the condition probability <math|\<pi\><around*|(|X<rsub|i>\|x<rsub|\\i>|)>>
-  can be calculated. Indeed, we start at encoding <math|X> by binaries, since
-  any variable with finite possible values can be encoded by binaries. Now,
-  for each component of <math|X>, it can either be zero or unit. Then, we
-  have (set <math|i=1> for simplicity)
-
-  <\align>
-    <tformat|<table|<row|<cell|\<pi\><around*|(|X<rsub|1>=1\|x<rsub|\\1>|)>=>|<cell|<frac|\<pi\><around*|(|X<rsub|1>=1\|x<rsub|2>,\<ldots\>,x<rsub|n>|)>|\<pi\><around*|(|X<rsub|1>=0\|x<rsub|2>,\<ldots\>,x<rsub|n>|)>+\<pi\><around*|(|X<rsub|1>=1\|x<rsub|2>,\<ldots\>,x<rsub|n>|)>>>>|<row|<cell|=>|<cell|<frac|\<pi\><around*|(|1,x<rsub|2>,\<ldots\>,x<rsub|n>|)>|\<pi\><around*|(|0,x<rsub|2>,\<ldots\>,x<rsub|n>|)>+\<pi\><around*|(|1,x<rsub|2>,\<ldots\>,x<rsub|n>|)>>>>|<row|<cell|=>|<cell|\<sigma\><around*|(|ln
-    \<pi\><around*|(|1,x<rsub|2>,\<ldots\>,x<rsub|n>|)>-ln
-    \<pi\><around*|(|0,x<rsub|2>,\<ldots\>,x<rsub|n>|)>|)>,>>>>
-  </align>
-
-  where <math|\<sigma\>> denotes the sigmoid function. So, to sample
-  <math|x<rsub|1>> for its update, we simply compute the value of
-  <math|\<sigma\><around*|(|ln \<pi\><around*|(|1,x<rsub|2>,\<ldots\>,x<rsub|n>|)>-ln
-  \<pi\><around*|(|0,x<rsub|2>,\<ldots\>,x<rsub|n>|)>|)>> which is then used
-  as the frequency of Bernoulli distribution to sample <math|x<rsub|1>>.
-
-  When <math|ln \<pi\><around*|(|x|)>> is quadratic, as <math|ln
-  \<pi\><around*|(|x|)>=A<rsub|\<alpha\>\<beta\>> x<rsup|\<alpha\>>
-  x<rsup|\<beta\>>+b<rsub|\<alpha\>> x<rsup|\<alpha\>>+c>, Gibbs sampling
-  turns out to be the stochastic update rule of <hlink|Hopfield
-  network|https://neuronaldynamics.epfl.ch/online/Ch17.S2.html>.
 </body>
 
 <\initial>
@@ -608,41 +553,40 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|3|6>>
-    <associate|auto-11|<tuple|3.1|6>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|2|4>>
-    <associate|auto-8|<tuple|2.1|4>>
+    <associate|auto-8|<tuple|2.1|5>>
     <associate|auto-9|<tuple|2.2|6>>
     <associate|equation:Detailed Balance|<tuple|3|2>>
     <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
     <associate|equation:Master Equation|<tuple|1|1>>
-    <associate|equation:Master Equation V2|<tuple|2|2>>
+    <associate|equation:Master Equation V2|<tuple|2|1>>
     <associate|equation:relative entropy derivative|<tuple|5|3>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
-    <associate|footnote-3|<tuple|3|2>>
-    <associate|footnote-4|<tuple|4|2>>
+    <associate|footnote-3|<tuple|3|1>>
+    <associate|footnote-4|<tuple|4|1>>
     <associate|footnote-5|<tuple|5|3>>
     <associate|footnote-6|<tuple|6|4>>
-    <associate|footnote-7|<tuple|7|6>>
+    <associate|footnote-7|<tuple|7|4>>
     <associate|footnote-8|<tuple|8|6>>
-    <associate|footnote-9|<tuple|9|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
-    <associate|footnr-3|<tuple|2|2>>
-    <associate|footnr-4|<tuple|4|2>>
+    <associate|footnr-3|<tuple|2|1>>
+    <associate|footnr-4|<tuple|4|1>>
     <associate|footnr-5|<tuple|5|3>>
     <associate|footnr-6|<tuple|6|4>>
-    <associate|footnr-7|<tuple|7|6>>
+    <associate|footnr-7|<tuple|7|4>>
     <associate|footnr-8|<tuple|7|6>>
-    <associate|footnr-9|<tuple|9|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|6>>
+    <associate|section: Convention Master Equation|<tuple|1.1|?>>
+    <associate|section: Detailed Balance with Ergodicity Monotonically
+    Reduces Relative Entropy|<tuple|1.4|2>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
   </collection>
@@ -668,8 +612,8 @@
       Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance
-      Monotonically Reduces Relative Entropy
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance with
+      Ergodicity Monotonically Reduces Relative Entropy
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
@@ -691,14 +635,6 @@
       Satisfies Detailed Balance Is Conservative
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
-
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Drafts>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10><vspace|0.5fn>
-
-      <with|par-left|<quote|1tab>|3.1<space|2spc>Example of Detailed Balance:
-      Gibbs Sampling <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
     </associate>
   </collection>
 </auxiliary>

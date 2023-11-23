@@ -7,13 +7,8 @@
 
   <subsection|Conventions in This Section>
 
-  Let <math|X> a time-dependent random variables, being either discrete or
-  continuous, with alphabet <math|\<cal-X\>>. Even though the discussion
-  applies to both discrete and continuous cases, we use the notation of the
-  continuous. The reason is that converting from discrete to continuous may
-  cause problems (we will see soon) while the inverse will be safe and direct
-  as long as any smooth structure of <math|X> is not employed throughout the
-  discussion.
+  Follow the conventions in section <reference|section: Master Equation,
+  Detailed Balance, and Relative Entropy>.
 
   <subsection|Maximum-Entropy Principle Shall Minimize Relative Entropy>
 
@@ -26,9 +21,9 @@
   distribution, which describes the prior knowledge. It then characterizes
   the relative uncertainty (surprise) of a distribution to the distribution
   of prior knowledge. When the prior knowledge is unbiased and
-  <math|<around*|\||\<cal-X\>|\|>\<less\>+\<infty\>>, the negative relative
-  entropy reduces to Shannon entropy. So, maximum-entropy principle shall
-  minimize relative entropy.
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x 1\<less\>+\<infty\>>, the
+  negative relative entropy reduces to Shannon entropy. So, maximum-entropy
+  principle shall minimize relative entropy.
 
   Given a distribution <math|Q> of <math|X> that describes the prior
   knowledge, the basic problem is to find a distribution <math|P> of <math|X>
@@ -118,7 +113,7 @@
   <math|exp<around*|(|-\<lambda\><rsup|\<alpha\>>
   f<rsub|\<alpha\>><around*|(|x|)>|)>> in <math|p<around*|(|x,\<lambda\>|)>>.
   The <math|\<lambda\>> plays the role of couplings. This indicates that
-  <math|q<around*|(|x|)>> shall be the free theory.\ 
+  <math|q<around*|(|x|)>> shall be the free theory.
 
   In machine learning, it acts as regulator, a pre-determined term employed
   for regulating the value of <math|x>. It does not involve any parameter,
@@ -140,11 +135,11 @@
 
   To solve this issue, we are to parameterize the observables, as
   <math|f<around*|(|x,\<varphi\>|)>:\<cal-X\>\<times\>\<bbb-R\><rsup|p>\<rightarrow\>\<bbb-R\><rsup|m>>,
-  where <math|\<bbb-R\><rsup|p>> is parameter space, usually a
-  high-dimensional Euclidean space. The observations are determined by the
-  empirical distribution, as <math|\<bbb-E\><rsub|p<rsub|D>><around*|[|f<around*|(|\<cdummy\>,\<varphi\>|)>|]>>.
+  where <math|\<bbb-R\><rsup|p>> is parameter space. The observations are
+  determined by the empirical distribution, as
+  <math|\<bbb-E\><rsub|p<rsub|D>><around*|[|f<around*|(|\<cdummy\>,\<varphi\>|)>|]>>.
   And as a free parameter, we are to adjust <math|\<varphi\>> to help
-  maximize the relative entropy. So, the loss of maximum-entropy principle
+  minimize the relative entropy. So, the loss of maximum-entropy principle
   now becomes
 
   <\equation>
@@ -179,8 +174,8 @@
   </footnote>
 
   <\equation>
-    <frac|\<partial\>ln Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\><rsub|\<star\>>|)>+\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=0,<label|equation:weak
-    maxent eq1>
+    <frac|\<partial\>ln Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\><rsub|\<star\>>|)>+\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=0<label|equation:weak
+    maxent eq1>,
   </equation>
 
   for each <math|\<alpha\>=1,\<ldots\>,m+p>, where
@@ -214,9 +209,10 @@
   <math|\<theta\><rsub|\<star\>>> locates at its minimum. Naturally, we
   consider the relative entropy <math|H<around*|[|p<rsub|D>,p<around*|(|\<cdummy\>,\<theta\>|)>|]>>
   <\footnote>
-    You may argue that <math|p<rsub|D>> is not supported on <math|\<cal-X\>>.
-    But, we can consider the <math|p<rsub|D>> as a limit of a smoothed
-    empirical distribution, which is supported on <math|\<cal-X\>>.
+    You may argue that <math|p<rsub|D>> is not supported on <math|\<cal-X\>>,
+    so that the relative entropy is not well-defined. But, we can consider
+    the <math|p<rsub|D>> as a limit of a smoothed empirical distribution,
+    which is supported on <math|\<cal-X\>>.
   </footnote>. It is bounded below. Omitting the <math|\<theta\>>-independent
   terms, we get a loss function
 
@@ -235,8 +231,8 @@
   With a series of direct calculus, we find
 
   <\equation>
-    -<frac|\<partial\>L<rsub|iter>|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>.<label|equation:weak
-    maxent iteration>
+    -<frac|\<partial\>L<rsub|iter>|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:weak
+    maxent iteration>.
   </equation>
 
   For equation <reference|equation:maxent eq1>, it becomes (now
@@ -244,16 +240,16 @@
   <math|\<partial\>S/\<partial\>\<lambda\><rsup|\<alpha\>>=f<rsub|\<alpha\>>>)
 
   <\equation>
-    -<frac|\<partial\>L<rsub|iter>|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|\<lambda\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<lambda\>|)>><around*|[|f<rsub|\<alpha\>>|]>-<wide|f|\<bar\>><rsub|\<alpha\>>.<label|equation:maxent
-    iteration>
+    -<frac|\<partial\>L<rsub|iter>|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|\<lambda\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<lambda\>|)>><around*|[|f<rsub|\<alpha\>>|]>-<wide|f|\<bar\>><rsub|\<alpha\>><label|equation:maxent
+    iteration>.
   </equation>
 
-  <subsection|When <math|\<lambda\><rsub|\<star\>>> is solvable?>
+  <subsection|When Is <math|\<lambda\><rsub|\<star\>>> Solvable?>
 
-  It is hard to guarantee the equation <reference|equation:maxent eq1>
-  solvable, especially when it is highly non-linear. But, we have some
-  results for the case when <math|<wide|f|\<bar\>>\<approx\>\<bbb-E\><rsub|q><around*|[|f|]>>.
-  That is, the perturbative case.
+  Even though it is hard to guarantee the equation <reference|equation:maxent
+  eq1> solvable, we have some results for the case when
+  <math|<wide|f|\<bar\>>\<approx\>\<bbb-E\><rsub|q><around*|[|f|]>>. That is,
+  the perturbative case.
 
   To guarantee that perturbative solution exists for equation
   <reference|equation:maxent eq1>, we have to ensure that the Jacobian
@@ -281,20 +277,20 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
-    <associate|auto-6|<tuple|1.5|2>>
+    <associate|auto-6|<tuple|1.5|3>>
     <associate|auto-7|<tuple|1.6|3>>
     <associate|equation:maxent eq1|<tuple|2|1>>
     <associate|equation:maxent eq2|<tuple|4|1>>
     <associate|equation:maxent iteration|<tuple|11|3>>
     <associate|equation:maxent partition function|<tuple|3|1>>
     <associate|equation:weak maxent eq1|<tuple|7|2>>
-    <associate|equation:weak maxent eq2|<tuple|9|2>>
+    <associate|equation:weak maxent eq2|<tuple|9|3>>
     <associate|equation:weak maxent iteration|<tuple|10|3>>
-    <associate|equation:weak maxent partition function|<tuple|8|2>>
-    <associate|footnote-1|<tuple|1|3>>
-    <associate|footnote-2|<tuple|2|?>>
-    <associate|footnr-1|<tuple|1|3>>
-    <associate|footnr-2|<tuple|2|?>>
+    <associate|equation:weak maxent partition function|<tuple|8|3>>
+    <associate|footnote-1|<tuple|1|2>>
+    <associate|footnote-2|<tuple|2|3>>
+    <associate|footnr-1|<tuple|1|2>>
+    <associate|footnr-2|<tuple|2|3>>
   </collection>
 </references>
 
@@ -310,7 +306,7 @@
       <no-break><pageref|auto-2>>
 
       <with|par-left|<quote|1tab>|1.2<space|2spc>Maximum-Entropy Principle
-      Maximizes Relative Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Shall Minimize Relative Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
       <with|par-left|<quote|1tab>|1.3<space|2spc>Prior Knowledge Furnishes

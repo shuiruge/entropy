@@ -265,10 +265,11 @@
 
   <\theorem>
     Suppose that the transition probability <math|q<rsub|\<Delta\>t>> is
-    smooth on <math|\<Delta\>t>. If there is a stationary distribution
-    <math|\<pi\>> supported on <math|\<cal-X\>> such that detailed balance
-    <reference|equation:Detailed Balance> holds, then for any time-dependent
-    distribution <math|p<around*|(|\<cdummy\>,t|)>> supported on
+    smooth on <math|\<Delta\>t> and supported on <math|\<cal-X\>>. If there
+    is a stationary distribution <math|\<pi\>> supported on <math|\<cal-X\>>
+    such that detailed balance <reference|equation:Detailed Balance> holds,
+    then for any time-dependent distribution
+    <math|p<around*|(|\<cdummy\>,t|)>> initially supported on
     <math|\<cal-X\>> and evolved by the master equation of
     <math|q<rsub|\<Delta\>t>>, <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
     is negative as long as <math|p<around*|(|\<cdummy\>,t|)>\<neq\>\<pi\>>
@@ -586,21 +587,17 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|3|?>>
-    <associate|auto-11|<tuple|3.1|?>>
-    <associate|auto-12|<tuple|3.1|?>>
-    <associate|auto-13|<tuple|4|?>>
-    <associate|auto-14|<tuple|4.1|?>>
+    <associate|auto-10|<tuple|3|6>>
+    <associate|auto-11|<tuple|3.1|6>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|3>>
+    <associate|auto-5|<tuple|1.4|2>>
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|2|4>>
-    <associate|auto-8|<tuple|2.1|6>>
-    <associate|auto-9|<tuple|2.2|?>>
+    <associate|auto-8|<tuple|2.1|4>>
+    <associate|auto-9|<tuple|2.2|6>>
     <associate|equation:Detailed Balance|<tuple|3|2>>
-    <associate|equation:Detailed Balance V2|<tuple|4|2>>
     <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
     <associate|equation:Master Equation|<tuple|1|1>>
     <associate|equation:Master Equation V2|<tuple|2|2>>
@@ -608,19 +605,19 @@
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|2>>
-    <associate|footnote-4|<tuple|4|3>>
-    <associate|footnote-5|<tuple|5|?>>
-    <associate|footnote-6|<tuple|6|?>>
-    <associate|footnote-7|<tuple|7|?>>
-    <associate|footnote-8|<tuple|8|?>>
+    <associate|footnote-4|<tuple|4|2>>
+    <associate|footnote-5|<tuple|5|3>>
+    <associate|footnote-6|<tuple|6|4>>
+    <associate|footnote-7|<tuple|7|6>>
+    <associate|footnote-8|<tuple|8|6>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|2|2>>
-    <associate|footnr-4|<tuple|4|3>>
-    <associate|footnr-5|<tuple|5|?>>
-    <associate|footnr-6|<tuple|6|?>>
-    <associate|footnr-7|<tuple|7|?>>
-    <associate|footnr-8|<tuple|8|?>>
+    <associate|footnr-4|<tuple|4|2>>
+    <associate|footnr-5|<tuple|5|3>>
+    <associate|footnr-6|<tuple|6|4>>
+    <associate|footnr-7|<tuple|7|6>>
+    <associate|footnr-8|<tuple|8|6>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|6>>
     <associate|section: Master Equation, Detailed Balance, and Relative
@@ -653,19 +650,32 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Temporal Smoothness of
+      Transition Probability Is Necessary to Ensure Relaxation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Kramers-Moyal
       Expansion and Langevin Dynamics> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6><vspace|0.5fn>
+      <no-break><pageref|auto-7><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
       Equation Gives Kramers-Moyal Expansion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>>
-
-      <with|par-left|<quote|1tab>|2.2<space|2spc>Conservative Langevin
-      Dynamics Satisfies Detailed Balance
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Langevin Dynamics that
+      Satisfies Detailed Balance Is Conservative
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Drafts>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|3.1<space|2spc>Example of Detailed Balance:
+      Gibbs Sampling <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
     </associate>
   </collection>
 </auxiliary>

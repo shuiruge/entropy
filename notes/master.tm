@@ -115,13 +115,15 @@
 
   which is called the <with|font-series|bold|detailed balance (condition)>.
 
-  <subsection|Detailed Balance Monotonically Reduces Relative Entropy>
+  <subsection|Detailed Balance with Ergodicity Monotonically Reduces Relative
+  Entropy>
 
-  If the time-dependent distribution <math|p<around*|(|\<cdummy\>,t|)>> and
-  the stationary distribution <math|\<pi\>> are both supported on
-  <math|\<cal-X\>>, which means <math|p<around*|(|x,t|)>\<gtr\>0> and
-  <math|\<pi\><around*|(|x|)>\<gtr\>0> for each <math|x\<in\>\<cal-X\>>, we
-  can define the relative entropy between them, as
+  Given the time <math|t>, if the time-dependent distribution
+  <math|p<around*|(|\<cdummy\>,t|)>> and the stationary distribution
+  <math|\<pi\>> are both supported on <math|\<cal-X\>>, which means
+  <math|p<around*|(|x,t|)>\<gtr\>0> and <math|\<pi\><around*|(|x|)>\<gtr\>0>
+  for each <math|x\<in\>\<cal-X\>>, we can define the relative entropy
+  between them, as
 
   <\equation>
     H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -133,12 +135,19 @@
   <math|\<pi\>>. It is a plausible generalization of Shannon entropy to
   continuous random variables.
 
-  In addition, if transition probability <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0>
-  for each <math|x,y\<in\>\<cal-X\>>, then based on master equation
-  <reference|equation:Master Equation V2>,
-  <math|p<around*|(|x,t+\<Delta\>t|)>> is also supported on <math|\<cal-X\>>.
-  This makes <math|H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>
-  well-defined for all <math|t>.
+  When <math|p<around*|(|\<cdummy\>,t|)>> is evolved by the master equation
+  of <math|q<rsub|\<Delta\>t>>, to keep <math|H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>
+  well-defined, we have to ensure that <math|p<around*|(|\<cdummy\>,t|)>> is
+  supported on <math|\<cal-X\>> for all <math|t>. This is guaranteed when
+  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0> for each
+  <math|x,y\<in\>\<cal-X\>> and for each <math|\<Delta\>t\<in\><around*|[|0,T|]>>,
+  where <math|T> is an arbitrary positive number. This property of transition
+  probability is called <with|font-series|bold|ergodicity>. Indeed, by
+  repeatedly applying master equation <reference|equation:Master Equation
+  V2>, <math|p<around*|(|x,t<rprime|'>|)>> is found to be suppoted on
+  <math|\<cal-X\>> for any <math|t<rprime|'>\<gtr\>t>. This keeps
+  <math|H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>> well-defined as
+  long as it is well-defined initially.
 
   If <math|q<rsub|\<Delta\>t>> is smooth on <math|\<Delta\>t>, then by master
   equation <reference|equation:Master Equation>,

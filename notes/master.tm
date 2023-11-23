@@ -297,6 +297,18 @@
   smoothness of transition probability on time and thus the smoothness of
   <math|p<around*|(|x,t|)>> on time is essential for the monotonic reduction
   of relative entropy, which is the essential end of our discussion.
+  <\footnote>
+    You may wonder if the temporal smoothness implies the continuum of
+    alphabet. Explicitly, if <math|p<around*|(|x,t|)>> is smooth on <math|t>,
+    then does the value of <math|x> have to be continuous? The answer is no.
+    For example, you can consier 1-dimensional case where the alphabet
+    <math|\<cal-X\>=<around*|{|0,1|}>>; the <math|p<around*|(|x,t|)>> is
+    given by <math|\<sigma\><around*|(|\<zeta\><around*|(|t|)>|)>> where
+    <math|\<sigma\>> denotes the sigmoid function and
+    <math|\<zeta\><around*|(|t|)>> is smooth on <math|t>. In this example,
+    <math|p<around*|(|x,t|)>> is smooth on <math|t> but the random variable
+    is discrete.
+  </footnote>
 
   To see this clearly, let us exam <math|H<around*|[|p<around*|(|\<cdummy\>,t+\<Delta\>t|)>,\<pi\>|]>-H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>
   when <math|\<Delta\>t> is not an infinitesimal. By definition,
@@ -610,6 +622,7 @@
     <associate|footnote-6|<tuple|6|4>>
     <associate|footnote-7|<tuple|7|6>>
     <associate|footnote-8|<tuple|8|6>>
+    <associate|footnote-9|<tuple|9|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|2|2>>
@@ -617,7 +630,8 @@
     <associate|footnr-5|<tuple|5|3>>
     <associate|footnr-6|<tuple|6|4>>
     <associate|footnr-7|<tuple|7|6>>
-    <associate|footnr-8|<tuple|8|6>>
+    <associate|footnr-8|<tuple|7|6>>
+    <associate|footnr-9|<tuple|9|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|6>>
     <associate|section: Master Equation, Detailed Balance, and Relative

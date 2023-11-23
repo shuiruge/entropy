@@ -133,6 +133,13 @@
   <math|\<pi\>>. It is a plausible generalization of Shannon entropy to
   continuous random variables.
 
+  In addition, if transition probability <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0>
+  for each <math|x,y\<in\>\<cal-X\>>, then based on master equation
+  <reference|equation:Master Equation V2>,
+  <math|p<around*|(|x,t+\<Delta\>t|)>> is also supported on <math|\<cal-X\>>.
+  This makes <math|H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>
+  well-defined for all <math|t>.
+
   If <math|q<rsub|\<Delta\>t>> is smooth on <math|\<Delta\>t>, then by master
   equation <reference|equation:Master Equation>,
   <math|p<around*|(|\<cdummy\>,t|)>> is smooth on <math|t>. Then we can
@@ -142,101 +149,95 @@
   condition: detailed balance, then we can express the
   <math|\<mathd\>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>/\<mathd\>t>
   in a regular form, as <\footnote>
-    The proof is given as follow.
+    The proof is given as follow. Directly, we have
 
-    <\proof>
-      Directly, we have
+    <\align>
+      <tformat|<table|<row|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=>|<cell|<frac|\<mathd\>|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
+      <around*|[|p<around*|(|x,t|)> ln p<around*|(|x,t|)>-p<around*|(|x,t|)>
+      ln \<pi\><around*|(|x|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <around*|[|<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)> ln
+      p<around*|(|x,t|)>+<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>-<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>
+      \ ln \<pi\><around*|(|x|)>|]>.>>>>
+    </align>
 
-      <\align>
-        <tformat|<table|<row|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=>|<cell|<frac|\<mathd\>|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
-        <around*|[|p<around*|(|x,t|)> ln p<around*|(|x,t|)>-p<around*|(|x,t|)>
-        ln \<pi\><around*|(|x|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <around*|[|<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)> ln
-        p<around*|(|x,t|)>+<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>-<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>
-        \ ln \<pi\><around*|(|x|)>|]>.>>>>
-      </align>
+    Since <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    <around*|(|\<partial\>p/\<partial\>t|)><around*|(|x,t|)>=<around*|(|\<partial\>/\<partial\>t|)><big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t|)>=0>, the second term vanishes. Then, we get
 
-      Since <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
-      <around*|(|\<partial\>p/\<partial\>t|)><around*|(|x,t|)>=<around*|(|\<partial\>/\<partial\>t|)><big|int><rsub|\<cal-X\>>\<mathd\>x
-      p<around*|(|x,t|)>=0>, the second term vanishes. Then, we get
+    <\equation*>
+      <frac|\<mathd\>|\<mathd\>t>H<around*|[|p,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>
+      ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.
+    </equation*>
 
-      <\equation*>
-        <frac|\<mathd\>|\<mathd\>t>H<around*|[|p,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>
-        ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.
-      </equation*>
+    Now, we replace <math|\<partial\>p/\<partial\>t> by master equation in
+    which <math|\<Delta\>t> is replaced by the infinitesimal
+    <math|\<mathd\>t>, as
 
-      Now, we replace <math|\<partial\>p/\<partial\>t> by master equation in
-      which <math|\<Delta\>t> is replaced by the infinitesimal
-      <math|\<mathd\>t>, as
+    <\equation*>
+      \<mathd\>H<around*|[|p,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y
+      <around*|[|q<rsub|\<mathd\>t><around*|(|x\|y|)>
+      p<around*|(|y,t|)>-q<rsub|\<mathd\>t><around*|(|y\|x|)>p<around*|(|x,t|)>|]>
+      \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>,
+    </equation*>
 
-      <\equation*>
-        \<mathd\>H<around*|[|p,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <big|int><rsub|\<cal-X\>>\<mathd\>y
-        <around*|[|q<rsub|\<mathd\>t><around*|(|x\|y|)>
-        p<around*|(|y,t|)>-q<rsub|\<mathd\>t><around*|(|y\|x|)>p<around*|(|x,t|)>|]>
-        \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>,
-      </equation*>
+    where <math|\<mathd\>H<around*|[|p,\<pi\>|]>\<assign\>H<around*|[|p<around*|(|\<cdummy\>,t+\<mathd\>t|)>,\<pi\>|]>-H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>.
+    Then, insert detailed balance <math|q<rsub|\<mathd\>t><around*|(|x\|y|)>=q<rsub|\<mathd\>t><around*|(|y\|x|)>
+    \<pi\><around*|(|x|)>/\<pi\><around*|(|y|)>>, as
 
-      where <math|\<mathd\>H<around*|[|p,\<pi\>|]>\<assign\>H<around*|[|p<around*|(|\<cdummy\>,t+\<mathd\>t|)>,\<pi\>|]>-H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>.
-      Then, insert detailed balance <math|q<rsub|\<mathd\>t><around*|(|x\|y|)>=q<rsub|\<mathd\>t><around*|(|y\|x|)>
-      \<pi\><around*|(|x|)>/\<pi\><around*|(|y|)>>, as
+    <\align>
+      <tformat|<table|<row|<cell|\<mathd\>H<around*|[|p,\<pi\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y
+      <around*|[|q<rsub|\<mathd\>t><around*|(|y\|x|)> \<pi\><around*|(|x|)>
+      <frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-q<rsub|\<mathd\>t><around*|(|y\|x|)>p<around*|(|x,t|)>|]>
+      \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y
+      q<rsub|\<mathd\>t><around*|(|y\|x|)>
+      \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|]>
+      \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.>>>>
+    </align>
 
-      <\align>
-        <tformat|<table|<row|<cell|\<mathd\>H<around*|[|p,\<pi\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <big|int><rsub|\<cal-X\>>\<mathd\>y
-        <around*|[|q<rsub|\<mathd\>t><around*|(|y\|x|)> \<pi\><around*|(|x|)>
-        <frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-q<rsub|\<mathd\>t><around*|(|y\|x|)>p<around*|(|x,t|)>|]>
-        \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <big|int><rsub|\<cal-X\>>\<mathd\>y
-        q<rsub|\<mathd\>t><around*|(|y\|x|)>
-        \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|]>
-        \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.>>>>
-      </align>
+    Since <math|x> and <math|y> are dummy, we interchange them in the
+    integrand, and then insert detailed balance again, as
 
-      Since <math|x> and <math|y> are dummy, we interchange them in the
-      integrand, and then insert detailed balance again, as
+    <\align>
+      <tformat|<table|<row|<cell|\<mathd\>H<around*|[|p,\<pi\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y
+      q<rsub|\<mathd\>t><around*|(|x\|y|)>
+      \<pi\><around*|(|y|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
+      \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>>>|<row|<cell|<around*|{|detailed
+      balance|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y
+      q<rsub|\<mathd\>t><around*|(|y\|x|)>
+      \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
+      \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>.>>>>
+    </align>
 
-      <\align>
-        <tformat|<table|<row|<cell|\<mathd\>H<around*|[|p,\<pi\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <big|int><rsub|\<cal-X\>>\<mathd\>y
-        q<rsub|\<mathd\>t><around*|(|x\|y|)>
-        \<pi\><around*|(|y|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
-        \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>>>|<row|<cell|<around*|{|detailed
-        balance|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <big|int><rsub|\<cal-X\>>\<mathd\>y
-        q<rsub|\<mathd\>t><around*|(|y\|x|)>
-        \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
-        \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>.>>>>
-      </align>
+    By adding the two previous results together, we find
 
-      By adding the two previous results together, we find
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|2
+      \<mathd\>H<around*|[|p,\<pi\>|]>>>|<row|<cell|<around*|[|1st
+      result|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y
+      q<rsub|\<mathd\>t><around*|(|y\|x|)>
+      \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|]>
+      \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>|<row|<cell|<around*|[|2nd
+      result|]>+>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y
+      q<rsub|\<mathd\>t><around*|(|y\|x|)>
+      \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
+      \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>>>|<row|<cell|=>|<cell|-<big|int><rsub|\<cal-X\>>\<mathd\>x
+      <big|int><rsub|\<cal-X\>>\<mathd\>y
+      q<rsub|\<mathd\>t><around*|(|y\|x|)>
+      \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
+      ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>,>>>>
+    </align>
 
-      <\align>
-        <tformat|<table|<row|<cell|>|<cell|2
-        \<mathd\>H<around*|[|p,\<pi\>|]>>>|<row|<cell|<around*|[|1st
-        result|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <big|int><rsub|\<cal-X\>>\<mathd\>y
-        q<rsub|\<mathd\>t><around*|(|y\|x|)>
-        \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|]>
-        \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>|<row|<cell|<around*|[|2nd
-        result|]>+>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <big|int><rsub|\<cal-X\>>\<mathd\>y
-        q<rsub|\<mathd\>t><around*|(|y\|x|)>
-        \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
-        \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>>>|<row|<cell|=>|<cell|-<big|int><rsub|\<cal-X\>>\<mathd\>x
-        <big|int><rsub|\<cal-X\>>\<mathd\>y
-        q<rsub|\<mathd\>t><around*|(|y\|x|)>
-        \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
-        ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.>>>>
-      </align>
-
-      Thus proof ends.
-    </proof>
-
-    This proof is very tricky: it uses detailed balance twice, between which
-    the expression is symmetrized. It is an ingenious mathematical
-    engineering.
+    from which we directly get the result. Notice that this proof is very
+    tricky: it uses detailed balance twice, between which the expression is
+    symmetrized. It is an ingenious mathematical engineering.
   </footnote>
 
   <small|<\equation>
@@ -278,26 +279,72 @@
   This means the time-dependent distribution <math|p> will monotonically and
   constantly relax to the stationary distribution <math|\<pi\>>.
 
-  <\remark>
-    Here is a remark on smooth structure.
+  Generally, we prove the monotonic reduction of relative entropy by using
+  Fokker-Planck equation. With an integral by part, we arrive a negative
+  definite expression, which means the monotonic reduction. This proof needs
+  smooth structure on <math|X>, which is employed by integral by part. In
+  this section, we provides a more generic alternative to the proof, for
+  which smooth structure on <math|X> is unnecessary. It employs detailed
+  condition instead of Fokker-Planck equation, which is a specific case of
+  detailed balance (section <reference|section: Conservative Langevin
+  Dynamics Satisfies Detailed Balance>).
 
-    Generally, we prove the monotonic reduction of relative entropy by using
-    Fokker-Planck equation. With an integral by part, we arrive a negative
-    definite expression, which means the monotonic reduction. This proof
-    needs smooth structure on <math|X>, which is employed by integral by
-    part. Here, we provides a \Pdiscretizable\Q, but more generic,
-    alternative to the proof, which employs detailed condition instead of
-    Fokker-Planck equation, which is a specific case of detailed balance
-    (section <reference|section: Conservative Langevin Dynamics Satisfies
-    Detailed Balance>).
+  <subsection|Temporal Smoothness of Transition Probability Is Necessary to
+  Ensure Relaxation>
 
-    The smooth structure on time, however, cannot be avoided. Indeed, the
-    smoothness of transition probability on time and thus the smoothness of
-    <math|p<around*|(|x,t|)>> on time is essential (for equation
-    <reference|equation:relative entropy derivative>, thus) for the monotonic
-    reduction of relative entropy, which is the essential end of our
-    discussion.
-  </remark>
+  The temporal smooth structure, however, cannot be avoided. Indeed, the
+  smoothness of transition probability on time and thus the smoothness of
+  <math|p<around*|(|x,t|)>> on time is essential for the monotonic reduction
+  of relative entropy, which is the essential end of our discussion.
+
+  To see this clearly, let us exam <math|H<around*|[|p<around*|(|\<cdummy\>,t+\<Delta\>t|)>,\<pi\>|]>-H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>
+  when <math|\<Delta\>t> is not an infinitesimal. By definition,
+
+  <\equation*>
+    H<around*|[|p<around*|(|\<cdummy\>,t+\<Delta\>t|)>,\<pi\>|]>-H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t+\<Delta\>t|)> ln<frac|p<around*|(|x,t+\<Delta\>t|)>|\<pi\><around*|(|x|)>>-<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t|)> ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.
+  </equation*>
+
+  Inserting <math|<with|color|dark cyan|<big|int><rsub|\<cal-X\>>\<mathd\>x
+  p<around*|(|x,t+\<Delta\>t|)> ln<around*|(|p<around*|(|x,t|)>/\<pi\><around*|(|x,t|)>|)>>>
+  gives
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|H<around*|[|p<around*|(|\<cdummy\>,t+\<Delta\>t|)>,\<pi\>|]>-H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t+\<Delta\>t|)> ln<frac|p<around*|(|x,t+\<Delta\>t|)>|\<pi\><around*|(|x|)>>-<with|color|dark
+    cyan|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x,t+\<Delta\>t|)>
+    ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>>|<row|<cell|+>|<cell|<with|color|dark
+    cyan|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x,t+\<Delta\>t|)>
+    ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>-<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t|)> ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t+\<Delta\>t|)> ln<frac|p<around*|(|x,t+\<Delta\>t|)>|p<around*|(|x,t|)>>>>|<row|<cell|+>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    <around*|[|p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>|]>
+    ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>>>
+  </align>
+
+  The first line is recognized as <math|H<around*|[|p<around*|(|\<cdummy\>,t+\<Delta\>t|)>,p<around*|(|\<cdummy\>,t|)>|]>>,
+  which is non-negative. Following the same strategy as before, the second
+  line reduces to
+
+  <\equation*>
+    -<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>\<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
+    ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>,
+  </equation*>
+
+  which is non-positive. The sign of the final result can be arbitrary.
+  Indeed, the first line is determined by the difference between
+  <math|p<around*|(|\<cdummy\>,t+\<Delta\>t|)>> and
+  <math|p<around*|(|\<cdummy\>,t|)>> <\footnote>
+    The difference is <math|<with|font|cal|O><around*|(|\<Delta\>t<rsup|2>|)>>.
+  </footnote>, while the second line is determined by the difference between
+  <math|p<around*|(|\<cdummy\>,t|)>> and <math|\<pi\>>. They are
+  intrinsically different, thus mutually independent. So, we conclude that
+  the smoothness of <math|q<rsub|\<Delta\>t>> on <math|\<Delta\>t> is
+  essential for the guarantee of the monotonic reduce of relative entropy
+  between <math|p<around*|(|\<cdummy\>,t|)>> and <math|\<pi\>>, thus its
+  relaxation.
 
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
@@ -479,59 +526,7 @@
   This indicates that, to satisfy detailed balance, Langevin dynamics shall
   be conservative.
 
-  <section|Draft: Discrete Time Master Equation>
-
-  <subsection|Transition Probability Shall Obey Time-Reversal Symmetry>
-
-  First consider an instance of deterministic situation. Let
-  <math|y=x+v*\<Delta\>t>. It can be viewed as a transition from <math|x> to
-  <math|y> after a time unit <math|\<Delta\>t> (velocity <math|v>). The
-  transition probability thus is a delta function
-  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>=\<delta\><around*|(|y-<around*|(|x+v
-  \<Delta\>t|)>|)>>. Since <math|\<delta\><around*|(|a-b|)>\<equiv\>\<delta\><around*|(|b-a|)>>,
-  we thus have
-
-  <\align>
-    <tformat|<table|<row|<cell|>|<cell|q<rsub|\<Delta\>t><around*|(|y\|x|)>>>|<row|<cell|<around*|{|definition|}>=>|<cell|\<delta\><around*|(|y-<around*|(|x+v
-    \<mathd\>t|)>|)>>>|<row|<cell|<around*|{|\<delta\><around*|(|a-b|)>\<equiv\>\<delta\><around*|(|b-a|)>|}>=>|<cell|\<delta\><around*|(|-y+<around*|(|x+v
-    \<mathd\>t|)>|)>>>|<row|<cell|=>|<cell|\<delta\><around*|(|x-<around*|(|y-v
-    \<mathd\>t|)>|)>>>|<row|<cell|<around*|{|definition|}>=>|<cell|q<rsub|-\<Delta\>t><around*|(|x\|y|)>.>>>>
-  </align>
-
-  We can generally suspect that transition probability for a physical system
-  shall obey
-
-  <\equation>
-    q<rsub|\<Delta\>t><around*|(|y\|x|)>=q<rsub|-\<Delta\>t><around*|(|x\|y|)>,
-  </equation>
-
-  which is called <with|font-series|bold|time-reversal symmetry>.
-
-  But, not all important systems satisfy the time-reversal symmetry. Indeed,
-  a system that satisfy time-reversal symmetry, in the deterministic limit,
-  can uniquely determine the state before transition based on the current
-  transited state. This condition fails to be satisfied in many important
-  systems, such as Hopfield network.
-
-  <subsection|Master Equation and Detailed Balance>
-
-  Following the same discussion, we have
-
-  <\equation>
-    p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    <around*|[|q<rsub|\<Delta\>t><around*|(|x\|y|)>
-    p<around*|(|y,t|)>-q<rsub|\<Delta\>t><around*|(|y\|x|)>
-    p<around*|(|x,t|)>|]>.
-  </equation>
-
-  Then, detailed balance comes to be
-
-  <\equation>
-    q<rsub|\<Delta\>t><around*|(|x\|y|)> p<around*|(|y,t|)>=q<rsub|\<Delta\>t><around*|(|y\|x|)>
-    p<around*|(|x,t|)>.
-  </equation>
-
-  <section|Other Drafts>
+  <section|Drafts>
 
   <subsection|Example of Detailed Balance: Gibbs Sampling>
 
@@ -591,18 +586,19 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|3.1|?>>
-    <associate|auto-11|<tuple|3.2|?>>
-    <associate|auto-12|<tuple|4|?>>
-    <associate|auto-13|<tuple|4.1|?>>
+    <associate|auto-10|<tuple|3|?>>
+    <associate|auto-11|<tuple|3.1|?>>
+    <associate|auto-12|<tuple|3.1|?>>
+    <associate|auto-13|<tuple|4|?>>
+    <associate|auto-14|<tuple|4.1|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
-    <associate|auto-6|<tuple|2|4>>
-    <associate|auto-7|<tuple|2.1|4>>
-    <associate|auto-8|<tuple|2.2|6>>
-    <associate|auto-9|<tuple|3|?>>
+    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-7|<tuple|2|4>>
+    <associate|auto-8|<tuple|2.1|6>>
+    <associate|auto-9|<tuple|2.2|?>>
     <associate|equation:Detailed Balance|<tuple|3|2>>
     <associate|equation:Detailed Balance V2|<tuple|4|2>>
     <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
@@ -616,13 +612,15 @@
     <associate|footnote-5|<tuple|5|?>>
     <associate|footnote-6|<tuple|6|?>>
     <associate|footnote-7|<tuple|7|?>>
+    <associate|footnote-8|<tuple|8|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|2|2>>
     <associate|footnr-4|<tuple|4|3>>
     <associate|footnr-5|<tuple|5|?>>
-    <associate|footnr-6|<tuple|7|?>>
+    <associate|footnr-6|<tuple|6|?>>
     <associate|footnr-7|<tuple|7|?>>
+    <associate|footnr-8|<tuple|8|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|6>>
     <associate|section: Master Equation, Detailed Balance, and Relative

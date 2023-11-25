@@ -79,7 +79,18 @@
     -<frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Iteration>.
   </equation>
 
-  \;
+  Notice that <math|L> is equivalent to another loss <math|L<rprime|'>> where
+
+  <\equation*>
+    L<rprime|'><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<rsub|D><around*|(|x|)> S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)>.
+  </equation*>
+
+  It can be read from this equivalent loss that minimizing <math|L<rprime|'>>
+  is to decrease the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> at data
+  points (the first term) while increase it at the points away from data (the
+  second term).
 
   Analogy to physics, in equation <reference|equation:Generic Density>, the
   <math|S<around*|(|x,\<theta\>|)>> can recognized as a parameterized action,
@@ -169,7 +180,9 @@
   derivative on <math|\<theta\>> gives equation
   <reference|equation:Restriction>. Condition by partial derivative on
   <math|\<mu\>> has been involved in the <math|Z<around*|(|\<theta\>|)>>.
-  TODO: explain <math|L<rsub|ME>>.
+
+  TODO: explain <math|L<rsub|ME>>. It seems that the second term is the
+  <math|-L<rprime|'><around*|(|\<theta\>|)>>, thus is weird.
 </body>
 
 <\initial>
@@ -186,10 +199,9 @@
     <associate|auto-4|<tuple|1.3|1>>
     <associate|auto-5|<tuple|1.4|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
-    <associate|equation:Iteration|<tuple|4|?>>
+    <associate|equation:Iteration|<tuple|4|1>>
     <associate|equation:Partition Function|<tuple|2|1>>
     <associate|equation:Restriction|<tuple|3|1>>
-    <associate|equation:iteration|<tuple|3|1>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|2>>
     <associate|footnr-1|<tuple|1|1>>
@@ -217,7 +229,7 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Maximum Entropy Principle as
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Maximum-Entropy Principle as
       an Instance <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
     </associate>

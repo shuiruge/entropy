@@ -13,18 +13,19 @@
   Follow the conventions in section <reference|section: Master Equation,
   Detailed Balance, and Relative Entropy>.
 
-  <subsection|Generic Dynamics Can Be Extract From Data Fitting>
+  <subsection|Generic Dynamics Can Be Extract From Data
+  Fitting><label|section: Generic Dynamics Can Be Extract From Data Fitting>
 
-  Let <math|p<around*|(|\<cdummy\>,\<theta\>|)>> represent a paramterized
+  Let <math|p<around*|(|\<cdummy\>,\<theta\>|)>> represent a parametrized
   distribution of <math|X>, and <math|q> a distribution of <math|X> that
-  represents prior knowlege as in the case of maximum-entropy principle. Let
+  represents prior knowledge as in the case of maximum-entropy principle. Let
   <math|S<around*|(|x,\<theta\>|)>\<assign\>-ln
   <around*|(|p<around*|(|x,\<theta\>|)>/q<around*|(|x|)>|)>-ln
   Z<around*|(|\<theta\>|)>> with <math|Z> to be determined. Notice that the
   distribution <math|q> is essential for defining <math|S>, since <math|ln
   p<around*|(|x,\<theta\>|)>> is not well-defined. <\footnote>
     First, when the random variable <math|X> is continuous, the
-    <math|p<around*|(|x,\<theta\>|)>> has dimension. But logorithm cannot
+    <math|p<around*|(|x,\<theta\>|)>> has dimension. But logarithm cannot
     accept a variable which has dimension. The second reason is that when we
     take a diffeomorphism of <math|X> to <math|X<rprime|'>>, which can be
     viewed as a coordinate transformation, <math|S> cannot be invariant. But,
@@ -79,15 +80,16 @@
     -<frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Iteration>.
   </equation>
 
-  Notice that <math|L> is equivalent to another loss <math|L<rprime|'>> where
+  Notice that <math|L> is equivalent to another loss <math|L<rsub|eq>> where
 
-  <\equation*>
-    L<rprime|'><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+  <\equation>
+    L<rsub|eq><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<rsub|D><around*|(|x|)> S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)>.
-  </equation*>
+    p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)><label|equation:Equivalent
+    Loss>.
+  </equation>
 
-  It can be read from this equivalent loss that minimizing <math|L<rprime|'>>
+  It can be read from this equivalent loss that minimizing <math|L<rsub|eq>>
   is to decrease the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> at data
   points (the first term) while increase it at the points away from data (the
   second term).
@@ -147,7 +149,7 @@
   <math|S<around*|[|x,\<theta\><rsub|\<star\>>|]>> describes the dynamics
   extracted from the raw data.
 
-  <subsection|Maximum-Entropy Principle as an Instance>
+  <subsection|Generic Dynamics Is Saddle Point of Maximum-Entropy Principle>
 
   When <math|S<around*|[|x,\<theta\>|]>=\<theta\><rsup|\<alpha\>>
   f<rsub|\<alpha\>><around*|(|x|)>> for a function
@@ -159,16 +161,16 @@
   <math|<wide|f|\<bar\>>> the observation.
 
   In fact, equation <reference|equation:Generic Density> can be seen as an
-  extremum the loss functional
+  extremum of the functional
 
   <\equation*>
-    L<rsub|ME><around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|p,q|]>+<around*|(|\<bbb-E\><rsub|p><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|p><around*|[|1|]>-1|)>,
+    V<around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|p,q|]>+<around*|(|\<bbb-E\><rsub|p><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|p><around*|[|1|]>-1|)>,
   </equation*>
 
   or explicitly
 
   <\equation*>
-    L<rsub|ME><around*|[|p,\<theta\>,\<mu\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    V<around*|[|p,\<theta\>,\<mu\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>ln<frac|p<around*|(|x|)>|q<around*|(|x|)>>+<around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<rsub|D><around*|(|x|)>S<around*|(|x,\<theta\>|)>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -181,8 +183,41 @@
   <reference|equation:Restriction>. Condition by partial derivative on
   <math|\<mu\>> has been involved in the <math|Z<around*|(|\<theta\>|)>>.
 
-  TODO: explain <math|L<rsub|ME>>. It seems that the second term is the
-  <math|-L<rprime|'><around*|(|\<theta\>|)>>, thus is weird.
+  Interestingly, the second term is just the
+  <math|-L<rsub|eq><around*|(|\<theta\>|)>> in equation
+  <reference|equation:Equivalent Loss>. So, the <math|V> is a combination of
+  two loss functionals.
+
+  <\equation*>
+    V<around*|[|p,\<theta\>,\<mu\>|]>=L<rsub|1><around*|[|p,\<mu\>|]>-L<rsub|2><around*|[|p,\<theta\>|]>,
+  </equation*>
+
+  where <math|L<rsub|1><around*|[|p,\<mu\>|]>\<assign\>H<around*|[|p,q|]>+\<mu\><around*|(|\<bbb-E\><rsub|p><around*|[|1|]>-1|)>>
+  and <math|L<rsub|2><around*|(|p,\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|p><around*|[|S<around*|(|x,\<theta\>|)>|]>>.
+  And all the results in section <reference|section: Generic Dynamics Can Be
+  Extract From Data Fitting> can be obtained from
+  <math|min<rsub|p,\<mu\>>L<rsub|1><around*|[|p,\<mu\>|]>>, from which we
+  obtain equation <reference|equation:Generic Density>, combined with
+  <math|min<rsub|\<theta\>> L<rsub|2><around*|[|p,\<theta\>|]>> where
+  <math|p> has been formally obtained from
+  <math|min<rsub|p,\<mu\>>L<rsub|1><around*|[|p,\<mu\>|]>>, from which we
+  obtain equation <reference|equation:Equivalent Loss>, thus equations
+  <reference|equation:Restriction> and <reference|equation:Iteration>. The
+  first minimization corresponds to maximum-entropy principle, which
+  minimizes the relative entropy between <math|p> and <math|q>. The second
+  minimization fits the data, by minimizing the relative entropy between
+  <math|p<rsub|D>> and <math|p>. Altogether, we are to find the saddle point
+  of <math|L<rsub|ME><around*|[|p,\<theta\>,\<mu\>|]>>, as
+
+  <\equation>
+    <around*|(|p<rsub|\<star\>>,\<theta\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>=max<rsub|\<theta\>>
+    min<rsub|p,\<mu\>>V<rsub|MaxEnt><around*|[|p,\<theta\>,\<mu\>|]>.
+  </equation>
+
+  This equation relates the generic dynamics derived in section
+  <reference|section: Generic Dynamics Can Be Extract From Data Fitting> and
+  the maximum-entropy principle introduced in section <reference|section:
+  Maximum-Entropy Principle>.
 </body>
 
 <\initial>
@@ -196,8 +231,9 @@
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
-    <associate|auto-4|<tuple|1.3|1>>
+    <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
+    <associate|equation:Equivalent Loss|<tuple|5|1>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|4|1>>
     <associate|equation:Partition Function|<tuple|2|1>>
@@ -206,6 +242,8 @@
     <associate|footnote-2|<tuple|2|2>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|2>>
+    <associate|section: Generic Dynamics Can Be Extract From Data
+    Fitting|<tuple|1.2|1>>
   </collection>
 </references>
 
@@ -229,8 +267,8 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Maximum-Entropy Principle as
-      an Instance <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Generic Dynamics Is Saddle
+      Point of Maximum-Entropy Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
     </associate>
   </collection>

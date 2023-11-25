@@ -33,7 +33,7 @@
     p<around*|(|x,\<theta\>|)>> is not well-defined. But, it is easy to prove
     that <math|ln <around*|(|p<around*|(|x,\<theta\>|)>/q<around*|(|x|)>|)>>
     is well-defined.
-  </footnote> Then, we have
+  </footnote> Then, we can re-formulate <math|p<around*|(|x,\<theta\>|)>> as
 
   <\equation>
     p<around*|(|x,\<theta\>|)>=Z<rsup|-1><around*|(|\<theta\>|)>
@@ -67,16 +67,16 @@
   At the minimum, we shall have <math|\<partial\>L/\<partial\>\<theta\>=0>.
   Then, we find that <math|\<theta\><rsub|\<star\>>> obeys
 
-  <\equation*>
-    \<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>.
-  </equation*>
+  <\equation>
+    \<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]><label|equation:Restriction>.
+  </equation>
 
   We can find the <math|\<theta\><rsub|\<star\>>> by iteratively updating
   <math|\<theta\>> along the direction <math|-\<partial\>L/\<partial\>\<theta\>>.
   With a series of direct calculus, we find
 
   <\equation>
-    -<frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:iteration>.
+    -<frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Iteration>.
   </equation>
 
   \;
@@ -132,20 +132,44 @@
     For example, <math|L<around*|(|x,t,\<theta\>|)>=f<around*|(|x,\<theta\>|)>>
     where <math|f> is a neural network.
   </footnote>. Then, we find the best fit <math|\<theta\><rsub|\<star\>>> by
-  equation <reference|equation:iteration>. The action
+  equation <reference|equation:Iteration>. The action
   <math|S<around*|[|x,\<theta\><rsub|\<star\>>|]>> describes the dynamics
   extracted from the raw data.
 
-  <subsection|Maximum Entropy Principle as an Instance>
+  <subsection|Maximum-Entropy Principle as an Instance>
 
   When <math|S<around*|[|x,\<theta\>|]>=\<theta\><rsup|\<alpha\>>
   f<rsub|\<alpha\>><around*|(|x|)>> for a function
   <math|f:\<cal-X\>\<rightarrow\>\<bbb-R\><rsup|m>> and
-  <math|<wide|f|\<bar\>><rsub|\<alpha\>>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|(|f<rsub|\<alpha\>>|)>>,
+  <math|<wide|f|\<bar\>>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|(|f|)>>,
   the <math|p<around*|(|x,\<theta\>|)>> given by equation
   <reference|equation:Generic Density> reduces to that given by
   maximum-entropy principle, with <math|f> the observables and
   <math|<wide|f|\<bar\>>> the observation.
+
+  In fact, equation <reference|equation:Generic Density> can be seen as an
+  extremum the loss functional
+
+  <\equation*>
+    L<rsub|ME><around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|p,q|]>+<around*|(|\<bbb-E\><rsub|p><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|p><around*|[|1|]>-1|)>,
+  </equation*>
+
+  or explicitly
+
+  <\equation*>
+    L<rsub|ME><around*|[|p,\<theta\>,\<mu\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x|)>ln<frac|p<around*|(|x|)>|q<around*|(|x|)>>+<around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x|)>S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<rsub|D><around*|(|x|)>S<around*|(|x,\<theta\>|)>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x|)>-1|)>.
+  </equation*>
+
+  Indeed, variance on <math|p> gives equation <reference|equation:Generic
+  Density> and equation <reference|equation:Partition Function>. And partial
+  derivative on <math|\<theta\>> gives equation
+  <reference|equation:Restriction>. Condition by partial derivative on
+  <math|\<mu\>> has been involved in the <math|Z<around*|(|\<theta\>|)>>.
+  TODO: explain <math|L<rsub|ME>>.
 </body>
 
 <\initial>
@@ -156,18 +180,20 @@
 
 <\references>
   <\collection>
-    <associate|auto-1|<tuple|1|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|auto-2|<tuple|1.1|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|auto-3|<tuple|1.2|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|auto-4|<tuple|1.3|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|auto-5|<tuple|1.4|2|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|equation:Generic Density|<tuple|1|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|equation:Partition Function|<tuple|2|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|equation:iteration|<tuple|3|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|footnote-1|<tuple|1|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|footnote-2|<tuple|2|2|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|footnr-1|<tuple|1|1|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
-    <associate|footnr-2|<tuple|2|2|../../../.TeXmacs/texts/scratch/no_name_3.tm>>
+    <associate|auto-1|<tuple|1|1>>
+    <associate|auto-2|<tuple|1.1|1>>
+    <associate|auto-3|<tuple|1.2|1>>
+    <associate|auto-4|<tuple|1.3|1>>
+    <associate|auto-5|<tuple|1.4|2>>
+    <associate|equation:Generic Density|<tuple|1|1>>
+    <associate|equation:Iteration|<tuple|4|?>>
+    <associate|equation:Partition Function|<tuple|2|1>>
+    <associate|equation:Restriction|<tuple|3|1>>
+    <associate|equation:iteration|<tuple|3|1>>
+    <associate|footnote-1|<tuple|1|1>>
+    <associate|footnote-2|<tuple|2|2>>
+    <associate|footnr-1|<tuple|1|1>>
+    <associate|footnr-2|<tuple|2|2>>
   </collection>
 </references>
 
@@ -191,8 +217,8 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>In a Special Case
-      \ <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Maximum Entropy Principle as
+      an Instance <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
     </associate>
   </collection>

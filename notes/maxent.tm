@@ -308,7 +308,10 @@
   the dynamics extracted from the raw data.
 
   Interestingly, this method can be used out of physics. The entity can be
-  words, genes, society, and so on.
+  words, genes, society, and so on. For example, we can find out how words
+  interact with each other. And with the action formed, many physical tools
+  can be employed for further analysis, such as renormalization group
+  equation.
 </body>
 
 <\initial>
@@ -324,24 +327,22 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
-    <associate|auto-6|<tuple|2|3>>
-    <associate|auto-7|<tuple|2.1|3>>
-    <associate|auto-8|<tuple|2.2|?>>
-    <associate|auto-9|<tuple|2.3|?>>
+    <associate|auto-6|<tuple|2|2>>
+    <associate|auto-7|<tuple|2.1|2>>
+    <associate|auto-8|<tuple|2.2|3>>
+    <associate|auto-9|<tuple|2.3|4>>
     <associate|equation:maxent eq1|<tuple|2|1>>
     <associate|equation:maxent eq2|<tuple|4|1>>
     <associate|equation:maxent iteration|<tuple|13|3>>
     <associate|equation:maxent partition function|<tuple|3|1>>
-    <associate|equation:weak maxent eq1|<tuple|8|2>>
+    <associate|equation:weak maxent eq1|<tuple|8|3>>
     <associate|equation:weak maxent eq2|<tuple|10|3>>
     <associate|equation:weak maxent iteration|<tuple|12|3>>
-    <associate|equation:weak maxent p|<tuple|11|?>>
+    <associate|equation:weak maxent p|<tuple|11|3>>
     <associate|equation:weak maxent partition function|<tuple|9|3>>
-    <associate|footnote-1|<tuple|1|2>>
-    <associate|footnote-2|<tuple|2|3>>
-    <associate|footnr-1|<tuple|1|2>>
-    <associate|footnr-2|<tuple|2|3>>
-    <associate|section: Maximum-Entropy Principle|<tuple|1|?>>
+    <associate|footnote-1|<tuple|1|3>>
+    <associate|footnr-1|<tuple|1|3>>
+    <associate|section: Maximum-Entropy Principle|<tuple|1|1>>
   </collection>
 </references>
 
@@ -364,18 +365,28 @@
       Free Theory or Regulator <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Weak Maximum-Entropy
-      Principle Furnishes Observables <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5>>
-
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Extremum Can Be Found by
-      Iteration Method <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6>>
-
-      <with|par-left|<quote|1tab>|1.6<space|2spc>When Is
+      <with|par-left|<quote|1tab>|1.4<space|2spc>When Is
       <with|mode|<quote|math>|\<lambda\><rsub|\<star\>>> Solvable?
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-5>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Data
+      Fitting and Generic Dynamics> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Weak Maximum-Entropy
+      Principle Furnishes Observables <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Weak Maximum-Entropy
+      Principle Is Equivalent to Data Fitting
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|2.3<space|2spc>Extract Dynamics from Raw
+      Data: An Instance of Classical Physics
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
     </associate>
   </collection>
 </auxiliary>

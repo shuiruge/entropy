@@ -1,6 +1,6 @@
 <TeXmacs|2.1>
 
-<style|generic>
+<style|book>
 
 <\body>
   <section|Relative Entropy><label|section: Relative Entropy>
@@ -160,21 +160,22 @@
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
-    <associate|auto-4|<tuple|1.3|2>>
+    <associate|auto-4|<tuple|1.3|1>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
-    <associate|section: Relative Entropy|<tuple|1|?>>
+    <associate|section: Relative Entropy|<tuple|1|1>>
+    <associate|section: Shannon Entropy Fails for Continuous Random
+    Variable|<tuple|1.2|?>>
   </collection>
 </references>
 
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Relative
-      Entropy> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-1><vspace|0.5fn>
+      1<space|2spc>Relative Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-1>
 
       <with|par-left|<quote|1tab>|1.1<space|2spc>Shannon Entropy Is Plausible
       for Discrete Variable <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
@@ -185,7 +186,8 @@
       <no-break><pageref|auto-3>>
 
       <with|par-left|<quote|1tab>|1.3<space|2spc>Relative Entropy is Unique
-      Solution to Extended Conditions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Solution to the Extended Conditions
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
     </associate>
   </collection>

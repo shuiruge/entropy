@@ -3,7 +3,7 @@
 <style|book>
 
 <\body>
-  <section|Data Fitting and Generic Dynamics>
+  <section|Least-Action Principle>
 
   In this section, we are to find a way of extracting dynamics (action or
   Lagrangian) from any raw data of any entity.
@@ -13,8 +13,9 @@
   Follow the conventions in section <reference|section: Master Equation,
   Detailed Balance, and Relative Entropy>.
 
-  <subsection|Generic Dynamics Can Be Extract From Data
-  Fitting><label|section: Generic Dynamics Can Be Extract From Data Fitting>
+  <subsection|Data Fitting Is Equivalent to Least-Action
+  Principle><label|section: Generic Dynamics Can Be Extract From Data
+  Fitting>
 
   Let <math|p<around*|(|\<cdummy\>,\<theta\>|)>> represent a parametrized
   distribution of <math|X>, and <math|q> a distribution of <math|X> that
@@ -77,32 +78,28 @@
   With a series of direct calculus, we find
 
   <\equation>
-    -<frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Iteration>.
+    <frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Iteration>.
   </equation>
 
-  Notice that <math|L> is equivalent to another loss <math|L<rsub|eq>> where
+  Notice that <math|L> is equivalent to another loss <math|L<rsub|LA>> where
 
   <\equation>
-    L<rsub|eq><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    L<rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<rsub|D><around*|(|x|)> S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)><label|equation:Equivalent
     Loss>.
   </equation>
 
-  It can be read from this equivalent loss that minimizing <math|L<rsub|eq>>
-  is to decrease the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> at data
-  points (the first term) while increase it at the points away from data (the
-  second term).
-
-  Analogy to physics, in equation <reference|equation:Generic Density>, the
-  <math|S<around*|(|x,\<theta\>|)>> can recognized as a parameterized action,
-  the <math|q<around*|(|x|)>> as free theory, and the
-  <math|Z<around*|(|\<theta\>|)>> as partition function. Thus, it represents
-  the dynamics of an entity. The entity may be physical, like particles. But
-  it can also be words, genes, flock of birds, and so on. For example, we can
-  find out how words interact with each other. After obtaining the action,
-  many physical tools can be employed for further analysis, such as
-  renormalization group equation.
+  It can be read from this equation that minimizing <math|L<rsub|LA>> is to
+  decrease the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> at data points (the
+  first term) while increase it at the points away from data (the second
+  term). This way of optimization will site a real world datum onto a local
+  minimum of <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, in statistical
+  sense. TODO: add a diagram for better illustration. In this way, the
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is recognized as a parameterized
+  action. It thus represents the dynamics of an entity. The entity may be
+  physical, like particles. But it can also be words, genes, flock of birds,
+  and so on. For example, we can find out how words interact with each other.
 
   <subsection|Extract Dynamics from Raw Data: An Instance of Classical
   Physics>
@@ -149,7 +146,8 @@
   <math|S<around*|[|x,\<theta\><rsub|\<star\>>|]>> describes the dynamics
   extracted from the raw data.
 
-  <subsection|Generic Dynamics Is Saddle Point of Maximum-Entropy Principle>
+  <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
+  Functional>
 
   When <math|S<around*|[|x,\<theta\>|]>=\<theta\><rsup|\<alpha\>>
   f<rsub|\<alpha\>><around*|(|x|)>> for a function
@@ -160,8 +158,10 @@
   maximum-entropy principle, with <math|f> the observables and
   <math|<wide|f|\<bar\>>> the observation.
 
-  In fact, equation <reference|equation:Generic Density> can be seen as an
-  extremum of the functional
+  In fact, equations <reference|equation:Generic Density>,
+  <reference|equation:Partition Function>, and
+  <reference|equation:Restriction> can be seen as an extremum of the
+  functional
 
   <\equation*>
     V<around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|p,q|]>+<around*|(|\<bbb-E\><rsub|p><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|p><around*|[|1|]>-1|)>,
@@ -184,40 +184,22 @@
   <math|\<mu\>> has been involved in the <math|Z<around*|(|\<theta\>|)>>.
 
   Interestingly, the second term is just the
-  <math|-L<rsub|eq><around*|(|\<theta\>|)>> in equation
-  <reference|equation:Equivalent Loss>. So, the <math|V> is a combination of
-  two loss functionals.
-
-  <\equation*>
-    V<around*|[|p,\<theta\>,\<mu\>|]>=L<rsub|1><around*|[|p,\<mu\>|]>-L<rsub|2><around*|[|p,\<theta\>|]>,
-  </equation*>
-
-  where <math|L<rsub|1><around*|[|p,\<mu\>|]>\<assign\>H<around*|[|p,q|]>+\<mu\><around*|(|\<bbb-E\><rsub|p><around*|[|1|]>-1|)>>
-  and <math|L<rsub|2><around*|(|p,\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|p><around*|[|S<around*|(|x,\<theta\>|)>|]>>.
-  And all the results in section <reference|section: Generic Dynamics Can Be
-  Extract From Data Fitting> can be obtained from
-  <math|min<rsub|p,\<mu\>>L<rsub|1><around*|[|p,\<mu\>|]>>, from which we
-  obtain equation <reference|equation:Generic Density>, combined with
-  <math|min<rsub|\<theta\>> L<rsub|2><around*|[|p,\<theta\>|]>> where
-  <math|p> has been formally obtained from
-  <math|min<rsub|p,\<mu\>>L<rsub|1><around*|[|p,\<mu\>|]>>, from which we
-  obtain equation <reference|equation:Equivalent Loss>, thus equations
-  <reference|equation:Restriction> and <reference|equation:Iteration>. The
-  first minimization corresponds to maximum-entropy principle, which
-  minimizes the relative entropy between <math|p> and <math|q>. The second
-  minimization fits the data, by minimizing the relative entropy between
-  <math|p<rsub|D>> and <math|p>. Altogether, we are to find the saddle point
-  of <math|L<rsub|ME><around*|[|p,\<theta\>,\<mu\>|]>>, as
+  <math|-L<rsub|LA><around*|(|\<theta\>|)>> in equation
+  <reference|equation:Equivalent Loss>. So, the extremum is in fact a saddle
+  point, as
 
   <\equation>
     <around*|(|p<rsub|\<star\>>,\<theta\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>=max<rsub|\<theta\>>
-    min<rsub|p,\<mu\>>V<rsub|MaxEnt><around*|[|p,\<theta\>,\<mu\>|]>.
+    min<rsub|p,\<mu\>>V<around*|[|p,\<theta\>,\<mu\>|]>.
   </equation>
 
-  This equation relates the generic dynamics derived in section
-  <reference|section: Generic Dynamics Can Be Extract From Data Fitting> and
-  the maximum-entropy principle introduced in section <reference|section:
-  Maximum-Entropy Principle>.
+  The first minimization corresponds to maximum-entropy principle, which
+  minimizes the relative entropy between <math|p> and <math|q>, which in turn
+  relates the probability <math|p> and the action
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The second maximization sites
+  real data onto the action's local minima. So, we find that maximum-entropy
+  principle and least-action principle are saddle point of a functional
+  <math|V>.
 </body>
 
 <\initial>
@@ -250,7 +232,7 @@
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      1<space|2spc>Data Fitting and Generic Dynamics
+      1<space|2spc>Least-Action Principle
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1>
 

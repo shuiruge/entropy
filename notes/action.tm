@@ -97,9 +97,14 @@
   minimum of <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, in statistical
   sense. TODO: add a diagram for better illustration. In this way, the
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is recognized as a parameterized
-  action. It thus represents the dynamics of an entity. The entity may be
-  physical, like particles. But it can also be words, genes, flock of birds,
-  and so on. For example, we can find out how words interact with each other.
+  action. It thus represents the dynamics of an having real data fall to
+  local minima
+
+  \;
+
+  entity. The entity may be physical, like particles. But it can also be
+  words, genes, flock of birds, and so on. For example, we can find out how
+  words interact with each other.
 
   <subsection|Extract Dynamics from Raw Data: An Instance of Classical
   Physics>
@@ -194,8 +199,9 @@
   </equation>
 
   The first minimization corresponds to maximum-entropy principle, which
-  minimizes the relative entropy between <math|p> and <math|q>, which in turn
-  relates the probability <math|p> and the action
+  minimizes the relative entropy between <math|p> and <math|q> and the
+  expectation of action <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, which in
+  turn relates the probability <math|p> and the action
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The second maximization sites
   real data onto the action's local minima. So, we find that maximum-entropy
   principle and least-action principle are saddle point of a functional
@@ -240,8 +246,8 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>Generic Dynamics Can Be
-      Extract From Data Fitting <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Data Fitting Is Equivalent
+      to Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
       <with|par-left|<quote|1tab>|1.3<space|2spc>Extract Dynamics from Raw
@@ -249,8 +255,9 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Generic Dynamics Is Saddle
-      Point of Maximum-Entropy Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Maximum-Entropy and
+      Least-Action Are Saddle Point of a Functional
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
     </associate>
   </collection>

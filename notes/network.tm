@@ -26,17 +26,18 @@
   On the right hand side, the first term corresponds to the decay of
   <math|s>; the second term corresponds to the collection of spikes from
   other connected neurons, weighted by <math|W>; and the third term is for
-  reset, where <math|\<theta\>> represents the threshold. We can absorb the
-  <math|\<theta\>> into <math|W> as <math|W<rsub|\<alpha\>\<alpha\>>\<assign\>\<theta\><rsub|\<alpha\>>>,
-  and re-write this formula as
+  reset, where <math|\<theta\>> represents the threshold. We can set
+  <math|W<rsub|\<alpha\>\<alpha\>>\<equiv\>0> for each <math|\<alpha\>>, and
+  re-write this formula in a more compact form as
 
   <\equation>
-    \<tau\> <frac|\<mathd\>u|\<mathd\>t><around*|(|t|)>+u<around*|(|t|)>=W\<cdot\>s<around*|(|t|)><label|equation:Spiking
-    Neuron Network 1>.
+    \<tau\> <frac|\<mathd\>u|\<mathd\>t><around*|(|t|)>+u<around*|(|t|)>=W\<cdot\>s<around*|(|t|)>-\<theta\>\<odot\>s<around*|(|t|)><label|equation:Spiking
+    Neuron Network 1>,
   </equation>
 
-  The relation between membrane potentials <math|u> and spikes <math|s>, or
-  <math|S> which denotes the random spikes <\footnote>
+  where <math|\<odot\>> denotes element-wise product. The relation between
+  membrane potentials <math|u> and spikes <math|s>, or <math|S> which denotes
+  the random spikes <\footnote>
     As usual, we use capital character for random variable, and its lowercase
     for its concrete value.
   </footnote>, is given by a stochastic equation
@@ -64,8 +65,8 @@
   <reference|equation:Spiking Neuron Network 1> comes to be
 
   <\equation*>
-    u<around*|(|t+\<Delta\>t|)>=<around*|(|1-<frac|\<Delta\>t|\<tau\>>|)>u<around*|(|t|)>+<frac|\<Delta\>t|\<tau\>>
-    W\<cdot\>s<around*|(|t|)>.
+    u<around*|(|t+\<Delta\>t|)>=<around*|(|1-<frac|\<Delta\>t|\<tau\>>|)>u<around*|(|t|)>+<frac|\<Delta\>t|\<tau\>><around*|(|
+    W\<cdot\>s<around*|(|t|)>-\<theta\>\<odot\>s<around*|(|t|)>|)>.
   </equation*>
 
   Replacing <math|1-\<Delta\>t/\<tau\>> by
@@ -75,8 +76,8 @@
   <\equation>
     u<around*|(|t+\<Delta\>t|)>=\<beta\><rsub|\<Delta\>t>
     \ u<around*|(|t|)>+<around*|(|1-\<beta\><rsub|\<Delta\>t>|)>
-    W\<cdot\>s<around*|(|t|)>.<label|equation:Difference Spiking Neuron
-    Network>
+    <around*|(|W\<cdot\>s<around*|(|t|)>-\<theta\>\<odot\>s<around*|(|t|)>|)>.<label|equation:Difference
+    Spiking Neuron Network>
   </equation>
 
   This is the difference version of equation <reference|equation:Spiking
@@ -98,13 +99,15 @@
 
   <\equation*>
     S<around*|(|s|)>\<assign\>-\<beta\> <big|sum><rsub|\<alpha\>=1><rsup|n>s<rsup|\<alpha\>>
-    u<rsup|\<alpha\>>-<frac|<around*|(|1-\<beta\>|)>|2>
-    <big|sum><rsub|\<alpha\>=1><rsup|n><big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
-    s<rsup|\<alpha\>> s<rsup|\<beta\>>,
+    u<rsup|\<alpha\>>-<around*|(|1-\<beta\>|)>
+    <big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<big|sum><rsub|\<beta\>=1><rsup|n><frac|1|2>W<rsub|\<alpha\>\<beta\>>
+    s<rsup|\<alpha\>> s<rsup|\<beta\>>+b<rsub|\<alpha\>>
+    s<rsup|\<alpha\>>|)>,
   </equation*>
 
-  where <math|W> is symmetric and <math|\<beta\>> is a constant to be
-  replaced by <math|exp<around*|(|-\<Delta\>t/\<tau\>|)>> later. And
+  where <math|W> is symmetric with diagonal vanished, <math|b> is bias, and
+  <math|\<beta\>> is a constant to be replaced by
+  <math|exp<around*|(|-\<Delta\>t/\<tau\>|)>> later. And
   <math|p<around*|(|s|)>\<propto\>exp<around*|(|-S<around*|(|s|)>|)>>. The
   conditional probability <math|p<around*|(|s<rsup|\<alpha\>>\|s<rsup|\\\<alpha\>>|)>>,
   where <math|s<rsup|\\\<alpha\>>> denotes the
@@ -113,25 +116,21 @@
 
   <\equation*>
     <frac|p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>|)>|p<around*|(|s<rsup|\<alpha\>>=0\|s<rsup|\\\<alpha\>>|)>>=exp<around*|(|\<beta\>
-    u<rsup|\<alpha\>>+<frac|<around*|(|1-\<beta\>|)>|2>
-    W<rsub|\<alpha\>\<alpha\>>+<around*|(|1-\<beta\>|)><big|sum><rsub|\<beta\>\<neq\>\<alpha\>>W<rsub|\<alpha\>\<beta\>>
-    s<rsup|\<beta\>>|)>.
+    u<rsup|\<alpha\>>+<around*|(|1-\<beta\>|)><around*|(|<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
+    s<rsup|\<beta\>>+b<rsub|\<alpha\>>|)>|)>,
   </equation*>
 
-  Thus,
+  where we have employed <math|W<rsub|\<alpha\>\<beta\>>=W<rsub|\<beta\>\<alpha\>>>
+  and <math|W<rsub|\<alpha\>\<alpha\>>=0>. Thus,
 
   <\equation*>
     p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>|)>=\<sigma\><around*|(|\<beta\>
-    u<rsup|\<alpha\>>+<frac|<around*|(|1-\<beta\>|)>|2>
-    W<rsub|\<alpha\>\<alpha\>>+<around*|(|1-\<beta\>|)><big|sum><rsub|\<beta\>\<neq\>\<alpha\>>W<rsub|\<alpha\>\<beta\>>
-    s<rsup|\<beta\>>|)>,
+    u<rsup|\<alpha\>>+<around*|(|1-\<beta\>|)><around*|(|<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
+    s<rsup|\<beta\>>+b<rsub|\<alpha\>>|)>|)>,
   </equation*>
 
-  where we have employed <math|W<rsub|\<alpha\>\<beta\>>=W<rsub|\<beta\>\<alpha\>>>.
-  It is helpful to denote <math|b<rsup|\<alpha\>>\<assign\>W<rsub|\<alpha\>\<alpha\>>/2>
-  and to treat <math|W> as vanishing on diagonal. Then, by regarding this as
-  the update rule (Gibbs sampling), we have, after update
-  <math|t\<rightarrow\>t+\<Delta\>t>,
+  Then, by regarding this as the update rule (Gibbs sampling), we have, after
+  update <math|t\<rightarrow\>t+\<Delta\>t>,
 
   <\equation>
     S<around*|(|t+\<Delta\>t|)>\<sim\>Bernoulli<around*|(|\<sigma\><around*|(|u<around*|(|t+\<Delta\>t|)>|)>|)>
@@ -159,8 +158,8 @@
   Comparing these equations with equations <reference|equation:Spiking Neuron
   Network 1> and <reference|equation:Spiking Neuron Network 2>, we find that
   the stochastic version of continuous-time Hopfield network is the
-  difference version of spiking neuron network except that the reset is
-  replaced by a constant threshold <math|b>.
+  difference version of spiking neuron network except that the reset term
+  <math|-\<theta\>\<odot\>s> is replaced by a constant bias <math|b>.
 
   So, the stochastic version of continuous-time Hopfield network further
   simplifies the toy model of brain, that is the spiking neuron network. It
@@ -179,28 +178,30 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
-    <associate|auto-3|<tuple|1.2|?>>
-    <associate|equation:Difference Spiking Neuron Network|<tuple|3|?>>
-    <associate|equation:Spiking Neuron Network 1|<tuple|1|?>>
-    <associate|equation:Spiking Neuron Network 2|<tuple|2|?>>
+    <associate|auto-3|<tuple|1.2|1>>
+    <associate|equation:Difference Spiking Neuron Network|<tuple|3|1>>
+    <associate|equation:Spiking Neuron Network 1|<tuple|1|1>>
+    <associate|equation:Spiking Neuron Network 2|<tuple|2|1>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|?>>
-    <associate|footnote-3|<tuple|3|?>>
+    <associate|footnote-2|<tuple|2|1>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|?>>
-    <associate|footnr-3|<tuple|3|?>>
+    <associate|footnr-2|<tuple|2|1>>
   </collection>
 </references>
 
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      1<space|2spc>Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      1<space|2spc>Neuron Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1>
 
-      <with|par-left|<quote|1tab>|1.1<space|2spc>Spiking Neuron Network As
-      Continuous-Time Hopfield Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.1<space|2spc>Spiking Neuron Network Is a
+      Stochastic Model of Brain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
+
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Continuous-Time Hopfield
+      Network as Spiking Neuron Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-3>>
     </associate>
   </collection>
 </auxiliary>

@@ -132,13 +132,19 @@
   When <math|p<around*|(|\<cdummy\>,t|)>> is evolved by the master equation
   of <math|q<rsub|\<Delta\>t>>, to keep <math|H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>>
   well-defined, we have to ensure that <math|p<around*|(|\<cdummy\>,t|)>> is
-  supported on <math|\<cal-X\>> for all <math|t>. This is guaranteed when
-  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0> for each
-  <math|x,y\<in\>\<cal-X\>> and for each <math|\<Delta\>t\<in\><around*|[|0,T|]>>,
-  where <math|T> is an arbitrary positive number. This property of transition
-  probability is called <with|font-series|bold|ergodicity>. Indeed, by
-  repeatedly applying master equation <reference|equation:Master Equation
-  V2>, <math|p<around*|(|x,t<rprime|'>|)>> is found to be supported on
+  supported on <math|\<cal-X\>> for all <math|t>. Based on equation
+  <reference|equation:Master Equation V2>, if
+  <math|p<around*|(|\<cdummy\>,t|)>> has been supported on <math|\<cal-X\>>,
+  <math|p<around*|(|x,t+\<Delta\>t|)>> is also supported if and only if for
+  each <math|x\<in\>\<cal-X\>>, there is <math|y\<in\>\<cal-X\>> such that
+  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0>. That is, for each
+  <math|x>, there is possibility that some <math|y> transits to <math|x>
+  after a period <math|\<Delta\>t>. This property of transition probability
+  is called <with|font-series|bold|ergodicity>. <\footnote>
+    TODO: It seems that ergodicity is not defined as such.
+  </footnote> By repeatedly applying master equation
+  <reference|equation:Master Equation V2>,
+  <math|p<around*|(|x,t<rprime|'>|)>> is found to be supported on
   <math|\<cal-X\>> for any <math|t<rprime|'>\<gtr\>t>. This keeps
   <math|H<around*|[|p<around*|(|\<cdummy\>,t|)>,\<pi\>|]>> well-defined as
   long as it is well-defined initially.
@@ -574,6 +580,7 @@
     <associate|footnote-6|<tuple|6|3>>
     <associate|footnote-7|<tuple|7|3>>
     <associate|footnote-8|<tuple|8|5>>
+    <associate|footnote-9|<tuple|9|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|2|1>>
@@ -581,7 +588,8 @@
     <associate|footnr-5|<tuple|5|2>>
     <associate|footnr-6|<tuple|6|3>>
     <associate|footnr-7|<tuple|7|3>>
-    <associate|footnr-8|<tuple|7|5>>
+    <associate|footnr-8|<tuple|8|5>>
+    <associate|footnr-9|<tuple|7|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|5>>
     <associate|section: Detailed Balance with Ergodicity Monotonically

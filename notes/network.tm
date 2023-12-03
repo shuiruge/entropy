@@ -18,17 +18,17 @@
   </footnote>
 
   <\equation*>
-    \<tau\> <frac|\<mathd\>u<rsup|\<alpha\>>|\<mathd\>t><around*|(|t|)>=-u<rsup|\<alpha\>><around*|(|t|)>+<big|sum><rsub|\<beta\>\<neq\>\<alpha\>><rsup|n>W<rsub|\<alpha\>\<beta\>>
+    \<tau\> <frac|\<mathd\>u<rsup|\<alpha\>>|\<mathd\>t><around*|(|t|)>=-u<rsup|\<alpha\>><around*|(|t|)>+<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
     s<rsup|\<beta\>><around*|(|t|)>-\<theta\><rsub|\<alpha\>>
-    s<rsup|\<alpha\>><around*|(|t|)>.
+    s<rsup|\<alpha\>><around*|(|t|)>,
   </equation*>
 
-  On the right hand side, the first term corresponds to the decay of
-  <math|s>; the second term corresponds to the collection of spikes from
-  other connected neurons, weighted by <math|W>; and the third term is for
-  reset, where <math|\<theta\>> represents the threshold. We can set
-  <math|W<rsub|\<alpha\>\<alpha\>>\<equiv\>0> for each <math|\<alpha\>>, and
-  re-write this formula in a more compact form as
+  where the matrix <math|W> vanishes on diagonal. On the right hand side, the
+  first term corresponds to the decay of <math|s>; the second term
+  corresponds to the collection of spikes from other connected neurons,
+  weighted by <math|W>; and the third term is for reset, where
+  <math|\<theta\>> represents the threshold. We can re-write this formula in
+  a more compact form as
 
   <\equation>
     \<tau\> <frac|\<mathd\>u|\<mathd\>t><around*|(|t|)>+u<around*|(|t|)>=W\<cdot\>s<around*|(|t|)>-\<theta\>\<odot\>s<around*|(|t|)><label|equation:Spiking
@@ -98,7 +98,8 @@
   intermediate latent variable and define action of <math|s> as
 
   <\equation*>
-    S<around*|(|s|)>\<assign\>-\<beta\> <big|sum><rsub|\<alpha\>=1><rsup|n>s<rsup|\<alpha\>>
+    S<around*|(|s,u|)>\<assign\>-\<beta\>
+    <big|sum><rsub|\<alpha\>=1><rsup|n>s<rsup|\<alpha\>>
     u<rsup|\<alpha\>>-<around*|(|1-\<beta\>|)>
     <big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<big|sum><rsub|\<beta\>=1><rsup|n><frac|1|2>W<rsub|\<alpha\>\<beta\>>
     s<rsup|\<alpha\>> s<rsup|\<beta\>>+b<rsub|\<alpha\>>
@@ -107,15 +108,17 @@
 
   where <math|W> is symmetric with diagonal vanished, <math|b> is bias, and
   <math|\<beta\>> is a constant to be replaced by
-  <math|exp<around*|(|-\<Delta\>t/\<tau\>|)>> later. And
-  <math|p<around*|(|s|)>\<propto\>exp<around*|(|-S<around*|(|s|)>|)>>. The
-  conditional probability <math|p<around*|(|s<rsup|\<alpha\>>\|s<rsup|\\\<alpha\>>|)>>,
+  <math|exp<around*|(|-\<Delta\>t/\<tau\>|)>> later. If regard <math|s> as
+  the value of a random variable, while <math|u> as a real number, we have
+  the probability <math|p<around*|(|s;u|)>>, with
+  <math|p<around*|(|s;u|)>\<propto\>exp<around*|(|-S<around*|(|s,u|)>|)>>.
+  The conditional probability <math|p<around*|(|s<rsup|\<alpha\>>\|s<rsup|\\\<alpha\>>;u|)>>,
   where <math|s<rsup|\\\<alpha\>>> denotes the
   <math|<around*|(|n-1|)>>-dimensional vector in which
   <math|s<rsup|\<alpha\>>> is excluded, can be obtained directly, as
 
   <\equation*>
-    <frac|p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>|)>|p<around*|(|s<rsup|\<alpha\>>=0\|s<rsup|\\\<alpha\>>|)>>=exp<around*|(|\<beta\>
+    <frac|p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>;u|)>|p<around*|(|s<rsup|\<alpha\>>=0\|s<rsup|\\\<alpha\>>;u|)>>=exp<around*|(|\<beta\>
     u<rsup|\<alpha\>>+<around*|(|1-\<beta\>|)><around*|(|<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
     s<rsup|\<beta\>>+b<rsub|\<alpha\>>|)>|)>,
   </equation*>
@@ -124,7 +127,7 @@
   and <math|W<rsub|\<alpha\>\<alpha\>>=0>. Thus,
 
   <\equation*>
-    p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>|)>=\<sigma\><around*|(|\<beta\>
+    p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>;u|)>=\<sigma\><around*|(|\<beta\>
     u<rsup|\<alpha\>>+<around*|(|1-\<beta\>|)><around*|(|<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
     s<rsup|\<beta\>>+b<rsub|\<alpha\>>|)>|)>,
   </equation*>
@@ -139,8 +142,8 @@
   with
 
   <\equation>
-    u<around*|(|t+\<Delta\>t|)>=\<beta\><rsub|\<Delta\>t>
-    u<around*|(|t|)>+<around*|(|1-\<beta\><rsub|\<Delta\>t>|)><around*|(|W\<cdot\>
+    u<around*|(|t+\<Delta\>t|)>\<assign\>\<beta\>
+    u<around*|(|t|)>+<around*|(|1-\<beta\>|)><around*|(|W\<cdot\>
     s<around*|(|t|)>+b|)>,
   </equation>
 
@@ -159,13 +162,24 @@
   Network 1> and <reference|equation:Spiking Neuron Network 2>, we find that
   the stochastic version of continuous-time Hopfield network is the
   difference version of spiking neuron network except that the reset term
-  <math|-\<theta\>\<odot\>s> is replaced by a constant bias <math|b>.
+  <math|-\<theta\>\<odot\>s> is replaced by a constant bias <math|b>. This
+  exception is natural, since Gibbs sampling
+  <math|p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>;u|)>> cannot
+  depend on <math|s<rsup|\<alpha\>>> itself.
 
   So, the stochastic version of continuous-time Hopfield network further
   simplifies the toy model of brain, that is the spiking neuron network. It
   keeps many important properties of the later, such as the smoothness on
   time, and brings another important property that is hard to see in the
   later: the update rule, as a Gibbs sampling, satisfies detailed balance.
+  Also, it is easy to see that it also satisfies ergodicity. Altogether, it
+  indicates that the dynamics of Hopfield network will finally relax to a
+  stationary distribution, which is the <math|p<around*|(|s;u|)>>. If
+  <math|u> is initially zero, then the stationary distribution comes to be
+  proportional to <math|exp<around*|(|-<around*|(|1-\<beta\>|)>
+  <big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<big|sum><rsub|\<beta\>=1><rsup|n><frac|1|2>W<rsub|\<alpha\>\<beta\>>
+  s<rsup|\<alpha\>> s<rsup|\<beta\>>+b<rsub|\<alpha\>>
+  s<rsup|\<alpha\>>|)>|)>>.
 </body>
 
 <\initial>
@@ -184,8 +198,10 @@
     <associate|equation:Spiking Neuron Network 2|<tuple|2|1>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
+    <associate|footnote-3|<tuple|3|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
+    <associate|footnr-3|<tuple|3|?>>
   </collection>
 </references>
 

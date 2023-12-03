@@ -179,7 +179,9 @@
   proportional to <math|exp<around*|(|-<around*|(|1-\<beta\>|)>
   <big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<big|sum><rsub|\<beta\>=1><rsup|n><frac|1|2>W<rsub|\<alpha\>\<beta\>>
   s<rsup|\<alpha\>> s<rsup|\<beta\>>+b<rsub|\<alpha\>>
-  s<rsup|\<alpha\>>|)>|)>>.
+  s<rsup|\<alpha\>>|)>|)>>. Interestingly, based on maximum-entropy
+  principle, this distribution characterizes the first and the second moments
+  of <math|S>.
 </body>
 
 <\initial>
@@ -198,10 +200,8 @@
     <associate|equation:Spiking Neuron Network 2|<tuple|2|1>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
-    <associate|footnote-3|<tuple|3|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
-    <associate|footnr-3|<tuple|3|?>>
   </collection>
 </references>
 

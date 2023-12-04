@@ -13,9 +13,11 @@
   neuron network, we furnish a way of constructing continuous-time stochastic
   dynamics for discrete random variables.
 
+  <subsection|Conventions in This Section>
+
   Let <math|X> be an <math|n>-dimensional discrete random variable, with
-  alphabet <math|\<cal-X\>> and probability <math|P>. Principly, any discrete
-  value can be encoded by binaries. So, we can simply suppose that
+  alphabet <math|\<cal-X\>> and probability <math|P>. Principally, any
+  discrete value can be encoded by binaries. So, we can simply suppose that
   <math|\<cal-X\>=<around*|{|0,1|}><rsup|n>>.
 
   <subsection|Gibbs Sampling Satisfies Detailed Balance>
@@ -76,47 +78,39 @@
     <hlink|this paper|https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10242251>.
   </footnote>
 
-  <\equation*>
-    \<tau\> <frac|\<mathd\>u<rsup|\<alpha\>>|\<mathd\>t><around*|(|t|)>=-u<rsup|\<alpha\>><around*|(|t|)>+<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
+  <\equation>
+    \<tau\> <frac|\<mathd\>u<rsub|\<alpha\>>|\<mathd\>t><around*|(|t|)>=-u<rsub|\<alpha\>><around*|(|t|)>+<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
     x<rsup|\<beta\>><around*|(|t|)>-\<theta\><rsub|\<alpha\>>
-    x<rsup|\<alpha\>><around*|(|t|)>,
-  </equation*>
+    x<rsup|\<alpha\>><around*|(|t|)><label|equation:Spiking Neuron Network
+    1>,
+  </equation>
 
   where the matrix <math|W> vanishes on diagonal. On the right hand side, the
   first term corresponds to the decay of <math|x>; the second term
   corresponds to the collection of spikes from other connected neurons,
   weighted by <math|W>; and the third term is for reset, where
-  <math|\<theta\>> represents the threshold. We can re-write this formula in
-  a more compact form as
-
-  <\equation>
-    \<tau\> <frac|\<mathd\>u|\<mathd\>t><around*|(|t|)>+u<around*|(|t|)>=W\<cdot\>x<around*|(|t|)>-\<theta\>\<odot\>x<around*|(|t|)><label|equation:Spiking
-    Neuron Network 1>,
-  </equation>
-
-  where <math|\<odot\>> denotes element-wise product. The relation between
-  membrane potentials <math|u> and spikes <math|x>, or <math|X> which denotes
-  the random spikes <\footnote>
+  <math|\<theta\>> represents the threshold. The relation between membrane
+  potentials <math|u> and spikes <math|x>, or <math|X> which denotes the
+  random spikes <\footnote>
     As usual, we use capital character for random variable, and its lowercase
     for its concrete value.
   </footnote>, is given by a stochastic equation
 
   <\equation>
-    X\<sim\>Bernoulli<around*|(|\<sigma\><around*|(|u|)>|)><label|equation:Spiking
-    Neuron Network 2>
+    X<rsup|\<alpha\>>\<sim\>Bernoulli<around*|(|\<sigma\><around*|(|u<rsub|\<alpha\>>|)>|)><label|equation:Spiking
+    Neuron Network 2>.
   </equation>
 
-  for each neuron, where <math|\<sigma\>> is the sigmoid function, and the
-  <math|Bernoulli> and <math|\<sigma\>> on the right hand side are
-  element-wise applications. So, the random variable is <math|X> and the
-  probability of <math|X> is parameterized by <math|u>.
+  \;
 
   Given a time-difference <math|\<Delta\>t>, equation
   <reference|equation:Spiking Neuron Network 1> comes to be
 
   <\equation*>
-    u<around*|(|t+\<Delta\>t|)>=<around*|(|1-<frac|\<Delta\>t|\<tau\>>|)>u<around*|(|t|)>+<frac|\<Delta\>t|\<tau\>><around*|(|
-    W\<cdot\>x<around*|(|t|)>-\<theta\>\<odot\>x<around*|(|t|)>|)>.
+    u<rsub|\<alpha\>><around*|(|t+\<Delta\>t|)>=<around*|(|1-<frac|\<Delta\>t|\<tau\>>|)>u<rsub|\<alpha\>><around*|(|t|)>+<frac|\<Delta\>t|\<tau\>><around*|(|
+    <big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
+    x<rsup|\<beta\>><around*|(|t|)>-\<theta\><rsub|\<alpha\>>
+    x<rsup|\<alpha\>><around*|(|t|)>|)>.
   </equation*>
 
   Replacing <math|1-\<Delta\>t/\<tau\>> by
@@ -124,10 +118,12 @@
   the <with|font-series|bold|decay factor>, we have
 
   <\equation>
-    u<around*|(|t+\<Delta\>t|)>=\<beta\><rsub|\<Delta\>t>
-    \ u<around*|(|t|)>+<around*|(|1-\<beta\><rsub|\<Delta\>t>|)>
-    <around*|(|W\<cdot\>x<around*|(|t|)>-\<theta\>\<odot\>x<around*|(|t|)>|)>.<label|equation:Difference
-    Spiking Neuron Network>
+    u<rsub|\<alpha\>><around*|(|t+\<Delta\>t|)>=\<beta\><rsub|\<Delta\>t>
+    \ u<rsub|\<alpha\>><around*|(|t|)>+<around*|(|1-\<beta\><rsub|\<Delta\>t>|)>
+    <around*|(| <big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
+    x<rsup|\<beta\>><around*|(|t|)>-\<theta\><rsub|\<alpha\>>
+    x<rsup|\<alpha\>><around*|(|t|)>|)><label|equation:Difference Spiking
+    Neuron Network>.
   </equation>
 
   This is the difference version of equation <reference|equation:Spiking
@@ -137,7 +133,7 @@
 
   Inspired by spiking neuron network, we can assign a continuous-time
   dynamics for discrete random variables. Given a action
-  <math|S<around*|(|x|)>>, consider the auxillary action
+  <math|S<around*|(|x|)>>, consider the auxiliary action
 
   <\equation*>
     S<rsub|aux><around*|(|x,u|)>\<assign\>-\<beta\>
@@ -149,9 +145,9 @@
   <math|\<beta\>> is a constant to be replaced by
   <math|exp<around*|(|-\<Delta\>t/\<tau\>|)>> later. If regard <math|x> as
   the value of a random variable, while <math|u> as a real number, we have
-  the probability <math|p<around*|(|x;u|)>>, with
-  <math|p<around*|(|x;u|)>\<propto\>exp<around*|(|-S<rsub|aux><around*|(|x,u|)>|)>>.
-  The conditional probability <math|p<around*|(|x<rsup|\<alpha\>>\|x<rsup|\\\<alpha\>>;u|)>>,
+  the probability <math|p<around*|(|x;u|)>> which is proportional to
+  <math|exp<around*|(|-S<rsub|aux><around*|(|x,u|)>|)>>. The conditional
+  probability <math|p<around*|(|x<rsup|\<alpha\>>\|x<rsup|\\\<alpha\>>;u|)>>,
   where <math|s<rsup|\\\<alpha\>>> denotes the
   <math|<around*|(|n-1|)>>-dimensional vector in which
   <math|x<rsup|\<alpha\>>> is excluded, can be obtained directly, as
@@ -159,29 +155,29 @@
   <\equation*>
     <frac|p<around*|(|x<rsup|\<alpha\>>=1\|x<rsup|\\\<alpha\>>;u|)>|p<around*|(|x<rsup|\<alpha\>>=0\|x<rsup|\\\<alpha\>>;u|)>>=exp<around*|(|\<beta\>
     u<rsub|\<alpha\>>-<around*|(|1-\<beta\>|)>
-    \<partial\><rsub|\<alpha\>>S<around*|(|x|)>|)>,
+    \<delta\><rsub|\<alpha\>>S<around*|(|x|)>|)>,
   </equation*>
 
-  where <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>\<assign\>S<around*|(|x<rsup|\<alpha\>>=1,x<rsup|\\\<alpha\>>|)>-S<around*|(|x<rsup|\<alpha\>>=0,x<rsup|\\\<alpha\>>|)>>.
+  where <math|\<delta\><rsub|\<alpha\>>S<around*|(|x|)>\<assign\>S<around*|(|x<rsup|\<alpha\>>=1,x<rsup|\\\<alpha\>>|)>-S<around*|(|x<rsup|\<alpha\>>=0,x<rsup|\\\<alpha\>>|)>>.
   Thus,
 
   <\equation*>
     p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>;u|)>=\<sigma\><around*|(|\<beta\>
-    u<rsup|\<alpha\>>-<around*|(|1-\<beta\>|)>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>|)>,
+    u<rsub|\<alpha\>>-<around*|(|1-\<beta\>|)>\<delta\><rsub|\<alpha\>>S<around*|(|x|)>|)>,
   </equation*>
 
   Then, by regarding this as the update rule (Gibbs sampling), we have, after
-  update <math|t\<rightarrow\>t+\<Delta\>t>,
+  updating from time <math|t> to <math|t+\<Delta\>t>,
 
   <\equation>
-    X<around*|(|t+\<Delta\>t|)>\<sim\>Bernoulli<around*|(|\<sigma\><around*|(|u<around*|(|t+\<Delta\>t|)>|)>|)>
+    X<rsup|\<alpha\>><around*|(|t+\<Delta\>t|)>\<sim\>Bernoulli<around*|(|\<sigma\><around*|(|u<rsub|\<alpha\>><around*|(|t+\<Delta\>t|)>|)>|)>
   </equation>
 
   with
 
   <\equation>
-    u<around*|(|t+\<Delta\>t|)>\<assign\>\<beta\>
-    u<around*|(|t|)>-<around*|(|1-\<beta\>|)>\<partial\><rsub|\<alpha\>>S<around*|(|x<around*|(|t|)>|)>.
+    u<rsub|\<alpha\>><around*|(|t+\<Delta\>t|)>\<assign\>\<beta\>
+    u<rsub|\<alpha\>><around*|(|t|)>-<around*|(|1-\<beta\>|)>\<delta\><rsub|\<alpha\>>S<around*|(|x<around*|(|t|)>|)>.
   </equation>
 
   In fact, this is a continuous-time dynamics of discrete random variable
@@ -190,11 +186,11 @@
   <math|\<beta\>=exp<around*|(|-\<Delta\>t/\<tau\>|)>>, it turns out to be
 
   <\equation>
-    \<tau\><frac|\<mathd\>u|\<mathd\>t><around*|(|t|)>+u<around*|(|t|)>+\<partial\><rsub|\<alpha\>>S<around*|(|x<around*|(|t|)>|)>=0.
+    \<tau\><frac|\<mathd\>u<rsub|\<alpha\>>|\<mathd\>t><around*|(|t|)>+u<rsub|\<alpha\>><around*|(|t|)>+\<delta\><rsub|\<alpha\>>S<around*|(|x<around*|(|t|)>|)>=0.
   </equation>
 
   This dynamics satisfies detailed balance, since it is Gibbs sampling. Also,
-  it satisfies egodicity. <\footnote>
+  it satisfies ergodicity. <\footnote>
     Proof is left to readers.
   </footnote> Altogether, this dynamics will finally relax a distribution to
   <math|p<around*|(|x;u|)>>. If <math|u> is initially zero, then the
@@ -204,11 +200,11 @@
   As an example, let <math|S<around*|(|x|)>=-<around*|(|1/2|)><big|sum><rsub|\<alpha\>,\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
   x<rsup|\<alpha\>> x<rsup|\<beta\>>-<big|sum><rsub|\<alpha\>=1><rsup|n>b<rsub|\<alpha\>>
   x<rsup|\<alpha\>>>, where <math|W> is symmetric and vanishing on diagonal.
-  Directly, we have <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>=-<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
+  Directly, we have <math|\<delta\><rsub|\<alpha\>>S<around*|(|x|)>=-<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
   x<rsup|\<beta\>>-b<rsub|\<alpha\>>>. Thus
 
   <\equation*>
-    \<tau\><frac|\<mathd\>u|\<mathd\>t><around*|(|t|)>+u<around*|(|t|)>=<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
+    \<tau\><frac|\<mathd\>u<rsub|\<alpha\>>|\<mathd\>t><around*|(|t|)>+u<rsub|\<alpha\>><around*|(|t|)>=<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
     x<rsup|\<beta\>>+b<rsub|\<alpha\>>,
   </equation*>
 
@@ -217,9 +213,10 @@
   Comparing this equation with equation <reference|equation:Spiking Neuron
   Network 1>, we find that the stochastic version of continuous-time Hopfield
   network is almost the same as the spiking neuron network except that the
-  reset term <math|-\<theta\>\<odot\>s> is replaced by a constant bias
-  <math|b>. This exception is natural, since Gibbs sampling
-  <math|p<around*|(|x<rsup|\<alpha\>>=1\|x<rsup|\\\<alpha\>>;u|)>> cannot
+  reset term <math|-\<theta\><rsub|\<alpha\>> x<rsup|\<alpha\>>> is replaced
+  by a constant bias <math|b<rsup|\<alpha\>>>. This exception is natural,
+  since the transition probability of Gibbs sampling,
+  <math|p<around*|(|x<rsup|\<alpha\>>=1\|x<rsup|\\\<alpha\>>;u|)>>, cannot
   depend on <math|x<rsup|\<alpha\>>> itself.
 </body>
 
@@ -234,35 +231,40 @@
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
-    <associate|auto-4|<tuple|1.3|?>>
+    <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|?>>
-    <associate|equation:Difference Spiking Neuron Network|<tuple|3|1>>
+    <associate|equation:Difference Spiking Neuron Network|<tuple|3|2>>
     <associate|equation:Spiking Neuron Network 1|<tuple|1|1>>
-    <associate|equation:Spiking Neuron Network 2|<tuple|2|1>>
+    <associate|equation:Spiking Neuron Network 2|<tuple|2|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
-    <associate|footnote-3|<tuple|3|?>>
-    <associate|footnote-4|<tuple|4|?>>
+    <associate|footnote-3|<tuple|3|2>>
+    <associate|footnote-4|<tuple|4|2>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
-    <associate|footnr-3|<tuple|3|?>>
-    <associate|footnr-4|<tuple|4|?>>
+    <associate|footnr-3|<tuple|3|2>>
+    <associate|footnr-4|<tuple|4|2>>
   </collection>
 </references>
 
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      1<space|2spc>Neuron Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      1<space|2spc>Gibbs Sampling and Neuron Network
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1>
 
-      <with|par-left|<quote|1tab>|1.1<space|2spc>Spiking Neuron Network Is a
-      Stochastic Model of Brain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.1<space|2spc>Gibbs Sampling Satisfies
+      Detailed Balance <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>Continuous-Time Hopfield
-      Network as Spiking Neuron Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Spiking Neuron Network Is a
+      Stochastic Model of Brain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
+
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Continuous-Time Dynamics for
+      Discrete Random Variables <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4>>
     </associate>
   </collection>
 </auxiliary>

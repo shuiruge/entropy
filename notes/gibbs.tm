@@ -141,8 +141,7 @@
     x<rsup|\<alpha\>>+<around*|(|1-\<beta\>|)> S<around*|(|x|)>,
   </equation*>
 
-  where <math|W> is symmetric with diagonal vanished, <math|b> is bias, and
-  <math|\<beta\>> is a constant to be replaced by
+  where <math|\<beta\>> is a constant to be replaced by
   <math|exp<around*|(|-\<Delta\>t/\<tau\>|)>> later. If regard <math|x> as
   the value of a random variable, while <math|u> as a real number, we have
   the probability <math|p<around*|(|x;u|)>> which is proportional to
@@ -162,11 +161,11 @@
   Thus,
 
   <\equation*>
-    p<around*|(|s<rsup|\<alpha\>>=1\|s<rsup|\\\<alpha\>>;u|)>=\<sigma\><around*|(|\<beta\>
-    u<rsub|\<alpha\>>-<around*|(|1-\<beta\>|)>\<delta\><rsub|\<alpha\>>S<around*|(|x|)>|)>,
+    p<around*|(|x<rsup|\<alpha\>>=1\|x<rsup|\\\<alpha\>>;u|)>=\<sigma\><around*|(|\<beta\>
+    u<rsub|\<alpha\>>-<around*|(|1-\<beta\>|)>\<delta\><rsub|\<alpha\>>S<around*|(|x|)>|)>.
   </equation*>
 
-  Then, by regarding this as the update rule (Gibbs sampling), we have, after
+  Then, by regarding Gibbs sampling as an update rule, we have, after
   updating from time <math|t> to <math|t+\<Delta\>t>,
 
   <\equation>
@@ -190,12 +189,12 @@
   </equation>
 
   This dynamics satisfies detailed balance, since it is Gibbs sampling. Also,
-  it satisfies ergodicity. <\footnote>
+  it satisfies ergodicity.<\footnote>
     Proof is left to readers.
-  </footnote> Altogether, this dynamics will finally relax a distribution to
-  <math|p<around*|(|x;u|)>>. If <math|u> is initially zero, then the
-  stationary distribution comes to be proportional to
-  <math|exp<around*|(|-S<around*|(|x|)>|)>>.
+  </footnote> <with|color|red|Altogether, this dynamics will finally relax a
+  distribution to <math|p<around*|(|x;u|)>>. If <math|u> is initially zero,
+  then the stationary distribution comes to be proportional to
+  <math|exp<around*|(|-S<around*|(|x|)>|)>>.>
 
   As an example, let <math|S<around*|(|x|)>=-<around*|(|1/2|)><big|sum><rsub|\<alpha\>,\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
   x<rsup|\<alpha\>> x<rsup|\<beta\>>-<big|sum><rsub|\<alpha\>=1><rsup|n>b<rsub|\<alpha\>>
@@ -231,18 +230,18 @@
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
-    <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|?>>
+    <associate|auto-4|<tuple|1.3|1>>
+    <associate|auto-5|<tuple|1.4|2>>
     <associate|equation:Difference Spiking Neuron Network|<tuple|3|2>>
     <associate|equation:Spiking Neuron Network 1|<tuple|1|1>>
-    <associate|equation:Spiking Neuron Network 2|<tuple|2|2>>
+    <associate|equation:Spiking Neuron Network 2|<tuple|2|1>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
-    <associate|footnote-3|<tuple|3|2>>
+    <associate|footnote-3|<tuple|3|1>>
     <associate|footnote-4|<tuple|4|2>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
-    <associate|footnr-3|<tuple|3|2>>
+    <associate|footnr-3|<tuple|3|1>>
     <associate|footnr-4|<tuple|4|2>>
   </collection>
 </references>
@@ -254,17 +253,21 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1>
 
-      <with|par-left|<quote|1tab>|1.1<space|2spc>Gibbs Sampling Satisfies
-      Detailed Balance <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.1<space|2spc>Conventions in This Section
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>Spiking Neuron Network Is a
-      Stochastic Model of Brain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Gibbs Sampling Satisfies
+      Detailed Balance <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Continuous-Time Dynamics for
-      Discrete Random Variables <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Spiking Neuron Network Is a
+      Stochastic Model of Brain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
+
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Continuous-Time Dynamics for
+      Discrete Random Variables <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-5>>
     </associate>
   </collection>
 </auxiliary>

@@ -16,8 +16,6 @@
 
   <include|action.tm>
 
-  <include|gibbs.tm>
-
   \;
 </body>
 
@@ -49,11 +47,12 @@
     <associate|auto-24|<tuple|1.2|10|action.tm>>
     <associate|auto-25|<tuple|1.5.3|10|action.tm>>
     <associate|auto-26|<tuple|1.5.4|11|action.tm>>
-    <associate|auto-27|<tuple|1.6|?|gibbs.tm>>
-    <associate|auto-28|<tuple|1.6.1|?|gibbs.tm>>
-    <associate|auto-29|<tuple|1.6.2|?|gibbs.tm>>
+    <associate|auto-27|<tuple|1.6|11|gibbs.tm>>
+    <associate|auto-28|<tuple|1.6.1|11|gibbs.tm>>
+    <associate|auto-29|<tuple|1.6.2|11|gibbs.tm>>
     <associate|auto-3|<tuple|1.1|1|relent.tm>>
-    <associate|auto-30|<tuple|1.6.3|?|gibbs.tm>>
+    <associate|auto-30|<tuple|1.6.3|12|gibbs.tm>>
+    <associate|auto-31|<tuple|1.6.4|12|gibbs.tm>>
     <associate|auto-4|<tuple|1.1.1|1|relent.tm>>
     <associate|auto-5|<tuple|1.1.2|1|relent.tm>>
     <associate|auto-6|<tuple|1.1.3|2|relent.tm>>
@@ -62,7 +61,7 @@
     <associate|auto-9|<tuple|1.2.2|3|master.tm>>
     <associate|equation:Detailed Balance|<tuple|1.3|3|master.tm>>
     <associate|equation:Difference Spiking Neuron
-    Network|<tuple|1.23|?|gibbs.tm>>
+    Network|<tuple|1.23|12|gibbs.tm>>
     <associate|equation:Equivalent Loss|<tuple|1.19|9|action.tm>>
     <associate|equation:Generic Density|<tuple|1.15|9|action.tm>>
     <associate|equation:Iteration|<tuple|1.18|9|action.tm>>
@@ -71,8 +70,8 @@
     <associate|equation:Master Equation V2|<tuple|1.2|3|master.tm>>
     <associate|equation:Partition Function|<tuple|1.16|9|action.tm>>
     <associate|equation:Restriction|<tuple|1.17|9|action.tm>>
-    <associate|equation:Spiking Neuron Network 1|<tuple|1.21|?|gibbs.tm>>
-    <associate|equation:Spiking Neuron Network 2|<tuple|1.22|?|gibbs.tm>>
+    <associate|equation:Spiking Neuron Network 1|<tuple|1.21|12|gibbs.tm>>
+    <associate|equation:Spiking Neuron Network 2|<tuple|1.22|12|gibbs.tm>>
     <associate|equation:maxent eq1|<tuple|1.10|8|maxent.tm>>
     <associate|equation:maxent eq2|<tuple|1.12|8|maxent.tm>>
     <associate|equation:maxent partition function|<tuple|1.11|8|maxent.tm>>
@@ -83,10 +82,10 @@
     <associate|footnote-1.11|<tuple|1.11|7|master.tm>>
     <associate|footnote-1.12|<tuple|1.12|9|action.tm>>
     <associate|footnote-1.13|<tuple|1.13|10|action.tm>>
-    <associate|footnote-1.14|<tuple|1.14|?|gibbs.tm>>
-    <associate|footnote-1.15|<tuple|1.15|?|gibbs.tm>>
-    <associate|footnote-1.16|<tuple|1.16|?|gibbs.tm>>
-    <associate|footnote-1.17|<tuple|1.17|?|gibbs.tm>>
+    <associate|footnote-1.14|<tuple|1.14|12|gibbs.tm>>
+    <associate|footnote-1.15|<tuple|1.15|12|gibbs.tm>>
+    <associate|footnote-1.16|<tuple|1.16|12|gibbs.tm>>
+    <associate|footnote-1.17|<tuple|1.17|13|gibbs.tm>>
     <associate|footnote-1.2|<tuple|1.2|2|relent.tm>>
     <associate|footnote-1.3|<tuple|1.3|2|master.tm>>
     <associate|footnote-1.4|<tuple|1.4|3|master.tm>>
@@ -100,10 +99,10 @@
     <associate|footnr-1.11|<tuple|1.7|7|master.tm>>
     <associate|footnr-1.12|<tuple|1.12|9|action.tm>>
     <associate|footnr-1.13|<tuple|1.13|10|action.tm>>
-    <associate|footnr-1.14|<tuple|1.14|?|gibbs.tm>>
-    <associate|footnr-1.15|<tuple|1.15|?|gibbs.tm>>
-    <associate|footnr-1.16|<tuple|1.16|?|gibbs.tm>>
-    <associate|footnr-1.17|<tuple|1.17|?|gibbs.tm>>
+    <associate|footnr-1.14|<tuple|1.14|12|gibbs.tm>>
+    <associate|footnr-1.15|<tuple|1.15|12|gibbs.tm>>
+    <associate|footnr-1.16|<tuple|1.16|12|gibbs.tm>>
+    <associate|footnr-1.17|<tuple|1.17|13|gibbs.tm>>
     <associate|footnr-1.2|<tuple|1.2|2|relent.tm>>
     <associate|footnr-1.3|<tuple|1.3|2|master.tm>>
     <associate|footnr-1.4|<tuple|1.4|3|master.tm>>
@@ -113,7 +112,7 @@
     <associate|footnr-1.8|<tuple|1.8|4|master.tm>>
     <associate|footnr-1.9|<tuple|1.9|5|master.tm>>
     <associate|part:action.tm|<tuple|1.14|9>>
-    <associate|part:gibbs.tm|<tuple|1.20|?>>
+    <associate|part:gibbs.tm|<tuple|1.20|11>>
     <associate|part:master.tm|<tuple|1.1.3|2>>
     <associate|part:maxent.tm|<tuple|1.8|7>>
     <associate|part:relent.tm|<tuple|1.1|1>>
@@ -133,7 +132,7 @@
 <\auxiliary>
   <\collection>
     <\associate|figure>
-      <tuple|normal|<surround|<hidden-binding|<tuple>|1.1>||<locus|<id|%8D5F5C8-964DB58>|<link|hyperlink|<id|%8D5F5C8-964DB58>|<url|https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHRleHR7UmVsYXRpdmUgRW50cm9weX0iXSxbMSwxLCJcXHRleHR7TWFzdGVyIEVxdWF0aW9ufSJdLFswLDIsIlxcdGV4dHtNYXhpbXVtLUVudHJvcHl9Il0sWzIsMiwiXFx0ZXh0e0xlYXN0LUFjdGlvbn0iXSxbMCwxXSxbMSwyXSxbMSwzXSxbMywyLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJhcnJvd2hlYWQifX19XV0=>>|Scheme>
+      <tuple|normal|<surround|<hidden-binding|<tuple>|1.1>||<locus|<id|%92A7088-8517488>|<link|hyperlink|<id|%92A7088-8517488>|<url|https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHRleHR7UmVsYXRpdmUgRW50cm9weX0iXSxbMSwxLCJcXHRleHR7TWFzdGVyIEVxdWF0aW9ufSJdLFswLDIsIlxcdGV4dHtNYXhpbXVtLUVudHJvcHl9Il0sWzIsMiwiXFx0ZXh0e0xlYXN0LUFjdGlvbn0iXSxbMCwxXSxbMSwyXSxbMSwzXSxbMywyLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJhcnJvd2hlYWQifX19XV0=>>|Scheme>
       of sections. The solid arrow represents relation.>|<pageref|auto-2>>
 
       <tuple|normal|<surround|<hidden-binding|<tuple>|1.2>|| This figure
@@ -169,6 +168,8 @@
       <tuple|maxent.tm|chapter-nr|1|section-nr|3|subsection-nr|2>
 
       <tuple|action.tm|chapter-nr|1|section-nr|4|subsection-nr|4>
+
+      <tuple|gibbs.tm|chapter-nr|1|section-nr|5|subsection-nr|4>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>>
@@ -273,6 +274,26 @@
       Least-Action Are Saddle Point of a Functional
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-26>>
+
+      1.6<space|2spc>Gibbs Sampling and Neuron Network
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-27>
+
+      <with|par-left|<quote|1tab>|1.6.1<space|2spc>Conventions in This
+      Section <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-28>>
+
+      <with|par-left|<quote|1tab>|1.6.2<space|2spc>Gibbs Sampling Satisfies
+      Detailed Balance <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-29>>
+
+      <with|par-left|<quote|1tab>|1.6.3<space|2spc>Spiking Neuron Network Is
+      a Stochastic Model of Brain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-30>>
+
+      <with|par-left|<quote|1tab>|1.6.4<space|2spc>Continuous-Time Dynamics
+      for Discrete Random Variables <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-31>>
     </associate>
   </collection>
 </auxiliary>

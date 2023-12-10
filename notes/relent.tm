@@ -117,36 +117,21 @@
   The third condition indicates that
 
   <\equation*>
-    f<around*|(|x|)>\<propto\>ln x.
+    f<around*|(|x|)>\<propto\>ln x+C,
   </equation*>
 
-  Indeed, when <math|X> is discrete and <math|Q> is uniform, we have
-  <math|H<around*|[|p,q|]>=<big|sum><rsub|i>p<rsub|i>f<around*|(|p<rsub|i>/q|)>>
-  which is compared with Shannon entropy <math|-K <big|sum><rsub|i>p<rsub|i>
-  ln<around*|(|p<rsub|i>|)>>, where <math|q=1/n> and <math|n> the alphabet
-  size of <math|X>. For eliminating constraint
-  <math|<big|sum><rsub|i>p<rsub|i>=1>, we introduce <math|\<zeta\>> by
-  <math|p<rsub|i>=\<mathe\><rsup|\<zeta\><rsub|i>>/<around*|(|<big|sum><rsub|j>\<mathe\><rsup|\<zeta\><rsub|j>>|)>>.
-  Given <math|j>, taking derivative on <math|\<zeta\><rsub|j>> on both
-  <math|<big|sum><rsub|i>p<rsub|i>f<around*|(|p<rsub|i>/q|)>> and <math|-K
-  <big|sum><rsub|i>p<rsub|i> ln<around*|(|p<rsub|i>|)>>, we find
-
-  <\equation*>
-    f<around*|(|x<rsub|j>|)>+x<rsub|j> f<rprime|'><around*|(|x<rsub|j>|)>-<frac|1|n><big|sum><rsub|i=1><rsup|n>x<rsub|i><around*|[|f<around*|(|x<rsub|i>|)>+x<rsub|i>f<rprime|'><around*|(|x<rsub|i>|)>|]>=-K
-    ln x<rsub|j>+K<frac|1|n><big|sum><rsub|i=1><rsup|n>x<rsub|i> ln
-    x<rsub|i>,
-  </equation*>
-
-  where <math|x<rsub|i>\<assign\>p<rsub|i>/q>. Letting
-  <math|g<around*|(|x|)>\<assign\>-x f<around*|(|x|)>/K>, we arrive at
-
-  <\equation*>
-    -g<rprime|'><around*|(|x<rsub|j>|)>+<frac|1|n><big|sum><rsub|i=1><rsup|n>x<rsub|i>
-    g<rprime|'><around*|(|x<rsub|i>|)>=-ln
-    x<rsub|j>+<frac|1|n><big|sum><rsub|i=1><rsup|n>x<rsub|i> ln x<rsub|i>.
-  </equation*>
-
-  TODO
+  where <math|C> is a constant. Indeed, when <math|X> is discrete and
+  <math|Q> is uniform, we have <math|H<around*|(|p,q|)>=<big|sum><rsub|i>p<rsub|i>f<around*|(|p<rsub|i>/q|)>>
+  which is compared with Shannon entropy <math|H<around*|(|p|)>\<assign\>-K
+  <big|sum><rsub|i>p<rsub|i> ln<around*|(|p<rsub|i>|)>>, where <math|q=1/n>
+  and <math|n> the alphabet size of <math|X>. We have
+  <math|L<around*|(|p|)>\<assign\>H<around*|(|p,q|)>+H<around*|(|p|)>=<big|sum><rsub|i><around*|[|p<rsub|i>
+  f<around*|(|n p<rsub|i>|)>-K p<rsub|i> ln<around*|(|p<rsub|i>|)>|]>>. Take
+  derivative on <math|p<rsub|i>>, we find
+  <math|\<partial\>L/\<partial\>p<rsub|i>=0> implies <math|f<around*|(|x|)>+x
+  f<rprime|'><around*|(|x|)>-K ln x+K<around*|(|ln n-1|)>=0>, where
+  <math|x\<assign\>n p<rsub|i>>. It has a unique solution with
+  <math|f<around*|(|1|)>=?>
 </body>
 
 <\initial>
@@ -166,8 +151,6 @@
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|section: Relative Entropy|<tuple|1|1>>
-    <associate|section: Shannon Entropy Fails for Continuous Random
-    Variable|<tuple|1.2|?>>
   </collection>
 </references>
 

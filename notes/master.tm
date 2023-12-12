@@ -490,7 +490,7 @@
 
   Given <math|\<mu\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> and
   <math|\<Sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>,
-  which is positive definite and diagonal, the transition probability of
+  which is positive definite and symmetric, the transition probability of
   <with|font-series|bold|Langevin dynamics>,
   <math|q<rsub|\<mathd\>t><around*|(|x<rprime|'>\|x|)>>, is a normal
   distribution of <math|x<rprime|'>-x> with mean value
@@ -531,16 +531,31 @@
       Notice that
 
       <\align>
-        <tformat|<table|<row|<cell|det<around*|[|\<Sigma\><around*|(|x+\<epsilon\>|)>|]>=>|<cell|det<around*|[|\<Sigma\><around*|(|x|)>+<around*|(|\<epsilon\>\<cdummy\>\<nabla\>|)>\<Sigma\><around*|(|x|)>|]>>>|<row|<cell|=>|<cell|det<around*|[|\<Sigma\><around*|(|x|)>|]>
-        <around*|(|1+\<epsilon\>\<cdummy\>\<nabla\>tr<around*|(|\<Sigma\><rsup|-1><around*|(|x|)>\<cdummy\>\<Sigma\><around*|(|x|)>|)>|)>>>|<row|<cell|=>|<cell|det<around*|[|\<Sigma\><around*|(|x|)>|]>
-        <around*|(|1+\<epsilon\>\<cdummy\>\<nabla\> tr ln
-        \<Sigma\>|)>>>|<row|<cell|=>|<cell|det<around*|[|\<Sigma\><around*|(|x|)>|]>
-        exp<around*|{|\<epsilon\>\<cdummy\>\<nabla\>tr ln \<Sigma\>|}>.>>>>
+        <tformat|<table|<row|<cell|ln det<around*|[|\<Sigma\><around*|(|x+\<epsilon\>|)>|]>=>|<cell|ln
+        det<around*|[|\<Sigma\><around*|(|x|)>+<around*|(|\<epsilon\>\<cdummy\>\<nabla\>|)>\<Sigma\><around*|(|x|)>|]>>>|<row|<cell|=>|<cell|ln
+        det<around*|[|\<Sigma\><around*|(|x|)>|]>+ln
+        det<around*|[|1+<around*|(|\<epsilon\>\<cdummy\>\<nabla\>|)><around*|(|\<Sigma\><rsup|-1><around*|(|x|)>\<cdummy\>\<Sigma\><around*|(|x|)>|)>|]>>>|<row|<cell|=>|<cell|ln
+        det<around*|[|\<Sigma\><around*|(|x|)>|]>+ln<around*|{|1+tr<around*|[|<around*|(|\<epsilon\>\<cdummy\>\<nabla\>|)><around*|(|\<Sigma\><rsup|-1><around*|(|x|)>\<cdummy\>\<Sigma\><around*|(|x|)>|)>|]>|}>>>|<row|<cell|=>|<cell|n
+        det<around*|[|\<Sigma\><around*|(|x|)>|]>+
+        tr<around*|[|<around*|(|\<epsilon\>\<cdummy\>\<nabla\>|)><around*|(|\<Sigma\><rsup|-1><around*|(|x|)>\<cdummy\>\<Sigma\><around*|(|x|)>|)>|]>>>|<row|<cell|=>|<cell|ln
+        det<around*|[|\<Sigma\><around*|(|x|)>|]>+\<epsilon\>\<cdummy\>\<nabla\>tr
+        ln \<Sigma\>.>>>>
       </align>
 
-      Expanding the both sides up to the order of <math|\<mathd\>t<rsup|2>>,
-      <math|\<epsilon\><rsup|2>>, and <math|\<epsilon\> \<mathd\>t>, we
-      directly get the formula.
+      Suppose that <math|\<mu\><around*|(|x|)>\<mathd\>t=<with|font|cal|O><around*|(|\<epsilon\>|)>>,
+      we have
+
+      <\equation*>
+        -<frac|1|4\<mathd\>t><around*|(|-\<epsilon\>-\<mu\><around*|(|x+\<epsilon\>|)>\<mathd\>t|)>\<cdummy\>\<Sigma\><rsup|-1><around*|(|x+\<epsilon\>|)>\<cdot\><around*|(|-\<epsilon\>-\<mu\><around*|(|x+\<epsilon\>|)>\<mathd\>t|)>=-<frac|1|4\<mathd\>t><around*|(|-\<epsilon\>-\<mu\><around*|(|x|)>\<mathd\>t|)>\<cdummy\>\<Sigma\><rsup|-1><around*|(|x|)>\<cdot\><around*|(|-\<epsilon\>-\<mu\><around*|(|x|)>\<mathd\>t|)>+o<around*|(|\<epsilon\><rsup|2>|)>.
+      </equation*>
+
+      Altogether, expanding the first formula on both sides by
+      <math|\<epsilon\>> to the lowest order gives
+
+      <\equation*>
+        \<mu\><around*|(|x|)>=\<Sigma\><around*|(|x|)>\<cdot\>\<nabla\><around*|[|ln\<pi\><around*|(|x|)>-<frac|1|2>
+        tr ln \<Sigma\><around*|(|x|)>|]>.
+      </equation*>
     </small>
   </footnote>
 
@@ -551,70 +566,12 @@
 
   This indicates that, to satisfy detailed balance, <math|\<mu\>> shall be
   conservative.<\footnote>
-    Recall that <math|\<Sigma\>> is diagonal, the factor
-    <math|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>> can then be
-    absorbed into <math|\<nabla\><rsub|\<alpha\>>> by a re-definition of
-    <math|x>, so that vector field <math|\<mu\>> is the gradient of a scalar
-    function, that is, being conservative.
+    Recall that <math|\<Sigma\>> is symmetric thus can be diagonalized, the
+    <math|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>> factor can be
+    then be absorbed by a re-definition of <math|x> and
+    <math|\<mu\><around*|(|x|)>>, so that vector field <math|\<mu\>> is the
+    gradient of a scalar function, that is, being conservative.
   </footnote>
-
-  <subsection|Spiking Neuron Network Is Conservative Langevin Dynamics
-  (TODO)>
-
-  Brain is complicated, even thought it is not human's. But, we can deal with
-  a simplified mathematical model of brain. It is modeled by a network of
-  neurons, with each neuron characterized by two components: membrane
-  potential and spiking.
-
-  Let <math|u<around*|(|t|)>:\<bbb-R\>\<rightarrow\>\<bbb-R\><rsup|n>>
-  denotes the time-dependent membrane potentials of <math|n> neurons, and
-  <math|X<around*|(|t|)>:\<bbb-R\>\<rightarrow\><around*|{|0,1|}><rsup|n>>
-  their spikes. The membrane potentials <math|U> of a spiking neuron network
-  evolve, for <math|\<alpha\>> neuron, as <\footnote>
-    See <hlink|section 17.3|https://neuronaldynamics.epfl.ch/online/Ch17.S3.html>
-    of <with|font-shape|italic|Neuronal Dynamics> and the section II.A in
-    <hlink|this paper|https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10242251>.
-  </footnote>
-
-  <\equation*>
-    \<tau\> <frac|\<mathd\>u<rsub|\<alpha\>>|\<mathd\>t><around*|(|t|)>=-u<rsub|\<alpha\>><around*|(|t|)>+<big|sum><rsub|\<beta\>=1><rsup|n>W<rsub|\<alpha\>\<beta\>>
-    X<rsup|\<beta\>><around*|(|t|)>-\<theta\><rsub|\<alpha\>>
-    X<rsup|\<alpha\>><around*|(|t|)>,
-  </equation*>
-
-  where <math|W> vanishes on diagonal. On the right hand side, the first term
-  corresponds to the decay of <math|u>; the second term corresponds to the
-  collection of spikes from other connected neurons, weighted by <math|W>;
-  and the third term is for reset, where <math|\<theta\>> represents the
-  threshold. The relation between membrane potentials <math|u> and spikes
-  <math|X> is given by a probability <math|X<rsup|\<alpha\>><around*|(|t|)>\<sim\>Bernoulli<around*|(|\<sigma\><around*|(|u<rsub|\<alpha\>><around*|(|t|)>|)>|)>>.
-  By regarding <math|\<theta\><rsub|\<alpha\>>> as
-  <math|W<rsub|\<alpha\>\<alpha\>>>, we get compact formulae
-
-  <\equation>
-    \<tau\> <frac|\<mathd\>u|\<mathd\>t><around*|(|t|)>=-u<around*|(|t|)>+W\<cdot\>X<around*|(|t|)><label|equation:Spiking
-    Neuron Network 1>,
-  </equation>
-
-  and
-
-  <\equation>
-    X<around*|(|t|)>\<sim\>Bernoulli<around*|(|\<sigma\><around*|(|u<around*|(|t|)>|)>|)><label|equation:Spiking
-    Neuron Network 2>.
-  </equation>
-
-  Based on <hlink|Lyapunov's central limit
-  theorem|https://en.wikipedia.org/wiki/Central_limit_theorem#Lyapunov_CLT>,
-  when <math|n\<gg\>1>, the term <math|<around*|(|W\<cdot\>X<around*|(|t|)>|)><rsub|\<alpha\>>
-  \<mathd\>t=<big|sum><rsub|\<beta\>>W<rsub|\<alpha\>\<beta\>>
-  X<rsup|\<alpha\>><around*|(|t|)> \<mathd\>t> approximates to normal
-  distribution with variance proportional to <math|\<mathd\>t>, And if
-  <math|W<rsub|\<alpha\>\<beta\>>> distributes along <math|\<beta\>>-index
-  symmetrically for each <math|\<alpha\>>, like
-  <math|W<rsub|\<alpha\>->\<sim\>\<cal-N\><around*|(|0,\<cdots\>|)>>, then
-  the mean value of <math|><math|<around*|(|W\<cdot\>X<around*|(|t|)>|)><rsub|\<alpha\>>
-  \<mathd\>t> vanishes. This means, <math|<around*|(|W\<cdot\>X<around*|(|t|)>|)><rsub|\<alpha\>>
-  \<mathd\>t> obeys a normal distribution with TODO.
 </body>
 
 <\initial>
@@ -626,7 +583,7 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2.3|?>>
+    <associate|auto-10|<tuple|2.3|5>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|1>>
@@ -636,15 +593,15 @@
     <associate|auto-8|<tuple|2.1|4>>
     <associate|auto-9|<tuple|2.2|5>>
     <associate|equation:Detailed Balance|<tuple|3|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|6|4>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
     <associate|equation:Master Equation|<tuple|1|1>>
     <associate|equation:Master Equation V2|<tuple|2|1>>
-    <associate|equation:Spiking Neuron Network 1|<tuple|9|?>>
-    <associate|equation:Spiking Neuron Network 2|<tuple|10|?>>
+    <associate|equation:Spiking Neuron Network 1|<tuple|9|6>>
+    <associate|equation:Spiking Neuron Network 2|<tuple|10|6>>
     <associate|equation:relative entropy derivative|<tuple|5|2>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-10|<tuple|10|?>>
-    <associate|footnote-11|<tuple|11|?>>
+    <associate|footnote-10|<tuple|10|5>>
+    <associate|footnote-11|<tuple|11|5>>
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|1>>
     <associate|footnote-4|<tuple|4|1>>
@@ -654,8 +611,8 @@
     <associate|footnote-8|<tuple|8|3>>
     <associate|footnote-9|<tuple|9|5>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-10|<tuple|10|?>>
-    <associate|footnr-11|<tuple|11|?>>
+    <associate|footnr-10|<tuple|10|5>>
+    <associate|footnr-11|<tuple|11|5>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|2|1>>
     <associate|footnr-4|<tuple|4|1>>
@@ -715,6 +672,11 @@
       Satisfies Detailed Balance Is Conservative
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
+
+      <with|par-left|<quote|1tab>|2.3<space|2spc>Spiking Neuron Network Is
+      Conservative Langevin Dynamics (TODO)
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
     </associate>
   </collection>
 </auxiliary>

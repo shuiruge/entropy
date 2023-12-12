@@ -542,8 +542,14 @@
         ln \<Sigma\>.>>>>
       </align>
 
-      Suppose that <math|\<mu\><around*|(|x|)>\<mathd\>t=<with|font|cal|O><around*|(|\<epsilon\>|)>>,
-      we have
+      The typical order of <math|\<epsilon\>> is
+      <math|<with|font|cal|O><around*|(|<sqrt|\<Sigma\><around*|(|x|)>
+      \<mathd\>t>|)>>, or say, <math|\<mu\><around*|(|x|)>\<mathd\>t=<with|font|cal|O><around*|(|\<epsilon\><rsup|2>
+      \<mu\><around*|(|x|)>/\<Sigma\><around*|(|x|)>|)>>. If
+      <math|\<mu\><around*|(|x|)>=<with|font|cal|O><around*|(|\<Sigma\><around*|(|x|)>|)>>,
+      then we have <math|\<mu\><around*|(|x|)>
+      \<mathd\>t=<with|font|cal|><around*|(|\<epsilon\><rsup|2>|)>>. So, we
+      have
 
       <\equation*>
         -<frac|1|4\<mathd\>t><around*|(|-\<epsilon\>-\<mu\><around*|(|x+\<epsilon\>|)>\<mathd\>t|)>\<cdummy\>\<Sigma\><rsup|-1><around*|(|x+\<epsilon\>|)>\<cdot\><around*|(|-\<epsilon\>-\<mu\><around*|(|x+\<epsilon\>|)>\<mathd\>t|)>=-<frac|1|4\<mathd\>t><around*|(|-\<epsilon\>-\<mu\><around*|(|x|)>\<mathd\>t|)>\<cdummy\>\<Sigma\><rsup|-1><around*|(|x|)>\<cdot\><around*|(|-\<epsilon\>-\<mu\><around*|(|x|)>\<mathd\>t|)>+o<around*|(|\<epsilon\><rsup|2>|)>.
@@ -583,7 +589,6 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2.3|5>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|1>>
@@ -593,15 +598,12 @@
     <associate|auto-8|<tuple|2.1|4>>
     <associate|auto-9|<tuple|2.2|5>>
     <associate|equation:Detailed Balance|<tuple|3|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|6|4>>
     <associate|equation:Master Equation|<tuple|1|1>>
     <associate|equation:Master Equation V2|<tuple|2|1>>
-    <associate|equation:Spiking Neuron Network 1|<tuple|9|6>>
-    <associate|equation:Spiking Neuron Network 2|<tuple|10|6>>
     <associate|equation:relative entropy derivative|<tuple|5|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-10|<tuple|10|5>>
-    <associate|footnote-11|<tuple|11|5>>
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|1>>
     <associate|footnote-4|<tuple|4|1>>
@@ -612,7 +614,6 @@
     <associate|footnote-9|<tuple|9|5>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-10|<tuple|10|5>>
-    <associate|footnr-11|<tuple|11|5>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|2|1>>
     <associate|footnr-4|<tuple|4|1>>
@@ -672,11 +673,6 @@
       Satisfies Detailed Balance Is Conservative
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
-
-      <with|par-left|<quote|1tab>|2.3<space|2spc>Spiking Neuron Network Is
-      Conservative Langevin Dynamics (TODO)
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
     </associate>
   </collection>
 </auxiliary>

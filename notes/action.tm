@@ -102,26 +102,27 @@
   flock of birds, and so on. For example, we can find out how words
   \Pinteract\Q with each other.
 
-  <big-figure|<with|gr-mode|<tuple|edit|line>|gr-frame|<tuple|scale|1.00001cm|<tuple|0.5gw|0.5gh>>|gr-geometry|<tuple|geometry|10|10|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-line-width|0.5ln|gr-dash-style|10|<graphics||<with|arrow-end|\|\<gtr\>|<line|<point|-6|-3>|<point|-6.0|3.0>>>|<with|arrow-end|\|\<gtr\>|<line|<point|-6|-3>|<point|6.0|-3.0>>>|<with|color|dark
-  cyan|<spline|<point|-5|-2>|<point|-2.0|1.0>|<point|1.0|-1.0>|<point|2.4|2.1>|<point|4.3|3.0>>>|<with|color|blue|arrow-end|\<gtr\>\<gtr\>|line-width|5ln|opacity|50%|<line|<point|3.7|0.4>|<point|3.7|2.6>>>|<with|color|blue|point-size|1ln|<point|3.7|2.86279>>|<math-at|S<around*|(|x,\<theta\>|)>|<point|-6.40049278190267|3.30061515056306>>|<math-at|x|<point|6.20000992178327|-3.1>>|<math-at|x<rsub|3>|<point|3.6|-3.3>>|<with|color|blue|<point|-2.2|0.895901>>|<with|color|blue|line-width|5ln|opacity|50%|arrow-end|\<gtr\>\<gtr\>|<line|<point|-2.2|-1.7>|<point|-2.2|0.6>>>|<with|color|red|point-size|1ln|<point|0.4|-0.507266>>|<with|color|red|line-width|5ln|opacity|50%|arrow-end|\<gtr\>\<gtr\>|<line|<point|0.4|2>|<point|0.4|-0.2>>>|<with|dash-style|10|line-width|0.5ln|<line|<point|0.4|-0.507266>|<point|0.4|-3.0>>>|<math-at|x<rsub|1>|<point|-2.3|-3.3>>|<math-at|x<rsub|2>|<point|0.3|-3.3>>|<with|dash-style|10|color|dark
-  cyan|opacity|50%|<spline|<point|-5|-2.3>|<point|-2.7|1.5>|<point|0.4|-1.3>|<point|3.2|3.3>|<point|4.3|3.1>>>|<with|dash-style|10|line-width|0.5ln|<line|<point|-2.2|-3>|<point|-2.2|1.68403762919866>>>|<with|dash-style|10|line-width|0.5ln|<line|<point|3.7|-3>|<point|3.7|3.55084778391556>>>>>|<label|figure:
+  <big-figure|<with|gr-mode|<tuple|edit|spline>|gr-frame|<tuple|scale|1.00001cm|<tuple|0.5gw|0.5gh>>|gr-geometry|<tuple|geometry|10|10|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-line-width|0.5ln|gr-dash-style|11100|gr-color|blue|<graphics||<with|arrow-end|\|\<gtr\>|<line|<point|-6|-3>|<point|-6.0|3.0>>>|<with|arrow-end|\|\<gtr\>|<line|<point|-6|-3>|<point|6.0|-3.0>>>|<math-at|S<around*|(|x,\<theta\>|)>|<point|-6.40049278190267|3.30061515056306>>|<math-at|x|<point|6.20000992178327|-3.1>>|<with|line-width|5ln|arrow-end|\<gtr\>|opacity|50%|color|red|<line|<point|-1.3|3.2>|<point|-1.3|1.7>>>|<with|line-width|5ln|color|blue|opacity|50%|arrow-begin|\<less\>|<line|<point|0.8|-0.83096059724234>|<point|0.8|-2.33096059724234>>>|<with|dash-style|11100|line-width|0.5ln|color|red|<line|<point|-1.3|1.4>|<point|-1.3|-3.0>>>|<with|color|red|<point|-1.3|1.41877>>|<with|color|red|<math-at|x<rsub|1>|<point|-1.4|-3.3>>>|<with|color|blue|<math-at|x<rsub|2>|<point|0.7|-3.3>>>|<with|dash-style|11100|line-width|0.5ln|color|blue|<line|<point|0.8|0.5>|<point|0.8|-3.0>>>|<with|color|blue|<point|0.8|-0.6>>|<with|color|dark
+  cyan|dash-style|11100|<spline|<point|-5|1>|<point|-2.3|-0.7>|<point|0.8|0.5>|<point|3.04196914325401|2.48975575876838>|<point|4.2|2.2>>>|<with|color|dark
+  cyan|<spline|<point|-5.04362277379988|-0.0748763911166967>|<point|-2.85798620872125|2.07284242554528>|<point|0.666826517619433|-0.580225885932565>|<point|3.38308005225473|1.9970400013229>|<point|4.21690671870091|2.62872686984274>>>>>|<label|figure:
   Least-Action> This figure illustrate how
   <math|min<rsub|\<theta\>>L<rsub|LA><around*|(|\<theta\>|)>> will site a
   real world datum onto a local minimum of
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The green curve represents the
-  current not-yet-optimized <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. Let
-  <math|x<rsub|2>> (red point) the real world datum while <math|x<rsub|1>>
-  and <math|x<rsub|2>> (blue points) are not. Minimizing <math|L<rsub|LA>> by
-  tuning <math|\<theta\>> pushes the <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
-  p<rsub|D><around*|(|x|)> S<around*|(|x,\<theta\>|)>> down to lower value,
-  corresponding to the red downward double-arrow on <math|x<rsub|2>>, and
-  pull the <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
-  p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)>> up to greater value,
-  corresponding to the blue upward double-arrow on <math|x<rsub|1>> and
-  <math|x<rsub|3>>. Altogether, it makes <math|x<rsub|2>> a local minimum of
-  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> and
-  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is optimized to be the dashed
-  green curve.>
+  current not-yet-optimized <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The
+  <math|x<rsub|1>> (red point) is a real world datum while <math|x<rsub|2>>
+  (blue point), which is currently a local minimum of
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, is not. Minimizing
+  <math|L<rsub|LA>> by tuning <math|\<theta\>> pushes the
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<rsub|D><around*|(|x|)>
+  S<around*|(|x,\<theta\>|)>> down to lower value, corresponding to the red
+  downward double-arrow on <math|x<rsub|1>>, and pull the
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x,\<theta\>|)>
+  S<around*|(|x,\<theta\>|)>> up to greater value, corresponding to the blue
+  upward double-arrow on <math|x<rsub|2>>. Altogether, it makes
+  <math|x<rsub|1>> a local minimum of <math|S<around*|(|\<cdummy\>,\<theta\>|)>>
+  and <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is optimized to be the
+  dashed green curve.>
 
   <subsection|Extract Dynamics from Raw Data: An Instance of Classical
   Physics>
@@ -259,6 +260,8 @@
       <tuple|normal|<surround|<hidden-binding|<tuple>|1>|| This figure
       illustrate how <with|mode|<quote|math>|min<rsub|\<theta\>>L<rsub|LA><around*|(|\<theta\>|)>>
       will site a real world datum onto a local minimum of
+      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>. The green
+      curve represents the current not-yet-optimized
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>. Let
       <with|mode|<quote|math>|x<rsub|2>> (red point) the real world datum
       while <with|mode|<quote|math>|x<rsub|1>> and
@@ -267,15 +270,17 @@
       <with|mode|<quote|math>|\<theta\>> pushes the
       <with|mode|<quote|math>|<big|int><rsub|\<cal-X\>>\<mathd\>x
       p<rsub|D><around*|(|x|)> S<around*|(|x,\<theta\>|)>> down to lower
-      value, corresponding to the downward double-arrow on
+      value, corresponding to the red downward double-arrow on
       <with|mode|<quote|math>|x<rsub|2>>, and pull the
       <with|mode|<quote|math>|<big|int><rsub|\<cal-X\>>\<mathd\>x
       p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)>> up to greater
-      value, corresponding to the upward double-arrow on
+      value, corresponding to the blue upward double-arrow on
       <with|mode|<quote|math>|x<rsub|1>> and
       <with|mode|<quote|math>|x<rsub|3>>. Altogether, it makes
       <with|mode|<quote|math>|x<rsub|2>> a local minimum of
-      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>.>|<pageref|auto-4>>
+      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>> and
+      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>> is
+      optimized to be the dashed green curve.>|<pageref|auto-4>>
     </associate>
     <\associate|toc>
       1<space|2spc>Least-Action Principle

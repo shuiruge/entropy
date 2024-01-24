@@ -55,8 +55,9 @@
   \;
 
   As a generic form of a parameterized distribution, it can be used to fit
-  raw data, by adjusting parameter <math|\<theta\>>. To do so, we employ the
-  usual loss function <math|H<around*|[|p<rsub|D>,p<around*|(|\<cdummy\>,\<theta\>|)>|]>>.
+  raw data that obeys an empirical distribution <math|p<rsub|D>>, by
+  adjusting parameter <math|\<theta\>>. To do so, we employ the usual loss
+  function <math|H<around*|[|p<rsub|D>,p<around*|(|\<cdummy\>,\<theta\>|)>|]>>.
   By omitting the <math|\<theta\>>-independent terms, the loss function comes
   to be
 
@@ -82,6 +83,7 @@
   </equation>
 
   Notice that <math|L> is equivalent to another loss <math|L<rsub|LA>> where
+  (TODO: fix the following expression)
 
   <\equation>
     L<rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -172,7 +174,7 @@
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
 
-  When <math|S<around*|[|x,\<theta\>|]>=\<theta\><rsup|\<alpha\>>
+  When <math|S<around*|(|x,\<theta\>|)>=\<theta\><rsup|\<alpha\>>
   f<rsub|\<alpha\>><around*|(|x|)>> for a function
   <math|f:\<cal-X\>\<rightarrow\>\<bbb-R\><rsup|m>> and
   <math|<wide|f|\<bar\>>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|(|f|)>>,
@@ -212,17 +214,17 @@
   point, as
 
   <\equation>
-    <around*|(|p<rsub|\<star\>>,\<theta\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>=max<rsub|\<theta\>>
-    min<rsub|p,\<mu\>>V<around*|[|p,\<theta\>,\<mu\>|]>.
+    <around*|(|p<rsub|\<star\>>,\<theta\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>=min<rsub|p,\<mu\>>
+    max<rsub|\<theta\>>V<around*|[|p,\<theta\>,\<mu\>|]>.
   </equation>
 
-  The first minimizes the relative entropy between <math|p> and <math|q> and
-  the expectation of action <math|S<around*|(|\<cdummy\>,\<theta\>|)>> by
-  tuning <math|p>, which in turn relates the probability <math|p> with the
-  action <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The second maximization
-  sites real data onto the action's local minima by tuning <math|\<theta\>>.
-  So, we find that maximum-entropy principle and least-action principle are
-  saddle point of a functional <math|V>.
+  The minimization minimizes the relative entropy between <math|p> and
+  <math|q> and the expectation of action <math|S<around*|(|\<cdummy\>,\<theta\>|)>>
+  by tuning <math|p>, which in turn relates the probability <math|p> with the
+  action <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The maximization sites
+  real data onto the action's local minima by tuning <math|\<theta\>>. So, we
+  find that maximum-entropy principle and least-action principle are saddle
+  point of a functional <math|V>.
 </body>
 
 <\initial>
@@ -262,22 +264,21 @@
       will site a real world datum onto a local minimum of
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>. The green
       curve represents the current not-yet-optimized
-      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>. Let
-      <with|mode|<quote|math>|x<rsub|2>> (red point) the real world datum
-      while <with|mode|<quote|math>|x<rsub|1>> and
-      <with|mode|<quote|math>|x<rsub|2>> (blue points) are not. Minimizing
-      <with|mode|<quote|math>|L<rsub|LA>> by tuning
+      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>. The
+      <with|mode|<quote|math>|x<rsub|1>> (red point) is a real world datum
+      while <with|mode|<quote|math>|x<rsub|2>> (blue point), which is
+      currently a local minimum of <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>,
+      is not. Minimizing <with|mode|<quote|math>|L<rsub|LA>> by tuning
       <with|mode|<quote|math>|\<theta\>> pushes the
       <with|mode|<quote|math>|<big|int><rsub|\<cal-X\>>\<mathd\>x
       p<rsub|D><around*|(|x|)> S<around*|(|x,\<theta\>|)>> down to lower
       value, corresponding to the red downward double-arrow on
-      <with|mode|<quote|math>|x<rsub|2>>, and pull the
+      <with|mode|<quote|math>|x<rsub|1>>, and pull the
       <with|mode|<quote|math>|<big|int><rsub|\<cal-X\>>\<mathd\>x
       p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)>> up to greater
       value, corresponding to the blue upward double-arrow on
-      <with|mode|<quote|math>|x<rsub|1>> and
-      <with|mode|<quote|math>|x<rsub|3>>. Altogether, it makes
-      <with|mode|<quote|math>|x<rsub|2>> a local minimum of
+      <with|mode|<quote|math>|x<rsub|2>>. Altogether, it makes
+      <with|mode|<quote|math>|x<rsub|1>> a local minimum of
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>> and
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>> is
       optimized to be the dashed green curve.>|<pageref|auto-4>>

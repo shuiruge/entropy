@@ -83,14 +83,19 @@
   </equation>
 
   Notice that <math|L> is equivalent to another loss <math|L<rsub|LA>> where
-  (TODO: fix the following expression)
 
   <\equation>
-    L<rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<rsub|D><around*|(|x|)> S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)><label|equation:Equivalent
+    L<rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Equivalent
     Loss>.
   </equation>
+
+  The expectation <math|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>>>
+  is computed by Monte-Carlo method. We sample data points from
+  <math|p<around*|(|\<cdummy\>,\<theta\>|)>> with fixed <math|\<theta\>>, and
+  compute the mean value of <math|S<around*|(|\<cdummy\>,\<theta\>|)>> on
+  these data points. The derivative of <math|\<theta\>> on this expectation
+  is taken on the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> instead of on
+  the data points. In this way, <math|L<rsub|LA>> is equivalent to <math|L>.
 
   It can be read from this equation that minimizing <math|L<rsub|LA>> is to
   decrease the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> at data points (the
@@ -116,15 +121,17 @@
   (blue point), which is currently a local minimum of
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, is not. Minimizing
   <math|L<rsub|LA>> by tuning <math|\<theta\>> pushes the
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<rsub|D><around*|(|x|)>
-  S<around*|(|x,\<theta\>|)>> down to lower value, corresponding to the red
-  downward double-arrow on <math|x<rsub|1>>, and pull the
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x,\<theta\>|)>
-  S<around*|(|x,\<theta\>|)>> up to greater value, corresponding to the blue
-  upward double-arrow on <math|x<rsub|2>>. Altogether, it makes
-  <math|x<rsub|1>> a local minimum of <math|S<around*|(|\<cdummy\>,\<theta\>|)>>
-  and <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is optimized to be the
-  dashed green curve.>
+  <math|\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+  down to lower value, corresponding to the red downward double-arrow on
+  <math|x<rsub|1>>. Also, since <math|x<rsub|2>> is a local minimum, the data
+  points sampled from <math|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>
+  will accumulate around <math|x<rsub|2>>. So, minimizing <math|L<rsub|LA>>
+  also pulles the <math|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+  up to greater value, corresponding to the blue upward double-arrow on
+  <math|x<rsub|2>>. Altogether, it makes <math|x<rsub|1>> a local minimum of
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> and
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is optimized to be the dashed
+  green curve.>
 
   <subsection|Extract Dynamics from Raw Data: An Instance of Classical
   Physics>
@@ -173,15 +180,6 @@
 
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
-
-  When <math|S<around*|(|x,\<theta\>|)>=\<theta\><rsup|\<alpha\>>
-  f<rsub|\<alpha\>><around*|(|x|)>> for a function
-  <math|f:\<cal-X\>\<rightarrow\>\<bbb-R\><rsup|m>> and
-  <math|<wide|f|\<bar\>>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|(|f|)>>,
-  the <math|p<around*|(|x,\<theta\>|)>> given by equation
-  <reference|equation:Generic Density> reduces to that given by
-  maximum-entropy principle, with <math|f> the observables and
-  <math|<wide|f|\<bar\>>> the observation.
 
   In fact, equations <reference|equation:Generic Density>,
   <reference|equation:Partition Function>, and

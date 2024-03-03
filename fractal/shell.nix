@@ -11,6 +11,7 @@ in pkgs.mkShell rec {
     pythonPackages.numpy
     pythonPackages.tensorflow
     pythonPackages.jupyter
+    pythonPackages.jupyterlab-git
     pythonPackages.tqdm
   ];
 }

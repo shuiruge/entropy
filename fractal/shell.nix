@@ -10,6 +10,8 @@ in pkgs.mkShell rec {
     pythonPackages.matplotlib
     pythonPackages.numpy
     pythonPackages.tensorflow
+    pythonPackages.tensorflow-probability
+    pythonPackages.keras
     pythonPackages.jupyter
     pythonPackages.jupyterlab-git
     pythonPackages.tqdm

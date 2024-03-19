@@ -176,7 +176,10 @@
   </footnote>. Then, we find the best fit <math|\<theta\><rsub|\<star\>>> by
   equation <reference|equation:Iteration>. The action
   <math|S<around*|[|x,\<theta\><rsub|\<star\>>|]>> describes the dynamics
-  extracted from the raw data.
+  extracted from the raw data.<\footnote>
+    An experiment on general oscillators can be found in the
+    <samp|oscillators/Oscillator.ipynb>.
+  </footnote>
 
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
@@ -223,6 +226,53 @@
   real data onto the action's local minima by tuning <math|\<theta\>>. So, we
   find that maximum-entropy principle and least-action principle are saddle
   point of a functional <math|V>.
+
+  <subsection|Minimizing Action or Norm of Action Gradient?>
+
+  As figure <reference|figure: Least-Action> indicates, we shall push down
+  the real world data while pull up the data sampled from the
+  <math|p<around*|(|x,\<theta\>|)>>, until the two forces balanced. In fact,
+  to sample from <math|p<around*|(|x,\<theta\>|)>>, we will not fully
+  evaluate the Markov chain Monte-Carlo to equilibrium, which will consume a
+  plenty of computation resources, but only run several steps. In this case,
+  the data sampled from <math|p<around*|(|x,\<theta\>|)>> will be close to
+  the initial of the Markov chain Monte-Carlo, for which we employ the real
+  world data. So, let <math|x\<sim\>p<rsub|D>> as the real word datum, we
+  have the sampled <math|x<rprime|'>\<approx\>x>. The difference
+  <math|\<mathd\>x\<assign\>x<rprime|'>-x> is small enough, so that we have
+  the approximation of the equivalent loss <math|L<rsub|LA>> (equation
+  <reference|equation:Equivalent Loss>) as
+
+  <\align>
+    <tformat|<table|<row|<cell|L<rsub|LA><around*|(|\<theta\>|)>=>|<cell|\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>>|<row|<cell|\<approx\>>|<cell|\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>-S<around*|(|x+\<mathd\>x,\<theta\>|)>|]>>>|<row|<cell|=>|<cell|\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|-<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x,\<theta\>|)>\<mathd\>x<rsup|\<alpha\>>|]>.>>>>
+  </align>
+
+  If we use Langevin dynamics for Markov chain Monte-Carlo with extremely low
+  temperature (section <reference|section: Conservative Langevin Dynamics
+  Satisfies Detailed Balance>), we will have
+  <math|\<mathd\>x<rsup|\<alpha\>>\<approx\>-<around*|(|\<partial\>S/\<partial\>x<rsub|\<alpha\>>|)><around*|(|x,\<theta\>|)>>.
+  Plugging back to <math|L<rsub|LA>>, we have
+
+  <\equation*>
+    L<rsub|LA><around*|(|\<theta\>|)>\<approx\>\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x,\<theta\>|)><frac|\<partial\>S|\<partial\>x<rsub|\<alpha\>>><around*|(|x,\<theta\>|)>|]>=\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|<around*|(|<frac|\<partial\>S|\<partial\>x>|)><rsup|2><around*|(|x,\<theta\>|)>|]>.
+  </equation*>
+
+  \;
+
+  Minimizing <math|L<rsub|LA><around*|(|\<theta\>|)>> by adjusting
+  <math|\<theta\>> is approximately reducing the norm of
+  <math|\<partial\>S/\<partial\>x> on real word data. This method of
+  optimization is quite different from that used in machine learning. In
+  machine learning, the action turns to be the loss function that
+  characterizes the difference between the targets and the model predictions.
+  The aim of machine learning is minimizing the action (loss function)
+  instead of the norm of its gradient.
+
+  But, it is quite strange that minimizing the approxinated <math|L<rsub|LA>>
+  does gives the performance that approaches that by minimizing the action
+  (loss function).<\footnote>
+    Experiments can be found in the folder <samp|actions>.
+  </footnote>
 </body>
 
 <\initial>
@@ -238,7 +288,8 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1|2>>
     <associate|auto-5|<tuple|1.3|2>>
-    <associate|auto-6|<tuple|1.4|2>>
+    <associate|auto-6|<tuple|1.4|3>>
+    <associate|auto-7|<tuple|1.5|3>>
     <associate|equation:Equivalent Loss|<tuple|5|1>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|4|1>>
@@ -247,8 +298,12 @@
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|2>>
+    <associate|footnote-3|<tuple|3|2>>
+    <associate|footnote-4|<tuple|4|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|2>>
+    <associate|footnr-3|<tuple|3|2>>
+    <associate|footnr-4|<tuple|4|?>>
     <associate|section: Generic Dynamics Can Be Extract From Data
     Fitting|<tuple|1.2|1>>
   </collection>
@@ -268,13 +323,15 @@
       currently a local minimum of <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>,
       is not. Minimizing <with|mode|<quote|math>|L<rsub|LA>> by tuning
       <with|mode|<quote|math>|\<theta\>> pushes the
-      <with|mode|<quote|math>|<big|int><rsub|\<cal-X\>>\<mathd\>x
-      p<rsub|D><around*|(|x|)> S<around*|(|x,\<theta\>|)>> down to lower
-      value, corresponding to the red downward double-arrow on
-      <with|mode|<quote|math>|x<rsub|1>>, and pull the
-      <with|mode|<quote|math>|<big|int><rsub|\<cal-X\>>\<mathd\>x
-      p<around*|(|x,\<theta\>|)> S<around*|(|x,\<theta\>|)>> up to greater
-      value, corresponding to the blue upward double-arrow on
+      <with|mode|<quote|math>|\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+      down to lower value, corresponding to the red downward double-arrow on
+      <with|mode|<quote|math>|x<rsub|1>>. Also, since
+      <with|mode|<quote|math>|x<rsub|2>> is a local minimum, the data points
+      sampled from <with|mode|<quote|math>|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>
+      will accumulate around <with|mode|<quote|math>|x<rsub|2>>. So,
+      minimizing <with|mode|<quote|math>|L<rsub|LA>> also pulles the
+      <with|mode|<quote|math>|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+      up to greater value, corresponding to the blue upward double-arrow on
       <with|mode|<quote|math>|x<rsub|2>>. Altogether, it makes
       <with|mode|<quote|math>|x<rsub|1>> a local minimum of
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>> and
@@ -303,6 +360,10 @@
       Least-Action Are Saddle Point of a Functional
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Minimum or Local Minimum of
+      Action? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
     </associate>
   </collection>
 </auxiliary>

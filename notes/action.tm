@@ -126,7 +126,7 @@
   <math|x<rsub|1>>. Also, since <math|x<rsub|2>> is a local minimum, the data
   points sampled from <math|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>
   will accumulate around <math|x<rsub|2>>. So, minimizing <math|L<rsub|LA>>
-  also pulles the <math|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+  also pulls the <math|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
   up to greater value, corresponding to the blue upward double-arrow on
   <math|x<rsub|2>>. Altogether, it makes <math|x<rsub|1>> a local minimum of
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>> and
@@ -268,7 +268,7 @@
   The aim of machine learning is minimizing the action (loss function)
   instead of the norm of its gradient.
 
-  But, it is quite strange that minimizing the approxinated <math|L<rsub|LA>>
+  But, it is quite strange that minimizing the approximated <math|L<rsub|LA>>
   does gives the performance that approaches that by minimizing the action
   (loss function).<\footnote>
     Experiments can be found in the folder <samp|actions>.
@@ -299,11 +299,11 @@
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|2>>
     <associate|footnote-3|<tuple|3|2>>
-    <associate|footnote-4|<tuple|4|?>>
+    <associate|footnote-4|<tuple|4|3>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|2>>
     <associate|footnr-3|<tuple|3|2>>
-    <associate|footnr-4|<tuple|4|?>>
+    <associate|footnr-4|<tuple|4|3>>
     <associate|section: Generic Dynamics Can Be Extract From Data
     Fitting|<tuple|1.2|1>>
   </collection>
@@ -361,8 +361,8 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Minimum or Local Minimum of
-      Action? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Minimizing Action or Norm of
+      Action Gradient? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
     </associate>
   </collection>

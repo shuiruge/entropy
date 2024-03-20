@@ -21,11 +21,27 @@ def get_gradient_loss_fn(loss_fn):
 
 
 class GradientMSE:
+  """Explicit form of the "gradient loss" for mean squared error.
+  
+  Args:
+    model: tf.models.Model
+  """
   
   def __init__(self, model):
     self.model = model
 
   def __call__(self, x, y):
+    """
+    Args:
+      x: tf.Tensor
+        Model input.
+      y: tf.Tensor
+        Target, shall have the same shape as the model output, up to
+        unsqueezed dimensions
+
+    Returns: tf.Tensor
+      Scalar shape.
+    """
     with tf.GradientTape() as tape:
       tape.watch(x)
       y_pred = self.model(x)

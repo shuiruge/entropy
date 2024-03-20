@@ -227,7 +227,7 @@
   find that maximum-entropy principle and least-action principle are saddle
   point of a functional <math|V>.
 
-  <subsection|Minimizing Action or Norm of Action Gradient?>
+  <subsection|Actions in Machine Learning>
 
   As figure <reference|figure: Least-Action> indicates, we shall push down
   the real world data while pull up the data sampled from the
@@ -239,27 +239,28 @@
   the initial of the Markov chain Monte-Carlo, for which we employ the real
   world data. So, let <math|x\<sim\>p<rsub|D>> as the real word datum, we
   have the sampled <math|x<rprime|'>\<approx\>x>. The difference
-  <math|\<mathd\>x\<assign\>x<rprime|'>-x> is small enough, so that we have
+  <math|\<Delta\>x\<assign\>x<rprime|'>-x> is small enough, so that we have
   the approximation of the equivalent loss <math|L<rsub|LA>> (equation
   <reference|equation:Equivalent Loss>) as
 
   <\align>
-    <tformat|<table|<row|<cell|L<rsub|LA><around*|(|\<theta\>|)>=>|<cell|\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>>|<row|<cell|\<approx\>>|<cell|\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>-S<around*|(|x+\<mathd\>x,\<theta\>|)>|]>>>|<row|<cell|=>|<cell|\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|-<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x,\<theta\>|)>\<mathd\>x<rsup|\<alpha\>>|]>.>>>>
+    <tformat|<table|<row|<cell|L<rsub|LA><around*|(|\<theta\>|)>=>|<cell|\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>>|<row|<cell|\<approx\>>|<cell|\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>-S<around*|(|x+\<Delta\>x,\<theta\>|)>|]>>>|<row|<cell|=>|<cell|\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|-<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x,\<theta\>|)>\<Delta\>x<rsup|\<alpha\>>|]>.>>>>
   </align>
 
   If we use Langevin dynamics for Markov chain Monte-Carlo with extremely low
   temperature (section <reference|section: Conservative Langevin Dynamics
-  Satisfies Detailed Balance>), we will have
-  <math|\<mathd\>x<rsup|\<alpha\>>\<approx\>-<around*|(|\<partial\>S/\<partial\>x<rsub|\<alpha\>>|)><around*|(|x,\<theta\>|)>>.
-  Plugging back to <math|L<rsub|LA>>, we have
+  Satisfies Detailed Balance>), and run for a single-step, we will have
+  <math|\<Delta\>x<rsup|\<alpha\>>\<approx\>-<around*|(|\<partial\>S/\<partial\>x<rsub|\<alpha\>>|)><around*|(|x,\<theta\>|)>
+  \<Delta\>t>, where <math|\<Delta\>t> is the step-size. Plugging back to
+  <math|L<rsub|LA>>, we have
 
   <\equation*>
-    L<rsub|LA><around*|(|\<theta\>|)>\<approx\>\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x,\<theta\>|)><frac|\<partial\>S|\<partial\>x<rsub|\<alpha\>>><around*|(|x,\<theta\>|)>|]>=\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|<around*|(|<frac|\<partial\>S|\<partial\>x>|)><rsup|2><around*|(|x,\<theta\>|)>|]>.
+    L<rsub|LA><around*|(|\<theta\>|)>\<approx\><wide|L|~><rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<frac|\<partial\>S|\<partial\>x>|\<\|\|\>><rsub|2><rsup|2><around*|(|x,\<theta\>|)>|]>\<Delta\>t.
   </equation*>
 
   \;
 
-  Minimizing <math|L<rsub|LA><around*|(|\<theta\>|)>> by adjusting
+  Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
   <math|\<theta\>> is approximately reducing the norm of
   <math|\<partial\>S/\<partial\>x> on real word data. This method of
   optimization is quite different from that used in machine learning. In
@@ -268,9 +269,94 @@
   The aim of machine learning is minimizing the action (loss function)
   instead of the norm of its gradient.
 
-  But, it is quite strange that minimizing the approximated <math|L<rsub|LA>>
-  does gives the performance that approaches that by minimizing the action
-  (loss function).<\footnote>
+  There are two kinds of tasks in machine learning: regression and
+  classification. For regression task, the loss function that is usually
+  employed is mean squared error. And for classification, the loss function
+  is chosen to be cross-entropy. Let <math|f<around*|(|x,\<theta\>|)>> the
+  model with parameter <math|\<theta\>> and the input-target pair
+  <math|<around*|(|x,y|)>\<sim\>p<rsub|D>>, we are to compute
+
+  <\equation*>
+    <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<frac|\<partial\>S|\<partial\>x>|\<\|\|\>><rsub|2><rsup|2><around*|(|x,y,\<theta\>|)>+<around*|\<\|\|\>|<frac|\<partial\>S|\<partial\>y>|\<\|\|\>><rsub|2><rsup|2><around*|(|x,y,\<theta\>|)>|]>
+  </equation*>
+
+  for these two loss functions.
+
+  In regression task, we have <math|x\<in\>\<bbb-R\><rsup|n>> and
+  <math|y\<in\>\<bbb-R\>>, where <math|n\<geqslant\>1>. Mean squared error is
+  defined by <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|(|f<around*|(|x,\<theta\>|)>-y|)><rsup|2>|]>>.
+  So, the action is
+
+  <\equation*>
+    S<rsub|MSE><around*|(|x,y,\<theta\>|)>\<assign\><around*|(|f<around*|(|x,\<theta\>|)>-y|)><rsup|2>.
+  </equation*>
+
+  Directly, we have (the input <math|x> may have multiple components)
+
+  <\align>
+    <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|MSE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|2<around*|(|f<around*|(|x,\<theta\>|)>-y|)><frac|\<partial\>f|\<partial\>x<rsup|\<alpha\>>><around*|(|x,\<theta\>|)>;>>|<row|<cell|<frac|\<partial\>S<rsub|MSE>|\<partial\>y><around*|(|x,y,\<theta\>|)>=>|<cell|2<around*|(|y-f<around*|(|x,\<theta\>|)>|)>.>>>>
+  </align>
+
+  Thus, for mean squared error, we have
+
+  <\equation*>
+    <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=4
+    \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|S<rsub|MSE><around*|(|x,y,\<theta\>|)><around*|(|1+<around*|\<\|\|\>|<frac|\<partial\>f|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2><around*|(|x,\<theta\>|)>|)>|]>.
+  </equation*>
+
+  So, minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by
+  adjusting <math|\<theta\>> will minimize <math|S<rsub|MSE>> itself as well
+  as the norm of <math|\<partial\>f/\<partial\>x> on real world data
+  <math|p<rsub|D>>. The norm of <math|\<partial\>f/\<partial\>x> can be
+  viewed as a regularization term, which provides a greater robustness for
+  the model.
+
+  In classification task, we have <math|x\<in\>\<bbb-R\><rsup|n>> and
+  <math|y\<in\>\<bbb-R\><rsup|m>>, where <math|n\<geqslant\>1> and
+  <math|m\<gtr\>1>. Cross-entropy is defined as
+  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|-<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)>ln
+  q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|]>>, where
+  <math|p<rsub|\<alpha\>><around*|(|y|)>\<assign\>exp<around*|(|y<rsup|\<alpha\>>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>
+  and <math|q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>\<assign\>exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|f<rsup|\<beta\>><around*|(|x,\<theta\>|)>|)>>.
+  So, the action is
+
+  <\equation*>
+    S<rsub|CE><around*|(|x,y,\<theta\>|)>\<assign\>-<big|sum><rsub|\<alpha\>><frac|exp<around*|(|y<rsup|\<alpha\>>|)>|<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>ln
+    <frac|exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>|<big|sum><rsub|\<beta\><rprime|'>>exp*<around*|(|f<rsup|\<beta\><rprime|'>><around*|(|x,\<theta\>|)>|)>>.
+  </equation*>
+
+  Directly, we have (the input <math|x> may have multiple components)
+
+  <\align>
+    <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|<big|sum><rsub|\<beta\>><around*|(|q<rsub|\<beta\>>-p<rsub|\<beta\>>|)><frac|\<partial\>f<rsup|\<beta\>>|\<partial\>x<rsup|\<alpha\>>>;>>|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>y<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|p<rsub|\<alpha\>><around*|(|<big|sum><rsub|\<beta\>>p<rsub|\<beta\>>
+    ln q<rsub|\<beta\>>-ln q<rsub|\<alpha\>>|)>.>>>>
+  </align>
+
+  Thus, for cross-entropy, we have
+
+  <\equation*>
+    <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=
+    \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<big|sum><rsub|\<alpha\>><around*|(|p<rsub|\<alpha\>>-q<rsub|\<alpha\>>|)><frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2>+<around*|\<\|\|\>|p
+    <around*|(|ln q-<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>> ln
+    q<rsub|\<alpha\>>|)>|\<\|\|\>><rsub|2><rsup|2>|]>.
+  </equation*>
+
+  Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
+  <math|\<theta\>> will minimize both of the terms in the expectation. On the
+  extremum <math|\<theta\><rsub|\<star\>>> where
+  <math|<wide|L|~><rsub|LA><around*|(|\<theta\><rsub|\<star\>>|)>=0>, these
+  terms shall vanish. When the second term vanishes, the components of
+  <math|ln q> are all equal. By the definition of <math|q>, this means the
+  components of <math|f<around*|(|x,\<theta\><rsub|\<star\>>|)>> are all
+  equal for each <math|x> sampled from <math|p<rsub|D>>. Then, to make the
+  first term vanish, we have <math|<around*|(|\<partial\>f/\<partial\>x|)><around*|(|x,\<theta\><rsub|\<star\>>|)>=0>
+  for each <math|x> sampled from <math|p<rsub|D>>. Apperantly, the extremum
+  of <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> is not the extremum of
+  the loss in machine learning, <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|S<rsub|CE><around*|(|x,y,\<theta\>|)>|]>>.
+  In other words, for the best fit classification model that minimizes the
+  loss, we cannot expect that the real world data locate in the valleys of
+  loss function. Even though, we can solve this problem by employing mean
+  squared error for classification, as for regression.<\footnote>
     Experiments can be found in the folder <samp|actions>.
   </footnote>
 </body>
@@ -329,7 +415,7 @@
       <with|mode|<quote|math>|x<rsub|2>> is a local minimum, the data points
       sampled from <with|mode|<quote|math>|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>
       will accumulate around <with|mode|<quote|math>|x<rsub|2>>. So,
-      minimizing <with|mode|<quote|math>|L<rsub|LA>> also pulles the
+      minimizing <with|mode|<quote|math>|L<rsub|LA>> also pulls the
       <with|mode|<quote|math>|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
       up to greater value, corresponding to the blue upward double-arrow on
       <with|mode|<quote|math>|x<rsub|2>>. Altogether, it makes

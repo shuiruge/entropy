@@ -319,10 +319,11 @@
   p<around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>|]>>,
   where <math|p<rsup|\<alpha\>><around*|(|y|)>\<assign\>exp<around*|(|y<rsup|\<alpha\>>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>
   and <math|q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>\<assign\>exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|f<rsup|\<beta\>><around*|(|x,\<theta\>|)>|)>>.<\footnote>
-    Generally, we may use cross-entropy instead of relative entropy. But from
+    Usually, we use cross-entropy instead of relative entropy. But from
     cross-entropy, we cannot find a proper action. If using cross-entropy as
     loss function or action, it can be proven that the
-    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> will never vanish.
+    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> will never vanish. We
+    also usually use <math|y> as <math|p> directly. This will not work too.
   </footnote> So, the action is
 
   <\equation*>
@@ -369,7 +370,7 @@
   <math|p<rsub|D>> has only one datum. So, the loss function
   <math|L<around*|(|x,\<theta\>|)>> can also be viewed as an action.
 
-  As a summary, we have found that for each supervised and unsupervised
+  As a summary, we have found that for each supervised or unsupervised
   machine learning task, we can assign a proper action for it.<\footnote>
     Experiments can be found in the folder <samp|actions>.
   </footnote>
@@ -400,12 +401,12 @@
     <associate|footnote-2|<tuple|2|2>>
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|4>>
-    <associate|footnote-5|<tuple|5|5>>
+    <associate|footnote-5|<tuple|5|4>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|2>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|4>>
-    <associate|footnr-5|<tuple|5|5>>
+    <associate|footnr-5|<tuple|5|4>>
     <associate|section: Generic Dynamics Can Be Extract From Data
     Fitting|<tuple|1.2|1>>
   </collection>

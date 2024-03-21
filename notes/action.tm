@@ -272,9 +272,10 @@
   There are two kinds of tasks in supervised machine learning: regression and
   classification. For regression task, the loss function that is usually
   employed is mean squared error. And for classification, the loss function
-  is chosen to be cross-entropy. Let <math|f<around*|(|x,\<theta\>|)>> the
-  model with parameter <math|\<theta\>> and the input-target pair
-  <math|<around*|(|x,y|)>\<sim\>p<rsub|D>>, we are to compute
+  is chosen to be relative entropy (or named KL-divergence). Let
+  <math|f<around*|(|x,\<theta\>|)>> the model with parameter <math|\<theta\>>
+  and the input-target pair <math|<around*|(|x,y|)>\<sim\>p<rsub|D>>, we are
+  to compute
 
   <\equation*>
     <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<frac|\<partial\>S|\<partial\>x>|\<\|\|\>><rsub|2><rsup|2><around*|(|x,y,\<theta\>|)>+<around*|\<\|\|\>|<frac|\<partial\>S|\<partial\>y>|\<\|\|\>><rsub|2><rsup|2><around*|(|x,y,\<theta\>|)>|]>
@@ -304,113 +305,74 @@
     \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|S<rsub|MSE><around*|(|x,y,\<theta\>|)><around*|(|1+<around*|\<\|\|\>|<frac|\<partial\>f|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2><around*|(|x,\<theta\>|)>|)>|]>.
   </equation*>
 
-  So, minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by
-  adjusting <math|\<theta\>> will minimize <math|S<rsub|MSE>> itself as well
-  as the norm of <math|\<partial\>f/\<partial\>x> on real world data
+  Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
+  <math|\<theta\>> will minimize <math|S<rsub|MSE>> itself as well as the
+  norm of <math|\<partial\>f/\<partial\>x> on real world data
   <math|p<rsub|D>>. The norm of <math|\<partial\>f/\<partial\>x> can be
   viewed as a regularization term, which provides a greater robustness for
   the model.
 
   In classification task, we have model input <math|x\<in\>\<bbb-R\><rsup|n>>
   and categorical probabilistic target <math|y\<in\>\<bbb-R\><rsup|m>>, where
-  <math|n\<geqslant\>1> and <math|m\<gtr\>1>. Cross-entropy is defined as
-  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|-<big|sum><rsub|\<alpha\>>y<rsub|\<alpha\>>ln
-  q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|]>>, where
-  <math|q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>\<assign\>exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|f<rsup|\<beta\>><around*|(|x,\<theta\>|)>|)>>.
-  So, the action is
+  <math|n\<geqslant\>1> and <math|m\<gtr\>1>. Relative entropy is defined as
+  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)><around*|(|ln
+  p<around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>|]>>,
+  where <math|p<rsup|\<alpha\>><around*|(|y|)>\<assign\>exp<around*|(|y<rsup|\<alpha\>>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>
+  and <math|q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>\<assign\>exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|f<rsup|\<beta\>><around*|(|x,\<theta\>|)>|)>>.<\footnote>
+    Generally, we may use cross-entropy instead of relative entropy. But from
+    cross-entropy, we cannot find a proper action. If using cross-entropy as
+    loss function or action, it can be proven that the
+    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> will never vanish.
+  </footnote> So, the action is
 
   <\equation*>
-    S<rsub|CE><around*|(|x,y,\<theta\>|)>\<assign\>-<big|sum><rsub|\<alpha\>>y<rsup|\<alpha\>>
-    ln <frac|exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>|<big|sum><rsub|\<beta\>>exp*<around*|(|f<rsup|\<beta\>><around*|(|x,\<theta\>|)>|)>>.
+    S<rsub|CE><around*|(|x,y,\<theta\>|)>\<assign\>-<big|sum><rsub|\<alpha\>><frac|exp<around*|(|y<rsup|\<alpha\>>|)>|<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>
+    <around*|[|ln <frac|exp<around*|(|y<rsup|\<alpha\>>|)>|<big|sum><rsub|\<beta\><rprime|'>>exp<around*|(|y<rsup|\<beta\><rprime|'>>|)>>-ln
+    <frac|exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>|<big|sum><rsub|\<beta\><rprime|''>>exp*<around*|(|f<rsup|\<beta\><rprime|''>><around*|(|x,\<theta\>|)>|)>>|]>.
   </equation*>
 
   Directly, we have
 
   <\align>
-    <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|<big|sum><rsub|\<beta\>><around*|(|q<rsub|\<beta\>>-y<rsub|\<beta\>>|)><frac|\<partial\>f<rsup|\<beta\>>|\<partial\>x<rsup|\<alpha\>>>;>>|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>y<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|-ln
-    q<rsub|\<alpha\>>.>>>>
+    <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|<big|sum><rsub|\<beta\>><around*|(|q<rsub|\<beta\>>-y<rsub|\<beta\>>|)><frac|\<partial\>f<rsup|\<beta\>>|\<partial\>x<rsup|\<alpha\>>>;>>|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>y<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|p<rsub|\<alpha\>><around*|(|ln
+    p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>|)>-p<rsub|\<alpha\>>
+    S<rsub|CE>.>>>>
   </align>
 
   Thus, for cross-entropy,
 
   <\equation*>
     <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=
-    \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<big|sum><rsub|\<alpha\>><around*|(|y<rsub|\<alpha\>>-q<rsub|\<alpha\>>|)><frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2>+<around*|\<\|\|\>|ln
-    q|\<\|\|\>><rsub|2><rsup|2>|]>.
+    \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<big|sum><rsub|\<alpha\>><around*|(|y<rsub|\<alpha\>>-q<rsub|\<alpha\>>|)><frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2>+<around*|\<\|\|\>|p<around*|(|ln
+    p-ln q|)>-p S<rsub|CE>|\<\|\|\>><rsub|2><rsup|2>|]>.
   </equation*>
 
   Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
   <math|\<theta\>> will minimize both of the terms in the expectation. On the
-  extremum <math|\<theta\><rsub|\<star\>>> where
-  <math|<wide|L|~><rsub|LA><around*|(|\<theta\><rsub|\<star\>>|)>=0>, these
-  terms shall vanish. But, the second term will never vanish. At its minimum,
-  components of <math|q> are all equal. This implies that, we cannot expect
-  that the real world data locate in the bottoms of loss function.<\footnote>
-    You may challenge that we shall define <math|y> as logits instead of
-    probabilities, thus
-
-    <\equation*>
-      S<rsub|CE><around*|(|x,y,\<theta\>|)>=-<big|sum><rsub|\<alpha\>><frac|exp<around*|(|y<rsup|\<alpha\>>|)>|<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>ln
-      <frac|exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>|<big|sum><rsub|\<beta\><rprime|'>>exp*<around*|(|f<rsup|\<beta\><rprime|'>><around*|(|x,\<theta\>|)>|)>>.
-    </equation*>
-
-    Let <math|p<rsup|\<alpha\>><around*|(|y|)>\<assign\>exp<around*|(|y<rsup|\<alpha\>>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>,
-    we have
-
-    <\align>
-      <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|<big|sum><rsub|\<beta\>><around*|(|q<rsub|\<beta\>>-p<rsub|\<beta\>>|)><frac|\<partial\>f<rsup|\<beta\>>|\<partial\>x<rsup|\<alpha\>>>;>>|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>y<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|p<rsub|\<alpha\>><around*|(|<big|sum><rsub|\<beta\>>p<rsub|\<beta\>>
-      ln q<rsub|\<beta\>>-ln q<rsub|\<alpha\>>|)>.>>>>
-    </align>
-
-    Thus, for cross-entropy,
-
-    <\equation*>
-      <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=
-      \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<big|sum><rsub|\<alpha\>><around*|(|p<rsub|\<alpha\>>-q<rsub|\<alpha\>>|)><frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2>+<around*|\<\|\|\>|p
-      <around*|(|ln q-<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>> ln
-      q<rsub|\<alpha\>>|)>|\<\|\|\>><rsub|2><rsup|2>|]>.
-    </equation*>
-
-    Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
-    <math|\<theta\>> will minimize both of the terms in the expectation. On
-    the extremum <math|\<theta\><rsub|\<star\>>> where
-    <math|<wide|L|~><rsub|LA><around*|(|\<theta\><rsub|\<star\>>|)>=0>, these
-    terms shall vanish. Since <math|p> cannot be one-hot, when the second
-    term vanishes, <math|ln q<rsub|\<beta\>>=<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>>ln
-    q<rsub|\<alpha\>>> for all <math|\<beta\>>. It means that the components
-    of <math|ln q> are all equal, again. \ By the definition of <math|q>, it
-    in turn means that the components of <math|f<around*|(|x,\<theta\><rsub|\<star\>>|)>>
-    are all equal, for each <math|x> sampled from <math|p<rsub|D>>. Then, to
-    make the first term vanish, we have <math|<around*|(|\<partial\>f/\<partial\>x|)><around*|(|x,\<theta\><rsub|\<star\>>|)>=0>
-    for each <math|x> sampled from <math|p<rsub|D>>, unless the components of
-    <math|p> are all equal, which is impossible. Apparently, the extremum of
-    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> is not the extremum of
-    the loss in machine learning, <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|S<rsub|CE><around*|(|x,y,\<theta\>|)>|]>>.
-    In other words, for the best fit classification model that minimizes the
-    loss, we cannot expect that the real world data locate in the bottoms of
-    loss function. We now arrive at the same conclusion as before.
-  </footnote> For the best fit model, <math|y<rsub|\<alpha\>>=q<rsub|\<alpha\>>>,
-  the first term vanishes. So, the problem is only on the
-  <math|\<partial\>S<rsub|CE>/\<partial\>y> direction. You can imagine a
-  sloped valley for <math|S<rsub|CE><around*|(|x,y,<wide|\<theta\>|^>|)>>
-  where <math|<wide|\<theta\>|^>\<assign\>argmin<around*|(|<wide|L|~><rsub|LA>|)>>,
-  along which the real world data are distributed. For such an action, there
-  will not be equilibrium.
-
-  As a summary, for regression task, the real world data locate in the
-  bottoms of loss function of the best fit model, but never for
-  classification task. Even though, we can employ mean squared error for
-  classification, as for regression.<\footnote>
-    Experiments can be found in the folder <samp|actions>.
-  </footnote>
+  extremum <math|\<theta\><rsub|\<star\>>>,
+  <math|<wide|L|~><rsub|LA><around*|(|\<theta\><rsub|\<star\>>|)>=0>. From
+  the second term, since <math|p> is not one-hot (as a result of softmax), we
+  have <math|ln p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>=S<rsub|CE>> for all
+  <math|\<alpha\>>. This implies <math|ln p<rsub|\<alpha\>>\<equiv\>ln
+  q<rsub|\<alpha\>>> and <math|S<rsub|CE>=0>, on the real world data sampled
+  from <math|p<rsub|D>>. Thus, the first term vanishes also. But, during the
+  training with <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>/\<Delta\>t>
+  as loss, <math|<around*|\<\|\|\>|\<partial\>f/\<partial\>x|\<\|\|\>>> will
+  also be reduced on the real world data. This again provides a
+  regularization for a greater robustness.
 
   There are also unsupervised machine learning, such as clustering task.
-  K-means, for example, has the loss function
-  <math|L<around*|(|x,\<theta\>|)>=<big|sum><rsub|x<rsub|j>\<in\>U<rsub|i>><around*|\<\|\|\>|x<rsub|j>-\<theta\><rsub|i>|\<\|\|\>><rsup|2><rsub|2>>,
+  <hlink|K-means|https://en.wikipedia.org/wiki/K-means_clustering#Description>,
+  for example, has the loss function <math|L<around*|(|x,\<theta\>|)>=<big|sum><rsub|x<rsub|j>\<in\>U<rsub|i>><around*|\<\|\|\>|x<rsub|j>-\<theta\><rsub|i>|\<\|\|\>><rsup|2><rsub|2>>,
   where <math|U<rsub|i>> collects all the <math|x<rsub|j>> that are closer to
   <math|\<theta\><rsub|i>> than to any other <math|\<theta\>> components. The
   <math|p<rsub|D>> has only one datum. So, the loss function
   <math|L<around*|(|x,\<theta\>|)>> can also be viewed as an action.
+
+  As a summary, we have found that for each supervised and unsupervised
+  machine learning task, we can assign a proper action for it.<\footnote>
+    Experiments can be found in the folder <samp|actions>.
+  </footnote>
 </body>
 
 <\initial>

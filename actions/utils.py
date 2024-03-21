@@ -70,3 +70,43 @@ class GradientMSE:
     grad_ms = tf.reduce_mean(tf.square(grad))
 
     return mse * (1 + grad_ms)
+
+
+class GradientRelativeEntropy:
+  """Explicit form of the "gradient loss" for relative entropy.
+  
+  Args:
+    model: tf.models.Model
+  """
+  
+  def __init__(self, model, clip_eps=0.1):
+    self.model = model
+    self.clip_eps = clip_eps
+
+  def __call__(self, x, y):
+    """
+    Args:
+      x: tf.Tensor
+        Model input.
+      y: tf.Tensor
+        Target, shall have the same shape as the model output, up to
+        unsqueezed dimensions
+
+    Returns: tf.Tensor
+      Scalar shape.
+    """
+    # Compute \partial S / \partial x
+    y = tf.clip_by_value(y, self.clip_eps, 1-self.clip_eps)
+    with tf.GradientTape() as tape:
+      tape.watch(x)
+      y_pred = self.model(x)
+    q = tf.math.softmax(y_pred)
+    grad_x = tape.gradient(y_pred, x, q - y)
+
+    # Compute \partial S / \partial y
+    # Since y has been clipped and q is output of softmax, the logorithms are
+    # safe.
+    z = y * (tf.math.log(y) - tf.math.log(q))
+    grad_y = z - y * tf.reduce_sum(z, axis=-1, keepdims=True)
+
+    return sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))

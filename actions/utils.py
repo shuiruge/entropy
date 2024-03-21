@@ -77,6 +77,8 @@ class GradientRelativeEntropy:
   
   Args:
     model: tf.models.Model
+    clip_eps: The epsilon for clipping the value of target. Defaults to 0.1.
+      This value shall not be too small.
   """
   
   def __init__(self, model, clip_eps=0.1):
@@ -89,24 +91,28 @@ class GradientRelativeEntropy:
       x: tf.Tensor
         Model input.
       y: tf.Tensor
-        Target, shall have the same shape as the model output, up to
-        unsqueezed dimensions
+        Target. The last axis represents categories.
 
     Returns: tf.Tensor
       Scalar shape.
     """
     # Compute \partial S / \partial x
+    # [..., categories]
     y = tf.clip_by_value(y, self.clip_eps, 1-self.clip_eps)
     with tf.GradientTape() as tape:
       tape.watch(x)
       y_pred = self.model(x)
+    # [..., categories]
     q = tf.math.softmax(y_pred)
+    # [..., *input_dim]
     grad_x = tape.gradient(y_pred, x, q - y)
 
     # Compute \partial S / \partial y
     # Since y has been clipped and q is output of softmax, the logorithms are
     # safe.
+    # [..., categories]
     z = y * (tf.math.log(y) - tf.math.log(q))
+    # [..., categories]
     grad_y = z - y * tf.reduce_sum(z, axis=-1, keepdims=True)
 
     return sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))

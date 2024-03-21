@@ -33,7 +33,7 @@ def get_gradient_loss_fn(loss_fn):
   return gradient_loss_fn
 
 
-class GradientMSE:
+class GradientMeanSquareError:
   """Explicit form of the "gradient loss" for mean squared error.
   
   Args:

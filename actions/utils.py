@@ -2,7 +2,18 @@ import tensorflow as tf
 
 
 def get_gradient_loss_fn(loss_fn):
-  """The general way of computing the "gradient loss".
+  """The general way of computing the "gradient loss". It is defined by
+
+  ```tex
+  \begin{equation}
+    L(\theta) = \mathbb{E}_{(x,y) \sim p_D} \left[
+        \frac{1}{m} \| \frac{\partial S}{\partial x}(x, y, \theta) \|_2^2
+      + \frac{1}{n} \| \frac{\partial S}{\partial y}(x, y, \theta) \|_2^2
+    \right],
+  \end{equation}
+  ```
+  
+  where $x \in \mathbb{R}^m$ and $y \in \mathbb{R}^n$.
 
   Args:
     loss_fn: Callable
@@ -12,6 +23,8 @@ def get_gradient_loss_fn(loss_fn):
     The same signature as get_loss.
   """
   def gradient_loss_fn(inputs):
+    if not isinstance(inputs, (tuple, list)):
+      inputs = [inputs]
     with tf.GradientTape() as tape:
       tape.watch(inputs)
       loss = loss_fn(inputs)

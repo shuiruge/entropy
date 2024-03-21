@@ -73,7 +73,7 @@ class GradientMSE:
 
 
 class GradientRelativeEntropy:
-  """Explicit form of the "gradient loss" for relative entropy.
+  """Explicit form of the "gradient loss" for relative entropy (KL-divergence).
   
   Args:
     model: tf.models.Model

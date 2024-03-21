@@ -227,7 +227,7 @@
   find that maximum-entropy principle and least-action principle are saddle
   point of a functional <math|V>.
 
-  <subsection|Actions in Machine Learning>
+  <subsection|Actions in Machine Learning: Minimize Loss or Loss Gradients?>
 
   As figure <reference|figure: Least-Action> indicates, we shall push down
   the real world data while pull up the data sampled from the

@@ -269,7 +269,7 @@
   The aim of machine learning is minimizing the action (loss function)
   instead of the norm of its gradient.
 
-  There are two kinds of tasks in machine learning: regression and
+  There are two kinds of tasks in supervised machine learning: regression and
   classification. For regression task, the loss function that is usually
   employed is mean squared error. And for classification, the loss function
   is chosen to be cross-entropy. Let <math|f<around*|(|x,\<theta\>|)>> the
@@ -343,9 +343,9 @@
   <math|\<theta\>> will minimize both of the terms in the expectation. On the
   extremum <math|\<theta\><rsub|\<star\>>> where
   <math|<wide|L|~><rsub|LA><around*|(|\<theta\><rsub|\<star\>>|)>=0>, these
-  terms shall vanish. But, the second term will never vanish. This implies
-  that, we cannot expect that the real world data locate in the bottoms of
-  loss function.<\footnote>
+  terms shall vanish. But, the second term will never vanish. At its minimum,
+  components of <math|q> are all equal. This implies that, we cannot expect
+  that the real world data locate in the bottoms of loss function.<\footnote>
     You may challenge that we shall define <math|y> as logits instead of
     probabilities, thus
 
@@ -378,8 +378,8 @@
     terms shall vanish. Since <math|p> cannot be one-hot, when the second
     term vanishes, <math|ln q<rsub|\<beta\>>=<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>>ln
     q<rsub|\<alpha\>>> for all <math|\<beta\>>. It means that the components
-    of <math|ln q> are all equal. \ By the definition of <math|q>, it in turn
-    means that the components of <math|f<around*|(|x,\<theta\><rsub|\<star\>>|)>>
+    of <math|ln q> are all equal, again. \ By the definition of <math|q>, it
+    in turn means that the components of <math|f<around*|(|x,\<theta\><rsub|\<star\>>|)>>
     are all equal, for each <math|x> sampled from <math|p<rsub|D>>. Then, to
     make the first term vanish, we have <math|<around*|(|\<partial\>f/\<partial\>x|)><around*|(|x,\<theta\><rsub|\<star\>>|)>=0>
     for each <math|x> sampled from <math|p<rsub|D>>, unless the components of
@@ -389,7 +389,13 @@
     In other words, for the best fit classification model that minimizes the
     loss, we cannot expect that the real world data locate in the bottoms of
     loss function. We now arrive at the same conclusion as before.
-  </footnote>
+  </footnote> For the best fit model, <math|y<rsub|\<alpha\>>=q<rsub|\<alpha\>>>,
+  the first term vanishes. So, the problem is only on the
+  <math|\<partial\>S<rsub|CE>/\<partial\>y> direction. You can imagine a
+  sloped valley for <math|S<rsub|CE><around*|(|x,y,<wide|\<theta\>|^>|)>>
+  where <math|<wide|\<theta\>|^>\<assign\>argmin<around*|(|<wide|L|~><rsub|LA>|)>>,
+  along which the real world data are distributed. For such an action, there
+  will not be equilibrium.
 
   As a summary, for regression task, the real world data locate in the
   bottoms of loss function of the best fit model, but never for
@@ -397,6 +403,14 @@
   classification, as for regression.<\footnote>
     Experiments can be found in the folder <samp|actions>.
   </footnote>
+
+  There are also unsupervised machine learning, such as clustering task.
+  K-means, for example, has the loss function
+  <math|L<around*|(|x,\<theta\>|)>=<big|sum><rsub|x<rsub|j>\<in\>U<rsub|i>><around*|\<\|\|\>|x<rsub|j>-\<theta\><rsub|i>|\<\|\|\>><rsup|2><rsub|2>>,
+  where <math|U<rsub|i>> collects all the <math|x<rsub|j>> that are closer to
+  <math|\<theta\><rsub|i>> than to any other <math|\<theta\>> components. The
+  <math|p<rsub|D>> has only one datum. So, the loss function
+  <math|L<around*|(|x,\<theta\>|)>> can also be viewed as an action.
 </body>
 
 <\initial>
@@ -424,12 +438,12 @@
     <associate|footnote-2|<tuple|2|2>>
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|4>>
-    <associate|footnote-5|<tuple|5|?>>
+    <associate|footnote-5|<tuple|5|5>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|2>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|4>>
-    <associate|footnr-5|<tuple|5|?>>
+    <associate|footnr-5|<tuple|5|5>>
     <associate|section: Generic Dynamics Can Be Extract From Data
     Fitting|<tuple|1.2|1>>
   </collection>

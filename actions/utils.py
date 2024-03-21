@@ -2,7 +2,7 @@ import tensorflow as tf
 
 
 def get_gradient_loss_fn(loss_fn):
-  """The general way of computing the "gradient loss". It is defined by
+  r"""The general way of computing the "gradient loss". It is defined by
 
   ```tex
   \begin{equation}
@@ -13,7 +13,7 @@ def get_gradient_loss_fn(loss_fn):
   \end{equation}
   ```
   
-  where $x \in \mathbb{R}^m$ and $y \in \mathbb{R}^n$.
+  where $x \in \mathbb{R}^m$ and $y \in \mathbb{R}^n$. C.f. section 1.5.5.
 
   Args:
     loss_fn: Callable

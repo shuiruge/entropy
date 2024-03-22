@@ -312,24 +312,24 @@
   viewed as a regularization term, which provides a greater robustness for
   the model.
 
-  In classification task, we have model input <math|x\<in\>\<bbb-R\><rsup|n>>
-  and categorical probabilistic target <math|y\<in\>\<bbb-R\><rsup|m>>, where
-  <math|n\<geqslant\>1> and <math|m\<gtr\>1>. Relative entropy is defined as
+  In classification task, we have model input <math|x\<in\>\<bbb-R\><rsup|m>>
+  and categorical probabilistic target <math|y\<in\>\<bbb-R\><rsup|n>>, where
+  <math|m\<gtr\>1> and <math|n\<geqslant\>1>. Relative entropy is defined as
   <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)><around*|(|ln
-  p<around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>|]>>,
-  where <math|p<rsup|\<alpha\>><around*|(|y|)>\<assign\>exp<around*|(|y<rsup|\<alpha\>>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>
-  and <math|q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>\<assign\>exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>/<big|sum><rsub|\<beta\>>exp<around*|(|f<rsup|\<beta\>><around*|(|x,\<theta\>|)>|)>>.<\footnote>
-    Usually, we use cross-entropy instead of relative entropy. But from
-    cross-entropy, we cannot find a proper action. If using cross-entropy as
-    loss function or action, it can be proven that the
-    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> will never vanish. We
-    also usually use <math|y> as <math|p> directly. This will not work too.
+  p<rsub|\<alpha\>><around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>|]>>,
+  where <math|p> and <math|q> are softmax function of <math|y> and
+  <math|f<around*|(|x,\<theta\>|)>> respectively.<\footnote>
+    Softmax function <math|\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
+    is defined by
+
+    <\equation*>
+      softmax<rsup|\<alpha\>><around*|(|x|)>\<assign\><frac|exp<around*|(|x<rsup|\<alpha\>>|)>|<big|sum><rsub|\<beta\>>exp<around*|(|x<rsup|\<beta\>>|)>>.
+    </equation*>
   </footnote> So, the action is
 
   <\equation*>
-    S<rsub|CE><around*|(|x,y,\<theta\>|)>\<assign\>-<big|sum><rsub|\<alpha\>><frac|exp<around*|(|y<rsup|\<alpha\>>|)>|<big|sum><rsub|\<beta\>>exp<around*|(|y<rsup|\<beta\>>|)>>
-    <around*|[|ln <frac|exp<around*|(|y<rsup|\<alpha\>>|)>|<big|sum><rsub|\<beta\><rprime|'>>exp<around*|(|y<rsup|\<beta\><rprime|'>>|)>>-ln
-    <frac|exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>|<big|sum><rsub|\<beta\><rprime|''>>exp*<around*|(|f<rsup|\<beta\><rprime|''>><around*|(|x,\<theta\>|)>|)>>|]>.
+    S<rsub|CE><around*|(|x,y,\<theta\>|)>\<assign\><big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)><around*|(|ln
+    p<rsub|\<alpha\>><around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>.
   </equation*>
 
   Directly, we have
@@ -340,11 +340,17 @@
     S<rsub|CE>.>>>>
   </align>
 
-  Thus, for cross-entropy,
+  Thus, for relative entropy, <\footnote>
+    Usually, we use cross-entropy instead of relative entropy. But from
+    cross-entropy, we cannot find a proper action. If using cross-entropy as
+    loss function or action, it can be proven that the
+    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> will never vanish. We
+    also usually use <math|y> as <math|p> directly. This will not work too.
+  </footnote>
 
   <\equation*>
     <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=
-    \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<big|sum><rsub|\<alpha\>><around*|(|y<rsub|\<alpha\>>-q<rsub|\<alpha\>>|)><frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2>+<around*|\<\|\|\>|p<around*|(|ln
+    \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<big|sum><rsub|\<alpha\>><around*|(|p<rsub|\<alpha\>>-q<rsub|\<alpha\>>|)><frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2>+<around*|\<\|\|\>|p<around*|(|ln
     p-ln q|)>-p S<rsub|CE>|\<\|\|\>><rsub|2><rsup|2>|]>.
   </equation*>
 
@@ -368,7 +374,9 @@
   where <math|U<rsub|i>> collects all the <math|x<rsub|j>> that are closer to
   <math|\<theta\><rsub|i>> than to any other <math|\<theta\>> components. The
   <math|p<rsub|D>> has only one datum. So, the loss function
-  <math|L<around*|(|x,\<theta\>|)>> can also be viewed as an action.
+  <math|L<around*|(|x,\<theta\>|)>> can also be viewed as an action. This
+  applies to other unsupervised machine learning algorithms where there is a
+  loss function to be minimized on the real world data.
 
   As a summary, we have found that for each supervised or unsupervised
   machine learning task, we can assign a proper action for it.<\footnote>
@@ -402,11 +410,13 @@
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|4>>
     <associate|footnote-5|<tuple|5|4>>
+    <associate|footnote-6|<tuple|6|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|2>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|4>>
     <associate|footnr-5|<tuple|5|4>>
+    <associate|footnr-6|<tuple|6|?>>
     <associate|section: Generic Dynamics Can Be Extract From Data
     Fitting|<tuple|1.2|1>>
   </collection>
@@ -464,8 +474,8 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Actions in Machine Learning
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Actions in Machine Learning:
+      Minimize Loss or Loss Gradients? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
     </associate>
   </collection>

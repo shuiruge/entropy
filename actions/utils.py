@@ -38,6 +38,7 @@ class GradientMeanSquareError:
   
   Args:
     model: tf.models.Model
+      It accepts a single tensor as input and another tensor as output.
   """
   
   def __init__(self, model):
@@ -77,6 +78,9 @@ class GradientRelativeEntropy:
   
   Args:
     model: tf.models.Model
+      It accepts a single tensor as input and another tensor as output.
+      The output of shall be the classification logits, thus the probablity
+      for each class is given by the softmax of logits.
     clip_eps: The epsilon for clipping the value of target. Defaults to 0.1.
       This value shall not be too small.
   """
@@ -91,7 +95,8 @@ class GradientRelativeEntropy:
       x: tf.Tensor
         Model input.
       y: tf.Tensor
-        Target. The last axis represents categories.
+        Target. As a classification target, it shall be one-hot encoded.
+        The last axis indicates categories.
 
     Returns: tf.Tensor
       Scalar shape.

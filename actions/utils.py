@@ -20,16 +20,25 @@ def get_gradient_loss_fn(loss_fn):
       Accepts a tensor or a list of tensors, and returns a scalar.
   
   Returns: Callable
-    The same signature as get_loss.
+    Accepts a tensor or a list of tensors, and returns a scalar for loss,
+    as well as a tensor or list of tensors for loss gradients.
   """
   def gradient_loss_fn(inputs):
+    """
+    Args:
+      inputs: tf.Tensor or List[tf.Tensor]
+
+    Returns: A pair, including:
+      - the "gradient loss": Scalar.
+      - loss gradients: tf.Tensor or List[tf.Tensor].
+    """
     if not isinstance(inputs, (tuple, list)):
       inputs = [inputs]
     with tf.GradientTape() as tape:
       tape.watch(inputs)
       loss = loss_fn(inputs)
     loss_grads = tape.gradient(loss, inputs)
-    return sum(tf.reduce_mean(tf.square(x)) for x in loss_grads)
+    return sum(tf.reduce_mean(tf.square(x)) for x in loss_grads), loss_grads
   return gradient_loss_fn
 
 
@@ -53,24 +62,20 @@ class GradientMeanSquareError:
         Target, shall have the same shape as the model output, up to
         unsqueezed dimensions
 
-    Returns: tf.Tensor
-      Scalar shape.
+    Returns: A triplet, including:
+      - the "gradient loss": Scalar.
+      - the $\partial S / \partial x$: tf.Tensor, the same signature as x.
+      - the $\partial S / \partial y$: tf.Tensor, the same signature as y.
     """
     with tf.GradientTape() as tape:
       tape.watch(x)
       y_pred = self.model(x)
-    grad = tape.gradient(y_pred, x)
+    grad_x = 2 * tape.gradient(y_pred, x, y_pred - x)
 
-    # Compute MSE.
-    # To obtain the correct result, we have to sequeeze the output to ensure
-    # that it shares the same shape as the target.
-    y_pred = tf.squeeze(y_pred)
-    mse = tf.reduce_mean(tf.square(y - y_pred))
+    grad_y = 2 * (y - y_pred)
 
-    # Compute the mean square of model gradient.
-    grad_ms = tf.reduce_mean(tf.square(grad))
-
-    return mse * (1 + grad_ms)
+    loss = sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))
+    return loss, grad_x, grad_y
 
 
 class GradientRelativeEntropy:
@@ -90,7 +95,7 @@ class GradientRelativeEntropy:
     self.clip_eps = clip_eps
 
   def __call__(self, x, y):
-    """
+    r"""
     Args:
       x: tf.Tensor
         Model input.
@@ -98,8 +103,10 @@ class GradientRelativeEntropy:
         Target. As a classification target, it shall be one-hot encoded.
         The last axis indicates categories.
 
-    Returns: tf.Tensor
-      Scalar shape.
+    Returns: A triplet, including:
+      - the "gradient loss": Scalar.
+      - the $\partial S / \partial x$: tf.Tensor, the same signature as x.
+      - the $\partial S / \partial y$: tf.Tensor, the same signature as y.
     """
     # Compute \partial S / \partial x
     # [..., categories]
@@ -120,4 +127,5 @@ class GradientRelativeEntropy:
     # [..., categories]
     grad_y = z - y * tf.reduce_sum(z, axis=-1, keepdims=True)
 
-    return sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))
+    loss = sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))
+    return loss, grad_x, grad_y

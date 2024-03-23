@@ -20,9 +20,10 @@ def get_gradient_loss_fn(loss_fn):
       Accepts a tensor or a list of tensors, and returns a scalar.
   
   Returns: Callable
-    Accepts a tensor or a list of tensors, and returns a scalar for loss,
-    as well as a tensor or list of tensors for loss gradients.
+    Accepts a tensor or a list of tensors, and returns a tensor or a list of
+    tensors for loss gradients, as well as a scalar for loss.
   """
+
   def gradient_loss_fn(inputs, return_grads=False):
     """
     Args:
@@ -36,11 +37,15 @@ def get_gradient_loss_fn(loss_fn):
     """
     if not isinstance(inputs, (tuple, list)):
       inputs = [inputs]
+
     with tf.GradientTape() as tape:
       tape.watch(inputs)
       loss = loss_fn(inputs)
-    loss_grads = tape.gradient(loss, inputs)
-    return sum(tf.reduce_mean(tf.square(x)) for x in loss_grads), loss_grads
+    grads = tape.gradient(loss, inputs)
+
+    gradient_loss = sum(tf.reduce_mean(tf.square(x)) for x in grads)
+    return grads, gradient_loss
+
   return gradient_loss_fn
 
 
@@ -55,21 +60,19 @@ class GradientMeanSquareError:
   def __init__(self, model):
     self.model = model
 
-  def __call__(self, x, y, return_grads=False):
-    """
+  def __call__(self, x, y):
+    r"""
     Args:
       x: tf.Tensor
         Model input.
       y: tf.Tensor
         Target, shall have the same shape as the model output, up to
         unsqueezed dimensions
-      return_grads: bool. Defaults to false.
 
-    Returns: A triplet, if `return_grads`, including:
-        - the "gradient loss": Scalar.
+    Returns: A triplet, including:
         - the $\partial S / \partial x$: tf.Tensor, the same signature as x.
         - the $\partial S / \partial y$: tf.Tensor, the same signature as y.
-      Otherwise, return the "gradient loss" only.
+        - the "gradient loss": Scalar.
     """
     with tf.GradientTape() as tape:
       tape.watch(x)
@@ -79,7 +82,7 @@ class GradientMeanSquareError:
     grad_y = 2 * (y - y_pred)
 
     loss = sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))
-    return loss, grad_x, grad_y if return_grads else loss
+    return grad_x, grad_y, loss
 
 
 class GradientRelativeEntropy:
@@ -98,7 +101,7 @@ class GradientRelativeEntropy:
     self.model = model
     self.clip_eps = clip_eps
 
-  def __call__(self, x, y, return_grads=False):
+  def __call__(self, x, y):
     r"""
     Args:
       x: tf.Tensor
@@ -108,11 +111,10 @@ class GradientRelativeEntropy:
         The last axis indicates categories.
       return_grads: bool. Defaults to false.
 
-    Returns: A triplet, if `return_grads`, including:
-        - the "gradient loss": Scalar.
+    Returns: A triplet, including:
         - the $\partial S / \partial x$: tf.Tensor, the same signature as x.
         - the $\partial S / \partial y$: tf.Tensor, the same signature as y.
-      Otherwise, return the "gradient loss" only.
+        - the "gradient loss": Scalar.
     """
     # Compute \partial S / \partial x
     # [..., categories]
@@ -134,4 +136,11 @@ class GradientRelativeEntropy:
     grad_y = z - y * tf.reduce_sum(z, axis=-1, keepdims=True)
 
     loss = sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))
-    return loss, grad_x, grad_y if return_grads else loss
+
+    return grad_x, grad_y, loss
+
+
+def take_result(fn, i):
+  def decorated(*args, **kwargs):
+    return fn(*args, **kwargs)[i]
+  return decorated

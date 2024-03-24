@@ -2,9 +2,6 @@ import tensorflow as tf
 from collections import namedtuple
 
 
-GradientLoss = namedtuple('GradientLoss', 'grad_x, grad_y, loss')
-
-
 def get_gradient_loss_fn(loss_fn):
   r"""The general way of computing the "gradient loss". It is defined by
 
@@ -52,6 +49,9 @@ def get_gradient_loss_fn(loss_fn):
     return grads, gradient_loss
 
   return gradient_loss_fn
+
+
+GradientLoss = namedtuple('GradientLoss', 'grad_x, grad_y, loss')
 
 
 class GradientMeanSquaredError:

@@ -1,12 +1,8 @@
 import tensorflow as tf
+from collections import namedtuple
 
 
-class GradientLoss:
-
-  def __init__(self, grad_x, grad_y, loss):
-    self.grad_x = grad_x
-    self.grad_y = grad_y
-    self.loss = loss
+GradientLoss = namedtuple('GradientLoss', 'grad_x, grad_y, loss')
 
 
 def get_gradient_loss_fn(loss_fn):
@@ -32,7 +28,7 @@ def get_gradient_loss_fn(loss_fn):
     tensors for loss gradients, as well as a scalar for loss.
   """
 
-  def gradient_loss_fn(inputs, return_grads=False):
+  def gradient_loss_fn(inputs):
     """
     Args:
       inputs: tf.Tensor or List[tf.Tensor]
@@ -78,10 +74,7 @@ class GradientMeanSquaredError:
         Target, shall have the same shape as the model output, up to
         unsqueezed dimensions
 
-    Returns: A triplet, including:
-        - the $\partial S / \partial x$: tf.Tensor, the same signature as x.
-        - the $\partial S / \partial y$: tf.Tensor, the same signature as y.
-        - the "gradient loss": Scalar.
+    Returns: GradientLoss object.
     """
     x = tf.convert_to_tensor(x)
     y = tf.convert_to_tensor(y)
@@ -123,10 +116,7 @@ class GradientRelativeEntropy:
         The last axis indicates categories.
       return_grads: bool. Defaults to false.
 
-    Returns: A triplet, including:
-        - the $\partial S / \partial x$: tf.Tensor, the same signature as x.
-        - the $\partial S / \partial y$: tf.Tensor, the same signature as y.
-        - the "gradient loss": Scalar.
+    Returns: GradientLoss object.
     """
     x = tf.convert_to_tensor(x)
     y = tf.convert_to_tensor(y)

@@ -1,6 +1,14 @@
 import tensorflow as tf
 
 
+class GradientLoss:
+
+  def __init__(self, grad_x, grad_y, loss):
+    self.grad_x = grad_x
+    self.grad_y = grad_y
+    self.loss = loss
+
+
 def get_gradient_loss_fn(loss_fn):
   r"""The general way of computing the "gradient loss". It is defined by
 
@@ -37,6 +45,7 @@ def get_gradient_loss_fn(loss_fn):
     """
     if not isinstance(inputs, (tuple, list)):
       inputs = [inputs]
+    inputs = [tf.convert_to_tensor(_) for _ in inputs]
 
     with tf.GradientTape() as tape:
       tape.watch(inputs)
@@ -49,7 +58,7 @@ def get_gradient_loss_fn(loss_fn):
   return gradient_loss_fn
 
 
-class GradientMeanSquareError:
+class GradientMeanSquaredError:
   """Explicit form of the "gradient loss" for mean squared error.
   
   Args:
@@ -74,6 +83,9 @@ class GradientMeanSquareError:
         - the $\partial S / \partial y$: tf.Tensor, the same signature as y.
         - the "gradient loss": Scalar.
     """
+    x = tf.convert_to_tensor(x)
+    y = tf.convert_to_tensor(y)
+
     with tf.GradientTape() as tape:
       tape.watch(x)
       y_pred = self.model(x)
@@ -82,7 +94,7 @@ class GradientMeanSquareError:
     grad_y = 2 * (y - y_pred)
 
     loss = sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))
-    return grad_x, grad_y, loss
+    return GradientLoss(grad_x, grad_y, loss)
 
 
 class GradientRelativeEntropy:
@@ -116,6 +128,9 @@ class GradientRelativeEntropy:
         - the $\partial S / \partial y$: tf.Tensor, the same signature as y.
         - the "gradient loss": Scalar.
     """
+    x = tf.convert_to_tensor(x)
+    y = tf.convert_to_tensor(y)
+
     # Compute \partial S / \partial x
     # [..., categories]
     y = tf.clip_by_value(y, self.clip_eps, 1-self.clip_eps)
@@ -137,10 +152,4 @@ class GradientRelativeEntropy:
 
     loss = sum(tf.reduce_mean(tf.square(_)) for _ in (grad_x, grad_y))
 
-    return grad_x, grad_y, loss
-
-
-def take_result(fn, i):
-  def decorated(*args, **kwargs):
-    return fn(*args, **kwargs)[i]
-  return decorated
+    return GradientLoss(grad_x, grad_y, loss)

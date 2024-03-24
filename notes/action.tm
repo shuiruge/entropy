@@ -313,8 +313,8 @@
   the model.
 
   In classification task, we have model input <math|x\<in\>\<bbb-R\><rsup|m>>
-  and categorical probabilistic target <math|y\<in\>\<bbb-R\><rsup|n>>, where
-  <math|m\<gtr\>1> and <math|n\<geqslant\>1>. Relative entropy is defined as
+  and categorical probabilistic logits <math|y\<in\>\<bbb-R\><rsup|n>>, where
+  <math|m\<geqslant\>1> and <math|n\<gtr\>1>. Relative entropy is defined as
   <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)><around*|(|ln
   p<rsub|\<alpha\>><around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>|]>>,
   where <math|p> and <math|q> are softmax function of <math|y> and
@@ -410,13 +410,13 @@
     <associate|footnote-3|<tuple|3|2>>
     <associate|footnote-4|<tuple|4|4>>
     <associate|footnote-5|<tuple|5|4>>
-    <associate|footnote-6|<tuple|6|?>>
+    <associate|footnote-6|<tuple|6|4>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|2>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|4>>
     <associate|footnr-5|<tuple|5|4>>
-    <associate|footnr-6|<tuple|6|?>>
+    <associate|footnr-6|<tuple|6|4>>
     <associate|section: Generic Dynamics Can Be Extract From Data
     Fitting|<tuple|1.2|1>>
   </collection>

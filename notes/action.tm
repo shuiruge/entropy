@@ -328,14 +328,14 @@
   </footnote> So, the action is
 
   <\equation*>
-    S<rsub|CE><around*|(|x,y,\<theta\>|)>\<assign\><big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)><around*|(|ln
+    S<rsub|RE><around*|(|x,y,\<theta\>|)>\<assign\><big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)><around*|(|ln
     p<rsub|\<alpha\>><around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>.
   </equation*>
 
   Directly, we have
 
   <\align>
-    <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|<big|sum><rsub|\<beta\>><around*|(|q<rsub|\<beta\>>-y<rsub|\<beta\>>|)><frac|\<partial\>f<rsup|\<beta\>>|\<partial\>x<rsup|\<alpha\>>>;>>|<row|<cell|<frac|\<partial\>S<rsub|CE>|\<partial\>y<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|p<rsub|\<alpha\>><around*|(|ln
+    <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|RE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|<big|sum><rsub|\<beta\>><around*|(|q<rsub|\<beta\>>-y<rsub|\<beta\>>|)><frac|\<partial\>f<rsup|\<beta\>>|\<partial\>x<rsup|\<alpha\>>>;>>|<row|<cell|<frac|\<partial\>S<rsub|RE>|\<partial\>y<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|p<rsub|\<alpha\>><around*|(|ln
     p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>|)>-p<rsub|\<alpha\>>
     S<rsub|CE>.>>>>
   </align>
@@ -344,14 +344,32 @@
     Usually, we use cross-entropy instead of relative entropy. But from
     cross-entropy, we cannot find a proper action. If using cross-entropy as
     loss function or action, it can be proven that the
-    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> will never vanish. We
-    also usually use <math|y> as <math|p> directly. This will not work too.
+    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> will never vanish.
+  </footnote> <\footnote>
+    We also usually use <math|y> as <math|p> directly. This will not work
+    too, since the components of <math|p> are not mutually independent.
+    Indeed, <math|\<partial\>S<rsub|RE>/\<partial\>p<rsub|\<alpha\>>=ln
+    p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>+1>. When <math|p=q>,
+    <math|\<partial\>S<rsub|RE>/\<partial\>p<rsub|\<alpha\>>=1>. Contrarily,
+    we have
+
+    <\equation>
+      <frac|\<partial\>S<rsub|RE>|\<partial\>y<rsup|\<alpha\>>>=<big|sum><rsub|\<beta\>><frac|\<partial\>p<rsub|\<beta\>>|\<partial\>y<rsup|\<alpha\>>><frac|\<partial\>S<rsub|RE>|\<partial\>p<rsub|\<beta\>>>=p<rsub|\<alpha\>><around*|(|ln
+      p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>|)>-p<rsub|\<alpha\>>
+      S<rsub|RE>+<with|color|blue|p<rsub|\<alpha\>><around*|(|1-<big|sum><rsub|\<beta\>>p<rsub|\<beta\>>|)>>,
+    </equation>
+
+    where we have labeled the contribution of the <math|1> by blue color. It
+    is by the restriction <math|<big|sum><rsub|\<beta\>>p<rsub|\<beta\>>=1>
+    that this term vanishes. In this way,
+    <math|\<partial\>S<rsub|RE>/\<partial\>y<rsup|\<alpha\>>=0> when
+    <math|p=q>.
   </footnote>
 
   <\equation*>
     <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=
     \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<big|sum><rsub|\<alpha\>><around*|(|p<rsub|\<alpha\>>-q<rsub|\<alpha\>>|)><frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2>+<around*|\<\|\|\>|p<around*|(|ln
-    p-ln q|)>-p S<rsub|CE>|\<\|\|\>><rsub|2><rsup|2>|]>.
+    p-ln q|)>-p S<rsub|RE>|\<\|\|\>><rsub|2><rsup|2>|]>.
   </equation*>
 
   Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
@@ -367,6 +385,25 @@
   as loss, <math|<around*|\<\|\|\>|\<partial\>f/\<partial\>x|\<\|\|\>>> will
   also be reduced on the real world data. This again provides a
   regularization for a greater robustness.
+
+  For both mean squared error and relative entropy, form their expressions it
+  can be seen directly that, given any <math|\<theta\>>, a pair
+  <math|<around*|(|x<rsub|\<star\>>,y<rsub|\<star\>>|)>\<assign\>argmin<rsub|<around*|(|x,y|)>>
+  S<around*|(|x,y,\<theta\>|)>> has <math|<around*|(|\<partial\>S/\<partial\>x|)><around*|(|x<rsub|\<star\>>,y<rsub|\<star\>>,\<theta\>|)>=<around*|(|\<partial\>S/\<partial\>y|)><around*|(|x<rsub|\<star\>>,y<rsub|\<star\>>,\<theta\>|)>=0>,
+  and vice versa. This is because the loss functions are strictly convex. It
+  explains why minimizing the loss and the loss gradients give the same
+  performance.
+
+  But this does not mean that the two loss
+  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>P<rsub|D>><around*|[|S<around*|(|x,y,\<theta\>|)>|]>>
+  and <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>P<rsub|D>><around*|[|<around*|\<\|\|\>|<around*|(|\<partial\>S/\<partial\>x|)><around*|(|x,y,\<theta\>|)>|\<\|\|\>><rsup|2>+|]><around*|\<\|\|\>|<around*|(|\<partial\>S/\<partial\>y|)><around*|(|x,y,\<theta\>|)>|\<\|\|\>><rsup|2>>
+  are equivalent. Imagine a Gaussian <math|P<rsub|D>>, around the mean value
+  the density is high, the weight of the mean value is large, So, minimizing
+  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>P<rsub|D>><around*|[|S<around*|(|x,y,\<theta\>|)>|]>>
+  will push the <math|S> at the mean value downward greatly, resulting in an
+  inverted reflection of bell-shaped curve. But, minimizing
+  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>P<rsub|D>><around*|[|<around*|\<\|\|\>|<around*|(|\<partial\>S/\<partial\>x|)><around*|(|x,y,\<theta\>|)>|\<\|\|\>><rsup|2>+|]><around*|\<\|\|\>|<around*|(|\<partial\>S/\<partial\>y|)><around*|(|x,y,\<theta\>|)>|\<\|\|\>><rsup|2>>
+  will give a plateau around the mean value.
 
   There are also unsupervised machine learning, such as clustering task.
   <hlink|K-means|https://en.wikipedia.org/wiki/K-means_clustering#Description>,
@@ -411,12 +448,14 @@
     <associate|footnote-4|<tuple|4|4>>
     <associate|footnote-5|<tuple|5|4>>
     <associate|footnote-6|<tuple|6|4>>
+    <associate|footnote-7|<tuple|7|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|2>>
     <associate|footnr-3|<tuple|3|2>>
     <associate|footnr-4|<tuple|4|4>>
     <associate|footnr-5|<tuple|5|4>>
-    <associate|footnr-6|<tuple|6|4>>
+    <associate|footnr-6|<tuple|7|4>>
+    <associate|footnr-7|<tuple|7|?>>
     <associate|section: Generic Dynamics Can Be Extract From Data
     Fitting|<tuple|1.2|1>>
   </collection>

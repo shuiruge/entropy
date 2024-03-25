@@ -2,14 +2,10 @@ import tensorflow as tf
 from collections import namedtuple
 
 
-def reduce_mean(x, batch_axis):
-  if isinstance(batch_axis, int):
-    batch_axis = [batch_axis]
-  if not isinstance(batch_axis, (list, tuple)):
-    raise ValueError()
+def reduce_mean(x, batch_dims):
   rank = len(tf.shape(x))
-  reduce_axis = [i for i in range(rank) if i not in batch_axis]
-  return tf.reduce_mean(x, reduce_axis)
+  axis = [i for i in range(rank) if i < batch_dims]
+  return tf.reduce_mean(x, axis)
 
 
 def get_gradient_loss_fn(loss_fn):
@@ -35,11 +31,11 @@ def get_gradient_loss_fn(loss_fn):
     tensors for loss gradients, as well as a scalar for loss.
   """
 
-  def gradient_loss_fn(inputs, batch_axis=0):
+  def gradient_loss_fn(inputs, batch_dims=1):
     """
     Args:
       inputs: tf.Tensor or List[tf.Tensor]
-      batch_size: int or List[int]
+      batch_dims: int
 
     Returns: A pair, if `return_grads`, including:
         - the "gradient loss": loss value per sample.
@@ -55,7 +51,7 @@ def get_gradient_loss_fn(loss_fn):
       loss = loss_fn(inputs)
     grads = tape.gradient(loss, inputs)
 
-    gradient_loss = sum(reduce_mean(tf.square(x), batch_axis) for x in grads)
+    gradient_loss = sum(reduce_mean(tf.square(x), batch_dims) for x in grads)
     return grads, gradient_loss
 
   return gradient_loss_fn
@@ -75,7 +71,7 @@ class GradientMeanSquaredError:
   def __init__(self, model):
     self.model = model
 
-  def __call__(self, x, y, batch_axis=0):
+  def __call__(self, x, y, batch_dims=1):
     r"""
     Args:
       x: tf.Tensor
@@ -83,7 +79,7 @@ class GradientMeanSquaredError:
       y: tf.Tensor
         Target, shall have the same shape as the model output, up to
         unsqueezed dimensions
-      batch_size: int or List[int]
+      batch_dims: int
 
     Returns: GradientLoss object.
     """
@@ -97,7 +93,7 @@ class GradientMeanSquaredError:
 
     grad_y = 2 * (y - y_pred)
 
-    loss = sum(reduce_mean(tf.square(_), batch_axis) for _ in (grad_x, grad_y))
+    loss = sum(reduce_mean(tf.square(_), batch_dims) for _ in (grad_x, grad_y))
     return GradientLoss(grad_x, grad_y, loss)
 
 
@@ -117,7 +113,7 @@ class GradientRelativeEntropy:
     self.model = model
     self.clip_eps = clip_eps
 
-  def __call__(self, x, y, batch_axis=0):
+  def __call__(self, x, y, batch_dims=1):
     r"""
     Args:
       x: tf.Tensor
@@ -125,7 +121,7 @@ class GradientRelativeEntropy:
       y: tf.Tensor
         Target. As a classification target, it shall be one-hot encoded.
         The last axis indicates categories.
-      batch_size: int or List[int]
+      batch_dims: int
 
     Returns: GradientLoss object.
     """
@@ -151,6 +147,6 @@ class GradientRelativeEntropy:
     # [..., categories]
     grad_y = z - y * tf.reduce_sum(z, axis=-1, keepdims=True)
 
-    loss = sum(reduce_mean(tf.square(_), batch_axis) for _ in (grad_x, grad_y))
+    loss = sum(reduce_mean(tf.square(_), batch_dims) for _ in (grad_x, grad_y))
 
     return GradientLoss(grad_x, grad_y, loss)

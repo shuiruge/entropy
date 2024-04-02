@@ -198,10 +198,12 @@
   </equation>
 
   By numerical computation, we find that the matrix
-  <math|\<delta\>/M-1/M<rsup|2>> is non-negative definite. The term
-  <math|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>>
+  <math|\<delta\>/M-1/M<rsup|2>> is <with|color|dark green|non-negative
+  definite>. The term <math|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>>
   can be seen as a \Ppropagation\Q from the <math|\<gamma\>>-neuron to the
   <math|\<alpha\>>-neuron, weighted by <math|J<rsub|\<alpha\>\<gamma\>>>.
+  Computed on fashion-MNIST dataset, components of <math|J> vary from
+  <math|-0.2> to <math|0.15>.
 
   <subsubsection|Third-Order (TODO)>
 
@@ -246,24 +248,62 @@
 
 <\references>
   <\collection>
-    <associate|auto-1|<tuple|1|?>>
-    <associate|auto-2|<tuple|1.1|?>>
-    <associate|auto-3|<tuple|1.2|?>>
-    <associate|auto-4|<tuple|2|?>>
-    <associate|auto-5|<tuple|2.1|?>>
-    <associate|auto-6|<tuple|2.2|?>>
-    <associate|auto-7|<tuple|2.3|?>>
-    <associate|auto-8|<tuple|2.4|?>>
-    <associate|equ:dfdUdW|<tuple|3|?>>
-    <associate|equ:dfdUdb|<tuple|4|?>>
-    <associate|equ:dfdc|<tuple|2|?>>
-    <associate|equ:q derivative|<tuple|1|?>>
+    <associate|auto-1|<tuple|1|1>>
+    <associate|auto-2|<tuple|1.1|1>>
+    <associate|auto-3|<tuple|1.2|1>>
+    <associate|auto-4|<tuple|2|2>>
+    <associate|auto-5|<tuple|2.1|2>>
+    <associate|auto-6|<tuple|2.2|2>>
+    <associate|auto-7|<tuple|2.3|2>>
+    <associate|auto-8|<tuple|2.4|3>>
+    <associate|equ:dfdUdW|<tuple|3|1>>
+    <associate|equ:dfdUdb|<tuple|4|1>>
+    <associate|equ:dfdc|<tuple|2|1>>
+    <associate|equ:q derivative|<tuple|1|1>>
     <associate|equ:q derive|<tuple|1|?>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|?>>
-    <associate|footnote-3|<tuple|3|?>>
+    <associate|footnote-2|<tuple|2|2>>
+    <associate|footnote-3|<tuple|3|3>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|?>>
-    <associate|footnr-3|<tuple|3|?>>
+    <associate|footnr-2|<tuple|2|2>>
+    <associate|footnr-3|<tuple|3|3>>
   </collection>
 </references>
+
+<\auxiliary>
+  <\collection>
+    <\associate|toc>
+      <with|par-left|<quote|1tab>|1<space|2spc>Basics
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-1>>
+
+      <with|par-left|<quote|2tab>|1.1<space|2spc>Configuration Space
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-2>>
+
+      <with|par-left|<quote|2tab>|1.2<space|2spc>Data and Action
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-3>>
+
+      <with|par-left|<quote|1tab>|2<space|2spc>Taylor Expansion
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4>>
+
+      <with|par-left|<quote|2tab>|2.1<space|2spc>Zeroth-Order
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-5>>
+
+      <with|par-left|<quote|2tab>|2.2<space|2spc>First-Order
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|2tab>|2.3<space|2spc>Second-Order
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|2tab>|2.4<space|2spc>Third-Order (TODO)
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
+    </associate>
+  </collection>
+</auxiliary>

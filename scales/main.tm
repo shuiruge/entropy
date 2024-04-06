@@ -3,9 +3,9 @@
 <style|<tuple|generic|pagella-font>>
 
 <\body>
-  <subsection|Basics>
+  <section|Basics>
 
-  <subsubsection|Configuration Space>
+  <subsection|Configuration Space>
 
   Let <math|z\<in\>\<bbb-R\><rsup|E>> represent the embeding vector,
   <math|m=1,\<ldots\>,M> is the categorical label, and
@@ -27,7 +27,7 @@
   <math|\<sigma\>> represents the SiLU activation, that is,
   <math|\<sigma\><around*|(|x|)>=x/<around*|(|1+\<mathe\><rsup|-x>|)>>.
 
-  <subsubsection|Data and Action>
+  <subsection|Data and Action>
 
   Given the distribution of real world data <math|p>, the relative entropy
   between <math|p> and <math|q> is
@@ -54,7 +54,7 @@
   for all <math|m=1,\<ldots\>,M>, meaning that the data have been properly
   balanced.>
 
-  <subsection|Taylor Expansion of Action>
+  <section|Taylor Expansion of Action>
 
   Now, we are to Taylor expand <math|S<around*|(|\<theta\>|)>> at
   <math|\<theta\>=0>. Denote the expansion by
@@ -66,7 +66,7 @@
   where <math|S<rsub|n><around*|(|\<theta\>|)>\<sim\>\<theta\><rsup|n>>, and
   <math|S<rsub|0>\<assign\>S<around*|(|0|)>> is <math|\<theta\>>-independent.
 
-  <subsubsection|Zeroth Order>
+  <subsection|Zeroth Order>
 
   When <math|\<theta\>=0> (i.e. <math|U,c,W,b=0>), we have
   <math|f<rsub|\<alpha\>><around*|(|z,0|)>=0>, thus
@@ -77,7 +77,7 @@
     S<rsub|0>=ln M.
   </equation>
 
-  <subsubsection|First Order>
+  <subsection|First Order>
 
   Plugging in equation <reference|equ:q derivative>, we have
 
@@ -123,7 +123,7 @@
     S<rsub|1><around*|(|\<theta\>|)>=0.
   </equation>
 
-  <subsubsection|Second Order>
+  <subsection|Second Order>
 
   Taking derivative on <math|\<partial\>S/\<partial\>\<theta\>> and plugging
   in equation <reference|equ:q derivative>, we arrive at
@@ -240,7 +240,7 @@
   represents the correlation between an output class and a single input
   dimension.
 
-  <subsubsection|Third Order>
+  <subsection|Third Order>
 
   Taking derivative on <math|\<partial\><rsup|2>S/<around*|(|\<partial\>\<theta\>\<partial\>\<theta\><rprime|'>|)>>
   and plugging in equation <reference|equ:q derivative>, we have
@@ -259,13 +259,13 @@
   we have to calculate <math|<around*|(|\<partial\><rsup|3>f/\<partial\>\<theta\>\<partial\>\<theta\><rprime|'>\<partial\>\<theta\><rprime|''>|)><around*|(|z,0|)>>.
   Since <math|\<sigma\><around*|(|0|)>=0>,
   <math|\<sigma\><rprime|'><around*|(|0|)>=1/2>, and
-  <math|\<sigma\><rprime|''><around*|(|0|)>=1/6>, we have the non-vanishing
+  <math|\<sigma\><rprime|''><around*|(|0|)>=1/2>, we have the non-vanishing
   terms
 
   <\small>
     <\align>
       <tformat|<table|<row|<cell|<frac|\<partial\><rsup|3>f<rsub|\<alpha\>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>\<partial\>W<rsub|\<beta\>\<delta\>>><around*|(|z,0|)>=>|<cell|<frac|z<rsub|\<gamma\>>
-      z<rsub|\<delta\>>|6>;>>|<row|<cell|<frac|\<partial\><rsup|3>f<rsub|\<alpha\>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>b<rsub|\<beta\>>><around*|(|z,0|)>=>|<cell|<frac|z<rsub|\<gamma\>>|6>;>>|<row|<cell|<frac|\<partial\><rsup|3>f<rsub|\<alpha\>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>b<rsub|\<beta\>>\<partial\>b<rsub|\<beta\>>><around*|(|z,\<theta\>|)>=>|<cell|<frac|1|6>.>>>>
+      z<rsub|\<delta\>>|2>;>>|<row|<cell|<frac|\<partial\><rsup|3>f<rsub|\<alpha\>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>b<rsub|\<beta\>>><around*|(|z,0|)>=>|<cell|<frac|z<rsub|\<gamma\>>|2>;>>|<row|<cell|<frac|\<partial\><rsup|3>f<rsub|\<alpha\>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>b<rsub|\<beta\>>\<partial\>b<rsub|\<beta\>>><around*|(|z,\<theta\>|)>=>|<cell|<frac|1|2>.>>>>
     </align>
   </small>
 
@@ -310,8 +310,8 @@
     <align|<tformat|<table|<row|<cell|<frac|\<partial\><rsup|3>S|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>\<partial\>W<rsub|\<beta\>\<delta\>>><around*|(|0|)>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)>
     <big|sum><rsub|\<alpha\><rprime|'>>q<rsub|\<alpha\><rprime|'>><frac|\<partial\><rsup|3>f<rsub|\<alpha\><rprime|'>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>\<partial\>W<rsub|\<beta\>\<delta\>>>-<big|sum><rsub|z,m>p<around*|(|z,m|)><frac|\<partial\><rsup|3>f<rsub|m>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>\<partial\>W<rsub|\<beta\>\<delta\>>>>>|<row|<cell|<around*|{|q<rsub|\<alpha\>>\<equiv\><frac|1|M>,<frac|\<partial\><rsup|3>f|\<partial\>U\<partial\>W\<partial\>W>=\<cdots\>|}>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)>
     <big|sum><rsub|\<alpha\><rprime|'>><frac|1|M><frac|\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>
-    z<rsub|\<gamma\>> z<rsub|\<delta\>>|6>-<big|sum><rsub|z,m>p<around*|(|z,m|)><frac|\<delta\><rsub|m\<alpha\>>
-    z<rsub|\<gamma\>> z<rsub|\<delta\>>|6>>>|<row|<cell|<around*|{|p<around*|(|\<alpha\>|)>\<equiv\><frac|1|M>|}>=>|<cell|<frac|1|6M>
+    z<rsub|\<gamma\>> z<rsub|\<delta\>>|2>-<big|sum><rsub|z,m>p<around*|(|z,m|)><frac|\<delta\><rsub|m\<alpha\>>
+    z<rsub|\<gamma\>> z<rsub|\<delta\>>|2>>>|<row|<cell|<around*|{|p<around*|(|\<alpha\>|)>\<equiv\><frac|1|M>|}>=>|<cell|<frac|1|2M>
     J<rsub|\<alpha\>\<gamma\>\<delta\>>>>>>>
   </small>
 
@@ -321,7 +321,7 @@
 
   <\small>
     <\equation*>
-      <frac|\<partial\><rsup|3>S|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>\<partial\>b<rsub|\<beta\>>><around*|(|0|)>=<frac|1|6M><around*|(|\<bbb-E\><rsub|z\<sim\>p<around*|(|z|)>><around*|[|z<rsub|\<gamma\>>|]>-\<bbb-E\><rsub|z\<sim\>p<around*|(|z\|\<alpha\>|)>><around*|[|z<rsub|\<gamma\>>|]>|)>=<frac|1|6M>J<rsub|\<alpha\>\<gamma\>>
+      <frac|\<partial\><rsup|3>S|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>\<partial\>b<rsub|\<beta\>>><around*|(|0|)>=<frac|1|6M><around*|(|\<bbb-E\><rsub|z\<sim\>p<around*|(|z|)>><around*|[|z<rsub|\<gamma\>>|]>-\<bbb-E\><rsub|z\<sim\>p<around*|(|z\|\<alpha\>|)>><around*|[|z<rsub|\<gamma\>>|]>|)>=<frac|1|2M>J<rsub|\<alpha\>\<gamma\>>
     </equation*>
   </small>
 
@@ -336,8 +336,8 @@
   So,
 
   <\align>
-    <tformat|<table|<row|<cell|S<rsub|3><around*|(|\<theta\>|)>=>|<cell|<big|sum><rsub|\<alpha\>,\<beta\>,\<gamma\>><around*|(|<frac|\<delta\><rsub|\<alpha\>\<beta\>\<gamma\>>|6M>-<frac|\<delta\><rsub|\<alpha\>\<beta\>>+\<delta\><rsub|\<alpha\>\<gamma\>>+\<delta\><rsub|\<beta\>\<gamma\>>|6M<rsup|2>>+<frac|1|3M<rsup|3>>|)>c<rsub|\<alpha\>>c<rsub|\<beta\>>c<rsub|\<gamma\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<beta\>,\<gamma\>><around*|(|<frac|\<delta\><rsub|\<alpha\>\<gamma\>>|12M>-<frac|1|12M<rsup|2>>|)>U<rsub|\<alpha\>\<beta\>>b<rsub|\<beta\>>c<rsub|\<gamma\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<beta\>,\<gamma\>,\<delta\>><around*|(|<frac|Z<rsub|\<gamma\>>
-    \<delta\><rsub|\<alpha\>\<delta\>>|12M>-<frac|Z<rsub|\<gamma\>>|12M<rsup|2>>|)>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>c<rsub|\<delta\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<beta\>,\<gamma\>><frac|J<rsub|\<alpha\>\<gamma\>>|36M>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>b<rsub|\<beta\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<beta\>,\<gamma\>,\<delta\>><frac|J<rsub|\<alpha\>\<gamma\>\<delta\>>|36M>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>W<rsub|\<beta\>\<delta\>>.>>>>
+    <tformat|<table|<row|<cell|S<rsub|3><around*|(|\<theta\>|)>=>|<cell|<big|sum><rsub|\<alpha\>,\<beta\>,\<gamma\>><around*|(|<frac|\<delta\><rsub|\<alpha\>\<beta\>\<gamma\>>|6M>-<frac|\<delta\><rsub|\<alpha\>\<beta\>>+\<delta\><rsub|\<alpha\>\<gamma\>>+\<delta\><rsub|\<beta\>\<gamma\>>|6M<rsup|2>>+<frac|1|3M<rsup|3>>|)>c<rsub|\<alpha\>>c<rsub|\<beta\>>c<rsub|\<gamma\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<gamma\>><around*|(|<frac|\<delta\><rsub|\<alpha\>\<gamma\>>|12M>-<frac|1|12M<rsup|2>>|)><around*|(|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>b<rsub|\<beta\>>|)>c<rsub|\<gamma\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<gamma\>,\<delta\>><around*|(|<frac|Z<rsub|\<gamma\>>
+    \<delta\><rsub|\<alpha\>\<delta\>>|12M>-<frac|Z<rsub|\<gamma\>>|12M<rsup|2>>|)><around*|(|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>|)>c<rsub|\<delta\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<gamma\>><frac|J<rsub|\<alpha\>\<gamma\>>|12M><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>b<rsub|\<beta\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<gamma\>,\<delta\>><frac|J<rsub|\<alpha\>\<gamma\>\<delta\>>|12M><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>W<rsub|\<beta\>\<delta\>>.>>>>
   </align>
 
   Numerical computation again shows that, up to the third order, the action
@@ -356,7 +356,7 @@
   represents the correlation between an output class and two \ input
   dimensions.
 
-  <subsubsection|Higher Orders>
+  <subsection|Higher Orders>
 
   Based on the previous analysis, it is suspected that the main contribution
   from <math|S<rsub|n+1><around*|(|\<theta\><rsub|\<star\>>|)>> to
@@ -364,14 +364,56 @@
 
   <\equation*>
     <frac|\<sigma\><rsup|<around*|(|n|)>><around*|(|0|)>|<around*|(|n+1|)>!
+    M><big|sum><rsub|\<alpha\>,\<gamma\><rsub|1>,\<ldots\>,\<gamma\><rsub|n>>J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\><rsub|1>>\<cdots\>W<rsub|\<beta\>\<gamma\><rsub|n>>,
+  </equation*>
+
+  where we have defined <math|J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>>\<assign\>\<bbb-E\><rsub|z\<sim\>p<around*|(|z|)>><around*|[|z<rsub|\<gamma\><rsub|1>>\<cdots\>z<rsub|\<gamma\><rsub|n>>|]>-\<bbb-E\><rsub|z\<sim\>p<around*|(|z\|\<alpha\>|)>><around*|[|z<rsub|\<gamma\><rsub|1>>\<cdots\>z<rsub|\<gamma\><rsub|n>>|]>>
+  as usual. The term <math|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\><rsub|1>>\<cdots\>W<rsub|\<beta\>\<gamma\><rsub|n>>>
+  characterizes the correlation between an output class <math|\<alpha\>> and
+  the input dimensions <math|\<gamma\><rsub|1>,\<ldots\>,\<gamma\><rsub|n>>.
+  If this is true, then we have
+
+  <\equation*>
+    S<around*|(|\<theta\>|)>\<approx\>ln M+<big|sum><rsub|n=1><rsup|+\<infty\>><frac|\<sigma\><rsup|<around*|(|n|)>><around*|(|0|)>|<around*|(|n+1|)>!
     M><big|sum><rsub|\<alpha\>,\<gamma\><rsub|1>,\<ldots\>,\<gamma\><rsub|n>>J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\><rsub|1>>\<cdots\>W<rsub|\<beta\>\<gamma\><rsub|n>>
   </equation*>
 
-  which characterizes the correlation between an output class
-  <math|\<alpha\>> and the input dimensions
-  <math|\<gamma\><rsub|1>,\<ldots\>,\<gamma\><rsub|n>>, and
-  <math|J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>>\<assign\>\<bbb-E\><rsub|z\<sim\>p<around*|(|z|)>><around*|[|z<rsub|\<gamma\><rsub|1>>\<cdots\>z<rsub|\<gamma\><rsub|n>>|]>-\<bbb-E\><rsub|z\<sim\>p<around*|(|z\|\<alpha\>|)>><around*|[|z<rsub|\<gamma\><rsub|1>>\<cdots\>z<rsub|\<gamma\><rsub|n>>|]>>
-  as usual.
+  for any <math|\<theta\>\<approx\>\<theta\><rsub|\<star\>>>.
+
+  <section|Data Size and Early Stopping>
+
+  In fact, we have only finite size of dataset. We cannot get the
+  <math|p<around*|(|z,m|)>>, but empirical distributions
+  <math|p<rsub|T><around*|(|z,m|)>> and <math|p<rsub|E><around*|(|z,m|)>>,
+  both of which are summations of delta functions. The <math|p<rsub|T>> for
+  training data and <math|p<rsub|E>> for test (or evaluation) data. The
+  strategy training is minimizing the action (training loss)
+
+  <\equation*>
+    S<rsub|T><around*|(|\<theta\>|)>\<assign\>-<big|sum><rsub|z,m>p<rsub|T><around*|(|z,m|)>
+    ln q<rsub|m><around*|(|z,\<theta\>|)>
+  </equation*>
+
+  by gradient descent method is optimizing until another action (evaluation
+  loss)
+
+  <\equation*>
+    S<rsub|E><around*|(|\<theta\>|)>\<assign\>-<big|sum><rsub|z,m>p<rsub|E><around*|(|z,m|)>
+    ln q<rsub|m><around*|(|z,\<theta\>|)>
+  </equation*>
+
+  starts to increase. In this situation, we have
+  <math|\<nabla\>S<rsub|T>\<cdot\>\<nabla\>S<rsub|E>=0>, where the
+  <math|\<nabla\>S<rsub|E>> starts to turn its direction to go against with
+  the <math|\<nabla\>S<rsub|T>>. So, the training
+  <with|font-shape|italic|early stops> at
+
+  <\equation*>
+    \<nabla\>S<rsub|T><around*|(|\<theta\>|)>\<cdot\>\<nabla\>S<rsub|E><around*|(|\<theta\>|)>=0,
+  </equation*>
+
+  instead of <math|\<nabla\>S<around*|(|\<theta\>|)>=0>. This difference is
+  especially important when the data size is quite limited.
 </body>
 
 <\initial>
@@ -384,6 +426,7 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|3|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|2|1>>
@@ -391,7 +434,7 @@
     <associate|auto-6|<tuple|2.2|1>>
     <associate|auto-7|<tuple|2.3|2>>
     <associate|auto-8|<tuple|2.4|4>>
-    <associate|auto-9|<tuple|2.5|?>>
+    <associate|auto-9|<tuple|2.5|5>>
     <associate|equ:q derivative|<tuple|1|1>>
   </collection>
 </references>
@@ -411,7 +454,7 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|2<space|2spc>Taylor Expansion
+      <with|par-left|<quote|1tab>|2<space|2spc>Taylor Expansion of Action
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
@@ -430,6 +473,10 @@
       <with|par-left|<quote|2tab>|2.4<space|2spc>Third Order
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|2tab>|2.5<space|2spc>Higher Orders
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
     </associate>
   </collection>
 </auxiliary>

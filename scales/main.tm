@@ -7,7 +7,7 @@
 
   <subsection|Configuration Space>
 
-  Let <math|z\<in\>\<bbb-R\><rsup|E>> represent the embeding vector,
+  Let <math|z\<in\>\<bbb-R\><rsup|E>> represent the \Pembeding vector\Q,
   <math|m=1,\<ldots\>,M> is the categorical label, and
   <math|q<rsub|m><around*|(|z,\<theta\>|)>\<assign\>softmax<rsub|m><around*|(|f<around*|(|z,\<theta\>|)>|)>>
   with <math|f<around*|(|\<cdummy\>,\<theta\>|)>> a neural network
@@ -25,7 +25,11 @@
   \<sigma\><around*|(|<big|sum><rsub|\<gamma\>>W<rsub|\<beta\>\<gamma\>>
   z<rsub|\<gamma\>>+b<rsub|\<beta\>>|)>+c<rsub|\<alpha\>>>, where
   <math|\<sigma\>> represents the SiLU activation, that is,
-  <math|\<sigma\><around*|(|x|)>=x/<around*|(|1+\<mathe\><rsup|-x>|)>>.
+  <math|\<sigma\><around*|(|x|)>=x/<around*|(|1+\<mathe\><rsup|-x>|)>>. Given
+  the \Phidden dimension\Q <math|H>, we have
+  <math|U\<in\>\<bbb-R\><rsup|M\<times\>H>>, <math|c\<in\>\<bbb-R\><rsup|M>>,
+  <math|W\<in\>\<bbb-R\><rsup|H\<times\>E>>, and
+  <math|b\<in\>\<bbb-R\><rsup|H>>.
 
   <subsection|Data and Action>
 
@@ -345,7 +349,7 @@
 
   We further analyzed <math|S<rsub|3>> on the best fit
   <math|\<theta\><rsub|\<star\>>>. We found that it is the last term that
-  dominates <math|S<rsub|2><around*|(|\<theta\><rsub|\<star\>>|)>>.
+  dominates <math|S<rsub|3><around*|(|\<theta\><rsub|\<star\>>|)>>.
   Interestingly, like the case of <math|S<rsub|2>>, both the terms
   <math|J<rsub|\<alpha\>\<gamma\>\<delta\>>> and
   <math|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>W<rsub|\<beta\>\<delta\>>>,
@@ -356,6 +360,23 @@
   represents the correlation between an output class and two \ input
   dimensions.
 
+  Why does the last term dominate <math|S<rsub|3>>? Comparing with other
+  terms, the sub-terms involved in the summation is much more. For example,
+  when <math|U> is <math|10\<times\>2048> and <math|W> is
+  <math|2048\<times\>1024>, the last summation has
+  <math|2.2\<times\>10<rsup|10>> sub-terms, other terms have
+  <math|10<rsup|3>>, <math|2.1\<times\>10<rsup|5>>,
+  <math|2.1\<times\>10<rsup|8>>, and <math|2.1\<times\>10<rsup|7>> sub-terms,
+  respectively. So, if the scales of <math|U>, <math|c>, <math|W>, and
+  <math|b> are in the same order, then the last term dominates. This also
+  applies to <math|S<rsub|2>>. We can check this idea by making the hidden
+  dimension <math|H> small. Indeed, when <math|H> is small, domination of the
+  last term vanishes.
+
+  <with|color|red|The problem left is why the scales of <math|U>, <math|c>,
+  <math|W>, and <math|b> are in the same order when
+  <math|\<theta\>\<approx\>\<theta\><rsub|\<star\>>>.>
+
   <subsection|Higher Orders>
 
   Based on the previous analysis, it is suspected that the main contribution
@@ -364,7 +385,7 @@
 
   <\equation*>
     <frac|\<sigma\><rsup|<around*|(|n|)>><around*|(|0|)>|<around*|(|n+1|)>!
-    M><big|sum><rsub|\<alpha\>,\<gamma\><rsub|1>,\<ldots\>,\<gamma\><rsub|n>>J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\><rsub|1>>\<cdots\>W<rsub|\<beta\>\<gamma\><rsub|n>>,
+    M><big|sum><rsub|\<alpha\>,\<gamma\><rsub|1>,\<ldots\>,\<gamma\><rsub|n>>J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\><rsub|1>>\<cdots\>W<rsub|\<beta\>\<gamma\><rsub|n>>
   </equation*>
 
   where we have defined <math|J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>>\<assign\>\<bbb-E\><rsub|z\<sim\>p<around*|(|z|)>><around*|[|z<rsub|\<gamma\><rsub|1>>\<cdots\>z<rsub|\<gamma\><rsub|n>>|]>-\<bbb-E\><rsub|z\<sim\>p<around*|(|z\|\<alpha\>|)>><around*|[|z<rsub|\<gamma\><rsub|1>>\<cdots\>z<rsub|\<gamma\><rsub|n>>|]>>
@@ -408,9 +429,9 @@
   the <math|\<nabla\>S<rsub|T>>. So, the training
   <with|font-shape|italic|early stops> at
 
-  <\equation*>
+  <\equation>
     \<nabla\>S<rsub|T><around*|(|\<theta\>|)>\<cdot\>\<nabla\>S<rsub|E><around*|(|\<theta\>|)>=0,
-  </equation*>
+  </equation>
 
   instead of <math|\<nabla\>S<around*|(|\<theta\>|)>=0>. This difference is
   especially important when the data size is quite limited.
@@ -426,7 +447,7 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|3|?>>
+    <associate|auto-10|<tuple|3|6>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|2|1>>
@@ -434,7 +455,7 @@
     <associate|auto-6|<tuple|2.2|1>>
     <associate|auto-7|<tuple|2.3|2>>
     <associate|auto-8|<tuple|2.4|4>>
-    <associate|auto-9|<tuple|2.5|5>>
+    <associate|auto-9|<tuple|2.5|6>>
     <associate|equ:q derivative|<tuple|1|1>>
   </collection>
 </references>
@@ -442,41 +463,45 @@
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      <with|par-left|<quote|1tab>|1<space|2spc>Basics
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Basics>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-1>>
+      <no-break><pageref|auto-1><vspace|0.5fn>
 
-      <with|par-left|<quote|2tab>|1.1<space|2spc>Configuration Space
+      <with|par-left|<quote|1tab>|1.1<space|2spc>Configuration Space
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|2tab>|1.2<space|2spc>Data and Action
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Data and Action
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|2<space|2spc>Taylor Expansion of Action
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-4>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Taylor
+      Expansion of Action> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4><vspace|0.5fn>
 
-      <with|par-left|<quote|2tab>|2.1<space|2spc>Zeroth Order
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Zeroth Order
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|2tab>|2.2<space|2spc>First Order
+      <with|par-left|<quote|1tab>|2.2<space|2spc>First Order
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|2tab>|2.3<space|2spc>Second Order
+      <with|par-left|<quote|1tab>|2.3<space|2spc>Second Order
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|2tab>|2.4<space|2spc>Third Order
+      <with|par-left|<quote|1tab>|2.4<space|2spc>Third Order
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|2tab>|2.5<space|2spc>Higher Orders
+      <with|par-left|<quote|1tab>|2.5<space|2spc>Higher Orders
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Data
+      Size and Early Stopping> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>

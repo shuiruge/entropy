@@ -369,9 +369,11 @@
   <math|2.1\<times\>10<rsup|8>>, and <math|2.1\<times\>10<rsup|7>> sub-terms,
   respectively. So, if the scales of <math|U>, <math|c>, <math|W>, and
   <math|b> are in the same order, then the last term dominates. This also
-  applies to <math|S<rsub|2>>. We can check this idea by making the hidden
-  dimension <math|H> small. Indeed, when <math|H> is small, domination of the
-  last term vanishes.
+  applies to <math|S<rsub|2>>. We can check this idea by making the embedding
+  dimension <math|E> small. Indeed, when <math|E> is small, domination of the
+  last term vanishes. Notice that the power law between the model size and
+  the optimized loss appears only when <math|E> has been large enough. So, we
+  can guess that this domination is the key to the power law.
 
   <with|color|red|The problem left is why the scales of <math|U>, <math|c>,
   <math|W>, and <math|b> are in the same order when

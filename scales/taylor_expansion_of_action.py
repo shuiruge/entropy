@@ -55,7 +55,7 @@ def train_model(hidden_units):
     )
     return model
 
-xm.hidden_units = [1024, 2048]
+xm.hidden_units = [1024, 4096]
 model = train_model(xm.hidden_units)
 
 # The best fit parameters: \theta_{\star}
@@ -124,6 +124,14 @@ for _ in ZZa:
     J3.append(ZZ - tf.reduce_mean(_, axis=0))
 J3 = tf.stack(J3, axis=0).numpy()
 
+# Plot Js
+fig, axes = plt.subplots(1, 2, figsize=(10, 5), sharex=True)
+axes[0].hist(J2.reshape([-1]), 100, label='J2')
+axes[0].legend()
+axes[1].hist(J3.reshape([-1]), 100, label='J3')
+axes[1].legend()
+plt.savefig(xm.get_path('J_histogram.png'))
+
 # Parameters for computing S_2 and S_3.
 M = 10  # number of classes.
 Mf = tf.cast(M, tf.float32)  # float M.
@@ -164,8 +172,27 @@ def get_S3(U, c, W, b):
     )
 
 xm.S2_terms = [float(_) for _ in get_S2(U, c, W)]
-print(xm.S2_terms)
 xm.S3_terms = [float(_) for _ in get_S3(U, c, W, b)]
-print(xm.S3_terms)
+
+# Plot correlations for S2
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+axes[0].hist(J2.reshape([-1]), 100, label='J2')
+axes[0].legend()
+axes[1].hist(tf.matmul(U, W).numpy().reshape([-1]), 100, label='UW1')
+axes[1].legend()
+axes[2].hist((J2 * tf.matmul(U, W)).numpy().reshape([-1]), 100, label='J2 * UW1')
+axes[2].legend()
+plt.savefig(xm.get_path('J2_UW1_correlation_histogram.png'))
+
+# Plot correlations for S3
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+axes[0].hist(J3.reshape([-1]), 100, label='J3')
+axes[0].legend()
+axes[1].hist(tf.einsum('ab,bc,bd->acd', U, W, W).numpy().reshape([-1]), 100, label='UW2')
+axes[1].legend()
+axes[2].hist((J3 * tf.einsum('ab,bc,bd->acd', U, W, W)).numpy().reshape([-1]), 1000, label='J3 * UW2')
+axes[2].set_xlim([-1e-3, 1e-3])
+axes[2].legend()
+plt.savefig(xm.get_path('J3_UW2_correlation_histogram.png'))
 
 xm.save_params()

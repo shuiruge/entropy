@@ -8,7 +8,7 @@ from keras.callbacks import EarlyStopping
 import matplotlib.pyplot as plt
 from xmanager import XManager
 
-xm = XManager('experiments/taylor_expansion_of_action')
+xm = XManager('experiments/taylor_expansion')
 
 # Reproducibility
 xm.seed = 1

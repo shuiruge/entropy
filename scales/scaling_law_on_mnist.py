@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import linregress
 from xmanager import XManager
 
-xm = XManager('experiments')
+xm = XManager('experiments/scaling_law')
 
 # Reproducibility
 xm.seed = 1

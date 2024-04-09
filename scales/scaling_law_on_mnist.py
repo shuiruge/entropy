@@ -70,12 +70,13 @@ xm.embed_dim = 2**10  # shall not be too small.
 xm.min_log2_n = 4
 xm.max_log2_n = 12
 xm.num_log2_n = 10
+xm.num_hidden_layers = 2
 
 hidden_units_lst = []
 eval_losses = []
 for log2_n in tqdm(np.linspace(xm.min_log2_n, xm.max_log2_n, xm.num_log2_n)):
     n = int(2**log2_n)
-    hidden_units = [xm.embed_dim, n]
+    hidden_units = [xm.embed_dim] + [n for _ in range(xm.num_hidden_layers)]
     model = train_model(hidden_units)
     eval_loss = get_validation_loss(model)
 

@@ -2,33 +2,42 @@ import numpy as np
 import tensorflow as tf
 from keras import Sequential
 from keras.layers import Dense
-from keras.losses import SparseCategoricalCrossentropy
+from keras.losses import MSE
 from keras.optimizers import AdamW
-from keras.callbacks import EarlyStopping
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
 from xmanager import XManager
 
-xm = XManager('experiments/scaling_law')
+xm = XManager('experiments/scaling_law_on_gaussian')
 
 # Reproducibility
-xm.seed = 1
-tf.keras.utils.set_random_seed(xm.seed)
+tf.keras.utils.set_random_seed(1)
 tf.config.experimental.enable_op_determinism()
 
 # Data
-mnist = tf.keras.datasets.fashion_mnist
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
-x_train = x_train.astype('float32').reshape([-1, 28*28]) / 255.0
-x_test = x_test.astype('float32').reshape([-1, 28*28]) / 255.0
-y_train = y_train.astype('int32')
-y_test = y_test.astype('int32')
+class DataGenerator:
+    
+    def __init__(self, dim, std):
+        self.dim = dim
+        self.std = std
+
+        self.W = (
+            tf.random.uniform([dim, dim], minval=-1., maxval=1)
+            / tf.sqrt(float(dim))
+        )
+
+    def __call__(self, num_data):
+        x = tf.random.uniform([num_data, self.dim], minval=-1, maxval=1.)
+        noise = self.std * tf.random.truncated_normal([num_data, self.dim])
+        y = tf.matmul(x, self.W) + noise
+        return x, y
+
+
+dim = 100
+data_gen = DataGenerator(dim, 1e-1)
 
 # Model
-
-xm.batch_size = 2**12  # shall not be too small.
-
 
 def train_model(hidden_units):
     # Build model.
@@ -38,50 +47,48 @@ def train_model(hidden_units):
         # Dense(hidden_units[0], 'relu')  # no embedding.
     )
     for n in hidden_units[1:]:
-        layers.append(Dense(n, 'relu'))
-    layers.append(Dense(10, 'softmax'))  # output.
+        layers.append(Dense(n, 'silu'))
+    layers.append(Dense(dim))  # output.
     model = Sequential(layers)
 
     # Compile and train
     model.compile(
         optimizer=AdamW(),
-        loss=SparseCategoricalCrossentropy(),
+        loss=MSE,
     )
-    model.fit(
-        x_train, y_train,
-        batch_size=xm.batch_size,
-        validation_data=(x_test, y_test),
-        epochs=10000,  # sufficiently great enough.
-        callbacks=[
-            EarlyStopping(monitor='val_loss'),
-        ],
-        verbose=0,
-    )
-    return model
+    last_val_loss = None
+    for epoch in range(1000):
+        x_train, y_train = data_gen(10**5)
+        x_test, y_test = data_gen(10**4)
+        model.fit(
+            x_train, y_train,
+            batch_size=2**10,
+            verbose=0,
+        )
+        val_loss = tf.reduce_mean(MSE(y_test, model(x_test)))
+        # print(f'Validation loss = {val_loss.numpy()}.')
+        if last_val_loss is None or val_loss < last_val_loss:
+            last_val_loss = val_loss
+        else:
+            return model, float(val_loss)
+    raise ValueError('Cannot stop training.')
 
 
-def get_validation_loss(model):
-    y_pred = model(x_test)
-    loss_fn = SparseCategoricalCrossentropy()
-    return loss_fn(y_test, y_pred)
-
-
-xm.embed_dim = 2**10  # shall not be too small.
-xm.min_log2_n = 4
-xm.max_log2_n = 12
-xm.num_log2_n = 10
-xm.num_hidden_layers = 2
+embed_dim = 2**10  # shall not be too small.
+min_log2_n = 4
+max_log2_n = 12
+num_log2_n = 10
+num_hidden_layers = 2
 
 hidden_units_lst = []
 eval_losses = []
-for log2_n in tqdm(np.linspace(xm.min_log2_n, xm.max_log2_n, xm.num_log2_n)):
+for log2_n in tqdm(np.linspace(min_log2_n, max_log2_n, num_log2_n)):
     n = int(2**log2_n)
-    hidden_units = [xm.embed_dim] + [n for _ in range(xm.num_hidden_layers)]
-    model = train_model(hidden_units)
-    eval_loss = get_validation_loss(model)
+    hidden_units = [embed_dim] + [n for _ in range(num_hidden_layers)]
+    model, val_loss = train_model(hidden_units)
 
     hidden_units_lst.append(hidden_units)
-    eval_losses.append(eval_loss)
+    eval_losses.append(val_loss)
 
 
 def get_num_params(hidden_units):

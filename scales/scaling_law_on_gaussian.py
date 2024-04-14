@@ -16,19 +16,19 @@ tf.keras.utils.set_random_seed(1)
 tf.config.experimental.enable_op_determinism()
 
 # Data
+
 class DataGenerator:
     
     def __init__(self, dim, std):
         self.dim = dim
         self.std = std
 
-        self.W = (
-            tf.random.uniform([dim, dim], minval=-1., maxval=1)
-            / tf.sqrt(float(dim))
-        )
+        self.W = tf.ones([dim, dim]) / tf.sqrt(float(dim))
+        # Alternatively,
+        # self.W = tf.random.uniform([dim, dim], -1, 1) / tf.sqrt(float(dim))
 
     def __call__(self, num_data):
-        x = tf.random.uniform([num_data, self.dim], minval=-1, maxval=1.)
+        x = tf.random.uniform([num_data, self.dim], -1, 1)
         noise = self.std * tf.random.truncated_normal([num_data, self.dim])
         y = tf.matmul(x, self.W) + noise
         return x, y
@@ -73,6 +73,36 @@ def train_model(hidden_units):
             return model, float(val_loss)
     raise ValueError('Cannot stop training.')
 
+# Plots the weights
+model, val_loss = train_model([1024, 2048])
+for param in model.weights:
+    plt.clf()
+    plt.hist(param.numpy().reshape([-1]), 100)
+    plt.savefig(xm.get_path(f'params/{param.name}.png'))
+
+# Test if the model predicts the target (without noise).
+data_gen_2 = DataGenerator(dim, 0.)
+x, y = data_gen_2(1000)
+loss_without_noise = float(tf.reduce_mean(MSE(y, model(x))))
+xm.val_loss = val_loss
+xm.loss_without_noise = loss_without_noise
+
+# Layer-wise Outputs.
+
+z1 = Sequential(model.layers[:1])(x)
+z2 = Sequential(model.layers[:2])(x)
+z3 = Sequential(model.layers[:3])(x)
+
+plt.clf()
+plt.plot(x[0], label='x', alpha=0.3)
+plt.plot(z1[0], label='z1', alpha=0.3)
+plt.plot(z2[0], label='z2', alpha=0.3)
+plt.plot(z3[0], label='z3', alpha=0.3)
+plt.plot(y[0], label='y', alpha=0.3)
+plt.legend()
+plt.savefig('layerwise_outputs.png')
+
+# Scaling Law
 
 embed_dim = 2**10  # shall not be too small.
 min_log2_n = 4
@@ -125,6 +155,7 @@ mask, xm.slope, xm.intercept, xm.r_value, xm.p_value, xm.stderr = \
     robust_linear_regression(log_num_params, log_eval_loss)
 
 fitted_line = xm.intercept + xm.slope * log_num_params
+plt.clf()
 plt.scatter(log_num_params, log_eval_loss, c=np.array(mask), label='data')
 plt.plot(log_num_params, fitted_line, 'r', label='fitted line')
 plt.xlabel('log2(N)')

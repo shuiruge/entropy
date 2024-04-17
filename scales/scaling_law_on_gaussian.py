@@ -100,7 +100,7 @@ plt.plot(z2[0], label='z2', alpha=0.3)
 plt.plot(z3[0], label='z3', alpha=0.3)
 plt.plot(y[0], label='y', alpha=0.3)
 plt.legend()
-plt.savefig('layerwise_outputs.png')
+plt.savefig(xm.get_path('layerwise_outputs.png'))
 
 # Scaling Law
 

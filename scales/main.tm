@@ -379,7 +379,7 @@
   <math|W>, and <math|b> are in the same order when
   <math|\<theta\>\<approx\>\<theta\><rsub|\<star\>>>.>
 
-  <subsection|Higher Orders>
+  <subsection|Higher Orders and Summary>
 
   Based on the previous analysis, it is suspected that the main contribution
   from <math|S<rsub|n+1><around*|(|\<theta\><rsub|\<star\>>|)>> to

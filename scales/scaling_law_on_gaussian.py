@@ -73,34 +73,6 @@ def train_model(hidden_units):
             return model, float(val_loss)
     raise ValueError('Cannot stop training.')
 
-# Plots the weights
-# model, val_loss = train_model([1024, 2048])
-# for param in model.weights:
-#     plt.clf()
-#     plt.hist(param.numpy().reshape([-1]), 100)
-#     plt.savefig(xm.get_path(f'params/{param.name}.png'))
-
-# Test if the model predicts the target (without noise).
-# data_gen_2 = DataGenerator(0.)
-# x, y = data_gen_2(1000)
-# loss_without_noise = float(tf.reduce_mean(MSE(y, model(x))))
-# xm.val_loss = val_loss
-# xm.loss_without_noise = loss_without_noise
-
-# Layer-wise Outputs.
-
-# z1 = Sequential(model.layers[:1])(x)
-# z2 = Sequential(model.layers[:2])(x)
-# z3 = Sequential(model.layers[:3])(x)
-
-# plt.clf()
-# plt.plot(x[0], label='x', alpha=0.3)
-# plt.plot(z1[0], label='z1', alpha=0.3)
-# plt.plot(z2[0], label='z2', alpha=0.3)
-# plt.plot(z3[0], label='z3', alpha=0.3)
-# plt.plot(y[0], label='y', alpha=0.3)
-# plt.legend()
-# plt.savefig(xm.get_path('layerwise_outputs.png'))
 
 # Scaling Law
 

@@ -3,10 +3,8 @@ import tensorflow as tf
 from keras import Sequential
 from keras.layers import Dense
 from keras.losses import MSE
-from keras.optimizers import Adam
 from tqdm import tqdm
 import matplotlib.pyplot as plt
-from scipy.stats import linregress
 from xmanager import XManager
 
 xm = XManager('experiments', 'scaling_law', 'gaussian')
@@ -19,58 +17,48 @@ tf.config.experimental.enable_op_determinism()
 
 class DataGenerator:
     
-    def __init__(self, input_dim, shift, output_dim, std, fn=None):
-        self.input_dim = input_dim
-        self.shift = shift
-        self.output_dim = output_dim
+    def __init__(self, std):
         self.std = std
-        self.fn = fn
 
-        # self.W = tf.ones([input_dim, output_dim]) / tf.sqrt(float(input_dim))
+        # self.W = tf.ones([100, 100]) / tf.sqrt(float(100))
         # Alternatively,
-        self.W = (
-            tf.random.uniform([input_dim, output_dim], -1, 1)
-            / tf.sqrt(float(input_dim))
-        )
+        self.W = tf.random.uniform([100, 100], -1, 1) / tf.sqrt(float(100))
 
     def __call__(self, num_data):
-        x = tf.random.uniform([num_data, self.input_dim], -1, 1)
-        y = tf.matmul(x, self.W)
-        if self.fn is not None:
-            y = self.fn(y)
+        input_dim, output_dim = self.W.shape
+        x = tf.random.uniform([num_data, input_dim], -1, 1)
+        y = tf.nn.tanh(tf.matmul(x, self.W))
         noise = (
-            tf.random.truncated_normal([num_data, self.output_dim])
+            tf.random.truncated_normal([num_data, output_dim])
             * self.std
         )
-        return x + self.shift, y + noise
+        return x, y + noise
+
+    @property
+    def output_dim(self):
+        return self.W.shape[1]
 
 
-input_dim = 200
-output_dim = 100
-data_gen = DataGenerator(input_dim, 0.2, output_dim, 1e-1, tf.nn.tanh)
+data_gen = DataGenerator(1e-1)
+
 
 # Model
 
-def train_model(hidden_units, use_embedding=False):
+def train_model(hidden_units):
     # Build model.
     layers = []
-    if use_embedding:
-        assert len(hidden_units) > 1
-        layers.append(Dense(hidden_units[0]))
-    else:
-        layers.append(Dense(hidden_units[0], 'silu'))
-    for n in hidden_units[1:]:
+    for n in hidden_units:
         layers.append(Dense(n, 'silu'))
-    layers.append(Dense(output_dim))
+    layers.append(Dense(data_gen.output_dim))
     model = Sequential(layers)
 
     # Compile and train
     model.compile(
-        optimizer=Adam(),
-        loss=MSE,
+        optimizer='adam',
+        loss='mse',
     )
     last_val_loss = None
-    for epoch in range(1000):
+    for _ in range(1000):
         x_train, y_train = data_gen(10**5)
         x_test, y_test = data_gen(10**4)
         model.fit(
@@ -93,7 +81,7 @@ def train_model(hidden_units, use_embedding=False):
 #     plt.savefig(xm.get_path(f'params/{param.name}.png'))
 
 # Test if the model predicts the target (without noise).
-# data_gen_2 = DataGenerator(input_dim, output_dim, 0.)
+# data_gen_2 = DataGenerator(0.)
 # x, y = data_gen_2(1000)
 # loss_without_noise = float(tf.reduce_mean(MSE(y, model(x))))
 # xm.val_loss = val_loss
@@ -118,7 +106,7 @@ def train_model(hidden_units, use_embedding=False):
 
 def get_num_params(model):
     num_params = 0
-    for layer in model.layers[1:]:
+    for layer in model.layers:
         W, b = layer.weights
         num_params += W.shape[0] * W.shape[1]
         num_params += b.shape[0]
@@ -143,13 +131,11 @@ def plot_params(model, save_path):
 min_log2_n = 4
 max_log2_n = 8
 num_log2_n = 20
-num_hidden_layers = 2
 
 num_params_lst = []
 val_loss_lst = []
 for log2_n in tqdm(np.linspace(min_log2_n, max_log2_n, num_log2_n)):
-    n = int(2**log2_n)
-    hidden_units = [n for _ in range(num_hidden_layers)]
+    hidden_units = [1024, int(2**log2_n)]
     model, val_loss = train_model(hidden_units)
     num_params = get_num_params(model)
     num_params_lst.append(num_params)

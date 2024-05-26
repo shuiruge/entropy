@@ -8,9 +8,11 @@ in pkgs.mkShell rec {
   buildInputs = [
     pythonPackages.python
     pythonPackages.matplotlib
+    pythonPackages.numpy
     pythonPackages.keras
     pythonPackages.tensorflow
     pythonPackages.jupyter
     pythonPackages.tqdm
   ];
 }
+

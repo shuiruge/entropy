@@ -1,3 +1,13 @@
+"""
+Experiment on criticality by simulating the starling flocks.
+
+References
+----------
+
+1. [Scale-free correlations in starling flocks](https://arxiv.org/abs/0911.4393).
+2. [Statistical mechanics for natural flocks of birds](https://arxiv.org/abs/1107.0604).
+"""
+
 import numpy as np
 import tensorflow as tf
 from tqdm import tqdm

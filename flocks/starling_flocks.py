@@ -95,6 +95,31 @@ def get_correlation_length_and_supp(x: tf.Tensor, v: tf.Tensor, num_bins: int):
     return corr_len, (sorted_dist, sorted_inner_u, r_bin, u_mean, hist)
 
 
+def plot_correlation(save_path: str,
+                     batch_size=1000,
+                     iter_steps=5000,
+                     num_bins=50):
+    x = tf.random.uniform([batch_size, 3])
+    v = tf.random.uniform([batch_size, 3])
+    for _ in range(iter_steps):
+        x, v = dynamics(x, v)
+ 
+    corr_len, (sorted_dist, _, r_bin, u_mean, _) = (
+        get_correlation_length_and_supp(x, v, num_bins)
+    )
+    plt.scatter(r_bin[:-1], u_mean, marker='.')
+    plt.hlines(0, xmin=sorted_dist[0], xmax=sorted_dist[-1],
+               linestyles='--', color='blue')
+    plt.vlines(corr_len, ymin=min(u_mean), ymax=max(u_mean),
+               linestyles='--', label='Correlation Length',
+               color='red')
+    plt.xlabel('Distance')
+    plt.ylabel('Correlation of "v - mean(v)"')
+    plt.grid()
+    plt.legend()
+    plt.savefig(save_path)
+
+
 def get_group_size(x: tf.Tensor) -> tf.Tensor:
     dist = tf.reshape(get_mutual_distance(x), [-1])
     return tf.reduce_max(dist)
@@ -136,7 +161,7 @@ def plot_check(group_sizes: list, corr_lens: list, save_path: str):
     plt.xlabel('Group Size')
     plt.ylabel('Correlation Length')
     plt.grid()
-    plt.savefig(xm.get_path(save_path))
+    plt.savefig(save_path)
 
 
 if __name__ == '__main__':
@@ -144,8 +169,9 @@ if __name__ == '__main__':
     from xmanager import XManager
     xm = XManager('experiments', 'scale_free')
 
-    dynamics = get_dynamics(num_nb=7, J=0.1, dt=0.01, T=0.5)
-    xm.group_sizes, xm.corr_lens = check_scale_free(
+    dynamics = get_dynamics(num_nb=7, J=0., dt=0.01, T=1.)
+    plot_correlation(xm.get_path('images/correlation.png'))
+    group_sizes, corr_lens = check_scale_free(
         dynamics, min_n=30, max_n=1000)
-    plot_check(xm.group_sizes, xm.corr_lens, 'images/check_scale_free.png')
-    xm.save_params()
+    plot_check(group_sizes, corr_lens,
+               xm.get_path('images/check_scale_free.png'))

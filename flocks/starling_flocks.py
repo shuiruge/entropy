@@ -10,8 +10,9 @@ References
 
 import numpy as np
 import tensorflow as tf
-from tqdm import tqdm
 import matplotlib.pyplot as plt
+from tqdm import tqdm
+from scipy.stats import linregress
 
 
 def get_mutual_distance(batch: tf.Tensor) -> tf.Tensor:
@@ -125,43 +126,46 @@ def get_group_size(x: tf.Tensor) -> tf.Tensor:
     return tf.reduce_max(dist)
 
 
-def check_scale_free(dynamics, min_n: int, max_n: int,
-                     num_n=10, num_repeats=12,
+def check_scale_free(dynamics, min_n: int, max_n: int, num_n: int,
                      iter_steps=5000, num_bins=50):
     group_sizes, corr_lens = [], []
     for log2_n in tqdm(np.linspace(np.log2(min_n), np.log2(max_n), num_n)):
         n = int(2**log2_n)
-        group_sizes.append([])
-        corr_lens.append([])
-        for _ in range(num_repeats):
-            x = tf.random.uniform([n, 3])
-            v = tf.random.uniform([n, 3])
-        
-            for _ in range(iter_steps):
-                x, v = dynamics(x, v)
+        x = tf.random.uniform([n, 3])
+        v = tf.random.uniform([n, 3])
+    
+        for _ in range(iter_steps):
+            x, v = dynamics(x, v)
 
-            group_size = get_group_size(x)
-            group_sizes[-1].append(group_size)
+        group_size = get_group_size(x)
+        group_sizes.append(group_size)
 
-            corr_len, _ = get_correlation_length_and_supp(x, v, num_bins)
-            corr_lens[-1].append(corr_len)
+        corr_len, _ = get_correlation_length_and_supp(x, v, num_bins)
+        corr_lens.append(corr_len)
     return group_sizes, corr_lens
 
 
 def plot_check(group_sizes: list, corr_lens: list, save_path: str):
-    corr_len_means = [np.mean(_) for _ in corr_lens]
-    corr_len_stds = [np.std(_) for _ in corr_lens]
-    group_size_means = [np.mean(_) for _ in group_sizes]
-    group_size_stds = [np.std(_) for _ in group_sizes]
-
+    group_sizes = np.asarray(group_sizes)
+    corr_lens = np.asarray(corr_lens)
     plt.clf()
-    plt.errorbar(x=group_size_means, xerr=group_size_stds,
-                 y=corr_len_means, yerr=corr_len_stds,
-                 capsize=3, fmt="ro", ecolor = "black")
+    plt.scatter(group_sizes, corr_lens, marker='o')
+
+    # Linear fitting.
+    ids = np.argsort(group_sizes)
+    slope, intercept, r, p, se = linregress(group_sizes[ids], corr_lens[ids])
+    fitted_line = intercept + slope * group_sizes
+    plt.plot(group_sizes[ids], fitted_line[ids], 'r--', label='fitted line')
+
     plt.xlabel('Group Size')
     plt.ylabel('Correlation Length')
     plt.grid()
+    plt.legend()
     plt.savefig(save_path)
+    return {
+        'slope': slope, 'intercept': intercept, 'r': r,
+        'p': p, 'intercept_stderr': se,
+    }
 
 
 if __name__ == '__main__':
@@ -169,10 +173,13 @@ if __name__ == '__main__':
     from xmanager import XManager
     xm = XManager('experiments', 'scale_free')
 
-    dynamics = get_dynamics(num_nb=7, J=0., dt=0.01, T=1.)
-    plot_correlation(dynamics,
-                     xm.get_path('images/correlation.png'))
+    dynamics = get_dynamics(num_nb=5, J=1., dt=0.01, T=0.)
+    plot_correlation(
+        dynamics,
+        xm.get_path('images/correlation.png'))
     group_sizes, corr_lens = check_scale_free(
-        dynamics, min_n=30, max_n=1000)
-    plot_check(group_sizes, corr_lens,
-               xm.get_path('images/check_scale_free.png'))
+        dynamics, min_n=30, max_n=1000, num_n=50)
+    xm.lr = plot_check(
+        group_sizes, corr_lens,
+        xm.get_path('images/check_scale_free.png'))
+    xm.save_params()

@@ -49,6 +49,12 @@ def get_dynamics(num_nb: int, J: float, dt: float, T: float):
     return dynamics
 
 
+def get_polarization(v: tf.Tensor) -> tf.Tensor:
+    def norm(x):
+        return tf.sqrt(tf.reduce_sum(tf.square(x), axis=1, keepdims=True))
+    return tf.squeeze(norm(tf.reduce_mean(v / norm(v), axis=0, keepdims=True)))
+
+
 def binning(x: np.ndarray, y: np.ndarray, num_bins: int,
             agg_fn=np.mean, eps=1e-1):
     """Used for computing correlation length."""
@@ -108,6 +114,7 @@ def plot_correlation(
     corr_len, (sorted_dist, _, r_bin, u_mean, _) = (
         get_correlation_length_and_supp(x, v, num_bins)
     )
+    plt.clf()
     plt.scatter(r_bin[:-1], u_mean, marker='.')
     plt.hlines(0, xmin=sorted_dist[0], xmax=sorted_dist[-1],
                linestyles='--', color='blue')
@@ -128,7 +135,7 @@ def get_group_size(x: tf.Tensor) -> tf.Tensor:
 
 def check_scale_free(dynamics, min_n: int, max_n: int, num_n: int,
                      iter_steps=5000, num_bins=50):
-    group_sizes, corr_lens = [], []
+    polars, group_sizes, corr_lens = [], [], []
     for log2_n in tqdm(np.linspace(np.log2(min_n), np.log2(max_n), num_n)):
         n = int(2**log2_n)
         x = tf.random.uniform([n, 3])
@@ -137,26 +144,46 @@ def check_scale_free(dynamics, min_n: int, max_n: int, num_n: int,
         for _ in range(iter_steps):
             x, v = dynamics(x, v)
 
+        polar = get_polarization(v)
+        polars.append(float(polar))
+
         group_size = get_group_size(x)
         group_sizes.append(group_size)
 
         corr_len, _ = get_correlation_length_and_supp(x, v, num_bins)
         corr_lens.append(corr_len)
-    return group_sizes, corr_lens
+    return np.mean(polars), group_sizes, corr_lens
+
+
+def robust_linear_regression(x, y, outliers_sigma=3):
+    slope, intercept, *_ = linregress(x, y)
+    errors = np.abs(y - (intercept + slope * x))
+    min_error = errors.mean() - outliers_sigma * errors.std()
+    max_error = errors.mean() + outliers_sigma * errors.std()
+    valid_ids, mask = [], []
+    for i, e in enumerate(errors):
+        if e > min_error and e < max_error:
+            valid_ids.append(i)
+            mask.append(0)
+        else:
+            mask.append(1)
+    return mask, *linregress(x[valid_ids], y[valid_ids])
 
 
 def plot_check(group_sizes: list, corr_lens: list, save_path: str):
     group_sizes = np.asarray(group_sizes)
-    corr_lens = np.asarray(corr_lens)
-    plt.clf()
-    plt.scatter(group_sizes, corr_lens, marker='o')
-
-    # Linear fitting.
     ids = np.argsort(group_sizes)
-    slope, intercept, r, p, se = linregress(group_sizes[ids], corr_lens[ids])
-    fitted_line = intercept + slope * group_sizes
-    plt.plot(group_sizes[ids], fitted_line[ids], 'r--', label='fitted line')
+    group_sizes = group_sizes[ids]
+    corr_lens = np.asarray(corr_lens)[ids]
 
+    mask, slope, intercept, r, p, se = \
+        robust_linear_regression(group_sizes, corr_lens)
+    fitted_line = intercept + slope * group_sizes
+
+    plt.clf()
+    plt.scatter(group_sizes, corr_lens, c=np.array(mask),
+                marker='o', label='data')
+    plt.plot(group_sizes[ids], fitted_line[ids], 'r--', label='fitted line')
     plt.xlabel('Group Size')
     plt.ylabel('Correlation Length')
     plt.grid()
@@ -173,13 +200,19 @@ if __name__ == '__main__':
     from xmanager import XManager
     xm = XManager('experiments', 'scale_free')
 
-    dynamics = get_dynamics(num_nb=5, J=1., dt=0.01, T=0.)
-    plot_correlation(
-        dynamics,
-        xm.get_path('images/correlation.png'))
-    group_sizes, corr_lens = check_scale_free(
-        dynamics, min_n=30, max_n=1000, num_n=50)
-    xm.lr = plot_check(
-        group_sizes, corr_lens,
-        xm.get_path('images/check_scale_free.png'))
-    xm.save_params()
+    xm.Js, xm.lrs, xm.polars = [], [], []
+    for J in np.linspace(0.0, 0.2, 10):
+        # num_nb = 7 is suggested by the paper (ref 13).
+        dynamics = get_dynamics(num_nb=7, J=J, dt=0.01, T=0.01)
+        polars, group_sizes, corr_lens = check_scale_free(
+            dynamics, min_n=100, max_n=1000, num_n=50)
+        lr = plot_check(
+            group_sizes, corr_lens,
+            xm.get_path(f'images/check_scale_free_{J:.3f}.png'))
+
+        xm.Js.append(J)
+        xm.polars.append(polars)
+        xm.lrs.append(lr)
+        xm.save_params()
+
+    plot_correlation(dynamics, xm.get_path('images/correlation.png'))

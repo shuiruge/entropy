@@ -11,6 +11,7 @@ in pkgs.mkShell rec {
     pythonPackages.numpy
     pythonPackages.keras
     pythonPackages.tensorflow
+    pythonPackages.scipy
     pythonPackages.jupyter
     pythonPackages.tqdm
   ];

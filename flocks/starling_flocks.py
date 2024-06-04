@@ -12,8 +12,46 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-from scipy.stats import linregress
+from utils import robust_linear_regression
+from xmanager import XManager
 
+
+XM = XManager('experiments', 'scale_free')
+
+
+class Flock:
+
+    def __init__(self, size: int, num_nb: int, T: float):
+        self.size = int(size)
+        self.num_nb = tf.convert_to_tensor(num_nb, 'int64')
+        self.T = tf.convert_to_tensor(T, 'float32')
+
+        self.x: tf.Tensor = tf.Variable(tf.random.uniform([size, 3]))
+        self.v: tf.Tensor = tf.Variable(tf.random.uniform([size, 3]))
+    
+    # Use tf.function to (x1.5) speed up the process.
+    @tf.function(input_signature=[
+        tf.TensorSpec(shape=[], dtype='int64'),
+        tf.TensorSpec(shape=[], dtype='float32'),
+    ])
+    def _evolve(self, iter_steps, dt):
+        for _ in tf.range(iter_steps):
+            nb = get_neighbours(self.x, self.num_nb)
+            nb_v = tf.gather(self.v, nb, axis=0)
+            self.v.assign(tf.reduce_mean(nb_v, axis=1))
+            # Add Weiner process
+            self.v.assign_add(
+                tf.random.normal(tf.shape(self.v)) * tf.sqrt(2*self.T*dt)
+            )
+            self.x.assign_add(self.v * dt)
+
+    def evolve(self, iter_steps, dt):
+        self._evolve(
+            tf.convert_to_tensor(iter_steps, 'int64'),
+            tf.convert_to_tensor(dt, 'float32'),
+        )
+        return self
+ 
 
 def get_mutual_distance(batch: tf.Tensor) -> tf.Tensor:
     """See: https://stackoverflow.com/a/37040451"""
@@ -36,27 +74,16 @@ def get_neighbours(x: tf.Tensor, num_nb: int) -> tf.Tensor:
     return tf.math.top_k(-dist, num_nb+1)[1][:, 1:]
 
 
-def get_dynamics(num_nb: int, J: float, dt: float, T: float):
-    """The dynamics of a bird in a group."""
-    @tf.function
-    def dynamics(x: tf.Tensor, v: tf.Tensor):
-        nb = get_neighbours(x, num_nb)
-        nb_v = tf.gather(v, nb, axis=0)
-        v += J * (tf.reduce_mean(nb_v, axis=1) - v) * dt
-        v += tf.random.normal(tf.shape(v)) * tf.sqrt(2*T*dt)
-        x += v * dt
-        return x, v
-    return dynamics
-
-
-def get_polarization(v: tf.Tensor) -> tf.Tensor:
+def get_polarization(fk: Flock):
     def norm(x):
         return tf.sqrt(tf.reduce_sum(tf.square(x), axis=1, keepdims=True))
-    return tf.squeeze(norm(tf.reduce_mean(v / norm(v), axis=0, keepdims=True)))
+    polar = tf.squeeze(
+        norm(tf.reduce_mean(fk.v / norm(fk.v), axis=0, keepdims=True))
+    )
+    return float(polar)
 
 
-def binning(x: np.ndarray, y: np.ndarray, num_bins: int,
-            agg_fn=np.mean, eps=1e-1):
+def binning(x: np.ndarray, y: np.ndarray, num_bins: int, agg_fn=np.mean):
     """Used for computing correlation length."""
     x_min = x.min()
     x_max = x.max()
@@ -82,12 +109,12 @@ def binning(x: np.ndarray, y: np.ndarray, num_bins: int,
     return x_bin, y_agg, hist
 
 
-def get_correlation_length_and_supp(x: tf.Tensor, v: tf.Tensor, num_bins: int):
-    dist = get_mutual_distance(x)
+def get_correlation_length_and_supp(fk: Flock, num_bins: int):
+    dist = get_mutual_distance(fk.x)
     dist = tf.reshape(dist, [-1])
 
-    v_mean = tf.reduce_mean(v, axis=0, keepdims=True)
-    u = v - v_mean
+    v_mean = tf.reduce_mean(fk.v, axis=0, keepdims=True)
+    u = fk.v - v_mean
     inner_u = tf.matmul(u, tf.transpose(u))
     inner_u = tf.reshape(inner_u, [-1])
 
@@ -98,21 +125,25 @@ def get_correlation_length_and_supp(x: tf.Tensor, v: tf.Tensor, num_bins: int):
 
     r_bin, u_mean, hist = binning(
         sorted_dist.numpy(), sorted_inner_u.numpy(), num_bins)
-    corr_len = r_bin[tf.argmin(tf.square(u_mean))]
+
+    # Compute correlation length.
+    # corr_len = r_bin[tf.argmin(tf.square(u_mean))]  # bad.
+    u_abs_min = np.min(np.abs(u_mean))
+    eps = np.max(np.abs(u_mean)) * 1e-2
+    corr_len = r_bin[0]
+    for r_val, u_val in zip(r_bin, u_mean):
+        if u_val < u_abs_min + eps:
+            corr_len = r_val
+            break
     return corr_len, (sorted_dist, sorted_inner_u, r_bin, u_mean, hist)
 
 
-def plot_correlation(
-        dynamics, save_path: str,
-        batch_size=1000, iter_steps=5000, num_bins=50,
-    ):
-    x = tf.random.uniform([batch_size, 3])
-    v = tf.random.uniform([batch_size, 3])
-    for _ in range(iter_steps):
-        x, v = dynamics(x, v)
+def plot_correlation():
+    fk = Flock(size=1000, num_nb=7, T=1e-2)
+    fk.evolve(iter_steps=2000, dt=1e-2)
  
     corr_len, (sorted_dist, _, r_bin, u_mean, _) = (
-        get_correlation_length_and_supp(x, v, num_bins)
+        get_correlation_length_and_supp(fk, num_bins=50)
     )
     plt.clf()
     plt.scatter(r_bin[:-1], u_mean, marker='.')
@@ -125,94 +156,85 @@ def plot_correlation(
     plt.ylabel('Correlation of "v - mean(v)"')
     plt.grid()
     plt.legend()
-    plt.savefig(save_path)
+    plt.savefig(XM.get_path('correlation.png'))
 
 
-def get_group_size(x: tf.Tensor) -> tf.Tensor:
-    dist = tf.reshape(get_mutual_distance(x), [-1])
-    return tf.reduce_max(dist)
+def get_group_size(fk: Flock):
+    dist = tf.reshape(get_mutual_distance(fk.x), [-1])
+    group_size = tf.reduce_max(dist)
+    return float(group_size)
 
 
-def check_scale_free(dynamics, min_n: int, max_n: int, num_n: int,
-                     iter_steps=5000, num_bins=50):
-    polars, group_sizes, corr_lens = [], [], []
-    for log2_n in tqdm(np.linspace(np.log2(min_n), np.log2(max_n), num_n)):
-        n = int(2**log2_n)
-        x = tf.random.uniform([n, 3])
-        v = tf.random.uniform([n, 3])
-    
-        for _ in range(iter_steps):
-            x, v = dynamics(x, v)
+def check_scale_free():
+    group_sizes, corr_lens = [], []
+    for flock_size in tqdm(np.random.randint(400, 800, 10)):
+        flock_size = int(flock_size)
+        fk = Flock(flock_size, 7, 2e-3)
+        fk.evolve(iter_steps=3000, dt=1e-2)
 
-        polar = get_polarization(v)
-        polars.append(float(polar))
+        repeat = 10
+        group_sizes.append([])
+        corr_lens.append([])
+        for _ in range(repeat):
+            fk.evolve(iter_steps=200, dt=1e-2)
+            group_sizes[-1].append(get_group_size(fk))
+            corr_len, _ = get_correlation_length_and_supp(fk, num_bins=50)
+            corr_lens[-1].append(corr_len)
 
-        group_size = get_group_size(x)
-        group_sizes.append(group_size)
-
-        corr_len, _ = get_correlation_length_and_supp(x, v, num_bins)
-        corr_lens.append(corr_len)
-    return np.mean(polars), group_sizes, corr_lens
-
-
-def robust_linear_regression(x, y, outliers_sigma=3):
-    slope, intercept, *_ = linregress(x, y)
-    errors = np.abs(y - (intercept + slope * x))
-    min_error = errors.mean() - outliers_sigma * errors.std()
-    max_error = errors.mean() + outliers_sigma * errors.std()
-    valid_ids, mask = [], []
-    for i, e in enumerate(errors):
-        if e > min_error and e < max_error:
-            valid_ids.append(i)
-            mask.append(0)
-        else:
-            mask.append(1)
-    return mask, *linregress(x[valid_ids], y[valid_ids])
-
-
-def plot_check(group_sizes: list, corr_lens: list, save_path: str):
-    group_sizes = np.asarray(group_sizes)
-    ids = np.argsort(group_sizes)
-    group_sizes = group_sizes[ids]
-    corr_lens = np.asarray(corr_lens)[ids]
-
-    mask, slope, intercept, r, p, se = \
-        robust_linear_regression(group_sizes, corr_lens)
-    fitted_line = intercept + slope * group_sizes
-
+    # Plot
+    group_sizes = np.asarray(group_sizes)  # [flock_sizes, evolve_histories]
+    corr_lens = np.asarray(corr_lens)
     plt.clf()
-    plt.scatter(group_sizes, corr_lens, c=np.array(mask),
-                marker='o', label='data')
-    plt.plot(group_sizes[ids], fitted_line[ids], 'r--', label='fitted line')
+    plt.errorbar(x=group_sizes.mean(axis=1),
+                 xerr=group_sizes.std(axis=1),
+                 y=corr_lens.mean(axis=1),
+                 yerr=corr_lens.std(axis=1),
+                 capsize=3, fmt="ro", ecolor = "black")
     plt.xlabel('Group Size')
     plt.ylabel('Correlation Length')
     plt.grid()
-    plt.legend()
-    plt.savefig(save_path)
-    return {
-        'slope': slope, 'intercept': intercept, 'r': r,
-        'p': p, 'intercept_stderr': se,
+    plt.savefig(XM.get_path('check_scale_free.png'))
+
+    XM.scale_free = {
+        'group_sizes': group_sizes,
+        'correlation_lengths': corr_lens,
     }
+    XM.save_params()
+
+
+def check_criticality():
+    nc_range = range(0, 10)
+    plot_x = nc_range
+    # T_range = np.linspace(0., 0.3, 10)
+    # plot_x = T_range
+    repeat = 10
+
+    polars = []
+    for nc in tqdm(nc_range):
+    # for T in tqdm(T_range):
+        polars.append([])
+        for _ in range(repeat):
+            fk = Flock(size=500, num_nb=nc, T=0.)
+            # fk = Flock(size=500, num_nb=7, T=T)
+            fk.evolve(iter_steps=2000, dt=1e-2)
+            polars[-1].append(get_polarization(fk))
+
+    XM.criticality = {'polarizations': polars}
+    XM.save_params()
+
+    polars = np.asarray(polars)  # [params, repeat]
+
+    plt.clf()
+    plt.errorbar(x=plot_x, y=polars.mean(axis=1), yerr=polars.std(axis=1),
+                 capsize=3, fmt="ro", ecolor = "black")
+    plt.xlabel('Neighbours')
+    plt.ylabel('Polarization')
+    plt.grid()
+    plt.savefig(XM.get_path('criticality.png'))
 
 
 if __name__ == '__main__':
 
-    from xmanager import XManager
-    xm = XManager('experiments', 'scale_free')
-
-    xm.Js, xm.lrs, xm.polars = [], [], []
-    for J in np.linspace(0.0, 0.2, 10):
-        # num_nb = 7 is suggested by the paper (ref 13).
-        dynamics = get_dynamics(num_nb=7, J=J, dt=0.01, T=0.01)
-        polars, group_sizes, corr_lens = check_scale_free(
-            dynamics, min_n=100, max_n=1000, num_n=50)
-        lr = plot_check(
-            group_sizes, corr_lens,
-            xm.get_path(f'images/check_scale_free_{J:.3f}.png'))
-
-        xm.Js.append(J)
-        xm.polars.append(polars)
-        xm.lrs.append(lr)
-        xm.save_params()
-
-    plot_correlation(dynamics, xm.get_path('images/correlation.png'))
+    # check_criticality()
+    check_scale_free()
+    # plot_correlation()

@@ -142,13 +142,12 @@ void update_flock_v2() {
   // Use OpenMP to parellel evolution for each bird.
   #pragma omp parallel for collapse(1)
   for (int i = 0; i < GROUP_SIZE; i++) {
-    //printf("haha i=%d\n", i);  // this solves the segmentfault caused by OMP.
+    //printf("a");  // this solves the segmentfault caused by OMP.
     // Update flock[i].neighbors
     initialize_neighbors(&flock[i]);
     for (int j = 0; j < NEIGHBORS; j++) {
       update_neighbors(&flock[i], flock[i].neighbors[j]);
       for (int k = 0; k < NEIGHBORS; k++) {
-        //printf("haha j=%d, k=%d\n", j, k);
         update_neighbors(&flock[i], flock[i].neighbors[j]->neighbors[k]);
       }
     }
@@ -179,8 +178,8 @@ int main() {
     if (i == 0) {
       update_flock();
     } else {
-      update_flock();
-      //update_flock_v2();
+      update_flock();  // before bugfix.
+      //update_flock_v2();  // after bugfix.
     }
   }
 

@@ -2,10 +2,19 @@
 
 Simulate the starling flock in 2-dimensional space.
 
-Compile with
+Compile with, for example,
 
 ```sh
-gcc -Ofast -fopenmp -march=native flock.c -lm -o flock.out
+gcc -Ofast -fopenmp -march=native flock.c -lm -o flock.out \
+  -DDIMENSION=2 \
+  -DRAND_SEED=42 \
+  -DINIT_WIDTH=1 \
+  -DINIT_HEIGHT=1 \
+  -DINIT_SPEED=1 \
+  -DNEIGHBORS=5 \
+  -DTIME_INTERVAL=0.01 \
+  -DITERATIONS=2000 \
+  -DGROUP_SIZE=4000
 ```
 
 By default, OpenMP will use all the CPU threads. To adjust the CPU usage,
@@ -22,36 +31,11 @@ OMP_NUM_THREADS=14 ./flock.out
 #include <omp.h>
 #include <math.h>
 #include <float.h>
-
-#ifndef GROUP_SIZE
-#  define GROUP_SIZE 4000
-#endif
-#ifndef RAND_SEED
-#  define RAND_SEED 42
-#endif
-#ifndef INIT_WIDTH
-#  define INIT_WIDTH 1
-#endif
-#ifndef INIT_HEIGHT
-#  define INIT_HEIGHT 1
-#endif
-#ifndef INIT_SPEED
-#  define INIT_SPEED 1
-#endif
-// NEIGHBORS shall be smaller than GROUP_SIZE.
-#ifndef NEIGHBORS
-#  define NEIGHBORS 5
-#endif
-#ifndef TIME_INTERVAL
-#  define TIME_INTERVAL (1E-2)
-#endif
-#ifndef ITERATIONS
-#  define ITERATIONS 2000
-#endif
+#include <assert.h>
 
 struct Bird {
-  float x, y;
-  float vx, vy;
+  float x[DIMENSION];
+  float v[DIMENSION];
   struct Bird* neighbors[NEIGHBORS];
   float neighbor_distances[NEIGHBORS];
 };
@@ -63,10 +47,10 @@ float frand(float min, float max) {
 }
 
 void initialize_bird(struct Bird* bird) {
-  bird->x = frand(0, INIT_WIDTH);
-  bird->y = frand(0, INIT_HEIGHT);
-  bird->vx = frand(0, INIT_SPEED);
-  bird->vy = frand(0, INIT_SPEED);
+  for (int i = 0; i < DIMENSION; i++) {
+    bird->x[i] = frand(0, INIT_WIDTH);
+    bird->v[i] = frand(0, INIT_WIDTH);
+  }
 }
 
 void initialize_flock() {
@@ -77,7 +61,9 @@ void initialize_flock() {
 
 void initialize_neighbors(struct Bird* bird) {
   for (int i = 0; i < NEIGHBORS; i++) {
-    //bird->neighbors[i] = NULL;
+    // For our situation, initializing neighbor distances is sufficient.
+    // Initializing neighbors like `bird->neighbor[i] = NULL` may cause
+    // error when doing parallel computing.
     bird->neighbor_distances[i] = FLT_MAX;
   }
 }
@@ -86,15 +72,28 @@ float fsqrt(float x) {
   return (float) sqrt((double) x);
 }
 
+// We use L2-norm as distance. But, in our situation, all we use about
+// distance is its monotonicity. So, returning distance square is also
+// valid, but saves lots of computation.
+float distance(float* x, float* y) {
+  float d2 = 0;
+  for (int i = 0; i < DIMENSION; i++) {
+    float dx = x[i] - y[i];
+    d2 += dx * dx;
+  }
+  return d2;
+  //return fsqrt(d2);
+}
+
 void update_neighbors(struct Bird* central, struct Bird* ambient) {
-  float dx = ambient->x - central->x;
-  float dy = ambient->y - central->y;
-  float distance = fsqrt(dx * dx + dy * dy);
+  if (central == ambient) return;  // the same bird.
+
+  float d = distance(central->x, ambient->x);
 
   // Find the position for the ambient in the neighbors of the central.
   int pos = -1;
   for (int i = NEIGHBORS-1; i >= 0; i--) {
-    if (distance > central->neighbor_distances[i]) break;
+    if (d > central->neighbor_distances[i]) break;
     pos = i;
   }
   if (pos == -1) return;  // if not close enough, update nothing.
@@ -109,48 +108,94 @@ void update_neighbors(struct Bird* central, struct Bird* ambient) {
   }
   // After shifting, insert the ambient.
   central->neighbors[pos] = ambient;
-  central->neighbor_distances[pos] = distance;
+  central->neighbor_distances[pos] = d;
 }
 
 void update_flock() {
   // Use OpenMP to parellel evolution for each bird.
   #pragma omp parallel for collapse(1)
   for (int i = 0; i < GROUP_SIZE; i++) {
+    // Update flock[i].neighbors
     initialize_neighbors(&flock[i]);
     for (int j = 0; j < GROUP_SIZE; j++) {
-      if (i == j) continue;
       update_neighbors(&flock[i], &flock[j]);
     }
 
-    // Compute average velocity.
-    float avg_vx = 0;
-    float avg_vy = 0;
-    for (int j = 0; j < NEIGHBORS; j++) {
-      avg_vx += flock[i].neighbors[j]->vx;
-      avg_vy += flock[i].neighbors[j]->vy;
-    }
-    avg_vx /= NEIGHBORS;
-    avg_vy /= NEIGHBORS;
+    // Update flock[i].x and flock[i].v
+    for (int j = 0; j < DIMENSION; j++) {
+      // Compute average velocity along dimension j.
+      float avg_v = 0;
+      for (int k = 0; k < NEIGHBORS; k++) {
+        avg_v += flock[i].neighbors[k]->v[j];
+      }
+      avg_v /= NEIGHBORS;
 
-    // Update.
-    flock[i].vx = avg_vx;
-    flock[i].vy = avg_vy;
-    flock[i].x += flock[i].vx * TIME_INTERVAL;
-    flock[i].y += flock[i].vy * TIME_INTERVAL;
+      // Update x[j] and v[j].
+      flock[i].v[j] = avg_v;
+      flock[i].x[j] += flock[i].v[j] * TIME_INTERVAL;
+    }
   }
 }
 
+// TODO: fix the bug caused by OMP.
+void update_flock_v2() {
+  // Use OpenMP to parellel evolution for each bird.
+  #pragma omp parallel for collapse(1)
+  for (int i = 0; i < GROUP_SIZE; i++) {
+    //printf("haha i=%d\n", i);  // this solves the segmentfault caused by OMP.
+    // Update flock[i].neighbors
+    initialize_neighbors(&flock[i]);
+    for (int j = 0; j < NEIGHBORS; j++) {
+      update_neighbors(&flock[i], flock[i].neighbors[j]);
+      for (int k = 0; k < NEIGHBORS; k++) {
+        //printf("haha j=%d, k=%d\n", j, k);
+        update_neighbors(&flock[i], flock[i].neighbors[j]->neighbors[k]);
+      }
+    }
+
+    // Update flock[i].x and flock[i].v
+    for (int j = 0; j < DIMENSION; j++) {
+      // Compute average velocity along dimension j.
+      float avg_v = 0;
+      for (int k = 0; k < NEIGHBORS; k++) {
+        avg_v += flock[i].neighbors[k]->v[j];
+      }
+      avg_v /= NEIGHBORS;
+
+      // Update x[j] and v[j].
+      flock[i].v[j] = avg_v;
+      flock[i].x[j] += flock[i].v[j] * TIME_INTERVAL;
+    }
+  }
+}
+
+
 int main() {
+  assert(GROUP_SIZE > NEIGHBORS);
   srand(RAND_SEED);
   initialize_flock();
 
   for (int i = 0; i < ITERATIONS; i++) {
-    update_flock();
+    if (i == 0) {
+      update_flock();
+    } else {
+      update_flock();
+      //update_flock_v2();
+    }
   }
 
   // Send the result to stdout.
   for (int i = 0; i < GROUP_SIZE; i++) {
-    printf("%lf,%lf,%lf,%lf\n", flock[i].x, flock[i].y, flock[i].vx, flock[i].vy);
+    for (int j = 0; j < DIMENSION; j++) {
+      if (j > 0) printf(",");
+      printf("%lf", flock[i].x[j]);
+    }
+    printf(";");
+    for (int j = 0; j < DIMENSION; j++) {
+      if (j > 0) printf(",");
+      printf("%lf", flock[i].v[j]);
+    }
+    printf("\n");
   }
 
   return 0;

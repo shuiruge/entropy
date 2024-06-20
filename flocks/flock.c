@@ -33,6 +33,16 @@ OMP_NUM_THREADS=14 ./flock.out
 #include <float.h>
 #include <assert.h>
 
+#define DIMENSION 2
+#define RAND_SEED 42
+#define INIT_WIDTH 1
+#define INIT_HEIGHT 1
+#define INIT_SPEED 1
+#define NEIGHBORS 5
+#define TIME_INTERVAL 0.01
+#define ITERATIONS 200
+#define GROUP_SIZE 100
+
 struct Bird {
   float x[DIMENSION];
   float v[DIMENSION];
@@ -68,10 +78,6 @@ void initialize_neighbors(struct Bird* bird) {
   }
 }
 
-float fsqrt(float x) {
-  return (float) sqrt((double) x);
-}
-
 // We use L2-norm as distance. But, in our situation, all we use about
 // distance is its monotonicity. So, returning distance square is also
 // valid, but saves lots of computation.
@@ -82,7 +88,6 @@ float distance(float* x, float* y) {
     d2 += dx * dx;
   }
   return d2;
-  //return fsqrt(d2);
 }
 
 void update_neighbors(struct Bird* central, struct Bird* ambient) {
@@ -132,7 +137,7 @@ void update_flock() {
 
       // Update x[j] and v[j].
       flock[i].v[j] = avg_v;
-      flock[i].x[j] += flock[i].v[j] * TIME_INTERVAL;
+      flock[i].x[j] += flock[i].v[j] * (float)TIME_INTERVAL;
     }
   }
 }
@@ -163,7 +168,7 @@ void update_flock_v2() {
 
       // Update x[j] and v[j].
       flock[i].v[j] = avg_v;
-      flock[i].x[j] += flock[i].v[j] * TIME_INTERVAL;
+      flock[i].x[j] += flock[i].v[j] * (float)TIME_INTERVAL;
     }
   }
 }
@@ -189,9 +194,8 @@ int main() {
       if (j > 0) printf(",");
       printf("%lf", flock[i].x[j]);
     }
-    printf(";");
     for (int j = 0; j < DIMENSION; j++) {
-      if (j > 0) printf(",");
+      printf(",");
       printf("%lf", flock[i].v[j]);
     }
     printf("\n");

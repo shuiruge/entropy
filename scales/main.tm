@@ -10,9 +10,16 @@
   Let <math|z\<in\>\<bbb-R\><rsup|E>> represent the \Pembeding vector\Q,
   <math|m=1,\<ldots\>,M> is the categorical label, and
   <math|q<rsub|m><around*|(|z,\<theta\>|)>\<assign\>softmax<rsub|m><around*|(|f<around*|(|z,\<theta\>|)>|)>>
-  with <math|f<around*|(|\<cdummy\>,\<theta\>|)>> a neural network
-  parameterized by <math|\<theta\>>. Given <math|<around*|(|z,\<theta\>|)>>,
-  we have
+  <\footnote>
+    Softmax function is defined by <math|softmax:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
+    with
+
+    <\equation*>
+      softmax<rsub|\<alpha\>><around*|(|x|)>\<assign\><frac|exp<around*|(|x<rsub|\<alpha\>>|)>|<big|sum><rsub|\<beta\>>exp<around*|(|x<rsub|\<beta\>>|)>>.
+    </equation*>
+  </footnote> with <math|f<around*|(|\<cdummy\>,\<theta\>|)>> a neural
+  network parameterized by <math|\<theta\>>. Given
+  <math|<around*|(|z,\<theta\>|)>>, we have
 
   <\equation>
     <frac|\<partial\>|\<partial\>\<theta\>>ln
@@ -21,15 +28,20 @@
     derivative>
   </equation>
 
-  Consider <math|f<rsub|\<alpha\>><around*|(|z,\<theta\>|)>=<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>
-  \<sigma\><around*|(|<big|sum><rsub|\<gamma\>>W<rsub|\<beta\>\<gamma\>>
-  z<rsub|\<gamma\>>+b<rsub|\<beta\>>|)>+c<rsub|\<alpha\>>>, where
-  <math|\<sigma\>> represents the SiLU activation, that is,
-  <math|\<sigma\><around*|(|x|)>=x/<around*|(|1+\<mathe\><rsup|-x>|)>>. Given
-  the \Phidden dimension\Q <math|H>, we have
-  <math|U\<in\>\<bbb-R\><rsup|M\<times\>H>>, <math|c\<in\>\<bbb-R\><rsup|M>>,
-  <math|W\<in\>\<bbb-R\><rsup|H\<times\>E>>, and
-  <math|b\<in\>\<bbb-R\><rsup|H>>.
+  Consider
+
+  <\equation*>
+    f<rsub|\<alpha\>><around*|(|z,\<theta\>|)>=<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>
+    \<sigma\><around*|(|<big|sum><rsub|\<gamma\>>W<rsub|\<beta\>\<gamma\>>
+    z<rsub|\<gamma\>>+b<rsub|\<beta\>>|)>,
+  </equation*>
+
+  where <math|\<sigma\>> represents the SiLU activation, that is,
+  <math|\<sigma\><around*|(|x|)>=x/<around*|(|1+\<mathe\><rsup|-x>|)>>. It is
+  a smooth version of ReLU activation. Given the \Phidden dimension\Q
+  <math|H>, we have <math|U\<in\>\<bbb-R\><rsup|M\<times\>H>>,
+  <math|c\<in\>\<bbb-R\><rsup|M>>, <math|W\<in\>\<bbb-R\><rsup|H\<times\>E>>,
+  and <math|b\<in\>\<bbb-R\><rsup|H>>.
 
   <subsection|Data and Action>
 
@@ -37,7 +49,7 @@
   between <math|p> and <math|q> is
 
   <\equation*>
-    H<around*|[|p,q|]>=<big|sum><rsub|z,m>p<around*|(|z,m|)> ln
+    H<around*|[|p,q|]>\<assign\><big|sum><rsub|z,m>p<around*|(|z,m|)> ln
     p<around*|(|z,m|)>-<big|sum><rsub|z,m>p<around*|(|z,m|)> ln
     q<rsub|m><around*|(|z,\<theta\>|)>.
   </equation*>
@@ -50,9 +62,9 @@
     ln q<rsub|m><around*|(|z,\<theta\>|)>.
   </equation>
 
-  This action has the minimum <math|S<around*|(|\<theta\><rsub|\<star\>>|)>=0>,
-  where <math|q<rsub|m><around*|(|z,\<theta\><rsub|\<star\>>|)>=1> for each
-  <math|z>.
+  This action has the minimum <math|S<around*|(|\<theta\><rsub|\<star\>>|)>=H<around*|[|p|]>\<assign\>-<big|sum><rsub|z,m>p<around*|(|z,m|)>
+  ln p<around*|(|z,m|)>>, where <math|q<rsub|m><around*|(|z,\<theta\><rsub|\<star\>>|)>=1>
+  for each <math|z>.
 
   <with|color|dark green|Assume that <math|p<around*|(|m|)>\<assign\><big|sum><rsub|z>p<around*|(|z,m|)>=1/M>
   for all <math|m=1,\<ldots\>,M>, meaning that the data have been properly
@@ -91,13 +103,13 @@
 
   To calculate <math|<around*|(|\<partial\>S/\<partial\>\<theta\>|)><around*|(|0|)>>,
   we have to calculate <math|<around*|(|\<partial\>f/\<partial\>\<theta\>|)><around*|(|z,0|)>>.
-  Replacing <math|\<theta\>> by <math|U>, <math|c>, <math|W>, and <math|b>
+  Replacing <math|\<theta\>> by <math|U>, <math|W>, and <math|b>
   respectively, we have the non-vanishing terms
 
   <\small>
     <\align>
       <tformat|<table|<row|<cell|<frac|\<partial\>f<rsub|\<alpha\>>|\<partial\>U<rsub|\<alpha\>\<beta\>>><around*|(|z,\<theta\>|)>=>|<cell|\<sigma\><around*|(|<big|sum><rsub|\<gamma\>>W<rsub|\<beta\>\<gamma\>>
-      z<rsub|\<gamma\>>+b<rsub|\<beta\>>|)>;>>|<row|<cell|<frac|\<partial\>f<rsub|\<alpha\>>|\<partial\>c<rsub|\<alpha\>>><around*|(|z,\<theta\>|)>=>|<cell|1;>>|<row|<cell|<frac|\<partial\>f<rsub|\<alpha\>>|\<partial\>W<rsub|\<beta\>\<gamma\>>><around*|(|z,\<theta\>|)>=>|<cell|U<rsub|\<alpha\>\<beta\>>
+      z<rsub|\<gamma\>>+b<rsub|\<beta\>>|)>;>>|<row|<cell|<frac|\<partial\>f<rsub|\<alpha\>>|\<partial\>W<rsub|\<beta\>\<gamma\>>><around*|(|z,\<theta\>|)>=>|<cell|U<rsub|\<alpha\>\<beta\>>
       \<sigma\><rprime|'><around*|(|<big|sum><rsub|\<gamma\><rprime|'>>W<rsub|\<beta\>\<gamma\><rprime|'>>
       z<rsub|\<gamma\><rprime|'>>+b<rsub|\<beta\>>|)>
       z<rsub|\<gamma\>>;>>|<row|<cell|<frac|\<partial\>f<rsub|\<alpha\>>|\<partial\>b<rsub|\<beta\>>><around*|(|z,\<theta\>|)>=>|<cell|U<rsub|\<alpha\>\<beta\>>
@@ -106,22 +118,7 @@
     </align>
   </small>
 
-  Setting <math|\<theta\>=0>, only
-
-  <\equation*>
-    <frac|\<partial\>f<rsub|\<alpha\>>|\<partial\>c<rsub|\<alpha\>>><around*|(|z,0|)>=1
-  </equation*>
-
-  is left. Thus, we shall take <math|\<theta\>\<rightarrow\>c<rsub|\<alpha\>>>,
-  that is,
-
-  <\small>
-    <\align>
-      <tformat|<table|<row|<cell|<frac|\<partial\>S|\<partial\>c<rsub|\<alpha\>>><around*|(|0|)>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)><around*|[|<big|sum><rsub|\<alpha\><rprime|'>>q<rsub|\<alpha\><rprime|'>><frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<alpha\>>>-<frac|\<partial\>f<rsub|m>|\<partial\>c<rsub|\<alpha\>>>|]>>>|<row|<cell|<around*|{|<frac|\<partial\>f|\<partial\>c>=\<cdots\>|}>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)><around*|[|<frac|1|M><big|sum><rsub|\<alpha\><rprime|'>>\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>-\<delta\><rsub|m\<alpha\>>|]>>>|<row|<cell|<around*|{|p<around*|(|m|)>=<frac|1|M>|}>=>|<cell|<frac|1|M><big|sum><rsub|\<alpha\><rprime|'>>\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>-<frac|1|M><big|sum><rsub|m>\<delta\><rsub|m\<alpha\>>>>|<row|<cell|=>|<cell|0.>>>>
-    </align>
-  </small>
-
-  So,
+  Setting <math|\<theta\>=0>, nothing is left. Thus,
 
   <\equation>
     S<rsub|1><around*|(|\<theta\>|)>=0.
@@ -162,9 +159,7 @@
   Since <math|\<sigma\><around*|(|0|)>=0>,
   <math|\<sigma\><rprime|'><around*|(|0|)>=1/2>, we have, in addition to
 
-  <\equation*>
-    <frac|\<partial\>f<rsub|\<alpha\>>|\<partial\>c<rsub|\<alpha\>>><around*|(|z,0|)>=1,
-  </equation*>
+  \;
 
   <\equation*>
     <frac|\<partial\><rsup|2>f<rsub|\<alpha\>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>><around*|(|z,0|)>=<frac|z<rsub|\<gamma\>>|2>,
@@ -176,17 +171,8 @@
     <frac|\<partial\><rsup|2>f<rsub|\<alpha\>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>b<rsub|\<beta\>>><around*|(|z,0|)>=<frac|1|2>.
   </equation*>
 
-  At <math|\<theta\>=0>, taking <math|\<theta\>\<rightarrow\>c<rsub|\<alpha\>>>
-  and <math|\<theta\><rprime|'>\<rightarrow\>c<rsub|\<beta\>>> gives
-
-  <\small>
-    <\align>
-      <tformat|<table|<row|<cell|<frac|\<partial\><rsup|2>S|\<partial\>c<rsub|\<alpha\>>\<partial\>c<rsub|\<beta\>>><around*|(|0|)>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)><around*|[|<big|sum><rsub|\<gamma\>>q<rsub|\<gamma\>><frac|\<partial\>f<rsub|\<gamma\>>|\<partial\>c<rsub|\<alpha\>>><frac|\<partial\>f<rsub|\<gamma\>>|\<partial\>c<rsub|\<beta\>>>-<big|sum><rsub|\<gamma\>,\<gamma\><rprime|'>>q<rsub|\<gamma\>>q<rsub|\<gamma\><rprime|'>><frac|\<partial\>f<rsub|\<gamma\>>|\<partial\>c<rsub|\<alpha\>>><frac|\<partial\>f<rsub|\<gamma\><rprime|'>>|\<partial\>c<rsub|\<beta\>>>|]>>>|<row|<cell|<around*|{|q<rsub|\<alpha\>>=<frac|1|M>,<frac|\<partial\>f|\<partial\>c>=\<cdots\>|}>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)><around*|[|<frac|1|M>\<delta\><rsub|\<alpha\>\<beta\>>-<frac|1|M<rsup|2>>|]>>>|<row|<cell|<around*|{|<big|sum><rsub|z,m>p<around*|(|z,m|)>=1|}>=>|<cell|<frac|\<delta\><rsub|\<alpha\>\<beta\>>|M>-<frac|1|M<rsup|2>>.>>>>
-    </align>
-  </small>
-
-  Taking <math|\<theta\>\<rightarrow\>U<rsub|\<alpha\>\<beta\>>> and
-  <math|\<theta\><rprime|'>\<rightarrow\>W<rsub|\<beta\>\<gamma\>>> gives
+  At <math|\<theta\>=0>, taking <math|\<theta\>\<rightarrow\>U<rsub|\<alpha\>\<beta\>>>
+  and <math|\<theta\><rprime|'>\<rightarrow\>W<rsub|\<beta\>\<gamma\>>> gives
 
   <\small>
     <\align>
@@ -209,27 +195,17 @@
   So,
 
   <\equation>
-    S<rsub|2><around*|(|\<theta\>|)>=<frac|1|2><big|sum><rsub|\<alpha\>,\<beta\>><around*|(|<frac|\<delta\><rsub|\<alpha\>\<beta\>>|M>-<frac|1|M<rsup|2>>|)>c<rsub|\<alpha\>>c<rsub|\<beta\>>+<frac|1|2><big|sum><rsub|\<alpha\>,\<gamma\>><frac|J<rsub|\<alpha\>\<gamma\>>|2M>
+    S<rsub|2><around*|(|\<theta\>|)>=<frac|1|2><big|sum><rsub|\<alpha\>,\<gamma\>><frac|J<rsub|\<alpha\>\<gamma\>>|2M>
     <big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>
   </equation>
 
   where <math|J<rsub|\<alpha\>\<gamma\>>\<assign\>\<bbb-E\><rsub|z\<sim\>p<around*|(|z|)>><around*|[|z<rsub|\<gamma\>>|]>-\<bbb-E\><rsub|z\<sim\>p<around*|(|z\|\<alpha\>|)>><around*|[|z<rsub|\<gamma\>>|]>>.
 
-  By numerical computation, we find that the matrix
-  <math|\<delta\>/M-1/M<rsup|2>> is <with|color|dark green|non-positive
-  definite> since it has non-positive determinant. The term
-  <math|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>>
+  The term <math|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>>
   can be seen as a \Ppropagation\Q from the <math|\<gamma\>>-neuron to the
   <math|\<alpha\>>-neuron, weighted by <math|J<rsub|\<alpha\>\<gamma\>>/<around*|(|2M|)>>.
   Computed on fashion-MNIST dataset, components of <math|J> vary from
   <math|-0.1> to <math|0.075>.
-
-  But, numerical computation shows that there is not lower bound for the
-  second term of <math|S<rsub|2>>. This means, the <math|<around*|\||U|\|>>
-  and <math|<around*|\||W|\|>> grows until the next order takes part in. And
-  the matrix <math|\<delta\><rsub|\<alpha\>\<beta\>>-1/M> has non-positive
-  determinant for <math|M=2,3,\<ldots\>>, which means <math|c=0> is also
-  unstable. So, we have to consider the third order.
 
   We further analyzed <math|S<rsub|2>> on the best fit
   <math|\<theta\><rsub|\<star\>>>, trained on training data and evaluated on
@@ -273,40 +249,7 @@
     </align>
   </small>
 
-  Thus, taking <math|\<theta\>\<rightarrow\>c<rsub|\<alpha\>>>,
-  <math|\<theta\><rprime|'>\<rightarrow\>c<rsub|\<beta\>>> and
-  <math|\<theta\><rprime|''>\<rightarrow\>c<rsub|\<gamma\>>> gives
-
-  <small|<align|<tformat|<table|<row|<cell|<frac|\<partial\><rsup|3>S|\<partial\>c<rsub|\<alpha\>>\<partial\>c<rsub|\<beta\>>\<partial\>c<rsub|\<gamma\>>><around*|(|0|)>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)>
-  <big|sum><rsub|\<alpha\><rprime|'>>q<rsub|\<alpha\><rprime|'>><around*|[|<frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<alpha\>>><frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<beta\>>><frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<gamma\>>>|]>>>|<row|<cell|->|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)>
-  <big|sum><rsub|\<alpha\><rprime|'>,\<beta\><rprime|'>>q<rsub|\<alpha\><rprime|'>>q<rsub|\<beta\><rprime|'>><around*|[|<frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<alpha\>>><frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<beta\>>><frac|\<partial\>f<rsub|\<beta\><rprime|'>>|\<partial\>c<rsub|\<gamma\>>>+<frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<alpha\>>><frac|\<partial\>f<rsub|\<beta\><rprime|'>>|\<partial\>c<rsub|\<beta\>>><frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<gamma\>>>+<frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<alpha\>>><frac|\<partial\>f<rsub|\<beta\><rprime|'>>|\<partial\>c<rsub|\<beta\>>><frac|\<partial\>f<rsub|\<beta\><rprime|'>>|\<partial\>c<rsub|\<gamma\>>>|]>>>|<row|<cell|+>|<cell|2<big|sum><rsub|z,m>p<around*|(|z,m|)>
-  <big|sum><rsub|\<alpha\><rprime|'>,\<beta\><rprime|'>,\<gamma\><rprime|'>>q<rsub|\<alpha\><rprime|'>>q<rsub|\<beta\><rprime|'>>q<rsub|\<gamma\><rprime|'>>
-  <frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<alpha\>>><frac|\<partial\>f<rsub|\<beta\><rprime|'>>|\<partial\>c<rsub|\<beta\>>><frac|\<partial\>f<rsub|\<gamma\><rprime|'>>|\<partial\>c<rsub|\<gamma\>>>>>|<row|<cell|<around*|{|q<rsub|\<alpha\>>\<equiv\><frac|1|M>,<frac|\<partial\>f|\<partial\>c>=\<delta\>|}>=>|<cell|<frac|1|M><big|sum><rsub|\<alpha\><rprime|'>>\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>\<delta\><rsub|\<beta\>\<alpha\><rprime|'>>\<delta\><rsub|\<gamma\>\<alpha\><rprime|'>>-<frac|1|M<rsup|2>><big|sum><rsub|\<alpha\><rprime|'>,\<beta\><rprime|'>><around*|[|\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>\<delta\><rsub|\<beta\>\<alpha\><rprime|'>>\<delta\><rsub|\<gamma\>\<beta\><rprime|'>>+\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>\<delta\><rsub|\<beta\>\<beta\><rprime|'>>\<delta\><rsub|\<gamma\>\<alpha\><rprime|'>>+\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>\<delta\><rsub|\<beta\>\<beta\><rprime|'>>\<delta\><rsub|\<gamma\>\<beta\><rprime|'>>|]>+<frac|2|M<rsup|3>><big|sum><rsub|\<alpha\><rprime|'>,\<beta\><rprime|'>,\<gamma\><rprime|'>>\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>\<delta\><rsub|\<beta\>\<beta\><rprime|'>>\<delta\><rsub|\<gamma\>\<gamma\><rprime|'>>>>|<row|<cell|=>|<cell|<frac|\<delta\><rsub|\<alpha\>\<beta\>\<gamma\>>|M>-<frac|\<delta\><rsub|\<alpha\>\<beta\>>+\<delta\><rsub|\<alpha\>\<gamma\>>+\<delta\><rsub|\<beta\>\<gamma\>>|M<rsup|2>>+<frac|2|M<rsup|3>>.>>>>>>
-
-  Taking <math|\<theta\>\<rightarrow\>U<rsub|\<alpha\>\<beta\>>>,
-  <math|\<theta\><rprime|'>\<rightarrow\>W<rsub|\<beta\>\<gamma\>>> and
-  <math|\<theta\><rprime|''>\<rightarrow\>c<rsub|\<delta\>>> gives
-
-  <\small>
-    <align|<tformat|<table|<row|<cell|<frac|\<partial\><rsup|3>S|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>\<partial\>c<rsub|\<delta\>>><around*|(|0|)>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)>
-    <big|sum><rsub|\<alpha\><rprime|'>>q<rsub|\<alpha\><rprime|'>><frac|\<partial\><rsup|2>f<rsub|\<alpha\><rprime|'>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>><frac|\<partial\>f<rsub|\<alpha\><rprime|'>>|\<partial\>c<rsub|\<delta\>>>>>|<row|<cell|->|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)>
-    <big|sum><rsub|\<alpha\><rprime|'>,\<beta\><rprime|'>>q<rsub|\<alpha\><rprime|'>>q<rsub|\<beta\><rprime|'>><frac|\<partial\><rsup|2>f<rsub|\<alpha\><rprime|'>>|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>W<rsub|\<beta\>\<gamma\>>><frac|\<partial\>f<rsub|\<beta\><rprime|'>>|\<partial\>c<rsub|\<delta\>>>>>|<row|<cell|<around*|{|<frac|\<partial\><rsup|2>f|\<partial\>U\<partial\>W>=\<cdots\>,<frac|\<partial\>f|\<partial\>c>=\<delta\>|}>=>|<cell|<big|sum><rsub|z,m>p<around*|(|z,m|)>
-    <big|sum><rsub|\<alpha\><rprime|'>><frac|1|M><frac|\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>
-    z<rsub|\<gamma\>>|2>\<delta\><rsub|\<delta\>\<alpha\><rprime|'>>-<big|sum><rsub|z,m>p<around*|(|z,m|)>
-    <big|sum><rsub|\<alpha\><rprime|'>,\<beta\><rprime|'>><frac|1|M<rsup|2>><frac|\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>
-    z<rsub|\<gamma\>>|2>\<delta\><rsub|\<delta\>\<beta\><rprime|'>>>>|<row|<cell|=>|<cell|<around*|(|<frac|\<delta\><rsub|\<alpha\>\<delta\>>|2M>-<frac|1|2M<rsup|2>>|)>Z<rsub|\<gamma\>>>>>>>
-  </small>
-
-  where <math|Z<rsub|\<gamma\>>\<assign\>\<bbb-E\><rsub|z\<sim\>p<around*|(|z|)>><around*|[|z<rsub|\<gamma\>>|]>>.
-  Following the same process, we find
-
-  <\small>
-    <\equation*>
-      <frac|\<partial\><rsup|3>S|\<partial\>U<rsub|\<alpha\>\<beta\>>\<partial\>b<rsub|\<beta\>>\<partial\>c<rsub|\<gamma\>>><around*|(|0|)>=<frac|\<delta\><rsub|\<alpha\>\<gamma\>>|2M>-<frac|1|2M<rsup|2>>.
-    </equation*>
-  </small>
-
-  Taking <math|\<theta\>\<rightarrow\>U<rsub|\<alpha\>\<beta\>>>,
+  Thus, taking <math|\<theta\>\<rightarrow\>U<rsub|\<alpha\>\<beta\>>>,
   <math|\<theta\><rprime|'>\<rightarrow\>W<rsub|\<beta\>\<gamma\>>> and
   <math|\<theta\><rprime|''>\<rightarrow\>W<rsub|\<beta\>\<delta\>>> gives
 
@@ -339,15 +282,11 @@
 
   So,
 
-  <\align>
-    <tformat|<table|<row|<cell|S<rsub|3><around*|(|\<theta\>|)>=>|<cell|<big|sum><rsub|\<alpha\>,\<beta\>,\<gamma\>><around*|(|<frac|\<delta\><rsub|\<alpha\>\<beta\>\<gamma\>>|6M>-<frac|\<delta\><rsub|\<alpha\>\<beta\>>+\<delta\><rsub|\<alpha\>\<gamma\>>+\<delta\><rsub|\<beta\>\<gamma\>>|6M<rsup|2>>+<frac|1|3M<rsup|3>>|)>c<rsub|\<alpha\>>c<rsub|\<beta\>>c<rsub|\<gamma\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<gamma\>><around*|(|<frac|\<delta\><rsub|\<alpha\>\<gamma\>>|12M>-<frac|1|12M<rsup|2>>|)><around*|(|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>b<rsub|\<beta\>>|)>c<rsub|\<gamma\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<gamma\>,\<delta\>><around*|(|<frac|Z<rsub|\<gamma\>>
-    \<delta\><rsub|\<alpha\>\<delta\>>|12M>-<frac|Z<rsub|\<gamma\>>|12M<rsup|2>>|)><around*|(|<big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>|)>c<rsub|\<delta\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<gamma\>><frac|J<rsub|\<alpha\>\<gamma\>>|12M><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>b<rsub|\<beta\>>>>|<row|<cell|+>|<cell|<big|sum><rsub|\<alpha\>,\<gamma\>,\<delta\>><frac|J<rsub|\<alpha\>\<gamma\>\<delta\>>|12M><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>W<rsub|\<beta\>\<delta\>>.>>>>
-  </align>
+  <\equation*>
+    S<rsub|3><around*|(|\<theta\>|)>=<big|sum><rsub|\<alpha\>,\<gamma\>><frac|J<rsub|\<alpha\>\<gamma\>>|12M><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>b<rsub|\<beta\>>+<big|sum><rsub|\<alpha\>,\<gamma\>,\<delta\>><frac|J<rsub|\<alpha\>\<gamma\>\<delta\>>|12M><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\>>W<rsub|\<beta\>\<delta\>>.
+  </equation*>
 
-  Numerical computation again shows that, up to the third order, the action
-  still has no lower bound.
-
-  We further analyzed <math|S<rsub|3>> on the best fit
+  We analyzed <math|S<rsub|3>> on the best fit
   <math|\<theta\><rsub|\<star\>>>. We found that it is the last term that
   dominates <math|S<rsub|3><around*|(|\<theta\><rsub|\<star\>>|)>>.
   Interestingly, like the case of <math|S<rsub|2>>, both the terms
@@ -367,16 +306,16 @@
   <math|2.2\<times\>10<rsup|10>> sub-terms, other terms have
   <math|10<rsup|3>>, <math|2.1\<times\>10<rsup|5>>,
   <math|2.1\<times\>10<rsup|8>>, and <math|2.1\<times\>10<rsup|7>> sub-terms,
-  respectively. So, if the scales of <math|U>, <math|c>, <math|W>, and
-  <math|b> are in the same order, then the last term dominates. This also
-  applies to <math|S<rsub|2>>. We can check this idea by making the embedding
-  dimension <math|E> small. Indeed, when <math|E> is small, domination of the
-  last term vanishes. Notice that the power law between the model size and
-  the optimized loss appears only when <math|E> has been large enough. So, we
-  can guess that this domination is the key to the power law.
+  respectively. So, if the scales of <math|U>, <math|W>, and <math|b> are in
+  the same order, then the last term dominates. We can check this idea by
+  making the embedding dimension <math|E> small. Indeed, when <math|E> is
+  small, domination of the last term vanishes. Notice that the power law
+  between the model size and the optimized loss appears only when <math|E>
+  has been large enough. So, we can guess that this domination is the key to
+  the power law.
 
-  <with|color|red|The problem left is why the scales of <math|U>, <math|c>,
-  <math|W>, and <math|b> are in the same order when
+  <with|color|red|The problem left is why the scales of <math|U>, <math|W>,
+  and <math|b> are in the same order when
   <math|\<theta\>\<approx\>\<theta\><rsub|\<star\>>>.>
 
   <subsection|Higher Orders and Summary>
@@ -401,7 +340,24 @@
     M><big|sum><rsub|\<alpha\>,\<gamma\><rsub|1>,\<ldots\>,\<gamma\><rsub|n>>J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>><big|sum><rsub|\<beta\>>U<rsub|\<alpha\>\<beta\>>W<rsub|\<beta\>\<gamma\><rsub|1>>\<cdots\>W<rsub|\<beta\>\<gamma\><rsub|n>>
   </equation*>
 
-  for any <math|\<theta\>\<approx\>\<theta\><rsub|\<star\>>>.
+  for any <math|\<theta\>\<approx\>\<theta\><rsub|\<star\>>>.<\footnote>
+    If there is an additional hidden layer, with weights <math|V>, thus an
+    educated guess would be proportional to
+
+    <\equation*>
+      S<rsub|n+2>\<propto\> J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>><big|sum><rsub|\<beta\>,\<beta\><rprime|'>>U<rsub|\<alpha\>\<beta\>>
+      V<rsub|\<beta\>\<beta\><rprime|'>> W<rsub|\<beta\><rprime|'>\<gamma\><rsub|1>>\<cdots\>W<rsub|\<beta\><rprime|'>\<gamma\><rsub|n>>.
+    </equation*>
+
+    But it seems that there is degenerancy between <math|U> and <math|W>.
+    But, there will also be contribution like
+
+    <\equation*>
+      S<rsub|n+m+2>\<propto\> J<rsub|\<alpha\>\<gamma\><rsub|1>\<cdots\>\<gamma\><rsub|n>><big|sum><rsub|\<beta\>,\<beta\><rprime|'>>U<rsub|\<alpha\>\<beta\>>
+      V<rsub|\<beta\>\<beta\><rsub|1><rprime|'>>*\<cdots\>*V<rsub|\<beta\>\<beta\><rsub|2><rprime|'>>
+      W<rsub|\<beta\><rprime|'><rsub|1>\<gamma\><rsub|1>>*\<cdots\>*W<rsub|\<beta\><rprime|'><rsub|m>\<gamma\><rsub|n>>.
+    </equation*>
+  </footnote>
 
   <section|Data Size and Early Stopping>
 
@@ -409,7 +365,7 @@
   <math|p<around*|(|z,m|)>>, but empirical distributions
   <math|p<rsub|T><around*|(|z,m|)>> and <math|p<rsub|E><around*|(|z,m|)>>,
   both of which are summations of delta functions. The <math|p<rsub|T>> for
-  training data and <math|p<rsub|E>> for test (or evaluation) data. The
+  training data and <math|p<rsub|V>> for test (or validation) data. The
   strategy training is minimizing the action (training loss)
 
   <\equation*>
@@ -417,22 +373,22 @@
     ln q<rsub|m><around*|(|z,\<theta\>|)>
   </equation*>
 
-  by gradient descent method is optimizing until another action (evaluation
+  by gradient descent method is optimizing until another action (validation
   loss)
 
   <\equation*>
-    S<rsub|E><around*|(|\<theta\>|)>\<assign\>-<big|sum><rsub|z,m>p<rsub|E><around*|(|z,m|)>
+    S<rsub|V><around*|(|\<theta\>|)>\<assign\>-<big|sum><rsub|z,m>p<rsub|V><around*|(|z,m|)>
     ln q<rsub|m><around*|(|z,\<theta\>|)>
   </equation*>
 
   starts to increase. In this situation, we have
-  <math|\<nabla\>S<rsub|T>\<cdot\>\<nabla\>S<rsub|E>=0>, where the
-  <math|\<nabla\>S<rsub|E>> starts to turn its direction to go against with
+  <math|\<nabla\>S<rsub|T>\<cdot\>\<nabla\>S<rsub|V>=0>, where the
+  <math|\<nabla\>S<rsub|V>> starts to turn its direction to go against with
   the <math|\<nabla\>S<rsub|T>>. So, the training
   <with|font-shape|italic|early stops> at
 
   <\equation>
-    \<nabla\>S<rsub|T><around*|(|\<theta\>|)>\<cdot\>\<nabla\>S<rsub|E><around*|(|\<theta\>|)>=0,
+    \<nabla\>S<rsub|T><around*|(|\<theta\>|)>\<cdot\>\<nabla\>S<rsub|V><around*|(|\<theta\>|)>=0,
   </equation>
 
   instead of <math|\<nabla\>S<around*|(|\<theta\>|)>=0>. This difference is
@@ -454,11 +410,15 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|2|1>>
     <associate|auto-5|<tuple|2.1|1>>
-    <associate|auto-6|<tuple|2.2|1>>
+    <associate|auto-6|<tuple|2.2|2>>
     <associate|auto-7|<tuple|2.3|2>>
     <associate|auto-8|<tuple|2.4|4>>
     <associate|auto-9|<tuple|2.5|6>>
     <associate|equ:q derivative|<tuple|1|1>>
+    <associate|footnote-1|<tuple|1|1>>
+    <associate|footnote-2|<tuple|2|6>>
+    <associate|footnr-1|<tuple|1|1>>
+    <associate|footnr-2|<tuple|2|6>>
   </collection>
 </references>
 
@@ -497,7 +457,7 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|1tab>|2.5<space|2spc>Higher Orders
+      <with|par-left|<quote|1tab>|2.5<space|2spc>Higher Orders and Summary
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 

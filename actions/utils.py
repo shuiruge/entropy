@@ -1,11 +1,28 @@
 import tensorflow as tf
+from dataclasses import dataclass
 from collections import namedtuple
 
 
-def reduce_mean(x, batch_dims):
+def l2_norm(x, batch_dims):
+  """Compute L2-norm for each sample."""
   rank = len(tf.shape(x))
-  axis = [i for i in range(rank) if i < batch_dims]
-  return tf.reduce_mean(x, axis)
+  if rank < batch_dims:
+    raise ValueError('ERROR: rank shall be no less than batch_dims. '
+                     f'But rank {rank} with batch_dims {batch_dims}')
+  axis = [i for i in range(rank) if i >= batch_dims]
+  return tf.reduce_sum(tf.square(x), axis)
+
+
+GradientLoss = namedtuple('GradientLoss', ['grads', 'loss'])
+GradientLoss.__doc__ = """Auxillary class for computing the "gradient loss".
+  
+  Args:
+    grads: List[tf.Tensor]
+      The collection of ∂S/∂x for each variables x of S.
+    loss: tf.Tensor
+      The sum of L2-norm of gradient in `grads`. That is, the "gradient loss"
+      for each sample. It has the shape of batch-size.
+"""
 
 
 def get_gradient_loss_fn(loss_fn):
@@ -37,10 +54,7 @@ def get_gradient_loss_fn(loss_fn):
       inputs: tf.Tensor or List[tf.Tensor]
       batch_dims: int
 
-    Returns: A pair, if `return_grads`, including:
-        - the "gradient loss": loss value per sample.
-        - loss gradients: tf.Tensor or List[tf.Tensor].
-      Otherwise, return the "gradient loss" only.
+    Returns: GradientLoss object.
     """
     if not isinstance(inputs, (tuple, list)):
       inputs = [inputs]
@@ -51,13 +65,10 @@ def get_gradient_loss_fn(loss_fn):
       loss = loss_fn(inputs)
     grads = tape.gradient(loss, inputs)
 
-    gradient_loss = sum(reduce_mean(tf.square(x), batch_dims) for x in grads)
-    return grads, gradient_loss
+    gradient_loss = sum(l2_norm(_, batch_dims) for _ in grads)
+    return GradientLoss(grads, gradient_loss)
 
   return gradient_loss_fn
-
-
-GradientLoss = namedtuple('GradientLoss', 'grad_x, grad_y, loss')
 
 
 class GradientMeanSquaredError:
@@ -93,8 +104,8 @@ class GradientMeanSquaredError:
 
     grad_y = 2 * (y - y_pred)
 
-    loss = sum(reduce_mean(tf.square(_), batch_dims) for _ in (grad_x, grad_y))
-    return GradientLoss(grad_x, grad_y, loss)
+    loss = sum(l2_norm(_, batch_dims) for _ in (grad_x, grad_y))
+    return GradientLoss([grad_x, grad_y], loss)
 
 
 class GradientRelativeEntropy:
@@ -147,6 +158,5 @@ class GradientRelativeEntropy:
     # [..., categories]
     grad_y = z - y * tf.reduce_sum(z, axis=-1, keepdims=True)
 
-    loss = sum(reduce_mean(tf.square(_), batch_dims) for _ in (grad_x, grad_y))
-
-    return GradientLoss(grad_x, grad_y, loss)
+    loss = sum(l2_norm(_, batch_dims) for _ in (grad_x, grad_y))
+    return GradientLoss([grad_x, grad_y], loss)

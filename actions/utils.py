@@ -74,7 +74,7 @@ class GradientMeanSquaredError:
   """Explicit form of the "gradient loss" for mean squared error.
   
   Args:
-    model: tf.models.Model
+    model: tf.Module
       It accepts a single tensor as input and another tensor as output.
   """
   
@@ -111,7 +111,7 @@ class GradientRelativeEntropy:
   """Explicit form of the "gradient loss" for relative entropy (KL-divergence).
   
   Args:
-    model: tf.models.Model
+    model: tf.Module
       It accepts a single tensor as input and another tensor as output.
       The output of shall be the classification logits, thus the probablity
       for each class is given by the softmax of logits.

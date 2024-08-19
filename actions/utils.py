@@ -1,5 +1,4 @@
 import tensorflow as tf
-from dataclasses import dataclass
 from collections import namedtuple
 
 

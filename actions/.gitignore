@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 # Data
-data/
+mnist_c/
+*.csv

@@ -16,7 +16,7 @@ GradientLoss = namedtuple('GradientLoss', ['grads', 'loss'])
 GradientLoss.__doc__ = """Auxillary class for computing the "gradient loss".
   
   Args:
-    grads: List[tf.Tensor]
+    grads: Tuple[tf.Tensor]
       The collection of ∂S/∂x for each variables x of S.
     loss: tf.Tensor
       The sum of L2-norm of gradient in `grads`. That is, the "gradient loss"
@@ -104,7 +104,7 @@ class GradientMeanSquaredError:
     grad_y = 2 * (y - y_pred)
 
     loss = sum(l2_norm(_, batch_dims) for _ in (grad_x, grad_y))
-    return GradientLoss([grad_x, grad_y], loss)
+    return GradientLoss((grad_x, grad_y), loss)
 
 
 class GradientRelativeEntropy:
@@ -115,13 +115,17 @@ class GradientRelativeEntropy:
       It accepts a single tensor as input and another tensor as output.
       The output of shall be the classification logits, thus the probablity
       for each class is given by the softmax of logits.
-    clip_eps: The epsilon for clipping the value of target. Defaults to 0.1.
+    clip_eps: float
+      The epsilon for clipping the value of target. Defaults to 0.1.
       This value shall not be too small.
+    is_conditional: bool
+      TODO
   """
   
-  def __init__(self, model, clip_eps=0.1):
+  def __init__(self, model, clip_eps=0.1, is_conditional=False):
     self.model = model
     self.clip_eps = clip_eps
+    self.is_conditional = is_conditional
 
   def __call__(self, x, y, batch_dims=1):
     r"""
@@ -149,6 +153,11 @@ class GradientRelativeEntropy:
     # [..., *input_dim]
     grad_x = tape.gradient(y_pred, x, q - y)
 
+    if self.is_conditional:
+      loss = l2_norm(grad_x, batch_dims)
+      return GradientLoss((grad_x,), loss)
+
+    # Compute \partial S / \partial y
     # Compute \partial S / \partial y
     # Since y has been clipped and q is output of softmax, the logorithms are
     # safe.
@@ -158,4 +167,4 @@ class GradientRelativeEntropy:
     grad_y = z - y * tf.reduce_sum(z, axis=-1, keepdims=True)
 
     loss = sum(l2_norm(_, batch_dims) for _ in (grad_x, grad_y))
-    return GradientLoss([grad_x, grad_y], loss)
+    return GradientLoss((grad_x, grad_y), loss)

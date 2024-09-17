@@ -11,20 +11,24 @@
   <subsection|Conventions in This Section>
 
   Follow the conventions in section <reference|section: Master Equation,
-  Detailed Balance, and Relative Entropy>.
+  Detailed Balance, and Relative Entropy>. In addition, we use
+  <math|P<around*|(|\<theta\>|)>> for a parameterized distribution, where
+  <math|\<theta\>> is the collection of parameters. Its probablistic
+  distribution function is written as <math|p<around*|(|x,\<theta\>|)>>,
+  where random variable <math|X> has value <math|x>.
 
   <subsection|Data Fitting Is Equivalent to Least-Action
-  Principle><label|section: Generic Dynamics Can Be Extract From Data
-  Fitting>
+  Principle><label|section: Data Fitting Is Equivalent to Least-Action
+  Principle>
 
-  Let <math|p<around*|(|\<cdummy\>,\<theta\>|)>> represent a parametrized
-  distribution of <math|X>, and <math|q> a distribution of <math|X> that
+  Let <math|P<around*|(|\<theta\>|)>> represent a parametrized distribution
+  of <math|X>, and <math|<wide|P|^>> a distribution of <math|X> that
   represents prior knowledge as in the case of maximum-entropy principle. Let
   <math|S<around*|(|x,\<theta\>|)>\<assign\>-ln
-  <around*|(|p<around*|(|x,\<theta\>|)>/q<around*|(|x|)>|)>-ln
+  <around*|(|p<around*|(|x,\<theta\>|)>/<wide|p|^><around*|(|x|)>|)>-ln
   Z<around*|(|\<theta\>|)>> with <math|Z> to be determined. Notice that the
   distribution <math|q> is essential for defining <math|S>, since <math|ln
-  p<around*|(|x,\<theta\>|)>> is not well-defined. <\footnote>
+  p<around*|(|x,\<theta\>|)>> is not well-defined.<\footnote>
     First, when the random variable <math|X> is continuous, the
     <math|p<around*|(|x,\<theta\>|)>> has dimension. But logarithm cannot
     accept a variable which has dimension. The second reason is that when we
@@ -33,14 +37,14 @@
     to make it an action (later), <math|S> has to be invariant under
     coordinate transformation. For these two reasons, <math|ln
     p<around*|(|x,\<theta\>|)>> is not well-defined. But, it is easy to prove
-    that <math|ln <around*|(|p<around*|(|x,\<theta\>|)>/q<around*|(|x|)>|)>>
+    that <math|ln <around*|(|p<around*|(|x,\<theta\>|)>/<wide|p|^><around*|(|x|)>|)>>
     is well-defined.
   </footnote> Then, we can re-formulate <math|p<around*|(|x,\<theta\>|)>> as
 
   <\equation>
-    p<around*|(|x,\<theta\>|)>=Z<rsup|-1><around*|(|\<theta\>|)>
-    q<around*|(|\<theta\>|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)><label|equation:Generic
-    Density>,
+    p<around*|(|x,\<theta\>|)>=<wide|p|^><around*|(|x|)>
+    exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>/Z<around*|(|\<theta\>|)>,<label|equation:Generic
+    Density>
   </equation>
 
   and since <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -48,54 +52,100 @@
 
   <\equation>
     Z<around*|(|\<theta\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|\<theta\>|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)><label|equation:Partition
+    <wide|p|^><around*|(|x|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)><label|equation:Partition
     Function>.
   </equation>
 
   \;
 
   As a generic form of a parameterized distribution, it can be used to fit
-  raw data that obeys an empirical distribution <math|p<rsub|D>>, by
-  adjusting parameter <math|\<theta\>>. To do so, we employ the usual loss
-  function <math|H<around*|[|p<rsub|D>,p<around*|(|\<cdummy\>,\<theta\>|)>|]>>.
-  By omitting the <math|\<theta\>>-independent terms, the loss function comes
-  to be
+  raw data that obeys an empirical distribution <math|Q>, by adjusting
+  parameter <math|\<theta\>>. To do so, we minimize the relative entropy
+  between <math|Q> and <math|P<around*|(|\<theta\>|)>>, which is defined as
+  <math|H<around*|[|q,p<around*|(|\<cdummy\>,\<theta\>|)>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  q<around*|(|x|)> ln <around*|(|q<around*|(|x|)>/p<around*|(|x,\<theta\>|)>|)>>.
+  Plugging equation (<reference|equation:Generic Density>) into
+  <math|H<around*|[|q,p<around*|(|\<cdummy\>,\<theta\>|)>|]>>, we have
+
+  <\align>
+    <tformat|<table|<row|<cell|H<around*|[|q,p<around*|(|\<cdummy\>,\<theta\>|)>|]>\<assign\>>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)> ln q<around*|(|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)> ln p<around*|(|x,\<theta\>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)> ln q<around*|(|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)> <wide|p|^><around*|(|x|)>+<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)> S<around*|(|x,\<theta\>|)>+<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)> ln Z<around*|(|\<theta\>|)>.>>>>
+  </align>
+
+  \ By omitting the <math|\<theta\>>-independent terms, we get the loss
+  function
 
   <\equation*>
-    L<around*|(|\<theta\>|)>\<assign\>ln Z<around*|(|\<theta\>|)>+\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>.
+    L<around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>+ln
+    Z<around*|(|\<theta\>|)>.
   </equation*>
 
-  The best fit <math|\<theta\><rsub|\<star\>>> locates at the minimum of
-  <math|L<around*|(|\<theta\>|)>>, where <math|p<around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>=p<rsub|D>>.
+  We can find the <math|\<theta\><rsub|\<star\>>\<assign\>argmin L> by
+  iteratively updating <math|\<theta\>> along the direction
+  <math|-\<partial\>L/\<partial\>\<theta\>>. With a series of direct
+  calculus<\footnote>
+    Directly, we have
+
+    <\equation*>
+      <frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>+Z<rsup|-1><around*|(|\<theta\>|)>
+      <frac|\<partial\>Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>.
+    </equation*>
+
+    Since <math|Z<around*|(|\<theta\>|)>\<assign\><big|int>\<mathd\>x
+    <wide|p|^><around*|(|x|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>,
+    we find
+
+    <\equation*>
+      <frac|\<partial\>Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=-<big|int>\<mathd\>x
+      <wide|p|^><around*|(|x|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>
+      <frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>,
+    </equation*>
+
+    thus
+
+    <\equation*>
+      Z<rsup|-1><around*|(|\<theta\>|)> <frac|\<partial\>Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=-<big|int>\<mathd\>x
+      <with|color|blue|<wide|p|^><around*|(|x|)>
+      exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>
+      Z<rsup|-1><around*|(|\<theta\>|)>> <frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>=-<big|int>\<mathd\>x
+      p<around*|(|x,\<theta\>|)> \ <frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>,
+    </equation*>
+
+    where in the last equality, we used the definition of
+    <math|p<around*|(|x,\<theta\>|)>> (the blue parts). This final expression
+    is just the <math|-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<around*|(|\<partial\>S/\<partial\>\<theta\><rsup|\<alpha\>>|)><around*|(|\<cdummy\>,\<theta\>|)>|]>>.
+  </footnote>, we find
+
+  <\equation>
+    <frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Iteration>.
+  </equation>
+
   At the minimum, we shall have <math|\<partial\>L/\<partial\>\<theta\>=0>.
   Then, we find that <math|\<theta\><rsub|\<star\>>> obeys
 
   <\equation>
-    \<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]><label|equation:Restriction>.
-  </equation>
-
-  We can find the <math|\<theta\><rsub|\<star\>>> by iteratively updating
-  <math|\<theta\>> along the direction <math|-\<partial\>L/\<partial\>\<theta\>>.
-  With a series of direct calculus, we find
-
-  <\equation>
-    <frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|p<rsub|D>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Iteration>.
+    \<bbb-E\><rsub|P<around*|(|\<theta\><rsub|\<star\>>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]><label|equation:Restriction>.
   </equation>
 
   Notice that <math|L> is equivalent to another loss <math|L<rsub|LA>> where
 
   <\equation>
-    L<rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Equivalent
+    L<rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Equivalent
     Loss>.
   </equation>
 
-  The expectation <math|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>>>
-  is computed by Monte-Carlo method. We sample data points from
-  <math|p<around*|(|\<cdummy\>,\<theta\>|)>> with fixed <math|\<theta\>>, and
-  compute the mean value of <math|S<around*|(|\<cdummy\>,\<theta\>|)>> on
-  these data points. The derivative of <math|\<theta\>> on this expectation
-  is taken on the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> instead of on
-  the data points. In this way, <math|L<rsub|LA>> is equivalent to <math|L>.
+  The expectation <math|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>>> is computed
+  by Monte-Carlo method. We sample data points from
+  <math|P<around*|(|\<theta\>|)>> with fixed <math|\<theta\>>, and compute
+  the mean value of <math|S<around*|(|\<cdummy\>,\<theta\>|)>> on these data
+  points. The derivative of <math|\<theta\>> on this expectation is taken on
+  the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> instead of on the data
+  points. In this way, <math|L<rsub|LA>> is equivalent to <math|L>.
 
   It can be read from this equation that minimizing <math|L<rsub|LA>> is to
   decrease the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> at data points (the
@@ -121,20 +171,19 @@
   (blue point), which is currently a local minimum of
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, is not. Minimizing
   <math|L<rsub|LA>> by tuning <math|\<theta\>> pushes the
-  <math|\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+  <math|\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
   down to lower value, corresponding to the red downward double-arrow on
   <math|x<rsub|1>>. Also, since <math|x<rsub|2>> is a local minimum, the data
   points sampled from <math|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>
   will accumulate around <math|x<rsub|2>>. So, minimizing <math|L<rsub|LA>>
-  also pulls the <math|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+  also pulls the <math|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
   up to greater value, corresponding to the blue upward double-arrow on
   <math|x<rsub|2>>. Altogether, it makes <math|x<rsub|1>> a local minimum of
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>> and
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is optimized to be the dashed
   green curve.>
 
-  <subsection|Extract Dynamics from Raw Data: An Instance of Classical
-  Physics>
+  <subsection|Example: Extract Dynamics from Raw Data>
 
   Suppose that we have a set of raw data about an entity from classical
   physics. To describe the entity, we need a configuration like
@@ -146,14 +195,14 @@
   Thus, each datum is a movie of the physical system, frame by frame. These
   raw data are obtained by experiments and measurements. Considering the
   errors in the measurements, variances shall be involved and the empirical
-  distribution <math|p<rsub|D><around*|(|x<around*|(|1:T|)>|)>> comes to be a
-  sum of normal distribution.
+  distribution <math|q<around*|(|x<around*|(|1:T|)>|)>> comes to be a sum of
+  normal distribution.
 
-  As a physical system, the <math|q> that represents free theory shall be
-  Gaussian. It may be
+  As a physical system, the <math|<wide|p|^>> that represents free theory
+  shall be Gaussian. It may be
 
   <\equation*>
-    q<around*|(|x|)>\<propto\>exp<around*|{|-<frac|1|2><big|sum><rsub|t=1><rsup|T-1>
+    <wide|p|^><around*|(|x|)>\<propto\>exp<around*|{|-<frac|1|2><big|sum><rsub|t=1><rsup|T-1>
     <around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>|}>,
   </equation*>
 
@@ -181,244 +230,141 @@
     <samp|oscillators/Oscillator.ipynb>.
   </footnote>
 
+  <subsection|Example: Actions in Machine Learning (TODO)>
+
+  In section <reference|section: Data Fitting Is Equivalent to Least-Action
+  Principle>, we have shown that any distribution can be re-formulated by
+  action. Usually, the goal of a supervised machine learning task is to fit a
+  distribution that predicts the target. For example, given an image
+  <math|x>, we are to compute the conditional distribution
+  <math|p<around*|(|y\|x|)>> for the class of the image such as being a cat
+  or a dog, thus <math|p<around*|(|y=cat\|x|)>> or
+  <math|p<around*|(|y=dog\|x|)>>. Let <math|y\<in\>\<cal-Y\>> denotes the
+  target, which can be discrete (like classes) or continuous (like person's
+  height), then the conditional probability is usually given by a model
+  <math|f<around*|(|x,\<theta\>|)>> parameterized by <math|\<theta\>>, as
+
+  <\equation*>
+    p<around*|(|y\|x,\<theta\>|)>=\<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>.
+  </equation*>
+
+  For example, for a categorical classification task,
+  <math|y\<in\><around*|{|1,\<ldots\>,M|}>> and
+  <math|z\<in\>\<bbb-R\><rsup|M>> for some <math|M>, and
+
+  <\equation*>
+    \<cal-P\><rsub|cls><around*|(|y,z|)>\<assign\><frac|exp<around*|(|z<rsup|y>|)>|<big|sum><rsub|\<alpha\>=1><rsup|M>exp<around*|(|z<rsup|\<alpha\>>|)>>.
+  </equation*>
+
+  And for regression task, <math|y,z\<in\>\<bbb-R\><rsup|M>> for some
+  <math|M>, and
+
+  <\equation*>
+    \<cal-P\><rsub|rg><around*|(|y,z|)>\<assign\>exp<around*|(|-<big|sum><rsub|\<alpha\>=1><rsup|M><frac|<around*|(|y<rsup|\<alpha\>>-z<rsup|\<alpha\>>|)><rsup|2>|2>|)>.
+  </equation*>
+
+  Thus, we have an action
+
+  <\equation*>
+    S<around*|(|x,y,\<theta\>|)>\<assign\>-ln
+    p<around*|(|y\|x,\<theta\>|)>=-ln \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>.
+  </equation*>
+
+  Assume that datum <math|<around*|(|x,y|)>> is sampled from a dataset
+  described by distribution <math|Q>, thus the loss of least-action becomes
+  (<math|Q<rsub|X>> for the marginal distribution of <math|X>, and
+  <math|P<around*|(|x,\<theta\>|)>> for the conditional distribution given
+  <math|X=x> and <math|\<theta\>>)
+
+  <\equation*>
+    L<rsub|LA><around*|(|\<theta\>|)>=\<bbb-E\><rsub|x\<sim\>Q<rsub|X>,y\<sim\>P<around*|(|x,\<theta\>|)>><around*|[|ln
+    \<cal-P\><around*|(|y,f<around*|(|x;\<theta\>|)>|)>|]>-\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>Q><around*|[|ln
+    \<cal-P\><around*|(|y,f<around*|(|x;\<theta\>|)>|)>|]>.
+  </equation*>
+
+  The last term is the usual loss function in machine learning. For example,
+  in the classification task, it is cross-entropy, and in regression task, it
+  is usually the mean squared error.
+
+  The first term is new for machine learning. To compute it, we first sample
+  a datum <math|<around*|(|x,y<rsub|0>|)>> from <math|Q> and only keep the
+  <math|x>, which indicates the <math|x\<sim\>Q<rsub|X>>. Then, compute
+  <math|f<around*|(|x;\<theta\>|)>> and sample a new <math|y> from
+  <math|P<around*|(|x,\<theta\>|)>>. For classification task, <math|y> is
+  sampled from the categorical distribution with probability
+  <math|exp<around*|(|f<rsup|y><around*|(|x;\<theta\>|)>|)>/<big|sum><rsub|\<alpha\>=1><rsup|M>exp<around*|(|f<rsup|\<alpha\>><around*|(|x;\<theta\>|)>|)>>,
+  and for regression task, from a normal distribution with mean
+  <math|f<around*|(|x,\<theta\>|)>> and unit variance. Using this <math|y>,
+  together with the <math|x>, <math|ln \<cal-P\><around*|(|y,f<around*|(|x;\<theta\>|)>|)>>
+  is calculated. For classification task, it is
+  <math|f<rsup|y><around*|(|x;\<theta\>|)>-lnSumExp<around*|(|f<around*|(|x;\<theta\>|)>|)>>,
+  where <math|lnSumExp<around*|(|x|)>\<assign\>ln<around*|(|<big|sum><rsub|\<alpha\>>exp<around*|(|x<rsup|\<alpha\>>|)>|)>>;
+  and for regression task, it is <math|-<big|sum><rsub|\<alpha\>=1><rsup|M><around*|(|y<rsup|\<alpha\>>-f<rsup|\<alpha\>><around*|(|x;\<theta\>|)>|)><rsup|2>/2>.
+
+  \;
+
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
 
-  In fact, equations <reference|equation:Generic Density>,
-  <reference|equation:Partition Function>, and
-  <reference|equation:Restriction> can be seen as an extremum of the
+  In fact, equations (<reference|equation:Generic Density>),
+  (<reference|equation:Partition Function>), and
+  (<reference|equation:Restriction>) can be regarded as an extremum of the
   functional
 
   <\equation*>
-    V<around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|p,q|]>+<around*|(|\<bbb-E\><rsub|p><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|p><around*|[|1|]>-1|)>,
+    V<around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|p,<wide|p|^>|]>+<around*|(|\<bbb-E\><rsub|P><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|Q><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|P><around*|[|1|]>-1|)>,
   </equation*>
 
   or explicitly
 
   <\equation*>
     V<around*|[|p,\<theta\>,\<mu\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<around*|(|x|)>ln<frac|p<around*|(|x|)>|q<around*|(|x|)>>+<around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x|)>ln<frac|p<around*|(|x|)>|<wide|p|^><around*|(|x|)>>+<around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<rsub|D><around*|(|x|)>S<around*|(|x,\<theta\>|)>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)>S<around*|(|x,\<theta\>|)>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1|)>.
   </equation*>
 
-  Indeed, variance on <math|p> gives equation <reference|equation:Generic
-  Density> and equation <reference|equation:Partition Function>. And partial
-  derivative on <math|\<theta\>> gives equation
-  <reference|equation:Restriction>. Condition by partial derivative on
-  <math|\<mu\>> has been involved in the <math|Z<around*|(|\<theta\>|)>>.
+  Indeed, variance on <math|p> gives<\footnote>
+    Explicitly, we have
+
+    <\equation*>
+      <frac|\<delta\>V|\<delta\>p><around*|[|p,\<theta\>,\<mu\>|]>=ln
+      p<around*|(|x|)>+1-ln <wide|p|^><around*|(|x|)>+S<around*|(|x,\<theta\>|)>+\<mu\>=0,
+    </equation*>
+
+    which has solution
+
+    <\equation*>
+      p<around*|(|x|)>\<propto\><wide|p|^><around*|(|x|)>
+      exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>.
+    </equation*>
+  </footnote> equation (<reference|equation:Generic Density>). Together with
+  the partial derivative on <math|\<mu\>>, we get equation
+  (<reference|equation:Partition Function>). Finally, partial derivative on
+  <math|\<theta\>> directly gives equation
+  (<reference|equation:Restriction>).
 
   Interestingly, the second term is just the
   <math|-L<rsub|LA><around*|(|\<theta\>|)>> in equation
-  <reference|equation:Equivalent Loss>. So, the extremum is in fact a saddle
-  point, as
+  (<reference|equation:Equivalent Loss>). So, the extremum is in fact a
+  saddle point, as
 
   <\equation>
     <around*|(|p<rsub|\<star\>>,\<theta\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>=min<rsub|p,\<mu\>>
     max<rsub|\<theta\>>V<around*|[|p,\<theta\>,\<mu\>|]>.
   </equation>
 
-  The minimization minimizes the relative entropy between <math|p> and
-  <math|q> and the expectation of action <math|S<around*|(|\<cdummy\>,\<theta\>|)>>
-  by tuning <math|p>, which in turn relates the probability <math|p> with the
-  action <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The maximization sites
-  real data onto the action's local minima by tuning <math|\<theta\>>. So, we
-  find that maximum-entropy principle and least-action principle are saddle
-  point of a functional <math|V>.
-
-  <subsection|Actions in Machine Learning: Minimize Loss or Loss Gradients?>
-
-  As figure <reference|figure: Least-Action> indicates, we shall push down
-  the real world data while pull up the data sampled from the
-  <math|p<around*|(|x,\<theta\>|)>>, until the two forces balanced. In fact,
-  to sample from <math|p<around*|(|x,\<theta\>|)>>, we will not fully
-  evaluate the Markov chain Monte-Carlo to equilibrium, which will consume a
-  plenty of computation resources, but only run several steps. In this case,
-  the data sampled from <math|p<around*|(|x,\<theta\>|)>> will be close to
-  the initial of the Markov chain Monte-Carlo, for which we employ the real
-  world data. So, let <math|x\<sim\>p<rsub|D>> as the real word datum, we
-  have the sampled <math|x<rprime|'>\<approx\>x>. The difference
-  <math|\<Delta\>x\<assign\>x<rprime|'>-x> is small enough, so that we have
-  the approximation of the equivalent loss <math|L<rsub|LA>> (equation
-  <reference|equation:Equivalent Loss>) as
-
-  <\align>
-    <tformat|<table|<row|<cell|L<rsub|LA><around*|(|\<theta\>|)>=>|<cell|\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>>|<row|<cell|\<approx\>>|<cell|\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|S<around*|(|x,\<theta\>|)>-S<around*|(|x+\<Delta\>x,\<theta\>|)>|]>>>|<row|<cell|=>|<cell|\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|-<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x,\<theta\>|)>\<Delta\>x<rsup|\<alpha\>>|]>.>>>>
-  </align>
-
-  If we use Langevin dynamics for Markov chain Monte-Carlo with extremely low
-  temperature (section <reference|section: Conservative Langevin Dynamics
-  Satisfies Detailed Balance>), and run for a single-step, we will have
-  <math|\<Delta\>x<rsup|\<alpha\>>\<approx\>-<around*|(|\<partial\>S/\<partial\>x<rsub|\<alpha\>>|)><around*|(|x,\<theta\>|)>
-  \<Delta\>t>, where <math|\<Delta\>t> is the step-size. Plugging back to
-  <math|L<rsub|LA>>, we have
-
-  <\equation*>
-    L<rsub|LA><around*|(|\<theta\>|)>\<approx\><wide|L|~><rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|x\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<frac|\<partial\>S|\<partial\>x>|\<\|\|\>><rsub|2><rsup|2><around*|(|x,\<theta\>|)>|]>\<Delta\>t.
-  </equation*>
-
   \;
 
-  Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
-  <math|\<theta\>> is approximately reducing the norm of
-  <math|\<partial\>S/\<partial\>x> on real word data. This method of
-  optimization is quite different from that used in machine learning. In
-  machine learning, the action turns to be the loss function that
-  characterizes the difference between the targets and the model predictions.
-  The aim of machine learning is minimizing the action (loss function)
-  instead of the norm of its gradient.
-
-  There are two kinds of tasks in supervised machine learning: regression and
-  classification. For regression task, the loss function that is usually
-  employed is mean squared error. And for classification, the loss function
-  is chosen to be relative entropy (or named KL-divergence). Let
-  <math|f<around*|(|x,\<theta\>|)>> the model with parameter <math|\<theta\>>
-  and the input-target pair <math|<around*|(|x,y|)>\<sim\>p<rsub|D>>, we are
-  to compute
-
-  <\equation*>
-    <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<frac|\<partial\>S|\<partial\>x>|\<\|\|\>><rsub|2><rsup|2><around*|(|x,y,\<theta\>|)>+<around*|\<\|\|\>|<frac|\<partial\>S|\<partial\>y>|\<\|\|\>><rsub|2><rsup|2><around*|(|x,y,\<theta\>|)>|]>
-  </equation*>
-
-  for these two loss functions.
-
-  In regression task, we have model input <math|x\<in\>\<bbb-R\><rsup|n>> and
-  scalar target <math|y\<in\>\<bbb-R\>>, where <math|n\<geqslant\>1>. Mean
-  squared error is defined by <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|(|f<around*|(|x,\<theta\>|)>-y|)><rsup|2>|]>>.
-  So, the action is
-
-  <\equation*>
-    S<rsub|MSE><around*|(|x,y,\<theta\>|)>\<assign\><around*|(|f<around*|(|x,\<theta\>|)>-y|)><rsup|2>.
-  </equation*>
-
-  Directly, we have
-
-  <\align>
-    <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|MSE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|2<around*|(|f<around*|(|x,\<theta\>|)>-y|)><frac|\<partial\>f|\<partial\>x<rsup|\<alpha\>>><around*|(|x,\<theta\>|)>;>>|<row|<cell|<frac|\<partial\>S<rsub|MSE>|\<partial\>y><around*|(|x,y,\<theta\>|)>=>|<cell|2<around*|(|y-f<around*|(|x,\<theta\>|)>|)>.>>>>
-  </align>
-
-  Thus, for mean squared error,
-
-  <\equation*>
-    <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=4
-    \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|S<rsub|MSE><around*|(|x,y,\<theta\>|)><around*|(|1+<around*|\<\|\|\>|<frac|\<partial\>f|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2><around*|(|x,\<theta\>|)>|)>|]>.
-  </equation*>
-
-  Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
-  <math|\<theta\>> will minimize <math|S<rsub|MSE>> itself as well as the
-  norm of <math|\<partial\>f/\<partial\>x> on real world data
-  <math|p<rsub|D>>. The norm of <math|\<partial\>f/\<partial\>x> can be
-  viewed as a regularization term, which provides a greater robustness for
-  the model.
-
-  In classification task, we have model input <math|x\<in\>\<bbb-R\><rsup|m>>
-  and categorical probabilistic logits <math|y\<in\>\<bbb-R\><rsup|n>>, where
-  <math|m\<geqslant\>1> and <math|n\<gtr\>1>. Relative entropy is defined as
-  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)><around*|(|ln
-  p<rsub|\<alpha\>><around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>|]>>,
-  where <math|p> and <math|q> are softmax function of <math|y> and
-  <math|f<around*|(|x,\<theta\>|)>> respectively.<\footnote>
-    Softmax function <math|\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
-    is defined by
-
-    <\equation*>
-      softmax<rsup|\<alpha\>><around*|(|x|)>\<assign\><frac|exp<around*|(|x<rsup|\<alpha\>>|)>|<big|sum><rsub|\<beta\>>exp<around*|(|x<rsup|\<beta\>>|)>>.
-    </equation*>
-  </footnote> So, the action is
-
-  <\equation*>
-    S<rsub|RE><around*|(|x,y,\<theta\>|)>\<assign\><big|sum><rsub|\<alpha\>>p<rsub|\<alpha\>><around*|(|y|)><around*|(|ln
-    p<rsub|\<alpha\>><around*|(|y|)>-ln q<rsub|\<alpha\>><around*|(|x,\<theta\>|)>|)>.
-  </equation*>
-
-  Directly, we have
-
-  <\align>
-    <tformat|<table|<row|<cell|<frac|\<partial\>S<rsub|RE>|\<partial\>x<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|<big|sum><rsub|\<beta\>><around*|(|q<rsub|\<beta\>>-y<rsub|\<beta\>>|)><frac|\<partial\>f<rsup|\<beta\>>|\<partial\>x<rsup|\<alpha\>>>;>>|<row|<cell|<frac|\<partial\>S<rsub|RE>|\<partial\>y<rsup|\<alpha\>>><around*|(|x,y,\<theta\>|)>=>|<cell|p<rsub|\<alpha\>><around*|(|ln
-    p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>|)>-p<rsub|\<alpha\>>
-    S<rsub|CE>.>>>>
-  </align>
-
-  Thus, for relative entropy, <\footnote>
-    Usually, we use cross-entropy instead of relative entropy. But from
-    cross-entropy, we cannot find a proper action. If using cross-entropy as
-    loss function or action, it can be proven that the
-    <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> will never vanish.
-  </footnote> <\footnote>
-    We also usually use <math|y> as <math|p> directly. This will not work
-    too, since the components of <math|p> are not mutually independent.
-    Indeed, <math|\<partial\>S<rsub|RE>/\<partial\>p<rsub|\<alpha\>>=ln
-    p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>+1>. When <math|p=q>,
-    <math|\<partial\>S<rsub|RE>/\<partial\>p<rsub|\<alpha\>>=1>. Contrarily,
-    we have
-
-    <\equation>
-      <frac|\<partial\>S<rsub|RE>|\<partial\>y<rsup|\<alpha\>>>=<big|sum><rsub|\<beta\>><frac|\<partial\>p<rsub|\<beta\>>|\<partial\>y<rsup|\<alpha\>>><frac|\<partial\>S<rsub|RE>|\<partial\>p<rsub|\<beta\>>>=p<rsub|\<alpha\>><around*|(|ln
-      p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>|)>-p<rsub|\<alpha\>>
-      S<rsub|RE>+<with|color|blue|p<rsub|\<alpha\>><around*|(|1-<big|sum><rsub|\<beta\>>p<rsub|\<beta\>>|)>>,
-    </equation>
-
-    where we have labeled the contribution of the <math|1> by blue color. It
-    is by the restriction <math|<big|sum><rsub|\<beta\>>p<rsub|\<beta\>>=1>
-    that this term vanishes. In this way,
-    <math|\<partial\>S<rsub|RE>/\<partial\>y<rsup|\<alpha\>>=0> when
-    <math|p=q>.
-  </footnote>
-
-  <\equation*>
-    <frac|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>|\<Delta\>t>=
-    \<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>p<rsub|D>><around*|[|<around*|\<\|\|\>|<big|sum><rsub|\<alpha\>><around*|(|p<rsub|\<alpha\>>-q<rsub|\<alpha\>>|)><frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>x>|\<\|\|\>><rsup|2><rsub|2>+<around*|\<\|\|\>|p<around*|(|ln
-    p-ln q|)>-p S<rsub|RE>|\<\|\|\>><rsub|2><rsup|2>|]>.
-  </equation*>
-
-  Minimizing <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>> by adjusting
-  <math|\<theta\>> will minimize both of the terms in the expectation. On the
-  extremum <math|\<theta\><rsub|\<star\>>>,
-  <math|<wide|L|~><rsub|LA><around*|(|\<theta\><rsub|\<star\>>|)>=0>. From
-  the second term, since <math|p> is not one-hot (as a result of softmax), we
-  have <math|ln p<rsub|\<alpha\>>-ln q<rsub|\<alpha\>>=S<rsub|CE>> for all
-  <math|\<alpha\>>. This implies <math|ln p<rsub|\<alpha\>>\<equiv\>ln
-  q<rsub|\<alpha\>>> and <math|S<rsub|CE>=0>, on the real world data sampled
-  from <math|p<rsub|D>>. Thus, the first term vanishes also. But, during the
-  training with <math|<wide|L|~><rsub|LA><around*|(|\<theta\>|)>/\<Delta\>t>
-  as loss, <math|<around*|\<\|\|\>|\<partial\>f/\<partial\>x|\<\|\|\>>> will
-  also be reduced on the real world data. This again provides a
-  regularization for a greater robustness.
-
-  For both mean squared error and relative entropy, form their expressions it
-  can be seen directly that, given any <math|\<theta\>>, a pair
-  <math|<around*|(|x<rsub|\<star\>>,y<rsub|\<star\>>|)>\<assign\>argmin<rsub|<around*|(|x,y|)>>
-  S<around*|(|x,y,\<theta\>|)>> has <math|<around*|(|\<partial\>S/\<partial\>x|)><around*|(|x<rsub|\<star\>>,y<rsub|\<star\>>,\<theta\>|)>=<around*|(|\<partial\>S/\<partial\>y|)><around*|(|x<rsub|\<star\>>,y<rsub|\<star\>>,\<theta\>|)>=0>,
-  and vice versa. This is because the loss functions are strictly convex. It
-  explains why minimizing the loss and the loss gradients give the same
-  performance.
-
-  But this does not mean that the two loss
-  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>P<rsub|D>><around*|[|S<around*|(|x,y,\<theta\>|)>|]>>
-  and <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>P<rsub|D>><around*|[|<around*|\<\|\|\>|<around*|(|\<partial\>S/\<partial\>x|)><around*|(|x,y,\<theta\>|)>|\<\|\|\>><rsup|2>+|]><around*|\<\|\|\>|<around*|(|\<partial\>S/\<partial\>y|)><around*|(|x,y,\<theta\>|)>|\<\|\|\>><rsup|2>>
-  are equivalent. Imagine a Gaussian <math|P<rsub|D>>, around the mean value
-  the density is high, the weight of the mean value is large, So, minimizing
-  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>P<rsub|D>><around*|[|S<around*|(|x,y,\<theta\>|)>|]>>
-  will push the <math|S> at the mean value downward greatly, resulting in an
-  inverted reflection of bell-shaped curve. But, minimizing
-  <math|\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>P<rsub|D>><around*|[|<around*|\<\|\|\>|<around*|(|\<partial\>S/\<partial\>x|)><around*|(|x,y,\<theta\>|)>|\<\|\|\>><rsup|2>+|]><around*|\<\|\|\>|<around*|(|\<partial\>S/\<partial\>y|)><around*|(|x,y,\<theta\>|)>|\<\|\|\>><rsup|2>>
-  will give a plateau around the mean value.
-
-  There are also unsupervised machine learning, such as clustering task.
-  <hlink|K-means|https://en.wikipedia.org/wiki/K-means_clustering#Description>,
-  for example, has the loss function <math|L<around*|(|x,\<theta\>|)>=<big|sum><rsub|x<rsub|j>\<in\>U<rsub|i>><around*|\<\|\|\>|x<rsub|j>-\<theta\><rsub|i>|\<\|\|\>><rsup|2><rsub|2>>,
-  where <math|U<rsub|i>> collects all the <math|x<rsub|j>> that are closer to
-  <math|\<theta\><rsub|i>> than to any other <math|\<theta\>> components. The
-  <math|p<rsub|D>> has only one datum. So, the loss function
-  <math|L<around*|(|x,\<theta\>|)>> can also be viewed as an action. This
-  applies to other unsupervised machine learning algorithms where there is a
-  loss function to be minimized on the real world data.
-
-  As a summary, we have found that for each supervised or unsupervised
-  machine learning task, we can assign a proper action for it.<\footnote>
-    Experiments can be found in the folder <samp|actions>.
-  </footnote>
+  The <math|min<rsub|p,\<mu\>>> minimizes the relative entropy between
+  <math|p> and <math|q> and the expectation of action
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> by tuning <math|p>, which in
+  turn relates the probability <math|p> with the action
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The <math|max<rsub|\<theta\>>>
+  sites real data onto the action's local minima by tuning <math|\<theta\>>.
+  So, we find that maximum-entropy principle and least-action principle are
+  saddle point of a functional <math|V>.
 </body>
 
 <\initial>
@@ -438,26 +384,22 @@
     <associate|auto-7|<tuple|1.5|3>>
     <associate|equation:Equivalent Loss|<tuple|5|1>>
     <associate|equation:Generic Density|<tuple|1|1>>
-    <associate|equation:Iteration|<tuple|4|1>>
+    <associate|equation:Iteration|<tuple|3|1>>
     <associate|equation:Partition Function|<tuple|2|1>>
-    <associate|equation:Restriction|<tuple|3|1>>
+    <associate|equation:Restriction|<tuple|4|1>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|2>>
-    <associate|footnote-3|<tuple|3|2>>
+    <associate|footnote-2|<tuple|2|3>>
+    <associate|footnote-3|<tuple|3|3>>
     <associate|footnote-4|<tuple|4|4>>
-    <associate|footnote-5|<tuple|5|4>>
-    <associate|footnote-6|<tuple|6|4>>
-    <associate|footnote-7|<tuple|7|?>>
+    <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|2>>
-    <associate|footnr-3|<tuple|3|2>>
+    <associate|footnr-2|<tuple|2|3>>
+    <associate|footnr-3|<tuple|3|3>>
     <associate|footnr-4|<tuple|4|4>>
-    <associate|footnr-5|<tuple|5|4>>
-    <associate|footnr-6|<tuple|7|4>>
-    <associate|footnr-7|<tuple|7|?>>
-    <associate|section: Generic Dynamics Can Be Extract From Data
-    Fitting|<tuple|1.2|1>>
+    <associate|footnr-5|<tuple|5|?>>
+    <associate|section: Data Fitting Is Equivalent to Least-Action
+    Principle|<tuple|1.2|1>>
   </collection>
 </references>
 
@@ -475,14 +417,14 @@
       currently a local minimum of <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>,
       is not. Minimizing <with|mode|<quote|math>|L<rsub|LA>> by tuning
       <with|mode|<quote|math>|\<theta\>> pushes the
-      <with|mode|<quote|math>|\<bbb-E\><rsub|p<rsub|D>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+      <with|mode|<quote|math>|\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
       down to lower value, corresponding to the red downward double-arrow on
       <with|mode|<quote|math>|x<rsub|1>>. Also, since
       <with|mode|<quote|math>|x<rsub|2>> is a local minimum, the data points
       sampled from <with|mode|<quote|math>|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>
       will accumulate around <with|mode|<quote|math>|x<rsub|2>>. So,
       minimizing <with|mode|<quote|math>|L<rsub|LA>> also pulls the
-      <with|mode|<quote|math>|\<bbb-E\><rsub|p<around*|(|\<cdummy\>,\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+      <with|mode|<quote|math>|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
       up to greater value, corresponding to the blue upward double-arrow on
       <with|mode|<quote|math>|x<rsub|2>>. Altogether, it makes
       <with|mode|<quote|math>|x<rsub|1>> a local minimum of
@@ -503,18 +445,17 @@
       to Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Extract Dynamics from Raw
-      Data: An Instance of Classical Physics
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Example: Extract Dynamics
+      from Raw Data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Maximum-Entropy and
-      Least-Action Are Saddle Point of a Functional
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Example: Actions in Machine
+      Learning (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Actions in Machine Learning:
-      Minimize Loss or Loss Gradients? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Maximum-Entropy and
+      Least-Action Are Saddle Point of a Functional
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
     </associate>
   </collection>

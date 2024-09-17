@@ -29,9 +29,9 @@
   Given a distribution <math|Q> of <math|X> that describes the prior
   knowledge, the basic problem is to find a distribution <math|P> of <math|X>
   such that the relative entropy <math|H<around*|[|p,q|]>> is minimized under
-  a set of restrictions <math|<around*|{|\<bbb-E\><rsub|p><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>\|\<alpha\>=1,\<ldots\>,m,f<rsub|\<alpha\>>:\<cal-X\>\<rightarrow\>\<bbb-R\>|}>>.
-  The notation <math|\<bbb-E\><rsub|p><around*|[|\<cdots\>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-  p<around*|(|x|)>\<cdots\>> represents expectation under <math|p>; and the
+  a set of restrictions <math|<around*|{|\<bbb-E\><rsub|P><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>\|\<alpha\>=1,\<ldots\>,m,f<rsub|\<alpha\>>:\<cal-X\>\<rightarrow\>\<bbb-R\>|}>>.
+  The notation <math|\<bbb-E\><rsub|P><around*|[|\<cdots\>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  p<around*|(|x|)>\<cdots\>> represents expectation under <math|P>; and the
   function <math|f<rsub|\<alpha\>>> is called
   <with|font-series|bold|observable> and the value
   <math|<wide|f|\<bar\>><rsub|\<alpha\>>> is called an
@@ -41,7 +41,7 @@
 
   To solve this problem, we use variational principle with Lagrangian
   multipliers. There are two kinds of constraints. One from the restrictions
-  <math|\<bbb-E\><rsub|p><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>>
+  <math|\<bbb-E\><rsub|P><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>>
   for each <math|\<alpha\>>; and the other from
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>=1>. Also, recall
   that the relative entropy <math|H<around*|[|p,q|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -93,9 +93,9 @@
   where
 
   <\equation>
-    p<around*|(|x,\<lambda\>|)>\<assign\>Z<rsup|-1><around*|(|\<lambda\>|)>
-    q<around*|(|x|)> exp<around*|(|-\<lambda\><rsup|\<alpha\>>
-    f<rsub|\<alpha\>><around*|(|x|)>|)>.
+    p<around*|(|x,\<lambda\>|)>\<assign\>q<around*|(|x|)>
+    exp<around*|(|-\<lambda\><rsup|\<alpha\>>
+    f<rsub|\<alpha\>><around*|(|x|)>|)>/Z<around*|(|\<lambda\>|)>.
   </equation>
 
   Notice that the <math|\<mu\><rsub|\<star\>>> has been included in the
@@ -124,7 +124,7 @@
 
   Even though it is hard to guarantee the equation <reference|equation:maxent
   eq1> solvable, we have some results for the case when
-  <math|<wide|f|\<bar\>>\<approx\>\<bbb-E\><rsub|q><around*|[|f|]>>. That is,
+  <math|<wide|f|\<bar\>>\<approx\>\<bbb-E\><rsub|Q><around*|[|f|]>>. That is,
   the perturbative case.
 
   To guarantee that perturbative solution exists for equation

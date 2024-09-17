@@ -286,7 +286,7 @@
     <math|t>.
   </theorem>
 
-  This means the time-dependent distribution <math|p> will monotonically and
+  Thus, the time-dependent distribution <math|p> will monotonically and
   constantly relax to the stationary distribution <math|\<pi\>>.
 
   Generally, we prove the monotonic reduction of relative entropy by using

@@ -15,14 +15,15 @@
 
   The collection of all possible values of a random variable is called the
   <with|font-series|bold|alphabet>. And for each value in the alphabet, we
-  assign a positive value called <with|font-series|bold|density> if the
-  alphabet is of continuum (continuous random variable), or
-  <with|font-series|bold|mass> otherwise (discrete random variable). We use
-  <with|font-series|bold|distribution> for not only the mass or density on
-  the alphabet, but also a sampler that can sample an ensemble of values of
-  the random variable that converges to the mass or density when the number
-  of sample tends to infinity. For example, we say <math|X> is a random
-  variable with alphabet <math|\<cal-X\>> and distribution <math|P>.
+  assign a <with|font-shape|italic|positive> value called
+  <with|font-series|bold|density> if the alphabet is of continuum (continuous
+  random variable), or <with|font-series|bold|mass> otherwise (discrete
+  random variable). We use <with|font-series|bold|distribution> for not only
+  the mass or density on the alphabet, but also a sampler that can sample an
+  ensemble of values of the random variable that converges to the mass or
+  density when the number of sample tends to infinity. For example, we say
+  <math|X> is a random variable with alphabet <math|\<cal-X\>> and
+  distribution <math|P>.
 
   The density of a value <math|x> is usually denoted by
   <math|p<around*|(|x|)>>, which, as a function, is called
@@ -282,7 +283,7 @@
     <associate|footnr-2|<tuple|2|1>>
     <associate|section: Relative Entropy|<tuple|1|1>>
     <associate|section: Shannon Entropy Fails for Continuous Random
-    Variable|<tuple|1.3|?>>
+    Variable|<tuple|1.3|2>>
   </collection>
 </references>
 

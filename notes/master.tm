@@ -22,22 +22,20 @@
   <subsection|Master Equation Describes Generic Dynamics of Markov Chain>
 
   The generic dynamics of a Markov chain can be characterized by its
-  <with|font-series|bold|transition probability>
-  <math|Q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|X\|Y|)>>. The density
-  function <math|q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|x\|y|)>>
-  describes the probability of transition from <math|Y=y> at time <math|t> to
-  <math|X=x> at time <math|t<rprime|'>>. Since the underlying dynamics which
-  determines <math|q<rsub|t\<rightarrow\>t<rprime|'>>> is usually autonomous,
-  we can suppose that <math|q<rsub|t\<rightarrow\>t<rprime|'>>> depends only
-  on the difference <math|\<Delta\>t\<assign\>t<rprime|'>-t>. This will
-  greatly reduce the complexity while covering most of the important
-  situations. So, throughout this note, we use <math|q<rsub|\<Delta\>t>>
-  instead of <math|q<rsub|t\<rightarrow\>t<rprime|'>>>.
+  <with|font-series|bold|transition density>
+  <math|q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|y\|x|)>> which describes
+  the density that transits from <math|x> at time <math|t> to <math|y> at
+  time <math|t<rprime|'>>. Since the underlying dynamics which determines
+  <math|q<rsub|t\<rightarrow\>t<rprime|'>>> is usually autonomous, we can
+  suppose that <math|q<rsub|t\<rightarrow\>t<rprime|'>>> depends only on the
+  difference <math|\<Delta\>t\<assign\>t<rprime|'>-t>. This will greatly
+  reduce the complexity while covering most of the important situations. So,
+  throughout this note, we use <math|q<rsub|\<Delta\>t>> instead of
+  <math|q<rsub|t\<rightarrow\>t<rprime|'>>>.
 
-  During a temporal unit <math|\<Delta\>t>, the change of probability at
-  <math|X=x> equals to the total probability that transits from any <math|y>
-  with <math|y\<neq\>x> to <math|x> subtracting the total probability that
-  transits from <math|x> to any <math|y> with <math|y\<neq\>x>. That is,
+  During a temporal unit <math|\<Delta\>t>, the change of density at
+  <math|X=x> equals to the total density that transits into <math|x>
+  subtracting the total density that transits out of <math|x>. That is,
 
   <\equation>
     p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -46,17 +44,52 @@
     Time Master Equation>
   </equation>
 
-  which is called the <with|font-series|bold|master equation>.
+  It is called the <with|font-series|bold|master equation>.
 
-  When <math|\<Delta\>t=0>, there is no transition at all, thus
-  <math|q<rsub|0><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>>. If
-  <math|q<rsub|\<Delta\>t>> is smooth on <math|\<Delta\>t>, then we have the
-  linear expansion <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
+  What are the requirements for the transition density? The last term of
+  master equation <reference|equation:Discrete Time Master Equation> can be
+  re-written as <math|p<around*|(|x,t|)>\<times\><big|int><rsub|\<cal-X\>>\<mathd\>y
+  q<rsub|\<Delta\>t><around*|(|y\|x|)>>. If <math|q<rsub|\<Delta\>t>> is
+  normalized by <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
+  q<rsub|\<Delta\>t><around*|(|y\|x|)>=1> for any <math|x\<in\>\<cal-X\>>,
+  then we have
+
+  <\equation*>
+    p<around*|(|x,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>.
+  </equation*>
+
+  We have <math|p<around*|(|x,t|)>\<gtr\>0> for all <math|x\<in\>\<cal-X\>>,
+  but have to guarantee that <math|p<around*|(|x,t+\<Delta\>t|)>\<gtr\>0>,
+  for sharing the same alphabet. Basically, this requires
+  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> to be non-negative for all
+  <math|x,y\<in\>\<cal-X\>>, since, otherwise, we can construct a
+  <math|p<around*|(|y,t|)>> with large value on the place where
+  <math|q<rsub|\<Delta\>><around*|(|x\|y|)>\<less\>0> and tiny value on the
+  rest, so that <math|p<around*|(|x,t+\<Delta\>t|)>\<less\>0>. This is
+  natural since <math|q<rsub|\<Delta\>><around*|(|x\|y|)>> describes the
+  transited density, and negative transited density cannot be \Pphysical\Q.
+  It further requires that for each <math|x\<in\>\<cal-X\>>, there is density
+  transited into <math|x>. Precisely, for any <math|x> there is a measurable
+  subset of <math|y> such that <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0>.
+  Combined with the non-negativity, it directly implies
+  <math|p<around*|(|x,t+\<Delta\>t|)>\<gtr\>0>. As a summary, we require the
+  transition density <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> to be
+  normalized on <math|x>, to be non-negative, and to be that there is
+  measurable density transited into <math|x>.
+
+  If <math|q<rsub|\<Delta\>t>> is smooth on <math|\<Delta\>t>, then we have
+  the linear expansion <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<chi\><around*|(|x,y|)>+r<around*|(|x,y|)>
   \<Delta\>t+<with|font|cal|O><around*|(|\<Delta\>t<rsup|2>|)>> where
-  <math|r> is a well-defined function. Plugging this back to equation
-  <reference|equation:Discrete Time Master Equation> and taking the limit
-  <math|\<Delta\>t\<rightarrow\>0>, we get the master equation with temporal
-  smoothness
+  <math|q<rsub|0>> and <math|r> are well-defined functions (at least
+  well-defined <hlink|generalized function|https://en.wikipedia.org/wiki/Generalized_function>s).
+  When <math|\<Delta\>t=0>, there is no transition at all, and
+  <math|p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+  \<chi\><around*|(|x,y|)>p<around*|(|y,t|)>>. The density function <math|p>
+  is arbitrary, implying that <math|\<chi\><around*|(|x,y|)>=\<delta\><around*|(|x-y|)>>.
+  Plugging all these back to equation <reference|equation:Discrete Time
+  Master Equation> and taking the limit <math|\<Delta\>t\<rightarrow\>0>, we
+  get the master equation with temporal smoothness
 
   <\equation>
     <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -68,31 +101,12 @@
   characterizing the speed of transition. The normalization
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
   q<rsub|\<Delta\>t><around*|(|x\|y|)>=1> demands that
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|x,y|)>=0>.
-
-  <subsection|Obeying Master Equation Requires Ergodicity (TODO)>
-
-  We may consider a random variable <math|X> with alphabet <math|\<cal-X\>>
-  and a time-dependent distribution <math|P<around*|(|t|)>> that obeys the
-  master equation <reference|equation:Master Equation>. This means
-  <math|p<around*|(|x,t|)>\<gtr\>0> for all <math|x\<in\>\<cal-X\>> and
-  <math|t>, which in turn restricts the transition rate
-  <math|r<around*|(|x,y|)>>.
-
-  If <math|r<around*|(|x,y|)>\<gtr\>0> for all <math|x,y\<in\>\<cal-X\>> with
-  <math|x\<neq\>y>, then <math|p<around*|(|x,t|)>> cannot vanish. Otherwise,
-  if <math|p<around*|(|x,t|)>> becomes very very small for some
-  <math|x\<in\>\<cal-X\>>, then <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
-  r<around*|(|y,x|)>p<around*|(|x,t|)>> is negligible. We have
-  <math|p<around*|(|x,t+\<mathd\>t|)>=\<mathd\>t
-  <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x\|y|)>p<around*|(|y,t|)>\<gtr\>0>.
-  TODO
-
-  That is, at each time, for each <math|x>, there is transition from some
-  <math|y> to <math|x>. This property of transition probability is called
-  <with|font-series|bold|ergodicity>.<\footnote>
-    TODO: It seems that ergodicity is not defined as such.
-  </footnote>
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|x,y|)>=0>. And the
+  non-negativity <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<geqslant\>0>
+  demands that <math|r<around*|(|x,y|)>\<geqslant\>0> when <math|x\<neq\>y>.
+  The last requirement of transition density demands that
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>\<gtr\>-1>,
+  which is a little weird.
 
   <subsection|Detailed Balance Provides a Stationary Distribution>
 
@@ -110,7 +124,7 @@
 
   which is called the <with|font-series|bold|detailed balance (condition)>.
 
-  <subsection|Detailed Balance Monotonically Reduces Relative
+  <subsection|Detailed Balance with Ergodicity Monotonically Reduces Relative
   Entropy><label|section: Detailed Balance with Ergodicity Monotonically
   Reduces Relative Entropy>
 
@@ -217,42 +231,71 @@
     symmetrized. It is an ingenious mathematical engineering.
   </footnote>
 
-  <small|<\equation>
+  <\equation>
     <frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=-<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x
     <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|y,x|)>
     \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
     ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.<label|equation:relative
     entropy derivative>
-  </equation>>
+  </equation>
 
-  Since <math|r<around*|(|y,x|)> \<pi\><around*|(|x|)>\<gtr\>0> when
-  <math|x\<neq\>y> and vanishes otherwise, the sign of
-  <math|\<mathd\>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>/\<mathd\>t> is
-  determined by the last two terms. If <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>\<gtr\>p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>,
+  \;
+
+  We check the sign of the integrand. The <math|r<around*|(|y,x|)>> is
+  negative only when <math|x=y>, on which the integrand vanishes. Thus,
+  <math|r<around*|(|y,x|)>> can be treated as non-negative, so is the
+  <math|r<around*|(|y,x|)> \<pi\><around*|(|x|)>> (since
+  <math|\<pi\><around*|(|x|)>\<gtr\>0> for all <math|x\<in\>\<cal-X\>>). Now,
+  we check the sign of the last two terms. If
+  <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>\<gtr\>p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>,
   then <math|ln<around*|[|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>|]>\<gtr\>ln<around*|[|p<around*|(|y,t|)>/\<pi\><around*|(|y|)>|]>>,
-  so that the whole expression is negative. The same for
+  thus the sign of the last two terms is positive. The same goes for
   <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>\<less\>p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>.
   Only when <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>=p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>
-  can it be zero; and this equation implies that
-  <math|p<around*|(|\<cdummy\>,t|)>=\<pi\>> since
+  can it be zero. All together, the integrand is non-positive, so
+  <math|\<mathd\>H/\<mathd\>t\<leqslant\>0>.
+
+  The integrand vanishes when either <math|r<around*|(|y,x|)>=0> or
+  <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>=p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>.
+  If we demand that <math|r<around*|(|y,x|)>\<gtr\>0> for each
+  <math|x\<neq\>y>, then <math|<around*|(|\<mathd\>/\<mathd\>t|)>
+  H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=0> only when
+  <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>=p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>
+  for all <math|x,y\<in\>\<cal-X\>>, which implies that
+  <math|p<around*|(|\<cdummy\>,t|)>=\<pi\>> (since
   <math|><math|<big|int><rsub|\<cal-X\>>\<mathd\>x
   p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-  \<pi\><around*|(|x|)>=1>. So, we conclude that
+  \<pi\><around*|(|x|)>=1>). So, <math|r<around*|(|y,x|)>\<gtr\>0> for each
+  <math|x\<neq\>y> implies that <math|H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>
+  will monotonically decrease until <math|P<around*|(|t|)>=\<Pi\>> (which is
+  the unique situation where <math|\<mathd\>H/\<mathd\>t=0>). Otherwise, if
+  <math|r<around*|(|y,x|)>=0> on some subset
+  <math|U\<subset\>\<cal-X\>\<times\>\<cal-X\>>, then
+  <math|<around*|(|\<mathd\>/\<mathd\>t|)>
+  H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=0> even though
+  <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>\<neq\>p<around*|(|y,t|)>/\<pi\><around*|(|y|)>>
+  on <math|U>, implying that <math|P<around*|(|t|)>=\<Pi\>> is not the unique
+  situation such that <math|\<mathd\>H/\<mathd\>t=0>.
+
+  A transition density is called <with|font-series|bold|ergodic> if, for all
+  <math|x,y\<in\>\<cal-X\>>, there are densities transiting from <math|x> to
+  <math|y> and from <math|y> to <math|x> in an infinitesimal time
+  interval.<\footnote>
+    TODO: It seems that ergodicity is not defined as such.
+  </footnote> Since <math|q<rsub|\<mathd\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
+  \<mathd\>t>, we find ergodicity indicating
+  <math|r<around*|(|x,y|)>\<gtr\>0> for each <math|x\<neq\>y>. So, we
+  conclude that
 
   <\theorem>
-    Suppose that the transition rate <math|r> is ergodic. If there is a
-    stationary distribution <math|\<Pi\>> with alphabet <math|\<cal-X\>> such
-    that detailed balance <reference|equation:Detailed Balance> holds, then
-    for any time-dependent distribution <math|P<around*|(|t|)>> with the same
-    alphabet evolved by the master equation <reference|equation:Master
-    Equation>, <math|\<mathd\>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>/\<mathd\>t>
-    is negative as long as <math|P<around*|(|t|)>\<neq\>\<Pi\>> and vanishes
-    when <math|P<around*|(|t|)>=\<Pi\>> for some <math|t>.
+    Given an ergodic transition rate <math|r<around*|(|x,y|)>>, if there is a
+    distribution <math|\<Pi\>> with alphabet <math|\<cal-X\>> such that
+    detailed balance <reference|equation:Detailed Balance> holds, then for
+    any time-dependent distribution <math|P<around*|(|t|)>> with the same
+    alphabet (at one time) evolved by the master equation
+    <reference|equation:Master Equation>, <math|P<around*|(|t|)>> will
+    monotonically and constantly relax to <math|\<Pi\>>.
   </theorem>
-
-  Thus, the time-dependent distribution <math|P<around*|(|t|)>> will
-  monotonically and constantly relax to the stationary distribution
-  <math|\<Pi\>>.
 
   Generally, we prove the monotonic reduction of relative entropy by using
   Fokker-Planck equation. With an integral by part, we arrive a negative
@@ -271,20 +314,21 @@
   smoothness of transition probability on time and thus the smoothness of
   <math|p<around*|(|x,t|)>> on <math|t> is essential for the monotonic
   reduction of relative entropy, which is the essential end of our
-  discussion. <\footnote>
+  discussion.<\footnote>
     You may wonder if the temporal smoothness implies the continuum of
     alphabet. Explicitly, if <math|p<around*|(|x,t|)>> is smooth on <math|t>,
     then does the value of <math|x> have to be continuous? The answer is no.
-    For example, you can consider 1-dimensional case where the alphabet
-    <math|\<cal-X\>=<around*|{|0,1|}>>; the <math|p<around*|(|x,t|)>> is
-    given by <math|\<sigma\><around*|(|\<zeta\><around*|(|t|)>|)>> where
+    For example, consider an alphabet <math|\<cal-X\>=<around*|{|0,1|}>>; the
+    <math|p<around*|(|1,t|)>> is given by
+    <math|\<sigma\><around*|(|\<zeta\><around*|(|t|)>|)>> where
     <math|\<sigma\>> denotes the sigmoid function and
-    <math|\<zeta\><around*|(|t|)>> is smooth on <math|t>. In this example,
-    <math|p<around*|(|x,t|)>> is smooth on <math|t> but the random variable
-    is discrete.
+    <math|\<zeta\><around*|(|t|)>> is smooth on <math|t>, thus
+    <math|p<around*|(|0,t|)>=1-\<sigma\><around*|(|\<zeta\><around*|(|t|)>|)>>.
+    In this example, <math|p<around*|(|x,t|)>> is smooth on <math|t> but the
+    random variable is discrete.
   </footnote>
 
-  To see this clearly, let us exam <math|H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>
+  To see this clearly, let us examine <math|H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>
   when <math|\<Delta\>t> is not an infinitesimal. By definition,
 
   <\equation*>
@@ -313,7 +357,9 @@
   The first line is recognized as <math|H<around*|(|P<around*|(|t+\<Delta\>t|)>,P<around*|(|t|)>|)>>,
   which is non-negative. Following the same steps in section
   <reference|section: Detailed Balance with Ergodicity Monotonically Reduces
-  Relative Entropy>, the second line reduces to
+  Relative Entropy> (but using discrete time master equation
+  <reference|equation:Discrete Time Master Equation> instead), the second
+  line reduces to
 
   <\equation*>
     -<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -324,15 +370,13 @@
   which is non-positive. The sign of the final result can be arbitrary.
   Indeed, the first line is determined by the difference between
   <math|p<around*|(|\<cdummy\>,t+\<Delta\>t|)>> and
-  <math|p<around*|(|\<cdummy\>,t|)>> <\footnote>
-    The difference is <math|<with|font|cal|O><around*|(|\<Delta\>t<rsup|2>|)>>.
-  </footnote>, while the second line is determined by the difference between
-  <math|p<around*|(|\<cdummy\>,t|)>> and <math|\<pi\>>. They are
-  intrinsically different, thus mutually independent. So, we conclude that
-  the smoothness of <math|q<rsub|\<Delta\>t>> on <math|\<Delta\>t> is
-  essential for the guarantee of the monotonic reduce of relative entropy
-  between <math|p<around*|(|\<cdummy\>,t|)>> and <math|\<pi\>>, thus its
-  relaxation.
+  <math|p<around*|(|\<cdummy\>,t|)>>, while the second line is determined by
+  the difference between <math|p<around*|(|\<cdummy\>,t|)>> and
+  <math|\<pi\>>. They are intrinsically different, thus mutually independent.
+  So, we conclude that the smoothness of <math|q<rsub|\<Delta\>t>> on
+  <math|\<Delta\>t> is essential for the guarantee of the monotonic reduce of
+  relative entropy between <math|p<around*|(|\<cdummy\>,t|)>> and
+  <math|\<pi\>>, thus its relaxation.
 
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
@@ -340,11 +384,11 @@
   Detailed Balance, and Relative Entropy>, but focusing on the specific
   situation where there is extra smooth structure on <math|X>. This
   smoothness reflects on the connectivity of the alphabet <math|\<cal-X\>>,
-  and on the smooth \Pspatial\Q-dependence of the density
-  <math|p<around*|(|x,t|)>> and of the transition probability
-  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>>. This means, the conclusions in
-  section <reference|section: Master Equation, Detailed Balance, and Relative
-  Entropy> hold in this section, but the inverse is not true.
+  and on the smooth \Pspatial\Q dependence of the density functions
+  <math|p<around*|(|x,t|)>> and <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>>.
+  This means, the conclusions in section <reference|section: Master Equation,
+  Detailed Balance, and Relative Entropy> hold in this section, but the
+  inverse is not guaranteed.
 
   <subsection|Spatial Expansion of Master Equation Gives Kramers-Moyal
   Expansion>
@@ -561,36 +605,33 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2.2|5>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|1>>
-    <associate|auto-5|<tuple|1.4|1>>
-    <associate|auto-6|<tuple|1.5|2>>
-    <associate|auto-7|<tuple|1.6|3>>
-    <associate|auto-8|<tuple|2|3>>
-    <associate|auto-9|<tuple|2.1|4>>
+    <associate|auto-5|<tuple|1.4|2>>
+    <associate|auto-6|<tuple|1.5|3>>
+    <associate|auto-7|<tuple|2|4>>
+    <associate|auto-8|<tuple|2.1|4>>
+    <associate|auto-9|<tuple|2.2|5>>
     <associate|equation:Detailed Balance|<tuple|3|1>>
     <associate|equation:Discrete Time Master Equation|<tuple|1|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|6|4>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|6|5>>
     <associate|equation:Master Equation|<tuple|2|1>>
     <associate|equation:relative entropy derivative|<tuple|5|2>>
-    <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|2>>
+    <associate|footnote-1|<tuple|1|2>>
+    <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|3>>
-    <associate|footnote-4|<tuple|4|3>>
+    <associate|footnote-4|<tuple|4|5>>
     <associate|footnote-5|<tuple|5|5>>
-    <associate|footnote-6|<tuple|6|5>>
-    <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|2>>
+    <associate|footnr-1|<tuple|1|2>>
+    <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|3>>
-    <associate|footnr-4|<tuple|4|3>>
+    <associate|footnr-4|<tuple|4|5>>
     <associate|footnr-5|<tuple|5|5>>
-    <associate|footnr-6|<tuple|6|5>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|5>>
     <associate|section: Detailed Balance with Ergodicity Monotonically
-    Reduces Relative Entropy|<tuple|1.5|2>>
+    Reduces Relative Entropy|<tuple|1.4|2>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
   </collection>
@@ -611,37 +652,33 @@
       Generic Dynamics of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Obeying Master Equation
-      Requires Ergodicity (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance Provides a
+      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance Provides a
-      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance with
+      Ergodicity Monotonically Reduces Relative Entropy
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Detailed Balance
-      Monotonically Reduces Relative Entropy
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Temporal Smoothness of
+      Transition Probability Is Necessary to Ensure Relaxation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Temporal Smoothness of
-      Transition Probability Is Necessary to Ensure Relaxation
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>>
-
       2<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>
+      <no-break><pageref|auto-7>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
       Equation Gives Kramers-Moyal Expansion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <no-break><pageref|auto-8>>
 
       <with|par-left|<quote|1tab>|2.2<space|2spc>Langevin Dynamics that
       Satisfies Detailed Balance Is Conservative
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
+      <no-break><pageref|auto-9>>
     </associate>
   </collection>
 </auxiliary>

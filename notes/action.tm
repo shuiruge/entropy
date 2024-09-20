@@ -312,7 +312,7 @@
   functional
 
   <\equation*>
-    V<around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|p,<wide|p|^>|]>+<around*|(|\<bbb-E\><rsub|P><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|Q><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|P><around*|[|1|]>-1|)>,
+    V<around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|P,<wide|P|^>|]>+<around*|(|\<bbb-E\><rsub|P><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|Q><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|P><around*|[|1|]>-1|)>,
   </equation*>
 
   or explicitly
@@ -381,23 +381,23 @@
     <associate|auto-4|<tuple|1|2>>
     <associate|auto-5|<tuple|1.3|2>>
     <associate|auto-6|<tuple|1.4|3>>
-    <associate|auto-7|<tuple|1.5|3>>
-    <associate|equation:Equivalent Loss|<tuple|5|1>>
+    <associate|auto-7|<tuple|1.5|4>>
+    <associate|equation:Equivalent Loss|<tuple|5|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|3|1>>
     <associate|equation:Partition Function|<tuple|2|1>>
-    <associate|equation:Restriction|<tuple|4|1>>
+    <associate|equation:Restriction|<tuple|4|2>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|3>>
+    <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|3>>
-    <associate|footnote-4|<tuple|4|4>>
-    <associate|footnote-5|<tuple|5|?>>
+    <associate|footnote-4|<tuple|4|3>>
+    <associate|footnote-5|<tuple|5|4>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|3>>
+    <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|3>>
-    <associate|footnr-4|<tuple|4|4>>
-    <associate|footnr-5|<tuple|5|?>>
+    <associate|footnr-4|<tuple|4|3>>
+    <associate|footnr-5|<tuple|5|4>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
     Principle|<tuple|1.2|1>>
   </collection>

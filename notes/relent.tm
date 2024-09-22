@@ -14,9 +14,13 @@
   letter, like <math|X>, while we can also use <math|F> to denote something
   determined, such as a functional.
 
-  The collection of all possible values of a random variable is called the
-  <with|font-series|bold|alphabet>. And for each value in the alphabet, we
-  assign a <with|font-shape|italic|positive> value called
+  The set of all possible values of a random variable is called the
+  <with|font-series|bold|alphabet>.<\footnote>
+    Some textures call it <with|font-series|bold|sample space>. But \Pspace\Q
+    usually hints for extra structures such as vector space or topological
+    space. So, we use \Palphabet\Q instead.
+  </footnote> And for each value in the alphabet, we assign a
+  <with|font-shape|italic|positive> value called
   <with|font-series|bold|density> if the alphabet is of continuum (continuous
   random variable), or <with|font-series|bold|mass> otherwise (discrete
   random variable).<\footnote>
@@ -286,16 +290,22 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
+    <associate|auto-6|<tuple|0.4|?>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|1>>
+    <associate|footnote-4|<tuple|4|1>>
+    <associate|footnr-0|<tuple|1|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|1>>
+    <associate|footnr-4|<tuple|4|1>>
+    <associate|productTitle|<tuple|1|?>>
     <associate|section: A Short Review of Probability|<tuple|1.1|1>>
     <associate|section: Relative Entropy|<tuple|1|1>>
     <associate|section: Shannon Entropy Fails for Continuous Random
     Variable|<tuple|1.3|2>>
+    <associate|title|<tuple|1|?>>
   </collection>
 </references>
 

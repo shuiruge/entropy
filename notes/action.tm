@@ -13,9 +13,9 @@
   Follow the conventions in section <reference|section: Master Equation,
   Detailed Balance, and Relative Entropy>. In addition, we use
   <math|P<around*|(|\<theta\>|)>> for a parameterized distribution, where
-  <math|\<theta\>> is the collection of parameters. Its probablistic
-  distribution function is written as <math|p<around*|(|x,\<theta\>|)>>,
-  where random variable <math|X> has value <math|x>.
+  <math|\<theta\>> is the collection of parameters. Its density function is
+  <math|p<around*|(|x,\<theta\>|)>>, where random variable <math|X> takes the
+  value <math|x>.
 
   <subsection|Data Fitting Is Equivalent to Least-Action
   Principle><label|section: Data Fitting Is Equivalent to Least-Action
@@ -26,20 +26,11 @@
   represents prior knowledge as in the case of maximum-entropy principle. Let
   <math|S<around*|(|x,\<theta\>|)>\<assign\>-ln
   <around*|(|p<around*|(|x,\<theta\>|)>/<wide|p|^><around*|(|x|)>|)>-ln
-  Z<around*|(|\<theta\>|)>> with <math|Z> to be determined. Notice that the
-  distribution <math|q> is essential for defining <math|S>, since <math|ln
-  p<around*|(|x,\<theta\>|)>> is not well-defined.<\footnote>
-    First, when the random variable <math|X> is continuous, the
-    <math|p<around*|(|x,\<theta\>|)>> has dimension. But logarithm cannot
-    accept a variable which has dimension. The second reason is that when we
-    take a diffeomorphism of <math|X> to <math|X<rprime|'>>, which can be
-    viewed as a coordinate transformation, <math|S> cannot be invariant. But,
-    to make it an action (later), <math|S> has to be invariant under
-    coordinate transformation. For these two reasons, <math|ln
-    p<around*|(|x,\<theta\>|)>> is not well-defined. But, it is easy to prove
-    that <math|ln <around*|(|p<around*|(|x,\<theta\>|)>/<wide|p|^><around*|(|x|)>|)>>
-    is well-defined.
-  </footnote> Then, we can re-formulate <math|p<around*|(|x,\<theta\>|)>> as
+  Z<around*|(|\<theta\>|)>> with <math|Z<around*|(|\<theta\>|)>> to be
+  determined. Density <math|<wide|p|^>> is essential for defining <math|S>,
+  since <math|ln p<around*|(|x,\<theta\>|)>> is not well-defined (section
+  <reference|section: Shannon Entropy Fails for Continuous Random Variable>).
+  Then, we can re-formulate <math|p<around*|(|x,\<theta\>|)>> as
 
   <\equation>
     p<around*|(|x,\<theta\>|)>=<wide|p|^><around*|(|x|)>
@@ -62,22 +53,20 @@
   raw data that obeys an empirical distribution <math|Q>, by adjusting
   parameter <math|\<theta\>>. To do so, we minimize the relative entropy
   between <math|Q> and <math|P<around*|(|\<theta\>|)>>, which is defined as
-  <math|H<around*|[|q,p<around*|(|\<cdummy\>,\<theta\>|)>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  <math|H<around*|(|Q,P<around*|(|\<theta\>|)>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
   q<around*|(|x|)> ln <around*|(|q<around*|(|x|)>/p<around*|(|x,\<theta\>|)>|)>>.
   Plugging equation (<reference|equation:Generic Density>) into
-  <math|H<around*|[|q,p<around*|(|\<cdummy\>,\<theta\>|)>|]>>, we have
+  <math|H<around*|(|Q,P<around*|(|\<theta\>|)>|)>>, we have
 
-  <\align>
-    <tformat|<table|<row|<cell|H<around*|[|q,p<around*|(|\<cdummy\>,\<theta\>|)>|]>\<assign\>>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> ln q<around*|(|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> ln p<around*|(|x,\<theta\>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+  <\equation*>
+    H<around*|(|Q,P<around*|(|\<theta\>|)>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
     q<around*|(|x|)> ln q<around*|(|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
     q<around*|(|x|)> <wide|p|^><around*|(|x|)>+<big|int><rsub|\<cal-X\>>\<mathd\>x
     q<around*|(|x|)> S<around*|(|x,\<theta\>|)>+<big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> ln Z<around*|(|\<theta\>|)>.>>>>
-  </align>
+    q<around*|(|x|)> ln Z<around*|(|\<theta\>|)>.
+  </equation*>
 
-  \ By omitting the <math|\<theta\>>-independent terms, we get the loss
+  By omitting the <math|\<theta\>>-independent terms, we get the loss
   function
 
   <\equation*>
@@ -88,7 +77,7 @@
   We can find the <math|\<theta\><rsub|\<star\>>\<assign\>argmin L> by
   iteratively updating <math|\<theta\>> along the direction
   <math|-\<partial\>L/\<partial\>\<theta\>>. With a series of direct
-  calculus<\footnote>
+  calculus,<\footnote>
     Directly, we have
 
     <\equation*>
@@ -119,33 +108,34 @@
     where in the last equality, we used the definition of
     <math|p<around*|(|x,\<theta\>|)>> (the blue parts). This final expression
     is just the <math|-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<around*|(|\<partial\>S/\<partial\>\<theta\><rsup|\<alpha\>>|)><around*|(|\<cdummy\>,\<theta\>|)>|]>>.
-  </footnote>, we find
+  </footnote> we find
 
   <\equation>
-    <frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Iteration>.
+    <frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>.<label|equation:Iteration>
   </equation>
 
   At the minimum, we shall have <math|\<partial\>L/\<partial\>\<theta\>=0>.
   Then, we find that <math|\<theta\><rsub|\<star\>>> obeys
 
   <\equation>
-    \<bbb-E\><rsub|P<around*|(|\<theta\><rsub|\<star\>>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]><label|equation:Restriction>.
+    \<bbb-E\><rsub|P<around*|(|\<theta\><rsub|\<star\>>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>.<label|equation:Restriction>
   </equation>
 
   Notice that <math|L> is equivalent to another loss <math|L<rsub|LA>> where
 
   <\equation>
-    L<rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]><label|equation:Equivalent
-    Loss>.
+    L<rsub|LA><around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>.<label|equation:Equivalent
+    Loss>
   </equation>
 
   The expectation <math|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>>> is computed
   by Monte-Carlo method. We sample data points from
   <math|P<around*|(|\<theta\>|)>> with fixed <math|\<theta\>>, and compute
   the mean value of <math|S<around*|(|\<cdummy\>,\<theta\>|)>> on these data
-  points. The derivative of <math|\<theta\>> on this expectation is taken on
-  the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> instead of on the data
-  points. In this way, <math|L<rsub|LA>> is equivalent to <math|L>.
+  points. <with|font-shape|italic|The derivative of <math|\<theta\>> on this
+  expectation is taken on the <math|S<around*|(|\<cdummy\>,\<theta\>|)>>
+  instead of on the data points.> In this way, <math|L<rsub|LA>> is
+  equivalent to <math|L>.
 
   It can be read from this equation that minimizing <math|L<rsub|LA>> is to
   decrease the <math|S<around*|(|\<cdummy\>,\<theta\>|)>> at data points (the
@@ -188,15 +178,11 @@
   Suppose that we have a set of raw data about an entity from classical
   physics. To describe the entity, we need a configuration like
   <math|x<around*|(|t|)>>. So, the raw data is a set
-  <math|<around*|{|x<rsub|k><around*|(|1:T|)>\|k=1,\<ldots\>,D|}>> where time
-  is discretized as <math|<around*|(|1,\<ldots\>,T|)>> and the data size is
-  <math|D>. We have employed <math|x<rsub|k><around*|(|1:T|)>> for the series
-  of <math|<around*|(|x<rsub|k><around*|(|1|)>,\<ldots\>,x<rsub|k><around*|(|T|)>|)>>.
-  Thus, each datum is a movie of the physical system, frame by frame. These
-  raw data are obtained by experiments and measurements. Considering the
-  errors in the measurements, variances shall be involved and the empirical
-  distribution <math|q<around*|(|x<around*|(|1:T|)>|)>> comes to be a sum of
-  normal distribution.
+  <math|<around*|{|<around*|(|x<rsub|k><around*|(|1|)>,\<ldots\>,x<rsub|k><around*|(|T|)>|)>\|k=1,\<ldots\>,D|}>>
+  where time is discretized as <math|<around*|(|1,\<ldots\>,T|)>> and the
+  data size is <math|D>. Thus, each datum is a movie of the physical system,
+  frame by frame. These raw data are obtained by experiments and measurements
+  (with measurement errors).
 
   As a physical system, the <math|<wide|p|^>> that represents free theory
   shall be Gaussian. It may be
@@ -211,7 +197,7 @@
   The action <math|S<around*|[|x,\<theta\>|]>> is given by some ansatz.
   First, we may suppose that the action is local. That is, there is a
   Lagrangian <math|L<around*|(|x,t,\<theta\>|)>> such that
-  <math|S<around*|[|x,\<theta\>|]>=<big|sum><rsub|t=1><rsup|T>L<around*|(|x<around*|(|t|)>,t,\<theta\>|)>>.
+  <math|S<around*|(|x,\<theta\>|)>=<big|sum><rsub|t=1><rsup|T>L<around*|(|x<around*|(|t|)>,t,\<theta\>|)>>.
   Next, we may suppose that there exist some symmetries about the physical
   system, such as autonomous and parity symmetry, which means
   <math|L<around*|(|x,t,\<theta\>|)>=<big|sum><rsub|n=1><rsup|+\<infty\>>\<theta\><rsub|n>
@@ -219,12 +205,9 @@
   further restrict the possible form of the action. Finally, we can write
   down a most generic form of action that satisfies all the ansatz. Neural
   network and symbolic regression may help you write down this most generic
-  form <\footnote>
-    For example, <math|L<around*|(|x,t,\<theta\>|)>=f<around*|(|x,\<theta\>|)>>
-    where <math|f> is a neural network.
-  </footnote>. Then, we find the best fit <math|\<theta\><rsub|\<star\>>> by
+  form. Then, we find the best fit <math|\<theta\><rsub|\<star\>>> by
   equation <reference|equation:Iteration>. The action
-  <math|S<around*|[|x,\<theta\><rsub|\<star\>>|]>> describes the dynamics
+  <math|S<around*|(|x,\<theta\><rsub|\<star\>>|)>> describes the dynamics
   extracted from the raw data.<\footnote>
     An experiment on general oscillators can be found in the
     <samp|oscillators/Oscillator.ipynb>.
@@ -233,15 +216,13 @@
   <subsection|Example: Actions in Machine Learning (TODO)>
 
   In section <reference|section: Data Fitting Is Equivalent to Least-Action
-  Principle>, we have shown that any distribution can be re-formulated by
-  action. Usually, the goal of a supervised machine learning task is to fit a
-  distribution that predicts the target. For example, given an image
-  <math|x>, we are to compute the conditional distribution
-  <math|p<around*|(|y\|x|)>> for the class of the image such as being a cat
-  or a dog, thus <math|p<around*|(|y=cat\|x|)>> or
-  <math|p<around*|(|y=dog\|x|)>>. Let <math|y\<in\>\<cal-Y\>> denotes the
+  Principle>, we have shown that any density can be re-formulated by action.
+  Usually, the goal of a supervised machine learning task is to fit a density
+  that predicts the target. For example, given an image <math|x>, we are to
+  compute the conditional density for the class of the image such as being a
+  cat or a dog. Let <math|x> denotes the input (like images) <math|y> the
   target, which can be discrete (like classes) or continuous (like person's
-  height), then the conditional probability is usually given by a model
+  height), then the conditional density is usually given by a model
   <math|f<around*|(|x,\<theta\>|)>> parameterized by <math|\<theta\>>, as
 
   <\equation*>
@@ -267,14 +248,16 @@
 
   <\equation*>
     S<around*|(|x,y,\<theta\>|)>\<assign\>-ln
-    p<around*|(|y\|x,\<theta\>|)>=-ln \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>.
+    p<around*|(|y\|x,\<theta\>|)>=-ln \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>,
   </equation*>
 
+  which is the loss per sample in machine learning.
+
   Assume that datum <math|<around*|(|x,y|)>> is sampled from a dataset
-  described by distribution <math|Q>, thus the loss of least-action becomes
-  (<math|Q<rsub|X>> for the marginal distribution of <math|X>, and
-  <math|P<around*|(|x,\<theta\>|)>> for the conditional distribution given
-  <math|X=x> and <math|\<theta\>>)
+  described by distribution <math|Q>, thus the total loss of least-action
+  becomes (<math|Q<rsub|X>> for the marginal distribution of <math|X>, and
+  <math|P<around*|(|x,\<theta\>|)>> for the conditional distribution of
+  <math|p<around*|(|y\|x,\<theta\>|)>>, thus we can sample from it)
 
   <\equation*>
     L<rsub|LA><around*|(|\<theta\>|)>=\<bbb-E\><rsub|x\<sim\>Q<rsub|X>,y\<sim\>P<around*|(|x,\<theta\>|)>><around*|[|ln
@@ -312,24 +295,25 @@
   functional
 
   <\equation*>
-    V<around*|[|p,\<theta\>,\<mu\>|]>\<assign\>H<around*|[|P,<wide|P|^>|]>+<around*|(|\<bbb-E\><rsub|P><around*|[|S<around*|(|x,\<theta\>|)>|]>-\<bbb-E\><rsub|Q><around*|[|S<around*|(|x,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|P><around*|[|1|]>-1|)>,
+    V<around*|(|p,\<theta\>,\<mu\>|)>\<assign\>H<around*|[|P,<wide|P|^>|]>+<around*|(|\<bbb-E\><rsub|P><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|P><around*|[|1|]>-1|)>,
   </equation*>
 
   or explicitly
 
   <\equation*>
-    V<around*|[|p,\<theta\>,\<mu\>|]>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    V<around*|(|p,\<theta\>,\<mu\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>ln<frac|p<around*|(|x|)>|<wide|p|^><around*|(|x|)>>+<around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
     q<around*|(|x|)>S<around*|(|x,\<theta\>|)>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1|)>.
   </equation*>
 
-  Indeed, variance on <math|p> gives<\footnote>
+  Indeed, variance on <math|p> gives equation (<reference|equation:Generic
+  Density>).<\footnote>
     Explicitly, we have
 
     <\equation*>
-      <frac|\<delta\>V|\<delta\>p><around*|[|p,\<theta\>,\<mu\>|]>=ln
+      <frac|\<delta\>V|\<delta\>p<around*|(|x|)>><around*|(|p,\<theta\>,\<mu\>|)>=ln
       p<around*|(|x|)>+1-ln <wide|p|^><around*|(|x|)>+S<around*|(|x,\<theta\>|)>+\<mu\>=0,
     </equation*>
 
@@ -339,10 +323,9 @@
       p<around*|(|x|)>\<propto\><wide|p|^><around*|(|x|)>
       exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>.
     </equation*>
-  </footnote> equation (<reference|equation:Generic Density>). Together with
-  the partial derivative on <math|\<mu\>>, we get equation
-  (<reference|equation:Partition Function>). Finally, partial derivative on
-  <math|\<theta\>> directly gives equation
+  </footnote> Together with the partial derivative on <math|\<mu\>>, we get
+  equation (<reference|equation:Partition Function>). Finally, partial
+  derivative on <math|\<theta\>> directly gives equation
   (<reference|equation:Restriction>).
 
   Interestingly, the second term is just the
@@ -352,19 +335,19 @@
 
   <\equation>
     <around*|(|p<rsub|\<star\>>,\<theta\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>=min<rsub|p,\<mu\>>
-    max<rsub|\<theta\>>V<around*|[|p,\<theta\>,\<mu\>|]>.
+    max<rsub|\<theta\>>V<around*|(|p,\<theta\>,\<mu\>|)>.
   </equation>
 
   \;
 
-  The <math|min<rsub|p,\<mu\>>> minimizes the relative entropy between
-  <math|p> and <math|q> and the expectation of action
-  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> by tuning <math|p>, which in
-  turn relates the probability <math|p> with the action
-  <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The <math|max<rsub|\<theta\>>>
-  sites real data onto the action's local minima by tuning <math|\<theta\>>.
-  So, we find that maximum-entropy principle and least-action principle are
-  saddle point of a functional <math|V>.
+  By tuning <math|p>, the <math|min<rsub|p,\<mu\>>> minimizes the relative
+  entropy between <math|P> and <math|Q> and the expectation of action
+  <math|\<bbb-E\><rsub|P><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>,
+  which in turn relates the density <math|p> with the action
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. And by tuning <math|\<theta\>>,
+  the <math|max<rsub|\<theta\>>> sites real data onto the action's local
+  minima. So, we find that maximum-entropy principle and least-action
+  principle are saddle point of a functional <math|V>.
 </body>
 
 <\initial>
@@ -381,23 +364,19 @@
     <associate|auto-4|<tuple|1|2>>
     <associate|auto-5|<tuple|1.3|2>>
     <associate|auto-6|<tuple|1.4|3>>
-    <associate|auto-7|<tuple|1.5|4>>
+    <associate|auto-7|<tuple|1.5|3>>
     <associate|equation:Equivalent Loss|<tuple|5|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|3|1>>
     <associate|equation:Partition Function|<tuple|2|1>>
-    <associate|equation:Restriction|<tuple|4|2>>
+    <associate|equation:Restriction|<tuple|4|1>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|1>>
-    <associate|footnote-3|<tuple|3|3>>
-    <associate|footnote-4|<tuple|4|3>>
-    <associate|footnote-5|<tuple|5|4>>
+    <associate|footnote-2|<tuple|2|3>>
+    <associate|footnote-3|<tuple|3|4>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|1>>
-    <associate|footnr-3|<tuple|3|3>>
-    <associate|footnr-4|<tuple|4|3>>
-    <associate|footnr-5|<tuple|5|4>>
+    <associate|footnr-2|<tuple|2|3>>
+    <associate|footnr-3|<tuple|3|4>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
     Principle|<tuple|1.2|1>>
   </collection>

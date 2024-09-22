@@ -5,7 +5,8 @@
 <\body>
   <section|Relative Entropy><label|section: Relative Entropy>
 
-  <subsection|A Short Review of Probability>
+  <subsection|A Short Review of Probability><label|section: A Short Review of
+  Probability>
 
   <with|font-shape|italic|Those that are not deterministic are denoted by
   capital letters.> But, a capital letter may also denote something that is
@@ -18,8 +19,15 @@
   assign a <with|font-shape|italic|positive> value called
   <with|font-series|bold|density> if the alphabet is of continuum (continuous
   random variable), or <with|font-series|bold|mass> otherwise (discrete
-  random variable). We use <with|font-series|bold|distribution> for not only
-  the mass or density on the alphabet, but also a sampler that can sample an
+  random variable).<\footnote>
+    In many textures, the density or mass function is non-negative (rather
+    than being positive). Being positive is beneficial because, for example,
+    we will discuss the logarithm of density or mass function, for which
+    being zero is invalid. For any value on which density or mass function
+    vanishes, we throw it out of <math|\<cal-X\>>, which in turn guarantees
+    the positivity.
+  </footnote> We use <with|font-series|bold|distribution> for not only the
+  mass or density on the alphabet, but also a sampler that can sample an
   ensemble of values of the random variable that converges to the mass or
   density when the number of sample tends to infinity. For example, we say
   <math|X> is a random variable with alphabet <math|\<cal-X\>> and
@@ -31,8 +39,9 @@
   <math|p<around*|(|x|)>> is deterministic, thus not capital. The same for
   mass, where <math|p<around*|(|x|)>> is called <with|font-series|bold|mass
   function>. Thus, we can say the expectation of a function <math|f> on
-  distribution <math|P>, denoted by <math|\<bbb-E\><rsub|P><around*|[|f|]>>.
-  If the alphabet <math|\<cal-X\>> is of continuum, then it is
+  distribution <math|P>, denoted by <math|\<bbb-E\><rsub|P><around*|[|f|]>>
+  or <math|\<bbb-E\><rsub|x\<sim\>P><around*|[|f<around*|(|x|)>|]>>. If the
+  alphabet <math|\<cal-X\>> is of continuum, then it is
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>
   f<around*|(|x|)>>, otherwise <math|<big|sum><rsub|x\<in\>\<cal-X\>>p<around*|(|x|)>
   f<around*|(|x|)>>.
@@ -279,8 +288,11 @@
     <associate|auto-5|<tuple|1.4|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
+    <associate|footnote-3|<tuple|3|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
+    <associate|footnr-3|<tuple|3|?>>
+    <associate|section: A Short Review of Probability|<tuple|1.1|?>>
     <associate|section: Relative Entropy|<tuple|1|1>>
     <associate|section: Shannon Entropy Fails for Continuous Random
     Variable|<tuple|1.3|2>>

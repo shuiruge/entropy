@@ -16,58 +16,56 @@
   As discussed in section <reference|section: Relative Entropy>, Shannon
   entropy is not well-defined for continuous random variable, while the
   relative entropy is proper for both discrete and continuous random
-  variables. For this reason, we suggest that the objective to be maximized
-  shall be the negative relative entropy instead of Shannon entropy.
-  Comparing with Shannon entropy, relative entropy needs an extra
+  variables. Comparing with Shannon entropy, relative entropy needs an extra
   distribution, which describes the prior knowledge. It then characterizes
   the relative uncertainty (surprise) of a distribution to the distribution
   of prior knowledge. When the prior knowledge is unbiased and
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x 1\<less\>+\<infty\>>, the
-  negative relative entropy reduces to Shannon entropy. So, maximum-entropy
-  principle shall minimize relative entropy.
+  <math|<around*|\||\<cal-X\>|\|>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  1\<less\>+\<infty\>>, the negative relative entropy reduces to Shannon
+  entropy. So, maximum-entropy principle shall minimize relative entropy.
 
-  Given a distribution <math|Q> of <math|X> that describes the prior
-  knowledge, the basic problem is to find a distribution <math|P> of <math|X>
-  such that the relative entropy <math|H<around*|[|p,q|]>> is minimized under
-  a set of restrictions <math|<around*|{|\<bbb-E\><rsub|P><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>\|\<alpha\>=1,\<ldots\>,m,f<rsub|\<alpha\>>:\<cal-X\>\<rightarrow\>\<bbb-R\>|}>>.
+  Given a distribution <math|Q> that describes the prior knowledge of random
+  variable <math|X>, the basic problem is to find a distribution <math|P> of
+  <math|X> such that the relative entropy <math|H<around*|(|P,Q|)>> is
+  minimized under a set of restrictions <math|<around*|{|\<bbb-E\><rsub|P><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>\|\<alpha\>=1,\<ldots\>,m,f<rsub|\<alpha\>>:\<cal-X\>\<rightarrow\>\<bbb-R\>|}>>.
   The notation <math|\<bbb-E\><rsub|P><around*|[|\<cdots\>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
   p<around*|(|x|)>\<cdots\>> represents expectation under <math|P>; and the
   function <math|f<rsub|\<alpha\>>> is called
   <with|font-series|bold|observable> and the value
   <math|<wide|f|\<bar\>><rsub|\<alpha\>>> is called an
-  <with|font-series|bold|observation>. The <math|P>, thus, is the
-  distribution which is closest to the prior knowledge with the restrictions
-  fulfilled.
+  <with|font-series|bold|observation>. Thus, <math|P> is the distribution
+  that is closest to the prior knowledge with the restrictions fulfilled.
 
   To solve this problem, we use variational principle with Lagrangian
   multipliers. There are two kinds of constraints. One from the restrictions
   <math|\<bbb-E\><rsub|P><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>>
-  for each <math|\<alpha\>>; and the other from
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>=1>. Also, recall
-  that the relative entropy <math|H<around*|[|p,q|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  for each <math|\<alpha\>>; and the other from normalization
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>=1>. Recall that
+  the relative entropy <math|H<around*|(|P,Q|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
   p<around*|(|x|)>ln<around*|(|p<around*|(|x|)>/q<around*|(|x|)>|)>>.
   Altogether, the loss functional becomes
 
   <\equation>
-    L<around*|[|p,\<lambda\>,\<mu\>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+    L<around*|(|p,\<lambda\>,\<mu\>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>ln<frac|p<around*|(|x|)>|q<around*|(|x|)>>+\<lambda\><rsup|\<alpha\>><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x|)>-<wide|f|\<bar\>><rsub|\<alpha\>>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1|)>.
   </equation>
 
-  So, we have
+  So, we have (<math|L> is a functional of <math|p>, thus use
+  <math|\<delta\>> instead of <math|\<partial\>> for <math|p>),
 
   <\align>
-    <tformat|<table|<row|<cell|<frac|\<delta\>L|\<delta\>p<around*|(|x|)>><around*|[|p,\<lambda\>,\<mu\>|]>=>|<cell|ln
+    <tformat|<table|<row|<cell|<frac|\<delta\>L|\<delta\>p<around*|(|x|)>><around*|(|p,\<lambda\>,\<mu\>|)>=>|<cell|ln
     p<around*|(|x|)>+1-ln q<around*|(|x|)>+\<lambda\><rsup|\<alpha\>>
-    f<rsub|\<alpha\>><around*|(|x|)>+\<mu\>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|[|p,\<lambda\>,\<mu\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x|)>-<wide|f|\<bar\>><rsub|\<alpha\>>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<mu\>><around*|[|p,\<lambda\>,\<mu\>|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    f<rsub|\<alpha\>><around*|(|x|)>+\<mu\>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|p,\<lambda\>,\<mu\>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x|)>-<wide|f|\<bar\>><rsub|\<alpha\>>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<mu\>><around*|(|p,\<lambda\>,\<mu\>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1.>>>>
   </align>
 
-  These equations shall vanish on extremum. If
+  These equations shall vanish on the extremum. If
   <math|<around*|(|p<rsub|\<star\>>,\<lambda\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>>
-  is an extremum, then we shall have
+  is an extremum, then
 
   <\equation>
     <frac|\<partial\>ln Z|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|\<lambda\><rsub|\<star\>>|)>+<wide|f|\<bar\>><rsub|\<alpha\>>=0<label|equation:maxent
@@ -98,8 +96,7 @@
     f<rsub|\<alpha\>><around*|(|x|)>|)>/Z<around*|(|\<lambda\>|)>.
   </equation>
 
-  Notice that the <math|\<mu\><rsub|\<star\>>> has been included in the
-  <math|Z>.
+  The <math|\<mu\><rsub|\<star\>>> has been included in the <math|Z>.
 
   <subsection|Prior Knowledge Furnishes Free Theory or Regulator>
 
@@ -117,10 +114,9 @@
   <math|q<around*|(|x|)>> shall be the free theory.
 
   In machine learning, it acts as regulator, a pre-determined term employed
-  for regulating the value of <math|x>. It does not involve any parameter,
-  which is the <math|\<lambda\>>.
+  for regulating the value of <math|x>.
 
-  <subsection|When Is <math|\<lambda\><rsub|\<star\>>> Solvable?>
+  <subsection|When Is <math|\<lambda\><rsub|\<star\>>> Solvable? (TODO)>
 
   Even though it is hard to guarantee the equation <reference|equation:maxent
   eq1> solvable, we have some results for the case when
@@ -130,14 +126,14 @@
   To guarantee that perturbative solution exists for equation
   <reference|equation:maxent eq1>, we have to ensure that the Jacobian
   <math|\<partial\><rsup|2>ln Z/\<partial\>\<lambda\><rsup|\<alpha\>>\<partial\>\<lambda\><rsup|\<beta\>>>
-  is not degenerate at <math|\<lambda\>=0>. With a series of simple
+  is not degenerate at <math|\<lambda\>=0>. With a series of direct
   calculation, we find
 
   <\equation>
     <frac|\<partial\><rsup|2>ln Z|\<partial\>\<lambda\><rsup|\<alpha\>>\<partial\>\<lambda\><rsup|\<beta\>>><around*|(|0|)>=Cov<rsub|q><around*|(|f<rsub|\<alpha\>>,f<rsub|\<beta\>>|)>,
   </equation>
 
-  the covariance matrix of <math|f> under distribution <math|q>. TODO
+  the covariance matrix of <math|f> under distribution <math|q>.
 </body>
 
 <\initial>

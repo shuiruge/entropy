@@ -213,7 +213,7 @@
     <samp|oscillators/Oscillator.ipynb>.
   </footnote>
 
-  <subsection|Example: Actions in Machine Learning (TODO)>
+  <subsection|Example: Actions in Machine Learning>
 
   In section <reference|section: Data Fitting Is Equivalent to Least-Action
   Principle>, we have shown that any density can be re-formulated by action.

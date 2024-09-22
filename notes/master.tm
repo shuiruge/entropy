@@ -329,7 +329,9 @@
   <math|r<around*|(|y<rsub|i+1>,y<rsub|i>|)>> and
   <math|r<around*|(|y<rsub|i>,y<rsub|i+1>|)>> are positive for each <math|i>,
   then we say <math|x> and <math|z> are <with|font-series|bold|connected>,
-  and the series is called a <with|font-series|bold|path>. In this situation,
+  and the series is called a <with|font-series|bold|path>. It means
+  <with|font-shape|italic|there are densities transiting along the forward
+  and backward directions of the path.> In this situation,
   <math|<around*|(|\<mathd\>/\<mathd\>t|)>
   H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=0> implies
   <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>=p<around*|(|z,t|)>/\<pi\><around*|(|z|)>>.<\footnote>
@@ -367,13 +369,14 @@
 
   <\theorem>
     Let <math|\<Pi\>> a distribution with alphabet <math|\<cal-X\>>. If there
-    is a transition rate such that 1) every two elements in <math|\<cal-X\>>
-    are connected and that 2) the detailed balance
-    <reference|equation:Detailed Balance> holds for <math|\<Pi\>>, then for
-    any time-dependent distribution <math|P<around*|(|t|)>> with the same
-    alphabet (at one time) evolved by the master equation
-    <reference|equation:Master Equation>, <math|P<around*|(|t|)>> will
-    monotonically and constantly relax to <math|\<Pi\>>.
+    is a transition rate r such that 1) every two elements in
+    <math|\<cal-X\>> are connected and that 2) the detailed balance
+    <reference|equation:Detailed Balance> holds for <math|\<Pi\>> and
+    <math|r>, then for any time-dependent distribution
+    <math|P<around*|(|t|)>> with the same alphabet (at one time) evolved by
+    the master equation <reference|equation:Master Equation>,
+    <math|P<around*|(|t|)>> will monotonically and constantly relax to
+    <math|\<Pi\>>.
   </theorem>
 
   Many textures use Fokker-Planck equation to prove the monotonic reduction
@@ -689,7 +692,7 @@
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|3>>
+    <associate|auto-5|<tuple|1.4|2>>
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|2|5>>
     <associate|auto-8|<tuple|2.1|5>>
@@ -700,19 +703,19 @@
     <associate|equation:Master Equation|<tuple|3|2>>
     <associate|equation:relative entropy derivative|<tuple|6|3>>
     <associate|footnote-1|<tuple|1|3>>
-    <associate|footnote-2|<tuple|2|4>>
+    <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|4>>
-    <associate|footnote-4|<tuple|4|7>>
-    <associate|footnote-5|<tuple|5|7>>
+    <associate|footnote-4|<tuple|4|6>>
+    <associate|footnote-5|<tuple|5|6>>
     <associate|footnr-1|<tuple|1|3>>
-    <associate|footnr-2|<tuple|2|4>>
+    <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
-    <associate|footnr-4|<tuple|4|7>>
-    <associate|footnr-5|<tuple|5|7>>
+    <associate|footnr-4|<tuple|4|6>>
+    <associate|footnr-5|<tuple|5|6>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|6>>
     <associate|section: Detailed Balance with Ergodicity Monotonically
-    Reduces Relative Entropy|<tuple|1.4|3>>
+    Reduces Relative Entropy|<tuple|1.4|2>>
     <associate|section: Master Equation Describes Generic Dynamics of Markov
     Chain|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative

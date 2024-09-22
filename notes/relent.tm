@@ -288,11 +288,11 @@
     <associate|auto-5|<tuple|1.4|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
-    <associate|footnote-3|<tuple|3|?>>
+    <associate|footnote-3|<tuple|3|1>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
-    <associate|footnr-3|<tuple|3|?>>
-    <associate|section: A Short Review of Probability|<tuple|1.1|?>>
+    <associate|footnr-3|<tuple|3|1>>
+    <associate|section: A Short Review of Probability|<tuple|1.1|1>>
     <associate|section: Relative Entropy|<tuple|1|1>>
     <associate|section: Shannon Entropy Fails for Continuous Random
     Variable|<tuple|1.3|2>>

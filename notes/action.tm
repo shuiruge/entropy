@@ -213,32 +213,33 @@
     <samp|oscillators/Oscillator.ipynb>.
   </footnote>
 
-  <subsection|Example: Actions in Machine Learning>
+  <subsection|Example: Actions in Machine Learning (TODO)>
 
   In section <reference|section: Data Fitting Is Equivalent to Least-Action
-  Principle>, we have shown that any density can be re-formulated by action.
-  Usually, the goal of a supervised machine learning task is to fit a density
-  that predicts the target. For example, given an image <math|x>, we are to
-  compute the conditional density for the class of the image such as being a
-  cat or a dog. Let <math|x> denotes the input (like images) <math|y> the
-  target, which can be discrete (like classes) or continuous (like person's
-  height), then the conditional density is usually given by a model
-  <math|f<around*|(|x,\<theta\>|)>> parameterized by <math|\<theta\>>, as
+  Principle>, we have shown that any density function can be re-formulated by
+  action. Usually, the goal of a supervised machine learning task is to fit a
+  density function that predicts the target. For example, given an image, we
+  are to compute the conditional density function for the class of the image
+  such as being a cat or a dog. Let <math|x> denote the input (like images)
+  and <math|y> the target, which can be discrete (like classes) or continuous
+  (like person's height), then the conditional density function is usually
+  given by a model <math|f<around*|(|x,\<theta\>|)>> parameterized by
+  <math|\<theta\>>, as
 
   <\equation*>
     p<around*|(|y\|x,\<theta\>|)>=\<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>.
   </equation*>
 
-  For example, for a categorical classification task,
-  <math|y\<in\><around*|{|1,\<ldots\>,M|}>> and
-  <math|z\<in\>\<bbb-R\><rsup|M>> for some <math|M>, and
+  For a categorical classification task, <math|y\<in\><around*|{|1,\<ldots\>,M|}>>
+  and <math|z\<in\>\<bbb-R\><rsup|M>> for some <math|M>, and <math|\<cal-P\>>
+  is defined by
 
   <\equation*>
-    \<cal-P\><rsub|cls><around*|(|y,z|)>\<assign\><frac|exp<around*|(|z<rsup|y>|)>|<big|sum><rsub|\<alpha\>=1><rsup|M>exp<around*|(|z<rsup|\<alpha\>>|)>>.
+    \<cal-P\><rsub|clf><around*|(|y,z|)>\<assign\><frac|exp<around*|(|z<rsup|y>|)>|<big|sum><rsub|\<alpha\>=1><rsup|M>exp<around*|(|z<rsup|\<alpha\>>|)>>.
   </equation*>
 
   And for regression task, <math|y,z\<in\>\<bbb-R\><rsup|M>> for some
-  <math|M>, and
+  <math|M>, and <math|\<cal-P\>> is defined by
 
   <\equation*>
     \<cal-P\><rsub|rg><around*|(|y,z|)>\<assign\>exp<around*|(|-<big|sum><rsub|\<alpha\>=1><rsup|M><frac|<around*|(|y<rsup|\<alpha\>>-z<rsup|\<alpha\>>|)><rsup|2>|2>|)>.
@@ -247,11 +248,17 @@
   Thus, we have an action
 
   <\equation*>
-    S<around*|(|x,y,\<theta\>|)>\<assign\>-ln
+    S<around*|(|y<with|color|red|;>x,\<theta\>|)>\<assign\>-ln
     p<around*|(|y\|x,\<theta\>|)>=-ln \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>,
   </equation*>
 
-  which is the loss per sample in machine learning.
+  which is the loss per sample in machine learning.<\footnote>
+    So, machine learning models can be seen as a complicated version of Ising
+    model, where the <math|y> in machine learning corresponding to the spins
+    in Ising model and <math|\<theta\>> to the temperature.
+  </footnote> Remark that input <math|x> serves as a parameter of action
+  <math|S>, and <math|y> is unique the argument of action (so we use
+  semicolon instead of comma).
 
   Assume that datum <math|<around*|(|x,y|)>> is sampled from a dataset
   described by distribution <math|Q>, thus the total loss of least-action
@@ -261,8 +268,8 @@
 
   <\equation*>
     L<rsub|LA><around*|(|\<theta\>|)>=\<bbb-E\><rsub|x\<sim\>Q<rsub|X>,y\<sim\>P<around*|(|x,\<theta\>|)>><around*|[|ln
-    \<cal-P\><around*|(|y,f<around*|(|x;\<theta\>|)>|)>|]>-\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>Q><around*|[|ln
-    \<cal-P\><around*|(|y,f<around*|(|x;\<theta\>|)>|)>|]>.
+    \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>|]>-\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>Q><around*|[|ln
+    \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>|]>.
   </equation*>
 
   The last term is the usual loss function in machine learning. For example,
@@ -272,19 +279,24 @@
   The first term is new for machine learning. To compute it, we first sample
   a datum <math|<around*|(|x,y<rsub|0>|)>> from <math|Q> and only keep the
   <math|x>, which indicates the <math|x\<sim\>Q<rsub|X>>. Then, compute
-  <math|f<around*|(|x;\<theta\>|)>> and sample a new <math|y> from
+  <math|f<around*|(|x,\<theta\>|)>> and sample a new <math|y> from
   <math|P<around*|(|x,\<theta\>|)>>. For classification task, <math|y> is
   sampled from the categorical distribution with probability
-  <math|exp<around*|(|f<rsup|y><around*|(|x;\<theta\>|)>|)>/<big|sum><rsub|\<alpha\>=1><rsup|M>exp<around*|(|f<rsup|\<alpha\>><around*|(|x;\<theta\>|)>|)>>,
+  <math|exp<around*|(|f<rsup|y><around*|(|x;\<theta\>|)>|)>/<big|sum><rsub|\<alpha\>=1><rsup|M>exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>>,
   and for regression task, from a normal distribution with mean
   <math|f<around*|(|x,\<theta\>|)>> and unit variance. Using this <math|y>,
-  together with the <math|x>, <math|ln \<cal-P\><around*|(|y,f<around*|(|x;\<theta\>|)>|)>>
+  together with the <math|x>, <math|ln \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>>
   is calculated. For classification task, it is
-  <math|f<rsup|y><around*|(|x;\<theta\>|)>-lnSumExp<around*|(|f<around*|(|x;\<theta\>|)>|)>>,
+  <math|f<rsup|y><around*|(|x,\<theta\>|)>-lnSumExp<around*|(|f<around*|(|x,\<theta\>|)>|)>>,
   where <math|lnSumExp<around*|(|x|)>\<assign\>ln<around*|(|<big|sum><rsub|\<alpha\>>exp<around*|(|x<rsup|\<alpha\>>|)>|)>>;
-  and for regression task, it is <math|-<big|sum><rsub|\<alpha\>=1><rsup|M><around*|(|y<rsup|\<alpha\>>-f<rsup|\<alpha\>><around*|(|x;\<theta\>|)>|)><rsup|2>/2>.
+  and for regression task, it is <math|-<big|sum><rsub|\<alpha\>=1><rsup|M><around*|(|y<rsup|\<alpha\>>-f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)><rsup|2>/2>.
 
-  \;
+  When we use deep neural network to express the model
+  <math|f<around*|(|x,\<theta\>|)>>, TODO
+
+  There is also unsupervised learning tasks. For example, mask some part of
+  the input image and predict what has been masked, or embedding the input
+  image into a latent space. TODO
 
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
@@ -292,7 +304,8 @@
   In fact, equations (<reference|equation:Generic Density>),
   (<reference|equation:Partition Function>), and
   (<reference|equation:Restriction>) can be regarded as an extremum of the
-  functional
+  functional (recall that <math|<wide|P|^>> is the distribution of prior
+  knowledge and <math|Q> of dataset)
 
   <\equation*>
     V<around*|(|p,\<theta\>,\<mu\>|)>\<assign\>H<around*|[|P,<wide|P|^>|]>+<around*|(|\<bbb-E\><rsub|P><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>|)>+\<mu\><around*|(|\<bbb-E\><rsub|P><around*|[|1|]>-1|)>,
@@ -343,7 +356,7 @@
   By tuning <math|p>, the <math|min<rsub|p,\<mu\>>> minimizes the relative
   entropy between <math|P> and <math|Q> and the expectation of action
   <math|\<bbb-E\><rsub|P><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>,
-  which in turn relates the density <math|p> with the action
+  which in turn relates the density function <math|p> with the action
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. And by tuning <math|\<theta\>>,
   the <math|max<rsub|\<theta\>>> sites real data onto the action's local
   minima. So, we find that maximum-entropy principle and least-action
@@ -373,10 +386,12 @@
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>
-    <associate|footnote-3|<tuple|3|4>>
+    <associate|footnote-3|<tuple|3|3>>
+    <associate|footnote-4|<tuple|4|4>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|3>>
-    <associate|footnr-3|<tuple|3|4>>
+    <associate|footnr-3|<tuple|3|3>>
+    <associate|footnr-4|<tuple|4|4>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
     Principle|<tuple|1.2|1>>
   </collection>
@@ -429,7 +444,7 @@
       <no-break><pageref|auto-5>>
 
       <with|par-left|<quote|1tab>|1.4<space|2spc>Example: Actions in Machine
-      Learning (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|1.5<space|2spc>Maximum-Entropy and

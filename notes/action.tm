@@ -175,9 +175,9 @@
 
   <subsection|Example: Extract Dynamics from Raw Data>
 
-  Suppose that we have a set of raw data about an entity from classical
-  physics. To describe the entity, we need a configuration like
-  <math|x<around*|(|t|)>>. So, the raw data is a set
+  We are to apply the previous discussion to extract dynamics from the raw
+  data of a physical system. To describe the system, we need a configuration
+  like <math|x<around*|(|t|)>>. So, the raw data is a set
   <math|<around*|{|<around*|(|x<rsub|k><around*|(|1|)>,\<ldots\>,x<rsub|k><around*|(|T|)>|)>\|k=1,\<ldots\>,D|}>>
   where time is discretized as <math|<around*|(|1,\<ldots\>,T|)>> and the
   data size is <math|D>. Thus, each datum is a movie of the physical system,
@@ -194,7 +194,7 @@
 
   indicating a kinetic term.
 
-  The action <math|S<around*|[|x,\<theta\>|]>> is given by some ansatz.
+  The action <math|S<around*|(|x,\<theta\>|)>> is given by some ansatz.
   First, we may suppose that the action is local. That is, there is a
   Lagrangian <math|L<around*|(|x,t,\<theta\>|)>> such that
   <math|S<around*|(|x,\<theta\>|)>=<big|sum><rsub|t=1><rsup|T>L<around*|(|x<around*|(|t|)>,t,\<theta\>|)>>.
@@ -212,6 +212,46 @@
     An experiment on general oscillators can be found in the
     <samp|oscillators/Oscillator.ipynb>.
   </footnote>
+
+  <subsection|Is There an Action for a Dynamical System?>
+
+  The local minima of <math|L<rsub|LA>> (the loss function used for finding
+  action) can be realized as the patterns in the dataset. So,
+  <with|font-shape|italic|we can find an action for a physical system if and
+  only if there are a finite number of patterns in the system> (that is, in
+  the raw data). When a physical system is chaotic, there will be an infinite
+  number of patterns in it. In fact, a chaotic system can be seen as an
+  advanced generator of pseudo-random numbers, being avoid of any pattern.
+  TODO
+
+  Consider the one-dimensional hamonic oscillator
+
+  <\equation*>
+    <frac|\<mathd\><rsup|2>x|\<mathd\>t<rsup|2>><around*|(|t|)>+\<omega\><rsup|2>
+    x<around*|(|t|)>=0.
+  </equation*>
+
+  The <math|L<around*|(|x,t|)>=<around*|(|1/2|)> \<omega\><rsup|2>
+  x<rsup|2>>. The general solution is a linear combination of two bases
+  <math|sin<around*|(|\<omega\> t|)>> and <math|cos<around*|(|\<omega\>
+  t|)>>, thus
+
+  <\equation*>
+    x<around*|(|t|)>=A sin<around*|(|w t|)>+B cos<around*|(|\<omega\> t|)>.
+  </equation*>
+
+  For simplicity, let us first consider <math|x<around*|(|t|)>=A
+  sin<around*|(|\<omega\> t|)>>, thus <math|x<around*|(|0|)>=0> and
+  <math|<wide|x|\<dot\>><around*|(|0|)>=A \<omega\>> It has one pattern which
+  is <math|sin<around*|(|\<omega\> t|)>> but gauged by <math|A>. It gives
+
+  <\equation*>
+    S<around*|(|x|)>=<frac|\<omega\><rsup|2> A<rsup|2>|2>
+    cos<rsup|2><around*|(|\<omega\> t|)>-<frac|\<omega\><rsup|2>
+    A<rsup|2>|2>sin<rsup|2><around*|(|\<omega\>
+    t|)>=<frac|<wide|x|\<dot\>><rsup|2><around*|(|0|)>|2> cos<around*|(|2
+    \<omega\> t|)>.
+  </equation*>
 
   <subsection|Example: Actions in Machine Learning (TODO)>
 
@@ -378,6 +418,7 @@
     <associate|auto-5|<tuple|1.3|2>>
     <associate|auto-6|<tuple|1.4|3>>
     <associate|auto-7|<tuple|1.5|3>>
+    <associate|auto-8|<tuple|1.6|4>>
     <associate|equation:Equivalent Loss|<tuple|5|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|3|1>>
@@ -443,14 +484,18 @@
       from Raw Data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Example: Actions in Machine
-      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Is There a Lagrangian for
+      any Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Maximum-Entropy and
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Example: Actions in Machine
+      Learning (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Maximum-Entropy and
       Least-Action Are Saddle Point of a Functional
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>>
+      <no-break><pageref|auto-8>>
     </associate>
   </collection>
 </auxiliary>

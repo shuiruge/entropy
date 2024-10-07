@@ -8,43 +8,41 @@
   <subsection|A Brief Review of Probability><label|section: A Short Review of
   Probability>
 
-  <with|font-shape|italic|Those that are not deterministic are denoted by
-  capital letters.> But, a capital letter may also denote something that is
-  determined. For example, a random variable has to be denoted by capital
-  letter, like <math|X>, while we can also use <math|F> to denote something
-  determined, such as a functional.
+  <em|Those that are not deterministic are denoted by capital letters.> But,
+  a capital letter may also denote something that is determined. For example,
+  a random variable has to be denoted by capital letter, like <math|X>, while
+  we can also use <math|F> to denote something determined, such as a
+  functional.
 
   The set of all possible values of a random variable is called the
-  <with|font-series|bold|alphabet>.<\footnote>
+  <strong|alphabet>.<\footnote>
     Some textures call it <with|font-series|bold|sample space>. But \Pspace\Q
     usually hints for extra structures such as vector space or topological
     space. So, we use \Palphabet\Q instead.
-  </footnote> And for each value in the alphabet, we assign a
-  <with|font-shape|italic|positive> value called
-  <with|font-series|bold|density> if the alphabet is of continuum (continuous
-  random variable), or <with|font-series|bold|mass> otherwise (discrete
-  random variable).<\footnote>
+  </footnote> And for each value in the alphabet, we assign a <em|positive>
+  value called <strong|density> if the alphabet is of continuum (continuous
+  random variable), or <strong|mass> otherwise (discrete random
+  variable).<\footnote>
     In many textures, the density or mass function is non-negative (rather
     than being positive). Being positive is beneficial because, for example,
     we will discuss the logarithm of density or mass function, for which
     being zero is invalid. For any value on which density or mass function
     vanishes, we throw it out of <math|\<cal-X\>>, which in turn guarantees
     the positivity.
-  </footnote> We use <with|font-series|bold|distribution> for not only the
-  mass or density on the alphabet, but also a sampler that can sample an
-  ensemble of values of the random variable that converges to the mass or
-  density when the number of sample tends to infinity. For example, we say
-  <math|X> is a random variable with alphabet <math|\<cal-X\>> and
-  distribution <math|P>.
+  </footnote> We use <strong|distribution> for not only the mass or density
+  on the alphabet, but also a sampler that can sample an ensemble of values
+  of the random variable that converges to the mass or density when the
+  number of sample tends to infinity. For example, we say <math|X> is a
+  random variable with alphabet <math|\<cal-X\>> and distribution <math|P>.
 
   The density of a value <math|x> is usually denoted by
-  <math|p<around*|(|x|)>>, which, as a function, is called
-  <with|font-series|bold|density function>. Notice that
-  <math|p<around*|(|x|)>> is deterministic, thus not capital. The same for
-  mass, where <math|p<around*|(|x|)>> is called <with|font-series|bold|mass
-  function>. Thus, we can say the expectation of a function <math|f> on
-  distribution <math|P>, denoted by <math|\<bbb-E\><rsub|P><around*|[|f|]>>
-  or <math|\<bbb-E\><rsub|x\<sim\>P><around*|[|f<around*|(|x|)>|]>>. If the
+  <math|p<around*|(|x|)>>, which, as a function, is called <strong|density
+  function>. Notice that <math|p<around*|(|x|)>> is deterministic, thus not
+  capital. The same for mass, where <math|p<around*|(|x|)>> is called
+  <strong|mass function>. Thus, we can say the expectation of a function
+  <math|f> on distribution <math|P>, denoted by
+  <math|\<bbb-E\><rsub|P><around*|[|f|]>> or
+  <math|\<bbb-E\><rsub|x\<sim\>P><around*|[|f<around*|(|x|)>|]>>. If the
   alphabet <math|\<cal-X\>> is of continuum, then it is
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>
   f<around*|(|x|)>>, otherwise <math|<big|sum><rsub|x\<in\>\<cal-X\>>p<around*|(|x|)>
@@ -53,13 +51,12 @@
   If there exists random variables <math|Y> and <math|Z>, with alphabets
   <math|\<cal-Y\>> and <math|\<cal-Z\>> respectively, such that
   <math|X=Y\<oplus\>Z> (for example, let <math|X> two-dimensional, <math|Y>
-  and <math|Z> are the components), then we have
-  <with|font-series|bold|marginal distribution>s, denoted by <math|P<rsub|Y>>
-  and <math|P<rsub|Z>>, where <math|p<rsub|Y><around*|(|y|)>\<assign\><big|int><rsub|\<cal-Z\>>\<mathd\>z
+  and <math|Z> are the components), then we have <strong|marginal
+  distribution>s, denoted by <math|P<rsub|Y>> and <math|P<rsub|Z>>, where
+  <math|p<rsub|Y><around*|(|y|)>\<assign\><big|int><rsub|\<cal-Z\>>\<mathd\>z
   p<around*|(|y,z|)>> and <math|p<rsub|Z><around*|(|z|)>\<assign\><big|int><rsub|\<cal-Y\>>\<mathd\>y
   p<around*|(|y,z|)>> if <math|X> is of continuum, and the same for mass
-  function. We <with|font-series|bold|marginalize> <math|Z> so as to get
-  <math|P<rsub|Y>>.
+  function. We <strong|marginalize> <math|Z> so as to get <math|P<rsub|Y>>.
 
   <subsection|Shannon Entropy Is Plausible for Discrete Variable>
 
@@ -279,6 +276,9 @@
 
 <\initial>
   <\collection>
+    <associate|font|roman>
+    <associate|font-family|rm>
+    <associate|math-font|roman>
     <associate|page-medium|paper>
   </collection>
 </initial>
@@ -311,7 +311,7 @@
       1<space|2spc>Relative Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1>
 
-      <with|par-left|<quote|1tab>|1.1<space|2spc>A Short Review of
+      <with|par-left|<quote|1tab>|1.1<space|2spc>A Brief Review of
       Probability <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 

@@ -19,7 +19,7 @@
   will be safe and direct as long as any smooth structure of <math|X> is not
   employed throughout the discussion.
 
-  <subsection|Master Equation Describes Generic Dynamics of Markov
+  <subsection|Master Equation Describes the Evolution of Markov
   Chain><label|section: Master Equation Describes Generic Dynamics of Markov
   Chain>
 
@@ -66,9 +66,10 @@
   weird). We have <math|p<around*|(|x,t|)>\<gtr\>0> for all
   <math|x\<in\>\<cal-X\>>, but have to guarantee that
   <math|p<around*|(|x,t+\<Delta\>t|)>\<gtr\>0>, for sharing the same alphabet
-  <math|\<cal-X\>>. Basically, this requires
-  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> to be non-negative for all
-  <math|x,y\<in\>\<cal-X\>>, since, otherwise, we can construct a
+  <math|\<cal-X\>> (recall in section <reference|section: A Short Review of
+  Probability>, density function is defined to be positive). Basically, this
+  requires <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> to be non-negative for
+  all <math|x,y\<in\>\<cal-X\>>, since, otherwise, we can construct a
   <math|p<around*|(|y,t|)>> with large value on the place where
   <math|q<rsub|\<Delta\>><around*|(|x\|y|)>\<less\>0> and tiny value on the
   rest, so that <math|p<around*|(|x,t+\<Delta\>t|)>\<less\>0>. This is
@@ -106,7 +107,7 @@
   Repeat this process, we will arrive at
 
   <\equation>
-    q<rsub|<around*|(|n+1|)> \<Delta\>t><around*|(|x\|z|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int>\<mathd\>y<rsub|n>
+    q<rsub|<around*|(|n+1|)> \<Delta\>t><around*|(|x\|z|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
     q<rsub|\<Delta\>t><around*|(|x\|y<rsub|1>|)>\<cdots\>q<rsub|\<Delta\>t><around*|(|y<rsub|n>\|z|)>.
   </equation>
 
@@ -329,10 +330,9 @@
   <math|r<around*|(|y<rsub|i+1>,y<rsub|i>|)>> and
   <math|r<around*|(|y<rsub|i>,y<rsub|i+1>|)>> are positive for each <math|i>,
   then we say <math|x> and <math|z> are <with|font-series|bold|connected>,
-  and the series is called a <with|font-series|bold|path>. It means
-  <with|font-shape|italic|there are densities transiting along the forward
-  and backward directions of the path.> In this situation,
-  <math|<around*|(|\<mathd\>/\<mathd\>t|)>
+  and the series is called a <with|font-series|bold|path>. It means <em|there
+  are densities transiting along the forward and backward directions of the
+  path>. In this situation, <math|<around*|(|\<mathd\>/\<mathd\>t|)>
   H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=0> implies
   <math|p<around*|(|x,t|)>/\<pi\><around*|(|x|)>=p<around*|(|z,t|)>/\<pi\><around*|(|z|)>>.<\footnote>
     We have, along the path, <math|p<around*|(|y<rsub|1>,t|)>/\<pi\><around*|(|y<rsub|1>|)>=p<around*|(|y<rsub|2>,t|)>/\<pi\><around*|(|y<rsub|2>|)>=\<cdots\>=p<around*|(|y<rsub|n>,t|)>/\<pi\><around*|(|y<rsub|n>|)>>,
@@ -682,6 +682,9 @@
 
 <\initial>
   <\collection>
+    <associate|font|roman>
+    <associate|font-family|rm>
+    <associate|math-font|roman>
     <associate|page-medium|paper>
   </collection>
 </initial>
@@ -703,15 +706,15 @@
     <associate|equation:Master Equation|<tuple|3|2>>
     <associate|equation:relative entropy derivative|<tuple|6|3>>
     <associate|footnote-1|<tuple|1|3>>
-    <associate|footnote-2|<tuple|2|3>>
+    <associate|footnote-2|<tuple|2|4>>
     <associate|footnote-3|<tuple|3|4>>
-    <associate|footnote-4|<tuple|4|6>>
-    <associate|footnote-5|<tuple|5|6>>
+    <associate|footnote-4|<tuple|4|7>>
+    <associate|footnote-5|<tuple|5|7>>
     <associate|footnr-1|<tuple|1|3>>
-    <associate|footnr-2|<tuple|2|3>>
+    <associate|footnr-2|<tuple|2|4>>
     <associate|footnr-3|<tuple|3|4>>
-    <associate|footnr-4|<tuple|4|6>>
-    <associate|footnr-5|<tuple|5|6>>
+    <associate|footnr-4|<tuple|4|7>>
+    <associate|footnr-5|<tuple|5|7>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|6>>
     <associate|section: Detailed Balance with Ergodicity Monotonically
@@ -735,7 +738,7 @@
       <no-break><pageref|auto-2>>
 
       <with|par-left|<quote|1tab>|1.2<space|2spc>Master Equation Describes
-      Generic Dynamics of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      the Evolution of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
       <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance Provides

@@ -147,7 +147,7 @@
   the probability <math|p<around*|(|x;u|)>> which is proportional to
   <math|exp<around*|(|-S<rsub|aux><around*|(|x,u|)>|)>>. The conditional
   probability <math|p<around*|(|x<rsup|\<alpha\>>\|x<rsup|\\\<alpha\>>;u|)>>,
-  where <math|s<rsup|\\\<alpha\>>> denotes the
+  where <math|x<rsup|\\\<alpha\>>> denotes the
   <math|<around*|(|n-1|)>>-dimensional vector in which
   <math|x<rsup|\<alpha\>>> is excluded, can be obtained directly, as
 

@@ -5,7 +5,7 @@
 <\body>
   <section|Constraint>
 
-  <subsection|From Constraints to Sub-manifold (TODO)>
+  <subsection|Constraints Give a Sub-manifold Embedded in Euclidean Space>
 
   A collection of constraints can define a sub-manifold embedded in a
   higher-dimensional Euclidean space. For example, consider the constraint
@@ -16,13 +16,14 @@
   Generally, constraints on <math|\<bbb-R\><rsup|n>> can be given by a
   function <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|m>> as
   <math|f<around*|(|x|)>=0>. Apparently, <math|m\<leqslant\>n>. If for each
-  <math|x\<in\>\<bbb-R\><rsup|n>>, the Jacobian
+  <math|x\<in\>\<bbb-R\><rsup|n>>, the Jacobian (we used coordinates
+  <math|<around*|(|x<rsup|1>,\<ldots\>,x<rsup|m>|)>>, but this is arbitrary)
 
   <\equation*>
     <matrix|<tformat|<table|<row|<cell|<frac|\<partial\>f<rsup|1>|\<partial\>x<rsup|1>>>|<cell|\<cdots\>>|<cell|<frac|\<partial\>f<rsup|1>|\<partial\>x<rsup|m>>>>|<row|<cell|\<vdots\>>|<cell|\<ddots\>>|<cell|\<vdots\>>>|<row|<cell|<frac|\<partial\>f<rsup|m>|\<partial\>x<rsup|1>>>|<cell|\<cdots\>>|<cell|<frac|\<partial\>f<rsup|m>|\<partial\>x<rsup|m>>>>>>>
   </equation*>
 
-  is non-singular (has non-vanishing determinant), then there is a function
+  is non-singular, then there is a function
   <math|g:\<bbb-R\><rsup|n-m>\<rightarrow\>\<bbb-R\><rsup|m>> such that
   <math|f<around*|(|g<around*|(|x|)>,x|)>=0>. That is, the first <math|m>
   coordinates are fully determined by the rest. This is ensured by inverse
@@ -41,13 +42,13 @@
   can \Pcut\Q the sub-manifold along these boundaries into a collection of
   sub-manifolds, each of which has a non-singular Jacobian.
 
-  If we use another set of coordinate, say
+  If we use another set of coordinates, say
   <math|<around*|(|x<rsup|2>,\<ldots\>,x<rsup|m+1>|)>>, instead of
   <math|<around*|(|x<rsup|1>,\<ldots\>,x<rsup|m>|)>> for solving the
   constraints <math|f>, we will obtain a different embedding map <math|g>.
-  So, the embedding map depends on which coordinates we choose. This is easy
-  to understand since we can freely rotate the sub-manifold in the Euclidean
-  space, and there is a different embedding map for every rotation angle.
+  So, <em|the embedding map depends on which coordinates we choose>. This is
+  easy to understand, since we can freely rotate the sub-manifold in the
+  Euclidean space, and for every rotation angle, the embedding is different.
 
   <subsection|>
 
@@ -59,7 +60,7 @@
   <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|m>>. If we want to
   write down a partition functional with the constraints, we have to solve
   the embedding map <math|g:\<bbb-R\><rsup|n-m>\<rightarrow\>\<bbb-R\><rsup|m>>
-  such that <math|f<around*|(|g<around*|(|x|)>,x|)>=0>. So, the partition
+  such that <math|f<around*|(|g<around*|(|x|)>,x|)>=0>. Then, the partition
   functional on a test function <math|\<varphi\>> is defined by
 
   <\equation>
@@ -69,7 +70,7 @@
   </equation>
 
   But, the inverse mapping theorem only ensures the existence of <math|g>,
-  and generally <math|g> is hard to be solved out of <math|f>. A better
+  and generally <math|g> is too hard to be solved out of <math|f>. A better
   choice is using <math|\<delta\>>-function, like
 
   <\equation*>
@@ -77,6 +78,8 @@
     exp<around*|(|-S<around*|(|g<around*|(|x|)>,x|)>|)>\<rightarrow\><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
     exp<around*|(|-S<around*|(|x|)>|)> \<delta\><around*|(|f<around*|(|x|)>|)>.
   </equation*>
+
+  \;
 
   But, we must be caution with <math|\<delta\>>-function, since we have known
   that, when <math|m=n>, <math|\<cal-M\><rsub|f>> becomes a collection of
@@ -97,6 +100,8 @@
     exp<around*|(|-S<around*|(|x|)>|)> \<delta\><around*|(|f<around*|(|x|)>|)><with|color|blue|<around*|\||det<around*|(|<frac|\<partial\>f|\<partial\>x>|)>|\|><around*|(|x|)>>
     \<varphi\><around*|(|x|)>.<label|eq2>
   </equation>
+
+  \;
 
   This is the case of <math|m=n>. We are to show that this expression also
   holds for <math|m\<less\>n>. By inserting an unit term (the
@@ -140,12 +145,17 @@
     </equation*>
   </small>
 
-  <subsection|>
+  <subsection|Normalization of Constraints Furnishes Lagrangian Multiplier>
 
   There is a gauge in the constraints <math|f>: <math|f<around*|(|x|)>=0> is
   equivalent to <math|h<around*|(|x|)> f<around*|(|x|)>=0> for any
-  non-vanishing <math|h>. For any <math|x> in the sub-manifold given by
-  <math|f> (thus <math|f<around*|(|x|)>=0>), the Jacobian of <math|h f> is
+  non-vanishing scalar function <math|h>. The gauge is removed by choosing an
+  <math|h>. We are to show that, when the Jacobian of <math|f> is
+  non-singular, we can find an <math|h> such that the \Pnormalized\Q
+  constraints <math|<wide|f|^>\<assign\>h f> has an unit determinant.
+
+  For any <math|x> in the sub-manifold given by <math|f> (thus
+  <math|f<around*|(|x|)>=0>), the Jacobian of <math|h f> is
 
   <\equation*>
     <frac|\<partial\><around*|(|h f|)>|\<partial\>x><around*|(|x|)>=<frac|\<partial\>h|\<partial\>x><around*|(|x|)>
@@ -154,21 +164,22 @@
   </equation*>
 
   Thus, the determinant becomes <math|h<rsup|m><around*|(|x|)>
-  det<around*|(|\<partial\>f/\<partial\>x|)><around*|(|x|)>>. If the Jacobian
-  of <math|f> is everywhere non-singular, then, by choosing
-  <math|h<around*|(|x|)>=<around*|[|det<around*|(|\<partial\>f/\<partial\>x|)>|]><rsup|-m>>,
+  det<around*|(|\<partial\>f/\<partial\>x|)><around*|(|x|)>>, since <math|h>
+  is a scalar function. If the Jacobian of <math|f> is non-singular, then, by
+  choosing <math|h<around*|(|x|)>=<around*|[|det<around*|(|\<partial\>f/\<partial\>x|)>|]><rsup|-m>>,
   we get <math|det<around*|(|\<partial\><around*|(|h
   f|)>/\<partial\>x|)><around*|(|x|)>=1> for each <math|x>. This provides a
-  trick to \Pnormalize\Q the constraints <math|f> such that
-  <math|det<around*|(|\<partial\>f/\<partial\>x|)>=1>. And once <math|f> is
-  normalized so that, then we have
+  trick to \Pnormalize\Q the constraints <math|f\<rightarrow\><wide|f|^>>
+  such that <math|det<around*|(|\<partial\><wide|f|^>/\<partial\>x|)>=1>.
+
+  With the normalized constraints <math|<wide|f|^>>, we have
 
   <\equation>
     Z<around*|(|\<varphi\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    exp<around*|(|-S<around*|(|x|)>|)> \<delta\><around*|(|f<around*|(|x|)>|)>
+    exp<around*|(|-S<around*|(|x|)>|)> \<delta\><around*|(|<wide|f|^><around*|(|x|)>|)>
     \<varphi\><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<big|int><rsub|\<bbb-R\>>\<mathd\>\<lambda\>
-    exp<around*|(|-S<around*|(|x|)>+\<mathi\> \<lambda\> f<around*|(|x|)>|)>
-    \<varphi\><around*|(|x|)>.
+    exp<around*|(|-S<around*|(|x|)>+\<mathi\> \<lambda\>
+    <wide|f|^><around*|(|x|)>|)> \<varphi\><around*|(|x|)>.
   </equation>
 
   This expression reminds us of the Lagrangian multiplier method that deals
@@ -190,7 +201,7 @@
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
-    <associate|auto-4|<tuple|1.3|?>>
+    <associate|auto-4|<tuple|1.3|2>>
     <associate|eq2|<tuple|2|1>>
   </collection>
 </references>
@@ -202,12 +213,16 @@
       <no-break><pageref|auto-1>
 
       <with|par-left|<quote|1tab>|1.1<space|2spc>From Constraints to
-      Submanifold (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Sub-manifold (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
       <with|par-left|<quote|1tab>|1.2<space|2spc>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
+
+      <with|par-left|<quote|1tab>|1.3<space|2spc>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4>>
     </associate>
   </collection>
 </auxiliary>

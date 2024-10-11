@@ -20,7 +20,7 @@
   employed throughout the discussion.
 
   <subsection|Master Equation Describes the Evolution of Markov
-  Chain><label|section: Master Equation Describes Generic Dynamics of Markov
+  Chain><label|section: Master Equation Describes the Evolution of Markov
   Chain>
 
   The generic dynamics of a Markov chain can be characterized by its
@@ -160,16 +160,8 @@
 
   which is called the <with|font-series|bold|detailed balance> condition.
 
-  Given a transition rate, we wonder if there exists a density function such
-  that detailed balance <reference|equation:Detailed Balance> holds. This
-  problem is very complicated. In many applications, we consider the inverse:
-  given a density function, if there exists a transition rate such that
-  detailed balance holds. This inverse problem is much simpler, and a proper
-  transition rate can be constructed out of the density function (such as in
-  Metropolis-Hastings algorithm).
-
   <subsection|Detailed Balance and Connectivity Monotonically Reduce Relative
-  Entropy><label|section: Detailed Balance with Ergodicity Monotonically
+  Entropy><label|section: Detailed Balance with Connectivity Monotonically
   Reduces Relative Entropy>
 
   Given the time <math|t>, if the time-dependent distribution
@@ -347,12 +339,12 @@
   Let us examine the connectivity further. We additionally
   <with|font-shape|italic|define> that every element in <math|\<cal-X\>> is
   connected to itself, then connectivity forms an equivalence relation. So,
-  it seperates <math|\<cal-X\>> into subsets (equivalence classes)
+  it separates <math|\<cal-X\>> into subsets (equivalence classes)
   <math|\<cal-X\><rsub|1>,\<ldots\>,\<cal-X\><rsub|n>> with
   <math|\<cal-X\><rsub|i>\<cap\>\<cal-X\><rsub|j>=\<varnothing\>> for each
   <math|i\<neq\>j> and <math|\<cal-X\>=\<cup\><rsub|i=1><rsup|n>\<cal-X\><rsub|i>>.
   In each subset <math|\<cal-X\><rsub|i>>, every two elements are connected.
-  In this way, the whole random system are seperated into many independent
+  In this way, the whole random system are separated into many independent
   subsystems. The distributions <math|P<rsub|i><around*|(|t|)>> and
   <math|\<Pi\><rsub|i>> defined in the subsystem <math|i> have the alphabet
   <math|\<cal-X\><rsub|i>> and densities functions
@@ -459,6 +451,117 @@
   <math|\<Delta\>t> is essential for the guarantee of the monotonic reduce of
   relative entropy between <math|p<around*|(|\<cdummy\>,t|)>> and
   <math|\<pi\>>, thus its relaxation.
+
+  <subsection|Existence of Stationary Density Function>
+
+  Given a transition rate, we wonder if there exists a density function such
+  that detailed balance <reference|equation:Detailed Balance> holds.
+  Actually, the equation <reference|equation:Detailed Balance> <em|defines>
+  the density function. For example, if both <math|r<around*|(|x,y|)>> and
+  <math|r<around*|(|y,x|)>> are not zero, we can construct
+  <math|\<pi\><around*|(|y|)>> by given <math|\<pi\><around*|(|x|)>> as
+  <math|\<pi\><around*|(|y|)>=\<pi\><around*|(|x|)>
+  r<around*|(|y,x|)>/r<around*|(|x,y|)>>. Generally, if <math|x> and <math|y>
+  are connected, then there is a path <math|P\<assign\><around*|(|p<rsub|0>,\<ldots\>,p<rsub|n>|)>>
+  from <math|x> to <math|y> with <math|p<rsub|0>=x> and <math|p<rsub|n>=y>
+  (path and connectivity are defined in section <reference|section: Detailed
+  Balance with Connectivity Monotonically Reduces Relative Entropy>), and
+  define
+
+  <\align>
+    <tformat|<table|<row|<cell|\<pi\><around*|(|p<rsub|1>|)>\<assign\>>|<cell|\<pi\><around*|(|p<rsub|0>|)>
+    r<around*|(|p<rsub|1>,p<rsub|0>|)>/r<around*|(|p<rsub|0>,p<rsub|1>|)>>>|<row|<cell|\<pi\><around*|(|p<rsub|2>|)>\<assign\>>|<cell|\<pi\><around*|(|p<rsub|1>|)>
+    r<around*|(|p<rsub|2>,p<rsub|1>|)>/r<around*|(|p<rsub|1>,p<rsub|2>|)>>>|<row|<cell|\<ldots\>>|<cell|>>|<row|<cell|\<pi\><around*|(|p<rsub|n>|)>\<assign\>>|<cell|\<pi\><around*|(|p<rsub|n-1>|)>
+    r<around*|(|p<rsub|n>,p<rsub|n-1>|)>/r<around*|(|p<rsub|n-1>,p<rsub|n>|)>.>>>>
+  </align>
+
+  Thus, <math|\<pi\><around*|(|y|)>> (the
+  <math|\<pi\><around*|(|p<rsub|n>|)>>) is constructed out of
+  <math|\<pi\><around*|(|x|)>> (the <math|\<pi\><around*|(|p<rsub|0>|)>>).
+  Let <math|\<rho\><around*|(|x,y|)>\<assign\>r<around*|(|x,y|)>/r<around*|(|y,x|)>>,
+  it becomes
+
+  <\equation*>
+    ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+<big|sum><rsub|i=0><rsup|n-1>ln
+    \<rho\><around*|(|p<rsub|i+1>,p<rsub|i>|)>,
+  </equation*>
+
+  or in continuous format,
+
+  <\equation>
+    ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+<big|int><rsub|P>\<mathd\>s
+    ln \<rho\><around*|(|s|)>,<label|equation:define stationary density
+    function>
+  </equation>
+
+  where <math|\<rho\><around*|(|s|)>> is short for
+  <math|\<rho\><around*|(|p<rsub|s+1>,p<rsub|s>|)>> along the path <math|P>.
+  In this way, given <math|x<rsub|0>\<in\>\<cal-X\>>, we define any
+  <math|x\<in\>\<cal-X\>> that is connected to <math|x<rsub|0>> by <math|ln
+  \<pi\><around*|(|x|)>\<assign\>ln \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|P>\<mathd\>s
+  ln \<rho\><around*|(|s|)>>. And <math|\<pi\><around*|(|x<rsub|0>|)>> is
+  determined by the normalization of <math|\<pi\>>.
+
+  But, there can be multiple paths from <math|x> to <math|y> which are
+  connected in <math|\<cal-X\>>. For example, consider two paths <math|P> and
+  <math|P<rprime|'>>, then we have <math|<big|int><rsub|P>\<mathd\>s ln
+  \<rho\><around*|(|s|)>=<big|int><rsub|P<rprime|'>>\<mathd\>s ln
+  \<rho\><around*|(|s|)>>. Generally, if <math|C> is a <strong|circle> which
+  is a path starting at an element <math|x\<in\>\<cal-X\>> and finally end at
+  <math|x> (but not simply standing at <math|x>), then
+
+  <\equation>
+    <big|oint><rsub|C>\<mathd\>s ln \<rho\><around*|(|s|)>=0.<label|equation:circle>
+  </equation>
+
+  It means every path along two connected elements in <math|\<cal-X\>> is
+  equivalent. If the condition <reference|equation:circle> holds, we can
+  simplify the notation in equation <reference|equation:define stationary
+  density function> by
+
+  <\equation*>
+    ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+<big|int><rsub|x><rsup|y>\<mathd\>s
+    ln \<rho\><around*|(|s|)>,
+  </equation*>
+
+  where <math|<big|int><rsub|x><rsup|y>> indicates any path from <math|x> to
+  <math|y> (if <math|x> and <math|y> are connected).
+
+  Condition <reference|equation:circle> implies that the previous
+  construction does define a <math|\<pi\>> that holds the detailed balance.
+  Given <math|x,y\<in\>\<cal-X\>>, we have <math|ln \<pi\><around*|(|x|)>=ln
+  \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|x<rsub|0>><rsup|x>\<mathd\>s
+  ln \<rho\><around*|(|s|)>> and <math|ln \<pi\><around*|(|y|)>=ln
+  \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|x<rsub|0>><rsup|y>\<mathd\>s
+  ln \<rho\><around*|(|s|)>>. If <math|x> and <math|y> are connected, then,
+  by condition <reference|equation:circle>,<math|> <math|ln
+  \<rho\><around*|(|y,x|)>=<big|int><rsub|x><rsup|x<rsub|0>>\<mathd\>s ln
+  \<rho\><around*|(|s|)>+<big|int><rsub|x<rsub|0>><rsup|y>\<mathd\>s ln
+  \<rho\><around*|(|s|)>> (the <math|\<rho\><around*|(|y,x|)>> indicates the
+  path <math|<around*|(|x,y|)>>, \Pjumping\Q directly from <math|x> to
+  <math|y>), thus <math|ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+ln
+  \<rho\><around*|(|y,x|)>>, which is just the detailed balance
+  <reference|equation:Detailed Balance>. And if <math|x> and <math|y> are not
+  connected, then both <math|r<around*|(|x,y|)>> and
+  <math|r<around*|(|y,x|)>> shall vanish (recall the requirements of
+  transition rate in section <reference|section: Master Equation Describes
+  the Evolution of Markov Chain>: if <math|r<around*|(|x,y|)>=0>, then
+  <math|r<around*|(|y,x|)>=0>), and detailed balance holds naturally.
+
+  So, condition <reference|equation:circle> is <em|essential and sufficient
+  for the existence of <math|\<pi\>> that holds the detailed balance>
+  <reference|equation:Detailed Balance>. If <math|\<cal-X\>> is a simply
+  connected smooth manifold, then using Stokes's theorem, we have
+  <math|\<nabla\>\<times\>ln \<rho\>=0> on <math|\<cal-X\>>. But, generally
+  <math|\<cal-X\>> is neither simply connected nor smooth, but involving
+  independent subsystems and discrete. In these cases, condition
+  <reference|equation:circle> becomes very complicated.
+
+  In many applications, we consider the inverse question: given a density
+  function, if there exists a transition rate such that detailed balance
+  holds. This inverse problem is much easier, and a proper transition rate
+  can be constructed out of the density function (such as in
+  Metropolis-Hastings algorithm).
 
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
@@ -692,34 +795,37 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|2.2|7>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
     <associate|auto-6|<tuple|1.5|4>>
-    <associate|auto-7|<tuple|2|5>>
-    <associate|auto-8|<tuple|2.1|5>>
-    <associate|auto-9|<tuple|2.2|6>>
+    <associate|auto-7|<tuple|1.6|5>>
+    <associate|auto-8|<tuple|2|6>>
+    <associate|auto-9|<tuple|2.1|6>>
     <associate|equation:Detailed Balance|<tuple|4|2>>
     <associate|equation:Discrete Time Master Equation|<tuple|1|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|7|6>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|9|6>>
     <associate|equation:Master Equation|<tuple|3|2>>
+    <associate|equation:circle|<tuple|8|5>>
+    <associate|equation:define stationary density function|<tuple|7|5>>
     <associate|equation:relative entropy derivative|<tuple|6|3>>
     <associate|footnote-1|<tuple|1|3>>
-    <associate|footnote-2|<tuple|2|4>>
+    <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|4>>
     <associate|footnote-4|<tuple|4|7>>
     <associate|footnote-5|<tuple|5|7>>
     <associate|footnr-1|<tuple|1|3>>
-    <associate|footnr-2|<tuple|2|4>>
+    <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
     <associate|footnr-4|<tuple|4|7>>
     <associate|footnr-5|<tuple|5|7>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance|<tuple|2.2|6>>
-    <associate|section: Detailed Balance with Ergodicity Monotonically
+    Balance|<tuple|2.2|7>>
+    <associate|section: Detailed Balance with Connectivity Monotonically
     Reduces Relative Entropy|<tuple|1.4|2>>
-    <associate|section: Master Equation Describes Generic Dynamics of Markov
+    <associate|section: Master Equation Describes the Evolution of Markov
     Chain|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
@@ -755,19 +861,23 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Existence of Stationary
+      Density Function (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
       2<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>
+      <no-break><pageref|auto-8>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
       Equation Gives Kramers-Moyal Expansion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>>
+      <no-break><pageref|auto-9>>
 
       <with|par-left|<quote|1tab>|2.2<space|2spc>Langevin Dynamics that
       Satisfies Detailed Balance Is Conservative
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <no-break><pageref|auto-10>>
     </associate>
   </collection>
 </auxiliary>

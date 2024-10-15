@@ -3,7 +3,7 @@
 <style|book>
 
 <\body>
-  <section|Constraint>
+  <section|Constraint in Partition Functional>
 
   <subsection|Constraints Give a Sub-manifold Embedded in Euclidean Space>
 
@@ -26,9 +26,10 @@
   is non-singular, then there is a function
   <math|g:\<bbb-R\><rsup|n-m>\<rightarrow\>\<bbb-R\><rsup|m>> such that
   <math|f<around*|(|g<around*|(|x|)>,x|)>=0>. That is, the first <math|m>
-  coordinates are fully determined by the rest. This is ensured by inverse
-  mapping theorem. Thus, <math|g> is an embedding of the manifold given by
-  constraints <math|f> into the Euclidean space <math|\<bbb-R\><rsup|n>>.
+  coordinates are fully determined by the rest. This is ensured by
+  <hlink|implicit function theorem|https://en.wikipedia.org/wiki/Implicit_function_theorem>.
+  Thus, <math|g> is an embedding of the manifold given by constraints
+  <math|f> into the Euclidean space <math|\<bbb-R\><rsup|n>>.
 
   <em|The non-singularity of Jacobian does not always hold.> In the previous
   example, the Jacobian is an <math|1\<times\>1> matrix
@@ -72,9 +73,9 @@
 
   \;
 
-  But, the inverse mapping theorem only ensures the existence of <math|g>,
-  and generally <math|g> is too hard to be solved out of <math|f>. A better
-  choice is using <math|\<delta\>>-function, like
+  Even though, the implicit function theorem ensures the existence and
+  uniqueness of <math|g>, generally <math|g> is too hard to be solved out of
+  <math|f>. A better choice is using <math|\<delta\>>-function, like
 
   <\equation*>
     Z<around*|(|\<varphi\>|)>\<rightarrow\><big|int><rsub|\<bbb-R\><rsup|<with|color|blue|n>>>\<mathd\>x
@@ -82,9 +83,9 @@
     \<varphi\><around*|(|x|)>.
   </equation*>
 
-  However, we must be caution with <math|\<delta\>>-function, since we have
-  known that, when <math|m=n> and there is an unique <math|x<rsub|\<star\>>>
-  such that <math|f<around*|(|x<rsub|\<star\>>|)>=0>, we have
+  But, we must be caution with <math|\<delta\>>-function, since we have known
+  that, when <math|m=n> and there is an unique <math|x<rsub|\<star\>>> such
+  that <math|f<around*|(|x<rsub|\<star\>>|)>=0>, we have
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
@@ -144,9 +145,10 @@
   <math|\<delta\><around*|(|<wide|f|~><rsub|y><around*|(|x|)>|)>
   \ <around*|\||det<around*|(|\<partial\><wide|f|~><rsub|y>/\<partial\>x|)>|\|><around*|(|x|)>>
   term, we formally solve the equation <math|<wide|f|~><around*|(|x|)>=0>,
-  which has the unique solution <math|x<rsup|m+1>=y<rsup|1>,\<ldots\>,x<rsup|n>=y<rsup|n-m>>
-  and hence <math|x<rsup|1>=g<rsup|1><around*|(|y|)>,\<ldots\>,x<rsup|m>=g<rsup|m><around*|(|y|)>>,
-  and plug to back to the rest terms, thus
+  which, by implicit function theorem, has the unique solution
+  <math|x<rsup|m+1>=y<rsup|1>,\<ldots\>,x<rsup|n>=y<rsup|n-m>> and hence
+  <math|x<rsup|1>=g<rsup|1><around*|(|y|)>,\<ldots\>,x<rsup|m>=g<rsup|m><around*|(|y|)>>,
+  and plug back to the rest terms, thus
 
   <\equation*>
     Z<around*|(|\<varphi\>|)>=<big|int><rsub|\<bbb-R\><rsup|n-m>>\<mathd\>y
@@ -216,7 +218,6 @@
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.3|?>>
     <associate|eq2|<tuple|2|1>>
   </collection>
 </references>

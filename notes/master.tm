@@ -139,8 +139,8 @@
   q<rsub|\<Delta\>t><around*|(|x\|y|)>=1> demands that
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|x,y|)>=0>. And the
   non-negativity <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<geqslant\>0>
-  demands that <math|r<around*|(|x,y|)>\<geqslant\>0> when <math|x\<neq\>y>.
-  The last requirement of transition density demands that
+  needs <math|r<around*|(|x,y|)>\<geqslant\>0> when <math|x\<neq\>y>. The
+  last requirement of transition density demands that
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>\<gtr\>-1>,
   which is a little weird.
 
@@ -360,10 +360,10 @@
   theorem holds.
 
   <\theorem>
-    Let <math|\<Pi\>> a distribution with alphabet <math|\<cal-X\>>. If there
-    is a transition rate r such that 1) every two elements in
-    <math|\<cal-X\>> are connected and that 2) the detailed balance
-    <reference|equation:Detailed Balance> holds for <math|\<Pi\>> and
+    <label|theorem:relax>Let <math|\<Pi\>> a distribution with alphabet
+    <math|\<cal-X\>>. If there is a transition rate r such that 1) every two
+    elements in <math|\<cal-X\>> are connected and that 2) the detailed
+    balance <reference|equation:Detailed Balance> holds for <math|\<Pi\>> and
     <math|r>, then for any time-dependent distribution
     <math|P<around*|(|t|)>> with the same alphabet (at one time) evolved by
     the master equation <reference|equation:Master Equation>,
@@ -456,8 +456,8 @@
 
   Given a transition rate, we wonder if there exists a density function such
   that detailed balance <reference|equation:Detailed Balance> holds.
-  Actually, the equation <reference|equation:Detailed Balance> <em|defines>
-  the density function. For example, if both <math|r<around*|(|x,y|)>> and
+  Actually, the equation <reference|equation:Detailed Balance> <em|defines> a
+  density function. For example, if both <math|r<around*|(|x,y|)>> and
   <math|r<around*|(|y,x|)>> are not zero, we can construct
   <math|\<pi\><around*|(|y|)>> by given <math|\<pi\><around*|(|x|)>> as
   <math|\<pi\><around*|(|y|)>=\<pi\><around*|(|x|)>
@@ -478,19 +478,18 @@
   Thus, <math|\<pi\><around*|(|y|)>> (the
   <math|\<pi\><around*|(|p<rsub|n>|)>>) is constructed out of
   <math|\<pi\><around*|(|x|)>> (the <math|\<pi\><around*|(|p<rsub|0>|)>>).
-  Let <math|\<rho\><around*|(|x,y|)>\<assign\>r<around*|(|x,y|)>/r<around*|(|y,x|)>>,
-  it becomes
+  Let <math|\<rho\><around*|(|x,y|)>\<assign\>ln r<around*|(|x,y|)>-ln
+  r<around*|(|y,x|)>>, it becomes
 
   <\equation*>
-    ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+<big|sum><rsub|i=0><rsup|n-1>ln
-    \<rho\><around*|(|p<rsub|i+1>,p<rsub|i>|)>,
+    ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+<big|sum><rsub|i=0><rsup|n-1>\<rho\><around*|(|p<rsub|i+1>,p<rsub|i>|)>,
   </equation*>
 
   or in continuous format,
 
   <\equation>
     ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+<big|int><rsub|P>\<mathd\>s
-    ln \<rho\><around*|(|s|)>,<label|equation:define stationary density
+    \<rho\><around*|(|s|)>,<label|equation:define stationary density
     function>
   </equation>
 
@@ -499,19 +498,19 @@
   In this way, given <math|x<rsub|0>\<in\>\<cal-X\>>, we define any
   <math|x\<in\>\<cal-X\>> that is connected to <math|x<rsub|0>> by <math|ln
   \<pi\><around*|(|x|)>\<assign\>ln \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|P>\<mathd\>s
-  ln \<rho\><around*|(|s|)>>. And <math|\<pi\><around*|(|x<rsub|0>|)>> is
+  \<rho\><around*|(|s|)>>. And <math|\<pi\><around*|(|x<rsub|0>|)>> is
   determined by the normalization of <math|\<pi\>>.
 
   But, there can be multiple paths from <math|x> to <math|y> which are
   connected in <math|\<cal-X\>>. For example, consider two paths <math|P> and
-  <math|P<rprime|'>>, then we have <math|<big|int><rsub|P>\<mathd\>s ln
-  \<rho\><around*|(|s|)>=<big|int><rsub|P<rprime|'>>\<mathd\>s ln
+  <math|P<rprime|'>>, then we have <math|<big|int><rsub|P>\<mathd\>s
+  \<rho\><around*|(|s|)>=<big|int><rsub|P<rprime|'>>\<mathd\>s
   \<rho\><around*|(|s|)>>. Generally, if <math|C> is a <strong|circle> which
   is a path starting at an element <math|x\<in\>\<cal-X\>> and finally end at
   <math|x> (but not simply standing at <math|x>), then
 
   <\equation>
-    <big|oint><rsub|C>\<mathd\>s ln \<rho\><around*|(|s|)>=0.<label|equation:circle>
+    <big|oint><rsub|C>\<mathd\>s \<rho\><around*|(|s|)>=0.<label|equation:circle>
   </equation>
 
   It means every path along two connected elements in <math|\<cal-X\>> is
@@ -521,7 +520,7 @@
 
   <\equation*>
     ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+<big|int><rsub|x><rsup|y>\<mathd\>s
-    ln \<rho\><around*|(|s|)>,
+    \<rho\><around*|(|s|)>,
   </equation*>
 
   where <math|<big|int><rsub|x><rsup|y>> indicates any path from <math|x> to
@@ -531,18 +530,18 @@
   construction does define a <math|\<pi\>> that holds the detailed balance.
   Given <math|x,y\<in\>\<cal-X\>>, we have <math|ln \<pi\><around*|(|x|)>=ln
   \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|x<rsub|0>><rsup|x>\<mathd\>s
-  ln \<rho\><around*|(|s|)>> and <math|ln \<pi\><around*|(|y|)>=ln
+  \<rho\><around*|(|s|)>> and <math|ln \<pi\><around*|(|y|)>=ln
   \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|x<rsub|0>><rsup|y>\<mathd\>s
-  ln \<rho\><around*|(|s|)>>. If <math|x> and <math|y> are connected, then,
-  by condition <reference|equation:circle>,<math|> <math|ln
-  \<rho\><around*|(|y,x|)>=<big|int><rsub|x><rsup|x<rsub|0>>\<mathd\>s ln
-  \<rho\><around*|(|s|)>+<big|int><rsub|x<rsub|0>><rsup|y>\<mathd\>s ln
+  \<rho\><around*|(|s|)>>. If <math|x> and <math|y> are connected, then, by
+  condition <reference|equation:circle>,<math|>
+  <math|\<rho\><around*|(|y,x|)>=<big|int><rsub|x><rsup|x<rsub|0>>\<mathd\>s
+  \<rho\><around*|(|s|)>+<big|int><rsub|x<rsub|0>><rsup|y>\<mathd\>s
   \<rho\><around*|(|s|)>> (the <math|\<rho\><around*|(|y,x|)>> indicates the
   path <math|<around*|(|x,y|)>>, \Pjumping\Q directly from <math|x> to
-  <math|y>), thus <math|ln \<pi\><around*|(|y|)>=ln \<pi\><around*|(|x|)>+ln
-  \<rho\><around*|(|y,x|)>>, which is just the detailed balance
-  <reference|equation:Detailed Balance>. And if <math|x> and <math|y> are not
-  connected, then both <math|r<around*|(|x,y|)>> and
+  <math|y>), thus <math|ln \<pi\><around*|(|y|)>=ln
+  \<pi\><around*|(|x|)>+\<rho\><around*|(|y,x|)>>, which is just the detailed
+  balance <reference|equation:Detailed Balance>. And if <math|x> and <math|y>
+  are not connected, then both <math|r<around*|(|x,y|)>> and
   <math|r<around*|(|y,x|)>> shall vanish (recall the requirements of
   transition rate in section <reference|section: Master Equation Describes
   the Evolution of Markov Chain>: if <math|r<around*|(|x,y|)>=0>, then
@@ -552,7 +551,7 @@
   for the existence of <math|\<pi\>> that holds the detailed balance>
   <reference|equation:Detailed Balance>. If <math|\<cal-X\>> is a simply
   connected smooth manifold, then using Stokes's theorem, we have
-  <math|\<nabla\>\<times\>ln \<rho\>=0> on <math|\<cal-X\>>. But, generally
+  <math|\<nabla\>\<times\>\<rho\>=0> on <math|\<cal-X\>>. But, generally
   <math|\<cal-X\>> is neither simply connected nor smooth, but involving
   independent subsystems and discrete. In these cases, condition
   <reference|equation:circle> becomes very complicated.
@@ -562,6 +561,75 @@
   holds. This inverse problem is much easier, and a proper transition rate
   can be constructed out of the density function (such as in
   Metropolis-Hastings algorithm).
+
+  <subsection|Example: Metropolis-Hastings Algorithm>
+
+  Metropolis-Hastings algorithm is a simple method that constructs transition
+  density or transition rate for any given stationary distribution such that
+  detailed balance <reference|equation:Detailed Balance> holds. Explicitly,
+  given a stationary distribution <math|\<pi\>>, and an auxiliary transition
+  density <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>> for each <math|x> and
+  <math|y> in alphabet <math|\<cal-X\>> ensuring that
+  <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>\<gtr\>0>, the transition density
+  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>> is given by
+
+  <\equation*>
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>\<assign\>min<around*|(|1,<frac|g<rsub|\<Delta\>t><around*|(|x\|y|)>
+    \<pi\><around*|(|y|)>|g<rsub|\<Delta\>t><around*|(|y\|x|)>
+    \<pi\><around*|(|x|)>>|)> g<rsub|\<Delta\>t><around*|(|y\|x|)>.
+  </equation*>
+
+  \;
+
+  To obtain the transition rate, we expand <math|g<rsub|\<Delta\>t>> at
+  <math|\<Delta\>t\<rightarrow\>0>, as <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>=\<delta\><around*|(|x-y|)>+\<gamma\><around*|(|y,x|)>
+  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. Since
+  <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>\<gtr\>0>, we have
+  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0>. Thus, in the area
+  <math|x\<neq\>y> where <math|\<delta\><around*|(|x-y|)>> vanishes, we have
+
+  <\equation*>
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>=min<around*|(|1,<frac|\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>+\<omicron\><around*|(|1|)>|\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>+\<omicron\><around*|(|1|)>>|)>
+    \<gamma\><around*|(|y,x|)> \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>.
+  </equation*>
+
+  And <math|q<rsub|\<Delta\>t><around*|(|x\|x|)>=g<rsub|\<Delta\>t><around*|(|x\|x|)>=\<delta\><around*|(|0|)>+\<gamma\><around*|(|x,x|)>
+  \<Delta\>t>. Putting these together, in the limit
+  <math|\<Delta\>t\<rightarrow\>0>, we have the transition rate
+
+  <\equation*>
+    r<around*|(|y,x|)>=min<around*|(|1,<frac|\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>|\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>>|)> \<gamma\><around*|(|y,x|)>,
+  </equation*>
+
+  which connects every two elements in <math|\<cal-X\>> (since
+  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0> for each <math|x,y>).
+
+  This transition rate, together with <math|\<pi\>>, satisfies the detailed
+  balance condition. Directly,
+
+  <\align>
+    <tformat|<table|<row|<cell|r<around*|(|y,x|)>
+    \<pi\><around*|(|x|)>=>|<cell|min<around*|(|1,<frac|\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>|\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>>|)> \<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>>>|<row|<cell|=>|<cell|min<around*|(|\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>,\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>|)>>>|<row|<cell|=>|<cell|min<around*|(|<frac|\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>|\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>>,1|)> \<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>>>|<row|<cell|=>|<cell|r<around*|(|x,y|)>
+    \<pi\><around*|(|y|)>.>>>>
+  </align>
+
+  Thus detailed balance <reference|equation:Detailed Balance> holds. Based on
+  theorem <reference|theorem:relax> (together with the connectivity), an
+  ensemble of Markov chains computed by Metropolis-Hastings algorithm with
+  any initial state will finally relax to the stationary distribution
+  <math|\<pi\>>.
 
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
@@ -795,15 +863,16 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2.2|7>>
+    <associate|auto-10|<tuple|2.1|7>>
+    <associate|auto-11|<tuple|2.2|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|2>>
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|5>>
-    <associate|auto-8|<tuple|2|6>>
-    <associate|auto-9|<tuple|2.1|6>>
+    <associate|auto-8|<tuple|1.7|6>>
+    <associate|auto-9|<tuple|2|6>>
     <associate|equation:Detailed Balance|<tuple|4|2>>
     <associate|equation:Discrete Time Master Equation|<tuple|1|1>>
     <associate|equation:Kramers-Moyal expansion|<tuple|9|6>>
@@ -829,6 +898,7 @@
     Chain|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
+    <associate|theorem:relax|<tuple|1|?>>
   </collection>
 </references>
 
@@ -862,7 +932,7 @@
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|1.6<space|2spc>Existence of Stationary
-      Density Function (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Density Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
       2<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics

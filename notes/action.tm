@@ -43,8 +43,8 @@
 
   <\equation>
     Z<around*|(|\<theta\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    <wide|p|^><around*|(|x|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)><label|equation:Partition
-    Function>.
+    <wide|p|^><around*|(|x|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>.<label|equation:Partition
+    Function>
   </equation>
 
   \;
@@ -353,13 +353,13 @@
 
   or explicitly
 
-  <\equation*>
+  <\equation>
     V<around*|(|p,\<theta\>,\<mu\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>ln<frac|p<around*|(|x|)>|<wide|p|^><around*|(|x|)>>+<around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>S<around*|(|x,\<theta\>|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
     q<around*|(|x|)>S<around*|(|x,\<theta\>|)>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<around*|(|x|)>-1|)>.
-  </equation*>
+    p<around*|(|x|)>-1|)>.<label|equation:functional V>
+  </equation>
 
   Indeed, variance on <math|p> gives equation (<reference|equation:Generic
   Density>).<\footnote>
@@ -379,16 +379,15 @@
   </footnote> Together with the partial derivative on <math|\<mu\>>, we get
   equation (<reference|equation:Partition Function>). Finally, partial
   derivative on <math|\<theta\>> directly gives equation
-  (<reference|equation:Restriction>).
-
-  Interestingly, the second term is just the
-  <math|-L<rsub|LA><around*|(|\<theta\>|)>> in equation
+  (<reference|equation:Restriction>). Interestingly, the second term is just
+  the <math|-L<rsub|LA><around*|(|\<theta\>|)>> in equation
   (<reference|equation:Equivalent Loss>). So, the extremum is in fact a
   saddle point, as
 
   <\equation>
     <around*|(|p<rsub|\<star\>>,\<theta\><rsub|\<star\>>,\<mu\><rsub|\<star\>>|)>=min<rsub|p,\<mu\>>
-    max<rsub|\<theta\>>V<around*|(|p,\<theta\>,\<mu\>|)>.
+    max<rsub|\<theta\>>V<around*|(|p,\<theta\>,\<mu\>|)>.<label|equation:V
+    extremum>
   </equation>
 
   \;
@@ -401,6 +400,43 @@
   the <math|max<rsub|\<theta\>>> sites real data onto the action's local
   minima. So, we find that maximum-entropy principle and least-action
   principle are saddle point of a functional <math|V>.
+
+  <subsection|Structures in Nature Arise from Maximum-Entropy (TODO)>
+
+  There are many structures in nature. The structure of vascular system is a
+  simple instance. A more complicated structure appears in the bases along
+  chromosome. Why does these structures arise in nature?
+
+  The vascular system is fine-tuned so as to minimize the frictional loss.
+  The chromosome that determines the phenotype of an organism is also
+  fine-tuned such that the probability of survival is maximal. These examples
+  indicate that structure appears in optimizing an objective.
+
+  So, let random variable <math|X> characterize the configuration, such as
+  the sequence of bases along chromosome. There is an action that reflects
+  the interaction of bases and the environment. The one that survives has the
+  most \Pcoherent\Q chromosome that minimizes the action. The \Psurvival\Q
+  distribution is given by the action. This distribution has many local
+  maxima. The maximal local maxima represents the creature that has the
+  highest adaptation, maybe human.
+
+  The action would be very complex. But, inversely, given the real world data
+  of chromosome, the action can be revealed by parameterized function and
+  least-action principle. To do so, we first travel to a closed island, such
+  as Galápagos Islands, which forms a closed system. Then, we collect the
+  chromosomes of all creatures living on the island. Since different
+  creatures have different lengths of chromosome, we have to unify the coding
+  of chromosomes. This furnishes the alphabet <math|\<cal-X\>>, and the
+  collection of chromosomes characterizes the distribution of real world
+  data, <math|Q>. Let <math|S<around*|(|x,\<theta\>|)>> a parameterized
+  function, with parameters <math|\<theta\>>. The least-action principle
+  gives the best fit <math|\<theta\><rsub|\<star\>>> by minimizing the
+  <math|L<rsub|LA>>. During the minimization, we have to sample from
+  <math|P<around*|(|\<theta\>|)>>, where the density function
+  <math|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>.
+  The strategy is using a transition rate that satisfies the detailed balance
+  condition. This transition rate minics the evolution. <with|color|red|The
+  disconnectivity of transition rate may reflect gene isolation.>
 </body>
 
 <\initial>
@@ -419,11 +455,15 @@
     <associate|auto-6|<tuple|1.4|3>>
     <associate|auto-7|<tuple|1.5|3>>
     <associate|auto-8|<tuple|1.6|4>>
+    <associate|auto-9|<tuple|1.7|?>>
     <associate|equation:Equivalent Loss|<tuple|5|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|3|1>>
     <associate|equation:Partition Function|<tuple|2|1>>
     <associate|equation:Restriction|<tuple|4|1>>
+    <associate|equation:V extremum|<tuple|7|?>>
+    <associate|equation:full functional|<tuple|6|?>>
+    <associate|equation:functional V|<tuple|6|?>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>
@@ -484,8 +524,8 @@
       from Raw Data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Is There a Lagrangian for
-      any Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Is There an Action for a
+      Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|1.5<space|2spc>Example: Actions in Machine

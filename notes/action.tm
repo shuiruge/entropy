@@ -455,15 +455,14 @@
     <associate|auto-6|<tuple|1.4|3>>
     <associate|auto-7|<tuple|1.5|3>>
     <associate|auto-8|<tuple|1.6|4>>
-    <associate|auto-9|<tuple|1.7|?>>
+    <associate|auto-9|<tuple|1.7|4>>
     <associate|equation:Equivalent Loss|<tuple|5|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|3|1>>
     <associate|equation:Partition Function|<tuple|2|1>>
     <associate|equation:Restriction|<tuple|4|1>>
-    <associate|equation:V extremum|<tuple|7|?>>
-    <associate|equation:full functional|<tuple|6|?>>
-    <associate|equation:functional V|<tuple|6|?>>
+    <associate|equation:V extremum|<tuple|7|4>>
+    <associate|equation:functional V|<tuple|6|4>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>
@@ -536,6 +535,10 @@
       Least-Action Are Saddle Point of a Functional
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Structures in Nature Arise
+      from Maximum-Entropy (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
     </associate>
   </collection>
 </auxiliary>

@@ -41,8 +41,8 @@
 
   <\equation>
     p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|y\|x|)>p<around*|(|x,t|)>.<label|equation:Discrete
+    <around*|[|q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>-
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>p<around*|(|x,t|)>|]>.<label|equation:Discrete
     Time Master Equation>
   </equation>
 
@@ -54,7 +54,13 @@
   q<rsub|\<Delta\>t><around*|(|y\|x|)>>. If <math|q<rsub|\<Delta\>t>> is
   normalized by <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
   q<rsub|\<Delta\>t><around*|(|y\|x|)>=1> for any <math|x\<in\>\<cal-X\>>,
-  then we have
+  then we have<\footnote>
+    In principle, we can employ this simpler expression for defining master
+    equation. But, the expression of equation (<reference|equation:Discrete
+    Time Master Equation>) is particularly useful for deriving detailed
+    balance condition in section <reference|section: Detailed Balance
+    Provides Stationary Distribution>.
+  </footnote>
 
   <\equation*>
     p<around*|(|x,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -86,34 +92,6 @@
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
   q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0>).
 
-  If we apply <math|q<rsub|\<Delta\>t>> twice to <math|p<around*|(|x,t|)>>,
-  we get <math|p<around*|(|x,t+2\<Delta\>t|)>>:
-
-  <\align>
-    <tformat|<table|<row|<cell|>|<cell|p<around*|(|x,t+2\<Delta\>t|)>>>|<row|<cell|<around*|{|<text|master
-    equation>|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t+\<Delta\>t|)>>>|<row|<cell|<around*|{|<text|master
-    equation>|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|x\|y|)> <big|int><rsub|\<cal-X\>>\<mathd\>z
-    q<rsub|\<Delta\>t><around*|(|y\|z|)>p<around*|(|z,t|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>z<around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>y
-    \ q<rsub|\<Delta\>t><around*|(|x\|y|)>
-    q<rsub|\<Delta\>t><around*|(|y\|z|)>|]>p<around*|(|z,t|)>>>|<row|<cell|<around*|{|<text|definition
-    of <math|q<rsub|2\<Delta\>t>>>|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>z
-    q<rsub|2\<Delta\>t><around*|(|x\|z|)> p<around*|(|z,t|)>,>>>>
-  </align>
-
-  thus, <math|q<rsub|2\<Delta\>t><around*|(|x\|z|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-  \ q<rsub|\<Delta\>t><around*|(|x\|y|)> q<rsub|\<Delta\>t><around*|(|y\|z|)>>.
-  Repeat this process, we will arrive at
-
-  <\equation>
-    q<rsub|<around*|(|n+1|)> \<Delta\>t><around*|(|x\|z|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
-    q<rsub|\<Delta\>t><around*|(|x\|y<rsub|1>|)>\<cdots\>q<rsub|\<Delta\>t><around*|(|y<rsub|n>\|z|)>.
-  </equation>
-
-  This is a little like path integral: we sum over all the paths from
-  <math|z> to <math|x>.
-
   If <math|q<rsub|\<Delta\>t>> is smooth on <math|\<Delta\>t>, then we have
   the linear expansion <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<chi\><around*|(|x,y|)>+r<around*|(|x,y|)>
   \<Delta\>t+o<around*|(|\<Delta\>t|)>> where <math|q<rsub|0>> and <math|r>
@@ -128,9 +106,9 @@
   get the <with|font-series|bold|continuous time master equation>:
 
   <\equation>
-    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|x,y|)>p<around*|(|y,t|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|y,x|)>p<around*|(|x,t|)>.<label|equation:Master Equation>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<around*|[|
+    r<around*|(|x,y|)>p<around*|(|y,t|)>-r<around*|(|y,x|)>p<around*|(|x,t|)>|]>.<label|equation:Master
+    Equation>
   </equation>
 
   The <math|r> is called the <with|font-series|bold|transition rate>,
@@ -144,14 +122,123 @@
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>\<gtr\>-1>,
   which is a little weird.
 
-  <subsection|Detailed Balance Provides Stationary Distribution>
+  <subsection|Transition Density Is Determined by Tansition Rate (TODO)>
+
+  Practically, we employ the discrete time master equation
+  (<reference|equation:Discrete Time Master Equation>) instead of (continuous
+  time) master equation (<reference|equation:Master Equation>), because we
+  cannot compute infinitesimal. So we wonder, given a transition rate, can we
+  obtain the corresponding transition density? Generally, we cannot get the
+  global (finite) from the local (infinitesimal). But, master equation has a
+  group-like structure, by which the local accumulates to be global. We are
+  to show how this happens.
+
+  From <math|p<around*|(|x,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+  q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>=p<around*|(|x,t|)>+\<Delta\>t
+  <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>p<around*|(|y,t|)>+\<omicron\><around*|(|\<Delta\>t|)>>,
+  we find
+
+  <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|x,y|)> p<around*|(|y,t|)>.
+  </equation*>
+
+  We are to solve this differential equation. By regarding <math|p> a
+  time-dependent element in functional space, and <math|r> as a linear
+  operator, it becomes (we add a hat for indicating operator, using dot
+  <math|\<cdummy\>> for its operation)
+
+  <\equation*>
+    <frac|\<mathd\>p|\<mathd\>t><around*|(|t|)>=<wide|r|^>\<cdummy\>p<around*|(|t|)>.
+  </equation*>
+
+  This operator differential equation has a famous solution, called
+  exponential mapping, <math|p<around*|(|t|)>=exp<around*|(|<wide|r|^> t|)>
+  p<around*|(|0|)>>, where the exponential operator is defined by Taylor
+  expansion <math|exp<around*|(|<wide|L|^>|)>\<assign\><wide|1|^>+<wide|L|^>+<around*|(|1/2!|)>
+  <wide|L|^><rsup|2>+\<cdots\>> for any linear operator <math|<wide|L|^>>.
+  Indeed, by taking derivative on <math|t> on both sides, we find
+  <math|<around*|(|\<mathd\>p/\<mathd\>t|)><around*|(|t|)>=<wide|r|^>\<cdot\>exp<around*|(|<wide|r|^>
+  t|)> p<around*|(|0|)>=<wide|r|^>\<cdot\>p<around*|(|t|)>>. Recall the
+  discrete time master equation, <math|p<around*|(|\<Delta\>t|)>=<wide|q|^><rsub|\<Delta\>t>\<cdot\>p<around*|(|0|)>>,
+  where the transition density <math|<wide|q|^><rsub|\<Delta\>t>> is regarded
+  as a linear operator too (so we put a hat on it). We find
+  <math|exp<around*|(|<wide|r|^> \<Delta\>t|)>\<cdot\>p<around*|(|0|)>=<wide|q|^><rsub|\<Delta\>t>\<cdot\>p<around*|(|0|)>>,
+  which holds for arbitrary <math|p<around*|(|0|)>>, implying
+  <math|<wide|q|^><rsub|\<Delta\>t>=exp<around*|(|<wide|r|^>
+  \<Delta\>t|)>=1+<wide|r|^> \<Delta\>t+<around*|(|1/2!|)>
+  <around*|(|<wide|r|^>\<cdot\><wide|r|^>|)>
+  <around*|(|\<Delta\>t|)><rsup|2>+\<cdots\>>. Going back to functional
+  representation, we have the correspondences
+  <math|<wide|q|^><rsub|\<Delta\>t>\<rightarrow\>q<rsub|\<Delta\>t><around*|(|z\|x|)>>,
+  <math|<wide|r|^>\<rightarrow\>r<around*|(|z,x|)>>,
+  <math|<wide|r|^>\<cdot\><wide|r|^>\<rightarrow\><big|int>\<mathd\>y
+  r<around*|(|z,y|)> r<around*|(|y,x|)>>,
+  <math|<wide|r|^>\<cdot\><wide|r|^>\<cdot\><wide|r|^>\<rightarrow\><big|int>\<mathd\>y<rsub|1>
+  \<mathd\>y<rsub|2> r<around*|(|z,y<rsub|2>|)>
+  r<around*|(|y<rsub|2>,y<rsub|1>|)> r<around*|(|y<rsub|1>,x|)>>, and so on,
+  thus
+
+  <\align>
+    <tformat|<table|<row|<cell|q<rsub|\<Delta\>t><around*|(|z\|x|)>=>|<cell|\<delta\><around*|(|z-x|)>>>|<row|<cell|+>|<cell|<around*|(|\<Delta\>t|)>
+    r<around*|(|z,x|)>>>|<row|<cell|+>|<cell|<frac|<around*|(|\<Delta\>t|)><rsup|2>|2!>
+    <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|z,y|)>
+    r<around*|(|y,x|)>>>|<row|<cell|+>|<cell|\<cdots\>>>|<row|<cell|+>|<cell|<frac|<around*|(|\<Delta\>t|)><rsup|n+1>|<around*|(|n+1|)>!><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>>>|<row|<cell|+>|<cell|\<cdots\>.>>>>
+  </align>
+
+  Well, this is a complicated formula, but its implication is straight
+  forward and very impressive: <em|the transition density is equivalent to
+  transition rate, even though transition rate is derived from infinitesimal
+  time-interval transition density.>
+
+  In addition, we are to show that (continuous time) master equation derives
+  the discrete time one, thus they are equivalent. Specifically, we are to
+  show the <math|p<around*|(|x,t|)>> evolved by the left hand side also
+  satisfies the right hand side:
+
+  <\equation*>
+    <around*|{|<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|x,y|)> p<around*|(|y,t|)>|}>\<Rightarrow\><around*|{|p<around*|(|x,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>|}>.
+  </equation*>
+
+  Let us first check the third inline in the
+  <math|q<rsub|\<Delta\>t><around*|(|z\|x|)>>:
+
+  <\align>
+    <tformat|<table|<row|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>\<supset\>>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> r<around*|(|y,x|)>p<around*|(|x,t|)>>>|<row|<cell|<around*|{|master
+    equation|}>=>|<cell|<frac|\<partial\>|\<partial\>t><big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> p<around*|(|y,t|)>>>|<row|<cell|<around*|{|master
+    equation|}>=>|<cell|<frac|\<partial\><rsup|2>|\<partial\>t<rsup|2>>p<around*|(|z,t|)>.>>>>
+  </align>
+
+  We find the pattern that
+
+  <\equation*>
+    <big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>
+    p<around*|(|x,t|)>=<frac|\<partial\><rsup|n+1>|\<partial\>t<rsup|n+1>>p<around*|(|z,t|)>.
+  </equation*>
+
+  So, we find <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
+  q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>> turns out to be the
+  Taylor expansion of <math|p<around*|(|x,t+\<Delta\>t|)>>, implying that the
+  <math|q<rsub|\<Delta\>t>>, given by the (continuous time) master equation,
+  does satisfy the discrete time master equation (the right hand side).
+
+  <subsection|Detailed Balance Provides Stationary
+  Distribution><label|section: Detailed Balance Provides Stationary
+  Distribution>
 
   Let <math|\<Pi\>> a stationary solution of master equation
-  <reference|equation:Master Equation>. Then, <math|\<Pi\>> satisfies
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>y <around*|[|r<around*|(|x,y|)>
-  \<pi\><around*|(|y|)>-r<around*|(|y,x|)>\<pi\><around*|(|x|)>|]>=0>. But,
-  this condition is too weak to be used. A more useful condition, which is
-  stronger than this, is that the integrand vanishes everywhere:
+  <reference|equation:Master Equation>. Then, its density function
+  <math|\<pi\>> satisfies <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
+  <around*|[|r<around*|(|x,y|)> \<pi\><around*|(|y|)>-r<around*|(|y,x|)>\<pi\><around*|(|x|)>|]>=0>.
+  But, this condition is too weak to be used. A more useful condition, which
+  is stronger than this, is that the integrand vanishes everywhere:
 
   <\equation>
     r<around*|(|x,y|)> \<pi\><around*|(|y|)>=r<around*|(|y,x|)>\<pi\><around*|(|x|)>,<label|equation:Detailed
@@ -566,27 +653,32 @@
 
   Metropolis-Hastings algorithm is a simple method that constructs transition
   density or transition rate for any given stationary distribution such that
-  detailed balance <reference|equation:Detailed Balance> holds. Explicitly,
-  given a stationary distribution <math|\<pi\>>, and an auxiliary transition
+  detailed balance (<reference|equation:Detailed Balance>) holds. Explicitly,
+  given a stationary distribution <math|\<Pi\>>, and an auxiliary transition
   density <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>> for each <math|x> and
   <math|y> in alphabet <math|\<cal-X\>> ensuring that
   <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>\<gtr\>0>, the transition density
   <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>> is given by
 
-  <\equation*>
+  <\equation>
     q<rsub|\<Delta\>t><around*|(|y\|x|)>\<assign\>min<around*|(|1,<frac|g<rsub|\<Delta\>t><around*|(|x\|y|)>
     \<pi\><around*|(|y|)>|g<rsub|\<Delta\>t><around*|(|y\|x|)>
-    \<pi\><around*|(|x|)>>|)> g<rsub|\<Delta\>t><around*|(|y\|x|)>.
-  </equation*>
+    \<pi\><around*|(|x|)>>|)> g<rsub|\<Delta\>t><around*|(|y\|x|)>.<label|equation:Metropolis-Hastings>
+  </equation>
 
-  \;
+  This definition has an intuitive explanation. The algorithm first propose a
+  transition from <math|x> to <math|y> based on
+  <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>>, this proposal will be accepted
+  by ratio given by the first factor in the right hand side. If accepted,
+  then transit to <math|y>, otherwise stay on <math|x>.
 
   To obtain the transition rate, we expand <math|g<rsub|\<Delta\>t>> at
   <math|\<Delta\>t\<rightarrow\>0>, as <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>=\<delta\><around*|(|x-y|)>+\<gamma\><around*|(|y,x|)>
   \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. Since
   <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>\<gtr\>0>, we have
-  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0>. Thus, in the area
-  <math|x\<neq\>y> where <math|\<delta\><around*|(|x-y|)>> vanishes, we have
+  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0> for each <math|x\<neq\>y>. Thus,
+  in the area <math|x\<neq\>y> where <math|\<delta\><around*|(|x-y|)>>
+  vanishes, we have
 
   <\equation*>
     q<rsub|\<Delta\>t><around*|(|y\|x|)>=min<around*|(|1,<frac|\<gamma\><around*|(|x,y|)>
@@ -597,7 +689,8 @@
 
   And <math|q<rsub|\<Delta\>t><around*|(|x\|x|)>=g<rsub|\<Delta\>t><around*|(|x\|x|)>=\<delta\><around*|(|0|)>+\<gamma\><around*|(|x,x|)>
   \<Delta\>t>. Putting these together, in the limit
-  <math|\<Delta\>t\<rightarrow\>0>, we have the transition rate
+  <math|\<Delta\>t\<rightarrow\>0>, we get the transition rate of
+  <math|q<rsub|\<Delta\>t>>, as
 
   <\equation*>
     r<around*|(|y,x|)>=min<around*|(|1,<frac|\<gamma\><around*|(|x,y|)>
@@ -606,7 +699,7 @@
   </equation*>
 
   which connects every two elements in <math|\<cal-X\>> (since
-  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0> for each <math|x,y>).
+  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0> for each <math|x\<neq\>y>).
 
   This transition rate, together with <math|\<pi\>>, satisfies the detailed
   balance condition. Directly,
@@ -625,11 +718,18 @@
     \<pi\><around*|(|y|)>.>>>>
   </align>
 
-  Thus detailed balance <reference|equation:Detailed Balance> holds. Based on
-  theorem <reference|theorem:relax> (together with the connectivity), an
-  ensemble of Markov chains computed by Metropolis-Hastings algorithm with
-  any initial state will finally relax to the stationary distribution
-  <math|\<pi\>>.
+  Thus detailed balance (<reference|equation:Detailed Balance>) holds.
+
+  As a summary, Metropolis-Hastings algorithm defines the transition density
+  <math|q<rsub|\<Delta\>t>> by equation (<reference|equation:Metropolis-Hastings>),
+  together with a positive auxiliary transition density
+  <math|g<rsub|\<Delta\>t>> and an accept ratio. The transition rate <math|r>
+  derived from <math|q<rsub|\<Delta\>t>> satisfies detailed balance
+  condition. Also <math|r> connects every two elements in the alphabet
+  <math|\<cal-X\>>. So, theorem <reference|theorem:relax> states that,
+  evolved by the master equation (<reference|equation:Master Equation>), any
+  initial distribution will finally relax to the stationary distribution
+  <math|\<Pi\>>.
 
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
@@ -863,8 +963,9 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2.1|7>>
-    <associate|auto-11|<tuple|2.2|?>>
+    <associate|auto-10|<tuple|2|7>>
+    <associate|auto-11|<tuple|2.1|8>>
+    <associate|auto-12|<tuple|2.2|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -872,33 +973,38 @@
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|5>>
     <associate|auto-8|<tuple|1.7|6>>
-    <associate|auto-9|<tuple|2|6>>
-    <associate|equation:Detailed Balance|<tuple|4|2>>
+    <associate|auto-9|<tuple|1.8|6>>
+    <associate|equation:Detailed Balance|<tuple|3|2>>
     <associate|equation:Discrete Time Master Equation|<tuple|1|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|9|6>>
-    <associate|equation:Master Equation|<tuple|3|2>>
-    <associate|equation:circle|<tuple|8|5>>
-    <associate|equation:define stationary density function|<tuple|7|5>>
-    <associate|equation:relative entropy derivative|<tuple|6|3>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|9|7>>
+    <associate|equation:Master Equation|<tuple|2|2>>
+    <associate|equation:Metropolis-Hastings|<tuple|8|?>>
+    <associate|equation:circle|<tuple|7|5>>
+    <associate|equation:define stationary density function|<tuple|6|5>>
+    <associate|equation:relative entropy derivative|<tuple|5|3>>
     <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|4>>
-    <associate|footnote-4|<tuple|4|7>>
-    <associate|footnote-5|<tuple|5|7>>
+    <associate|footnote-4|<tuple|4|8>>
+    <associate|footnote-5|<tuple|5|8>>
+    <associate|footnote-6|<tuple|6|?>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
-    <associate|footnr-4|<tuple|4|7>>
-    <associate|footnr-5|<tuple|5|7>>
+    <associate|footnr-4|<tuple|4|8>>
+    <associate|footnr-5|<tuple|5|8>>
+    <associate|footnr-6|<tuple|6|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance|<tuple|2.2|7>>
+    Balance|<tuple|2.2|8>>
+    <associate|section: Detailed Balance Provides Stationary
+    Distribution|<tuple|1.4|?>>
     <associate|section: Detailed Balance with Connectivity Monotonically
-    Reduces Relative Entropy|<tuple|1.4|2>>
+    Reduces Relative Entropy|<tuple|1.5|2>>
     <associate|section: Master Equation Describes the Evolution of Markov
     Chain|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
-    <associate|theorem:relax|<tuple|1|?>>
+    <associate|theorem:relax|<tuple|1|4>>
   </collection>
 </references>
 
@@ -935,19 +1041,23 @@
       Density Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Metropolis-Hastings
+      Algorithm <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
+
       2<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>
+      <no-break><pageref|auto-9>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
       Equation Gives Kramers-Moyal Expansion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <no-break><pageref|auto-10>>
 
       <with|par-left|<quote|1tab>|2.2<space|2spc>Langevin Dynamics that
       Satisfies Detailed Balance Is Conservative
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
+      <no-break><pageref|auto-11>>
     </associate>
   </collection>
 </auxiliary>

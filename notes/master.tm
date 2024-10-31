@@ -133,51 +133,119 @@
   group-like structure, by which the local accumulates to be global. We are
   to show how this happens.
 
-  From <math|p<around*|(|x,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-  q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>=p<around*|(|x,t|)>+\<Delta\>t
-  <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>p<around*|(|y,t|)>+\<omicron\><around*|(|\<Delta\>t|)>>,
+  \ We are to express the transition density <math|q<rsub|\<Delta\>t>> by its
+  transition rate <math|r>. By inserting <math|q<rsub|\<Delta\>t><around*|(|z\|x|)>=\<delta\><around*|(|z-x|)>+r<around*|(|z,x|)>
+  \<Delta\>t +\<omicron\><around*|(|\<Delta\>t|)>> into
+
+  <\equation>
+    p<around*|(|z,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<rsub|\<Delta\>t><around*|(|z\|x|)>p<around*|(|x,t|)>,<label|equation:discrete
+    time master equation v2>
+  </equation>
+
   we find
 
+  <\equation>
+    <frac|\<partial\>p|\<partial\>t><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    r<around*|(|z,x|)> p<around*|(|x,t|)>.<label|equation:master equation v2>
+  </equation>
+
+  Surprisingly, we can use this formula to calculate
+  <math|\<partial\><rsup|n>p/\<partial\>t<rsup|n>> for any <math|n>. Indeed,
+  for <math|n=2>,
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|<frac|\<partial\><rsup|2>p|\<partial\>t<rsup|2>><around*|(|z,t|)>>>|<row|<cell|<around*|{|insert
+    equation <around*|(|<reference|equation:master equation
+    v2>|)>|}>=>|<cell|<frac|\<partial\>|\<partial\>t><big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> p<around*|(|y,t|)>>>|<row|<cell|<around*|{|exchange
+    limits|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|z,y|)>
+    <frac|\<partial\>p|\<partial\>t><around*|(|y,t|)>>>|<row|<cell|<around*|{|insert
+    equation <around*|(|<reference|equation:master equation
+    v2>|)>|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|z,y|)>
+    <big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|y,x|)>
+    p<around*|(|x,t|)>>>|<row|<cell|<around*|{|rearrange|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> \ r<around*|(|y,x|)> p<around*|(|x,t|)>.>>>>
+  </align>
+
+  Following the same steps, it can be generalized to higher order
+  derivatives, as
+
   <\equation*>
-    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|x,y|)> p<around*|(|y,t|)>.
+    <frac|\<partial\><rsup|n+1>p|\<partial\>t<rsup|n+1>><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>
+    p<around*|(|x,t|)>.
   </equation*>
 
-  We are to solve this differential equation. By regarding <math|p> a
-  time-dependent element in functional space, and <math|r> as a linear
-  operator, it becomes (we add a hat for indicating operator, using dot
-  <math|\<cdummy\>> for its operation)
+  Notice the pattern: a sequence of <math|r> and a rightmost
+  <math|p<around*|(|x,t|)>>, the same as the right hand side of equation
+  (<reference|equation:discrete time master equation v2>). The reason for
+  this pattern to arise is that <math|q<rsub|\<Delta\>t>>, thus <math|r>, is
+  independent of <math|t>: the Markovian property.
+
+  Also, Taylor expand the both sides of equation
+  (<reference|equation:discrete time master equation v2>) by
+  <math|\<Delta\>t> gives, at <math|<around*|(|\<Delta\>t|)><rsup|n+1>>
+  order,
 
   <\equation*>
-    <frac|\<mathd\>p|\<mathd\>t><around*|(|t|)>=<wide|r|^>\<cdummy\>p<around*|(|t|)>.
+    <frac|\<partial\><rsup|n+1>p|\<partial\>t<rsup|n+1>><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    <frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>p<around*|(|x,t|)>.
   </equation*>
 
-  This operator differential equation has a famous solution, called
-  exponential mapping, <math|p<around*|(|t|)>=exp<around*|(|<wide|r|^> t|)>
-  p<around*|(|0|)>>, where the exponential operator is defined by Taylor
-  expansion <math|exp<around*|(|<wide|L|^>|)>\<assign\><wide|1|^>+<wide|L|^>+<around*|(|1/2!|)>
-  <wide|L|^><rsup|2>+\<cdots\>> for any linear operator <math|<wide|L|^>>.
-  Indeed, by taking derivative on <math|t> on both sides, we find
-  <math|<around*|(|\<mathd\>p/\<mathd\>t|)><around*|(|t|)>=<wide|r|^>\<cdot\>exp<around*|(|<wide|r|^>
-  t|)> p<around*|(|0|)>=<wide|r|^>\<cdot\>p<around*|(|t|)>>. Recall the
-  discrete time master equation, <math|p<around*|(|\<Delta\>t|)>=<wide|q|^><rsub|\<Delta\>t>\<cdot\>p<around*|(|0|)>>,
-  where the transition density <math|<wide|q|^><rsub|\<Delta\>t>> is regarded
-  as a linear operator too (so we put a hat on it). We find
-  <math|exp<around*|(|<wide|r|^> \<Delta\>t|)>\<cdot\>p<around*|(|0|)>=<wide|q|^><rsub|\<Delta\>t>\<cdot\>p<around*|(|0|)>>,
-  which holds for arbitrary <math|p<around*|(|0|)>>, implying
-  <math|<wide|q|^><rsub|\<Delta\>t>=exp<around*|(|<wide|r|^>
-  \<Delta\>t|)>=1+<wide|r|^> \<Delta\>t+<around*|(|1/2!|)>
-  <around*|(|<wide|r|^>\<cdot\><wide|r|^>|)>
-  <around*|(|\<Delta\>t|)><rsup|2>+\<cdots\>>. Going back to functional
-  representation, we have the correspondences
-  <math|<wide|q|^><rsub|\<Delta\>t>\<rightarrow\>q<rsub|\<Delta\>t><around*|(|z\|x|)>>,
-  <math|<wide|r|^>\<rightarrow\>r<around*|(|z,x|)>>,
-  <math|<wide|r|^>\<cdot\><wide|r|^>\<rightarrow\><big|int>\<mathd\>y
-  r<around*|(|z,y|)> r<around*|(|y,x|)>>,
-  <math|<wide|r|^>\<cdot\><wide|r|^>\<cdot\><wide|r|^>\<rightarrow\><big|int>\<mathd\>y<rsub|1>
-  \<mathd\>y<rsub|2> r<around*|(|z,y<rsub|2>|)>
-  r<around*|(|y<rsub|2>,y<rsub|1>|)> r<around*|(|y<rsub|1>,x|)>>, and so on,
-  thus
+  So,<math|> we arrive at
+
+  <\equation*>
+    <big|int><rsub|\<cal-X\>>\<mathd\>x<around*|[|
+    <frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>|]>p<around*|(|x,t|)>=0,
+  </equation*>
+
+  which holds for all <math|p<around*|(|x,t|)>>, thus
+
+  <\equation*>
+    <frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>,
+  </equation*>
+
+  or say<\footnote>
+    Another derivation uses exponential mapping. By regarding <math|p> a
+    time-dependent element in functional space, and <math|r> as a linear
+    operator, it becomes (we add a hat for indicating operator, using dot
+    <math|\<cdummy\>> for its operation)
+
+    <\equation*>
+      <frac|\<mathd\>p|\<mathd\>t><around*|(|t|)>=<wide|r|^>\<cdummy\>p<around*|(|t|)>.
+    </equation*>
+
+    This operator differential equation has a famous solution, called
+    exponential mapping, <math|p<around*|(|t|)>=exp<around*|(|<wide|r|^> t|)>
+    p<around*|(|0|)>>, where the exponential operator is defined by Taylor
+    expansion <math|exp<around*|(|<wide|L|^>|)>\<assign\><wide|1|^>+<wide|L|^>+<around*|(|1/2!|)>
+    <wide|L|^><rsup|2>+\<cdots\>> for any linear operator <math|<wide|L|^>>.
+    Indeed, by taking derivative on <math|t> on both sides, we find
+    <math|<around*|(|\<mathd\>p/\<mathd\>t|)><around*|(|t|)>=<wide|r|^>\<cdot\>exp<around*|(|<wide|r|^>
+    t|)> p<around*|(|0|)>=<wide|r|^>\<cdot\>p<around*|(|t|)>>. Recall the
+    discrete time master equation, <math|p<around*|(|\<Delta\>t|)>=<wide|q|^><rsub|\<Delta\>t>\<cdot\>p<around*|(|0|)>>,
+    where the transition density <math|<wide|q|^><rsub|\<Delta\>t>> is
+    regarded as a linear operator too (so we put a hat on it). We find
+    <math|exp<around*|(|<wide|r|^> \<Delta\>t|)>\<cdot\>p<around*|(|0|)>=<wide|q|^><rsub|\<Delta\>t>\<cdot\>p<around*|(|0|)>>,
+    which holds for arbitrary <math|p<around*|(|0|)>>, implying
+    <math|<wide|q|^><rsub|\<Delta\>t>=exp<around*|(|<wide|r|^>
+    \<Delta\>t|)>=1+<wide|r|^> \<Delta\>t+<around*|(|1/2!|)>
+    <around*|(|<wide|r|^>\<cdot\><wide|r|^>|)>
+    <around*|(|\<Delta\>t|)><rsup|2>+\<cdots\>>. Going back to functional
+    representation, we have the correspondences
+    <math|<wide|q|^><rsub|\<Delta\>t>\<rightarrow\>q<rsub|\<Delta\>t><around*|(|z\|x|)>>,
+    <math|<wide|r|^>\<rightarrow\>r<around*|(|z,x|)>>,
+    <math|<wide|r|^>\<cdot\><wide|r|^>\<rightarrow\><big|int>\<mathd\>y
+    r<around*|(|z,y|)> r<around*|(|y,x|)>>,
+    <math|<wide|r|^>\<cdot\><wide|r|^>\<cdot\><wide|r|^>\<rightarrow\><big|int>\<mathd\>y<rsub|1>
+    \<mathd\>y<rsub|2> r<around*|(|z,y<rsub|2>|)>
+    r<around*|(|y<rsub|2>,y<rsub|1>|)> r<around*|(|y<rsub|1>,x|)>>, and so
+    on, thus recover the relation between <math|q<rsub|\<Delta\>t>> and
+    <math|r>.
+  </footnote>
 
   <\align>
     <tformat|<table|<row|<cell|q<rsub|\<Delta\>t><around*|(|z\|x|)>=>|<cell|\<delta\><around*|(|z-x|)>>>|<row|<cell|+>|<cell|<around*|(|\<Delta\>t|)>
@@ -191,43 +259,6 @@
   forward and very impressive: <em|the transition density is equivalent to
   transition rate, even though transition rate is derived from infinitesimal
   time-interval transition density.>
-
-  In addition, we are to show that (continuous time) master equation derives
-  the discrete time one, thus they are equivalent. Specifically, we are to
-  show the <math|p<around*|(|x,t|)>> evolved by the left hand side also
-  satisfies the right hand side:
-
-  <\equation*>
-    <around*|{|<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|x,y|)> p<around*|(|y,t|)>|}>\<Rightarrow\><around*|{|p<around*|(|x,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>|}>.
-  </equation*>
-
-  Let us first check the third inline in the
-  <math|q<rsub|\<Delta\>t><around*|(|z\|x|)>>:
-
-  <\align>
-    <tformat|<table|<row|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>\<supset\>>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|z,y|)> r<around*|(|y,x|)>p<around*|(|x,t|)>>>|<row|<cell|<around*|{|master
-    equation|}>=>|<cell|<frac|\<partial\>|\<partial\>t><big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|z,y|)> p<around*|(|y,t|)>>>|<row|<cell|<around*|{|master
-    equation|}>=>|<cell|<frac|\<partial\><rsup|2>|\<partial\>t<rsup|2>>p<around*|(|z,t|)>.>>>>
-  </align>
-
-  We find the pattern that
-
-  <\equation*>
-    <big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
-    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>
-    p<around*|(|x,t|)>=<frac|\<partial\><rsup|n+1>|\<partial\>t<rsup|n+1>>p<around*|(|z,t|)>.
-  </equation*>
-
-  So, we find <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
-  q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>> turns out to be the
-  Taylor expansion of <math|p<around*|(|x,t+\<Delta\>t|)>>, implying that the
-  <math|q<rsub|\<Delta\>t>>, given by the (continuous time) master equation,
-  does satisfy the discrete time master equation (the right hand side).
 
   <subsection|Detailed Balance Provides Stationary
   Distribution><label|section: Detailed Balance Provides Stationary
@@ -974,26 +1005,30 @@
     <associate|auto-7|<tuple|1.6|5>>
     <associate|auto-8|<tuple|1.7|6>>
     <associate|auto-9|<tuple|1.8|6>>
-    <associate|equation:Detailed Balance|<tuple|3|2>>
+    <associate|equation:Detailed Balance|<tuple|5|2>>
     <associate|equation:Discrete Time Master Equation|<tuple|1|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|9|7>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|11|7>>
     <associate|equation:Master Equation|<tuple|2|2>>
-    <associate|equation:Metropolis-Hastings|<tuple|8|?>>
-    <associate|equation:circle|<tuple|7|5>>
-    <associate|equation:define stationary density function|<tuple|6|5>>
-    <associate|equation:relative entropy derivative|<tuple|5|3>>
+    <associate|equation:Metropolis-Hastings|<tuple|10|?>>
+    <associate|equation:circle|<tuple|9|5>>
+    <associate|equation:define stationary density function|<tuple|8|5>>
+    <associate|equation:discrete time master equation v2|<tuple|3|?>>
+    <associate|equation:master equation v2|<tuple|4|?>>
+    <associate|equation:relative entropy derivative|<tuple|7|3>>
     <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|4>>
     <associate|footnote-4|<tuple|4|8>>
     <associate|footnote-5|<tuple|5|8>>
     <associate|footnote-6|<tuple|6|?>>
+    <associate|footnote-7|<tuple|7|?>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
     <associate|footnr-4|<tuple|4|8>>
     <associate|footnr-5|<tuple|5|8>>
     <associate|footnr-6|<tuple|6|?>>
+    <associate|footnr-7|<tuple|7|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|8>>
     <associate|section: Detailed Balance Provides Stationary

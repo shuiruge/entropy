@@ -181,7 +181,7 @@
   <math|p<around*|(|x,t|)>>, the same as the right hand side of equation
   (<reference|equation:discrete time master equation v2>). The reason for
   this pattern to arise is that <math|q<rsub|\<Delta\>t>>, thus <math|r>, is
-  independent of <math|t>: the Markovian property.
+  independent of <math|t>: a Markovian property.
 
   Also, Taylor expand the both sides of equation
   (<reference|equation:discrete time master equation v2>) by
@@ -190,21 +190,21 @@
 
   <\equation*>
     <frac|\<partial\><rsup|n+1>p|\<partial\>t<rsup|n+1>><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    <frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>p<around*|(|x,t|)>.
+    lim<rsub|\<Delta\>t\<rightarrow\>0><frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>p<around*|(|x,t|)>.
   </equation*>
 
   So,<math|> we arrive at
 
   <\equation*>
     <big|int><rsub|\<cal-X\>>\<mathd\>x<around*|[|
-    <frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    lim<rsub|\<Delta\>t\<rightarrow\>0><frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
     r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>|]>p<around*|(|x,t|)>=0,
   </equation*>
 
   which holds for all <math|p<around*|(|x,t|)>>, thus
 
   <\equation*>
-    <frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    lim<rsub|\<Delta\>t\<rightarrow\>0><frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
     r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>,
   </equation*>
 
@@ -996,50 +996,50 @@
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|2|7>>
     <associate|auto-11|<tuple|2.1|8>>
-    <associate|auto-12|<tuple|2.2|?>>
+    <associate|auto-12|<tuple|2.2|9>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|2>>
-    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-5|<tuple|1.4|3>>
+    <associate|auto-6|<tuple|1.5|3>>
     <associate|auto-7|<tuple|1.6|5>>
     <associate|auto-8|<tuple|1.7|6>>
-    <associate|auto-9|<tuple|1.8|6>>
-    <associate|equation:Detailed Balance|<tuple|5|2>>
+    <associate|auto-9|<tuple|1.8|7>>
+    <associate|equation:Detailed Balance|<tuple|5|3>>
     <associate|equation:Discrete Time Master Equation|<tuple|1|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|11|7>>
-    <associate|equation:Master Equation|<tuple|2|2>>
-    <associate|equation:Metropolis-Hastings|<tuple|10|?>>
-    <associate|equation:circle|<tuple|9|5>>
-    <associate|equation:define stationary density function|<tuple|8|5>>
-    <associate|equation:discrete time master equation v2|<tuple|3|?>>
-    <associate|equation:master equation v2|<tuple|4|?>>
-    <associate|equation:relative entropy derivative|<tuple|7|3>>
-    <associate|footnote-1|<tuple|1|3>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|11|8>>
+    <associate|equation:Master Equation|<tuple|2|1>>
+    <associate|equation:Metropolis-Hastings|<tuple|10|7>>
+    <associate|equation:circle|<tuple|9|6>>
+    <associate|equation:define stationary density function|<tuple|8|6>>
+    <associate|equation:discrete time master equation v2|<tuple|3|2>>
+    <associate|equation:master equation v2|<tuple|4|2>>
+    <associate|equation:relative entropy derivative|<tuple|7|4>>
+    <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|4>>
-    <associate|footnote-4|<tuple|4|8>>
-    <associate|footnote-5|<tuple|5|8>>
-    <associate|footnote-6|<tuple|6|?>>
-    <associate|footnote-7|<tuple|7|?>>
-    <associate|footnr-1|<tuple|1|3>>
+    <associate|footnote-4|<tuple|4|5>>
+    <associate|footnote-5|<tuple|5|5>>
+    <associate|footnote-6|<tuple|6|9>>
+    <associate|footnote-7|<tuple|7|9>>
+    <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
-    <associate|footnr-4|<tuple|4|8>>
-    <associate|footnr-5|<tuple|5|8>>
-    <associate|footnr-6|<tuple|6|?>>
-    <associate|footnr-7|<tuple|7|?>>
+    <associate|footnr-4|<tuple|4|5>>
+    <associate|footnr-5|<tuple|5|5>>
+    <associate|footnr-6|<tuple|6|9>>
+    <associate|footnr-7|<tuple|7|9>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance|<tuple|2.2|8>>
+    Balance|<tuple|2.2|9>>
     <associate|section: Detailed Balance Provides Stationary
-    Distribution|<tuple|1.4|?>>
+    Distribution|<tuple|1.4|3>>
     <associate|section: Detailed Balance with Connectivity Monotonically
-    Reduces Relative Entropy|<tuple|1.5|2>>
+    Reduces Relative Entropy|<tuple|1.5|3>>
     <associate|section: Master Equation Describes the Evolution of Markov
     Chain|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
-    <associate|theorem:relax|<tuple|1|4>>
+    <associate|theorem:relax|<tuple|1|5>>
   </collection>
 </references>
 
@@ -1058,41 +1058,46 @@
       the Evolution of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Detailed Balance Provides
-      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Transition Density Is
+      Determined by Tansition Rate (TODO)
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance and
-      Connectivity Monotonically Reduce Relative Entropy
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance Provides
+      Stationary Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Temporal Smoothness of
-      Transition Density Is Necessary to Ensure Relaxation
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Detailed Balance and
+      Connectivity Monotonically Reduce Relative Entropy
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Existence of Stationary
-      Density Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Temporal Smoothness of
+      Transition Density Is Necessary to Ensure Relaxation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Metropolis-Hastings
-      Algorithm <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Existence of Stationary
+      Density Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|1.8<space|2spc>Example: Metropolis-Hastings
+      Algorithm <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
 
       2<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>
+      <no-break><pageref|auto-10>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
       Equation Gives Kramers-Moyal Expansion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
+      <no-break><pageref|auto-11>>
 
       <with|par-left|<quote|1tab>|2.2<space|2spc>Langevin Dynamics that
       Satisfies Detailed Balance Is Conservative
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
+      <no-break><pageref|auto-12>>
     </associate>
   </collection>
 </auxiliary>

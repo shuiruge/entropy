@@ -94,8 +94,8 @@
 
   If <math|q<rsub|\<Delta\>t>> is smooth on <math|\<Delta\>t>, then we have
   the linear expansion <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<chi\><around*|(|x,y|)>+r<around*|(|x,y|)>
-  \<Delta\>t+o<around*|(|\<Delta\>t|)>> where <math|q<rsub|0>> and <math|r>
-  are well-defined functions (at least well-defined <hlink|generalized
+  \<Delta\>t+o<around*|(|\<Delta\>t|)>> where <math|\<chi\>> and <math|r> are
+  well-defined functions (at least well-defined <hlink|generalized
   function|https://en.wikipedia.org/wiki/Generalized_function>s). When
   <math|\<Delta\>t=0>, there is no transition at all, and
   <math|p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -122,16 +122,14 @@
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>\<gtr\>-1>,
   which is a little weird.
 
-  <subsection|Transition Density Is Determined by Tansition Rate (TODO)>
+  <subsection|Transition Rate Determines Transition Density>
 
-  Practically, we employ the discrete time master equation
-  (<reference|equation:Discrete Time Master Equation>) instead of (continuous
-  time) master equation (<reference|equation:Master Equation>), because we
-  cannot compute infinitesimal. So we wonder, given a transition rate, can we
-  obtain the corresponding transition density? Generally, we cannot get the
-  global (finite) from the local (infinitesimal). But, master equation has a
-  group-like structure, by which the local accumulates to be global. We are
-  to show how this happens.
+  We wonder, given a transition rate, can we obtain the corresponding
+  transition density? Generally, we cannot get the global (finite) from the
+  local (infinitesimal). For example, we cannot determine a function only by
+  its first derivative at the origin. But, master equation has a group-like
+  structure, by which the local accumulates to be global. We are to show how
+  this happens.
 
   \ We are to express the transition density <math|q<rsub|\<Delta\>t>> by its
   transition rate <math|r>. By inserting <math|q<rsub|\<Delta\>t><around*|(|z\|x|)>=\<delta\><around*|(|z-x|)>+r<around*|(|z,x|)>
@@ -172,7 +170,7 @@
   derivatives, as
 
   <\equation*>
-    <frac|\<partial\><rsup|n+1>p|\<partial\>t<rsup|n+1>><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    <frac|\<partial\><rsup|n+1>p|\<partial\>t<rsup|n+1>><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
     r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>
     p<around*|(|x,t|)>.
   </equation*>
@@ -259,6 +257,66 @@
   forward and very impressive: <em|the transition density is equivalent to
   transition rate, even though transition rate is derived from infinitesimal
   time-interval transition density.>
+
+  This may be a little weird at the first sight. For example, consider
+  another transition density <math|q<rprime|'><rsub|\<Delta\>t><around*|(|y\|x|)>=q<rsub|\<Delta\>t><around*|(|y\|x|)>+f<around*|(|y,x|)>
+  \<Delta\>t<rsup|2>>, where <math|f> is any function ensuring that
+  <math|q<rprime|'><rsub|\<Delta\>t>> is non-negative and normalized (thus
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>y f<around*|(|y,x|)>=0>). Following
+  the previous derivation, we find that the discrete time master equation
+
+  <\equation*>
+    p<around*|(|z,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<rprime|'><rsub|\<Delta\>t><around*|(|z\|x|)>p<around*|(|x,t|)>
+  </equation*>
+
+  also leads to equation (<reference|equation:master equation v2>), the same
+  <math|r> as that of <math|q<rsub|\<Delta\>t>>. So, we should have
+  <math|q<rprime|'><rsub|\<Delta\>t>=q<rsub|\<Delta\>t>>, which means
+  <math|f> is not free, but should vanish.
+
+  The answer to this question is that, even though a transition density has
+  satisfied all the requirements claimed in section <reference|section:
+  Master Equation Describes the Evolution of Markov Chain> (such as
+  non-negative), it is still not completely free to choose, but sharing the
+  same degree of freedom as that of its transition rate. <em|The fundamental
+  quantity that describes the evolution of a continous time Markov chain is
+  transition rate.> For example, consider
+  <math|p<around*|(|z,t+\<Delta\>t+\<Delta\>t<rprime|'>|)>> for any
+  <math|\<Delta\>t> and <math|\<Delta\>t<rprime|'>>. Directly, we have
+
+  <\equation*>
+    p<around*|(|z,t+\<Delta\>t+\<Delta\>t<rprime|'>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|z\|x|)>p<around*|(|x,t|)>,
+  </equation*>
+
+  but on the other hand, by applying discrete time master equation twice, we
+  find
+
+  <\align>
+    <tformat|<table|<row|<cell|p<around*|(|z,t+\<Delta\>t+\<Delta\>t<rprime|'>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|z\|y|)>p<around*|(|y,t+\<Delta\>t<rprime|'>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|z\|y|)><big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<rsub|\<Delta\>t<rprime|'>><around*|(|y\|x|)>p<around*|(|x,t|)>.>>>>
+  </align>
+
+  Thus,
+
+  <\equation*>
+    <big|int><rsub|\<cal-X\>>\<mathd\>x<around*|[|q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|z\|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|z\|y|)> q<rsub|\<Delta\>t<rprime|'>><around*|(|y\|x|)>|]>p<around*|(|x,t|)>=0.
+  </equation*>
+
+  Since <math|p<around*|(|x,t|)>> can be arbitrary, we arrive at
+
+  <\equation*>
+    q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|z\|y|)> q<rsub|\<Delta\>t<rprime|'>><around*|(|y\|x|)>.
+  </equation*>
+
+  This provides an addition restriction to the transition density. Indeed,
+  not every transition density, as a function of time interval
+  <math|\<Delta\>t>, can satisfy this relation.
 
   <subsection|Detailed Balance Provides Stationary
   Distribution><label|section: Detailed Balance Provides Stationary
@@ -680,7 +738,7 @@
   can be constructed out of the density function (such as in
   Metropolis-Hastings algorithm).
 
-  <subsection|Example: Metropolis-Hastings Algorithm>
+  <subsection|Example: Metropolis-Hastings Algorithm (TODO)>
 
   Metropolis-Hastings algorithm is a simple method that constructs transition
   density or transition rate for any given stationary distribution such that
@@ -1012,7 +1070,7 @@
     <associate|equation:Metropolis-Hastings|<tuple|10|7>>
     <associate|equation:circle|<tuple|9|6>>
     <associate|equation:define stationary density function|<tuple|8|6>>
-    <associate|equation:discrete time master equation v2|<tuple|3|2>>
+    <associate|equation:discrete time master equation v2|<tuple|5|2>>
     <associate|equation:master equation v2|<tuple|4|2>>
     <associate|equation:relative entropy derivative|<tuple|7|4>>
     <associate|footnote-1|<tuple|1|1>>

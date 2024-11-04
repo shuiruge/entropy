@@ -122,7 +122,8 @@
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>\<gtr\>-1>,
   which is a little weird.
 
-  <subsection|Transition Rate Determines Transition Density>
+  <subsection|Transition Rate Determines Transition Density><label|section:
+  Transition Rate Determines Transition Density>
 
   We wonder, given a transition rate, can we obtain the corresponding
   transition density? Generally, we cannot get the global (finite) from the
@@ -245,13 +246,14 @@
     <math|r>.
   </footnote>
 
-  <\align>
-    <tformat|<table|<row|<cell|q<rsub|\<Delta\>t><around*|(|z\|x|)>=>|<cell|\<delta\><around*|(|z-x|)>>>|<row|<cell|+>|<cell|<around*|(|\<Delta\>t|)>
+  <\equation>
+    <tabular|<tformat|<cwith|1|-1|1|1|cell-hyphen|n>|<cwith|1|-1|1|1|cell-halign|r>|<cwith|1|-1|2|2|cell-halign|l>|<table|<row|<cell|q<rsub|\<Delta\>t><around*|(|z\|x|)>=>|<cell|\<delta\><around*|(|z-x|)>>>|<row|<cell|+>|<cell|<around*|(|\<Delta\>t|)>
     r<around*|(|z,x|)>>>|<row|<cell|+>|<cell|<frac|<around*|(|\<Delta\>t|)><rsup|2>|2!>
     <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|z,y|)>
     r<around*|(|y,x|)>>>|<row|<cell|+>|<cell|\<cdots\>>>|<row|<cell|+>|<cell|<frac|<around*|(|\<Delta\>t|)><rsup|n+1>|<around*|(|n+1|)>!><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
-    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>>>|<row|<cell|+>|<cell|\<cdots\>.>>>>
-  </align>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>>>|<row|<cell|+>|<cell|\<cdots\>.>>|<row|<cell|>|<cell|>>>>><label|equation:transition
+    rate determines transition density>
+  </equation>
 
   Well, this is a complicated formula, but its implication is straight
   forward and very impressive: <em|the transition density is equivalent to
@@ -280,7 +282,7 @@
   Master Equation Describes the Evolution of Markov Chain> (such as
   non-negative), it is still not completely free to choose, but sharing the
   same degree of freedom as that of its transition rate. <em|The fundamental
-  quantity that describes the evolution of a continous time Markov chain is
+  quantity that describes the evolution of a continuous time Markov chain is
   transition rate.> For example, consider
   <math|p<around*|(|z,t+\<Delta\>t+\<Delta\>t<rprime|'>|)>> for any
   <math|\<Delta\>t> and <math|\<Delta\>t<rprime|'>>. Directly, we have
@@ -393,7 +395,8 @@
       \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>,
     </equation*>
 
-    Then, insert detailed balance <math|r<around*|(|x,y|)>=r<around*|(|y,x|)>
+    Then, insert detailed balance condition
+    <math|r<around*|(|x,y|)>=r<around*|(|y,x|)>
     \<pi\><around*|(|x|)>/\<pi\><around*|(|y|)>>, as
 
     <\align>
@@ -407,7 +410,7 @@
     </align>
 
     Since <math|x> and <math|y> are dummy, we interchange them in the
-    integrand, and then insert detailed balance again, as
+    integrand, and then insert detailed balance condition again, as
 
     <\align>
       <tformat|<table|<row|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -439,8 +442,8 @@
     </align>
 
     from which we directly get the result. Notice that this proof is very
-    tricky: it uses detailed balance twice, between which the expression is
-    symmetrized. It is an ingenious mathematical engineering.
+    tricky: it uses detailed balance condition twice, between which the
+    expression is symmetrized. It is an ingenious mathematical engineering.
   </footnote>
 
   <\equation>
@@ -539,8 +542,8 @@
     <label|theorem:relax>Let <math|\<Pi\>> a distribution with alphabet
     <math|\<cal-X\>>. If there is a transition rate r such that 1) every two
     elements in <math|\<cal-X\>> are connected and that 2) the detailed
-    balance <reference|equation:Detailed Balance> holds for <math|\<Pi\>> and
-    <math|r>, then for any time-dependent distribution
+    balance condition <reference|equation:Detailed Balance> holds for
+    <math|\<Pi\>> and <math|r>, then for any time-dependent distribution
     <math|P<around*|(|t|)>> with the same alphabet (at one time) evolved by
     the master equation <reference|equation:Master Equation>,
     <math|P<around*|(|t|)>> will monotonically and constantly relax to
@@ -631,12 +634,12 @@
   <subsection|Existence of Stationary Density Function>
 
   Given a transition rate, we wonder if there exists a density function such
-  that detailed balance <reference|equation:Detailed Balance> holds.
-  Actually, the equation <reference|equation:Detailed Balance> <em|defines> a
-  density function. For example, if both <math|r<around*|(|x,y|)>> and
-  <math|r<around*|(|y,x|)>> are not zero, we can construct
-  <math|\<pi\><around*|(|y|)>> by given <math|\<pi\><around*|(|x|)>> as
-  <math|\<pi\><around*|(|y|)>=\<pi\><around*|(|x|)>
+  that detailed balance condition (<reference|equation:Detailed Balance>)
+  holds. Actually, the equation <reference|equation:Detailed Balance>
+  <em|defines> a density function. For example, if both
+  <math|r<around*|(|x,y|)>> and <math|r<around*|(|y,x|)>> are not zero, we
+  can construct <math|\<pi\><around*|(|y|)>> by given
+  <math|\<pi\><around*|(|x|)>> as <math|\<pi\><around*|(|y|)>=\<pi\><around*|(|x|)>
   r<around*|(|y,x|)>/r<around*|(|x,y|)>>. Generally, if <math|x> and <math|y>
   are connected, then there is a path <math|P\<assign\><around*|(|p<rsub|0>,\<ldots\>,p<rsub|n>|)>>
   from <math|x> to <math|y> with <math|p<rsub|0>=x> and <math|p<rsub|n>=y>
@@ -703,9 +706,9 @@
   <math|y> (if <math|x> and <math|y> are connected).
 
   Condition <reference|equation:circle> implies that the previous
-  construction does define a <math|\<pi\>> that holds the detailed balance.
-  Given <math|x,y\<in\>\<cal-X\>>, we have <math|ln \<pi\><around*|(|x|)>=ln
-  \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|x<rsub|0>><rsup|x>\<mathd\>s
+  construction does define a <math|\<pi\>> that holds the detailed balance
+  condition. Given <math|x,y\<in\>\<cal-X\>>, we have <math|ln
+  \<pi\><around*|(|x|)>=ln \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|x<rsub|0>><rsup|x>\<mathd\>s
   \<rho\><around*|(|s|)>> and <math|ln \<pi\><around*|(|y|)>=ln
   \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|x<rsub|0>><rsup|y>\<mathd\>s
   \<rho\><around*|(|s|)>>. If <math|x> and <math|y> are connected, then, by
@@ -716,17 +719,18 @@
   path <math|<around*|(|x,y|)>>, \Pjumping\Q directly from <math|x> to
   <math|y>), thus <math|ln \<pi\><around*|(|y|)>=ln
   \<pi\><around*|(|x|)>+\<rho\><around*|(|y,x|)>>, which is just the detailed
-  balance <reference|equation:Detailed Balance>. And if <math|x> and <math|y>
-  are not connected, then both <math|r<around*|(|x,y|)>> and
+  balance condition (<reference|equation:Detailed Balance>). And if <math|x>
+  and <math|y> are not connected, then both <math|r<around*|(|x,y|)>> and
   <math|r<around*|(|y,x|)>> shall vanish (recall the requirements of
   transition rate in section <reference|section: Master Equation Describes
   the Evolution of Markov Chain>: if <math|r<around*|(|x,y|)>=0>, then
-  <math|r<around*|(|y,x|)>=0>), and detailed balance holds naturally.
+  <math|r<around*|(|y,x|)>=0>), and detailed balance condition holds
+  naturally.
 
   So, condition <reference|equation:circle> is <em|essential and sufficient
-  for the existence of <math|\<pi\>> that holds the detailed balance>
-  <reference|equation:Detailed Balance>. If <math|\<cal-X\>> is a simply
-  connected smooth manifold, then using Stokes's theorem, we have
+  for the existence of <math|\<pi\>> that holds the detailed balance
+  condition <reference|equation:Detailed Balance>>. If <math|\<cal-X\>> is a
+  simply connected smooth manifold, then using Stokes's theorem, we have
   <math|\<nabla\>\<times\>\<rho\>=0> on <math|\<cal-X\>>. But, generally
   <math|\<cal-X\>> is neither simply connected nor smooth, but involving
   independent subsystems and discrete. In these cases, condition
@@ -734,91 +738,90 @@
 
   In many applications, we consider the inverse question: given a density
   function, if there exists a transition rate such that detailed balance
-  holds. This inverse problem is much easier, and a proper transition rate
-  can be constructed out of the density function (such as in
+  condition holds. This inverse problem is much easier, and a proper
+  transition rate can be constructed out of the density function (such as in
   Metropolis-Hastings algorithm).
 
-  <subsection|Example: Metropolis-Hastings Algorithm (TODO)>
+  <subsection|Example: Metropolis-Hastings Algorithm>
 
   Metropolis-Hastings algorithm is a simple method that constructs transition
-  density or transition rate for any given stationary distribution such that
-  detailed balance (<reference|equation:Detailed Balance>) holds. Explicitly,
-  given a stationary distribution <math|\<Pi\>>, and an auxiliary transition
-  density <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>> for each <math|x> and
-  <math|y> in alphabet <math|\<cal-X\>> ensuring that
-  <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>\<gtr\>0>, the transition density
-  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>> is given by
+  rate for any given stationary distribution such that detailed balance
+  condition holds. Explicitly, given a stationary distribution <math|\<Pi\>>,
+  and an auxiliary transition rate <math|\<gamma\>>, ensuring that
+  <math|\<gamma\><around*|(|x,y|)>\<gtr\>0> for each <math|x> and <math|y> in
+  alphabet <math|\<cal-X\>> such that <math|x\<neq\>y>, the transition rate
+  <math|r> is given by
 
   <\equation>
-    q<rsub|\<Delta\>t><around*|(|y\|x|)>\<assign\>min<around*|(|1,<frac|g<rsub|\<Delta\>t><around*|(|x\|y|)>
-    \<pi\><around*|(|y|)>|g<rsub|\<Delta\>t><around*|(|y\|x|)>
-    \<pi\><around*|(|x|)>>|)> g<rsub|\<Delta\>t><around*|(|y\|x|)>.<label|equation:Metropolis-Hastings>
+    r<around*|(|x,y|)>=min<around*|(|1,<frac|\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>|\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>>|)> \<gamma\><around*|(|x,y|)>.<label|equation:equation:Metropolis-Hastings>
   </equation>
 
-  This definition has an intuitive explanation. The algorithm first propose a
-  transition from <math|x> to <math|y> based on
-  <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>>, this proposal will be accepted
-  by ratio given by the first factor in the right hand side. If accepted,
-  then transit to <math|y>, otherwise stay on <math|x>.
-
-  To obtain the transition rate, we expand <math|g<rsub|\<Delta\>t>> at
-  <math|\<Delta\>t\<rightarrow\>0>, as <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>=\<delta\><around*|(|x-y|)>+\<gamma\><around*|(|y,x|)>
-  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. Since
-  <math|g<rsub|\<Delta\>t><around*|(|y\|x|)>\<gtr\>0>, we have
-  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0> for each <math|x\<neq\>y>. Thus,
-  in the area <math|x\<neq\>y> where <math|\<delta\><around*|(|x-y|)>>
-  vanishes, we have
-
-  <\equation*>
-    q<rsub|\<Delta\>t><around*|(|y\|x|)>=min<around*|(|1,<frac|\<gamma\><around*|(|x,y|)>
-    \<pi\><around*|(|y|)>+\<omicron\><around*|(|1|)>|\<gamma\><around*|(|y,x|)>
-    \<pi\><around*|(|x|)>+\<omicron\><around*|(|1|)>>|)>
-    \<gamma\><around*|(|y,x|)> \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>.
-  </equation*>
-
-  And <math|q<rsub|\<Delta\>t><around*|(|x\|x|)>=g<rsub|\<Delta\>t><around*|(|x\|x|)>=\<delta\><around*|(|0|)>+\<gamma\><around*|(|x,x|)>
-  \<Delta\>t>. Putting these together, in the limit
-  <math|\<Delta\>t\<rightarrow\>0>, we get the transition rate of
-  <math|q<rsub|\<Delta\>t>>, as
-
-  <\equation*>
-    r<around*|(|y,x|)>=min<around*|(|1,<frac|\<gamma\><around*|(|x,y|)>
-    \<pi\><around*|(|y|)>|\<gamma\><around*|(|y,x|)>
-    \<pi\><around*|(|x|)>>|)> \<gamma\><around*|(|y,x|)>,
-  </equation*>
-
-  which connects every two elements in <math|\<cal-X\>> (since
-  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0> for each <math|x\<neq\>y>).
-
-  This transition rate, together with <math|\<pi\>>, satisfies the detailed
-  balance condition. Directly,
+  This transition rate connects every two elements in <math|\<cal-X\>> (since
+  <math|\<gamma\><around*|(|y,x|)>\<gtr\>0> for each <math|x\<neq\>y>). In
+  addition, together with <math|\<pi\>>, it satisfies the detailed balance
+  condition (<reference|equation:Detailed Balance>). Directly,
 
   <\align>
-    <tformat|<table|<row|<cell|r<around*|(|y,x|)>
-    \<pi\><around*|(|x|)>=>|<cell|min<around*|(|1,<frac|\<gamma\><around*|(|x,y|)>
-    \<pi\><around*|(|y|)>|\<gamma\><around*|(|y,x|)>
-    \<pi\><around*|(|x|)>>|)> \<gamma\><around*|(|y,x|)>
-    \<pi\><around*|(|x|)>>>|<row|<cell|=>|<cell|min<around*|(|\<gamma\><around*|(|y,x|)>
-    \<pi\><around*|(|x|)>,\<gamma\><around*|(|x,y|)>
-    \<pi\><around*|(|y|)>|)>>>|<row|<cell|=>|<cell|min<around*|(|<frac|\<gamma\><around*|(|y,x|)>
+    <tformat|<table|<row|<cell|>|<cell|r<around*|(|x,y|)>
+    \<pi\><around*|(|y|)>>>|<row|<cell|<around*|{|definition of
+    r|}>=>|<cell|min<around*|(|1,<frac|\<gamma\><around*|(|y,x|)>
     \<pi\><around*|(|x|)>|\<gamma\><around*|(|x,y|)>
-    \<pi\><around*|(|y|)>>,1|)> \<gamma\><around*|(|x,y|)>
-    \<pi\><around*|(|y|)>>>|<row|<cell|=>|<cell|r<around*|(|x,y|)>
-    \<pi\><around*|(|y|)>.>>>>
+    \<pi\><around*|(|y|)>>|)> \<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>>>|<row|<cell|<around*|{|property of
+    min|}>=>|<cell|min<around*|(|\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>,\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>|)>>>|<row|<cell|<around*|{|property of
+    min|}>=>|<cell|min<around*|(|<frac|\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>|\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>>,1|)> \<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>>>|<row|<cell|<around*|{|definition of
+    r|}>=>|<cell|r<around*|(|y,x|)> \<pi\><around*|(|x|)>.>>>>
   </align>
 
-  Thus detailed balance (<reference|equation:Detailed Balance>) holds.
+  Thus detailed balance condition holds. So, theorem
+  <reference|theorem:relax> states that, evolved by the master equation
+  (<reference|equation:Master Equation>), any initial distribution will
+  finally relax to the stationary distribution <math|\<Pi\>>.<\footnote>
+    Historically, Metropolis-Hastings algorithm was first defined for
+    transition density, together with a positive auxiliary transition density
+    <math|g> and an accept ratio. Then, the transition density is defined as
 
-  As a summary, Metropolis-Hastings algorithm defines the transition density
-  <math|q<rsub|\<Delta\>t>> by equation (<reference|equation:Metropolis-Hastings>),
-  together with a positive auxiliary transition density
-  <math|g<rsub|\<Delta\>t>> and an accept ratio. The transition rate <math|r>
-  derived from <math|q<rsub|\<Delta\>t>> satisfies detailed balance
-  condition. Also <math|r> connects every two elements in the alphabet
-  <math|\<cal-X\>>. So, theorem <reference|theorem:relax> states that,
-  evolved by the master equation (<reference|equation:Master Equation>), any
-  initial distribution will finally relax to the stationary distribution
-  <math|\<Pi\>>.
+    <\equation>
+      q<around*|(|x\|y|)>\<assign\>min<around*|(|1,<frac|g<around*|(|y\|x|)>
+      \<pi\><around*|(|x|)>|g<around*|(|x\|y|)> \<pi\><around*|(|y|)>>|)>
+      g<around*|(|x\|y|)>,<label|equation:Metropolis-Hastings origin>
+    </equation>
+
+    where <math|g> is positive-definite on <math|\<cal-X\>>. This definition
+    has an intuitive explanation. The algorithm first propose a transition
+    from <math|x> to <math|y> based on <math|g<around*|(|y\|x|)>>, this
+    proposal will be accepted by ratio given by the first factor in the right
+    hand side. If accepted, then transit to <math|y>, otherwise stay on
+    <math|x>.
+
+    It is straight forward to check that, if, in addition, <math|g> smoothly
+    depends on a parameter <math|\<Delta\>t> as <math|g<rsub|\<Delta\>t>>, so
+    is <math|q> as <math|q<rsub|\<Delta\>t>>, and if we expand
+    <math|g<rsub|\<Delta\>t>> at <math|\<Delta\>t\<rightarrow\>0> as
+    <math|g<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+\<gamma\><around*|(|x,y|)>
+    \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>, then we will find
+    <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
+    \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. But, as discussed in
+    section <reference|section: Transition Rate Determines Transition
+    Density>, transition density is completely determined by its transition
+    rate, so <math|q<rsub|\<Delta\>t>> is determined by <math|r>. It is not
+    guaranteed that, from transition rate <math|\<gamma\>> and <math|r>, the
+    giddy equation (<reference|equation:transition rate determines transition
+    density>) will furnishes exactly the equation
+    (<reference|equation:Metropolis-Hastings origin>) with replacements
+    <math|g\<rightarrow\>g<rsub|\<Delta\>t>> and
+    <math|q\<rightarrow\>q<rsub|\<Delta\>t>>. What the original format of
+    Metropolis-Hastings algorithm really brings for us is the method about
+    how to construct a transition rate out of a stationary distribution that
+    satisfies detailed balance condition.
+  </footnote>
 
   <section|Kramers-Moyal Expansion and Langevin Dynamics>
 
@@ -970,10 +973,10 @@
   which is the <with|font-series|bold|Fokker-Planck equation>.
 
   As a special case of master equation, we may wonder when Fokker-Planck
-  equation will satisfy detailed balance? Directly from the form of
+  equation will satisfy detailed balance condition? Directly from the form of
   transition density, we find that if there is a stationary distribution
-  <math|\<Pi\>> such that Fokker-Planck equation satisfies detailed balance,
-  then we must have <\footnote>
+  <math|\<Pi\>> such that Fokker-Planck equation satisfies detailed balance
+  condition, then we must have <\footnote>
     <\small>
       Suppose there is a stationary distribution <math|\<pi\>> such that
       <math|q<rsub|\<mathd\>t><around*|(|x+\<epsilon\>\|x|)>
@@ -1030,8 +1033,8 @@
     tr ln \<Sigma\><around*|(|x|)>|]>.
   </equation>
 
-  This indicates that, to satisfy detailed balance, <math|\<mu\>> shall be
-  conservative.<\footnote>
+  This indicates that, to satisfy detailed balance condition, <math|\<mu\>>
+  shall be conservative.<\footnote>
     Recall that <math|\<Sigma\>> is symmetric thus can be diagonalized, the
     <math|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>> factor can be
     then be absorbed by a re-definition of <math|x> and
@@ -1063,16 +1066,20 @@
     <associate|auto-7|<tuple|1.6|5>>
     <associate|auto-8|<tuple|1.7|6>>
     <associate|auto-9|<tuple|1.8|7>>
-    <associate|equation:Detailed Balance|<tuple|5|3>>
+    <associate|equation:Detailed Balance|<tuple|6|3>>
     <associate|equation:Discrete Time Master Equation|<tuple|1|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|11|8>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|13|8>>
     <associate|equation:Master Equation|<tuple|2|1>>
-    <associate|equation:Metropolis-Hastings|<tuple|10|7>>
-    <associate|equation:circle|<tuple|9|6>>
-    <associate|equation:define stationary density function|<tuple|8|6>>
-    <associate|equation:discrete time master equation v2|<tuple|5|2>>
+    <associate|equation:Metropolis-Hastings|<tuple|11|7>>
+    <associate|equation:Metropolis-Hastings origin|<tuple|12|?>>
+    <associate|equation:circle|<tuple|10|6>>
+    <associate|equation:define stationary density function|<tuple|9|6>>
+    <associate|equation:discrete time master equation v2|<tuple|3|2>>
+    <associate|equation:equation:Metropolis-Hastings|<tuple|11|?>>
     <associate|equation:master equation v2|<tuple|4|2>>
-    <associate|equation:relative entropy derivative|<tuple|7|4>>
+    <associate|equation:relative entropy derivative|<tuple|8|4>>
+    <associate|equation:transition rate determines transition
+    density|<tuple|5|?>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|4>>
@@ -1080,13 +1087,15 @@
     <associate|footnote-5|<tuple|5|5>>
     <associate|footnote-6|<tuple|6|9>>
     <associate|footnote-7|<tuple|7|9>>
+    <associate|footnote-8|<tuple|8|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
     <associate|footnr-4|<tuple|4|5>>
     <associate|footnr-5|<tuple|5|5>>
-    <associate|footnr-6|<tuple|6|9>>
+    <associate|footnr-6|<tuple|12|9>>
     <associate|footnr-7|<tuple|7|9>>
+    <associate|footnr-8|<tuple|8|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|9>>
     <associate|section: Detailed Balance Provides Stationary
@@ -1097,6 +1106,8 @@
     Chain|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
+    <associate|section: Transition Rate Determines Transition
+    Density|<tuple|1.3|?>>
     <associate|theorem:relax|<tuple|1|5>>
   </collection>
 </references>

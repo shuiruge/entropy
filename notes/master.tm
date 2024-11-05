@@ -1,4 +1,4 @@
-<TeXmacs|2.1>
+<TeXmacs|2.1.4>
 
 <style|book>
 
@@ -20,107 +20,156 @@
   employed throughout the discussion.
 
   <subsection|Master Equation Describes the Evolution of Markov
-  Chain><label|section: Master Equation Describes the Evolution of Markov
-  Chain>
+  Process><label|section: Master Equation Describes the Evolution of Markov
+  Process>
 
-  The generic dynamics of a Markov chain can be characterized by its
-  <with|font-series|bold|transition density>
-  <math|q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|y\|x|)>> which describes
-  the density that transits from <math|x> at time <math|t> to <math|y> at
-  time <math|t<rprime|'>>. Since the underlying dynamics which determines
-  <math|q<rsub|t\<rightarrow\>t<rprime|'>>> is usually autonomous, we can
-  suppose that <math|q<rsub|t\<rightarrow\>t<rprime|'>>> depends only on the
-  difference <math|\<Delta\>t\<assign\>t<rprime|'>-t>. This will greatly
-  reduce the complexity while covering most of the important situations. So,
-  throughout this note, we use <math|q<rsub|\<Delta\>t>> instead of
-  <math|q<rsub|t\<rightarrow\>t<rprime|'>>>.
+  Without losing generality, consider a pile of sand on a desk. The desk has
+  been fenced in so that the sands will not flow out of the desk. Imagine
+  that these sands are magic, having free will to move on the desk. The
+  distribution of sands changes with time. In the language of probability,
+  the density of sands at position <math|x> of the desk is described by a
+  time-dependent density function <math|p<around*|(|x,t|)>>, where the total
+  mass of the sands on the desk is normalized to <math|1>, and the position
+  on the desk characterizes the alphabet <math|\<cal-X\>>.
 
-  During a temporal unit <math|\<Delta\>t>, the change of density at
-  <math|X=x> equals to the total density that transits into <math|x>
-  subtracting the total density that transits out of <math|x>. That is,
+  Let <math|q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|y\|x|)>> denote the
+  <em|portion> of density at position <math|x> that transits to position
+  <math|y>, from <math|t> to <math|t<rprime|'>>. Then, the transited density
+  will be <math|q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|y\|x|)>
+  p<around*|(|x,t|)>>. There may be some portion of density at position
+  <math|x> that does not transit during <math|t\<rightarrow\>t<rprime|'>>
+  (the lazy sands). In this case we imagine the sands transit from position
+  <math|x> to <math|x> (stay on <math|x>), which is
+  <math|q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|x\|x|)>>. Now, every
+  sand at position <math|x> has transited during
+  <math|t\<rightarrow\>t<rprime|'>>, and the total portion shall be 100%,
+  which means
 
   <\equation>
-    p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    <around*|[|q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>-
-    q<rsub|\<Delta\>t><around*|(|y\|x|)>p<around*|(|x,t|)>|]>.<label|equation:Discrete
-    Time Master Equation>
+    <big|int><rsub|\<cal-X\>>\<mathd\>y q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|y\|x|)>=1.<label|equation:transition
+    density normalization>
   </equation>
 
-  It is called the <with|font-series|bold|discrete time master equation>.
+  As portion, <math|q<rsub|t\<rightarrow\>t<rprime|'>>> cannot be negative,
+  thus <math|q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|x\|y|)>\<geqslant\>0>
+  for each <math|x> and <math|y> in <math|\<cal-X\>>. We call
+  <math|q<rsub|t\<rightarrow\>t<rprime|'>>> the <strong|transition density>.
+  Not like the density function of distribution, transition density can be
+  zero in a subset of <math|\<cal-X\>>.
 
-  What are the requirements for transition density? The last term of master
-  equation <reference|equation:Discrete Time Master Equation> can be
-  re-written as <math|p<around*|(|x,t|)>\<times\><big|int><rsub|\<cal-X\>>\<mathd\>y
-  q<rsub|\<Delta\>t><around*|(|y\|x|)>>. If <math|q<rsub|\<Delta\>t>> is
-  normalized by <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
-  q<rsub|\<Delta\>t><around*|(|y\|x|)>=1> for any <math|x\<in\>\<cal-X\>>,
-  then we have<\footnote>
-    In principle, we can employ this simpler expression for defining master
-    equation. But, the expression of equation (<reference|equation:Discrete
-    Time Master Equation>) is particularly useful for deriving detailed
-    balance condition in section <reference|section: Detailed Balance
-    Provides Stationary Distribution>.
-  </footnote>
+  The transition makes a difference on density at position <math|x>. The
+  difference is caused by the density transited from <math|x>, which is
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
+  q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|y\|x|)> p<around*|(|x,t|)>>,
+  and that transited to <math|x>, which is
+  <math|><math|<big|int><rsub|\<cal-X\>>\<mathd\>y
+  q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|x\|y|)>p<around*|(|y,t|)>>.
+  Thus, we have
 
   <\equation*>
-    p<around*|(|x,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|x\|y|)>p<around*|(|y,t|)>.
+    p<around*|(|x,t<rprime|'>|)>-p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    <around*|[|q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|x\|y|)>p<around*|(|y,t|)>-
+    q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|y\|x|)>p<around*|(|x,t|)>|]>.
   </equation*>
 
-  It means the density at <math|x> equals to the density transited into
-  <math|x> during the time interval <math|\<Delta\>t> (this is a little
-  weird). We have <math|p<around*|(|x,t|)>\<gtr\>0> for all
-  <math|x\<in\>\<cal-X\>>, but have to guarantee that
-  <math|p<around*|(|x,t+\<Delta\>t|)>\<gtr\>0>, for sharing the same alphabet
-  <math|\<cal-X\>> (recall in section <reference|section: A Short Review of
-  Probability>, density function is defined to be positive). Basically, this
-  requires <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> to be non-negative for
-  all <math|x,y\<in\>\<cal-X\>>, since, otherwise, we can construct a
-  <math|p<around*|(|y,t|)>> with large value on the place where
-  <math|q<rsub|\<Delta\>><around*|(|x\|y|)>\<less\>0> and tiny value on the
-  rest, so that <math|p<around*|(|x,t+\<Delta\>t|)>\<less\>0>. This is
-  natural since <math|q<rsub|\<Delta\>><around*|(|x\|y|)>> describes the
-  transited density, and negative transited density cannot be \Pphysical\Q.
-  It further requires that for each <math|x\<in\>\<cal-X\>>, there is density
-  transited into <math|x>. Precisely, for any <math|x> there is a measurable
-  subset of <math|y> such that <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0>.
-  Combined with the non-negativity, it directly implies
-  <math|p<around*|(|x,t+\<Delta\>t|)>\<gtr\>0>. As a summary, we require the
-  transition density <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> to be
-  normalized on <math|x>, to be non-negative, and to be that there is
-  measurable density transited into <math|x> (or equivalently,
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
-  q<rsub|\<Delta\>t><around*|(|x\|y|)>\<gtr\>0>).
-
-  If <math|q<rsub|\<Delta\>t>> is smooth on <math|\<Delta\>t>, then we have
-  the linear expansion <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<chi\><around*|(|x,y|)>+r<around*|(|x,y|)>
-  \<Delta\>t+o<around*|(|\<Delta\>t|)>> where <math|\<chi\>> and <math|r> are
-  well-defined functions (at least well-defined <hlink|generalized
-  function|https://en.wikipedia.org/wiki/Generalized_function>s). When
-  <math|\<Delta\>t=0>, there is no transition at all, and
-  <math|p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-  \<chi\><around*|(|x,y|)>p<around*|(|y,t|)>>. The density function <math|p>
-  is arbitrary, implying that <math|\<chi\><around*|(|x,y|)>=\<delta\><around*|(|x-y|)>>.
-  Plugging all these back to equation <reference|equation:Discrete Time
-  Master Equation> and taking the limit <math|\<Delta\>t\<rightarrow\>0>, we
-  get the <with|font-series|bold|continuous time master equation>:
+  By inserting equation (<reference|equation:transition density
+  normalization>), we find
 
   <\equation>
-    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<around*|[|
-    r<around*|(|x,y|)>p<around*|(|y,t|)>-r<around*|(|y,x|)>p<around*|(|x,t|)>|]>.<label|equation:Master
-    Equation>
+    p<around*|(|x,t<rprime|'>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|t\<rightarrow\>t<rprime|'>><around*|(|x\|y|)>p<around*|(|y,t|)>,<label|equation:discrete
+    time master equation v0>
   </equation>
 
-  The <math|r> is called the <with|font-series|bold|transition rate>,
-  characterizing the speed of transition. The normalization
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
-  q<rsub|\<Delta\>t><around*|(|x\|y|)>=1> demands that
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|x,y|)>=0>. And the
-  non-negativity <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>\<geqslant\>0>
-  needs <math|r<around*|(|x,y|)>\<geqslant\>0> when <math|x\<neq\>y>. The
-  last requirement of transition density demands that
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>\<gtr\>-1>,
-  which is a little weird.
+  which is called the <strong|discrete time master equation>. When
+  <math|t<rprime|'>=t>, we have <math|p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+  q<rsub|t\<rightarrow\>t><around*|(|x\|y|)>p<around*|(|y,t|)>>, indicating
+  that
+
+  <\equation*>
+    q<rsub|t\<rightarrow\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>.
+  </equation*>
+
+  \;
+
+  In addition, if the movement of sand is smooth, that is, a sand cannot
+  disappear at one position and then suddenly reappear at another position
+  far distant away, but has to move from one position to another by
+  continuous movement, then <math|q<rsub|t\<rightarrow\>t<rprime|'>>> is
+  smooth on <math|t<rprime|'>>. Taking derivative on <math|t<rprime|'>> and
+  then setting <math|t<rprime|'>> to <math|t>, we have
+
+  <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<rsub|t><around*|(|x,y|)>p<around*|(|y,t|)>,<label|equation:master
+    equation v0>
+  </equation*>
+
+  where <math|r<rsub|t><around*|(|x,y|)>\<assign\>lim<rsub|t<rprime|'>\<rightarrow\>t><around*|(|\<partial\>q<rsub|t\<rightarrow\>t<rprime|'>>/\<partial\>t<rprime|'>|)><around*|(|x\|y|)>>,
+  called <strong|transition rate>. It is called the <strong|continuous time
+  master equation>, or simply <strong|master equation>. The word \Pmaster\Q
+  indicates that the transition rate has completely determined (mastered) the
+  evolutionary behavior of distribution.
+
+  Even though all these concepts are born of the pile of sand, they are
+  applicable to any stochastic process where the distribution
+  <math|P<around*|(|t|)>> is time-dependent (but the alphabet
+  <math|\<cal-X\>> is time-invariant), no matter whether the random variable
+  is discrete or continuous.
+
+  A stochastic process is <strong|Markovian> if the transition density
+  <math|q<rsub|t\<rightarrow\>t<rprime|'>>> depends only on the time interval
+  <math|\<Delta\>t\<assign\>t<rprime|'>-t>, thus <math|q<rsub|\<Delta\>t>>.
+  In this case, transition rate <math|r> is time-independent, so the master
+  equation becomes
+
+  <\equation>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|x,y|)>p<around*|(|y,t|)>.<label|equation:master equation>
+  </equation>
+
+  <em|Since we only deal with Markovian stochastic process throughout this
+  note, when referring to master equation, we mean equation
+  <reference|equation:master equation>.>
+
+  Before finishing this section, we discuss the demanded conditions for
+  transition rate. The normalization of transition density
+  (<reference|equation:transition density normalization>) implies that
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|x,y|)>=0>. This can
+  be seen by Taylor expanding <math|q<rsub|\<Delta\>t>> by <math|\<Delta\>t>,
+  as <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
+  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>, where we have inserted
+  <math|q<rsub|0><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>> and the
+  definition of <math|r>. Also from this Taylor expansion, we see that the
+  non-negativity of <math|q<rsub|\<Delta\>t>> implies
+  <math|r<around*|(|x,y|)>\<geqslant\>0> when <math|x\<neq\>y>. Since
+  <math|p> is a density function of distribution, and density function is
+  defined to be positive (see section <reference|section: A Short Review of
+  Probability>), the equation (<reference|equation:discrete time master
+  equation v0>) must conserve this positivity. We are to show that this is
+  guaranteed by the master equation itself, without any extra condition
+  demanded for the transition rate. It is convenient to use discrete
+  notations, thus replace <math|x\<rightarrow\>i>, <math|y\<rightarrow\>j>,
+  and <math|<big|int>\<rightarrow\><big|sum>>. The master equation turns to
+  be <math|<around*|(|\<mathd\>p<rsub|i>/\<mathd\>t|)><around*|(|t|)>=<big|sum><rsub|j>r<rsub|i
+  j> p<rsub|j><around*|(|t|)>>. Notice that it becomes an ordinary
+  differential equation. Recall that <math|r<rsub|i j>\<geqslant\>0> when
+  <math|i\<neq\>j>, and thus <math|r<rsub|i i>\<leqslant\>0> (since
+  <math|<big|sum><rsub|j>r<rsub|j i>=0>). We separate the right hand side to
+  <math|r<rsub|i i> p<rsub|i><around*|(|t|)>+<big|sum><rsub|j:j\<neq\>i>r<rsub|i
+  j> p<rsub|j><around*|(|t|)>>, and the worst situation is that
+  <math|r<rsub|i j>=0> for each <math|j\<neq\>i> and <math|r<rsub|i
+  i>\<less\>0>. In this case, the master equation reduces to
+  <math|<around*|(|\<mathd\>p<rsub|i>/\<mathd\>t|)><around*|(|t|)>=r<rsub|i
+  i> p<rsub|i><around*|(|t|)>>, which has the solution
+  <math|p<rsub|i><around*|(|t|)>=p<rsub|i><around*|(|0|)>
+  exp<around*|(|r<rsub|i i> t|)>>. It implies that
+  <math|p<rsub|i><around*|(|t|)>\<gtr\>0> as long as
+  <math|p<rsub|i><around*|(|0|)>\<gtr\>0>, indicating that master equation
+  conserves the positivity of density function. As a summary, we demand
+  transition rate <math|r> to be <math|r<around*|(|x,y|)>\<gtr\>0> when
+  <math|x\<neq\>y> and <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
+  r<around*|(|x,y|)>=0>.
 
   <subsection|Transition Rate Determines Transition Density><label|section:
   Transition Rate Determines Transition Density>
@@ -132,37 +181,20 @@
   structure, by which the local accumulates to be global. We are to show how
   this happens.
 
-  \ We are to express the transition density <math|q<rsub|\<Delta\>t>> by its
-  transition rate <math|r>. By inserting <math|q<rsub|\<Delta\>t><around*|(|z\|x|)>=\<delta\><around*|(|z-x|)>+r<around*|(|z,x|)>
-  \<Delta\>t +\<omicron\><around*|(|\<Delta\>t|)>> into
-
-  <\equation>
-    p<around*|(|z,t+\<Delta\>t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<rsub|\<Delta\>t><around*|(|z\|x|)>p<around*|(|x,t|)>,<label|equation:discrete
-    time master equation v2>
-  </equation>
-
-  we find
-
-  <\equation>
-    <frac|\<partial\>p|\<partial\>t><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    r<around*|(|z,x|)> p<around*|(|x,t|)>.<label|equation:master equation v2>
-  </equation>
-
-  Surprisingly, we can use this formula to calculate
-  <math|\<partial\><rsup|n>p/\<partial\>t<rsup|n>> for any <math|n>. Indeed,
-  for <math|n=2>,
+  \ We can use the master equation (<reference|equation:master equation>) to
+  calculate <math|\<partial\><rsup|n>p/\<partial\>t<rsup|n>> for any
+  <math|n>. Indeed, for <math|n=2>,
 
   <\align>
     <tformat|<table|<row|<cell|>|<cell|<frac|\<partial\><rsup|2>p|\<partial\>t<rsup|2>><around*|(|z,t|)>>>|<row|<cell|<around*|{|insert
-    equation <around*|(|<reference|equation:master equation
-    v2>|)>|}>=>|<cell|<frac|\<partial\>|\<partial\>t><big|int><rsub|\<cal-X\>>\<mathd\>y
+    equation <around*|(|<reference|equation:master
+    equation>|)>|}>=>|<cell|<frac|\<partial\>|\<partial\>t><big|int><rsub|\<cal-X\>>\<mathd\>y
     r<around*|(|z,y|)> p<around*|(|y,t|)>>>|<row|<cell|<around*|{|exchange
     limits|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|z,y|)>
     <frac|\<partial\>p|\<partial\>t><around*|(|y,t|)>>>|<row|<cell|<around*|{|insert
-    equation <around*|(|<reference|equation:master equation
-    v2>|)>|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|z,y|)>
-    <big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|y,x|)>
+    equation <around*|(|<reference|equation:master
+    equation>|)>|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> <big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|y,x|)>
     p<around*|(|x,t|)>>>|<row|<cell|<around*|{|rearrange|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
     r<around*|(|z,y|)> \ r<around*|(|y,x|)> p<around*|(|x,t|)>.>>>>
   </align>
@@ -177,15 +209,15 @@
   </equation*>
 
   Notice the pattern: a sequence of <math|r> and a rightmost
-  <math|p<around*|(|x,t|)>>, the same as the right hand side of equation
-  (<reference|equation:discrete time master equation v2>). The reason for
-  this pattern to arise is that <math|q<rsub|\<Delta\>t>>, thus <math|r>, is
-  independent of <math|t>: a Markovian property.
+  <math|p<around*|(|x,t|)>>. The reason for this pattern to arise is that
+  <math|q<rsub|\<Delta\>t>>, thus <math|r>, is independent of <math|t>: a
+  Markovian property.
 
   Also, Taylor expand the both sides of equation
-  (<reference|equation:discrete time master equation v2>) by
-  <math|\<Delta\>t> gives, at <math|<around*|(|\<Delta\>t|)><rsup|n+1>>
-  order,
+  (<reference|equation:discrete time master equation v0>) (replace
+  <math|q<rsub|t\<rightarrow\>t<rprime|'>>> by <math|q<rsub|\<Delta\>t>> for
+  Markov process) by <math|\<Delta\>t> gives, at
+  <math|<around*|(|\<Delta\>t|)><rsup|n+1>> order,
 
   <\equation*>
     <frac|\<partial\><rsup|n+1>p|\<partial\>t<rsup|n+1>><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -272,18 +304,15 @@
     q<rprime|'><rsub|\<Delta\>t><around*|(|z\|x|)>p<around*|(|x,t|)>
   </equation*>
 
-  also leads to equation (<reference|equation:master equation v2>), the same
+  also leads to equation (<reference|equation:master equation>), the same
   <math|r> as that of <math|q<rsub|\<Delta\>t>>. So, we should have
   <math|q<rprime|'><rsub|\<Delta\>t>=q<rsub|\<Delta\>t>>, which means
   <math|f> is not free, but should vanish.
 
-  The answer to this question is that, even though a transition density has
-  satisfied all the requirements claimed in section <reference|section:
-  Master Equation Describes the Evolution of Markov Chain> (such as
-  non-negative), it is still not completely free to choose, but sharing the
-  same degree of freedom as that of its transition rate. <em|The fundamental
-  quantity that describes the evolution of a continuous time Markov chain is
-  transition rate.> For example, consider
+  The answer to this question is that, a transition density is not free to
+  choose, but sharing the same degree of freedom as that of its transition
+  rate. <em|The fundamental quantity that describes the evolution of a
+  continuous time Markov process is transition rate.> For example, consider
   <math|p<around*|(|z,t+\<Delta\>t+\<Delta\>t<rprime|'>|)>> for any
   <math|\<Delta\>t> and <math|\<Delta\>t<rprime|'>>. Directly, we have
 
@@ -325,9 +354,17 @@
   Distribution>
 
   Let <math|\<Pi\>> a stationary solution of master equation
-  <reference|equation:Master Equation>. Then, its density function
+  (<reference|equation:master equation>). Then, its density function
   <math|\<pi\>> satisfies <math|<big|int><rsub|\<cal-X\>>\<mathd\>y
-  <around*|[|r<around*|(|x,y|)> \<pi\><around*|(|y|)>-r<around*|(|y,x|)>\<pi\><around*|(|x|)>|]>=0>.
+  r<around*|(|x,y|)> \<pi\><around*|(|y|)>=0>. Since we have demanded that
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|y,x|)>=0>, the
+  stationary master equation can be re-written as
+
+  <\equation*>
+    <big|int><rsub|\<cal-X\>>\<mathd\>y <around*|[|r<around*|(|x,y|)>
+    \<pi\><around*|(|y|)>-r<around*|(|y,x|)>\<pi\><around*|(|x|)>|]>=0.
+  </equation*>
+
   But, this condition is too weak to be used. A more useful condition, which
   is stronger than this, is that the integrand vanishes everywhere:
 
@@ -336,11 +373,11 @@
     Balance>
   </equation>
 
-  which is called the <with|font-series|bold|detailed balance> condition.
+  which is called the <with|font-series|bold|detailed balance condition>.
 
-  <subsection|Detailed Balance and Connectivity Monotonically Reduce Relative
-  Entropy><label|section: Detailed Balance with Connectivity Monotonically
-  Reduces Relative Entropy>
+  <subsection|Detailed Balance Condition and Connectivity Monotonically
+  Reduce Relative Entropy><label|section: Detailed Balance Condition and
+  Connectivity Monotonically Reduce Relative Entropy>
 
   Given the time <math|t>, if the time-dependent distribution
   <math|P<around*|(|t|)>> and the stationary distribution <math|\<Pi\>> share
@@ -359,7 +396,7 @@
   generalization of Shannon entropy to continuous random variables.
 
   We can calculate the time-derivative of relative entropy by master equation
-  <reference|equation:Master Equation>. Generally, the time-derivative of
+  (<reference|equation:master equation>). Generally, the time-derivative of
   relative entropy has no interesting property. But, if the <math|\<pi\>> is
   more than stationary but satisfying a stronger condition: detailed balance,
   then <math|\<mathd\>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>/\<mathd\>t> will
@@ -386,7 +423,7 @@
     </equation*>
 
     Now, we replace <math|\<partial\>p/\<partial\>t> by master equation
-    <reference|equation:Master Equation>, as
+    (<reference|equation:master equation>), as
 
     <\equation*>
       <frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -545,7 +582,7 @@
     balance condition <reference|equation:Detailed Balance> holds for
     <math|\<Pi\>> and <math|r>, then for any time-dependent distribution
     <math|P<around*|(|t|)>> with the same alphabet (at one time) evolved by
-    the master equation <reference|equation:Master Equation>,
+    the master equation <reference|equation:master equation>,
     <math|P<around*|(|t|)>> will monotonically and constantly relax to
     <math|\<Pi\>>.
   </theorem>
@@ -609,10 +646,11 @@
 
   The first line is recognized as <math|H<around*|(|P<around*|(|t+\<Delta\>t|)>,P<around*|(|t|)>|)>>,
   which is non-negative. Following the same steps in section
-  <reference|section: Detailed Balance with Ergodicity Monotonically Reduces
-  Relative Entropy> (but using discrete time master equation
-  <reference|equation:Discrete Time Master Equation> instead), the second
-  line reduces to
+  <reference|section: Detailed Balance Condition and Connectivity
+  Monotonically Reduce Relative Entropy> (but using discrete time master
+  equation (<reference|equation:discrete time master equation v0>) instead,
+  replacing <math|q<rsub|t\<rightarrow\>t<rprime|'>>> by
+  <math|q<rsub|\<Delta\>t>> for Markov process), the second line reduces to
 
   <\equation*>
     -<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -635,7 +673,7 @@
 
   Given a transition rate, we wonder if there exists a density function such
   that detailed balance condition (<reference|equation:Detailed Balance>)
-  holds. Actually, the equation <reference|equation:Detailed Balance>
+  holds. Actually, equation (<reference|equation:Detailed Balance>)
   <em|defines> a density function. For example, if both
   <math|r<around*|(|x,y|)>> and <math|r<around*|(|y,x|)>> are not zero, we
   can construct <math|\<pi\><around*|(|y|)>> by given
@@ -705,7 +743,7 @@
   where <math|<big|int><rsub|x><rsup|y>> indicates any path from <math|x> to
   <math|y> (if <math|x> and <math|y> are connected).
 
-  Condition <reference|equation:circle> implies that the previous
+  Condition (<reference|equation:circle>) implies that the previous
   construction does define a <math|\<pi\>> that holds the detailed balance
   condition. Given <math|x,y\<in\>\<cal-X\>>, we have <math|ln
   \<pi\><around*|(|x|)>=ln \<pi\><around*|(|x<rsub|0>|)>+<big|int><rsub|x<rsub|0>><rsup|x>\<mathd\>s
@@ -723,18 +761,18 @@
   and <math|y> are not connected, then both <math|r<around*|(|x,y|)>> and
   <math|r<around*|(|y,x|)>> shall vanish (recall the requirements of
   transition rate in section <reference|section: Master Equation Describes
-  the Evolution of Markov Chain>: if <math|r<around*|(|x,y|)>=0>, then
+  the Evolution of Markov Process>: if <math|r<around*|(|x,y|)>=0>, then
   <math|r<around*|(|y,x|)>=0>), and detailed balance condition holds
   naturally.
 
-  So, condition <reference|equation:circle> is <em|essential and sufficient
+  So, condition (<reference|equation:circle>) is <em|essential and sufficient
   for the existence of <math|\<pi\>> that holds the detailed balance
   condition <reference|equation:Detailed Balance>>. If <math|\<cal-X\>> is a
   simply connected smooth manifold, then using Stokes's theorem, we have
   <math|\<nabla\>\<times\>\<rho\>=0> on <math|\<cal-X\>>. But, generally
   <math|\<cal-X\>> is neither simply connected nor smooth, but involving
   independent subsystems and discrete. In these cases, condition
-  <reference|equation:circle> becomes very complicated.
+  (<reference|equation:circle>) becomes very complicated.
 
   In many applications, we consider the inverse question: given a density
   function, if there exists a transition rate such that detailed balance
@@ -755,7 +793,7 @@
   <\equation>
     r<around*|(|x,y|)>=min<around*|(|1,<frac|\<gamma\><around*|(|y,x|)>
     \<pi\><around*|(|x|)>|\<gamma\><around*|(|x,y|)>
-    \<pi\><around*|(|y|)>>|)> \<gamma\><around*|(|x,y|)>.<label|equation:equation:Metropolis-Hastings>
+    \<pi\><around*|(|y|)>>|)> \<gamma\><around*|(|x,y|)>.<label|equation:equation:metropolis-hastings>
   </equation>
 
   This transition rate connects every two elements in <math|\<cal-X\>> (since
@@ -781,49 +819,77 @@
   </align>
 
   Thus detailed balance condition holds. So, theorem
-  <reference|theorem:relax> states that, evolved by the master equation
-  (<reference|equation:Master Equation>), any initial distribution will
-  finally relax to the stationary distribution <math|\<Pi\>>.<\footnote>
-    Historically, Metropolis-Hastings algorithm was first defined for
-    transition density, together with a positive auxiliary transition density
-    <math|g> and an accept ratio. Then, the transition density is defined as
+  <reference|theorem:relax> states that, <em|evolved by the master equation
+  <reference|equation:master equation>, any initial distribution will finally
+  relax to the stationary distribution <math|\<Pi\>>>.
 
-    <\equation>
-      q<around*|(|x\|y|)>\<assign\>min<around*|(|1,<frac|g<around*|(|y\|x|)>
-      \<pi\><around*|(|x|)>|g<around*|(|x\|y|)> \<pi\><around*|(|y|)>>|)>
-      g<around*|(|x\|y|)>,<label|equation:Metropolis-Hastings origin>
-    </equation>
+  Metropolis-Hastings algorithm was first proposed by Nicholas Metropolis and
+  others in 1953 in Los Alamos, and then improved by Canadian statistician
+  Wilfred Hastings in 1970. This algorithm was first defined for transition
+  density. Together with a positive auxiliary transition density <math|g>,
+  the transition density is defined as
 
-    where <math|g> is positive-definite on <math|\<cal-X\>>. This definition
-    has an intuitive explanation. The algorithm first propose a transition
-    from <math|x> to <math|y> based on <math|g<around*|(|y\|x|)>>, this
-    proposal will be accepted by ratio given by the first factor in the right
-    hand side. If accepted, then transit to <math|y>, otherwise stay on
-    <math|x>.
+  <\equation>
+    q<around*|(|x\|y|)>\<assign\>min<around*|(|1,<frac|g<around*|(|y\|x|)>
+    \<pi\><around*|(|x|)>|g<around*|(|x\|y|)> \<pi\><around*|(|y|)>>|)>
+    g<around*|(|x\|y|)>,<label|equation:metropolis-hastings origin>
+  </equation>
 
-    It is straight forward to check that, if, in addition, <math|g> smoothly
-    depends on a parameter <math|\<Delta\>t> as <math|g<rsub|\<Delta\>t>>, so
-    is <math|q> as <math|q<rsub|\<Delta\>t>>, and if we expand
-    <math|g<rsub|\<Delta\>t>> at <math|\<Delta\>t\<rightarrow\>0> as
-    <math|g<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+\<gamma\><around*|(|x,y|)>
-    \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>, then we will find
-    <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
-    \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. But, as discussed in
-    section <reference|section: Transition Rate Determines Transition
-    Density>, transition density is completely determined by its transition
-    rate, so <math|q<rsub|\<Delta\>t>> is determined by <math|r>. It is not
-    guaranteed that, from transition rate <math|\<gamma\>> and <math|r>, the
-    giddy equation (<reference|equation:transition rate determines transition
-    density>) will furnishes exactly the equation
-    (<reference|equation:Metropolis-Hastings origin>) with replacements
-    <math|g\<rightarrow\>g<rsub|\<Delta\>t>> and
-    <math|q\<rightarrow\>q<rsub|\<Delta\>t>>. What the original format of
-    Metropolis-Hastings algorithm really brings for us is the method about
-    how to construct a transition rate out of a stationary distribution that
-    satisfies detailed balance condition.
-  </footnote>
+  where <math|g> is positive-definite on <math|\<cal-X\>>. Notice that, in
+  equation (<reference|equation:metropolis-hastings origin>) there is no
+  extra time parameter like the <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>>
+  in section <reference|section: Master Equation Describes the Evolution of
+  Markov Process>. It can be seen as a fixed time interval, which can only be
+  used for discrete time master equation.
 
-  <section|Kramers-Moyal Expansion and Langevin Dynamics>
+  This definition has an intuitive and practical explanation. The two factors
+  can be seen as two conditional probability. The factor
+  <math|g<around*|(|x\|y|)>> first proposes a transition from <math|y> to
+  <math|x>. Then, this proposal will be accepted by Bernoulli probability
+  with ratio given by the first factor in the right hand side. If accepted,
+  then transit to <math|x>, otherwise stay on <math|y>. Altogether, we get a
+  conditional probability jumping from <math|y> to <math|x>, the
+  <math|q<around*|(|x\|y|)>>.
+
+  It is straight forward to check that, if, in addition, <math|g> smoothly
+  depends on a parameter <math|\<Delta\>t> as <math|g<rsub|\<Delta\>t>>, so
+  is <math|q> as <math|q<rsub|\<Delta\>t>>, and if we expand
+  <math|g<rsub|\<Delta\>t>> at <math|\<Delta\>t\<rightarrow\>0> as
+  <math|g<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+\<gamma\><around*|(|x,y|)>
+  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>, then we will find
+  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
+  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. Indeed, when <math|x=y>,
+  we have <math|q<rsub|\<Delta\>t><around*|(|x\|x|)>=g<rsub|\<Delta\>t><around*|(|x,x|)>>.
+  And when <math|x\<neq\>y>, <math|\<delta\><around*|(|x-y|)>=0>, we find
+
+  <\equation*>
+    q<rsub|\<Delta\>t><around*|(|x\|y|)>=<around*|[|min<around*|(|1,<frac|\<gamma\><around*|(|y,x|)>
+    \<pi\><around*|(|x|)>+\<omicron\><around*|(|1|)>|\<gamma\><around*|(|x,y|)>
+    \<pi\><around*|(|y|)>+\<omicron\><around*|(|1|)>>|)>
+    <around*|(|\<gamma\><around*|(|x,y|)>+\<omicron\><around*|(|1|)>|)>|]>\<Delta\>t.
+  </equation*>
+
+  Altogether, for each <math|x,y\<in\>\<cal-X\>>, we find
+  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
+  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. The higher order
+  corrections come from those of <math|g<rsub|\<Delta\>t>>. So, a \Pprincipal
+  diagonal\Q transition density <math|g>, where <math|g<around*|(|x\|x|)>> is
+  much greater than <math|g<around*|(|x\|y|)>> and
+  <math|g<around*|(|y\|x|)>>, then the <math|q<around*|(|x\|y|)>> defined by
+  equation (<reference|equation:metropolis-hastings origin>) is a good
+  approximation to <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> with a
+  sufficiently small <math|\<Delta\>t>. <em|In practice, we use the
+  Metropolis-Hastings algorithm <reference|equation:metropolis-hastings
+  origin> with a principal diagonal <math|g> to numerically solve master
+  equation <reference|equation:master equation>.> But, when <math|g> is not
+  principal diagonal, it is hard to guaranteed that, from transition rate
+  <math|\<gamma\>> and <math|r>, the giddy equation
+  (<reference|equation:transition rate determines transition density>) will
+  furnish exactly the equation (<reference|equation:metropolis-hastings
+  origin>) with the replacements <math|g\<rightarrow\>g<rsub|\<Delta\>t>> and
+  <math|q\<rightarrow\>q<rsub|\<Delta\>t>>.
+
+  <section|Kramers-Moyal Expansion and Langevin Dynamics (TODO)>
 
   We follow the discussion in section <reference|section: Master Equation,
   Detailed Balance, and Relative Entropy>, but focusing on the specific
@@ -844,8 +910,9 @@
   <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> are smooth on <math|x> and
   <math|y>.
 
-  Now, the master equation <reference|equation:Discrete Time Master Equation>
-  becomes
+  Now, the discrete time master equation (<reference|equation:discrete time
+  master equation v0>) becomes (replace <math|q<rsub|t\<rightarrow\>t<rprime|'>>>
+  by <math|q<rsub|\<Delta\>t>> for Markov process)
 
   <\equation*>
     p<around*|(|x,t+\<Delta\>t|)>-p<around*|(|x,t|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
@@ -1055,60 +1122,57 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2|7>>
-    <associate|auto-11|<tuple|2.1|8>>
-    <associate|auto-12|<tuple|2.2|9>>
+    <associate|auto-10|<tuple|2|8>>
+    <associate|auto-11|<tuple|2.1|9>>
+    <associate|auto-12|<tuple|2.2|10>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|3>>
-    <associate|auto-6|<tuple|1.5|3>>
-    <associate|auto-7|<tuple|1.6|5>>
-    <associate|auto-8|<tuple|1.7|6>>
-    <associate|auto-9|<tuple|1.8|7>>
-    <associate|equation:Detailed Balance|<tuple|6|3>>
-    <associate|equation:Discrete Time Master Equation|<tuple|1|1>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|13|8>>
-    <associate|equation:Master Equation|<tuple|2|1>>
-    <associate|equation:Metropolis-Hastings|<tuple|11|7>>
-    <associate|equation:Metropolis-Hastings origin|<tuple|12|?>>
-    <associate|equation:circle|<tuple|10|6>>
-    <associate|equation:define stationary density function|<tuple|9|6>>
-    <associate|equation:discrete time master equation v2|<tuple|3|2>>
-    <associate|equation:equation:Metropolis-Hastings|<tuple|11|?>>
-    <associate|equation:master equation v2|<tuple|4|2>>
-    <associate|equation:relative entropy derivative|<tuple|8|4>>
+    <associate|auto-5|<tuple|1.4|4>>
+    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-7|<tuple|1.6|6>>
+    <associate|auto-8|<tuple|1.7|7>>
+    <associate|auto-9|<tuple|1.8|8>>
+    <associate|equation:Detailed Balance|<tuple|5|4>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|12|9>>
+    <associate|equation:circle|<tuple|9|7>>
+    <associate|equation:define stationary density function|<tuple|8|7>>
+    <associate|equation:discrete time master equation v0|<tuple|2|1>>
+    <associate|equation:equation:metropolis-hastings|<tuple|10|8>>
+    <associate|equation:master equation|<tuple|3|2>>
+    <associate|equation:master equation v0|<tuple|2|1>>
+    <associate|equation:metropolis-hastings origin|<tuple|11|8>>
+    <associate|equation:relative entropy derivative|<tuple|7|5>>
+    <associate|equation:transition density normalization|<tuple|1|1>>
     <associate|equation:transition rate determines transition
-    density|<tuple|5|?>>
-    <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|3>>
-    <associate|footnote-3|<tuple|3|4>>
-    <associate|footnote-4|<tuple|4|5>>
-    <associate|footnote-5|<tuple|5|5>>
-    <associate|footnote-6|<tuple|6|9>>
-    <associate|footnote-7|<tuple|7|9>>
-    <associate|footnote-8|<tuple|8|?>>
-    <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|3>>
-    <associate|footnr-3|<tuple|3|4>>
-    <associate|footnr-4|<tuple|4|5>>
-    <associate|footnr-5|<tuple|5|5>>
-    <associate|footnr-6|<tuple|12|9>>
-    <associate|footnr-7|<tuple|7|9>>
-    <associate|footnr-8|<tuple|8|?>>
+    density|<tuple|4|3>>
+    <associate|footnote-1|<tuple|1|3>>
+    <associate|footnote-2|<tuple|2|5>>
+    <associate|footnote-3|<tuple|3|6>>
+    <associate|footnote-4|<tuple|4|6>>
+    <associate|footnote-5|<tuple|5|10>>
+    <associate|footnote-6|<tuple|6|10>>
+    <associate|footnr-1|<tuple|1|3>>
+    <associate|footnr-2|<tuple|2|5>>
+    <associate|footnr-3|<tuple|3|6>>
+    <associate|footnr-4|<tuple|4|6>>
+    <associate|footnr-5|<tuple|5|10>>
+    <associate|footnr-6|<tuple|6|10>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance|<tuple|2.2|9>>
+    Balance|<tuple|2.2|10>>
+    <associate|section: Detailed Balance Condition and Connectivity
+    Monotonically Reduce Relative Entropy|<tuple|1.5|?>>
     <associate|section: Detailed Balance Provides Stationary
-    Distribution|<tuple|1.4|3>>
+    Distribution|<tuple|1.4|4>>
     <associate|section: Detailed Balance with Connectivity Monotonically
-    Reduces Relative Entropy|<tuple|1.5|3>>
+    Reduces Relative Entropy|<tuple|1.5|4>>
     <associate|section: Master Equation Describes the Evolution of Markov
-    Chain|<tuple|1.2|1>>
+    Process|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
     <associate|section: Transition Rate Determines Transition
-    Density|<tuple|1.3|?>>
-    <associate|theorem:relax|<tuple|1|5>>
+    Density|<tuple|1.3|2>>
+    <associate|theorem:relax|<tuple|1|6>>
   </collection>
 </references>
 
@@ -1124,12 +1188,11 @@
       <no-break><pageref|auto-2>>
 
       <with|par-left|<quote|1tab>|1.2<space|2spc>Master Equation Describes
-      the Evolution of Markov Chain <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      the Evolution of Markov Process <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Transition Density Is
-      Determined by Tansition Rate (TODO)
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Transition Rate Determines
+      Transition Density <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
       <with|par-left|<quote|1tab>|1.4<space|2spc>Detailed Balance Provides
@@ -1154,7 +1217,7 @@
       Algorithm <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      2<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics
+      2<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics (TODO)
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>
 

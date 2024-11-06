@@ -8,5 +8,4 @@ Notes about maximum-entropy (MaxEnt) principle and related.
 - oscillators: Fit oscillators.
 - fractal: Interaction that furnishes fractal.
 - actions: Actions in machine learning.
-    - ⚡ From maximum-entropy principle, we derived a new way of training deep learning models that gives much greater robustness, without overfitting.
 

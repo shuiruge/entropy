@@ -1,6 +1,6 @@
-# maxent
+# entropy
 
-Notes about maximum-entropy (MaxEnt) principle and related.
+A brief note about information theory, statistical physics, maximum entropy principle, least action principle, and machine learning.
 
 - notes: Theory.
 - texts: Interaction between words.

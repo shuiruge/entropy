@@ -447,9 +447,9 @@
       <tformat|<table|<row|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=>|<cell|<frac|\<mathd\>|\<mathd\>t><big|int><rsub|\<cal-X\>>\<mathd\>x
       <around*|[|p<around*|(|x,t|)> ln p<around*|(|x,t|)>-p<around*|(|x,t|)>
       ln \<pi\><around*|(|x|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-      <around*|[|<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)> ln
+      <around*|(|<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)> ln
       p<around*|(|x,t|)>+<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>-<frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>
-      \ ln \<pi\><around*|(|x|)>|]>.>>>>
+      \ ln \<pi\><around*|(|x|)>|)>.>>>>
     </align>
 
     Since <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -478,12 +478,12 @@
 
     <\align>
       <tformat|<table|<row|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
-      <big|int><rsub|\<cal-X\>>\<mathd\>y <around*|[|r<around*|(|x,y|)>
+      <big|int><rsub|\<cal-X\>>\<mathd\>y <around*|(|r<around*|(|x,y|)>
       p<around*|(|y,t|)>-r<around*|(|x,y|)>
-      \<pi\><around*|(|y|)><frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|]>
+      \<pi\><around*|(|y|)><frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|)>
       \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
       <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>
-      \<pi\><around*|(|y|)><around*|[|<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|]>
+      \<pi\><around*|(|y|)><around*|(|<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|)>
       \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.>>>>
     </align>
 
@@ -493,11 +493,11 @@
     <\align>
       <tformat|<table|<row|<cell|<frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
       <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|y,x|)>
-      \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
+      \<pi\><around*|(|x|)><around*|(|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)>
       \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>>>|<row|<cell|<around*|{|detailed
       balance|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
       <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>
-      \<pi\><around*|(|y|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
+      \<pi\><around*|(|y|)><around*|(|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)>
       \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>.>>>>
     </align>
 
@@ -508,15 +508,15 @@
       <frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>>|<row|<cell|<around*|[|1st
       result|]>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
       <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>
-      \<pi\><around*|(|y|)><around*|[|<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|]>
+      \<pi\><around*|(|y|)><around*|(|<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>-<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>|)>
       \ \ ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>|<row|<cell|<around*|[|2nd
       result|]>+>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
       <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,t|)>
-      \<pi\><around*|(|y|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>
+      \<pi\><around*|(|y|)><around*|(|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)>
       \ \ ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>>>|<row|<cell|=>|<cell|-<big|int><rsub|\<cal-X\>>\<mathd\>x
       <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>
-      \<pi\><around*|(|y|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
-      ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>,>>>>
+      \<pi\><around*|(|y|)><around*|(|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)>
+      <around*|(|ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)>,>>>>
     </align>
 
     from which we directly get the result. Notice that this proof is very
@@ -527,8 +527,8 @@
   <\equation>
     <frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=-<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x
     <big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|x,y|)>
-    \<pi\><around*|(|x|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
-    ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>.<label|equation:relative
+    \<pi\><around*|(|x|)><around*|(|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)>
+    <around*|(|ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)>.<label|equation:relative
     entropy derivative>
   </equation>
 
@@ -638,7 +638,9 @@
   detailed balance (section <reference|section: Conservative Langevin
   Dynamics Satisfies Detailed Balance>).
 
-  <subsection|Simulation of Master Equation (TODO)>
+  <subsection|Simulation of Master Equation and Guarantee of
+  Relaxation><label|section: Simulation of Master Equation and Guarantee of
+  Relaxation>
 
   How to solve master equation <reference|equation:master equation>? When the
   alphabet <math|\<cal-X\>> is discrete and finite, where the desk becomes a
@@ -682,7 +684,7 @@
   <math|j> greater than a number, the problem reduces to the case when
   <math|\<cal-X\>> is discrete and finite.
 
-  In the worst case, we have to solve master equation by numerical
+  In the worst situation, we have to solve master equation by numerical
   simulation. We simulate each sand, but replace its free will by a
   transition probability determined by transition rate <math|r>. Explicitly,
   we initialize the sand randomly. Then iteratively update the position of
@@ -699,16 +701,18 @@
   iteration when they have been close enough.
 
   Like the Euler method in solving dynamical system, however, a finite time
-  step results in a residual error, which must be analyzed an controlled, so
-  that the distribution will evaluate toward <math|\<Pi\>>, as we have
-  expected. In the rest of this section, we calculate the residual error and
-  see when it matters.
+  step results in a residual error. This residual error must be analyzed an
+  controlled, so that the distribution will evaluate toward <math|\<Pi\>>, as
+  we have expected. To examine this, we calculate the
+  <math|H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>
+  where <math|\<Delta\>t> is small but still finite, and check when it is
+  negative (such that <math|H<around*|(|P<around*|(|t|)>|)>> monotonically
+  decreases to <math|P<around*|(|t|)>\<rightarrow\>\<Pi\>>).
 
-  Let us examine <math|H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>
-  when <math|\<Delta\>t> is small but still finite. By definition,
+  By definition, we have
 
   <\equation*>
-    H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    \<Delta\>H\<assign\>H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x,t+\<Delta\>t|)> ln<frac|p<around*|(|x,t+\<Delta\>t|)>|\<pi\><around*|(|x|)>>-<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x,t|)> ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>.
   </equation*>
@@ -718,7 +722,7 @@
   gives
 
   <\align>
-    <tformat|<table|<row|<cell|>|<cell|H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    <tformat|<table|<row|<cell|\<Delta\>H=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x,t+\<Delta\>t|)> ln<frac|p<around*|(|x,t+\<Delta\>t|)>|\<pi\><around*|(|x|)>>-<with|color|dark
     cyan|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x,t+\<Delta\>t|)>
     ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>>>>|<row|<cell|+>|<cell|<with|color|dark
@@ -734,49 +738,39 @@
   which is non-negative. Following the same steps in section
   <reference|section: Detailed Balance Condition and Connectivity
   Monotonically Reduce Relative Entropy> (but using discrete time master
-  equation (<reference|equation:discrete time master equation>) instead, and
-  detailed balance condition (<reference|equation:Detailed Balance for
-  transition density>) for transition density), the second line reduces to
+  equation <reference|equation:discrete time master equation> instead, and
+  detailed balance condition <reference|equation:Detailed Balance for
+  transition density> for transition density), the second line reduces to
 
   <\equation*>
     -<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|x\|y|)>\<pi\><around*|(|y|)><around*|[|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]><around*|[|
-    ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|]>,
+    q<rsub|\<Delta\>t><around*|(|x\|y|)>\<pi\><around*|(|y|)><around*|(|<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)><around*|(|ln<frac|p<around*|(|x,t|)>|\<pi\><around*|(|x|)>>-ln<frac|p<around*|(|y,t|)>|\<pi\><around*|(|y|)>>|)>,
   </equation*>
 
   which is non-positive (suppose that <math|r> connects every two elements in
-  <math|\<cal-X\>>). So, the sign of <math|H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>
-  is determined by that which line has greater absolute value.
+  <math|\<cal-X\>>). So, the sign of <math|\<Delta\>H> is determined by that
+  which line has greater absolute value. The first line depends only on the
+  difference between <math|P<around*|(|t|)>> and
+  <math|P<around*|(|t+\<Delta\>t|)>>, thus <math|\<Delta\>t>, while the
+  second line additionally depends on the difference between
+  <math|P<around*|(|t|)>> and <math|\<Pi\>> (the factor
+  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> also depends on
+  <math|\<Delta\>t>). When <math|\<Delta\>t\<rightarrow\>0>, the first line
+  vanishes, while the second does not until
+  <math|P<around*|(|t|)>\<rightarrow\>\<Pi\>>. This suggests us to
+  investigate how fast each term converges as
+  <math|\<Delta\>t\<rightarrow\>0>.
 
-  To simplify notations, notice that the <math|r<around*|(|x,y|)>
-  \<pi\><around*|(|y|)>> plays the role of a kernel. It is normalized since
-  <math|q<rsub|\<Delta\>t>> and <math|\<pi\>> are normalized (thus
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
-  q<rsub|\<Delta\>t><around*|(|x\|y|)>\<pi\><around*|(|y|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-  \<pi\><around*|(|y|)>=1>). So, we denote
-  <math|K<around*|(|x,y|)>\<assign\>r<around*|(|x,y|)>
-  \<pi\><around*|(|y|)>>, having <math|K\<geqslant\>0> and
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
-  K<around*|(|x,y|)>=1>. Next, we notice that the <math|t> is irrelevant for
-  our analysis, so we omit it and denote <math|f<around*|(|x|)>\<assign\>p<around*|(|x,t|)>/\<pi\><around*|(|x|)>>.
-  With this simplified notation, the second line, denoted by <math|J>,
-  becomes
-
-  <\equation*>
-    J=-<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
-    K<around*|(|x,y|)> <around*|[|f<around*|(|x|)>-f<around*|(|y|)>|]><around*|[|ln
-    f<around*|(|x|)>-ln f<around*|(|y|)>|]>.
-  </equation*>
-
-  To quantitatively examine the first line, denoted by <math|I>, we suppose
-  that <math|\<Delta\>t> is small (but not infinitesimal) so that we can
-  Taylor expand it by <math|\<Delta\>t>. After a tedious calculation, we
-  find<\footnote>
+  To examine the speed of convergence, we calculate the leading order of
+  <math|\<Delta\>t> in each line. To make it clear, we denote the first line
+  by <math|\<Delta\>H<rsub|1>> and the second line <math|\<Delta\>H<rsub|2>>.
+  Taylor expanding <math|\<Delta\>H<rsub|1>> by <math|\<Delta\>t>
+  gives<\footnote>
     The first line
 
     <\equation*>
       I\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-      p<around*|(|x,t+\<Delta\>t|)> ln<frac|p<around*|(|x,t+\<Delta\>t|)>|p<around*|(|x,t|)>>.
+      p<around*|(|x,t+\<Delta\>t|)> ln<frac|p<around*|(|x,t+\<Delta\>t|)>|p<around*|(|x,t|)>>
     </equation*>
 
     To Taylor expand the right hand side by <math|\<Delta\>t>, we expand
@@ -853,113 +847,56 @@
       p<around*|(|x,t|)> <around*|(|<frac|\<partial\>|\<partial\>t>ln
       p<around*|(|x,t|)>|)><rsup|2>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>.
     </equation*>
-
-    Now, plugging in the master equation,
-    <math|<around*|(|\<partial\>/\<partial\>t|)> ln
-    p<around*|(|x,t|)>=<big|int>\<mathd\>y r<around*|(|x,y|)>
-    p<around*|(|y,t|)>/p<around*|(|x,t|)>>, we have
-
-    <\equation*>
-      I=<frac|\<Delta\>t<rsup|2>|2><big|int><rsub|\<cal-X\>>\<mathd\>x
-      <big|int><rsub|\<cal-X\>>\<mathd\>y<big|int><rsub|\<cal-X\>>\<mathd\>z
-      r<around*|(|x,y|)> r<around*|(|x,z|)> p<rsup|-1><around*|(|x,t|)>
-      \ p<around*|(|y,t|)> p<around*|(|z,t|)>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>.
-    </equation*>
-
-    For comparing with <math|J>, we shall replace
-    <math|p<around*|(|\<cdummy\>,t|)>> by
-    <math|f<around*|(|\<cdummy\>|)>=p<around*|(|\<cdummy\>,t|)>/\<pi\><around*|(|\<cdummy\>|)>>.
-    So, the integrand becomes <math|r<around*|(|x,y|)> r<around*|(|x,z|)>
-    <around*|[|f<around*|(|x|)> \<pi\><around*|(|x|)>|]><rsup|-1>
-    <around*|[|f<around*|(|y|)> \<pi\><around*|(|y|)>|]><around*|[|f<around*|(|z|)>
-    \<pi\><around*|(|z|)>|]>>. Then, using detailed balance condition,
-    <math|r<around*|(|x,z|)>=r<around*|(|z,x|)>
-    \<pi\><around*|(|x|)>/\<pi\><around*|(|z|)>>, it turns to be <math|>
-    <math|r<around*|(|x,y|)> r<around*|(|z,x|)> f<rsup|-1><around*|(|x|)>
-    <around*|[|f<around*|(|y|)> \<pi\><around*|(|y|)>|]>f<around*|(|z|)>>.
-    Thus,
-
-    <\equation*>
-      I=<frac|\<Delta\>t<rsup|2>|2><big|int><rsub|\<cal-X\>>\<mathd\>x
-      <big|int><rsub|\<cal-X\>>\<mathd\>y \ r<around*|(|x,y|)>
-      \<pi\><around*|(|y|)> <frac|f<around*|(|y|)>|f<around*|(|x|)>><around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>z
-      \ f<around*|(|z|)> r<around*|(|z,x|)>|]>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>.
-    </equation*>
-
-    Besides, notice that
-
-    <\equation*>
-      <big|int><rsub|\<cal-X\>>\<mathd\>x <big|int><rsub|\<cal-X\>>\<mathd\>y
-      \ \<delta\><around*|(|x-y|)> \<pi\><around*|(|y|)>
-      <frac|f<around*|(|y|)>|f<around*|(|x|)>><around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>z
-      \ f<around*|(|z|)> r<around*|(|z,x|)>|]>=0.
-    </equation*>
-
-    Indeed, integrating over <math|y>, it becomes
-    <math|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>z
-    f<around*|(|z|)> r<around*|(|z,x|)> \<pi\><around*|(|x|)>>; then by
-    inserting detailed balance condition, it turns to be
-    <math|<big|int><rsub|\<cal-X\>>\<mathd\>z f<around*|(|z|)>
-    <around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|x,z|)>|]>
-    \<pi\><around*|(|z|)>> where the <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
-    r<around*|(|x,z|)>=0> (by the normalization condition of
-    <math|q<rsub|\<Delta\>t>>). So, we find
-
-    <\equation*>
-      I=<frac|\<Delta\>t|2><big|int><rsub|\<cal-X\>>\<mathd\>x
-      <big|int><rsub|\<cal-X\>>\<mathd\>y \ K<around*|(|x,y|)>
-      <frac|f<around*|(|y|)>|f<around*|(|x|)>><around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>z
-      \ f<around*|(|z|)> r<around*|(|z,x|)>|]>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>,
-    </equation*>
-
-    where we used <math|K<around*|(|x,y|)>=q<rsub|\<Delta\>t><around*|(|x\|y|)>
-    \<pi\><around*|(|y|)>> and the Taylor expansion
-    <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
-    \<Delta\>t+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>>.
   </footnote>
 
   <\equation*>
-    I=<frac|\<Delta\>t|2><big|int><rsub|\<cal-X\>>\<mathd\>x
-    <big|int><rsub|\<cal-X\>>\<mathd\>y \ K<around*|(|x,y|)>
-    <frac|f<around*|(|y|)>|f<around*|(|x|)>><around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>z
-    r<around*|(|z,x|)> f<around*|(|z|)>|]>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>.
+    \<Delta\>H<rsub|1>=<frac|\<Delta\>t<rsup|2>|2><big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t|)> <around*|(|<frac|\<partial\>|\<partial\>t>ln
+    p<around*|(|x,t|)>|)><rsup|2>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>,
   </equation*>
 
-  Keep in mind that <math|I\<geqslant\>0>, even though this has become
-  unclear in this expression (after applying detailed balance condition
-  several times). When <math|P<around*|(|t|)>> has relaxed to <math|\<Pi\>>,
-  <math|f<around*|(|x|)>=p<around*|(|x,t|)>/\<pi\><around*|(|x|)>> tends to
-  be a constant, then <math|<big|int><rsub|\<cal-X\>>\<mathd\>z
-  r<around*|(|z,x|)>=0> gives <math|I=0>. Altogether, we arrive at
+  where, by master equation <reference|equation:master equation>,
+  <math|<around*|(|\<partial\>/\<partial\>t|)> ln
+  p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|x,y|)>
+  p<around*|(|y,t|)>/p<around*|(|x,t|)>>. The same for
+  <math|\<Delta\>H<rsub|1>>, which results in
 
-  <\small>
-    <\equation*>
-      I+J=<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x
-      <big|int><rsub|\<cal-X\>>\<mathd\>y \ K<around*|(|x,y|)>
-      <around*|{|\<Delta\>t <frac|f<around*|(|y|)>|f<around*|(|x|)>><around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>z
-      \ f<around*|(|z|)> r<around*|(|z,x|)>|]>-<around*|[|f<around*|(|x|)>-f<around*|(|y|)>|]><around*|[|ln
-      f<around*|(|x|)>-ln f<around*|(|y|)>|]>|}>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>.
-    </equation*>
-  </small>
+  <\equation*>
+    \<Delta\>H<rsub|2>=\<Delta\>t <frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>+\<omicron\><around*|(|\<Delta\>t|)>,
+  </equation*>
 
-  \;
+  where we have inserted equation <reference|equation:relative entropy
+  derivative>. We find <math|\<Delta\>H<rsub|1>> converges with speed
+  <math|\<Delta\>t<rsup|2>> while <math|\<Delta\>H<rsub|2>> has speed
+  <math|\<Delta\>t>.
 
-  When <math|f> approaches to constant, the second term in the
-  <math|<around*|{|\<cdots\>|}>> is determined only the difference between
-  <math|f> and constant, but the first term is additionally determined by
-  <math|r>. So, the property of <math|r> is crucial for analysis when
-  <math|P<around*|(|t|)>> has been close to <math|\<Pi\>>. So, we have an
-  open question:
+  Thus, given <math|P<around*|(|t|)>\<neq\>\<Pi\>> (so that
+  <math|\<Delta\>H<rsub|2>\<neq\>0>, recall section <reference|section:
+  Detailed Balance Condition and Connectivity Monotonically Reduce Relative
+  Entropy>), there must be a <math|\<delta\>\<gtr\>0> such that for any
+  <math|\<Delta\>t\<less\>\<delta\>>, we have
+  <math|<around*|\||\<Delta\>H<rsub|1>|\|>\<less\><around*|\||\<Delta\>H<rsub|2>|\|>>,
+  in which case the <math|\<Delta\>H=\<Delta\>H<rsub|1>+\<Delta\>H<rsub|2>\<less\>0>
+  (recall that <math|\<Delta\>H<rsub|1>\<geqslant\>0> and
+  <math|\<Delta\>H<rsub|2>\<leqslant\>0>). The <math|\<delta\>> is bounded by
 
-  <\question>
-    Given a small <math|\<Delta\>t\<gtr\>0>, when is
+  <\equation*>
+    \<delta\>\<leqslant\><around*|[|- <frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>|]><mid|/><around*|[|<frac|1|2><big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x,t|)> <around*|(|<frac|\<partial\>|\<partial\>t>ln
+    p<around*|(|x,t|)>|)><rsup|2>|]>.
+  </equation*>
 
-    <\equation*>
-      \<Delta\>t <frac|f<around*|(|y|)>|f<around*|(|x|)>><around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>z
-      \ f<around*|(|z|)> r<around*|(|z,x|)>|]>-<around*|[|f<around*|(|x|)>-f<around*|(|y|)>|]><around*|[|ln
-      f<around*|(|x|)>-ln f<around*|(|y|)>|]><above|\<less\>|?>0
-    </equation*>
-  </question>
+  This bound is proportional to the difference between
+  <math|P<around*|(|t|)>> and <math|\<Pi\>> (represented by the first
+  factor). When <math|P<around*|(|t|)>> has approched <math|\<Pi\>> (that is,
+  <math|P<around*|(|t|)>\<approx\>\<Pi\>> but not exactly equal),
+  <math|\<delta\>> has to be extremely small. (This is a little like
+  supervised machine learning where <math|\<Delta\>t> acts as learning rate
+  and <math|H<around*|(|P<around*|(|t|)>,\<Pi\>|)>> as loss. We have to tune
+  the learning rate to be smaller and smaller during the training process for
+  monotonically decreasing the loss. Otherwise, the loss will keep
+  fluctuating when it has been sufficiently small, since the learning rate
+  now becomes relatively too big.)
 
   <subsection|Example: Metropolis-Hastings Algorithm><label|section: Example:
   Metropolis-Hastings Algorithm>
@@ -1027,11 +964,13 @@
   This definition has an intuitive and practical explanation. The two factors
   can be seen as two conditional probability. The factor
   <math|g<around*|(|x\|y|)>> first proposes a transition from <math|y> to
-  <math|x>. Then, this proposal will be accepted by Bernoulli probability
-  with ratio given by the first factor in the right hand side. If accepted,
-  then transit to <math|x>, otherwise stay on <math|y>. Altogether, we get a
-  conditional probability jumping from <math|y> to <math|x>, the
-  <math|q<around*|(|x\|y|)>>.
+  <math|x>. (In numerical simulation, we have to ensure that computer has a
+  sampler for sampling an <math|x> from the conditional probability
+  <math|g<around*|(|x\|y|)>>.) Then, this proposal will be accepted by
+  Bernoulli probability with the ratio given by the first factor in the right
+  hand side. If accepted, then transit to <math|x>, otherwise stay on
+  <math|y>. Altogether, we get a conditional probability jumping from
+  <math|y> to <math|x>, the <math|q<around*|(|x\|y|)>>.
 
   It is straight forward to check that, if, in addition, <math|g> smoothly
   depends on a parameter <math|\<Delta\>t> as <math|g<rsub|\<Delta\>t>>, so
@@ -1053,23 +992,15 @@
 
   Altogether, for each <math|x,y\<in\>\<cal-X\>>, we find
   <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>+r<around*|(|x,y|)>
-  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. The higher order
-  corrections come from those of <math|g<rsub|\<Delta\>t>>. So, a \Pprincipal
-  diagonal\Q transition density <math|g>, where <math|g<around*|(|x\|x|)>> is
-  much greater than <math|g<around*|(|x\|y|)>> and
-  <math|g<around*|(|y\|x|)>>, then the <math|q> defined by equation
-  <reference|equation:metropolis-hastings origin> is a good approximation to
-  <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> with a sufficiently small
-  <math|\<Delta\>t>. <em|In practice, we use the Metropolis-Hastings
-  algorithm <reference|equation:metropolis-hastings origin> with a principal
-  diagonal <math|g> to numerically solve master equation
-  <reference|equation:master equation>.> But, when <math|g> is not principal
-  diagonal, it is hard to guaranteed that, from transition rate
-  <math|\<gamma\>> and <math|r>, the giddy equation
-  <reference|equation:transition rate determines transition density> will
-  furnish exactly the equation <reference|equation:metropolis-hastings
-  origin> with the replacements <math|g\<rightarrow\>g<rsub|\<Delta\>t>> and
-  <math|q\<rightarrow\>q<rsub|\<Delta\>t>>.
+  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>. <em|In practice, we use
+  the Metropolis-Hastings algorithm <reference|equation:metropolis-hastings
+  origin> to numerically simulate master equation <reference|equation:master
+  equation>.> But, based on the discussion in section <reference|section:
+  Simulation of Master Equation and Guarantee of Relaxation>, the
+  <math|\<Delta\>t> in <math|g<rsub|\<Delta\>t>> shall be properly bounded to
+  be small (or equivalently speaking, <math|g> shall be \Pprincipal
+  diagonal\Q) \ so as to ensure the relaxation
+  <math|P<around*|(|t|)>\<rightarrow\>\<Pi\>>.
 
   <subsection|* Existence of Stationary Density Function>
 
@@ -1414,28 +1345,29 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2|11>>
-    <associate|auto-11|<tuple|2.1|11>>
-    <associate|auto-12|<tuple|2.2|12>>
+    <associate|auto-10|<tuple|2|10>>
+    <associate|auto-11|<tuple|2.1|10>>
+    <associate|auto-12|<tuple|2.2|11>>
+    <associate|auto-13|<tuple|2.2|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|4>>
-    <associate|auto-6|<tuple|1.5|5>>
+    <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|6>>
-    <associate|auto-8|<tuple|1.7|9>>
-    <associate|auto-9|<tuple|1.8|10>>
+    <associate|auto-8|<tuple|1.7|8>>
+    <associate|auto-9|<tuple|1.8|9>>
     <associate|equation:Detailed Balance|<tuple|6|4>>
     <associate|equation:Detailed Balance for transition density|<tuple|7|4>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|14|12>>
-    <associate|equation:circle|<tuple|13|10>>
-    <associate|equation:define stationary density function|<tuple|12|10>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|14|10>>
+    <associate|equation:circle|<tuple|13|9>>
+    <associate|equation:define stationary density function|<tuple|12|9>>
     <associate|equation:discrete time master equation|<tuple|4|2>>
     <associate|equation:discrete time master equation v0|<tuple|2|1>>
-    <associate|equation:equation:metropolis-hastings|<tuple|10|9>>
+    <associate|equation:equation:metropolis-hastings|<tuple|10|8>>
     <associate|equation:master equation|<tuple|3|2>>
     <associate|equation:master equation v0|<tuple|2|1>>
-    <associate|equation:metropolis-hastings origin|<tuple|11|9>>
+    <associate|equation:metropolis-hastings origin|<tuple|11|8>>
     <associate|equation:relative entropy derivative|<tuple|9|5>>
     <associate|equation:transition density normalization|<tuple|1|1>>
     <associate|equation:transition rate determines transition
@@ -1443,26 +1375,30 @@
     <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|6>>
-    <associate|footnote-4|<tuple|4|8>>
-    <associate|footnote-5|<tuple|5|12>>
-    <associate|footnote-6|<tuple|6|12>>
+    <associate|footnote-4|<tuple|4|11>>
+    <associate|footnote-5|<tuple|5|11>>
+    <associate|footnote-6|<tuple|6|?>>
+    <associate|footnote-7|<tuple|7|?>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|5>>
     <associate|footnr-3|<tuple|3|6>>
-    <associate|footnr-4|<tuple|4|8>>
-    <associate|footnr-5|<tuple|5|12>>
-    <associate|footnr-6|<tuple|6|12>>
+    <associate|footnr-4|<tuple|4|11>>
+    <associate|footnr-5|<tuple|5|11>>
+    <associate|footnr-6|<tuple|6|?>>
+    <associate|footnr-7|<tuple|7|?>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance|<tuple|2.2|12>>
+    Balance|<tuple|2.2|11>>
     <associate|section: Detailed Balance Condition and Connectivity
-    Monotonically Reduce Relative Entropy|<tuple|1.5|5>>
+    Monotonically Reduce Relative Entropy|<tuple|1.5|4>>
     <associate|section: Detailed Balance Provides Stationary
     Distribution|<tuple|1.4|4>>
-    <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|9>>
+    <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|8>>
     <associate|section: Master Equation Describes the Evolution of Markov
     Process|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
+    <associate|section: Simulation of Master Equation and Guarantee of
+    Relaxation|<tuple|1.6|?>>
     <associate|section: Transition Rate Determines Transition
     Density|<tuple|1.3|2>>
     <associate|theorem:relax|<tuple|1|6>>

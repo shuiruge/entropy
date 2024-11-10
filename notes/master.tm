@@ -892,9 +892,11 @@
   <math|P<around*|(|t|)>\<approx\>\<Pi\>> but not exactly equal),
   <math|\<delta\>> has to be extremely small. (This is a little like
   supervised machine learning where <math|\<Delta\>t> acts as learning rate
-  and <math|H<around*|(|P<around*|(|t|)>,\<Pi\>|)>> as loss. We have to tune
-  the learning rate to be smaller and smaller during the training process for
-  monotonically decreasing the loss. Otherwise, the loss will keep
+  and <math|H<around*|(|P<around*|(|t|)>,\<Pi\>|)>> as loss. In the early
+  stage of training, the loss function has a greater slope and we can safely
+  employ a relatively large learning rate to speed up the decreasing of loss.
+  But, we have to tune the learning rate to be smaller and smaller during the
+  training. Otherwise, the loss will not monotonically decrease but keep
   fluctuating when it has been sufficiently small, since the learning rate
   now becomes relatively too big.)
 
@@ -1348,26 +1350,25 @@
     <associate|auto-10|<tuple|2|10>>
     <associate|auto-11|<tuple|2.1|10>>
     <associate|auto-12|<tuple|2.2|11>>
-    <associate|auto-13|<tuple|2.2|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|4>>
-    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-6|<tuple|1.5|5>>
     <associate|auto-7|<tuple|1.6|6>>
     <associate|auto-8|<tuple|1.7|8>>
     <associate|auto-9|<tuple|1.8|9>>
     <associate|equation:Detailed Balance|<tuple|6|4>>
     <associate|equation:Detailed Balance for transition density|<tuple|7|4>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|14|10>>
-    <associate|equation:circle|<tuple|13|9>>
-    <associate|equation:define stationary density function|<tuple|12|9>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|14|11>>
+    <associate|equation:circle|<tuple|13|10>>
+    <associate|equation:define stationary density function|<tuple|12|10>>
     <associate|equation:discrete time master equation|<tuple|4|2>>
     <associate|equation:discrete time master equation v0|<tuple|2|1>>
     <associate|equation:equation:metropolis-hastings|<tuple|10|8>>
     <associate|equation:master equation|<tuple|3|2>>
     <associate|equation:master equation v0|<tuple|2|1>>
-    <associate|equation:metropolis-hastings origin|<tuple|11|8>>
+    <associate|equation:metropolis-hastings origin|<tuple|11|9>>
     <associate|equation:relative entropy derivative|<tuple|9|5>>
     <associate|equation:transition density normalization|<tuple|1|1>>
     <associate|equation:transition rate determines transition
@@ -1375,21 +1376,19 @@
     <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|6>>
-    <associate|footnote-4|<tuple|4|11>>
-    <associate|footnote-5|<tuple|5|11>>
-    <associate|footnote-6|<tuple|6|?>>
-    <associate|footnote-7|<tuple|7|?>>
+    <associate|footnote-4|<tuple|4|8>>
+    <associate|footnote-5|<tuple|5|12>>
+    <associate|footnote-6|<tuple|6|12>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|5>>
     <associate|footnr-3|<tuple|3|6>>
-    <associate|footnr-4|<tuple|4|11>>
-    <associate|footnr-5|<tuple|5|11>>
-    <associate|footnr-6|<tuple|6|?>>
-    <associate|footnr-7|<tuple|7|?>>
+    <associate|footnr-4|<tuple|4|8>>
+    <associate|footnr-5|<tuple|5|12>>
+    <associate|footnr-6|<tuple|6|12>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
     Balance|<tuple|2.2|11>>
     <associate|section: Detailed Balance Condition and Connectivity
-    Monotonically Reduce Relative Entropy|<tuple|1.5|4>>
+    Monotonically Reduce Relative Entropy|<tuple|1.5|5>>
     <associate|section: Detailed Balance Provides Stationary
     Distribution|<tuple|1.4|4>>
     <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|8>>
@@ -1398,7 +1397,7 @@
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
     <associate|section: Simulation of Master Equation and Guarantee of
-    Relaxation|<tuple|1.6|?>>
+    Relaxation|<tuple|1.6|6>>
     <associate|section: Transition Rate Determines Transition
     Density|<tuple|1.3|2>>
     <associate|theorem:relax|<tuple|1|6>>
@@ -1434,7 +1433,8 @@
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|1.6<space|2spc>Simulation of Master
-      Equation (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Equation and Guarantee of Relaxation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
       <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Metropolis-Hastings

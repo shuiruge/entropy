@@ -896,9 +896,10 @@
   stage of training, the loss function has a greater slope and we can safely
   employ a relatively large learning rate to speed up the decreasing of loss.
   But, we have to tune the learning rate to be smaller and smaller during the
-  training. Otherwise, the loss will not monotonically decrease but keep
-  fluctuating when it has been sufficiently small, since the learning rate
-  now becomes relatively too big.)
+  training, in which the slope of loss function is gradually decreasing.
+  Otherwise, the loss will not decrease but keep fluctuating when it has been
+  sufficiently small, since the learning rate now becomes relatively too
+  big.)
 
   <subsection|Example: Metropolis-Hastings Algorithm><label|section: Example:
   Metropolis-Hastings Algorithm>
@@ -1347,17 +1348,17 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2|10>>
-    <associate|auto-11|<tuple|2.1|10>>
-    <associate|auto-12|<tuple|2.2|11>>
+    <associate|auto-10|<tuple|2|11>>
+    <associate|auto-11|<tuple|2.1|11>>
+    <associate|auto-12|<tuple|2.2|12>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|4>>
     <associate|auto-6|<tuple|1.5|5>>
     <associate|auto-7|<tuple|1.6|6>>
-    <associate|auto-8|<tuple|1.7|8>>
-    <associate|auto-9|<tuple|1.8|9>>
+    <associate|auto-8|<tuple|1.7|9>>
+    <associate|auto-9|<tuple|1.8|10>>
     <associate|equation:Detailed Balance|<tuple|6|4>>
     <associate|equation:Detailed Balance for transition density|<tuple|7|4>>
     <associate|equation:Kramers-Moyal expansion|<tuple|14|11>>
@@ -1365,7 +1366,7 @@
     <associate|equation:define stationary density function|<tuple|12|10>>
     <associate|equation:discrete time master equation|<tuple|4|2>>
     <associate|equation:discrete time master equation v0|<tuple|2|1>>
-    <associate|equation:equation:metropolis-hastings|<tuple|10|8>>
+    <associate|equation:equation:metropolis-hastings|<tuple|10|9>>
     <associate|equation:master equation|<tuple|3|2>>
     <associate|equation:master equation v0|<tuple|2|1>>
     <associate|equation:metropolis-hastings origin|<tuple|11|9>>
@@ -1386,12 +1387,12 @@
     <associate|footnr-5|<tuple|5|12>>
     <associate|footnr-6|<tuple|6|12>>
     <associate|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance|<tuple|2.2|11>>
+    Balance|<tuple|2.2|12>>
     <associate|section: Detailed Balance Condition and Connectivity
     Monotonically Reduce Relative Entropy|<tuple|1.5|5>>
     <associate|section: Detailed Balance Provides Stationary
     Distribution|<tuple|1.4|4>>
-    <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|8>>
+    <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|9>>
     <associate|section: Master Equation Describes the Evolution of Markov
     Process|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative

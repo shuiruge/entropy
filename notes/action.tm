@@ -243,8 +243,30 @@
   while generally we do not have <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
   f<rsub|\<alpha\>><around*|(|x|)>>. (By Helmholtz decompostion,
   <math|f<around*|(|x|)>=\<nabla\>\<varphi\><around*|(|x|)>+\<nu\><around*|(|x|)>>
-  where <math|\<nabla\>\<cdot\>\<nu\><around*|(|x|)>=0>. Thus,
-  <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
+  where <math|\<nabla\>\<cdot\>\<nu\><around*|(|x|)>=0>.<\footnote>
+    A simple derivation of Helmholtz decomposition is as follow. It is well
+    known that, given a vector <math|k\<in\>\<bbb-R\><rsup|n>>, any vector
+    <math|y\<in\>\<bbb-R\><rsup|n>> can be decomposed into two parts: one
+    that parallel to <math|k> and the other normal to <math|k>. That is,
+    <math|y=y<rsub|\<parallel\>>+y<rsub|\<bot\>>>, wherein
+    <math|k\<times\>y<rsub|\<parallel\>>=0> and
+    <math|k\<cdot\>y<rsub|\<bot\>>=0>. This holds for any vector field
+    <math|y:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>:
+    <math|y<around*|(|k|)>=y<rsub|\<parallel\>><around*|(|k|)>+y<rsub|\<bot\>><around*|(|k|)>>,
+    <math|k\<times\>y<rsub|\<parallel\>><around*|(|k|)>=0>, and
+    <math|k\<cdot\>y<rsub|\<bot\>><around*|(|k|)>=0>. By Fourier transform,
+    this relation becomes <math|<wide|y|^><around*|(|x|)>=<wide|y|^><rsub|\<parallel\>><around*|(|x|)>+<wide|y|^><rsub|\<bot\>><around*|(|x|)>>,
+    <math|\<nabla\>\<times\><wide|y|^><rsub|\<parallel\>><around*|(|x|)>=0>,
+    and <math|\<nabla\>\<cdot\><wide|y|^><rsub|\<bot\>><around*|(|x|)>=0>.
+    Since every curl-free vector field is the gradient of a scale field, thus
+    <math|<wide|y|^><rsub|\<parallel\>><around*|(|x|)>=\<nabla\>\<sigma\><around*|(|x|)>>
+    where <math|\<sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>>. So, we
+    find that any smooth vector field <math|v:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
+    can be composed into <math|v<around*|(|x|)>=\<nabla\>\<sigma\><around*|(|x|)>+\<nu\><around*|(|x|)>>
+    where <math|\<sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
+    and <math|\<nu\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> with
+    <math|><math|\<nabla\>\<cdot\>\<nu\><around*|(|x|)>=0>.
+  </footnote> Thus, <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
   f<rsub|\<alpha\>><around*|(|x|)>> means
   <math|\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>\<nu\><rsub|\<alpha\>><around*|(|x|)>>
   for each <math|\<alpha\>> and <math|\<beta\>>. Applying
@@ -268,99 +290,20 @@
   find the corresponding <math|M>. We wonder, given <math|f>, if there is
   such an <math|M> and an <math|S> that this relation holds?
 
-  <subsection|Drafts (TODO)>
+  For example, if let <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>\<equiv\><around*|(|1,0,0,\<ldots\>|)>>,
+  then we would have <math|f<rsup|\<alpha\>><around*|(|x|)>=<around*|(|M<rsup|-1>|)><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+  \<partial\><rsub|\<alpha\>>S<around*|(|x|)>=<around*|(|M<rsup|-1>|)><rsup|\<alpha\>
+  1><around*|(|x|)>>. It suggests that, for any smooth vector field <math|f>
+  given, we can construct <math|M> in such a way that the first column of
+  <math|M<rsup|-1>> is defined to be <math|f>. The other columns of
+  <math|M<rsup|-1>> are free to choose, providing that <math|M<rsup|-1>> is
+  invertible (as a matrix valued field on <math|\<bbb-R\><rsup|n>>). The
+  <math|M> adds <math|n\<times\>n-1> degrees of freedom to the
+  <math|n>-dimensional relationship (where the <math|-1> comes from the
+  restriction <math|det<around*|(|M|)>\<neq\>0>) which are sufficient many to
+  relieve the tension in the relationship.
 
-  It is well known that, given a vector <math|k\<in\>\<bbb-R\><rsup|n>>, any
-  vector <math|y\<in\>\<bbb-R\><rsup|n>> can be decomposed into two parts:
-  one that parallel to <math|k> and the other normal to <math|k>. That is,
-  <math|y=y<rsub|\<parallel\>>+y<rsub|\<bot\>>>, wherein
-  <math|k\<times\>y<rsub|\<parallel\>>=0> and
-  <math|k\<cdot\>y<rsub|\<bot\>>=0>. This holds for any vector field
-  <math|y:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>:
-  <math|y<around*|(|k|)>=y<rsub|\<parallel\>><around*|(|k|)>+y<rsub|\<bot\>><around*|(|k|)>>,
-  <math|k\<times\>y<rsub|\<parallel\>><around*|(|k|)>=0>, and
-  <math|k\<cdot\>y<rsub|\<bot\>><around*|(|k|)>=0>. By Fourier transform,
-  this relation becomes <math|<wide|y|^><around*|(|x|)>=<wide|y|^><rsub|\<parallel\>><around*|(|x|)>+<wide|y|^><rsub|\<bot\>><around*|(|x|)>>,
-  <math|\<nabla\>\<times\><wide|y|^><rsub|\<parallel\>><around*|(|x|)>=0>,
-  and <math|\<nabla\>\<cdot\><wide|y|^><rsub|\<bot\>><around*|(|x|)>=0>.
-  Since every curl-free vector field is the gradient of a scale field, thus
-  <math|<wide|y|^><rsub|\<parallel\>><around*|(|x|)>=\<nabla\>\<sigma\><around*|(|x|)>>
-  where <math|\<sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>>. So, we
-  find that any smooth vector field <math|v:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
-  can be composed into <math|v<around*|(|x|)>=\<nabla\>\<sigma\><around*|(|x|)>+\<nu\><around*|(|x|)>>
-  where <math|\<sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> and
-  <math|\<nu\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> with
-  <math|><math|\<nabla\>\<cdot\>\<nu\><around*|(|x|)>=0>.
-
-  \;
-
-  This relation, if holds, implies that, for each <math|\<alpha\>> and
-  <math|\<beta\>>,
-
-  <\equation*>
-    \<partial\><rsub|\<alpha\>><around*|[|M<rsub|\<beta\>\<gamma\>><around*|(|x|)>
-    F<rsup|\<gamma\>><around*|(|x|)>|]>=\<partial\><rsub|\<beta\>><around*|[|M<rsub|\<alpha\>\<gamma\>><around*|(|x|)>
-    F<rsup|\<gamma\>><around*|(|x|)>|]>,
-  </equation*>
-
-  since <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S<around*|(|x|)>\<equiv\>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>.
-  So, <math|\<partial\><rsub|\<alpha\>>M<rsub|\<beta\>\<gamma\>>
-  F<rsup|\<gamma\>>+M<rsub|\<beta\>\<gamma\>>
-  \<partial\><rsub|\<alpha\>>F<rsup|\<gamma\>>=\<partial\><rsub|\<beta\>>M<rsub|\<alpha\>\<gamma\>>
-  F<rsup|\<gamma\>>+M<rsub|\<alpha\>\<gamma\>>
-  \<partial\><rsub|\<beta\>>F<rsup|\<gamma\>>>. This is a little complicated.
-  We first simplify the situation. The simplies case is
-  <math|M<rsub|\<alpha\>\<beta\>><around*|(|x|)>=\<sigma\><around*|(|x|)>
-  \<delta\><rsub|\<alpha\>\<beta\>>> where
-  <math|\<sigma\><around*|(|x|)>\<gtr\>0>. Thus,
-
-  <\equation*>
-    \<partial\><rsub|\<alpha\>><around*|[|\<sigma\><around*|(|x|)>
-    F<rsub|\<beta\>><around*|(|x|)>|]>=\<partial\><rsub|\<beta\>><around*|[|\<sigma\><around*|(|x|)>
-    F<rsub|\<alpha\>><around*|(|x|)>|]>.
-  </equation*>
-
-  That is, <math|\<partial\><rsub|\<alpha\>>\<sigma\>
-  F<rsub|\<beta\>>+\<sigma\> \<partial\><rsub|\<alpha\>>F<rsub|\<beta\>>=\<partial\><rsub|\<beta\>>\<sigma\>
-  F<rsub|\<alpha\>>+\<sigma\> \<partial\><rsub|\<beta\>>
-  F<rsub|\<alpha\>><around*|(|x|)>>, thus
-  <math|\<partial\><rsub|\<alpha\>>F<rsub|\<beta\>>-\<partial\><rsub|\<beta\>>F<rsub|\<alpha\>>=-<around*|[|\<partial\><rsub|\<alpha\>>ln
-  \<sigma\> F<rsub|\<beta\>>-\<partial\><rsub|\<beta\>>ln \<sigma\>
-  F<rsub|\<alpha\>>|]>>. Decomposing <math|\<partial\><rsub|\<alpha\>>
-  F<rsub|\<beta\>>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\>+\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>>>
-  gives <math|><math|\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>>-\<partial\><rsub|\<beta\>>\<nu\><rsub|\<alpha\>>=-<around*|[|\<partial\><rsub|\<alpha\>>ln
-  \<sigma\> F<rsub|\<beta\>>-\<partial\><rsub|\<beta\>>ln \<sigma\>
-  F<rsub|\<alpha\>>|]>>
-
-  \;
-
-  \;
-
-  Consider the case where <math|M> is diagonal, where
-  <math|M<rsub|\<alpha\>\<beta\>>=\<delta\><rsub|\<alpha\>\<beta\>>
-  \<lambda\><rsub|\<alpha\>><around*|(|x|)>>. Thus, it becomes, for each
-  <math|\<alpha\>> and <math|\<beta\>>,
-
-  <\equation*>
-    \<partial\><rsub|\<alpha\>><around*|[|\<lambda\><rsub|\<beta\>><around*|(|x|)>
-    F<rsub|\<beta\>><around*|(|x|)>|]>=\<partial\><rsub|\<beta\>><around*|[|\<lambda\><rsub|\<alpha\>><around*|(|x|)>
-    F<rsub|\<alpha\>><around*|(|x|)>|]>,
-  </equation*>
-
-  or
-
-  <\equation*>
-    \<partial\><rsub|\<alpha\>>\<lambda\><rsub|\<beta\>>
-    F<rsub|\<beta\>>+\<lambda\><rsub|\<beta\>>
-    \<partial\><rsub|\<alpha\>>F<rsub|\<beta\>>=\<partial\><rsub|\<beta\>>\<lambda\><rsub|\<alpha\>>
-    F<rsub|\<alpha\>>+\<lambda\><rsub|\<alpha\>>
-    \<partial\><rsub|\<beta\>>F<rsub|\<alpha\>>.
-  </equation*>
-
-  Then, decompose <math|F> as <math|F<rsub|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>\<varphi\><around*|(|x|)>+\<nu\><rsub|\<alpha\>><around*|(|x|)>>
-  with <math|\<partial\><rsub|\<alpha\>>\<nu\><rsup|\<alpha\>><around*|(|x|)>=0>.
-  Thus, <math|\<partial\><rsub|\<alpha\>>
-  F<rsub|\<beta\>>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\>+\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>>>.
+  TODO: review the above discussion.
 
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>

@@ -276,34 +276,58 @@
   Hence, <math|\<nu\><rsub|\<alpha\>><around*|(|x|)>> is harmonic for each
   <math|\<alpha\>>, which is not satisfied in general.) But, if
   <math|f<around*|(|x|)>=0> is an equation of motion, so will be
-  <math|M<rsub|\<alpha\>\<beta\>><around*|(|x|)>
+  <math|A<rsub|\<alpha\>\<beta\>><around*|(|x|)>
   f<rsup|\<beta\>><around*|(|x|)>=0> for any smooth and invertible matrix
-  valued field <math|M:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>.
+  valued field <math|A:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>.
   So, we may expect
 
   <\equation*>
-    M<rsub|\<alpha\>\<beta\>><around*|(|x|)>
+    A<rsub|\<alpha\>\<beta\>><around*|(|x|)>
     f<rsup|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>
   </equation*>
 
-  holds for a general class of equation of motion <math|F> as long as we can
-  find the corresponding <math|M>. We wonder, given <math|f>, if there is
+  holds for a general class of equation of motion <math|f> as long as we can
+  find the corresponding <math|A>. We wonder, given <math|f>, if there is
   such an <math|M> and an <math|S> that this relation holds?
 
-  For example, if let <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>\<equiv\><around*|(|1,0,0,\<ldots\>|)>>,
-  then we would have <math|f<rsup|\<alpha\>><around*|(|x|)>=<around*|(|M<rsup|-1>|)><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-  \<partial\><rsub|\<alpha\>>S<around*|(|x|)>=<around*|(|M<rsup|-1>|)><rsup|\<alpha\>
+  For example, if let <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>\<equiv\><around*|(|1,0,0,\<ldots\>|)>>
+  and <math|B\<assign\>A<rsup|-1>> (should exist), then we would have
+  <math|f<rsup|\<alpha\>><around*|(|x|)>=B<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+  \<partial\><rsub|\<alpha\>>S<around*|(|x|)>=B<rsup|\<alpha\>
   1><around*|(|x|)>>. It suggests that, for any smooth vector field <math|f>
-  given, we can construct <math|M> in such a way that the first column of
-  <math|M<rsup|-1>> is defined to be <math|f>. The other columns of
-  <math|M<rsup|-1>> are free to choose, providing that <math|M<rsup|-1>> is
-  invertible (as a matrix valued field on <math|\<bbb-R\><rsup|n>>). The
-  <math|M> adds <math|n\<times\>n-1> degrees of freedom to the
-  <math|n>-dimensional relationship (where the <math|-1> comes from the
-  restriction <math|det<around*|(|M|)>\<neq\>0>) which are sufficient many to
-  relieve the tension in the relationship.
+  given, we can construct <math|A> in such a way that the first column of
+  <math|B> is defined to be <math|f>. The other columns of <math|B> are
+  chosen so as to make <math|B> invertible (as a matrix valued field on
+  <math|\<bbb-R\><rsup|n>>). This, however, cannot be done since there is an
+  <math|x<rsub|\<star\>>>, the so called classical solution, such that
+  <math|f<around*|(|x<rsub|\<star\>>|)>=0>. Then, the first column of
+  <math|B> vanishes and thus <math|det<around*|(|B|)>=0>. We must have, when
+  <math|f<around*|(|x|)>=0>, <math|\<nabla\>S<around*|(|x|)>=0> for ensuring
+  the invertibility of <math|A<around*|(|x|)>>.
 
-  TODO: review the above discussion.
+  Following this, consider <math|B<rsub|\<alpha\>\<beta\>><around*|(|x|)>=\<lambda\><rsub|\<alpha\>><around*|(|x|)>
+  \<delta\><rsub|\<alpha\>\<beta\>>>, thus we would expect
+  <math|\<lambda\><rsub|\<alpha\>><around*|(|x|)>\<neq\>0> for all <math|x>
+  and <math|\<alpha\>>. So, <math|f<rsub|\<alpha\>><around*|(|x|)>=\<lambda\><rsub|\<alpha\>><around*|(|x|)>
+  \<partial\><rsub|\<alpha\>>S<around*|(|x|)>> for any <math|\<alpha\>>. In
+  the case when <math|\<lambda\><rsub|\<alpha\>><around*|(|x|)>> is constant
+  for each <math|\<alpha\>> and <math|x>, we would have
+  <math|\<partial\><rsub|\<beta\>>f<rsub|\<alpha\>>-\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>>=0>.
+  But now, when <math|\<lambda\><rsub|\<alpha\>><around*|(|x|)>> varies, we
+  have <math|\<partial\><rsub|\<beta\>>f<rsub|\<alpha\>>=\<partial\><rsub|\<beta\>>\<lambda\><rsub|\<alpha\>>
+  \<partial\><rsub|\<alpha\>>S+\<lambda\><rsub|\<alpha\>>
+  \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S> and
+  <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>>=\<partial\><rsub|\<alpha\>>\<lambda\><rsub|\<beta\>>
+  \<partial\><rsub|\<beta\>>S+\<lambda\><rsub|\<beta\>>
+  \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S>. Thus, for each
+  <math|\<alpha\>> and <math|\<beta\>>, <math|\<partial\><rsub|\<beta\>>f<rsub|\<alpha\>>-\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>>=\<partial\><rsub|\<beta\>>\<lambda\><rsub|\<alpha\>>
+  \<partial\><rsub|\<alpha\>>S-\<partial\><rsub|\<alpha\>>\<lambda\><rsub|\<beta\>>
+  \<partial\><rsub|\<beta\>>S+<around*|(|\<lambda\><rsub|\<alpha\>>-\<lambda\><rsub|\<beta\>>|)>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S>.
+  The <math|\<lambda\><rsub|\<alpha\>><around*|(|x|)>> as a non-constant
+  vector field makes it possible that <math|\<partial\><rsub|\<beta\>>f<rsub|\<alpha\>>-\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>>>
+  may not vanish.
+
+  TODO
 
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
@@ -424,7 +448,6 @@
     <associate|auto-6|<tuple|1.4|3>>
     <associate|auto-7|<tuple|1.5|3>>
     <associate|auto-8|<tuple|1.6|4>>
-    <associate|auto-9|<tuple|1.7|4>>
     <associate|equation:Equivalent Loss|<tuple|5|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|3|1>>
@@ -444,7 +467,7 @@
     <associate|section: Data Fitting Is Equivalent to Least-Action
     Principle|<tuple|1.2|1>>
     <associate|section: Example: Extract Dynamics from Raw
-    Data|<tuple|1.3|?>>
+    Data|<tuple|1.3|2>>
   </collection>
 </references>
 
@@ -498,18 +521,14 @@
       Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Example: Actions in Machine
-      Learning (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>>
-
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Maximum-Entropy and
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Maximum-Entropy and
       Least-Action Are Saddle Point of a Functional
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>>
+      <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Structures in Nature Arise
-      from Maximum-Entropy (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Structures in Nature Arise
+      from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
     </associate>
   </collection>
 </auxiliary>

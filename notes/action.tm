@@ -216,41 +216,56 @@
 
   <subsection|Is There an Action for a Dynamical System?>
 
-  Configuration can be represented by a high-dimensional vector. For example,
+  Configuration can be represented by a high-dimensional vector. As discussed
   in section <reference|section: Example: Extract Dynamics from Raw Data>,
   the configuration of physical system should be a function
   <math|x<around*|(|t|)>:\<bbb-R\>\<rightarrow\>V> for some set <math|V>, but
   discretized to a vector <math|<around*|(|x<around*|(|1|)>,\<ldots\>,x<around*|(|T|)>|)>\<in\>V<rsup|T>>
   where <math|T> represents the number of frames. Thus, generally, an action
-  can be represented as <math|S<around*|(|x|)>:V<rsup|n>\<rightarrow\>\<bbb-R\>>.
-  In the previous example, we have <math|n=T>. The variation of action is
-  simply <math|\<nabla\>S<around*|(|x|)>>. On the other hand, equation of
-  motion can be represented by a vector <math|F<around*|(|x|)>=0> where
-  <math|F:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n-m>> where <math|m>
-  represents the order of the equation of motion. In the case of
-  one-dimensional harmonic oscillator, the equation of motion is second
-  order, thus in the discrete situation, there are <math|T-2> constraints,
-  thus <math|m=2>. The two extra degrees of freedom are assigned to the
+  can be represented as <math|S<around*|(|x|)>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>>.
+  In the previous example, we have <math|n=dim<around*|(|V|)>\<times\>T>.
+  This discrete perspective greatly simplifies the situation. For example,
+  the variation of action is simply <math|\<nabla\>S<around*|(|x|)>>. On the
+  other hand, equation of motion can be represented by
+  <math|f<around*|(|x|)>=0> where <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n-m>>
+  where <math|m> represents the order of the equation of motion. In the case
+  of one-dimensional harmonic oscillator, the equation of motion is second
+  order, thus in this discrete perspective, there are <math|T-2> constraints,
+  implying <math|m=2>. The two extra degrees of freedom are assigned to the
   initial position and velocity of oscillator. If the initial conditions are
   given, we will have <math|m=0>, thus <math|F:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
-  In this case, we expect to represent the equation of motion by the
-  variation of action, that is, <math|F<rsub|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>.
-  This cannot be true for all <math|F> since
-  <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S<around*|(|x|)>\<equiv\>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
-  while generally <math|\<partial\><rsub|\<alpha\>>F<rsub|\<beta\>><around*|(|x|)>\<neq\>\<partial\><rsub|\<beta\>>
-  F<rsub|\<alpha\>><around*|(|x|)>>. But, if <math|F<around*|(|x|)>=0> is an
-  equation of motion, so will be <math|M<rsub|\<alpha\>\<beta\>><around*|(|x|)>
-  F<rsup|\<beta\>><around*|(|x|)>=0> for any smooth and invertible matrix
+  So, if we want to represent the equation of motion by the variation of
+  action (in the continuous perspective it is
+  <math|f<around*|(|t,x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,\<ldots\>|)>=\<delta\>S/\<delta\>x<around*|(|t|)>>),
+  we can write <math|f<rsub|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
+  for each <math|\<alpha\>=1,\<ldots\>,n>. This cannot be true for all
+  <math|f> since <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S<around*|(|x|)>\<equiv\>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
+  while generally we do not have <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
+  f<rsub|\<alpha\>><around*|(|x|)>>. (By Helmholtz decompostion,
+  <math|f<around*|(|x|)>=\<nabla\>\<varphi\><around*|(|x|)>+\<nu\><around*|(|x|)>>
+  where <math|\<nabla\>\<cdot\>\<nu\><around*|(|x|)>=0>. Thus,
+  <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
+  f<rsub|\<alpha\>><around*|(|x|)>> means
+  <math|\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>\<nu\><rsub|\<alpha\>><around*|(|x|)>>
+  for each <math|\<alpha\>> and <math|\<beta\>>. Applying
+  <math|<big|sum><rsub|\<alpha\>>\<partial\><rsup|\<alpha\>>> to both sides
+  gives <math|\<partial\><rsup|\<alpha\>>\<partial\><rsub|\<alpha\>>
+  \<nu\><rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>\<partial\><rsup|\<alpha\>>v<rsub|\<alpha\>><around*|(|x|)>=0>.
+  Hence, <math|\<nu\><rsub|\<alpha\>><around*|(|x|)>> is harmonic for each
+  <math|\<alpha\>>, which is not satisfied in general.) But, if
+  <math|f<around*|(|x|)>=0> is an equation of motion, so will be
+  <math|M<rsub|\<alpha\>\<beta\>><around*|(|x|)>
+  f<rsup|\<beta\>><around*|(|x|)>=0> for any smooth and invertible matrix
   valued field <math|M:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>.
   So, we may expect
 
   <\equation*>
     M<rsub|\<alpha\>\<beta\>><around*|(|x|)>
-    F<rsup|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>
+    f<rsup|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>
   </equation*>
 
   holds for a general class of equation of motion <math|F> as long as we can
-  find the corresponding <math|M>. We wonder, given <math|F>, if there is
+  find the corresponding <math|M>. We wonder, given <math|f>, if there is
   such an <math|M> and an <math|S> that this relation holds?
 
   <subsection|Drafts (TODO)>

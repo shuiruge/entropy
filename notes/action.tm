@@ -1,4 +1,4 @@
-<TeXmacs|2.1>
+<TeXmacs|2.1.4>
 
 <style|book>
 
@@ -213,131 +213,6 @@
     <samp|oscillators/Oscillator.ipynb>.
   </footnote>
 
-  <subsection|Is There an Action for a Dynamical System?>
-
-  The local minima of <math|L<rsub|LA>> (the loss function used for finding
-  action) can be realized as the patterns in the dataset. So,
-  <with|font-shape|italic|we can find an action for a physical system if and
-  only if there are a finite number of patterns in the system> (that is, in
-  the raw data). When a physical system is chaotic, there will be an infinite
-  number of patterns in it. In fact, a chaotic system can be seen as an
-  advanced generator of pseudo-random numbers, being avoid of any pattern.
-  TODO
-
-  Consider the one-dimensional hamonic oscillator
-
-  <\equation*>
-    <frac|\<mathd\><rsup|2>x|\<mathd\>t<rsup|2>><around*|(|t|)>+\<omega\><rsup|2>
-    x<around*|(|t|)>=0.
-  </equation*>
-
-  The <math|L<around*|(|x,t|)>=<around*|(|1/2|)> \<omega\><rsup|2>
-  x<rsup|2>>. The general solution is a linear combination of two bases
-  <math|sin<around*|(|\<omega\> t|)>> and <math|cos<around*|(|\<omega\>
-  t|)>>, thus
-
-  <\equation*>
-    x<around*|(|t|)>=A sin<around*|(|w t|)>+B cos<around*|(|\<omega\> t|)>.
-  </equation*>
-
-  For simplicity, let us first consider <math|x<around*|(|t|)>=A
-  sin<around*|(|\<omega\> t|)>>, thus <math|x<around*|(|0|)>=0> and
-  <math|<wide|x|\<dot\>><around*|(|0|)>=A \<omega\>> It has one pattern which
-  is <math|sin<around*|(|\<omega\> t|)>> but gauged by <math|A>. It gives
-
-  <\equation*>
-    S<around*|(|x|)>=<frac|\<omega\><rsup|2> A<rsup|2>|2>
-    cos<rsup|2><around*|(|\<omega\> t|)>-<frac|\<omega\><rsup|2>
-    A<rsup|2>|2>sin<rsup|2><around*|(|\<omega\>
-    t|)>=<frac|<wide|x|\<dot\>><rsup|2><around*|(|0|)>|2> cos<around*|(|2
-    \<omega\> t|)>.
-  </equation*>
-
-  <subsection|Example: Actions in Machine Learning (TODO)>
-
-  In section <reference|section: Data Fitting Is Equivalent to Least-Action
-  Principle>, we have shown that any density function can be re-formulated by
-  action. Usually, the goal of a supervised machine learning task is to fit a
-  density function that predicts the target. For example, given an image, we
-  are to compute the conditional density function for the class of the image
-  such as being a cat or a dog. Let <math|x> denote the input (like images)
-  and <math|y> the target, which can be discrete (like classes) or continuous
-  (like person's height), then the conditional density function is usually
-  given by a model <math|f<around*|(|x,\<theta\>|)>> parameterized by
-  <math|\<theta\>>, as
-
-  <\equation*>
-    p<around*|(|y\|x,\<theta\>|)>=\<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>.
-  </equation*>
-
-  For a categorical classification task, <math|y\<in\><around*|{|1,\<ldots\>,M|}>>
-  and <math|z\<in\>\<bbb-R\><rsup|M>> for some <math|M>, and <math|\<cal-P\>>
-  is defined by
-
-  <\equation*>
-    \<cal-P\><rsub|clf><around*|(|y,z|)>\<assign\><frac|exp<around*|(|z<rsup|y>|)>|<big|sum><rsub|\<alpha\>=1><rsup|M>exp<around*|(|z<rsup|\<alpha\>>|)>>.
-  </equation*>
-
-  And for regression task, <math|y,z\<in\>\<bbb-R\><rsup|M>> for some
-  <math|M>, and <math|\<cal-P\>> is defined by
-
-  <\equation*>
-    \<cal-P\><rsub|rg><around*|(|y,z|)>\<assign\>exp<around*|(|-<big|sum><rsub|\<alpha\>=1><rsup|M><frac|<around*|(|y<rsup|\<alpha\>>-z<rsup|\<alpha\>>|)><rsup|2>|2>|)>.
-  </equation*>
-
-  Thus, we have an action
-
-  <\equation*>
-    S<around*|(|y<with|color|red|;>x,\<theta\>|)>\<assign\>-ln
-    p<around*|(|y\|x,\<theta\>|)>=-ln \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>,
-  </equation*>
-
-  which is the loss per sample in machine learning.<\footnote>
-    So, machine learning models can be seen as a complicated version of Ising
-    model, where the <math|y> in machine learning corresponding to the spins
-    in Ising model and <math|\<theta\>> to the temperature.
-  </footnote> Remark that input <math|x> serves as a parameter of action
-  <math|S>, and <math|y> is unique the argument of action (so we use
-  semicolon instead of comma).
-
-  Assume that datum <math|<around*|(|x,y|)>> is sampled from a dataset
-  described by distribution <math|Q>, thus the total loss of least-action
-  becomes (<math|Q<rsub|X>> for the marginal distribution of <math|X>, and
-  <math|P<around*|(|x,\<theta\>|)>> for the conditional distribution of
-  <math|p<around*|(|y\|x,\<theta\>|)>>, thus we can sample from it)
-
-  <\equation*>
-    L<rsub|LA><around*|(|\<theta\>|)>=\<bbb-E\><rsub|x\<sim\>Q<rsub|X>,y\<sim\>P<around*|(|x,\<theta\>|)>><around*|[|ln
-    \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>|]>-\<bbb-E\><rsub|<around*|(|x,y|)>\<sim\>Q><around*|[|ln
-    \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>|]>.
-  </equation*>
-
-  The last term is the usual loss function in machine learning. For example,
-  in the classification task, it is cross-entropy, and in regression task, it
-  is usually the mean squared error.
-
-  The first term is new for machine learning. To compute it, we first sample
-  a datum <math|<around*|(|x,y<rsub|0>|)>> from <math|Q> and only keep the
-  <math|x>, which indicates the <math|x\<sim\>Q<rsub|X>>. Then, compute
-  <math|f<around*|(|x,\<theta\>|)>> and sample a new <math|y> from
-  <math|P<around*|(|x,\<theta\>|)>>. For classification task, <math|y> is
-  sampled from the categorical distribution with probability
-  <math|exp<around*|(|f<rsup|y><around*|(|x;\<theta\>|)>|)>/<big|sum><rsub|\<alpha\>=1><rsup|M>exp<around*|(|f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)>>,
-  and for regression task, from a normal distribution with mean
-  <math|f<around*|(|x,\<theta\>|)>> and unit variance. Using this <math|y>,
-  together with the <math|x>, <math|ln \<cal-P\><around*|(|y,f<around*|(|x,\<theta\>|)>|)>>
-  is calculated. For classification task, it is
-  <math|f<rsup|y><around*|(|x,\<theta\>|)>-lnSumExp<around*|(|f<around*|(|x,\<theta\>|)>|)>>,
-  where <math|lnSumExp<around*|(|x|)>\<assign\>ln<around*|(|<big|sum><rsub|\<alpha\>>exp<around*|(|x<rsup|\<alpha\>>|)>|)>>;
-  and for regression task, it is <math|-<big|sum><rsub|\<alpha\>=1><rsup|M><around*|(|y<rsup|\<alpha\>>-f<rsup|\<alpha\>><around*|(|x,\<theta\>|)>|)><rsup|2>/2>.
-
-  When we use deep neural network to express the model
-  <math|f<around*|(|x,\<theta\>|)>>, TODO
-
-  There is also unsupervised learning tasks. For example, mask some part of
-  the input image and predict what has been masked, or embedding the input
-  image into a latent space. TODO
-
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
 
@@ -401,7 +276,11 @@
   minima. So, we find that maximum-entropy principle and least-action
   principle are saddle point of a functional <math|V>.
 
-  <subsection|Structures in Nature Arise from Maximum-Entropy (TODO)>
+  <subsection|Is There an Action for a Dynamical System?>
+
+  TODO
+
+  <subsection|Structures in Nature Arise from Maximum-Entropy>
 
   There are many structures in nature. The structure of vascular system is a
   simple instance. A more complicated structure appears in the bases along
@@ -437,6 +316,8 @@
   The strategy is using a transition rate that satisfies the detailed balance
   condition. This transition rate minics the evolution. <with|color|red|The
   disconnectivity of transition rate may reflect gene isolation.>
+
+  TODO
 </body>
 
 <\initial>

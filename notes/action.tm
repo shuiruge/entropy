@@ -173,7 +173,8 @@
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is optimized to be the dashed
   green curve.>
 
-  <subsection|Example: Extract Dynamics from Raw Data>
+  <subsection|Example: Extract Dynamics from Raw Data><label|section:
+  Example: Extract Dynamics from Raw Data>
 
   We are to apply the previous discussion to extract dynamics from the raw
   data of a physical system. To describe the system, we need a configuration
@@ -212,6 +213,139 @@
     An experiment on general oscillators can be found in the
     <samp|oscillators/Oscillator.ipynb>.
   </footnote>
+
+  <subsection|Is There an Action for a Dynamical System?>
+
+  Configuration can be represented by a high-dimensional vector. For example,
+  in section <reference|section: Example: Extract Dynamics from Raw Data>,
+  the configuration of physical system should be a function
+  <math|x<around*|(|t|)>:\<bbb-R\>\<rightarrow\>V> for some set <math|V>, but
+  discretized to a vector <math|<around*|(|x<around*|(|1|)>,\<ldots\>,x<around*|(|T|)>|)>\<in\>V<rsup|T>>
+  where <math|T> represents the number of frames. Thus, generally, an action
+  can be represented as <math|S<around*|(|x|)>:V<rsup|n>\<rightarrow\>\<bbb-R\>>.
+  In the previous example, we have <math|n=T>. The variation of action is
+  simply <math|\<nabla\>S<around*|(|x|)>>. On the other hand, equation of
+  motion can be represented by a vector <math|F<around*|(|x|)>=0> where
+  <math|F:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n-m>> where <math|m>
+  represents the order of the equation of motion. In the case of
+  one-dimensional harmonic oscillator, the equation of motion is second
+  order, thus in the discrete situation, there are <math|T-2> constraints,
+  thus <math|m=2>. The two extra degrees of freedom are assigned to the
+  initial position and velocity of oscillator. If the initial conditions are
+  given, we will have <math|m=0>, thus <math|F:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
+  In this case, we expect to represent the equation of motion by the
+  variation of action, that is, <math|F<rsub|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>.
+  This cannot be true for all <math|F> since
+  <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S<around*|(|x|)>\<equiv\>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
+  while generally <math|\<partial\><rsub|\<alpha\>>F<rsub|\<beta\>><around*|(|x|)>\<neq\>\<partial\><rsub|\<beta\>>
+  F<rsub|\<alpha\>><around*|(|x|)>>. But, if <math|F<around*|(|x|)>=0> is an
+  equation of motion, so will be <math|M<rsub|\<alpha\>\<beta\>><around*|(|x|)>
+  F<rsup|\<beta\>><around*|(|x|)>=0> for any smooth and invertible matrix
+  valued field <math|M:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>.
+  So, we may expect
+
+  <\equation*>
+    M<rsub|\<alpha\>\<beta\>><around*|(|x|)>
+    F<rsup|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>
+  </equation*>
+
+  holds for a general class of equation of motion <math|F> as long as we can
+  find the corresponding <math|M>. We wonder, given <math|F>, if there is
+  such an <math|M> and an <math|S> that this relation holds?
+
+  <subsection|Drafts (TODO)>
+
+  It is well known that, given a vector <math|k\<in\>\<bbb-R\><rsup|n>>, any
+  vector <math|y\<in\>\<bbb-R\><rsup|n>> can be decomposed into two parts:
+  one that parallel to <math|k> and the other normal to <math|k>. That is,
+  <math|y=y<rsub|\<parallel\>>+y<rsub|\<bot\>>>, wherein
+  <math|k\<times\>y<rsub|\<parallel\>>=0> and
+  <math|k\<cdot\>y<rsub|\<bot\>>=0>. This holds for any vector field
+  <math|y:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>:
+  <math|y<around*|(|k|)>=y<rsub|\<parallel\>><around*|(|k|)>+y<rsub|\<bot\>><around*|(|k|)>>,
+  <math|k\<times\>y<rsub|\<parallel\>><around*|(|k|)>=0>, and
+  <math|k\<cdot\>y<rsub|\<bot\>><around*|(|k|)>=0>. By Fourier transform,
+  this relation becomes <math|<wide|y|^><around*|(|x|)>=<wide|y|^><rsub|\<parallel\>><around*|(|x|)>+<wide|y|^><rsub|\<bot\>><around*|(|x|)>>,
+  <math|\<nabla\>\<times\><wide|y|^><rsub|\<parallel\>><around*|(|x|)>=0>,
+  and <math|\<nabla\>\<cdot\><wide|y|^><rsub|\<bot\>><around*|(|x|)>=0>.
+  Since every curl-free vector field is the gradient of a scale field, thus
+  <math|<wide|y|^><rsub|\<parallel\>><around*|(|x|)>=\<nabla\>\<sigma\><around*|(|x|)>>
+  where <math|\<sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>>. So, we
+  find that any smooth vector field <math|v:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
+  can be composed into <math|v<around*|(|x|)>=\<nabla\>\<sigma\><around*|(|x|)>+\<nu\><around*|(|x|)>>
+  where <math|\<sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> and
+  <math|\<nu\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> with
+  <math|><math|\<nabla\>\<cdot\>\<nu\><around*|(|x|)>=0>.
+
+  \;
+
+  This relation, if holds, implies that, for each <math|\<alpha\>> and
+  <math|\<beta\>>,
+
+  <\equation*>
+    \<partial\><rsub|\<alpha\>><around*|[|M<rsub|\<beta\>\<gamma\>><around*|(|x|)>
+    F<rsup|\<gamma\>><around*|(|x|)>|]>=\<partial\><rsub|\<beta\>><around*|[|M<rsub|\<alpha\>\<gamma\>><around*|(|x|)>
+    F<rsup|\<gamma\>><around*|(|x|)>|]>,
+  </equation*>
+
+  since <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S<around*|(|x|)>\<equiv\>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>.
+  So, <math|\<partial\><rsub|\<alpha\>>M<rsub|\<beta\>\<gamma\>>
+  F<rsup|\<gamma\>>+M<rsub|\<beta\>\<gamma\>>
+  \<partial\><rsub|\<alpha\>>F<rsup|\<gamma\>>=\<partial\><rsub|\<beta\>>M<rsub|\<alpha\>\<gamma\>>
+  F<rsup|\<gamma\>>+M<rsub|\<alpha\>\<gamma\>>
+  \<partial\><rsub|\<beta\>>F<rsup|\<gamma\>>>. This is a little complicated.
+  We first simplify the situation. The simplies case is
+  <math|M<rsub|\<alpha\>\<beta\>><around*|(|x|)>=\<sigma\><around*|(|x|)>
+  \<delta\><rsub|\<alpha\>\<beta\>>> where
+  <math|\<sigma\><around*|(|x|)>\<gtr\>0>. Thus,
+
+  <\equation*>
+    \<partial\><rsub|\<alpha\>><around*|[|\<sigma\><around*|(|x|)>
+    F<rsub|\<beta\>><around*|(|x|)>|]>=\<partial\><rsub|\<beta\>><around*|[|\<sigma\><around*|(|x|)>
+    F<rsub|\<alpha\>><around*|(|x|)>|]>.
+  </equation*>
+
+  That is, <math|\<partial\><rsub|\<alpha\>>\<sigma\>
+  F<rsub|\<beta\>>+\<sigma\> \<partial\><rsub|\<alpha\>>F<rsub|\<beta\>>=\<partial\><rsub|\<beta\>>\<sigma\>
+  F<rsub|\<alpha\>>+\<sigma\> \<partial\><rsub|\<beta\>>
+  F<rsub|\<alpha\>><around*|(|x|)>>, thus
+  <math|\<partial\><rsub|\<alpha\>>F<rsub|\<beta\>>-\<partial\><rsub|\<beta\>>F<rsub|\<alpha\>>=-<around*|[|\<partial\><rsub|\<alpha\>>ln
+  \<sigma\> F<rsub|\<beta\>>-\<partial\><rsub|\<beta\>>ln \<sigma\>
+  F<rsub|\<alpha\>>|]>>. Decomposing <math|\<partial\><rsub|\<alpha\>>
+  F<rsub|\<beta\>>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\>+\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>>>
+  gives <math|><math|\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>>-\<partial\><rsub|\<beta\>>\<nu\><rsub|\<alpha\>>=-<around*|[|\<partial\><rsub|\<alpha\>>ln
+  \<sigma\> F<rsub|\<beta\>>-\<partial\><rsub|\<beta\>>ln \<sigma\>
+  F<rsub|\<alpha\>>|]>>
+
+  \;
+
+  \;
+
+  Consider the case where <math|M> is diagonal, where
+  <math|M<rsub|\<alpha\>\<beta\>>=\<delta\><rsub|\<alpha\>\<beta\>>
+  \<lambda\><rsub|\<alpha\>><around*|(|x|)>>. Thus, it becomes, for each
+  <math|\<alpha\>> and <math|\<beta\>>,
+
+  <\equation*>
+    \<partial\><rsub|\<alpha\>><around*|[|\<lambda\><rsub|\<beta\>><around*|(|x|)>
+    F<rsub|\<beta\>><around*|(|x|)>|]>=\<partial\><rsub|\<beta\>><around*|[|\<lambda\><rsub|\<alpha\>><around*|(|x|)>
+    F<rsub|\<alpha\>><around*|(|x|)>|]>,
+  </equation*>
+
+  or
+
+  <\equation*>
+    \<partial\><rsub|\<alpha\>>\<lambda\><rsub|\<beta\>>
+    F<rsub|\<beta\>>+\<lambda\><rsub|\<beta\>>
+    \<partial\><rsub|\<alpha\>>F<rsub|\<beta\>>=\<partial\><rsub|\<beta\>>\<lambda\><rsub|\<alpha\>>
+    F<rsub|\<alpha\>>+\<lambda\><rsub|\<alpha\>>
+    \<partial\><rsub|\<beta\>>F<rsub|\<alpha\>>.
+  </equation*>
+
+  Then, decompose <math|F> as <math|F<rsub|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>\<varphi\><around*|(|x|)>+\<nu\><rsub|\<alpha\>><around*|(|x|)>>
+  with <math|\<partial\><rsub|\<alpha\>>\<nu\><rsup|\<alpha\>><around*|(|x|)>=0>.
+  Thus, <math|\<partial\><rsub|\<alpha\>>
+  F<rsub|\<beta\>>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\>+\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>>>.
 
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
@@ -275,10 +409,6 @@
   the <math|max<rsub|\<theta\>>> sites real data onto the action's local
   minima. So, we find that maximum-entropy principle and least-action
   principle are saddle point of a functional <math|V>.
-
-  <subsection|Is There an Action for a Dynamical System?>
-
-  TODO
 
   <subsection|Structures in Nature Arise from Maximum-Entropy>
 
@@ -355,6 +485,8 @@
     <associate|footnr-4|<tuple|4|4>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
     Principle|<tuple|1.2|1>>
+    <associate|section: Example: Extract Dynamics from Raw
+    Data|<tuple|1.3|?>>
   </collection>
 </references>
 

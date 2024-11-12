@@ -174,7 +174,7 @@
   <math|p<rsub|i><around*|(|t|)>\<gtr\>0> as long as
   <math|p<rsub|i><around*|(|0|)>\<gtr\>0>, indicating that master equation
   conserves the positivity of density function. As a summary, we demand
-  transition rate <math|r> to be <math|r<around*|(|x,y|)>\<gtr\>0> when
+  transition rate <math|r> to be <math|r<around*|(|x,y|)>\<geqslant\>0> when
   <math|x\<neq\>y> and <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
   r<around*|(|x,y|)>=0>.
 

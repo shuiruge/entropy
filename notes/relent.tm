@@ -1,4 +1,4 @@
-<TeXmacs|2.1>
+<TeXmacs|2.1.4>
 
 <style|book>
 
@@ -18,7 +18,10 @@
   <strong|alphabet>.<\footnote>
     Some textures call it <with|font-series|bold|sample space>. But \Pspace\Q
     usually hints for extra structures such as vector space or topological
-    space. So, we use \Palphabet\Q instead.
+    space. So, we use \Palphabet\Q instead (following David Mackay, see his
+    book <with|font-shape|italic|Information Theory, Inference, and Learning
+    Algorithms>, section 2.1. Link to free PDF:
+    <hlink|https://www.inference.org.uk/itprnn/book.pdf|https://www.inference.org.uk/itprnn/book.pdf>).
   </footnote> And for each value in the alphabet, we assign a <em|positive>
   value called <strong|density> if the alphabet is of continuum (continuous
   random variable), or <strong|mass> otherwise (discrete random

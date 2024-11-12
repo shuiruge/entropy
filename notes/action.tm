@@ -231,9 +231,9 @@
   where <math|m> represents the order of the equation of motion. In the case
   of one-dimensional harmonic oscillator, the equation of motion is second
   order, thus in this discrete perspective, there are <math|T-2> constraints,
-  implying <math|m=2>. The two extra degrees of freedom are assigned to the
+  implying <math|m=2>. The two extra degree of freedom are assigned to the
   initial position and velocity of oscillator. If the initial conditions are
-  given, we will have <math|m=0>, thus <math|F:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
+  given, we will have <math|m=0>, thus <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
   So, if we want to represent the equation of motion by the variation of
   action (in the continuous perspective it is
   <math|f<around*|(|t,x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,\<ldots\>|)>=\<delta\>S/\<delta\>x<around*|(|t|)>>),
@@ -274,25 +274,59 @@
   gives <math|\<partial\><rsup|\<alpha\>>\<partial\><rsub|\<alpha\>>
   \<nu\><rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>\<partial\><rsup|\<alpha\>>v<rsub|\<alpha\>><around*|(|x|)>=0>.
   Hence, <math|\<nu\><rsub|\<alpha\>><around*|(|x|)>> is harmonic for each
-  <math|\<alpha\>>, which is not satisfied in general.) But, if
-  <math|f<around*|(|x|)>=0> is an equation of motion, so will be
+  <math|\<alpha\>>, which is not satisfied in general.)
+
+  But, if <math|f<around*|(|x|)>=0> is an equation of motion, so will be
   <math|A<rsub|\<alpha\>\<beta\>><around*|(|x|)>
   f<rsup|\<beta\>><around*|(|x|)>=0> for any smooth and invertible matrix
   valued field <math|A:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>.
+  The <math|A f=0> is an equation of motion that is equivalent to <math|f=0>.
   So, we may expect
 
-  <\equation*>
+  <\equation>
     A<rsub|\<alpha\>\<beta\>><around*|(|x|)>
-    f<rsup|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>
-  </equation*>
+    f<rsup|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)><label|equation:eom
+    and action>
+  </equation>
 
   holds for a general class of equation of motion <math|f> as long as we can
   find the corresponding <math|A>. We wonder, given <math|f>, if there is
   such an <math|M> and an <math|S> that this relation holds?
 
-  For example, if let <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>\<equiv\><around*|(|1,0,0,\<ldots\>|)>>
-  and <math|B\<assign\>A<rsup|-1>> (should exist), then we would have
-  <math|f<rsup|\<alpha\>><around*|(|x|)>=B<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+  <subsection|Drafts>
+
+  <subsubsection|Coordinate Transformation>
+
+  The invertibility of matrix field <math|A> remind us of coordinate
+  transformation, where the diffeomorphism
+  <math|y<around*|(|x|)>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
+  provides an invertible matrix field <math|<around*|(|\<partial\>y/\<partial\>x|)><around*|(|x|)>>.
+  By making such a coordinate transformation, we have
+  <math|\<partial\><rsub|\<alpha\>>S\<assign\>\<partial\>S/\<partial\>x<rsup|\<alpha\>>=<around*|(|\<partial\>y<rsup|\<beta\>>/\<partial\>x<rsup|\<alpha\>>|)>
+  <around*|(|\<partial\>S/\<partial\>y<rsup|\<beta\>>|)>>. Denote
+  <math|\<partial\><rsub|\<alpha\>><rprime|'>S<around*|(|y|)>\<assign\><around*|(|\<partial\>S/\<partial\>y<rsup|\<alpha\>>|)><around*|(|y|)>>,
+  and <math|A<around*|(|y|)>\<assign\><around*|(|\<partial\>x/\<partial\>y|)><around*|(|y|)>>,
+  then from <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>=f<rsub|\<alpha\>><around*|(|x|)>>
+  we get <math|\<partial\><rprime|'><rsub|\<alpha\>>S<around*|(|y|)>=A<rsub|\<alpha\>\<beta\>><around*|(|y|)>
+  <around*|(|f<rsup|\<beta\>>\<circ\>x|)><around*|(|y|)>>.
+
+  <subsubsection|Degree of Freedom>
+
+  We first consider degree of freedom. On the left hand side, there are
+  <math|n\<times\>n> degree of freedom from <math|A> (<math|f> does not
+  provide degree of freedom because it has been fixed), and on the right hand
+  side there is one from <math|S>. Thus, totally <math|n\<times\>n+1> degree
+  of freedom. On the restrictions, we have one from
+  <math|det<around*|(|A|)>\<neq\>0>, and <math|n> from the fact this formula
+  has <math|n> components. Thus, totally <math|n+1> restrictions. It seems
+  that, from this very rough counting of degree of freedom, the equation
+  <reference|equation:eom and action> is solvable.
+
+  But it is hard to say so. For example, if let
+  <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>\<equiv\><around*|(|1,0,0,\<ldots\>|)>>
+  and <math|B\<assign\>A<rsup|-1>> (should exist), then there are
+  <math|n\<times\>n> degree of freedom left (still sufficiently many), and we
+  would have <math|f<rsup|\<alpha\>><around*|(|x|)>=B<rsup|\<alpha\>\<beta\>><around*|(|x|)>
   \<partial\><rsub|\<alpha\>>S<around*|(|x|)>=B<rsup|\<alpha\>
   1><around*|(|x|)>>. It suggests that, for any smooth vector field <math|f>
   given, we can construct <math|A> in such a way that the first column of
@@ -304,6 +338,8 @@
   <math|B> vanishes and thus <math|det<around*|(|B|)>=0>. We must have, when
   <math|f<around*|(|x|)>=0>, <math|\<nabla\>S<around*|(|x|)>=0> for ensuring
   the invertibility of <math|A<around*|(|x|)>>.
+
+  <subsubsection|Diagonal Matrix>
 
   Following this, consider <math|B<rsub|\<alpha\>\<beta\>><around*|(|x|)>=\<lambda\><rsub|\<alpha\>><around*|(|x|)>
   \<delta\><rsub|\<alpha\>\<beta\>>>, thus we would expect
@@ -325,7 +361,10 @@
   \<partial\><rsub|\<beta\>>S+<around*|(|\<lambda\><rsub|\<alpha\>>-\<lambda\><rsub|\<beta\>>|)>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S>.
   The <math|\<lambda\><rsub|\<alpha\>><around*|(|x|)>> as a non-constant
   vector field makes it possible that <math|\<partial\><rsub|\<beta\>>f<rsub|\<alpha\>>-\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>>>
-  may not vanish.
+  may not vanish. Also, in the case when <math|f<around*|(|x<rsub|\<star\>>|)>=0>,
+  we have <math|\<nabla\>S<around*|(|x<rsub|\<star\>>|)>=0>, thus, at
+  <math|x<rsub|\<star\>>>, <math|\<partial\><rsub|\<beta\>>f<rsub|\<alpha\>>-\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>>=<around*|(|\<lambda\><rsub|\<alpha\>>-\<lambda\><rsub|\<beta\>>|)>
+  \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S>.
 
   TODO
 
@@ -441,20 +480,25 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|1.5.3|?>>
+    <associate|auto-11|<tuple|1.6|?>>
+    <associate|auto-12|<tuple|1.7|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1|2>>
     <associate|auto-5|<tuple|1.3|2>>
     <associate|auto-6|<tuple|1.4|3>>
-    <associate|auto-7|<tuple|1.5|3>>
-    <associate|auto-8|<tuple|1.6|4>>
+    <associate|auto-7|<tuple|1.5|4>>
+    <associate|auto-8|<tuple|1.5.1|4>>
+    <associate|auto-9|<tuple|1.5.2|?>>
     <associate|equation:Equivalent Loss|<tuple|5|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|3|1>>
     <associate|equation:Partition Function|<tuple|2|1>>
     <associate|equation:Restriction|<tuple|4|1>>
-    <associate|equation:V extremum|<tuple|7|4>>
-    <associate|equation:functional V|<tuple|6|4>>
+    <associate|equation:V extremum|<tuple|8|4>>
+    <associate|equation:eom and action|<tuple|6|3>>
+    <associate|equation:functional V|<tuple|7|4>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>

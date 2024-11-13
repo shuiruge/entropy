@@ -189,27 +189,58 @@
   shall be Gaussian. It may be
 
   <\equation*>
-    <wide|p|^><around*|(|x|)>\<propto\>exp<around*|{|-<frac|1|2><big|sum><rsub|t=1><rsup|T-1>
+    <wide|p|^><around*|(|x|)>\<propto\>exp<around*|{|-<frac|T|2><big|sum><rsub|t=1><rsup|T-1>
     <around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>|}>,
   </equation*>
 
-  indicating a kinetic term.
+  indicating a kinetic term <math|<around*|(|1/2|)><big|int><rsub|0><rsup|1>\<mathd\>t
+  <wide|x|\<dot\>><rsup|2><around*|(|t|)>>.
 
-  The action <math|S<around*|(|x,\<theta\>|)>> is given by some ansatz.
-  First, we may suppose that the action is local. That is, there is a
-  Lagrangian <math|L<around*|(|x,t,\<theta\>|)>> such that
-  <math|S<around*|(|x,\<theta\>|)>=<big|sum><rsub|t=1><rsup|T>L<around*|(|x<around*|(|t|)>,t,\<theta\>|)>>.
+  Corresponding to this free term, the action described in section
+  <reference|section: Data Fitting Is Equivalent to Least-Action Principle>
+  shall be named as interactive term. Thus, we denoted it by <math|S<rsub|I>>
+  where the subscript <math|I> hints for interaction. It is given by some
+  ansatz. First, we may suppose that the <math|S<rsub|I>> is local. That is,
+  there is a function <math|<with|font|cal|L><rsub|I><around*|(|x,t,\<theta\>|)>>
+  such that <math|S<rsub|I><around*|(|x,\<theta\>|)>=<around*|(|1/T|)><big|sum><rsub|t=1><rsup|T><with|font|cal|<with|font|cal|L><rsub|I>><around*|(|x<around*|(|t|)>,t,\<theta\>|)>>.
   Next, we may suppose that there exist some symmetries about the physical
   system, such as autonomous and parity symmetry, which means
-  <math|L<around*|(|x,t,\<theta\>|)>=<big|sum><rsub|n=1><rsup|+\<infty\>>\<theta\><rsub|n>
+  <math|<with|font|cal|L><rsub|I><around*|(|x,t,\<theta\>|)>=<big|sum><rsub|n=1><rsup|+\<infty\>>\<theta\><rsub|n>
   x<rsup|2n>> when <math|x> is <math|1>-dimensional. These symmetries will
   further restrict the possible form of the action. Finally, we can write
-  down a most generic form of action that satisfies all the ansatz. Neural
-  network and symbolic regression may help you write down this most generic
-  form. Then, we find the best fit <math|\<theta\><rsub|\<star\>>> by
-  equation <reference|equation:Iteration>. The action
-  <math|S<around*|(|x,\<theta\><rsub|\<star\>>|)>> describes the dynamics
-  extracted from the raw data.<\footnote>
+  down a most generic form of <math|<with|font|cal|L><rsub|I>> that satisfies
+  all the ansatz. Neural network and symbolic regression may help you write
+  down this most generic form. Then, we find the best fit
+  <math|\<theta\><rsub|\<star\>>> by equation <reference|equation:Iteration>.
+  The action <math|S<rsub|I><around*|(|x,\<theta\><rsub|\<star\>>|)>>,
+  together with the free term, describes the dynamics extracted from the raw
+  data.
+
+  As an example, consider an one-dimensional harmonic oscillator. The
+  configuration is a function in <math|C<rsup|1><around*|(|<around*|[|0,1|]>,\<bbb-R\>|)>>,
+  where we have \Pnormalized\Q the time period to <math|<around*|[|0,1|]>>.
+  Then, its action is given by <math|<big|int><rsub|0><rsup|1>\<mathd\>t
+  <around*|[|<around*|(|1/2|)> <wide|x|\<dot\>><rsup|2><around*|(|t|)>-<around*|(|1/2|)>
+  \<omega\><rsup|2> x<rsup|2><around*|(|t|)>|]>>, for some
+  <math|\<omega\>\<in\>\<bbb-R\>>. In the discrete perspective, the time
+  period is uniformly separated into <math|T> frames. The
+  <math|x<around*|(|t|)>> becomes a <math|T>-dimensional vector; and the
+  action turns to be
+
+  <\equation*>
+    <frac|T|2> <big|sum><rsub|t=1><rsup|T-1><around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T>
+    <big|sum><rsub|t=1><rsup|T>x<rsup|2><around*|(|t|)>.
+  </equation*>
+
+  The first term is recognized as free term and the second the interactive
+  term. We can use a parameterized function to fit the interactive term (that
+  is, the <math|<around*|(|\<omega\><rsup|2>/2|)> x<rsup|2><around*|(|t|)>>
+  factor in the second term). For example, a function with parameters
+  <math|<around*|(|\<theta\><rsub|1>,\<ldots\>,\<theta\><rsub|n>|)>\<in\>\<bbb-R\><rsup|n>>,
+  <math|<with|font|cal|L><rsub|I><around*|(|x,t,\<theta\>|)>\<assign\>\<theta\><rsub|1>
+  x<rsup|2><around*|(|t|)>+\<theta\><rsub|2>
+  x<rsup|4><around*|(|t|)>+\<cdots\>+\<theta\><rsub|n>
+  x<rsup|2n><around*|(|t|)>>.<\footnote>
     An experiment on general oscillators can be found in the
     <samp|oscillators/Oscillator.ipynb>.
   </footnote>
@@ -222,22 +253,47 @@
   <math|x<around*|(|t|)>:\<bbb-R\>\<rightarrow\>V> for some set <math|V>, but
   discretized to a vector <math|<around*|(|x<around*|(|1|)>,\<ldots\>,x<around*|(|T|)>|)>\<in\>V<rsup|T>>
   where <math|T> represents the number of frames. Thus, generally, an action
-  can be represented as <math|S<around*|(|x|)>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>>.
-  In the previous example, we have <math|n=dim<around*|(|V|)>\<times\>T>.
-  This discrete perspective greatly simplifies the situation. For example,
-  the variation of action is simply <math|\<nabla\>S<around*|(|x|)>>. On the
-  other hand, equation of motion can be represented by
+  can be represented as <math|S<around*|(|x|)>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>>,
+  where <math|n\<assign\>dim<around*|(|V|)>\<times\>T>. This discrete
+  perspective greatly simplifies the situation. For example, the variation of
+  action is simply <math|-T \<nabla\>S<around*|(|x|)>>.
+
+  In the example of harmonic oscillator, we find (we have included both the
+  free term and interactive term in the action <math|S>)
+
+  <\equation*>
+    -T <frac|\<partial\>S|\<partial\>x<around*|(|t|)>>=<around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>
+    T<rsup|2>-\<omega\><rsup|2> x<around*|(|t|)>
+  </equation*>
+
+  for each <math|t=2,\<ldots\>,T-1>. Recalling that
+  <math|<wide|x|\<ddot\>><around*|(|t|)>> is discretized to
+  <math|<around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>
+  T<rsup|2>>, we find <math|-T \<partial\>S/\<partial\>x<around*|(|t|)>>
+  tends to <math|<wide|x|\<ddot\>><around*|(|t|)>+\<omega\><rsup|2>
+  x<around*|(|t|)>> as <math|T\<rightarrow\>+\<infty\>>. For the boundaries
+  <math|t=1> and <math|t=T>, we have <math|-T
+  \<partial\>S/\<partial\>x<around*|(|1|)>=-T<rsup|2>
+  <around*|[|x<around*|(|2|)>-x<around*|(|1|)>|]>-\<omega\><rsup|2>
+  x<rsup|2><around*|(|1|)>>, and <math|-T
+  \<partial\>S/\<partial\>x<around*|(|T|)>=T<rsup|2>
+  <around*|[|x<around*|(|T|)>-x<around*|(|T-1|)>|]>-\<omega\><rsup|2>
+  x<rsup|2><around*|(|T|)>>. Both are meaningless in continous perspective.
+  Thus, there are <math|T-2> equations for one-dimensional harmonic
+  oscillator obtained by variation.
+
+  On the other hand, equation of motion can be represented by
   <math|f<around*|(|x|)>=0> where <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n-m>>
   where <math|m> represents the order of the equation of motion. In the case
   of one-dimensional harmonic oscillator, the equation of motion is second
-  order, thus in this discrete perspective, there are <math|T-2> constraints,
+  order. In the discrete perspective, there are <math|T-2> constraints,
   implying <math|m=2>. The two extra degree of freedom are assigned to the
   initial position and velocity of oscillator. If the initial conditions are
   given, we will have <math|m=0>, thus <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
-  So, if we want to represent the equation of motion by the variation of
-  action (in the continuous perspective it is
-  <math|f<around*|(|t,x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,\<ldots\>|)>=\<delta\>S/\<delta\>x<around*|(|t|)>>),
-  we can write <math|f<rsub|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
+
+  If we want to represent the equation of motion by the variation of action
+  (in the continuous perspective it is <math|f<around*|(|t,x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,\<ldots\>|)>=\<delta\>S/\<delta\>x<around*|(|t|)>>),
+  we can write <math|f<rsub|\<alpha\>><around*|(|x|)>=-\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
   for each <math|\<alpha\>=1,\<ldots\>,n>. This cannot be true for all
   <math|f> since <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S<around*|(|x|)>\<equiv\>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
   while generally we do not have <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
@@ -285,13 +341,13 @@
 
   <\equation>
     A<rsub|\<alpha\>\<beta\>><around*|(|x|)>
-    f<rsup|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>S<around*|(|x|)><label|equation:eom
+    f<rsup|\<beta\>><around*|(|x|)>=-\<partial\><rsub|\<alpha\>>S<around*|(|x|)><label|equation:eom
     and action>
   </equation>
 
   holds for a general class of equation of motion <math|f> as long as we can
   find the corresponding <math|A>. We wonder, given <math|f>, if there is
-  such an <math|M> and an <math|S> that this relation holds?
+  such an <math|A> and an <math|S> that this relation holds?
 
   <subsection|Drafts>
 
@@ -480,17 +536,17 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.5.3|?>>
-    <associate|auto-11|<tuple|1.6|?>>
-    <associate|auto-12|<tuple|1.7|?>>
+    <associate|auto-10|<tuple|1.5.3|4>>
+    <associate|auto-11|<tuple|1.6|4>>
+    <associate|auto-12|<tuple|1.7|4>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1|2>>
     <associate|auto-5|<tuple|1.3|2>>
     <associate|auto-6|<tuple|1.4|3>>
-    <associate|auto-7|<tuple|1.5|4>>
-    <associate|auto-8|<tuple|1.5.1|4>>
-    <associate|auto-9|<tuple|1.5.2|?>>
+    <associate|auto-7|<tuple|1.5|3>>
+    <associate|auto-8|<tuple|1.5.1|3>>
+    <associate|auto-9|<tuple|1.5.2|3>>
     <associate|equation:Equivalent Loss|<tuple|5|2>>
     <associate|equation:Generic Density|<tuple|1|1>>
     <associate|equation:Iteration|<tuple|3|1>>
@@ -565,14 +621,30 @@
       Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Maximum-Entropy and
-      Least-Action Are Saddle Point of a Functional
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Drafts
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Structures in Nature Arise
-      from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|2tab>|1.5.1<space|2spc>Coordinate Transformation
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|2tab>|1.5.2<space|2spc>Degree of Freedom
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
+
+      <with|par-left|<quote|2tab>|1.5.3<space|2spc>Diagonal Matrix
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Maximum-Entropy and
+      Least-Action Are Saddle Point of a Functional
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
+
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Structures in Nature Arise
+      from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12>>
     </associate>
   </collection>
 </auxiliary>

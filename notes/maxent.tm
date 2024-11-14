@@ -1,4 +1,4 @@
-<TeXmacs|2.1>
+<TeXmacs|2.1.4>
 
 <style|book>
 
@@ -116,7 +116,7 @@
   In machine learning, it acts as regulator, a pre-determined term employed
   for regulating the value of <math|x>.
 
-  <subsection|When Is <math|\<lambda\><rsub|\<star\>>> Solvable? (TODO)>
+  <subsection|* When Is <math|\<lambda\><rsub|\<star\>>> Solvable? (TODO)>
 
   Even though it is hard to guarantee the equation <reference|equation:maxent
   eq1> solvable, we have some results for the case when
@@ -176,7 +176,7 @@
       <no-break><pageref|auto-4>>
 
       <with|par-left|<quote|1tab>|1.4<space|2spc>When Is
-      <with|mode|<quote|math>|\<lambda\><rsub|\<star\>>> Solvable?
+      <with|mode|<quote|math>|\<lambda\><rsub|\<star\>>> Solvable? (TODO)
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
     </associate>

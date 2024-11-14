@@ -92,12 +92,11 @@
 
   \;
 
-  In addition, if the movement of sand is smooth, that is, a sand cannot
-  disappear at one position and then suddenly reappear at another position
-  far distant away, but has to move from one position to another by
-  continuous movement, then <math|q<rsub|t\<rightarrow\>t<rprime|'>>> is
-  smooth on <math|t<rprime|'>>. Taking derivative on <math|t<rprime|'>> and
-  then setting <math|t<rprime|'>> to <math|t>, we have
+  In addition, if the change of the distribution of sands is smooth, that is,
+  there is not a sand lump that jumping from one place to another in an
+  arbitrarily short period of time, then <math|q<rsub|t\<rightarrow\>t<rprime|'>>>
+  is smooth on <math|t<rprime|'>>. Taking derivative on <math|t<rprime|'>>
+  and then setting <math|t<rprime|'>> to <math|t>, we have
 
   <\equation*>
     <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -330,22 +329,24 @@
   <\align>
     <tformat|<table|<row|<cell|p<around*|(|z,t+\<Delta\>t+\<Delta\>t<rprime|'>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
     q<rsub|\<Delta\>t><around*|(|z\|y|)>p<around*|(|y,t+\<Delta\>t<rprime|'>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|z\|y|)><big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<rsub|\<Delta\>t<rprime|'>><around*|(|y\|x|)>p<around*|(|x,t|)>.>>>>
+    q<rsub|\<Delta\>t<rprime|'>><around*|(|z\|y|)><big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>p<around*|(|x,t|)>.>>>>
   </align>
 
   Thus,
 
   <\equation*>
     <big|int><rsub|\<cal-X\>>\<mathd\>x<around*|[|q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|z\|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|z\|y|)> q<rsub|\<Delta\>t<rprime|'>><around*|(|y\|x|)>|]>p<around*|(|x,t|)>=0.
+    q<rsub|\<Delta\>t<rprime|'>><around*|(|z\|y|)>
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>|]>p<around*|(|x,t|)>=0.
   </equation*>
 
   Since <math|p<around*|(|x,t|)>> can be arbitrary, we arrive at
 
   <\equation*>
     q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|z\|y|)> q<rsub|\<Delta\>t<rprime|'>><around*|(|y\|x|)>.
+    q<rsub|\<Delta\>t<rprime|'>><around*|(|z\|y|)>
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>.
   </equation*>
 
   This provides an addition restriction to the transition density. Indeed,
@@ -617,7 +618,7 @@
   theorem holds.
 
   <\theorem>
-    <label|theorem:relax>Let <math|\<Pi\>> a distribution with alphabet
+    <label|theorem: relaxation>Let <math|\<Pi\>> a distribution with alphabet
     <math|\<cal-X\>>. If there is a transition rate r such that 1) every two
     elements in <math|\<cal-X\>> are connected and that 2) the detailed
     balance condition <reference|equation:Detailed Balance> holds for
@@ -638,7 +639,7 @@
   detailed balance (section <reference|section: Conservative Langevin
   Dynamics Satisfies Detailed Balance>).
 
-  <subsection|Simulation of Master Equation and Guarantee of
+  <subsection|Numerical Simulation of Master Equation and Guarantee of
   Relaxation><label|section: Simulation of Master Equation and Guarantee of
   Relaxation>
 
@@ -690,15 +691,15 @@
   we initialize the sand randomly. Then iteratively update the position of
   each sand. In each iteration, a sand jumps from position <math|x> to
   position <math|y> with the probability <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>\<approx\>\<delta\><around*|(|y-x|)>+r<around*|(|y,x|)>
-  \<Delta\>t> where <math|\<Delta\>t> is sufficiently small. We have to
+  \<Delta\>t> where <math|\<Delta\>t> is sufficiently small. <em|We have to
   ensure that computer has a sampler that makes random sampling for
-  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>> (as an example, see section
+  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>>> (as an example, see section
   <reference|section: Example: Metropolis-Hastings Algorithm>). If <math|r>
-  (or <math|q<rsub|\<Delta\>t>>), together with some stationary distribution
-  <math|\<Pi\>>, satisfies the detailed balance condition, then we
-  <em|expect> that the simulation will iteratively decrease the difference
-  between the distribution of the sands and the <math|\<Pi\>>. We stop the
-  iteration when they have been close enough.
+  together with some stationary distribution <math|\<Pi\>> satisfies the
+  detailed balance condition, then we <em|expect> that the simulation will
+  iteratively decrease the difference between the distribution of the sands
+  and the <math|\<Pi\>>. We stop the iteration when they have been close
+  enough.
 
   Like the Euler method in solving dynamical system, however, a finite time
   step results in a residual error. This residual error must be analyzed an
@@ -769,7 +770,7 @@
     The first line
 
     <\equation*>
-      I\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+      \<Delta\>H<rsub|1>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
       p<around*|(|x,t+\<Delta\>t|)> ln<frac|p<around*|(|x,t+\<Delta\>t|)>|p<around*|(|x,t|)>>
     </equation*>
 
@@ -805,7 +806,7 @@
       p<rsup|-1>|)><rsup|2>|]>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>.>
     </equation*>
 
-    So, the <math|\<Delta\>t> order term in <math|I> is
+    So, the <math|\<Delta\>t> order term in <math|\<Delta\>H<rsub|1>> is
 
     <\equation*>
       <big|int><rsub|\<cal-X\>>\<mathd\>x <with|color|dark
@@ -817,7 +818,7 @@
     </equation*>
 
     where we used the normalization of <math|p>. The
-    <math|\<Delta\>t<rsup|2>> term in <math|I> is
+    <math|\<Delta\>t<rsup|2>> term in <math|\<Delta\>H<rsub|1>> is
 
     <\equation*>
       <big|int><rsub|\<cal-X\>>\<mathd\>x <with|color|dark
@@ -843,7 +844,7 @@
     Altogether, we arrive at
 
     <\equation*>
-      I=<frac|\<Delta\>t<rsup|2>|2><big|int><rsub|\<cal-X\>>\<mathd\>x
+      \<Delta\>H<rsub|1>=<frac|\<Delta\>t<rsup|2>|2><big|int><rsub|\<cal-X\>>\<mathd\>x
       p<around*|(|x,t|)> <around*|(|<frac|\<partial\>|\<partial\>t>ln
       p<around*|(|x,t|)>|)><rsup|2>+\<omicron\><around*|(|\<Delta\>t<rsup|2>|)>.
     </equation*>
@@ -888,18 +889,18 @@
 
   This bound is proportional to the difference between
   <math|P<around*|(|t|)>> and <math|\<Pi\>> (represented by the first
-  factor). When <math|P<around*|(|t|)>> has approched <math|\<Pi\>> (that is,
-  <math|P<around*|(|t|)>\<approx\>\<Pi\>> but not exactly equal),
+  factor). When <math|P<around*|(|t|)>> has approached <math|\<Pi\>> (that
+  is, <math|P<around*|(|t|)>\<approx\>\<Pi\>> but not exactly equal),
   <math|\<delta\>> has to be extremely small. (This is a little like
   supervised machine learning where <math|\<Delta\>t> acts as learning rate
   and <math|H<around*|(|P<around*|(|t|)>,\<Pi\>|)>> as loss. In the early
   stage of training, the loss function has a greater slope and we can safely
-  employ a relatively large learning rate to speed up the decreasing of loss.
-  But, we have to tune the learning rate to be smaller and smaller during the
-  training, in which the slope of loss function is gradually decreasing.
-  Otherwise, the loss will not decrease but keep fluctuating when it has been
-  sufficiently small, since the learning rate now becomes relatively too
-  big.)
+  employ a relatively larger learning rate to speed up the decreasing of
+  loss. But, we have to tune the learning rate to be smaller and smaller
+  during the training, in which the slope of loss function is gradually
+  decreasing. Otherwise, the loss will not decrease but keep fluctuating when
+  it has been sufficiently small, since the learning rate now becomes
+  relatively too big.)
 
   <subsection|Example: Metropolis-Hastings Algorithm><label|section: Example:
   Metropolis-Hastings Algorithm>
@@ -940,8 +941,8 @@
     r|}>=>|<cell|r<around*|(|y,x|)> \<pi\><around*|(|x|)>.>>>>
   </align>
 
-  Thus detailed balance condition holds. So, theorem
-  <reference|theorem:relax> states that, <em|evolved by the master equation
+  Thus detailed balance condition holds. So, theorem <reference|theorem:
+  relaxation> states that, <em|evolved by the master equation
   <reference|equation:master equation>, any initial distribution will finally
   relax to the stationary distribution <math|\<Pi\>>>.
 
@@ -1129,9 +1130,6 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2|11>>
-    <associate|auto-11|<tuple|2.1|11>>
-    <associate|auto-12|<tuple|2.2|12>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -1142,7 +1140,6 @@
     <associate|auto-9|<tuple|1.8|10>>
     <associate|equation:Detailed Balance|<tuple|6|4>>
     <associate|equation:Detailed Balance for transition density|<tuple|7|4>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|14|11>>
     <associate|equation:circle|<tuple|13|10>>
     <associate|equation:define stationary density function|<tuple|12|10>>
     <associate|equation:discrete time master equation|<tuple|4|2>>
@@ -1159,16 +1156,10 @@
     <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|6>>
     <associate|footnote-4|<tuple|4|8>>
-    <associate|footnote-5|<tuple|5|12>>
-    <associate|footnote-6|<tuple|6|12>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|5>>
     <associate|footnr-3|<tuple|3|6>>
     <associate|footnr-4|<tuple|4|8>>
-    <associate|footnr-5|<tuple|5|12>>
-    <associate|footnr-6|<tuple|6|12>>
-    <associate|section: Conservative Langevin Dynamics Satisfies Detailed
-    Balance|<tuple|2.2|12>>
     <associate|section: Detailed Balance Condition and Connectivity
     Monotonically Reduce Relative Entropy|<tuple|1.5|5>>
     <associate|section: Detailed Balance Provides Stationary
@@ -1182,7 +1173,8 @@
     Relaxation|<tuple|1.6|6>>
     <associate|section: Transition Rate Determines Transition
     Density|<tuple|1.3|2>>
-    <associate|theorem:relax|<tuple|1|6>>
+    <associate|theorem: relax|<tuple|1|6>>
+    <associate|theorem: relaxation|<tuple|1|?>>
   </collection>
 </references>
 
@@ -1214,8 +1206,8 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Simulation of Master
-      Equation and Guarantee of Relaxation
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Numerical Simulation of
+      Master Equation and Guarantee of Relaxation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
@@ -1226,20 +1218,6 @@
       <with|par-left|<quote|1tab>|1.8<space|2spc>* Existence of Stationary
       Density Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
-
-      2<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics (TODO)
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>
-
-      <with|par-left|<quote|1tab>|2.1<space|2spc>Spatial Expansion of Master
-      Equation Gives Kramers-Moyal Expansion
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
-
-      <with|par-left|<quote|1tab>|2.2<space|2spc>Langevin Dynamics that
-      Satisfies Detailed Balance Is Conservative
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
     </associate>
   </collection>
 </auxiliary>

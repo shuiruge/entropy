@@ -652,6 +652,7 @@
 
 <\initial>
   <\collection>
+    <associate|bg-color|#c7edcc>
     <associate|page-medium|paper>
   </collection>
 </initial>

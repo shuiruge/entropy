@@ -213,10 +213,11 @@
   <math|x<around*|(|t|)>> becomes a <math|T>-dimensional vector; and the
   action turns to be
 
-  <\equation*>
-    <frac|T|2> <big|sum><rsub|t=1><rsup|T-1><around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T>
-    <big|sum><rsub|t=1><rsup|T>x<rsup|2><around*|(|t|)>.
-  </equation*>
+  <\equation>
+    S<around*|(|x|)>=<frac|T|2> <big|sum><rsub|t=1><rsup|T-1><around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T>
+    <big|sum><rsub|t=1><rsup|T>x<rsup|2><around*|(|t|)>.<label|equation:harmonic
+    oscillator action>
+  </equation>
 
   The first term is recognized as free part and the second the interactive
   part. We can use a parameterized function to fit the interactive part (that
@@ -245,22 +246,23 @@
   the situation. For example, the variation of action is simply <math|-T
   \<nabla\>S<around*|(|x|)>>.
 
-  In the example of harmonic oscillator, we find (we have included both the
-  free term and interactive term in the action <math|S>)
+  In the example of harmonic oscillator (equation
+  <reference|equation:harmonic oscillator action>), we find (we have included
+  both the free term and interactive term in the action <math|S>)
 
   <\equation*>
-    -T <frac|\<partial\>S|\<partial\>x<around*|(|t|)>>=<around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>
-    T<rsup|2>-\<omega\><rsup|2> x<around*|(|t|)>
+    -T <frac|\<partial\>S|\<partial\>x<around*|(|t|)>>=T<rsup|2>
+    <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>-\<omega\><rsup|2>
+    x<around*|(|t|)>
   </equation*>
 
   for each <math|t=2,\<ldots\>,T-1>. Recalling that
-  <math|<wide|x|\<ddot\>><around*|(|t|)>> is discretized to
-  <math|<around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>
-  T<rsup|2>>, we find <math|-T \<partial\>S/\<partial\>x<around*|(|t|)>>
-  tends to <math|<wide|x|\<ddot\>><around*|(|t|)>+\<omega\><rsup|2>
-  x<around*|(|t|)>> as <math|T\<rightarrow\>+\<infty\>>. For the boundaries
-  <math|t=1> and <math|t=T>, we have <math|-T
-  \<partial\>S/\<partial\>x<around*|(|1|)>=-T<rsup|2>
+  <math|<wide|x|\<ddot\>><around*|(|t|)>> is discretized to <math|T<rsup|2>
+  <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>>, we
+  find <math|-T \<partial\>S/\<partial\>x<around*|(|t|)>> tends to
+  <math|<wide|x|\<ddot\>><around*|(|t|)>+\<omega\><rsup|2> x<around*|(|t|)>>
+  as <math|T\<rightarrow\>+\<infty\>>. For the boundaries <math|t=1> and
+  <math|t=T>, we have <math|-T \<partial\>S/\<partial\>x<around*|(|1|)>=-T<rsup|2>
   <around*|[|x<around*|(|2|)>-x<around*|(|1|)>|]>-\<omega\><rsup|2>
   x<rsup|2><around*|(|1|)>>, and <math|-T
   \<partial\>S/\<partial\>x<around*|(|T|)>=T<rsup|2>
@@ -336,7 +338,66 @@
   find the corresponding <math|A>. We wonder, given <math|f>, if there is
   such an <math|A> and an <math|S> that this relation holds?
 
+  To determine <math|A>, for any <math|S>, we have
+  <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S=\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S>,
+  thus <math|\<partial\><rsub|\<beta\>><around*|[|A<rsub|\<alpha\>\<gamma\>><around*|(|x|)>
+  f<rsup|\<gamma\>><around*|(|x|)>|]>=\<partial\><rsub|\<alpha\>><around*|[|A<rsub|\<beta\>\<gamma\>><around*|(|x|)>
+  f<rsup|\<gamma\>><around*|(|x|)>|]>>. So,
+
+  <\equation*>
+    \<partial\><rsub|\<beta\>>A<rsub|\<alpha\>\<gamma\>>
+    f<rsup|\<gamma\>><around*|(|x|)>+A<rsub|\<alpha\>\<gamma\>>
+    \<partial\><rsub|\<beta\>>f<rsup|\<gamma\>>=\<partial\><rsub|\<alpha\>>A<rsub|\<beta\>\<gamma\>>
+    f<rsup|\<gamma\>><around*|(|x|)>+A<rsub|\<beta\>\<gamma\>>
+    \<partial\><rsub|\<alpha\>>f<rsup|\<gamma\>>.
+  </equation*>
+
+  <\eqnarray*>
+    <tformat|<table|<row|<cell|>|<cell|>|<cell|>>>>
+  </eqnarray*>
+
+  Recall that Langevin dynamics that satisfies detailed balance condition has
+
+  <\equation*>
+    \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>=
+    \<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>,
+  </equation*>
+
+  or say,
+
+  <\equation*>
+    \<mu\><rsup|\<alpha\>><around*|(|x|)>=
+    \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<beta\>>ln \<pi\><around*|(|x|)>+\<partial\><rsub|\<beta\>>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>.
+  </equation*>
+
   <subsection|Drafts>
+
+  <subsubsection|Damped Oscillator>
+
+  <\equation*>
+    -T <frac|\<partial\>S|\<partial\>x<around*|(|t|)>>=T<rsup|2>
+    <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>+T
+    \<gamma\> <around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]>-\<omega\><rsup|2>
+    x<around*|(|t|)>
+  </equation*>
+
+  <\equation*>
+    -T <frac|\<partial\><rsup|2>S|\<partial\>x<around*|(|t-1|)>\<partial\>x<around*|(|t|)>>=T<rsup|2>
+  </equation*>
+
+  <\equation*>
+    -T <frac|\<partial\>S|\<partial\>x<around*|(|t-1|)>>=T<rsup|2>
+    <around*|[|x<around*|(|t|)>-2x<around*|(|t-1|)>+x<around*|(|t-2|)>|]>+T
+    \<gamma\> <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>-\<omega\><rsup|2>
+    x<around*|(|t-1|)>
+  </equation*>
+
+  <\equation*>
+    -T <frac|\<partial\><rsup|2>S|\<partial\>x<around*|(|t|)>\<partial\>x<around*|(|t-1|)>>=T<rsup|2>+T
+    \<gamma\>
+  </equation*>
 
   <subsubsection|Coordinate Transformation>
 
@@ -520,6 +581,7 @@
 
 <\initial>
   <\collection>
+    <associate|bg-color|#c7edcc>
     <associate|page-medium|paper>
   </collection>
 </initial>
@@ -528,8 +590,9 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|1.5.3|4>>
-    <associate|auto-11|<tuple|1.6|4>>
-    <associate|auto-12|<tuple|1.7|5>>
+    <associate|auto-11|<tuple|1.5.4|5>>
+    <associate|auto-12|<tuple|1.6|5>>
+    <associate|auto-13|<tuple|1.7|5>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1|2>>
@@ -539,12 +602,13 @@
     <associate|auto-8|<tuple|1.5.1|4>>
     <associate|auto-9|<tuple|1.5.2|4>>
     <associate|equation:Generic Density|<tuple|1|1>>
-    <associate|equation:Ltot|<tuple|6|4>>
+    <associate|equation:Ltot|<tuple|7|5>>
     <associate|equation:Partition Function|<tuple|2|1>>
-    <associate|equation:V extremum|<tuple|7|5>>
+    <associate|equation:V extremum|<tuple|8|5>>
     <associate|equation:data-fitting iteration|<tuple|3|1>>
     <associate|equation:data-fitting result|<tuple|4|1>>
-    <associate|equation:eom and action|<tuple|5|4>>
+    <associate|equation:eom and action|<tuple|6|4>>
+    <associate|equation:harmonic oscillator action|<tuple|5|3>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>
@@ -615,26 +679,30 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|2tab>|1.5.1<space|2spc>Coordinate Transformation
+      <with|par-left|<quote|2tab>|1.5.1<space|2spc>Damped Oscillator
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|2tab>|1.5.2<space|2spc>Degree of Freedom
+      <with|par-left|<quote|2tab>|1.5.2<space|2spc>Coordinate Transformation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|2tab>|1.5.3<space|2spc>Diagonal Matrix
+      <with|par-left|<quote|2tab>|1.5.3<space|2spc>Degree of Freedom
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
+
+      <with|par-left|<quote|2tab>|1.5.4<space|2spc>Diagonal Matrix
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
 
       <with|par-left|<quote|1tab>|1.6<space|2spc>Maximum-Entropy and
       Least-Action Are Saddle Point of a Functional
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
+      <no-break><pageref|auto-12>>
 
       <with|par-left|<quote|1tab>|1.7<space|2spc>Structures in Nature Arise
       from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
+      <no-break><pageref|auto-13>>
     </associate>
   </collection>
 </auxiliary>

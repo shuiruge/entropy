@@ -186,8 +186,13 @@
   transition density of Langevin dynamics. The <math|\<Delta\>t> appears in
   many places, and directly Taylor expanding <math|q<rsub|\<Delta\>t>> by
   <math|\<Delta\>t> is very hard. Instead, we employ an arbitrary test
-  function <math|f\<in\>C<rsup|+\<infty\>><around*|(|\<bbb-R\><rsup|n>,\<bbb-R\>|)>>,
-  and Taylor expand <math|f> by its variable
+  function <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\>|)>>,<\footnote>
+    The <math|S> represents Schwarts space, which is a functional space in
+    which any function <math|f:X\<rightarrow\>Y> is smooth and rapidly falls
+    to zero in the region far from origin. For example, Gaussian function
+    (the density function of normal distribution) is in
+    <math|S<around*|(|\<bbb-R\>,\<bbb-R\>|)>>.
+  </footnote> and Taylor expand <math|f> by its variable
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
@@ -259,7 +264,44 @@
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>.
   </equation*>
 
-  Noticing the integral by part
+  Noticing the integration by parts<\footnote>
+    High-dimensional integration by parts employs Stokes theorem. Consider
+    the integral <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|x|)>
+    v<rsup|\<alpha\>><around*|(|x|)>> with smooth scalar function
+    <math|\<varphi\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>> and vector
+    field <math|v:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>. We have
+    identity
+
+    <\equation*>
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|x|)>
+      v<rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>><around*|[|\<varphi\><around*|(|x|)>
+      v<rsup|\<alpha\>><around*|(|x|)>|]>-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<varphi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>v<rsup|\<alpha\>><around*|(|x|)>.
+    </equation*>
+
+    The first integrand in the right hand side is a divergence. Using Stokes
+    theorem, it becomes
+
+    <\equation*>
+      <big|int><rsub|\<partial\>\<bbb-R\><rsup|n>>\<mathd\>S<rsub|\<alpha\>>
+      <around*|[|\<varphi\><around*|(|x|)>
+      v<rsup|\<alpha\>><around*|(|x|)>|]>,
+    </equation*>
+
+    where <math|\<partial\>\<bbb-R\><rsup|n>> is the \Pboundary\Q of
+    <math|\<bbb-R\><rsup|n>>. If <math|\<varphi\>> or <math|v> is in Schwarts
+    space, then this term vanishes, and the integral results in
+
+    <\equation*>
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|x|)>
+      v<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<varphi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>v<rsup|\<alpha\>><around*|(|x|)>.
+    </equation*>
+  </footnote>
 
   <\equation*>
     -<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
@@ -285,25 +327,119 @@
 
   we get
 
-  <\equation*>
+  <\equation>
     r<around*|(|x+\<epsilon\>,x|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>.
-  </equation*>
+    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>.<label|equation:Langevin
+    transition rate>
+  </equation>
 
   Because of the Dirac's <math|\<delta\>>-functions, this transition rate is
-  a generalized function.
+  a generalized function. That is, only when applied to a test function can
+  they be evaluated.
+
+  For example, to evaluate <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>>,
+  we have to employ an arbitrary test function
+  <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n>|)>>, and
+  calculate <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
+  f<rsup|\<alpha\>><around*|(|x|)>>. First, define <math|y\<assign\>-x>, and
+  get <math|>
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    <frac|\<partial\>\<delta\>|\<partial\>x<rsup|\<alpha\>>><around*|(|-x|)>
+    f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    <frac|\<partial\>\<delta\>|\<partial\>y<rsup|\<alpha\>>><around*|(|y|)>
+    f<rsup|\<alpha\>><around*|(|-y|)>
+  </equation*>
+
+  (the sign comes from <math|\<partial\>/\<partial\>x<rsup|\<alpha\>>=-\<partial\>/\<partial\>y<rsup|\<alpha\>>>).
+  Then, integration by parts gives
+
+  <\equation*>
+    -<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    <frac|\<partial\>\<delta\>|\<partial\>y<rsup|\<alpha\>>><around*|(|y|)>
+    f<rsup|\<alpha\>><around*|(|-y|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    \<delta\><around*|(|y|)> <frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>y<rsup|\<alpha\>>><around*|(|-y|)>=\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>.
+  </equation*>
+
+  On the other hand, we have
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>
+    f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>=-\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>.
+  </equation*>
+
+  So, we find <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>> is
+  evaluated to be <math|-\<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>>,
+  that is <math|\<partial\><rsub|\<alpha\>>\<delta\>> is odd.<\footnote>
+    But, we shall not calculate in the following way. Directly applying
+    integration by parts,
+
+    <\equation*>
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
+      f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<delta\><around*|(|-x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>.
+    </equation*>
+
+    Since <math|\<delta\><around*|(|-x|)>=\<delta\><around*|(|x|)>>, we find
+    it to be <math|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>=-\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>>.
+    Notice that there is an extra minus sign in the result. TODO
+  </footnote> Following the same process, we can show that
+  <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\>> is
+  even.<\footnote>
+    We are to calculate <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>
+    f<rsup|\<alpha\>\<beta\>><around*|(|x|)>>, where
+    <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n\<times\>n>|)>>.
+    First, define <math|y\<assign\>-x>, and get <math|>
+
+    <\equation*>
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      <frac|\<partial\><rsup|2>\<delta\>|\<partial\>x<rsup|\<alpha\>>\<partial\>x<rsup|\<beta\>>><around*|(|-x|)>
+      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+      <frac|\<partial\><rsup|2>\<delta\>|\<partial\>y<rsup|\<alpha\>>\<partial\>y<rsup|\<beta\>>><around*|(|y|)>
+      f<rsup|\<alpha\>><around*|(|-y|)>.
+    </equation*>
+
+    Then, integration by parts gives
+
+    <\equation*>
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+      <frac|\<partial\><rsup|2>\<delta\>|\<partial\>y<rsup|\<alpha\>>\<partial\>y<rsup|\<beta\>>><around*|(|y|)>
+      f<rsup|\<alpha\>><around*|(|-y|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+      \<delta\><around*|(|y|)> <frac|\<partial\><rsup|2>f<rsup|\<alpha\>\<beta\>>|\<partial\>y<rsup|\<alpha\>>\<partial\>y<rsup|\<beta\>>><around*|(|-y|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|0|)>.
+    </equation*>
+
+    On the other hand, we have
+
+    <\equation*>
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>
+      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|0|)>.
+    </equation*>
+
+    So, we conclude <math|><math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>.
+  </footnote> These conclusions are to be used in section <reference|section:
+  Detailed Balance Condition for Langevin Dynamics Lacks Source-Free Degree
+  of Freedom>.
 
   <subsection|Master Equation of Langevin Dynamics Is Fokker-Planck Equation>
 
   After discussing transition rate, we turn to the master equation of
   Langevin dynamics. Since Langevin dynamics applies to continuous random
-  variable, we can use Kramers-Moyal expansion (section <reference|section:
-  Spatial Expansion of Master Equation Gives Kramers-Moyal Expansion>) to
-  evaluate its master equation. Directly, we have
-  <math|K<rsup|\<alpha\>><around*|(|x|)>=\<mu\><rsup|\<alpha\>><around*|(|x|)>>,
+  variable, we can use Kramers-Moyal expansion to evaluate its master
+  equation. Directly, we have <math|K<rsup|\<alpha\>><around*|(|x|)>=\<mu\><rsup|\<alpha\>><around*|(|x|)>>,
   <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>=2\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>>,
-  and higher orders are all vanishing. For example, the integral
+  and higher orders are all vanishing (<math|K> was defined in section
+  <reference|section: Spatial Expansion of Master Equation Gives
+  Kramers-Moyal Expansion>). For example, the integral
   <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
   <around*|(|\<epsilon\><rsup|\<alpha\>> \<epsilon\><rsup|\<beta\>>
   \<epsilon\><rsup|\<gamma\>>|)> q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=\<omicron\><around*|(|\<Delta\>t|)>>.
@@ -338,16 +474,14 @@
     \<pi\><around*|(|x|)>|)>=0,
   </equation*>
 
-  which means <math|-\<mu\><rsup|\<alpha\>><around*|(|x|)>
-  \<pi\><around*|(|x|)>+\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-  \<pi\><around*|(|x|)>|)>=\<nu\><rsup|\<alpha\>><around*|(|x|)>>, or
-  equivalently,
+  which means
 
-  <\equation*>
-    \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<partial\><rsub|\<beta\>>\<pi\><around*|(|x|)>=<around*|[|\<mu\><rsup|\<alpha\>><around*|(|x|)>-\<partial\><rsub|\<beta\>>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>|]>
-    \<pi\><around*|(|x|)>+\<nu\><rsup|\<alpha\>><around*|(|x|)>,
-  </equation*>
+  <\equation>
+    \<mu\><rsup|\<alpha\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>=\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>+\<nu\><rsup|\<alpha\>><around*|(|x|)>,<label|equation:stationary
+    Fokker-Planck equation>
+  </equation>
 
   where <math|\<nu\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> is an
   arbitrary vector field such that <math|\<partial\><rsub|\<alpha\>>\<nu\><rsup|\<alpha\>><around*|(|x|)>=0>.
@@ -361,7 +495,7 @@
   Then, by Stokes theorem, the surface integral
   <math|<big|int>\<mathd\>S\<cdot\>\<nu\><around*|(|x|)>=<big|int>\<mathd\>x
   \<nabla\>\<cdot\>v<around*|(|x|)>=0>, thus conflicts. Such a vector field
-  <math|\<nu\>> is called <strong|free of source>.
+  <math|\<nu\>> is called <strong|free of source> or <strong|source-free>.
 
   Specially, if <math|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>=\<delta\><rsup|\<alpha\>\<beta\>>>,
   <math|\<nu\><rsup|\<alpha\>><around*|(|x|)>=0>, and
@@ -375,7 +509,9 @@
   energy and <math|T> as temperature. Fokker-Planck equation, or Langevin
   dynamics, is much broader than Boltzmann distribution.
 
-  <subsection|Detailed Balance Condition for Langevin Dynamics>
+  <subsection|Detailed Balance Condition for Langevin Dynamics Lacks
+  Source-Free Degree of Freedom><label|section: Detailed Balance Condition
+  for Langevin Dynamics Lacks Source-Free Degree of Freedom>
 
   After discussing stationary distribution of Fokker-Planck equation (as a
   master equation), we continue investigate when will Langevin dynamics relax
@@ -384,7 +520,8 @@
   Langevin dynamics satisfy detailed balance condition? Detailed balance
   condition reads <math|r<around*|(|x+\<epsilon\>,x|)>
   \<pi\><around*|(|x|)>=r<around*|(|x,x+\<epsilon\>|)>
-  \<pi\><around*|(|x+\<epsilon\>|)>>. Directly, we have
+  \<pi\><around*|(|x+\<epsilon\>|)>>. Directly inserting equation
+  <reference|equation:Langevin transition rate>, we get
 
   <\equation*>
     r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
@@ -399,8 +536,13 @@
     \<pi\><around*|(|x+\<epsilon\>|)>>>|<row|<cell|=>|<cell|r<around*|(|<around*|(|x+\<epsilon\>|)>-\<epsilon\>,x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)>>>|<row|<cell|=>|<cell|-\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-\<epsilon\>|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-\<epsilon\>|)>.>>>>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-\<epsilon\>|)>>>|<row|<cell|=>|<cell|\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>,>>>>
   </align>
+
+  where in the last line, we use <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>=-\<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>>
+  and <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>.
 
   As generalized functions, we are to examine these two expressions by using
   an arbitrary test function <math|f>. Thus,
@@ -409,15 +551,16 @@
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>
     f<around*|(|\<epsilon\>|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<mu\><rsup|\<alpha\>><around*|(|x|)>
+    \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
-    \<pi\><around*|(|x|)> f<around*|(|\<epsilon\>|)>+<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    f<around*|(|\<epsilon\>|)>+<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)> \<pi\><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>
-    \<pi\><around*|(|x|)> f<around*|(|\<epsilon\>|)>.
+    f<around*|(|\<epsilon\>|)>.
   </equation*>
 
-  Integral by part gives
+  Integral by part gives (note that the <math|\<partial\>> is applied on
+  <math|\<epsilon\>>)
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
@@ -430,27 +573,30 @@
 
   The other expression is a little complicated,
 
+  <\small>
+    <\equation*>
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+      r<around*|(|x,x+\<epsilon\>|)> \<pi\><around*|(|x+\<epsilon\>|)>
+      f<around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
+      \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
+      f<around*|(|\<epsilon\>|)>+<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+      \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+      \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>
+      f<around*|(|\<epsilon\>|)>.
+    </equation*>
+  </small>
+
+  Again, integral by part results in (again, the <math|\<partial\>> is
+  applied on <math|\<epsilon\>>)
+
   <\align>
     <tformat|<table|<row|<cell|>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     r<around*|(|x,x+\<epsilon\>|)> \<pi\><around*|(|x+\<epsilon\>|)>
-    f<around*|(|\<epsilon\>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    r<around*|(|<around*|(|x+\<epsilon\>|)>-\<epsilon\>,x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>>>|<row|<cell|=>|<cell|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
-    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>+<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
-    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>.>>>>
-  </align>
-
-  Again, integral by part results in
-
-  <\align>
-    <tformat|<table|<row|<cell|>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<delta\><around*|(|-\<epsilon\>|)><frac|\<partial\>|\<partial\>\<epsilon\><rsup|\<alpha\>>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>+<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<delta\><around*|(|-\<epsilon\>|)><frac|\<partial\><rsup|2>|\<partial\>\<epsilon\><rsup|\<alpha\>>\<partial\>\<epsilon\><rsup|\<beta\>>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>>>|<row|<cell|=>|<cell|\<partial\><rsub|\<alpha\>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|]> f<around*|(|0|)>+<with|color|dark
+    f<around*|(|\<epsilon\>|)>>>|<row|<cell|=>|<cell|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<delta\><around*|(|\<epsilon\>|)><frac|\<partial\>|\<partial\>\<epsilon\><rsup|\<alpha\>>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<delta\><around*|(|\<epsilon\>|)><frac|\<partial\><rsup|2>|\<partial\>\<epsilon\><rsup|\<alpha\>>\<partial\>\<epsilon\><rsup|\<beta\>>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>>>|<row|<cell|=>|<cell|-\<partial\><rsub|\<alpha\>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|]> f<around*|(|0|)>-<with|color|dark
     cyan|\<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>f<around*|(|0|)>>>>|<row|<cell|+>|<cell|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|]> f<around*|(|0|)>+2
@@ -468,28 +614,40 @@
   <math|f<around*|(|0|)>> terms,
 
   <\equation*>
-    \<partial\><rsub|\<alpha\>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|]>+\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|]>=0,
+    -\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>+\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>=0,
   </equation*>
 
   and for <math|\<partial\>f<around*|(|0|)>> terms,
 
   <\equation*>
-    2 \<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|]>=0.
+    -\<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>+
+    \<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>=0.
   </equation*>
 
   The <math|\<partial\>\<partial\>f<around*|(|0|)>> terms vanishes
-  automatically. Altogether, we find
+  automatically. Altogether, we find the detailed balance condition for
+  Langevin dynamics to be
 
-  <\equation*>
-    \<mu\><rsup|\<alpha\>><around*|(|x|)>=\<nu\><rsup|\<alpha\>><around*|(|x|)>/\<pi\><around*|(|x|)>,
-  </equation*>
+  <\equation>
+    \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>=
+    \<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>.<label|equation:detailed balance condition for
+    Langevin dynamics>
+  </equation>
 
-  where <math|\<nu\><rsup|\<alpha\>><around*|(|x|)>> is an arbitrary vector
-  field such that <math|\<partial\><rsub|\<alpha\>>\<nu\><rsup|\<alpha\>><around*|(|x|)>=0>.
-  This is weird. TODO
+  Comparing with the stationary Fokker-Planck equation
+  <reference|equation:stationary Fokker-Planck equation>, the source-free
+  vector field <math|\<nu\>> is absent here. Recall in section
+  <reference|section: Detailed Balance Provides Stationary Distribution>
+  where detailed balance condition was first encountered, we said that
+  detailed balance condition is stronger than just being stationary. Now, in
+  Langevin dynamics, this becomes concrete: <em|detailed balance condition is
+  stronger than stationary condition in the sense that it lacks the
+  source-free term (as a degree of freedom) that appears in the stationary
+  condition>.
 </body>
 
 <\initial>
@@ -504,11 +662,25 @@
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|2>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|3>>
-    <associate|auto-6|<tuple|1.5|3>>
-    <associate|auto-7|<tuple|1.6|3>>
-    <associate|equation:Fokker-Planck equation|<tuple|2|3>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|1|2>>
+    <associate|auto-5|<tuple|1.4|4>>
+    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-7|<tuple|1.6|4>>
+    <associate|equation:Fokker-Planck equation|<tuple|3|4>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|1|1>>
+    <associate|equation:Langevin transition rate|<tuple|2|3>>
+    <associate|equation:detailed balance condition for Langevin
+    dynamics|<tuple|5|5>>
+    <associate|equation:stationary Fokker-Planck equation|<tuple|4|4>>
+    <associate|footnote-1|<tuple|1|2>>
+    <associate|footnote-2|<tuple|2|3>>
+    <associate|footnote-3|<tuple|3|3>>
+    <associate|footnote-4|<tuple|4|3>>
+    <associate|footnr-1|<tuple|1|2>>
+    <associate|footnr-2|<tuple|2|3>>
+    <associate|footnr-3|<tuple|3|3>>
+    <associate|footnr-4|<tuple|4|3>>
+    <associate|section: Detailed Balance Condition for Langevin Dynamics
+    Lacks Source-Free Degree of Freedom|<tuple|1.6|4>>
     <associate|section: Spatial Expansion of Master Equation Gives
     Kramers-Moyal Expansion|<tuple|1.1|1>>
   </collection>
@@ -544,7 +716,8 @@
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|1.6<space|2spc>Detailed Balance Condition
-      for Langevin Dynamics <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      for Langevin Dynamics Lacks Source-Free Degree of Freedom
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
     </associate>
   </collection>

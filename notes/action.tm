@@ -214,7 +214,7 @@
   action turns to be
 
   <\equation>
-    S<around*|(|x|)>=<frac|T|2> <big|sum><rsub|t=1><rsup|T-1><around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T>
+    S<rsub|HO><around*|(|x|)>=<frac|T|2> <big|sum><rsub|t=1><rsup|T-1><around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T>
     <big|sum><rsub|t=1><rsup|T>x<rsup|2><around*|(|t|)>.<label|equation:harmonic
     oscillator action>
   </equation>
@@ -248,24 +248,34 @@
 
   In the example of harmonic oscillator (equation
   <reference|equation:harmonic oscillator action>), we find (we have included
-  both the free term and interactive term in the action <math|S>)
+  both the free term and interactive term in the action
+  <math|S<rsub|HO>>)<\footnote>
+    Given <math|t>, <math|x<around*|(|t|)>> appears in two terms in
+    <math|S<rsub|HO><around*|(|x|)>>, the <math|t> and <math|t+1> terms in
+    the summation. They have derivatives <math|T
+    <around*|[|-x<around*|(|t+1|)>+x<around*|(|t|)>|]>-<around*|(|\<omega\><rsup|2>/T|)>
+    x<around*|(|t|)>> and <math|T<around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>>
+    respectively. Altogether, <math|-\<partial\>S<rsub|HO>/\<partial\>x<around*|(|t|)>=T
+    <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>+<around*|(|\<omega\><rsup|2>/T|)>
+    x<around*|(|t|)>>.
+  </footnote>
 
   <\equation*>
-    -T <frac|\<partial\>S|\<partial\>x<around*|(|t|)>>=T<rsup|2>
-    <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>-\<omega\><rsup|2>
+    -T <frac|\<partial\>S<rsub|HO>|\<partial\>x<around*|(|t|)>>=T<rsup|2>
+    <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>+\<omega\><rsup|2>
     x<around*|(|t|)>
   </equation*>
 
   for each <math|t=2,\<ldots\>,T-1>. Recalling that
   <math|<wide|x|\<ddot\>><around*|(|t|)>> is discretized to <math|T<rsup|2>
   <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>>, we
-  find <math|-T \<partial\>S/\<partial\>x<around*|(|t|)>> tends to
+  find <math|-T \<partial\>S<rsub|HO>/\<partial\>x<around*|(|t|)>> tends to
   <math|<wide|x|\<ddot\>><around*|(|t|)>+\<omega\><rsup|2> x<around*|(|t|)>>
   as <math|T\<rightarrow\>+\<infty\>>. For the boundaries <math|t=1> and
-  <math|t=T>, we have <math|-T \<partial\>S/\<partial\>x<around*|(|1|)>=-T<rsup|2>
+  <math|t=T>, we have <math|-T \<partial\>S<rsub|HO>/\<partial\>x<around*|(|1|)>=-T<rsup|2>
   <around*|[|x<around*|(|2|)>-x<around*|(|1|)>|]>-\<omega\><rsup|2>
   x<rsup|2><around*|(|1|)>>, and <math|-T
-  \<partial\>S/\<partial\>x<around*|(|T|)>=T<rsup|2>
+  \<partial\>S<rsub|HO>/\<partial\>x<around*|(|T|)>=T<rsup|2>
   <around*|[|x<around*|(|T|)>-x<around*|(|T-1|)>|]>-\<omega\><rsup|2>
   x<rsup|2><around*|(|T|)>>. Both are meaningless in continous perspective.
   Thus, there are <math|T-2> equations for one-dimensional harmonic
@@ -277,13 +287,12 @@
   of one-dimensional harmonic oscillator, the equation of motion is second
   order. In the discrete perspective, there are <math|T-2> constraints,
   implying <math|m=2>. The two extra degree of freedom are assigned to the
-  initial position and velocity of oscillator. If the initial conditions are
-  given, we will have <math|m=0>, thus <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
+  initial position and velocity of oscillator.
 
   If we want to represent the equation of motion by the variation of action
   (in the continuous perspective it is <math|f<around*|(|t,x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,\<ldots\>|)>=\<delta\>S/\<delta\>x<around*|(|t|)>>),
   we can write <math|f<rsub|\<alpha\>><around*|(|x|)>=-\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
-  for each <math|\<alpha\>=1,\<ldots\>,n>. This cannot be true for all
+  for each <math|\<alpha\>=1,\<ldots\>,n-m>. This cannot be true for all
   <math|f> since <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S<around*|(|x|)>\<equiv\>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
   while generally we do not have <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
   f<rsub|\<alpha\>><around*|(|x|)>>. (By Helmholtz decompostion,
@@ -319,7 +328,12 @@
   gives <math|\<partial\><rsup|\<alpha\>>\<partial\><rsub|\<alpha\>>
   \<nu\><rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>\<partial\><rsup|\<alpha\>>v<rsub|\<alpha\>><around*|(|x|)>=0>.
   Hence, <math|\<nu\><rsub|\<alpha\>><around*|(|x|)>> is harmonic for each
-  <math|\<alpha\>>, which is not satisfied in general.)
+  <math|\<alpha\>>, which is not satisfied in general. From another aspect,
+  <math|f> has <math|n-m> degree of freedom, but <math|\<varphi\>> has only
+  one. So, it is hard to equal <math|f> and <math|\<nabla\>\<varphi\>>. The
+  extra degree of freedom of <math|f> comes from <math|\<nu\>> which has
+  <math|n-m-1> degree of freedom, where the <math|-1> is caused by the
+  restriction <math|\<nabla\>\<cdot\>\<nu\>=0>.)
 
   But, if <math|f<around*|(|x|)>=0> is an equation of motion, so will be
   <math|A<rsub|\<alpha\>\<beta\>><around*|(|x|)>
@@ -337,6 +351,74 @@
   holds for a general class of equation of motion <math|f> as long as we can
   find the corresponding <math|A>. We wonder, given <math|f>, if there is
   such an <math|A> and an <math|S> that this relation holds?
+
+  In the case of damped oscillator, where the equation of motion is modified
+  by adding a friction term to that of harmonic oscillator, we have the
+  <math|t>-component
+
+  <\equation*>
+    f<rsub|t><around*|(|x|)>=T<rsup|2> <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]><with|color|dark
+    cyan|+\<gamma\> <around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]>>+T\<omega\><rsup|2>
+    x<around*|(|t|)>.
+  </equation*>
+
+  It is found that the action
+
+  <\equation*>
+    S<rsub|DO><around*|(|x|)>=<frac|T|2> <big|sum><rsub|t=1><rsup|T-1>exp<around*|(|<frac|\<gamma\>
+    t|T>|)> <around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T>
+    <big|sum><rsub|t=1><rsup|T>exp<around*|(|<frac|\<gamma\> t|T>|)>
+    x<rsup|2><around*|(|t|)>
+  </equation*>
+
+  has partial derivative<\footnote>
+    Again, given <math|t>, there are two terms in
+    <math|S<rsub|DO><around*|(|x|)>> that contains <math|x<around*|(|t|)>>,
+    the <math|t> and <math|t-1> terms in the summation. They have derivatives
+
+    <\equation*>
+      exp<around*|(|<frac|\<gamma\> t|T>|)> T
+      <around*|[|-x<around*|(|t+1|)>+x<around*|(|t|)>|]>-exp<around*|(|<frac|\<gamma\>
+      t|T>|)> <around*|(|<frac|\<omega\><rsup|2>|T>|)> x<around*|(|t|)>
+    </equation*>
+
+    and
+
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|exp<around*|(|<frac|\<gamma\>
+      <around*|(|t-1|)>|T>|)> T <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>>>|<row|<cell|=>|<cell|exp<around*|(|<frac|\<gamma\>
+      t|T>|)> T <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>-<around*|(|1-exp<around*|(|-<frac|\<gamma\>
+      |T>|)>|)> exp<around*|(|<frac|\<gamma\> t|T>|)> T
+      <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>>>>>
+    </align>
+
+    respectively. The factor <math|1-exp<around*|(|-\<gamma\>/T|)>=\<gamma\>/T+\<omicron\><around*|(|1/T|)>>.
+    Thus, altogether, <math|-\<partial\>S<rsub|DO>/\<partial\>x<around*|(|t|)>=exp<around*|(|\<gamma\>
+    t/T|)><around*|{| T <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>+\<gamma\>
+    <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>+<around*|(|\<omega\><rsup|2>/T|)>
+    x<around*|(|t|)>|}>>.
+  </footnote>
+
+  <\equation*>
+    -T<frac|\<partial\>S<rsub|DO>|\<partial\>x<around*|(|t|)>>=exp<around*|(|<frac|\<gamma\>
+    t|T>|)> <around*|{|T<rsup|2> <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>+\<gamma\>
+    <around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]>+T\<omega\><rsup|2>
+    x<around*|(|t|)>|}>
+  </equation*>
+
+  for each for <math|t=2,\<ldots\>,T-1>. It is exactly the equation of motion
+  of damped oscillator multiplied by the factor <math|exp<around*|(|\<gamma\>
+  t/T|)>>. In this example, the matrix valued field <math|A> is diagonal and
+  constant (that is, independent of <math|x>), <math|A<rsup|t
+  t<rprime|'>>=\<delta\><rsup|t t<rprime|'>> exp<around*|(|\<gamma\> t/T|)>>
+  (index is the frame number <math|t>, see section <reference|section:
+  Example: Extract Dynamics from Raw Data>).
+
+  <subsection|Drafts>
+
+  \;
+
+  \;
 
   To determine <math|A>, for any <math|S>, we have
   <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S=\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S>,
@@ -371,8 +453,6 @@
     \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<partial\><rsub|\<beta\>>ln \<pi\><around*|(|x|)>+\<partial\><rsub|\<beta\>>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>.
   </equation*>
-
-  <subsection|Drafts>
 
   <subsubsection|Damped Oscillator>
 
@@ -605,19 +685,24 @@
     <associate|equation:Ltot|<tuple|7|5>>
     <associate|equation:Partition Function|<tuple|2|1>>
     <associate|equation:V extremum|<tuple|8|5>>
+    <associate|equation:damped oscillator action|<tuple|7|?>>
     <associate|equation:data-fitting iteration|<tuple|3|1>>
     <associate|equation:data-fitting result|<tuple|4|1>>
     <associate|equation:eom and action|<tuple|6|4>>
-    <associate|equation:harmonic oscillator action|<tuple|5|3>>
+    <associate|equation:harmonic oscillator action|<tuple|7|3>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|3>>
     <associate|footnote-4|<tuple|4|5>>
+    <associate|footnote-5|<tuple|5|?>>
+    <associate|footnote-6|<tuple|6|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|3>>
     <associate|footnr-4|<tuple|4|5>>
+    <associate|footnr-5|<tuple|5|?>>
+    <associate|footnr-6|<tuple|6|?>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
     Principle|<tuple|1.2|1>>
     <associate|section: Example: Extract Dynamics from Raw

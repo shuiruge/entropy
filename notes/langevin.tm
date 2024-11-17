@@ -343,79 +343,75 @@
   <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n>|)>>, and
   calculate <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
   \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
-  f<rsup|\<alpha\>><around*|(|x|)>>. First, define <math|y\<assign\>-x>, and
-  get <math|>
+  f<rsup|\<alpha\>><around*|(|x|)>>. First, notice that
+  <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>> is in fact
+  <math|<around*|(|\<partial\><rsub|\<alpha\>>\<delta\>|)><around*|(|-x|)>>
+  and that <math|<around*|(|\<partial\>\<delta\>/\<partial\>x<rsup|\<alpha\>>|)><around*|(|-x|)>=-<around*|(|\<partial\>/\<partial\>x<rsup|\<alpha\>>|)>\<delta\><around*|(|-x|)>>,
+  thus
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    <frac|\<partial\>\<delta\>|\<partial\>x<rsup|\<alpha\>>><around*|(|-x|)>
-    f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
-    <frac|\<partial\>\<delta\>|\<partial\>y<rsup|\<alpha\>>><around*|(|y|)>
-    f<rsup|\<alpha\>><around*|(|-y|)>
-  </equation*>
-
-  (the sign comes from <math|\<partial\>/\<partial\>x<rsup|\<alpha\>>=-\<partial\>/\<partial\>y<rsup|\<alpha\>>>).
-  Then, integration by parts gives
-
-  <\equation*>
-    -<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
-    <frac|\<partial\>\<delta\>|\<partial\>y<rsup|\<alpha\>>><around*|(|y|)>
-    f<rsup|\<alpha\>><around*|(|-y|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
-    \<delta\><around*|(|y|)> <frac|\<partial\>f<rsup|\<alpha\>>|\<partial\>y<rsup|\<alpha\>>><around*|(|-y|)>=\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>.
-  </equation*>
-
-  On the other hand, we have
-
-  <\equation*>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
+    f<rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    <around*|(|\<partial\><rsub|\<alpha\>>\<delta\>|)><around*|(|-x|)>
     f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>=-\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>.
+    \<partial\><rsub|\<alpha\>><around*|[|\<delta\><around*|(|-x|)>|]>
+    f<rsup|\<alpha\>><around*|(|x|)>.
   </equation*>
 
-  So, we find <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>> is
-  evaluated to be <math|-\<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>>,
-  that is <math|\<partial\><rsub|\<alpha\>>\<delta\>> is odd.<\footnote>
-    But, we shall not calculate in the following way. Directly applying
-    integration by parts,
-
-    <\equation*>
-      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-      \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
-      f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-      \<delta\><around*|(|-x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>.
-    </equation*>
-
-    Since <math|\<delta\><around*|(|-x|)>=\<delta\><around*|(|x|)>>, we find
-    it to be <math|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>=-\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>>.
-    Notice that there is an extra minus sign in the result. TODO
-  </footnote> Following the same process, we can show that
-  <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\>> is
-  even.<\footnote>
+  Then, integration by parts gives <math|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<partial\><rsub|\<alpha\>><around*|[|\<delta\><around*|(|-x|)>|]>
+  f<rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<delta\><around*|(|-x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>>.
+  After inserting the relation <math|\<delta\><around*|(|x|)>=\<delta\><around*|(|-x|)>>,
+  we arrive at <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
+  f<rsup|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>>.
+  On the other hand, we have, by integration by parts,
+  <math|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>
+  f<rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>>.
+  Altogether, we find <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
+  f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>
+  f<rsup|\<alpha\>><around*|(|x|)>>, for any
+  <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n>|)>>. Thus,
+  <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>> is evaluated to
+  be <math|-\<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>>. That is,
+  <em|<math|\<partial\><rsub|\<alpha\>>\<delta\>> is odd>. Following the same
+  process, we can show that <em|<math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\>>
+  is even>.<\footnote>
     We are to calculate <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>
     f<rsup|\<alpha\>\<beta\>><around*|(|x|)>>, where
     <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n\<times\>n>|)>>.
-    First, define <math|y\<assign\>-x>, and get <math|>
+    Again, noticing that <math|<around*|(|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\>|)><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|\<delta\><around*|(|-x|)>|]>>,
+    we have
 
     <\equation*>
       <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-      <frac|\<partial\><rsup|2>\<delta\>|\<partial\>x<rsup|\<alpha\>>\<partial\>x<rsup|\<beta\>>><around*|(|-x|)>
-      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
-      <frac|\<partial\><rsup|2>\<delta\>|\<partial\>y<rsup|\<alpha\>>\<partial\>y<rsup|\<beta\>>><around*|(|y|)>
-      f<rsup|\<alpha\>><around*|(|-y|)>.
+      \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>
+      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      <around*|(|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\>|)><around*|(|-x|)>
+      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|\<delta\><around*|(|-x|)>|]>
+      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>.
     </equation*>
 
-    Then, integration by parts gives
+    Then integration by parts gives
 
     <\equation*>
-      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
-      <frac|\<partial\><rsup|2>\<delta\>|\<partial\>y<rsup|\<alpha\>>\<partial\>y<rsup|\<beta\>>><around*|(|y|)>
-      f<rsup|\<alpha\>><around*|(|-y|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
-      \<delta\><around*|(|y|)> <frac|\<partial\><rsup|2>f<rsup|\<alpha\>\<beta\>>|\<partial\>y<rsup|\<alpha\>>\<partial\>y<rsup|\<beta\>>><around*|(|-y|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|0|)>.
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|\<delta\><around*|(|-x|)>|]>
+      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<delta\><around*|(|-x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|0|)>.
     </equation*>
 
+    That is, <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>
+    f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|0|)>>.
     On the other hand, we have
 
     <\equation*>
@@ -425,7 +421,18 @@
       \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>\<beta\>><around*|(|0|)>.
     </equation*>
 
-    So, we conclude <math|><math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>.
+    So,
+
+    <\equation*>
+      <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>
+      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+      \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>
+      f<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    </equation*>
+
+    holds for any <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n\<times\>n>|)>>,
+    thus <math|><math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>.
   </footnote> These conclusions are to be used in section <reference|section:
   Detailed Balance Condition for Langevin Dynamics Lacks Source-Free Degree
   of Freedom>.
@@ -663,10 +670,10 @@
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|2>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|4>>
+    <associate|auto-5|<tuple|1.4|3>>
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|4>>
-    <associate|equation:Fokker-Planck equation|<tuple|3|4>>
+    <associate|equation:Fokker-Planck equation|<tuple|3|3>>
     <associate|equation:Kramers-Moyal expansion|<tuple|1|1>>
     <associate|equation:Langevin transition rate|<tuple|2|3>>
     <associate|equation:detailed balance condition for Langevin
@@ -675,11 +682,9 @@
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|3>>
-    <associate|footnote-4|<tuple|4|3>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|3>>
-    <associate|footnr-4|<tuple|4|3>>
     <associate|section: Detailed Balance Condition for Langevin Dynamics
     Lacks Source-Free Degree of Freedom|<tuple|1.6|4>>
     <associate|section: Spatial Expansion of Master Equation Gives

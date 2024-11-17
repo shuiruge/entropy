@@ -1120,6 +1120,7 @@
 
 <\initial>
   <\collection>
+    <associate|bg-color|#c7edcc>
     <associate|font|roman>
     <associate|font-family|rm>
     <associate|math-font|roman>
@@ -1173,8 +1174,7 @@
     Relaxation|<tuple|1.6|6>>
     <associate|section: Transition Rate Determines Transition
     Density|<tuple|1.3|2>>
-    <associate|theorem: relax|<tuple|1|6>>
-    <associate|theorem: relaxation|<tuple|1|?>>
+    <associate|theorem: relaxation|<tuple|1|6>>
   </collection>
 </references>
 

@@ -24,10 +24,11 @@
   1\<less\>+\<infty\>>, the negative relative entropy reduces to Shannon
   entropy. So, maximum-entropy principle shall minimize relative entropy.
 
-  Given a distribution <math|Q> that describes the prior knowledge of random
-  variable <math|X>, the basic problem is to find a distribution <math|P> of
-  <math|X> such that the relative entropy <math|H<around*|(|P,Q|)>> is
-  minimized under a set of restrictions <math|<around*|{|\<bbb-E\><rsub|P><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>\|\<alpha\>=1,\<ldots\>,m,f<rsub|\<alpha\>>:\<cal-X\>\<rightarrow\>\<bbb-R\>|}>>.
+  Given a distribution <math|P<rsub|0>> that describes the prior knowledge of
+  random variable <math|X>, the basic problem is to find a distribution
+  <math|P> of <math|X> such that the relative entropy
+  <math|H<around*|(|P,P<rsub|0>|)>> is minimized under a set of restrictions
+  <math|<around*|{|\<bbb-E\><rsub|P><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>\|\<alpha\>=1,\<ldots\>,m,f<rsub|\<alpha\>>:\<cal-X\>\<rightarrow\>\<bbb-R\>|}>>.
   The notation <math|\<bbb-E\><rsub|P><around*|[|\<cdots\>|]>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
   p<around*|(|x|)>\<cdots\>> represents expectation under <math|P>; and the
   function <math|f<rsub|\<alpha\>>> is called
@@ -41,13 +42,13 @@
   <math|\<bbb-E\><rsub|P><around*|[|f<rsub|\<alpha\>>|]>=<wide|f|\<bar\>><rsub|\<alpha\>>>
   for each <math|\<alpha\>>; and the other from normalization
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>=1>. Recall that
-  the relative entropy <math|H<around*|(|P,Q|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-  p<around*|(|x|)>ln<around*|(|p<around*|(|x|)>/q<around*|(|x|)>|)>>.
+  the relative entropy <math|H<around*|(|P,P<rsub|0>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  p<around*|(|x|)>ln<around*|(|p<around*|(|x|)>/p<rsub|0><around*|(|x|)>|)>>.
   Altogether, the loss functional becomes
 
   <\equation>
     L<around*|(|p,\<lambda\>,\<mu\>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<around*|(|x|)>ln<frac|p<around*|(|x|)>|q<around*|(|x|)>>+\<lambda\><rsup|\<alpha\>><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x|)>ln<frac|p<around*|(|x|)>|p<rsub|0><around*|(|x|)>>+\<lambda\><rsup|\<alpha\>><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x|)>-<wide|f|\<bar\>><rsub|\<alpha\>>|)>+\<mu\><around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1|)>.
   </equation>
@@ -57,7 +58,7 @@
 
   <\align>
     <tformat|<table|<row|<cell|<frac|\<delta\>L|\<delta\>p<around*|(|x|)>><around*|(|p,\<lambda\>,\<mu\>|)>=>|<cell|ln
-    p<around*|(|x|)>+1-ln q<around*|(|x|)>+\<lambda\><rsup|\<alpha\>>
+    p<around*|(|x|)>+1-ln p<rsub|0><around*|(|x|)>+\<lambda\><rsup|\<alpha\>>
     f<rsub|\<alpha\>><around*|(|x|)>+\<mu\>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<lambda\><rsup|\<alpha\>>><around*|(|p,\<lambda\>,\<mu\>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>f<rsub|\<alpha\>><around*|(|x|)>-<wide|f|\<bar\>><rsub|\<alpha\>>;>>|<row|<cell|<frac|\<partial\>L|\<partial\>\<mu\>><around*|(|p,\<lambda\>,\<mu\>|)>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x
     p<around*|(|x|)>-1.>>>>
@@ -76,7 +77,7 @@
 
   <\equation>
     Z<around*|(|\<lambda\>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> exp<around*|(|-\<lambda\><rsup|\<alpha\>>
+    p<rsub|0><around*|(|x|)> exp<around*|(|-\<lambda\><rsup|\<alpha\>>
     f<rsub|\<alpha\>><around*|(|x|)>|)>;<label|equation:maxent partition
     function>
   </equation>
@@ -91,7 +92,7 @@
   where
 
   <\equation>
-    p<around*|(|x,\<lambda\>|)>\<assign\>q<around*|(|x|)>
+    p<around*|(|x,\<lambda\>|)>\<assign\>p<rsub|0><around*|(|x|)>
     exp<around*|(|-\<lambda\><rsup|\<alpha\>>
     f<rsub|\<alpha\>><around*|(|x|)>|)>/Z<around*|(|\<lambda\>|)>.
   </equation>
@@ -101,7 +102,7 @@
   <subsection|Prior Knowledge Furnishes Free Theory or Regulator>
 
   Compared with the maximum-entropy principle derived from maximizing Shannon
-  entropy, we get an extra factor <math|q<around*|(|x|)>> in
+  entropy, we get an extra factor <math|p<rsub|0><around*|(|x|)>> in
   <math|p<around*|(|x,\<lambda\>|)>>. This factor plays the role of prior
   knowledge.
 
@@ -111,29 +112,10 @@
   <math|exp<around*|(|-\<lambda\><rsup|\<alpha\>>
   f<rsub|\<alpha\>><around*|(|x|)>|)>> in <math|p<around*|(|x,\<lambda\>|)>>.
   The <math|\<lambda\>> plays the role of couplings. This indicates that
-  <math|q<around*|(|x|)>> shall be the free theory.
+  <math|p<rsub|0><around*|(|x|)>> shall be the free theory.
 
   In machine learning, it acts as regulator, a pre-determined term employed
   for regulating the value of <math|x>.
-
-  <subsection|* When Is <math|\<lambda\><rsub|\<star\>>> Solvable? (TODO)>
-
-  Even though it is hard to guarantee the equation <reference|equation:maxent
-  eq1> solvable, we have some results for the case when
-  <math|<wide|f|\<bar\>>\<approx\>\<bbb-E\><rsub|Q><around*|[|f|]>>. That is,
-  the perturbative case.
-
-  To guarantee that perturbative solution exists for equation
-  <reference|equation:maxent eq1>, we have to ensure that the Jacobian
-  <math|\<partial\><rsup|2>ln Z/\<partial\>\<lambda\><rsup|\<alpha\>>\<partial\>\<lambda\><rsup|\<beta\>>>
-  is not degenerate at <math|\<lambda\>=0>. With a series of direct
-  calculation, we find
-
-  <\equation>
-    <frac|\<partial\><rsup|2>ln Z|\<partial\>\<lambda\><rsup|\<alpha\>>\<partial\>\<lambda\><rsup|\<beta\>>><around*|(|0|)>=Cov<rsub|q><around*|(|f<rsub|\<alpha\>>,f<rsub|\<beta\>>|)>,
-  </equation>
-
-  the covariance matrix of <math|f> under distribution <math|q>.
 </body>
 
 <\initial>
@@ -175,7 +157,7 @@
       Free Theory or Regulator <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>When Is
+      <with|par-left|<quote|1tab>|1.4<space|2spc>* When Is
       <with|mode|<quote|math>|\<lambda\><rsub|\<star\>>> Solvable? (TODO)
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>

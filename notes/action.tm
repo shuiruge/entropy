@@ -167,8 +167,8 @@
 
   We are to apply the previous discussion to extract dynamics from the raw
   data of a physical system. To describe the system, we need a configuration
-  like <math|x<around*|(|t|)>>. So, the raw data is a set
-  <math|<around*|{|<around*|(|x<rsub|k><around*|(|1|)>,\<ldots\>,x<rsub|k><around*|(|T|)>|)>\|k=1,\<ldots\>,D|}>>
+  like <math|x<around*|(|s|)>> with <math|s\<in\><around*|[|0,1|]>>. So, the
+  raw data is a set <math|<around*|{|<around*|(|x<rsub|k><around*|(|1|)>,\<ldots\>,x<rsub|k><around*|(|T|)>|)>\|k=1,\<ldots\>,D|}>>
   where time is discretized as <math|<around*|(|1,\<ldots\>,T|)>> and the
   data size is <math|D>. Thus, each datum is a movie of the physical system,
   frame by frame. These raw data are obtained by experiments and measurements
@@ -182,8 +182,8 @@
     <around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>|}>,
   </equation*>
 
-  corresponding to the kinetic term <math|<around*|(|1/2|)><big|int><rsub|0><rsup|1>\<mathd\>t
-  <wide|x|\<dot\>><rsup|2><around*|(|t|)>>.
+  corresponding to the kinetic term <math|<around*|(|1/2|)><big|int><rsub|0><rsup|1>\<mathd\>s
+  <wide|x|\<dot\>><rsup|2><around*|(|s|)>>.
 
   Corresponding to this free term, the <math|V> described in section
   <reference|section: Data Fitting Is Equivalent to Least-Action Principle>
@@ -198,9 +198,10 @@
   down a most generic form of <math|<with|font|cal|L>> that satisfies all the
   ansatz. Neural network and symbolic regression may help you write down this
   most generic form. Then, we find the best fit
-  <math|\<theta\><rsub|\<star\>>> by equation <reference|equation:Iteration>.
-  The <math|V<around*|(|x,\<theta\><rsub|\<star\>>|)>>, together with the
-  free term, describes the dynamics extracted from the raw data.
+  <math|\<theta\><rsub|\<star\>>> by equation
+  <reference|equation:data-fitting iteration>. The
+  <math|V<around*|(|x,\<theta\><rsub|\<star\>>|)>>, together with the free
+  term, describes the dynamics extracted from the raw data.
 
   As an example, consider an one-dimensional harmonic oscillator. The
   configuration is a function in <math|C<rsup|1><around*|(|<around*|[|0,1|]>,\<bbb-R\>|)>>,
@@ -255,7 +256,7 @@
     the summation. They have derivatives <math|T
     <around*|[|-x<around*|(|t+1|)>+x<around*|(|t|)>|]>-<around*|(|\<omega\><rsup|2>/T|)>
     x<around*|(|t|)>> and <math|T<around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>>
-    respectively. Altogether, <math|-\<partial\>S<rsub|HO>/\<partial\>x<around*|(|t|)>=T
+    respectively. Altogether, we find <math|-\<partial\>S<rsub|HO>/\<partial\>x<around*|(|t|)>=T
     <around*|[|x<around*|(|t+1|)>-2x<around*|(|t|)>+x<around*|(|t-1|)>|]>+<around*|(|\<omega\><rsup|2>/T|)>
     x<around*|(|t|)>>.
   </footnote>
@@ -274,12 +275,11 @@
   as <math|T\<rightarrow\>+\<infty\>>. For the boundaries <math|t=1> and
   <math|t=T>, we have <math|-T \<partial\>S<rsub|HO>/\<partial\>x<around*|(|1|)>=-T<rsup|2>
   <around*|[|x<around*|(|2|)>-x<around*|(|1|)>|]>-\<omega\><rsup|2>
-  x<rsup|2><around*|(|1|)>>, and <math|-T
-  \<partial\>S<rsub|HO>/\<partial\>x<around*|(|T|)>=T<rsup|2>
+  x<around*|(|1|)>>, and <math|-T \<partial\>S<rsub|HO>/\<partial\>x<around*|(|T|)>=T<rsup|2>
   <around*|[|x<around*|(|T|)>-x<around*|(|T-1|)>|]>-\<omega\><rsup|2>
-  x<rsup|2><around*|(|T|)>>. Both are meaningless in continous perspective.
-  Thus, there are <math|T-2> equations for one-dimensional harmonic
-  oscillator obtained by variation.
+  x<around*|(|T|)>>. Both are meaningless in continous perspective. Thus,
+  there are <math|T-2> equations for one-dimensional harmonic oscillator
+  obtained by variation.
 
   On the other hand, equation of motion can be represented by
   <math|f<around*|(|x|)>=0> where <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n-m>>
@@ -295,50 +295,17 @@
   for each <math|\<alpha\>=1,\<ldots\>,n-m>. This cannot be true for all
   <math|f> since <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S<around*|(|x|)>\<equiv\>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>S<around*|(|x|)>>
   while generally we do not have <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
-  f<rsub|\<alpha\>><around*|(|x|)>>. (By Helmholtz decompostion,
-  <math|f<around*|(|x|)>=\<nabla\>\<varphi\><around*|(|x|)>+\<nu\><around*|(|x|)>>
-  where <math|\<nabla\>\<cdot\>\<nu\><around*|(|x|)>=0>.<\footnote>
-    A simple derivation of Helmholtz decomposition is as follow. It is well
-    known that, given a vector <math|k\<in\>\<bbb-R\><rsup|n>>, any vector
-    <math|y\<in\>\<bbb-R\><rsup|n>> can be decomposed into two parts: one
-    that parallel to <math|k> and the other normal to <math|k>. That is,
-    <math|y=y<rsub|\<parallel\>>+y<rsub|\<bot\>>>, wherein
-    <math|k\<times\>y<rsub|\<parallel\>>=0> and
-    <math|k\<cdot\>y<rsub|\<bot\>>=0>. This holds for any vector field
-    <math|y:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>:
-    <math|y<around*|(|k|)>=y<rsub|\<parallel\>><around*|(|k|)>+y<rsub|\<bot\>><around*|(|k|)>>,
-    <math|k\<times\>y<rsub|\<parallel\>><around*|(|k|)>=0>, and
-    <math|k\<cdot\>y<rsub|\<bot\>><around*|(|k|)>=0>. By Fourier transform,
-    this relation becomes <math|<wide|y|^><around*|(|x|)>=<wide|y|^><rsub|\<parallel\>><around*|(|x|)>+<wide|y|^><rsub|\<bot\>><around*|(|x|)>>,
-    <math|\<nabla\>\<times\><wide|y|^><rsub|\<parallel\>><around*|(|x|)>=0>,
-    and <math|\<nabla\>\<cdot\><wide|y|^><rsub|\<bot\>><around*|(|x|)>=0>.
-    Since every curl-free vector field is the gradient of a scale field, thus
-    <math|<wide|y|^><rsub|\<parallel\>><around*|(|x|)>=\<nabla\>\<sigma\><around*|(|x|)>>
-    where <math|\<sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>>. So, we
-    find that any smooth vector field <math|v:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
-    can be composed into <math|v<around*|(|x|)>=\<nabla\>\<sigma\><around*|(|x|)>+\<nu\><around*|(|x|)>>
-    where <math|\<sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>
-    and <math|\<nu\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> with
-    <math|><math|\<nabla\>\<cdot\>\<nu\><around*|(|x|)>=0>.
-  </footnote> Thus, <math|\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>
-  f<rsub|\<alpha\>><around*|(|x|)>> means
-  <math|\<partial\><rsub|\<alpha\>>\<nu\><rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>\<nu\><rsub|\<alpha\>><around*|(|x|)>>
-  for each <math|\<alpha\>> and <math|\<beta\>>. Applying
-  <math|<big|sum><rsub|\<alpha\>>\<partial\><rsup|\<alpha\>>> to both sides
-  gives <math|\<partial\><rsup|\<alpha\>>\<partial\><rsub|\<alpha\>>
-  \<nu\><rsub|\<beta\>><around*|(|x|)>=\<partial\><rsub|\<beta\>>\<partial\><rsup|\<alpha\>>v<rsub|\<alpha\>><around*|(|x|)>=0>.
-  Hence, <math|\<nu\><rsub|\<alpha\>><around*|(|x|)>> is harmonic for each
-  <math|\<alpha\>>, which is not satisfied in general. From another aspect,
-  <math|f> has <math|n-m> degree of freedom, but <math|\<varphi\>> has only
-  one. So, it is hard to equal <math|f> and <math|\<nabla\>\<varphi\>>. The
-  extra degree of freedom of <math|f> comes from <math|\<nu\>> which has
-  <math|n-m-1> degree of freedom, where the <math|-1> is caused by the
-  restriction <math|\<nabla\>\<cdot\>\<nu\>=0>.)
+  f<rsub|\<alpha\>><around*|(|x|)>>. From another aspect, <math|f> has
+  <math|n-m> degree of freedom, but <math|\<varphi\>> has only one. So, it is
+  hard to equal <math|f> and <math|\<nabla\>\<varphi\>>. The extra degree of
+  freedom of <math|f> comes from <math|\<nu\>> which has <math|n-m-1> degree
+  of freedom, where the <math|-1> is caused by the restriction
+  <math|\<nabla\>\<cdot\>\<nu\>=0>.)
 
   But, if <math|f<around*|(|x|)>=0> is an equation of motion, so will be
   <math|A<rsub|\<alpha\>\<beta\>><around*|(|x|)>
-  f<rsup|\<beta\>><around*|(|x|)>=0> for any smooth and invertible matrix
-  valued field <math|A:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>.
+  f<rsup|\<beta\>><around*|(|x|)>=0> for any smooth and invertible
+  matrix-valued field <math|A:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>.
   The <math|A f=0> is an equation of motion that is equivalent to <math|f=0>.
   So, we may expect
 
@@ -349,8 +316,10 @@
   </equation>
 
   holds for a general class of equation of motion <math|f> as long as we can
-  find the corresponding <math|A>. We wonder, given <math|f>, if there is
-  such an <math|A> and an <math|S> that this relation holds?
+  find the corresponding <math|A>. We wonder, <with|color|red|given <math|f>,
+  if there is such an <math|A> and an <math|S> that this relation holds?> And
+  <with|color|red|if they do exist, can we construct the <math|A> and
+  <math|S> by an algorithm?>
 
   In the case of damped oscillator, where the equation of motion is modified
   by adding a friction term to that of harmonic oscillator, we have the
@@ -384,13 +353,13 @@
 
     and
 
-    <\align>
-      <tformat|<table|<row|<cell|>|<cell|exp<around*|(|<frac|\<gamma\>
-      <around*|(|t-1|)>|T>|)> T <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>>>|<row|<cell|=>|<cell|exp<around*|(|<frac|\<gamma\>
+    <\equation*>
+      exp<around*|(|<frac|\<gamma\> <around*|(|t-1|)>|T>|)> T
+      <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>=exp<around*|(|<frac|\<gamma\>
       t|T>|)> T <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>-<around*|(|1-exp<around*|(|-<frac|\<gamma\>
       |T>|)>|)> exp<around*|(|<frac|\<gamma\> t|T>|)> T
-      <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>>>>>
-    </align>
+      <around*|[|x<around*|(|t|)>-x<around*|(|t-1|)>|]>
+    </equation*>
 
     respectively. The factor <math|1-exp<around*|(|-\<gamma\>/T|)>=\<gamma\>/T+\<omicron\><around*|(|1/T|)>>.
     Thus, altogether, <math|-\<partial\>S<rsub|DO>/\<partial\>x<around*|(|t|)>=exp<around*|(|\<gamma\>
@@ -408,7 +377,7 @@
 
   for each for <math|t=2,\<ldots\>,T-1>. It is exactly the equation of motion
   of damped oscillator multiplied by the factor <math|exp<around*|(|\<gamma\>
-  t/T|)>>. In this example, the matrix valued field <math|A> is diagonal and
+  t/T|)>>. In this example, the matrix-valued field <math|A> is diagonal and
   constant (that is, independent of <math|x>), <math|A<rsup|t
   t<rprime|'>>=\<delta\><rsup|t t<rprime|'>> exp<around*|(|\<gamma\> t/T|)>>
   (index is the frame number <math|t>, see section <reference|section:
@@ -550,8 +519,6 @@
   <math|x<rsub|\<star\>>>, <math|\<partial\><rsub|\<beta\>>f<rsub|\<alpha\>>-\<partial\><rsub|\<alpha\>>f<rsub|\<beta\>>=<around*|(|\<lambda\><rsub|\<alpha\>>-\<lambda\><rsub|\<beta\>>|)>
   \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>S>.
 
-  TODO
-
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
   Functional>
 
@@ -669,40 +636,40 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.5.3|4>>
+    <associate|auto-10|<tuple|1.5.3|5>>
     <associate|auto-11|<tuple|1.5.4|5>>
-    <associate|auto-12|<tuple|1.6|5>>
-    <associate|auto-13|<tuple|1.7|5>>
+    <associate|auto-12|<tuple|1.6|6>>
+    <associate|auto-13|<tuple|1.7|6>>
+    <associate|auto-14|<tuple|1.8|6>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1|2>>
     <associate|auto-5|<tuple|1.3|2>>
     <associate|auto-6|<tuple|1.4|3>>
     <associate|auto-7|<tuple|1.5|4>>
-    <associate|auto-8|<tuple|1.5.1|4>>
-    <associate|auto-9|<tuple|1.5.2|4>>
+    <associate|auto-8|<tuple|1.5.1|5>>
+    <associate|auto-9|<tuple|1.5.2|5>>
     <associate|equation:Generic Density|<tuple|1|1>>
-    <associate|equation:Ltot|<tuple|7|5>>
+    <associate|equation:Ltot|<tuple|7|6>>
     <associate|equation:Partition Function|<tuple|2|1>>
-    <associate|equation:V extremum|<tuple|8|5>>
-    <associate|equation:damped oscillator action|<tuple|7|?>>
+    <associate|equation:V extremum|<tuple|8|6>>
     <associate|equation:data-fitting iteration|<tuple|3|1>>
-    <associate|equation:data-fitting result|<tuple|4|1>>
+    <associate|equation:data-fitting result|<tuple|4|2>>
     <associate|equation:eom and action|<tuple|6|4>>
-    <associate|equation:harmonic oscillator action|<tuple|7|3>>
+    <associate|equation:harmonic oscillator action|<tuple|5|3>>
     <associate|figure: Least-Action|<tuple|1|2>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|3>>
-    <associate|footnote-4|<tuple|4|5>>
-    <associate|footnote-5|<tuple|5|?>>
-    <associate|footnote-6|<tuple|6|?>>
+    <associate|footnote-4|<tuple|4|4>>
+    <associate|footnote-5|<tuple|5|4>>
+    <associate|footnote-6|<tuple|6|6>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|3>>
-    <associate|footnr-4|<tuple|4|5>>
-    <associate|footnr-5|<tuple|5|?>>
-    <associate|footnr-6|<tuple|6|?>>
+    <associate|footnr-4|<tuple|4|4>>
+    <associate|footnr-5|<tuple|5|4>>
+    <associate|footnr-6|<tuple|6|6>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
     Principle|<tuple|1.2|1>>
     <associate|section: Example: Extract Dynamics from Raw
@@ -760,34 +727,39 @@
       Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Drafts
+      <with|par-left|<quote|1tab>|1.5<space|2spc>TODO: Add initial conditions
+      as components of equations of motion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|2tab>|1.5.1<space|2spc>Damped Oscillator
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Drafts
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|2tab>|1.5.2<space|2spc>Coordinate Transformation
+      <with|par-left|<quote|2tab>|1.6.1<space|2spc>Damped Oscillator
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|2tab>|1.5.3<space|2spc>Degree of Freedom
+      <with|par-left|<quote|2tab>|1.6.2<space|2spc>Coordinate Transformation
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
 
-      <with|par-left|<quote|2tab>|1.5.4<space|2spc>Diagonal Matrix
+      <with|par-left|<quote|2tab>|1.6.3<space|2spc>Degree of Freedom
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-11>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Maximum-Entropy and
-      Least-Action Are Saddle Point of a Functional
+      <with|par-left|<quote|2tab>|1.6.4<space|2spc>Diagonal Matrix
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-12>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Structures in Nature Arise
-      from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Maximum-Entropy and
+      Least-Action Are Saddle Point of a Functional
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
+
+      <with|par-left|<quote|1tab>|1.8<space|2spc>Structures in Nature Arise
+      from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14>>
     </associate>
   </collection>
 </auxiliary>

@@ -182,10 +182,10 @@
 
   <subsection|Transition Rate of Langevin Dynamics Is a Generalized Function>
 
-  In the rest of this section, we calculate the the transition rate of the
-  transition density of Langevin dynamics. The <math|\<Delta\>t> appears in
-  many places, and directly Taylor expanding <math|q<rsub|\<Delta\>t>> by
-  <math|\<Delta\>t> is very hard. Instead, we employ an arbitrary test
+  In this section, we calculate the the transition rate of Langevin dynamics
+  from transition density. The <math|\<Delta\>t> appears in many places in
+  transition density, and directly Taylor expanding <math|q<rsub|\<Delta\>t>>
+  by <math|\<Delta\>t> is very hard. Instead, we employ an arbitrary test
   function <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\>|)>>,<\footnote>
     The <math|S> represents Schwarts space, which is a functional space in
     which any function <math|f:X\<rightarrow\>Y> is smooth and rapidly falls
@@ -460,8 +460,8 @@
   Kramers-Moyal expansion <reference|equation:Kramers-Moyal expansion> reads
 
   <\equation>
-    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=-\<nabla\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    p<around*|(|x,t|)>|)>+\<nabla\><rsub|\<alpha\>>\<nabla\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=-\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
+    p<around*|(|x,t|)>|)>+\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     p<around*|(|x,t|)>|)>.<label|equation:Fokker-Planck equation>
   </equation>
 
@@ -504,18 +504,6 @@
   \<nabla\>\<cdot\>v<around*|(|x|)>=0>, thus conflicts. Such a vector field
   <math|\<nu\>> is called <strong|free of source> or <strong|source-free>.
 
-  Specially, if <math|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>=\<delta\><rsup|\<alpha\>\<beta\>>>,
-  <math|\<nu\><rsup|\<alpha\>><around*|(|x|)>=0>, and
-  <math|\<mu\><around*|(|x|)>=-\<nabla\>E<around*|(|x|)>/T> for some scalar
-  function <math|E:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>> and positive
-  number <math|T>, then the stationary Fokker-Planck equation becomes
-  <math|\<partial\><rsup|\<alpha\>>\<pi\><around*|(|x|)>=-\<partial\><rsup|\<alpha\>>E<around*|(|x|)>
-  \<pi\><around*|(|x|)>/T>, which has solution
-  <math|\<pi\><around*|(|x|)>\<propto\>exp<around*|(|-E<around*|(|x|)>/T|)>>,
-  corresponding the Boltzmann distribution where <math|E> is recognized as
-  energy and <math|T> as temperature. Fokker-Planck equation, or Langevin
-  dynamics, is much broader than Boltzmann distribution.
-
   <subsection|Detailed Balance Condition for Langevin Dynamics Lacks
   Source-Free Degree of Freedom><label|section: Detailed Balance Condition
   for Langevin Dynamics Lacks Source-Free Degree of Freedom>
@@ -528,7 +516,8 @@
   condition reads <math|r<around*|(|x+\<epsilon\>,x|)>
   \<pi\><around*|(|x|)>=r<around*|(|x,x+\<epsilon\>|)>
   \<pi\><around*|(|x+\<epsilon\>|)>>. Directly inserting equation
-  <reference|equation:Langevin transition rate>, we get
+  <reference|equation:Langevin transition rate>, we get, for the left hand
+  side,
 
   <\equation*>
     r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
@@ -536,7 +525,7 @@
     \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>,
   </equation*>
 
-  and
+  and, for the right hand side,
 
   <\align>
     <tformat|<table|<row|<cell|>|<cell|r<around*|(|x,x+\<epsilon\>|)>
@@ -552,7 +541,7 @@
   and <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>.
 
   As generalized functions, we are to examine these two expressions by using
-  an arbitrary test function <math|f>. Thus,
+  an arbitrary test function <math|f>. Thus, for the left hand side,
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
@@ -566,7 +555,7 @@
     f<around*|(|\<epsilon\>|)>.
   </equation*>
 
-  Integral by part gives (note that the <math|\<partial\>> is applied on
+  Integration by parts gives (note that the <math|\<partial\>> is applied on
   <math|\<epsilon\>>)
 
   <\equation*>
@@ -578,7 +567,7 @@
     \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>>.
   </equation*>
 
-  The other expression is a little complicated,
+  The right hand side is a little complicated,
 
   <\small>
     <\equation*>
@@ -593,7 +582,7 @@
     </equation*>
   </small>
 
-  Again, integral by part results in (again, the <math|\<partial\>> is
+  Again, integration by parts results in (again, the <math|\<partial\>> is
   applied on <math|\<epsilon\>>)
 
   <\align>
@@ -653,8 +642,9 @@
   detailed balance condition is stronger than just being stationary. Now, in
   Langevin dynamics, this becomes concrete: <em|detailed balance condition is
   stronger than stationary condition in the sense that it lacks the
-  source-free term (as a degree of freedom) that appears in the stationary
-  condition>.
+  source-free degree of freedom that appears in the stationary condition>.
+  The lost degree of freedom is the cost of ensuring that any initial
+  distribution will finally relax to the stationary.
 </body>
 
 <\initial>
@@ -670,11 +660,11 @@
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|2>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|3>>
+    <associate|auto-5|<tuple|1.4|4>>
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|4>>
-    <associate|equation:Fokker-Planck equation|<tuple|3|3>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|1|1>>
+    <associate|equation:Fokker-Planck equation|<tuple|3|4>>
+    <associate|equation:Kramers-Moyal expansion|<tuple|1|2>>
     <associate|equation:Langevin transition rate|<tuple|2|3>>
     <associate|equation:detailed balance condition for Langevin
     dynamics|<tuple|5|5>>

@@ -5,7 +5,7 @@
 <\body>
   <section|Relative Entropy><label|section: Relative Entropy>
 
-  <subsection|A Brief Review of Probability><label|section: A Short Review of
+  <subsection|A Brief Review of Probability><label|section: A Brief Review of
   Probability>
 
   <em|Those that are not deterministic are denoted by capital letters.> But,
@@ -301,6 +301,7 @@
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|1>>
     <associate|footnr-4|<tuple|4|1>>
+    <associate|section: A Brief Review of Probability|<tuple|1.1|?>>
     <associate|section: A Short Review of Probability|<tuple|1.1|1>>
     <associate|section: Relative Entropy|<tuple|1|1>>
     <associate|section: Shannon Entropy Fails for Continuous Random

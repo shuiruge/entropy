@@ -630,80 +630,74 @@
   </theorem>
 
   Many textures use Fokker-Planck equation to prove the monotonic reduction
-  of relative entropy. With an integral by part, they arrive at a negative
-  definite expression, which means the monotonic reduction. This proof needs
-  smooth structure on <math|X>, which is essential for integral by part. In
-  this section, we provides a more generic alternative to the proof, for
-  which smooth structure on <math|X> is unnecessary. It employs detailed
-  condition instead of Fokker-Planck equation, which is a specific case of
-  detailed balance (section <reference|section: Conservative Langevin
-  Dynamics Satisfies Detailed Balance>).
+  of relative entropy. After an integration by parts, they arrive at a
+  negative definite expression, which means the monotonic reduction. This
+  proof needs smooth structure on <math|X>, which is essential for
+  integration by parts. In this section, we provides a more generic
+  alternative to the proof, for which smooth structure on <math|X> is
+  unnecessary.
 
-  <subsection|Numerical Simulation of Master Equation and Guarantee of
-  Relaxation><label|section: Simulation of Master Equation and Guarantee of
+  <subsection|Monte-Carlo Simulation and Guarantee of
+  Relaxation><label|section: Monte-Carlo Simulation and Guarantee of
   Relaxation>
 
-  How to solve master equation <reference|equation:master equation>? When the
-  alphabet <math|\<cal-X\>> is discrete and finite, where the desk becomes a
-  finite two-dimensional array of lattices (recall section
-  <reference|section: Master Equation Describes the Evolution of Markov
-  Process>), we replace position by its index in the alphabet, like
-  <math|x\<rightarrow\>i>. Then, master equation becomes autonomous linear
-  dynamical system: <math|<around*|(|\<mathd\>/\<mathd\>t|)>p<rsub|i><around*|(|t|)>=<big|sum><rsub|j\<in\>\<cal-X\>>r<rsub|i
-  j> p<rsub|j><around*|(|t|)>>. It can be solved analytically, by
-  investigating the eigen-system of matrix <math|r>.
-
-  When alphabet <math|\<cal-X\>> is neither discrete nor finite, we can
-  approximate the solution by using some properties of <math|r>. To do so, we
-  expand <math|p<around*|(|x,t|)>> by a set of bases of Hilbert space,
-  <math|<around*|{|\<alpha\><rsub|1>,\<alpha\><rsub|2>,\<ldots\>|}>>, as
-  <math|p<around*|(|x,t|)>=<big|sum><rsub|i>\<xi\><rsub|i><around*|(|t|)>
-  \<alpha\><rsub|i><around*|(|x|)>>, where <math|\<xi\>> is the coefficient.
-  The master equation turns to be
-
-  <\equation*>
-    <big|sum><rsub|k><frac|\<mathd\>\<xi\><rsub|k>|\<mathd\>t><around*|(|t|)>
-    \<alpha\><rsub|k><around*|(|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|x,y|)> <big|sum><rsub|j>\<xi\><rsub|j><around*|(|t|)>
-    \<alpha\><rsub|j><around*|(|x|)>.
-  </equation*>
-
-  By inner product with <math|\<alpha\><rsub|i><around*|(|x|)>> on both side,
-  we find
-
-  <\equation*>
-    <frac|\<mathd\>\<xi\><rsub|i>|\<mathd\>t><around*|(|t|)>
-    \<alpha\><rsub|i><around*|(|x|)>=<big|sum><rsub|j><around*|[|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|x,y|)> \<alpha\><rsub|i><around*|(|x|)>
-    \<alpha\><rsub|j><around*|(|y|)>|]> \<xi\><rsub|j><around*|(|t|)>.
-  </equation*>
-
-  If the <math|r> is specific (such as slowly varying) and the bases are
-  properly chosen such that <math|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
-  r<around*|(|x,y|)> \<alpha\><rsub|i><around*|(|x|)>
-  \<alpha\><rsub|j><around*|(|y|)>> is negligible for any <math|i> and
-  <math|j> greater than a number, the problem reduces to the case when
-  <math|\<cal-X\>> is discrete and finite.
-
-  In the worst situation, we have to solve master equation by numerical
-  simulation. We simulate each sand, but replace its free will by a
-  transition probability determined by transition rate <math|r>. Explicitly,
-  we initialize the sand randomly. Then iteratively update the position of
-  each sand. In each iteration, a sand jumps from position <math|x> to
-  position <math|y> with the probability <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>\<approx\>\<delta\><around*|(|y-x|)>+r<around*|(|y,x|)>
-  \<Delta\>t> where <math|\<Delta\>t> is sufficiently small. <em|We have to
-  ensure that computer has a sampler that makes random sampling for
-  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>>> (as an example, see section
-  <reference|section: Example: Metropolis-Hastings Algorithm>). If <math|r>
-  together with some stationary distribution <math|\<Pi\>> satisfies the
-  detailed balance condition, then we <em|expect> that the simulation will
-  iteratively decrease the difference between the distribution of the sands
-  and the <math|\<Pi\>>. We stop the iteration when they have been close
+  A practical problem is calculating the expectation
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x \<pi\><around*|(|x|)>
+  f<around*|(|x|)>> for a density function <math|\<pi\>> and an arbitrary
+  function <math|f:\<cal-X\>\<rightarrow\>\<bbb-R\>>. When <math|\<cal-X\>>
+  has finite elements, this expectation is easy to compute, which is
+  <math|<big|sum><rsub|x\<in\>\<cal-X\>>\<pi\><around*|(|x|)>
+  f<around*|(|x|)>>. Otherwise, this integral will be intractable.
+  Numerically, this integral becomes <math|<around*|(|1/<around*|\||\<cal-S\>|\|>|)><big|sum><rsub|x\<in\>\<cal-S\>>f<around*|(|x|)>>
+  where <math|\<cal-S\>> is a collection of elements randomly sampled from
+  distribution <math|\<Pi\>>, whose density function is the <math|\<pi\>>. By
+  central limit theorem (briefly, the mean of i.i.d. random variables
+  <math|X<rsub|1>,\<ldots\>,X<rsub|N>> with
+  <math|\<bbb-E\><around*|[|X<rsub|i>|]>=0> and
+  <math|Var<around*|[|X<rsub|i>|]>=\<sigma\><rsup|2>> for some
+  <math|\<sigma\>>, has standard derivation <math|\<sigma\>/<sqrt|N>> when
+  <math|N> is large enough), the numerical error
+  <math|<around*|\||<big|int><rsub|\<cal-X\>>\<mathd\>x \<pi\><around*|(|x|)>
+  f<around*|(|x|)>-<around*|(|1/<around*|\||\<cal-S\>|\|>|)><big|sum><rsub|x\<in\>\<cal-S\>>f<around*|(|x|)>|\|>>
+  is proportional to <math|1/<sqrt|<around*|\||\<cal-S\>|\|>>>, which can be
+  properly bounded as long as <math|<around*|\||\<cal-S\>|\|>> is large
   enough.
+
+  But, how to sample from a distribution if you only know its density
+  function (recall in section <reference|section: A Brief Review of
+  Probability>, a distribution is the combination of its density function and
+  its sampler)? And further, how to simulate the master equation (of a box of
+  vibrating particles, or of a desk of flowing sands) that tends to
+  equilibrium (without which the simulation will not terminate)?
+
+  Using the metaphor of sands (see section <reference|section: Master
+  Equation Describes the Evolution of Markov Process>), we simulate each
+  sand, but replace its free will by a transition probability. Explicitly, we
+  initialize the sands (that is, their positions) randomly. Then iteratively
+  update the position of each sand. In each iteration, a sand jumps from
+  position <math|x> to position <math|y> with the probability
+  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>\<approx\>\<delta\><around*|(|y-x|)>+r<around*|(|y,x|)>
+  \<Delta\>t> where <math|\<Delta\>t> is sufficiently small. Not every jump
+  is valid. The transition rate <math|r> has to be properly constructed such
+  that computer has a sampler that makes random sampling for
+  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>>, and that, together with the
+  density function <math|\<pi\>>, detailed balance condition
+  <reference|equation:Detailed Balance> holds (section <reference|section:
+  Example: Metropolis-Hastings Algorithm> provides a method that constructs
+  such a transition rate from density function). Then, we <em|expect> that
+  the simulation will iteratively decrease the difference between the
+  distribution of the sands and the <math|\<Pi\>>. We terminate the iteration
+  when they have been close enough. In this way, we simulate a collection of
+  sands evolves with the master equation to equilibrium, and finally
+  distributes as <math|\<Pi\>>. This process is called <strong|Monte-Carlo
+  simulation>, first developed by Stanislaw Ulam in 1940s while he was
+  working on the project of nuclear weapons at Los Alamos National
+  Laboratory. The name is in memory of Ulam's uncle who lost all his personal
+  assets in Monte Carlo Casino, Monaco.
 
   Like the Euler method in solving dynamical system, however, a finite time
   step results in a residual error. This residual error must be analyzed an
-  controlled, so that the distribution will evaluate toward <math|\<Pi\>>, as
+  controlled, so that the distribution will evolve toward <math|\<Pi\>>, as
   we have expected. To examine this, we calculate the
   <math|H<around*|(|P<around*|(|t+\<Delta\>t|)>,\<Pi\>|)>-H<around*|(|P<around*|(|t|)>,\<Pi\>|)>>
   where <math|\<Delta\>t> is small but still finite, and check when it is
@@ -1000,11 +994,10 @@
   the Metropolis-Hastings algorithm <reference|equation:metropolis-hastings
   origin> to numerically simulate master equation <reference|equation:master
   equation>.> But, based on the discussion in section <reference|section:
-  Simulation of Master Equation and Guarantee of Relaxation>, the
-  <math|\<Delta\>t> in <math|g<rsub|\<Delta\>t>> shall be properly bounded to
-  be small (or equivalently speaking, <math|g> shall be \Pprincipal
-  diagonal\Q) \ so as to ensure the relaxation
-  <math|P<around*|(|t|)>\<rightarrow\>\<Pi\>>.
+  Monte-Carlo Simulation and Guarantee of Relaxation>, the <math|\<Delta\>t>
+  in <math|g<rsub|\<Delta\>t>> shall be properly bounded to be small (or
+  equivalently speaking, <math|g> shall be \Pprincipal diagonal\Q) \ so as to
+  ensure the relaxation <math|P<around*|(|t|)>\<rightarrow\>\<Pi\>>.
 
   <subsection|* Existence of Stationary Density Function>
 
@@ -1135,20 +1128,20 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|4>>
-    <associate|auto-6|<tuple|1.5|5>>
+    <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|6>>
-    <associate|auto-8|<tuple|1.7|9>>
-    <associate|auto-9|<tuple|1.8|10>>
+    <associate|auto-8|<tuple|1.7|8>>
+    <associate|auto-9|<tuple|1.8|9>>
     <associate|equation:Detailed Balance|<tuple|6|4>>
     <associate|equation:Detailed Balance for transition density|<tuple|7|4>>
-    <associate|equation:circle|<tuple|13|10>>
-    <associate|equation:define stationary density function|<tuple|12|10>>
+    <associate|equation:circle|<tuple|13|9>>
+    <associate|equation:define stationary density function|<tuple|12|9>>
     <associate|equation:discrete time master equation|<tuple|4|2>>
     <associate|equation:discrete time master equation v0|<tuple|2|1>>
-    <associate|equation:equation:metropolis-hastings|<tuple|10|9>>
+    <associate|equation:equation:metropolis-hastings|<tuple|10|8>>
     <associate|equation:master equation|<tuple|3|2>>
     <associate|equation:master equation v0|<tuple|2|1>>
-    <associate|equation:metropolis-hastings origin|<tuple|11|9>>
+    <associate|equation:metropolis-hastings origin|<tuple|11|8>>
     <associate|equation:relative entropy derivative|<tuple|9|5>>
     <associate|equation:transition density normalization|<tuple|1|1>>
     <associate|equation:transition rate determines transition
@@ -1156,21 +1149,23 @@
     <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|6>>
-    <associate|footnote-4|<tuple|4|8>>
+    <associate|footnote-4|<tuple|4|7>>
+    <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|5>>
     <associate|footnr-3|<tuple|3|6>>
-    <associate|footnr-4|<tuple|4|8>>
+    <associate|footnr-4|<tuple|4|7>>
+    <associate|footnr-5|<tuple|5|?>>
     <associate|section: Detailed Balance Condition and Connectivity
-    Monotonically Reduce Relative Entropy|<tuple|1.5|5>>
+    Monotonically Reduce Relative Entropy|<tuple|1.5|4>>
     <associate|section: Detailed Balance Provides Stationary
     Distribution|<tuple|1.4|4>>
-    <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|9>>
+    <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|8>>
     <associate|section: Master Equation Describes the Evolution of Markov
     Process|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
-    <associate|section: Simulation of Master Equation and Guarantee of
+    <associate|section: Monte-Carlo Simulation and Guarantee of
     Relaxation|<tuple|1.6|6>>
     <associate|section: Transition Rate Determines Transition
     Density|<tuple|1.3|2>>
@@ -1206,9 +1201,8 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Numerical Simulation of
-      Master Equation and Guarantee of Relaxation
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Monte-Carlo Simulation and
+      Guarantee of Relaxation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
       <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Metropolis-Hastings

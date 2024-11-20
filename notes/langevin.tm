@@ -3,7 +3,8 @@
 <style|book>
 
 <\body>
-  <section|Kramers-Moyal Expansion and Langevin Dynamics>
+  <section|Kramers-Moyal Expansion and Langevin Dynamics><label|section:
+  Kramers-Moyal Expansion and Langevin Dynamics>
 
   We follow the discussion in section <reference|section: Master Equation,
   Detailed Balance, and Relative Entropy>, but focusing on the specific
@@ -13,6 +14,24 @@
   transition rate. This indicates that the conclusions in section
   <reference|section: Master Equation, Detailed Balance, and Relative
   Entropy> hold in this section, but the inverse is not guaranteed.
+
+  <subsection|Conventions in This Section>
+
+  Follow the conventions in section <reference|section: Master Equation,
+  Detailed Balance, and Relative Entropy>. In addition, we employ the
+  Einstein's convention of summation. That is, we omit the sum notation for
+  the duplicated indices as long as they are \Pbalanced\Q. For example,
+  <math|x<rsub|\<alpha\>> y<rsup|\<alpha\>>> represents
+  <math|<big|sum><rsub|\<alpha\>>x<rsub|\<alpha\>> y<rsup|\<alpha\>>>. The
+  <math|\<alpha\>> appears twice in the expression, once in subscript (the
+  <math|x<rsub|\<alpha\>>>) and once in superscript (the
+  <math|y<rsup|\<alpha\>>>), for which we say indices are balanced.
+  Expression like <math|x<rsub|\<alpha\>> y<rsub|\<alpha\>>>, however, does
+  not represent a summation over <math|\<alpha\>>, because indices are not
+  balanced (both are subscript). A more complicated example is
+  <math|\<partial\><rsub|\<alpha\>>A<rsup|\<alpha\>><rsub|\<beta\>>
+  x<rsup|\<beta\>>>, which means <math|<big|sum><rsub|\<alpha\>><big|sum><rsub|\<beta\>>\<partial\><rsub|\<alpha\>>A<rsup|\<alpha\>><rsub|\<beta\>>
+  x<rsup|\<beta\>>>.
 
   <subsection|Spatial Expansion of Master Equation Gives Kramers-Moyal
   Expansion><label|section: Spatial Expansion of Master Equation Gives
@@ -656,6 +675,7 @@
 
 <\references>
   <\collection>
+    <associate|Kramers-Moyal Expansion and Langevin Dynamics|<tuple|1|?>>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|2>>
@@ -663,6 +683,7 @@
     <associate|auto-5|<tuple|1.4|4>>
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|4>>
+    <associate|auto-8|<tuple|1.7|?>>
     <associate|equation:Fokker-Planck equation|<tuple|3|4>>
     <associate|equation:Kramers-Moyal expansion|<tuple|1|2>>
     <associate|equation:Langevin transition rate|<tuple|2|3>>
@@ -675,10 +696,13 @@
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|3>>
+    <associate|section: Conventions in This Section (langevin)|<tuple|1.1|?>>
     <associate|section: Detailed Balance Condition for Langevin Dynamics
-    Lacks Source-Free Degree of Freedom|<tuple|1.6|4>>
+    Lacks Source-Free Degree of Freedom|<tuple|1.7|4>>
+    <associate|section: Kramers-Moyal Expansion and Langevin
+    Dynamics|<tuple|1|?>>
     <associate|section: Spatial Expansion of Master Equation Gives
-    Kramers-Moyal Expansion|<tuple|1.1|1>>
+    Kramers-Moyal Expansion|<tuple|1.2|1>>
   </collection>
 </references>
 

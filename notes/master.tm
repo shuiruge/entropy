@@ -641,59 +641,59 @@
   Relaxation><label|section: Monte-Carlo Simulation and Guarantee of
   Relaxation>
 
-  A practical problem is calculating the expectation
-  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x \<pi\><around*|(|x|)>
-  f<around*|(|x|)>> for a density function <math|\<pi\>> and an arbitrary
-  function <math|f:\<cal-X\>\<rightarrow\>\<bbb-R\>>. When <math|\<cal-X\>>
-  has finite elements, this expectation is easy to compute, which is
-  <math|<big|sum><rsub|x\<in\>\<cal-X\>>\<pi\><around*|(|x|)>
-  f<around*|(|x|)>>. Otherwise, this integral will be intractable.
-  Numerically, this integral becomes <math|<around*|(|1/<around*|\||\<cal-S\>|\|>|)><big|sum><rsub|x\<in\>\<cal-S\>>f<around*|(|x|)>>
-  where <math|\<cal-S\>> is a collection of elements randomly sampled from
-  distribution <math|\<Pi\>>, whose density function is the <math|\<pi\>>. By
-  central limit theorem (briefly, the mean of i.i.d. random variables
-  <math|X<rsub|1>,\<ldots\>,X<rsub|N>> with
-  <math|\<bbb-E\><around*|[|X<rsub|i>|]>=0> and
-  <math|Var<around*|[|X<rsub|i>|]>=\<sigma\><rsup|2>> for some
-  <math|\<sigma\>>, has standard derivation <math|\<sigma\>/<sqrt|N>> when
-  <math|N> is large enough), the numerical error
-  <math|<around*|\||<big|int><rsub|\<cal-X\>>\<mathd\>x \<pi\><around*|(|x|)>
-  f<around*|(|x|)>-<around*|(|1/<around*|\||\<cal-S\>|\|>|)><big|sum><rsub|x\<in\>\<cal-S\>>f<around*|(|x|)>|\|>>
-  is proportional to <math|1/<sqrt|<around*|\||\<cal-S\>|\|>>>, which can be
-  properly bounded as long as <math|<around*|\||\<cal-S\>|\|>> is large
-  enough.
-
-  But, how to sample from a distribution if you only know its density
-  function (recall in section <reference|section: A Brief Review of
-  Probability>, a distribution is the combination of its density function and
-  its sampler)? And further, how to simulate the master equation (of a box of
-  vibrating particles, or of a desk of flowing sands) that tends to
-  equilibrium (without which the simulation will not terminate)?
-
-  Using the metaphor of sands (see section <reference|section: Master
-  Equation Describes the Evolution of Markov Process>), we simulate each
-  sand, but replace its free will by a transition probability. Explicitly, we
-  initialize the sands (that is, their positions) randomly. Then iteratively
-  update the position of each sand. In each iteration, a sand jumps from
-  position <math|x> to position <math|y> with the probability
-  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>\<approx\>\<delta\><around*|(|y-x|)>+r<around*|(|y,x|)>
+  How to numerically simulate the evolution of master equation
+  <reference|equation:master equation> that tends to equilibrium (without
+  which the simulation will not terminate)? Using the metaphor of sands (see
+  section <reference|section: Master Equation Describes the Evolution of
+  Markov Process>), we simulate each sand, but replace its free will by a
+  transition probability. Explicitly, we initialize the sands (that is, their
+  positions) randomly. Then iteratively update the position of each sand. In
+  each iteration, a sand jumps from position <math|x> to position <math|y>
+  with the probability <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>\<approx\>\<delta\><around*|(|y-x|)>+r<around*|(|y,x|)>
   \<Delta\>t> where <math|\<Delta\>t> is sufficiently small. Not every jump
-  is valid. The transition rate <math|r> has to be properly constructed such
-  that computer has a sampler that makes random sampling for
-  <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>>, and that, together with the
-  density function <math|\<pi\>>, detailed balance condition
-  <reference|equation:Detailed Balance> holds (section <reference|section:
-  Example: Metropolis-Hastings Algorithm> provides a method that constructs
-  such a transition rate from density function). Then, we <em|expect> that
-  the simulation will iteratively decrease the difference between the
-  distribution of the sands and the <math|\<Pi\>>. We terminate the iteration
-  when they have been close enough. In this way, we simulate a collection of
-  sands evolves with the master equation to equilibrium, and finally
-  distributes as <math|\<Pi\>>. This process is called <strong|Monte-Carlo
-  simulation>, first developed by Stanislaw Ulam in 1940s while he was
-  working on the project of nuclear weapons at Los Alamos National
-  Laboratory. The name is in memory of Ulam's uncle who lost all his personal
-  assets in Monte Carlo Casino, Monaco.
+  is valid. On one hand, we have to ensure that computer has a sampler that
+  makes random sampling for <math|q<rsub|\<Delta\>t><around*|(|y\|x|)>>. On
+  the other hand, to ensure the termination, the transition rate <math|r>,
+  together with the density function <math|\<pi\>>, shall satisfy the
+  detailed balance condition <reference|equation:Detailed Balance>. (Section
+  <reference|section: Example: Metropolis-Hastings Algorithm> will provide a
+  method that constructs such a transition rate from the density function.)
+  Then, we <em|expect> that the simulation will iteratively decrease the
+  difference between the distribution of the sands and the <math|\<Pi\>>. We
+  terminate the iteration when they have been close enough. In this way, we
+  simulate a collection of sands evolves with the master equation to
+  equilibrium, and finally distributes as <math|\<Pi\>>. This process is
+  called <strong|Monte-Carlo simulation>, first developed by Stanislaw Ulam
+  in 1940s while he was working on the project of nuclear weapons at Los
+  Alamos National Laboratory. The name is in memory of Ulam's uncle who lost
+  all his personal assets in Monte Carlo Casino, Monaco.<\footnote>
+    There are multiple motivations for Monte-Carlo simulation. An important
+    one comes from numerical integration. The problem is calculating the
+    integral <math|<big|int><rsub|\<cal-X\>>\<mathd\>x \<pi\><around*|(|x|)>
+    f<around*|(|x|)>> for a density function <math|\<pi\>> and an arbitrary
+    function <math|f:\<cal-X\>\<rightarrow\>\<bbb-R\>>. When <math|\<cal-X\>>
+    has finite elements, this integral is easy to compute, which is
+    <math|<big|sum><rsub|x\<in\>\<cal-X\>>\<pi\><around*|(|x|)>
+    f<around*|(|x|)>>. Otherwise, this integral will be intractable.
+    Numerically, this integral becomes the expectation
+    <math|<around*|(|1/<around*|\||\<cal-S\>|\|>|)><big|sum><rsub|x\<in\>\<cal-S\>>f<around*|(|x|)>>
+    where <math|\<cal-S\>> is a collection of elements randomly sampled from
+    distribution <math|\<Pi\>>, whose density function is the <math|\<pi\>>.
+    By central limit theorem (briefly, the mean of i.i.d. random variables
+    <math|X<rsub|1>,\<ldots\>,X<rsub|N>> with mean
+    <math|\<bbb-E\><around*|[|X<rsub|i>|]>=0> and variance
+    <math|Var<around*|[|X<rsub|i>|]>=\<sigma\><rsup|2>> for some
+    <math|\<sigma\>>, has standard derivation <math|\<sigma\>/<sqrt|N>> when
+    <math|N> is large enough), the numerical error
+    <math|<around*|\||<big|int><rsub|\<cal-X\>>\<mathd\>x
+    \<pi\><around*|(|x|)> f<around*|(|x|)>-<around*|(|1/<around*|\||\<cal-S\>|\|>|)><big|sum><rsub|x\<in\>\<cal-S\>>f<around*|(|x|)>|\|>>
+    is proportional to <math|1/<sqrt|<around*|\||\<cal-S\>|\|>>>, which can
+    be properly bounded as long as <math|<around*|\||\<cal-S\>|\|>> is large
+    enough. But, how to sample from a distribution if you only know its
+    density function (recall in section <reference|section: A Brief Review of
+    Probability>, a distribution is the combination of its density function
+    and its sampler)? The answer is using Monte-Carlo simulation.
+  </footnote>
 
   Like the Euler method in solving dynamical system, however, a finite time
   step results in a residual error. This residual error must be analyzed an
@@ -1148,12 +1148,12 @@
     density|<tuple|5|3>>
     <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|5>>
-    <associate|footnote-3|<tuple|3|6>>
+    <associate|footnote-3|<tuple|3|5>>
     <associate|footnote-4|<tuple|4|7>>
     <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|5>>
-    <associate|footnr-3|<tuple|3|6>>
+    <associate|footnr-3|<tuple|3|5>>
     <associate|footnr-4|<tuple|4|7>>
     <associate|footnr-5|<tuple|5|?>>
     <associate|section: Detailed Balance Condition and Connectivity

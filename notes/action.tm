@@ -21,85 +21,154 @@
 
   In physics, least-action principle gives the dynamics of the state of a
   physical system, determining how it evolves with time. The state of a
-  physical system at a given time is called a <strong|configuration>. The
-  evolution of configuration can be seen as a path in a space, called
-  <strong|configuration space>. For example, the configuration of a harmonic
-  oscillator at time <math|t> is <math|x<around*|(|t|)>\<in\>\<bbb-R\>>, and
-  the evolution is a function with single parameter, or a path,
-  <math|x:<around*|[|t<rsub|i>,t<rsub|f>|]>\<rightarrow\>\<bbb-R\>> where
-  <math|t<rsub|i>> and <math|t<rsub|f>> denote the initial and final time
-  respectively. Without losing generality, we standardize the time inteveral
-  from <math|<around*|[|t<rsub|i>,t<rsub|f>|]>> to <math|<around*|[|0,1|]>>.
-  A generic path is a map <math|<around*|[|0,1|]>\<rightarrow\>\<cal-C\>>
-  where <math|\<cal-C\>> denotes the configuration space. An action is a
-  scalar functional on the path, like <math|S<around*|(|x|)>>. The action of
-  harmonic oscillator is
+  physical system is called a <strong|configuration>. As the state changes
+  with time, the evolution of configuration can be seen as a path in a space,
+  like a contrail in the sky, indicating the movement of an airplane. This
+  space is called <strong|configuration space>, which is generally Euclidean,
+  <math|\<bbb-R\><rsup|n>> for some <math|n>. A <strong|path> is a function
+  with single parameter <math|x:<around*|[|t<rsub|i>,t<rsub|f>|]>\<rightarrow\>\<bbb-R\><rsup|n>>,
+  where <math|t<rsub|i>> and <math|t<rsub|f>> denote the initial and final
+  time respectively. Without losing generality, we standardize the time
+  interval from <math|<around*|[|t<rsub|i>,t<rsub|f>|]>> to
+  <math|<around*|[|0,1|]>>. To introduce the least-action principle, consider
+  the collection of paths with fixed boundaries, that is,
+  <math|\<cal-P\><around*|(|x<rsub|0>,x<rsub|1>|)>\<assign\><around*|{|x:<around*|[|0,1|]>\<rightarrow\>\<bbb-R\><rsup|n>\|x<around*|(|0|)>=x<rsub|0>,x<around*|(|1|)>=x<rsub|1>|}>>
+  given <math|x<rsub|0>> and <math|x<rsub|1>>. An <strong|action> is a scalar
+  functional of path with fixed boundaries, thus an action
+  <math|S<around*|(|\<cdummy\>\|x<rsub|0>,x<rsub|1>|)>:\<cal-P\><around*|(|x<rsub|0>,x<rsub|1>|)>\<rightarrow\>\<bbb-R\>>,
+  where we use a vertical line to separate variables and those that are given
+  as constants (the boundaries <math|x<rsub|0>> and <math|x<rsub|1>>). For
+  example, the configuration space of an (one-dimensional) harmonic
+  oscillator is <math|\<bbb-R\>>, and the evolution is characterized by a
+  path <math|x:<around*|[|0,1|]>\<rightarrow\>\<bbb-R\>>. The action of
+  harmonic oscillator is given by the functional
 
-  <\equation*>
-    S<rsub|HO><around*|(|x|)>=-<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
-    <around*|[|<wide|x|\<dot\>><rsup|2><around*|(|t|)>+\<omega\><rsup|2>
-    x<rsup|2><around*|(|t|)>|]>,
-  </equation*>
+  <\equation>
+    S<rsub|HO><around*|(|x\|x<rsub|0>,x<rsub|1>|)>=<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
+    <around*|[|<wide|x|\<dot\>><rsup|2><around*|(|t|)>-\<omega\><rsup|2>
+    x<rsup|2><around*|(|t|)>|]>,<label|equation:harmonic oscillator action>
+  </equation>
 
-  where <math|<wide|x|\<dot\>>\<assign\>\<mathd\>x/\<mathd\>t> and
-  <math|\<omega\>\<in\>\<bbb-R\>>.
+  where <math|<wide|x|\<dot\>>\<assign\>\<mathd\>x/\<mathd\>t>,
+  <math|\<omega\>\<in\>\<bbb-R\>>, and <math|x<around*|(|0|)>=x<rsub|0>>,
+  <math|x<around*|(|1|)>=x<rsub|1>>.
 
-  To introduce the least-action principle, consider the collection of paths
-  with fixed boundaries. In harmonic oscillator, it means
-  <math|x<around*|(|0|)>> and <math|x<around*|(|1|)>> are fixed, and we have
-  the collection <math|<around*|{|x:<around*|[|0,1|]>\<rightarrow\>\<bbb-R\>\|x<around*|(|0|)>=x<rsub|0>,x<around*|(|1|)>=x<rsub|1>|}>>
-  for some <math|x<rsub|0>,x<rsub|1>\<in\>\<bbb-R\>>. Least-action principle
-  states that, in the real world, the paths with the fixed boundaries are
-  those that minimizes the action. That is, if an
-  <math|x:<around*|[|0,1|]>\<rightarrow\>\<bbb-R\>> with
-  <math|x<around*|(|0|)>=x<rsub|0>> and <math|x<around*|(|1|)>=x<rsub|1>>
-  describes the movement of the harmonic oscillator in real world, then
-  <math|x> locates in an extremum of the action <math|S<rsub|HO>>.
-
-  To quantitively claim the least-action principle, we have to describe the
-  extremum of an action mathematically. Recall that an extremum
-  <math|x<rsub|\<star\>>> of a function <math|f> is characterized by
-  <math|<around*|(|\<mathd\>f/\<mathd\>x|)><around*|(|x<rsub|\<star\>>|)>=0>.
+  Roughly, least-action principle states that, in the real world (in fact,
+  the ideal world; we will discuss this in the next section), the paths with
+  the fixed boundaries are those that minimize the action. To quantitatively
+  declare the least-action principle, we have to describe the minimum of an
+  action mathematically. Recall that a local minimum, or generally an
+  extremum, <math|x<rsub|\<star\>>> of a function <math|f> is characterized
+  by <math|<around*|(|\<mathd\>f/\<mathd\>x|)><around*|(|x<rsub|\<star\>>|)>=0>.
   How can we generalize this from function to functional (action is a
   functional)? The trick is discretizing the time. Precisely, we uniformly
   separate the time interval <math|<around*|[|0,1|]>> into <math|T> parts.
   Thus, the path <math|x> is discretized as a vector
-  <math|<around*|(|x<around*|(|0|)>,x<around*|(|1/T|)>,x<around*|(|2/T|)>,\<ldots\>,x<around*|(|1|)>|)>>.
-  Since in least-action priciple, the boundaries of a path are fixed,
-  indicating that <math|x<around*|(|0|)>> and <math|x<around*|(|1|)>> are not
-  variables, but constant. The degree of freedom is
-  <math|<around*|(|x<around*|(|1/T|)>,\<ldots\>,x<around*|(|<around*|(|T-1|)>/T|)>|)>>.
+  <math|<around*|(|x<around*|(|0|)>,x<around*|(|1/T|)>,\<ldots\>,x<around*|(|<around*|(|T-1|)>/T|)>,x<around*|(|1|)>|)>>,
+  each component is an endpoint of a part. Since in least-action principle,
+  the boundaries are fixed, indicating that <math|x<around*|(|0|)>> and
+  <math|x<around*|(|1|)>> are constant rather than variables. Hence, the true
+  degree of freedom is <math|<around*|(|x<around*|(|1/T|)>,\<ldots\>,x<around*|(|<around*|(|T-1|)>/T|)>|)>>.
   Least-action principle then states that, if <math|x<rsub|\<star\>>> is a
-  path in the real world, then the (discretized) action <math|S> has\ 
+  path in the real world, then the (discretized) action <math|S> has
+
+  <\equation>
+    <frac|\<partial\>S|\<partial\>x<around*|(|i/T|)>><around*|(|x<rsub|\<star\>>\|x<rsub|0>,x<rsub|1>|)>=0,<label|equation:least-action
+    principle>
+  </equation>
+
+  for each <math|i=1,\<ldots\>,T-1>, and for any <math|T\<gtr\>1>. Take
+  harmonic oscillator as example. To discretize the action
+  <reference|equation:harmonic oscillator action>, we replace the integral
+  <math|<big|int><rsub|0><rsup|1>\<mathd\>t> by mean <math|<around*|(|1/T|)>
+  <big|sum><rsub|i=0><rsup|T>> and <math|x<around*|(|t|)>> by
+  <math|x<around*|(|i/T|)>>. Thus the second term becomes
+  <math|<around*|(|\<omega\><rsup|2>/2T|)>
+  <big|sum><rsub|i=0><rsup|T>x<rsup|2><around*|(|i/T|)>>. For the first term,
+  derivative <math|<wide|x|\<dot\>><around*|(|t|)>> is replaced by difference
+  <math|T <around*|[|x<around*|(|<around*|(|i+1|)>/T|)>-x<around*|(|i/T|)>|]>>,
+  hence the summation shall terminated at <math|T-1> instead of <math|T>.
+  Altogether, we find the action is discretized as
 
   <\equation*>
-    <frac|\<partial\>S|\<partial\>x<around*|(|i/T|)>><around*|(|x<rsub|\<star\>>|)>=0,
+    S<rsub|HO><around*|(|x\|x<rsub|0>,x<rsub|1>|)>=<frac|T|2><big|sum><rsub|i=0><rsup|T-1><around*|[|x<around*|(|<around*|(|i+1|)>/T|)>-x<around*|(|i/T|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T><big|sum><rsub|i=0><rsup|T>x<rsup|2><around*|(|i/T|)>,
   </equation*>
 
-  for each <math|i=1,\<ldots\>,T-1>, and for any <math|T\<gtr\>1>. For
-  harmonic oscillator, the discretized action is
+  Given <math|i>, <math|x<around*|(|i/T|)>> appears in two terms in
+  <math|S<rsub|HO>>, the <math|i> and <math|i+1> terms in the summation. They
+  have derivatives <math|T <around*|[|-x<around*|(|<around*|(|i+1|)>/T|)>+x<around*|(|i/T|)>|]>-<around*|(|\<omega\><rsup|2>/T|)>
+  x<around*|(|i/T|)>> and <math|T<around*|[|x<around*|(|i/T|)>-x<around*|(|<around*|(|i-1|)>/T|)>|]>>
+  respectively. So, we find
 
   <\equation*>
-    S<rsub|HO><around*|(|x|)>=-<frac|T|2><big|sum><rsub|i=0><rsup|T-1><around*|[|x<around*|(|<frac|i+1|T>|)>-x<around*|(|<frac|i|T>|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T><big|sum><rsub|i=0><rsup|T>x<rsup|2><around*|(|<frac|i|T>|)>,
+    T <frac|\<partial\>S<rsub|HO>|\<partial\>x<around*|(|i/T|)>><around*|(|x<rsub|\<star\>>\|x<rsub|0>,x<rsub|1>|)>=T<rsup|2>
+    <around*|[|x<rsub|\<star\>><around*|(|<around*|(|i+1|)>/T|)>-2
+    x<rsub|\<star\>><around*|(|i/T|)>+x<rsub|\<star\>><around*|(|<around*|(|i-1|)>/T|)>|]>+\<omega\><rsup|2>
+    x<rsub|\<star\>><around*|(|i/T|)>,
   </equation*>
 
-  where we have replaced <math|<wide|x|\<dot\>><around*|(|t|)>\<rightarrow\>T
-  <around*|[|x<around*|(|<around*|(|i+1|)>/T|)>-x<around*|(|i/T|)>|]>> and
-  <math|<big|int><rsub|0><rsup|1>\<mathd\>t\<rightarrow\><big|sum><rsub|i=0><rsup|T><around*|(|1/T|)>>
-  (for <math|<wide|x|\<dot\>><rsup|2>> term, the summation shall terminate at
-  <math|T-1>). Then, we have
+  for <math|i=1,\<ldots\>,T-1>. The right hand side is the discretized
+  <math|<wide|x|\<ddot\>><rsub|\<star\>><around*|(|t|)>+\<omega\><rsup|2>
+  x<rsub|\<star\>><around*|(|t|)>>, for <math|t\<in\><around*|(|0,1|)>>
+  (notice we have excluded the <math|t=0,1>, corresponding to <math|i=0,T>
+  respectively). So, least-action principle,
+  <math|\<partial\>S<rsub|HO>/\<partial\>x<around*|(|i/T|)><around*|(|x<rsub|\<star\>>\|x<rsub|0>,x<rsub|1>|)>=0>,
+  implies the correct dynamics of harmonic oscillator, which is
+  <math|<wide|x|\<ddot\>><rsub|\<star\>><around*|(|t|)>+\<omega\><rsup|2>
+  x<rsub|\<star\>><around*|(|t|)>=0>.
+
+  <subsection|Least-Action Principle with Measurement Error>
+
+  Unfortunately, even though least-action principle is sufficient for
+  describing the <em|ideal> world, but when we take measurement, errors are
+  inevitable. What we get from measurement is a path
+  <math|x<rsub|\<star\>>+\<delta\>X>. Given <math|t>,
+  <math|\<delta\>X<around*|(|t|)>> is a random variable that generally obeys
+  a normal distribution with zero mean. And for different <math|t> and
+  <math|t<rprime|'>>, <math|\<delta\>X<around*|(|t|)>> and
+  <math|\<delta\>X<around*|(|t<rprime|'>|)>> are independent. If we use the
+  measured data for examining least-action principle, we shall have (notice
+  that <math|\<delta\>X<around*|(|0|)>=\<delta\>X<around*|(|1|)>=0>, since
+  the boundaries are fixed, thus <math|j> sums from <math|1> to <math|T-1>)
 
   <\equation*>
-    T <frac|\<partial\>S|\<partial\>x<around*|(|i/T|)>><around*|(|x<rsub|\<star\>>|)>=T<rsup|2>
-    <around*|[|x<around*|(|<frac|i+1|T>|)>-2
-    x<around*|(|<frac|i|T>|)>+x<around*|(|<frac|i-1|T>|)>|]>+\<omega\><rsup|2>
-    x<around*|(|<frac|i|T>|)>,
+    <frac|\<partial\>S|\<partial\>x<around*|(|i/T|)>><around*|(|x<rsub|\<star\>>+\<delta\>X\|x<rsub|0>,x<rsub|1>|)>=<big|sum><rsub|j=1><rsup|T-1><frac|\<partial\><rsup|2>S|\<partial\>x<around*|(|i/T|)>\<partial\>x<around*|(|j/T|)>><around*|(|x<rsub|\<star\>>\|x<rsub|0>,x<rsub|1>|)>
+    \<delta\>X<around*|(|j/T|)>+\<omicron\><around*|(|\<delta\>X|)>,
   </equation*>
 
-  for <math|t=1,\<ldots\>,T-1>. The right hand side corresponding to the
-  continuous expression <math|<wide|x|\<ddot\>><around*|(|t|)>+\<omega\><rsup|2>
-  x<around*|(|t|)>>, for <math|t\<in\><around*|(|0,1|)>>. So, the
-  least-action principle gives the correct dynamics of harmonic oscillator.
+  where we have used least-action principle <reference|equation:least-action
+  principle>. The leading term does not vanishes, but obeying a
+  multi-dimensional normal distribution. It suggests that the least-action
+  principle <reference|equation:least-action principle> is not sufficient for
+  describing the <em|real> world, since all measurements have random errors.
+  We have to extend the least-action principle
+  <reference|equation:least-action principle> so as to consistent with
+  measurement error.
+
+  To do so, we first denote <math|Q> the distribution of real world data of
+  an evolutionary system (such as harmonic oscillator). Thus, an <math|x>
+  sampled from <math|Q> can be written as <math|x<rsub|\<star\>>+\<delta\>x>,
+  for some <math|x<rsub|\<star\>>> in the ideal world and <math|\<delta\>x>
+  an instance of random error. Then, we have
+  <math|\<bbb-E\><rsub|Q><around*|[|\<partial\>S/\<partial\>x<around*|(|i/T|)>|]>=0>,
+  since <math|\<bbb-E\><rsub|Q><around*|[|\<delta\>X|]>=0>. So, we guess that
+  the least-action principle for the real world should be
+
+  <\equation*>
+    \<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>x<around*|(|i/T|)>><around*|(|\<cdummy\>\|x<rsub|0>,x<rsub|1>|)>|]>=0.
+  </equation*>
+
+  This equation, however, is too much weaker than the original least-action
+  principle. Suppose two samples <math|x> and <math|x<rprime|'>> from
+  <math|Q> that can be written as <math|x<rsub|\<star\>>+\<delta\>x> and
+  <math|x<rprime|'><rsub|\<star\>>+\<delta\>x<rprime|'>>. It is possible that
+  <math|x<rsub|\<star\>>\<neq\>x<rprime|'><rsub|\<star\>>>.
+
+  If we have TODO
+
+  <\equation*>
+    \<bbb-E\><rsub|P<around*|(|\<theta\>|)>>
+  </equation*>
 
   <subsection|Data Fitting Is Equivalent to Least-Action Principle
   (TODO)><label|section: Data Fitting Is Equivalent to Least-Action
@@ -421,7 +490,7 @@
   activated state <math|<around*|(|A<rsup|1><around*|(|t|)>,\<ldots\>,A<rsup|n><around*|(|t|)>|)>>
   is a random vector, with each component <math|A<rsup|i><around*|(|t|)>>
   obeys the Bernoulli distribution with probability determined by
-  <math|x<around*|(|t|)>>. \ By saying feed-forwayd, we mean that the action
+  <math|x<around*|(|t|)>>. \ By saying feed-forward, we mean that the action
   potential at frame <math|t+1> only depends on that at <math|t>. The
   dynamics of a feed-forward neural network is given by the
   <math|p<around*|(|x,a|)>=p<rsub|0><around*|(|x|)>
@@ -441,7 +510,7 @@
     x<rsup|\<alpha\>><around*|(|t|)> a<rsup|\<beta\>><around*|(|t|)>.
   </equation*>
 
-  Altogether, the action <math|S> is the combinition of the free and
+  Altogether, the action <math|S> is the combination of the free and
   interactive terms. Thus, for <math|t=2,\<ldots\>,T-1>, we have
 
   <\equation*>
@@ -537,8 +606,7 @@
 
   <\equation>
     S<rsub|HO><around*|(|x|)>=<frac|T|2> <big|sum><rsub|t=1><rsup|T-1><around*|[|x<around*|(|t+1|)>-x<around*|(|t|)>|]><rsup|2>-<frac|\<omega\><rsup|2>|2T>
-    <big|sum><rsub|t=1><rsup|T>x<rsup|2><around*|(|t|)>,<label|equation:harmonic
-    oscillator action>
+    <big|sum><rsub|t=1><rsup|T>x<rsup|2><around*|(|t|)>,
   </equation>
 
   where we have included both the free term and interactive term in the
@@ -686,38 +754,40 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.8|5>>
+    <associate|auto-10|<tuple|1.8|6>>
+    <associate|auto-11|<tuple|1.9|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
-    <associate|auto-4|<tuple|1.3|1>>
-    <associate|auto-5|<tuple|1|2>>
-    <associate|auto-6|<tuple|1.4|2>>
-    <associate|auto-7|<tuple|1.5|3>>
-    <associate|auto-8|<tuple|1.6|4>>
-    <associate|auto-9|<tuple|1.7|4>>
-    <associate|equation:Generic Density|<tuple|1|1>>
-    <associate|equation:Ltot|<tuple|5|2>>
-    <associate|equation:Partition Function|<tuple|2|1>>
-    <associate|equation:V extremum|<tuple|6|3>>
-    <associate|equation:data-fitting iteration|<tuple|3|1>>
-    <associate|equation:data-fitting result|<tuple|4|1>>
-    <associate|equation:eom and action|<tuple|8|5>>
-    <associate|equation:harmonic oscillator action|<tuple|7|5>>
-    <associate|figure: Least-Action|<tuple|1|2>>
-    <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|3>>
-    <associate|footnote-3|<tuple|3|4>>
-    <associate|footnote-4|<tuple|4|5>>
-    <associate|footnote-5|<tuple|5|6>>
-    <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|3>>
-    <associate|footnr-3|<tuple|3|4>>
-    <associate|footnr-4|<tuple|4|5>>
-    <associate|footnr-5|<tuple|5|6>>
+    <associate|auto-4|<tuple|1.3|2>>
+    <associate|auto-5|<tuple|1.4|3>>
+    <associate|auto-6|<tuple|1|3>>
+    <associate|auto-7|<tuple|1.5|4>>
+    <associate|auto-8|<tuple|1.6|5>>
+    <associate|auto-9|<tuple|1.7|5>>
+    <associate|equation:Generic Density|<tuple|3|2>>
+    <associate|equation:Ltot|<tuple|7|3>>
+    <associate|equation:Partition Function|<tuple|4|2>>
+    <associate|equation:V extremum|<tuple|8|4>>
+    <associate|equation:data-fitting iteration|<tuple|5|2>>
+    <associate|equation:data-fitting result|<tuple|6|2>>
+    <associate|equation:eom and action|<tuple|10|6>>
+    <associate|equation:harmonic oscillator action|<tuple|1|1>>
+    <associate|equation:least-action principle|<tuple|2|?>>
+    <associate|figure: Least-Action|<tuple|1|3>>
+    <associate|footnote-1|<tuple|1|2>>
+    <associate|footnote-2|<tuple|2|4>>
+    <associate|footnote-3|<tuple|3|5>>
+    <associate|footnote-4|<tuple|4|6>>
+    <associate|footnote-5|<tuple|5|7>>
+    <associate|footnr-1|<tuple|1|2>>
+    <associate|footnr-2|<tuple|2|4>>
+    <associate|footnr-3|<tuple|3|5>>
+    <associate|footnr-4|<tuple|4|6>>
+    <associate|footnr-5|<tuple|5|7>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
-    Principle|<tuple|1.3|1>>
+    Principle|<tuple|1.4|2>>
     <associate|section: Example: Extract Dynamics from Raw
-    Data|<tuple|1.5|3>>
+    Data|<tuple|1.6|4>>
   </collection>
 </references>
 
@@ -759,8 +829,8 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.2<space|2spc>A Brief Review of
+      Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
       <with|par-left|<quote|1tab>|1.3<space|2spc>Data Fitting Is Equivalent

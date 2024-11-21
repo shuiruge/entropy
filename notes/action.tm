@@ -17,8 +17,8 @@
   <math|p<around*|(|x,\<theta\>|)>>, where random variable <math|X> takes the
   value <math|x>.
 
-  <subsection|A Brief Review of Least-Action Principle in Physics and Its
-  Generalization><label|section: A Brief Review of Least-Action Principle>
+  <subsection|Least-Action Principle in Physics and Its Generalization in
+  Ideal World><label|section: A Brief Review of Least-Action Principle>
 
   In physics, least-action principle gives the dynamics of the state of an
   evolutionary system, determining how it evolves with time. The state of an
@@ -73,9 +73,10 @@
   in least-action principle, <math|x<around*|(|0|)>> and
   <math|x<around*|(|1|)>> are constant rather than variables. Hence, the true
   degree of freedom is <math|<around*|(|x<around*|(|1/T|)>,\<ldots\>,x<around*|(|<around*|(|T-1|)>/T|)>|)>>.
-  <strong|Least-action principle> then states that, given the (discretized)
-  action <math|S> and the boundaries <math|<around*|(|x<rsub|0>,x<rsub|1>|)>>,
-  there is a unique path <math|x<rsub|\<star\>>\<in\>\<cal-P\><around*|(|x<rsub|0>,x<rsub|1>|)>>
+  <strong|Least-action principle in physics> then states that, given the
+  (discretized) action <math|S> and the boundaries
+  <math|<around*|(|x<rsub|0>,x<rsub|1>|)>>, there is a unique path
+  <math|x<rsub|\<star\>>\<in\>\<cal-P\><around*|(|x<rsub|0>,x<rsub|1>|)>>
   such that
 
   <\equation>
@@ -84,7 +85,7 @@
   </equation>
 
   for each <math|i=1,\<ldots\>,T-1> and any <math|T\<gtr\>1>, and that
-  <math|x<rsub|\<star\>>> is the path in the real world.
+  <math|x<rsub|\<star\>>> is the path in ideal world.
 
   Take harmonic oscillator as example. To discretize its action (equation
   <reference|equation:harmonic oscillator action>), we replace the integral
@@ -122,24 +123,25 @@
   (notice we have excluded the <math|t=0,1>, corresponding to <math|i=0,T>
   respectively). So, least-action principle,
   <math|\<partial\>S<rsub|HO>/\<partial\>x<around*|(|i/T|)><around*|(|x<rsub|\<star\>>\|x<rsub|0>,x<rsub|1>|)>=0>,
-  implies the correct dynamics of harmonic oscillator, which is
+  implies the correct dynamics of harmonic oscillator in textbooks, which is
   <math|<wide|x|\<ddot\>><rsub|\<star\>><around*|(|t|)>+\<omega\><rsup|2>
   x<rsub|\<star\>><around*|(|t|)>=0>.
 
   We can generalize the least-action principle to any system, evolutionary or
-  not. It just states that, given some conditions (such as the fixed
-  boundaries) and an action, the real world datum locates in the minimum of
-  the action. Precisely, given the conditions <math|y> and the action
-  <math|S>, there is a unique <math|x<rsub|\<star\>>> such that
+  not, where variables locate in a high-dimensional Euclidean space and,
+  given some conditions, action is a scalar function on it. It states that
+  the ideal world datum locates in the minimum of the action. Precisely,
+  given the conditions <math|y> and the action <math|S>, there is a unique
+  <math|x<rsub|\<star\>>> such that
 
   <\equation>
     <frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x<rsub|\<star\>>\|y|)>=0,<label|equation:least-action
     principle>
   </equation>
 
-  and that <math|x<rsub|\<star\>>> is the real world datum. In the subsequent
-  sections, unless otherwise stated, <em|we refer least-action principle to
-  this generalized version>.
+  and that <math|x<rsub|\<star\>>> is the ideal world datum. In the
+  subsequent sections, unless otherwise stated, we refer <strong|least-action
+  principle (in ideal world)> to this generalized version.
 
   <subsection|Least-Action Principle in Real World with Measurement Error>
 
@@ -230,23 +232,18 @@
   principle (in the ideal world) claimed in section <reference|section: A
   Brief Review of Least-Action Principle>. As a probabilistic model, it can
   be directly generalized from the continuous alphabet
-  <math|\<bbb-R\><rsup|n>> to generic alphabet <math|\<cal-X\>>, which may be
-  discrete.
+  <math|\<bbb-R\><rsup|n>> to a generic alphabet <math|\<cal-X\>>, which may
+  be discrete.
 
-  <\definition>
-    [Least-Action Principle in Real World] Given the conditions <math|y>, let
-    <math|Q<around*|(|y|)>> the distribution of real world data with alphabet
-    <math|\<cal-X\>>, and <math|S<around*|(|\<cdummy\>\|y|)>> the action.
-    Least-action principle (in real world) states that the density function
-    of <math|Q> and the action are related, in the form
-    <math|q<around*|(|x\|y|)>=exp<around*|(|-\<beta\>
-    S<around*|(|x\|y|)>|)>/Z> for any <math|\<beta\>\<gtr\>0>, where
-    <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-    exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>> is the normalization
-    factor.
-  </definition>
-
-  To return to the ideal world, simply let
+  We summarize the discussion as follow. Given the conditions <math|y>, let
+  <math|Q<around*|(|y|)>> the distribution of real world data with alphabet
+  <math|\<cal-X\>>, and <math|S<around*|(|\<cdummy\>\|y|)>> the action.
+  <strong|Least-action principle in real world> states that the density
+  function of <math|Q> and the action are related, in the form
+  <math|q<around*|(|x\|y|)>=exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>/Z>
+  for any <math|\<beta\>\<gtr\>0>, where <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>> is the normalization
+  factor. To return to the ideal world, simply set
   <math|\<beta\>\<rightarrow\>+\<infty\>> and
   <math|\<cal-X\>=\<bbb-R\><rsup|n>>. In this situation, the density function
   <math|q<around*|(|x\|y|)>> becomes so sharp that its distribution

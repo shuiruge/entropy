@@ -3,7 +3,7 @@
 <style|book>
 
 <\body>
-  <section|Kramers-Moyal Expansion and Langevin Dynamics><label|section:
+  <section|Kramers-Moyal Expansion and Langevin Process><label|section:
   Kramers-Moyal Expansion and Langevin Dynamics>
 
   We follow the discussion in section <reference|section: Master Equation,
@@ -156,7 +156,7 @@
   This Taylor expansion of master equation is called the
   <with|font-series|bold|Kramers\UMoyal expansion>.
 
-  <subsection|Transition Density of Langevin Dynamics Is Approximately
+  <subsection|Transition Density of Langevin Process Is Approximately
   Gaussian>
 
   Spatial connectivity enables us to investigate the most general
@@ -181,10 +181,10 @@
   When <math|\<Delta\>t> is sufficiently small, <math|q<rsub|\<Delta\>t>> can
   be approximately regarded as a transition density (section
   <reference|section: Transition Rate Determines Transition Density>). The
-  corresponding Markov process is called <with|font-series|bold|Langevin
-  dynamics>.
+  corresponding Markov process is called <strong|Langevin dynamics> or
+  <with|font-series|bold|Langevin process>.
 
-  In many textures, Langevin dynamics is written by a stochastic differential
+  In many textures, Langevin process is written by a stochastic differential
   equation (again, we use capital letters for random variables)
 
   <\equation*>
@@ -199,9 +199,9 @@
   <math|\<Delta\>t\<rightarrow\>\<mathd\>t> and
   <math|\<epsilon\>\<rightarrow\>\<mathd\>x>.
 
-  <subsection|Transition Rate of Langevin Dynamics Is a Generalized Function>
+  <subsection|Transition Rate of Langevin Process Is a Generalized Function>
 
-  In this section, we calculate the the transition rate of Langevin dynamics
+  In this section, we calculate the the transition rate of Langevin process
   from transition density. The <math|\<Delta\>t> appears in many places in
   transition density, and directly Taylor expanding <math|q<rsub|\<Delta\>t>>
   by <math|\<Delta\>t> is very hard. Instead, we employ an arbitrary test
@@ -456,10 +456,10 @@
   Detailed Balance Condition for Langevin Dynamics Lacks Source-Free Degree
   of Freedom>.
 
-  <subsection|Master Equation of Langevin Dynamics Is Fokker-Planck Equation>
+  <subsection|Master Equation of Langevin Process Is Fokker-Planck Equation>
 
   After discussing transition rate, we turn to the master equation of
-  Langevin dynamics. Since Langevin dynamics applies to continuous random
+  Langevin process. Since Langevin process applies to continuous random
   variable, we can use Kramers-Moyal expansion to evaluate its master
   equation. Directly, we have <math|K<rsup|\<alpha\>><around*|(|x|)>=\<mu\><rsup|\<alpha\>><around*|(|x|)>>,
   <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>=2\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>>,
@@ -523,15 +523,15 @@
   \<nabla\>\<cdot\>v<around*|(|x|)>=0>, thus conflicts. Such a vector field
   <math|\<nu\>> is called <strong|free of source> or <strong|source-free>.
 
-  <subsection|Detailed Balance Condition for Langevin Dynamics Lacks
+  <subsection|Detailed Balance Condition for Langevin Process Lacks
   Source-Free Degree of Freedom><label|section: Detailed Balance Condition
   for Langevin Dynamics Lacks Source-Free Degree of Freedom>
 
   After discussing stationary distribution of Fokker-Planck equation (as a
-  master equation), we continue investigate when will Langevin dynamics relax
+  master equation), we continue investigate when will Langevin process relax
   an initial distribution to the stationary. By theorem <reference|theorem:
   relaxation>, this is equivalent to ask: when will the transition rate of
-  Langevin dynamics satisfy detailed balance condition? Detailed balance
+  Langevin process satisfy detailed balance condition? Detailed balance
   condition reads <math|r<around*|(|x+\<epsilon\>,x|)>
   \<pi\><around*|(|x|)>=r<around*|(|x,x+\<epsilon\>|)>
   \<pi\><around*|(|x+\<epsilon\>|)>>. Directly inserting equation
@@ -644,13 +644,13 @@
 
   The <math|\<partial\>\<partial\>f<around*|(|0|)>> terms vanishes
   automatically. Altogether, we find the detailed balance condition for
-  Langevin dynamics to be
+  Langevin process to be
 
   <\equation>
     \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>=
     \<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>.<label|equation:detailed balance condition for
-    Langevin dynamics>
+    Langevin>
   </equation>
 
   Comparing with the stationary Fokker-Planck equation
@@ -659,7 +659,7 @@
   <reference|section: Detailed Balance Provides Stationary Distribution>
   where detailed balance condition was first encountered, we said that
   detailed balance condition is stronger than just being stationary. Now, in
-  Langevin dynamics, this becomes concrete: <em|detailed balance condition is
+  Langevin process, this becomes concrete: <em|detailed balance condition is
   stronger than stationary condition in the sense that it lacks the
   source-free degree of freedom that appears in the stationary condition>.
   The lost degree of freedom is the cost of ensuring that any initial
@@ -675,32 +675,31 @@
 
 <\references>
   <\collection>
-    <associate|Kramers-Moyal Expansion and Langevin Dynamics|<tuple|1|?>>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-2|<tuple|1.1|1>>
-    <associate|auto-3|<tuple|1.2|2>>
+    <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|4>>
+    <associate|auto-5|<tuple|1.4|2>>
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|4>>
-    <associate|auto-8|<tuple|1.7|?>>
+    <associate|auto-8|<tuple|1.7|5>>
     <associate|equation:Fokker-Planck equation|<tuple|3|4>>
     <associate|equation:Kramers-Moyal expansion|<tuple|1|2>>
     <associate|equation:Langevin transition rate|<tuple|2|3>>
+    <associate|equation:detailed balance condition for Langevin|<tuple|5|?>>
     <associate|equation:detailed balance condition for Langevin
     dynamics|<tuple|5|5>>
     <associate|equation:stationary Fokker-Planck equation|<tuple|4|4>>
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|3>>
-    <associate|footnote-3|<tuple|3|3>>
+    <associate|footnote-3|<tuple|3|4>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|3>>
-    <associate|footnr-3|<tuple|3|3>>
-    <associate|section: Conventions in This Section (langevin)|<tuple|1.1|?>>
+    <associate|footnr-3|<tuple|3|4>>
     <associate|section: Detailed Balance Condition for Langevin Dynamics
-    Lacks Source-Free Degree of Freedom|<tuple|1.7|4>>
+    Lacks Source-Free Degree of Freedom|<tuple|1.7|5>>
     <associate|section: Kramers-Moyal Expansion and Langevin
-    Dynamics|<tuple|1|?>>
+    Dynamics|<tuple|1|1>>
     <associate|section: Spatial Expansion of Master Equation Gives
     Kramers-Moyal Expansion|<tuple|1.2|1>>
   </collection>
@@ -713,32 +712,36 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1>
 
-      <with|par-left|<quote|1tab>|1.1<space|2spc>Spatial Expansion of Master
-      Equation Gives Kramers-Moyal Expansion
+      <with|par-left|<quote|1tab>|1.1<space|2spc>Conventions in This Section
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>Transition Density of
-      Langevin Dynamics Is Approximately Gaussian
+      <with|par-left|<quote|1tab>|1.2<space|2spc>Spatial Expansion of Master
+      Equation Gives Kramers-Moyal Expansion
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Transition Rate of Langevin
-      Dynamics Is a Generalized Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Transition Density of
+      Langevin Dynamics Is Approximately Gaussian
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Master Equation of Langevin
-      Dynamics Is Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Transition Rate of Langevin
+      Dynamics Is a Generalized Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Stationary Solution of
-      Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Master Equation of Langevin
+      Dynamics Is Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Detailed Balance Condition
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Stationary Solution of
+      Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Detailed Balance Condition
       for Langevin Dynamics Lacks Source-Free Degree of Freedom
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>>
+      <no-break><pageref|auto-8>>
     </associate>
   </collection>
 </auxiliary>

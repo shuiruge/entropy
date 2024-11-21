@@ -135,7 +135,7 @@
   which, however, is not well-defined. The first issue is that the <math|p>
   has dimension, indicated by <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
   p<around*|(|x|)>=1>. This means we put a dimensional quantity into
-  logarithm which is not valid. The second issue is that the <math|H> is not
+  logarithm which is invalid. The second issue is that the <math|H> is not
   invariant under coordinate transformation
   <math|X\<rightarrow\>Y\<assign\>\<varphi\><around*|(|X|)>> where
   <math|\<varphi\>> is a diffeomorphism. But as a \Pphysical\Q quantity,
@@ -153,8 +153,8 @@
   <\enumerate-numeric>
     <item><math|H> is a smooth and local functional of <math|p> and <math|q>;
 
-    <item><math|H<around*|(|P,Q|)>\<gtr\>0> if <math|P\<neq\>Q> and
-    <math|H<around*|[|P,P|]>=0>; and
+    <item><math|H<around*|(|P,Q|)>\<gtr\>0> with <math|P\<neq\>Q> and
+    <math|H<around*|(|P,P|)>=0>; and
 
     <item>If <math|X=Y\<oplus\>Z>, and if <math|Y> and <math|Z> independent,
     then <math|H<around*|(|P,Q|)>=H<around*|(|P<rsub|Y>,Q<rsub|Y>|)>+H<around*|(|P<rsub|Z>,Q<rsub|Z>|)>>,
@@ -162,14 +162,14 @@
   </enumerate-numeric>
 
   The first condition employs the locality of <math|H>, which is thought as
-  natural since <math|H> has be a functional. The second condition indicates
-  that <math|H> vanishes only when there is no surprise caused by <math|P>
-  (thus <math|P=Q>). It is a little like the second condition for Shannon
-  entropy. The third condition, like the third in Shannon entropy, claims the
-  additivity of surprise: if <math|X> has two independent parts, the total
-  surprise shall be the sum of each.
+  natural since <math|H> has been a functional. The second condition
+  indicates that <math|H> vanishes only when there is no surprise caused by
+  <math|P> (thus <math|P=Q>). It is a little like the second condition for
+  Shannon entropy. The third condition, like the third in Shannon entropy,
+  claims the additivity of surprise: if <math|X> has two independent parts,
+  the total surprise shall be the sum of each.
 
-  <subsection|Relative Entropy is Unique Solution to the Conditions>
+  <subsection|Relative Entropy is the Unique Solution to the Conditions>
 
   We are to derive the explicit expression of <math|H> based on the three
   conditions. The result is found to be unique.
@@ -243,13 +243,14 @@
   <big|int>\<mathd\>x p<around*|(|x|)> ln<around*|(|p<around*|(|x|)>/q<around*|(|x|)>|)>+C\<gtr\>0>
   when <math|p\<neq\>q> and <math|\<partial\><rsub|1>h<around*|(|1,1|)>
   <big|int>\<mathd\>x p<around*|(|x|)> ln<around*|(|p<around*|(|x|)>/p<around*|(|x|)>|)>+C=0>.
-  By <hlink|Jensen's inequality|https://en.wikipedia.org/wiki/Jensen%27s_inequality>,
-  the integral <math| <big|int>\<mathd\>x p<around*|(|x|)>
+  The second equation results in <math|C=0>. By <hlink|Jensen's
+  inequality|https://en.wikipedia.org/wiki/Jensen%27s_inequality>, the
+  integral <math| <big|int>\<mathd\>x p<around*|(|x|)>
   ln<around*|(|p<around*|(|x|)>/q<around*|(|x|)>|)>> is non-negative, thus
-  <math|\<partial\><rsub|1>h<around*|(|1,1|)>\<gtr\>0>. The second equation
-  results in <math|C=0>. Up to now, all things about <math|h> have been
-  settled. We conclude that there is a unique expression that satisfies all
-  the three conditions, which is
+  from the first equation, <math|\<partial\><rsub|1>h<around*|(|1,1|)>\<gtr\>0>.
+  Up to now, all things about <math|h> have been settled. We conclude that
+  there is a unique expression that satisfies all the three conditions, which
+  is
 
   <\equation*>
     H<around*|(|P,Q|)>=k <big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>
@@ -275,10 +276,31 @@
   </equation*>
 
   also satisfies the three conditions when locality is absent.
+
+  In the end, we examine the two issues appeared in Shannon entropy (section
+  <reference|section: Shannon Entropy Fails for Continuous Random Variable>).
+  In <math|H<around*|(|P,Q|)>>, the logarithm is <math|ln<around*|(|p/q|)>>
+  which is dimensionless. And a coordinate transformation
+  <math|X\<rightarrow\>Y\<assign\>\<varphi\><around*|(|X|)>> makes
+  <math|<big|int>\<mathd\>x p<around*|(|x|)>=<big|int>\<mathd\>y
+  <around*|\||det<around*|(|\<partial\>\<varphi\><rsup|-1>|)><around*|(|y|)>|\|>
+  p<around*|(|\<varphi\><rsup|-1><around*|(|y|)>|)>\<backassign\><big|int>\<mathd\>y
+  <wide|p|~><around*|(|y|)>>, thus <math|p\<rightarrow\><wide|p|~>\<assign\><around*|\||det<around*|(|\<partial\>\<varphi\><rsup|-1>|)>|\|>
+  p\<circ\>\<varphi\><rsup|-1>>. The same for
+  <math|q\<rightarrow\><wide|q|~>\<assign\><around*|\||det<around*|(|\<partial\>\<varphi\><rsup|-1>|)>|\|>
+  q\<circ\>\<varphi\><rsup|-1>>. The common factor
+  <math|<around*|\||det<around*|(|\<partial\>\<varphi\><rsup|-1>|)>|\|>> will
+  be eliminated in <math|ln<around*|(|p/q|)>>, leaving
+  <math|H<around*|(|P,Q|)>> invariant (since <math|<big|int>\<mathd\>x p
+  ln<around*|(|p/q|)>\<rightarrow\><big|int>\<mathd\>y <wide|p|~>
+  ln<around*|(|<wide|p|~>/<wide|q|~>|)>>, which equals to
+  <math|<big|int>\<mathd\>x p ln<around*|(|p/q|)>>). So, the two issues of
+  Shannon entropy cease in relative entropy.
 </body>
 
 <\initial>
   <\collection>
+    <associate|bg-color|#c7edcc>
     <associate|font|roman>
     <associate|font-family|rm>
     <associate|math-font|roman>
@@ -301,8 +323,7 @@
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|1>>
     <associate|footnr-4|<tuple|4|1>>
-    <associate|section: A Brief Review of Probability|<tuple|1.1|?>>
-    <associate|section: A Short Review of Probability|<tuple|1.1|1>>
+    <associate|section: A Brief Review of Probability|<tuple|1.1|1>>
     <associate|section: Relative Entropy|<tuple|1|1>>
     <associate|section: Shannon Entropy Fails for Continuous Random
     Variable|<tuple|1.3|2>>
@@ -327,8 +348,8 @@
       Continuous Random Variable <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Relative Entropy is Unique
-      Solution to the Conditions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Relative Entropy is the
+      Unique Solution to the Conditions <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
     </associate>
   </collection>

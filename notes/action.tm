@@ -11,14 +11,14 @@
   <subsection|Conventions in This Section>
 
   Follow the conventions in section <reference|section: Kramers-Moyal
-  Expansion and Langevin Dynamics>. In addition, we use
+  Expansion and Langevin Process>. In addition, we use
   <math|P<around*|(|\<theta\>|)>> for a parameterized distribution, where
   <math|\<theta\>> is the collection of parameters. Its density function is
   <math|p<around*|(|x,\<theta\>|)>>, where random variable <math|X> takes the
   value <math|x>.
 
-  <subsection|A Brief Review of Least-Action Principle><label|section: A
-  Brief Review of Least-Action Principle>
+  <subsection|A Brief Review of Least-Action Principle in Physics and Its
+  Generalization><label|section: A Brief Review of Least-Action Principle>
 
   In physics, least-action principle gives the dynamics of the state of an
   evolutionary system, determining how it evolves with time. The state of an
@@ -141,7 +141,7 @@
   sections, unless otherwise stated, <em|we refer least-action principle to
   this generalized version>.
 
-  <subsection|Least-Action Principle with Measurement Error>
+  <subsection|Least-Action Principle in Real World with Measurement Error>
 
   Unfortunately, even though least-action principle is sufficient for
   describing the <em|ideal> world, but in practice, when we take measurement,
@@ -163,19 +163,20 @@
   <reference|equation:least-action principle> so as to consistent with
   measurement error.
 
-  To do so, we first denote <math|Q<around*|(|y|)>> the distribution of real
-  world data of an evolutionary system (such as harmonic oscillator) with the
-  given conditions <math|y>. Thus, an <math|x> sampled from
+  To do so, we first denote <math|Q<around*|(|y|)>> as the distribution of
+  real world data of an evolutionary system (such as harmonic oscillator)
+  with the given conditions <math|y>. Thus, an <math|x> sampled from
   <math|Q<around*|(|y|)>> can be written as
   <math|x<rsub|\<star\>>+\<delta\>x>, where <math|x<rsub|\<star\>>> is
   <em|the unique> ideal world datum and <math|\<delta\>x> an instance of
-  random error. The key is noticing that mean of random error
-  <math|\<delta\>X> shall vanish. This is essential for the expected error to
-  be reduced by repeating the measurements. (Each measurement is independent
-  and identical, indicating that <math|\<delta\>X<rsub|i>> for
-  <math|i=1,\<ldots\>,N> are i.i.d. random variables, where <math|N> is
-  number of measurements. Then, based on central limit theorem, the expected
-  error <math|<around*|(|1/N|)><big|sum><rsub|i=1><rsup|N>\<delta\>X<rsub|i>>
+  random measurement error <math|\<delta\>X>. The key is noticing that the
+  mean value of the random measurement error shall vanish. This is essential
+  for the expected measurement error to be reduced by repeating the
+  measurements. (Each measurement is independent and identical, indicating
+  that <math|\<delta\>X<rsub|i>> for <math|i=1,\<ldots\>,N> are i.i.d. random
+  variables, where <math|N> is number of measurements. Then, based on central
+  limit theorem, the expected measurement error
+  <math|<around*|(|1/N|)><big|sum><rsub|i=1><rsup|N>\<delta\>X<rsub|i>>
   approximately obeys the normal distribution with mean
   <math|\<bbb-E\><around*|[|\<delta\>X|]>> and variance
   <math|Var<around*|[|\<delta\>X|]>/N>, where we have omitted the subscript
@@ -199,39 +200,62 @@
 
   It indicates that the action <math|S<around*|(|\<cdummy\>\|y|)>> and the
   distribution <math|Q<around*|(|y|)>> ares at infinity). An educated guess
-  is <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-S<around*|(|x\|y|)>|)>>,
-  thus <math|S=-ln q+const>. (Now, the two notations meet each other in a
-  coherent manner: one is <math|q<around*|(|x\|y|)>> where the vertical line
-  is used for conditional probability; the other is
+  is <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
+  S<around*|(|x\|y|)>|)>> for arbitrary <math|\<beta\>\<in\>\<bbb-R\>>, thus
+  <math|S=-<around*|(|1/\<beta\>|)> ln q+const>. (Now, the two notations meet
+  each other in a coherent manner: one is <math|q<around*|(|x\|y|)>> where
+  the vertical line is used for conditional probability; the other is
   <math|S<around*|(|x\|y|)>> where it is used for separating variable and
   constant; and they are equal.) If so, then the expectation turns to be
 
   <\equation*>
-    \<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|\<cdummy\>\|y|)>|]>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    q<around*|(|x\|y|)> <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>ln
-    q<around*|(|x\|y|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|\<cdummy\>\|y|)>|]>=-\<beta\><rsup|-1>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x\|y|)>
+    <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>ln
+    q<around*|(|x\|y|)>=-\<beta\><rsup|-1>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
     <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>q<around*|(|x\|y|)>.
   </equation*>
 
   The integrand of the right hand side is a divergence, thus the integral is
   a boundary term which vanishes since <math|q> is normalized (thus vanishes
-  at infinity). That is, if <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-S<around*|(|x\|y|)>|)>>,
-  then we will naturally get <math|\<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|\<partial\><rsub|\<alpha\>>S<around*|(|\<cdummy\>\|y|)>|]>=0>.
-  We can use the former as a real world replacement of the least-action
+  at infinity). That is, if <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
+  S<around*|(|x\|y|)>|)>>, then we will naturally get
+  <math|\<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|\<partial\><rsub|\<alpha\>>S<around*|(|\<cdummy\>\|y|)>|]>=0>.
+  To ensure that <math|x<rsub|\<star\>>> locates in the minimum rather than
+  the maximum of <math|S<around*|(|\<cdummy\>\|y|)>>, we have to make
+  <math|\<beta\>\<gtr\>0>, then the minimum of <math|S> corresponding to the
+  maximum of <math|q>. We can use the <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
+  S<around*|(|x\|y|)>|)>> as a real world replacement of the least-action
   principle (in the ideal world) claimed in section <reference|section: A
-  Brief Review of Least-Action Principle>.
+  Brief Review of Least-Action Principle>. As a probabilistic model, it can
+  be directly generalized from the continuous alphabet
+  <math|\<bbb-R\><rsup|n>> to generic alphabet <math|\<cal-X\>>, which may be
+  discrete.
 
-  <\theorem>
-    Given the conditions <math|y>, let <math|Q<around*|(|y|)>> the
-    distribution of real world data and <math|S<around*|(|\<cdummy\>\|y|)>>
-    the action. Least-action principle states that the density function
-    <math|q<around*|(|x\|y|)>> is proportional to
-    <math|exp<around*|(|-S<around*|(|x\|y|)>|)>>.
-  </theorem>
+  <\definition>
+    [Least-Action Principle in Real World] Given the conditions <math|y>, let
+    <math|Q<around*|(|y|)>> the distribution of real world data with alphabet
+    <math|\<cal-X\>>, and <math|S<around*|(|\<cdummy\>\|y|)>> the action.
+    Least-action principle (in real world) states that the density function
+    of <math|Q> and the action are related, in the form
+    <math|q<around*|(|x\|y|)>=exp<around*|(|-\<beta\>
+    S<around*|(|x\|y|)>|)>/Z> for any <math|\<beta\>\<gtr\>0>, where
+    <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+    exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>> is the normalization
+    factor.
+  </definition>
+
+  To return to the ideal world, simply let
+  <math|\<beta\>\<rightarrow\>+\<infty\>> and
+  <math|\<cal-X\>=\<bbb-R\><rsup|n>>. In this situation, the density function
+  <math|q<around*|(|x\|y|)>> becomes so sharp that its distribution
+  <math|Q<around*|(|y|)>> only samples the <math|x<rsub|\<star\>>>.
 
   <\question>
     Conversely, if <math|\<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|\<partial\><rsub|\<alpha\>>S<around*|(|\<cdummy\>\|y|)>|]>=0>,
-    can we conclude that <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-S<around*|(|x\|y|)>|)>>?
+    can we conclude that <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
+    S<around*|(|x\|y|)>|)>>?
   </question>
 
   <subsection|Data Fitting Is Equivalent to Least-Action Principle
@@ -818,39 +842,39 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.8|6>>
+    <associate|auto-10|<tuple|1.8|7>>
     <associate|auto-11|<tuple|1.9|7>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
     <associate|auto-6|<tuple|1|4>>
-    <associate|auto-7|<tuple|1.5|4>>
+    <associate|auto-7|<tuple|1.5|5>>
     <associate|auto-8|<tuple|1.6|5>>
     <associate|auto-9|<tuple|1.7|6>>
     <associate|equation:Generic Density|<tuple|4|3>>
-    <associate|equation:Ltot|<tuple|8|4>>
+    <associate|equation:Ltot|<tuple|8|5>>
     <associate|equation:Partition Function|<tuple|5|3>>
     <associate|equation:V extremum|<tuple|9|5>>
-    <associate|equation:data-fitting iteration|<tuple|6|3>>
-    <associate|equation:data-fitting result|<tuple|7|3>>
-    <associate|equation:eom and action|<tuple|11|7>>
+    <associate|equation:data-fitting iteration|<tuple|6|4>>
+    <associate|equation:data-fitting result|<tuple|7|4>>
+    <associate|equation:eom and action|<tuple|11|8>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
     <associate|equation:least-action principle|<tuple|3|2>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|figure: Least-Action|<tuple|1|4>>
-    <associate|footnote-1|<tuple|1|3>>
+    <associate|footnote-1|<tuple|1|4>>
     <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|6>>
     <associate|footnote-4|<tuple|4|7>>
     <associate|footnote-5|<tuple|5|8>>
-    <associate|footnr-1|<tuple|1|3>>
+    <associate|footnr-1|<tuple|1|4>>
     <associate|footnr-2|<tuple|2|5>>
     <associate|footnr-3|<tuple|3|6>>
     <associate|footnr-4|<tuple|4|7>>
     <associate|footnr-5|<tuple|5|8>>
     <associate|section: A Brief Review of Least-Action
-    Principle|<tuple|1.2|?>>
+    Principle|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
     Principle|<tuple|1.4|3>>
     <associate|section: Example: Extract Dynamics from Raw
@@ -897,11 +921,12 @@
       <no-break><pageref|auto-2>>
 
       <with|par-left|<quote|1tab>|1.2<space|2spc>A Brief Review of
-      Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Least-Action Principle in Physics and Its Generalization
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Least-Action Principle with
-      Measurement Error <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Least-Action Principle in
+      Real World with Measurement Error <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
       <with|par-left|<quote|1tab>|1.4<space|2spc>Data Fitting Is Equivalent

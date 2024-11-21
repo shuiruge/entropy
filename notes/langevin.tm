@@ -4,7 +4,7 @@
 
 <\body>
   <section|Kramers-Moyal Expansion and Langevin Process><label|section:
-  Kramers-Moyal Expansion and Langevin Dynamics>
+  Kramers-Moyal Expansion and Langevin Process>
 
   We follow the discussion in section <reference|section: Master Equation,
   Detailed Balance, and Relative Entropy>, but focusing on the specific
@@ -524,8 +524,7 @@
   <math|\<nu\>> is called <strong|free of source> or <strong|source-free>.
 
   <subsection|Detailed Balance Condition for Langevin Process Lacks
-  Source-Free Degree of Freedom><label|section: Detailed Balance Condition
-  for Langevin Dynamics Lacks Source-Free Degree of Freedom>
+  Source-Free Degree of Freedom>
 
   After discussing stationary distribution of Fokker-Planck equation (as a
   master equation), we continue investigate when will Langevin process relax
@@ -686,9 +685,7 @@
     <associate|equation:Fokker-Planck equation|<tuple|3|4>>
     <associate|equation:Kramers-Moyal expansion|<tuple|1|2>>
     <associate|equation:Langevin transition rate|<tuple|2|3>>
-    <associate|equation:detailed balance condition for Langevin|<tuple|5|?>>
-    <associate|equation:detailed balance condition for Langevin
-    dynamics|<tuple|5|5>>
+    <associate|equation:detailed balance condition for Langevin|<tuple|5|5>>
     <associate|equation:stationary Fokker-Planck equation|<tuple|4|4>>
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|3>>
@@ -696,10 +693,10 @@
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
-    <associate|section: Detailed Balance Condition for Langevin Dynamics
-    Lacks Source-Free Degree of Freedom|<tuple|1.7|5>>
+    <associate|section: Detailed Balance Condition for Langevin Process Lacks
+    Source-Free Degree of Freedom|<tuple|1.7|5>>
     <associate|section: Kramers-Moyal Expansion and Langevin
-    Dynamics|<tuple|1|1>>
+    Process|<tuple|1|1>>
     <associate|section: Spatial Expansion of Master Equation Gives
     Kramers-Moyal Expansion|<tuple|1.2|1>>
   </collection>
@@ -708,7 +705,7 @@
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      1<space|2spc>Kramers-Moyal Expansion and Langevin Dynamics
+      1<space|2spc>Kramers-Moyal Expansion and Langevin Process
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1>
 
@@ -722,16 +719,16 @@
       <no-break><pageref|auto-3>>
 
       <with|par-left|<quote|1tab>|1.3<space|2spc>Transition Density of
-      Langevin Dynamics Is Approximately Gaussian
+      Langevin Process Is Approximately Gaussian
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
       <with|par-left|<quote|1tab>|1.4<space|2spc>Transition Rate of Langevin
-      Dynamics Is a Generalized Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Process Is a Generalized Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
       <with|par-left|<quote|1tab>|1.5<space|2spc>Master Equation of Langevin
-      Dynamics Is Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Process Is Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|1.6<space|2spc>Stationary Solution of
@@ -739,7 +736,7 @@
       <no-break><pageref|auto-7>>
 
       <with|par-left|<quote|1tab>|1.7<space|2spc>Detailed Balance Condition
-      for Langevin Dynamics Lacks Source-Free Degree of Freedom
+      for Langevin Process Lacks Source-Free Degree of Freedom
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
     </associate>

@@ -17,8 +17,8 @@
   <math|p<around*|(|x,\<theta\>|)>>, where random variable <math|X> takes the
   value <math|x>.
 
-  <subsection|Least-Action Principle in Physics and Its Generalization in
-  Ideal World><label|section: A Brief Review of Least-Action Principle>
+  <subsection|Least-Action Principle in Classical Mechamics and Its
+  Generalization><label|section: A Brief Review of Least-Action Principle>
 
   In physics, least-action principle gives the dynamics of the state of an
   evolutionary system, determining how it evolves with time. The state of an
@@ -57,13 +57,12 @@
   <math|\<omega\>\<in\>\<bbb-R\>>, and <math|x<around*|(|0|)>=x<rsub|0>>,
   <math|x<around*|(|1|)>=x<rsub|1>>.
 
-  Roughly, least-action principle states that, in the real world (in fact,
-  the ideal world; we will discuss this in the next section), the paths with
-  the fixed boundaries are those that minimize the action. To quantitatively
-  declare the least-action principle, we have to describe the minimum of an
-  action mathematically. Recall that a local minimum, or generally an
-  extremum, <math|x<rsub|\<star\>>> of a function <math|f> is characterized
-  by <math|<around*|(|\<partial\>f/\<partial\>x<rsup|\<alpha\>>|)><around*|(|x<rsub|\<star\>>|)>=0>
+  Roughly, least-action principle states that, in the real world, the paths
+  with the fixed boundaries are those that minimize the action. To
+  quantitatively declare the least-action principle, we have to describe the
+  minimum of an action mathematically. Recall that a local minimum, or
+  generally an extremum, <math|x<rsub|\<star\>>> of a function <math|f> is
+  characterized by <math|<around*|(|\<partial\>f/\<partial\>x<rsup|\<alpha\>>|)><around*|(|x<rsub|\<star\>>|)>=0>
   for each component <math|\<alpha\>>. How can we generalize this from
   function to functional (action is a functional)? The trick is discretizing
   the time. Precisely, we uniformly separate the time interval
@@ -73,9 +72,9 @@
   in least-action principle, <math|x<around*|(|0|)>> and
   <math|x<around*|(|1|)>> are constant rather than variables. Hence, the true
   degree of freedom is <math|<around*|(|x<around*|(|1/T|)>,\<ldots\>,x<around*|(|<around*|(|T-1|)>/T|)>|)>>.
-  <strong|Least-action principle in physics> then states that, given the
-  (discretized) action <math|S> and the boundaries
-  <math|<around*|(|x<rsub|0>,x<rsub|1>|)>>, there is a unique path
+  <strong|Least-action principle in classical mechanics> then states that,
+  given the (discretized) action <math|S> and the boundaries
+  <math|<around*|(|x<rsub|0>,x<rsub|1>|)>>, there is at most one path
   <math|x<rsub|\<star\>>\<in\>\<cal-P\><around*|(|x<rsub|0>,x<rsub|1>|)>>
   such that
 
@@ -85,7 +84,7 @@
   </equation>
 
   for each <math|i=1,\<ldots\>,T-1> and any <math|T\<gtr\>1>, and that
-  <math|x<rsub|\<star\>>> is the path in ideal world.
+  <math|x<rsub|\<star\>>> is the path in real world.
 
   Take harmonic oscillator as example. To discretize its action (equation
   <reference|equation:harmonic oscillator action>), we replace the integral
@@ -146,8 +145,8 @@
   We can generalize the least-action principle to any system, evolutionary or
   not, where variables locate in a high-dimensional Euclidean space and,
   given some conditions, action is a scalar function on it. It states that
-  the ideal world datum locates in the minimum of the action. Precisely,
-  given the conditions <math|y> and the action <math|S>, there is a unique
+  the real world datum locates in the minimum of the action. Precisely, given
+  the conditions <math|y> and the action <math|S>, there is a at most one
   <math|x<rsub|\<star\>>> such that
 
   <\equation>
@@ -155,9 +154,108 @@
     principle>
   </equation>
 
-  and that <math|x<rsub|\<star\>>> is the ideal world datum. In the
-  subsequent sections, unless otherwise stated, we refer <strong|least-action
-  principle (in ideal world)> to this generalized version.
+  and that <math|x<rsub|\<star\>>> is the real world datum.
+
+  <subsection|Least-Action Principle in Statistical Mechanics and
+  Maximum-Entropy Principle>
+
+  Dynamics in classical mechanics are always deterministic. That is, once the
+  initial conditions (for initial value problem) or the boundaries (for
+  boundary value problem) are fixed, then the path is fully determined, in
+  which randomness is forbidden. There are, however, many phenomena in nature
+  that have intrinsic randomness. For example, Langevin process
+  <math|\<mathd\>X=\<mu\><around*|(|x|)> \<mathd\>t+\<mathd\>W>, which was
+  originally used to describe molecular movement, has a stochastic term
+  <math|\<mathd\>W> obeying a normal distribution with variance proportional
+  to <math|\<mathd\>t>. The dynamics of starling flocks also has intrinsic
+  randomness, which is the \Pfree will\Q of each bird, so is ant colony,
+  human society, and any interactive system in which each element has some
+  level of intrinsic uncertainty. For these cases, the real world datum is
+  not simply a path, but a distribution of path. Precisely, given the
+  conditions <math|y>, we use a distribution <math|Q<around*|(|y|)>> to
+  describe the real world datum that has intrinsic randomness.
+
+  For any density function <math|q<around*|(|x\|y|)>> and any
+  <math|\<beta\>\<gtr\>0>, we can always define
+
+  <\equation*>
+    S<around*|(|x\|y|)>\<assign\>-*<around*|(|1/\<beta\>|)> ln
+    q<around*|(|x\|y|)>+const,
+  </equation*>
+
+  up to an arbitrary constant. Thus, <math|q<around*|(|x\|y|)>=exp<around*|(|-\<beta\>
+  S<around*|(|x\|y|)>|)>/Z> where <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>>. This
+  <math|S<around*|(|\<cdummy\>\|y|)>> has some properties that can be analog
+  to action. First, if <math|\<cal-X\>=\<bbb-R\><rsup|n>>, then we find, by
+  plugging in the definition of <math|S>,
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x\|y|)>
+    <frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x\|y|)>=-\<beta\><rsup|-1>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x\|y|)>
+    <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>ln
+    q<around*|(|x\|y|)>=-\<beta\><rsup|-1>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>q<around*|(|x\|y|)>.
+  </equation*>
+
+  The integrand of the right most expression is a divergence, thus it results
+  in a boundary integral. But since <math|q<around*|(|\<cdummy\>\|y|)>>, as a
+  density function, is normalized, the boundary integral shall vanish. So, we
+  conclude that
+
+  <\equation*>
+    \<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|\<cdummy\>\|y|)>|]>=0.
+  </equation*>
+
+  This is the analogy to the action in classicical mechanics
+  <reference|equation:least-action principle>, where the minimum
+  <math|x<rsub|\<star\>>> is replaced by the expactation
+  <math|\<bbb-E\><rsub|Q<around*|(|y|)>>>. Secondly, in the limit
+  <math|\<beta\>\<rightarrow\>+\<infty\>> while fixing <math|S>, the
+  distribution <math|Q<around*|(|y|)>> becomes so sharp that it only samples
+  the <math|x<rsub|\<star\>>> (recall section <reference|section: A Brief
+  Review of Probability> that distribution has a sampler) that minimizes
+  <math|S<around*|(|\<cdummy\>\|y|)>>, thus maximizes
+  <math|q<around*|(|\<cdummy\>\|y|)>>. For these reasons, we illustrate the
+  <math|S<around*|(|\<cdummy\>\|y|)>> defined by
+  <math|q<around*|(|\<cdummy\>\|y|)>> as the action of
+  <math|Q<around*|(|y|)>>. TODO
+
+  \;
+
+  \;
+
+  Maximum entropy principle: Given distribution of prior knowledge
+  <math|P<rsub|0>>, and interactive part of action
+  <math|V:\<cal-X\>\<rightarrow\>\<bbb-R\>>, we have a functional of density
+  function <math|p>, as
+
+  <\equation*>
+    L<around*|(|p,\<beta\>,\<mu\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+    p<around*|(|x|)> ln<frac|p<around*|(|x|)>|p<rsub|0><around*|(|x|)>>+\<beta\><around*|(|
+    <big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>
+    V<around*|(|x|)>-<wide|V|\<bar\>>|)>+\<mu\>
+    <around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>-1|)>.
+  </equation*>
+
+  Variation on <math|p> gives
+
+  <\equation*>
+    <frac|\<delta\>L|\<delta\>p<around*|(|x|)>>=ln
+    <frac|p<around*|(|x|)>|p<rsub|0><around*|(|x|)>>+1+\<beta\>
+    V<around*|(|x|)>+\<mu\>.
+  </equation*>
+
+  Thus, combined with <math|\<partial\>L/\<partial\>\<beta\>=0> and
+  <math|\<partial\>L/\<partial\>\<mu\>=0>,
+  <math|\<delta\>L/\<delta\>p<around*|(|x|)>=0> gives
+  <math|p<around*|(|x|)>=p<rsub|0><around*|(|x|)> exp<around*|(|-\<beta\>
+  V<around*|(|x|)>|)>/Z> where <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  p<rsub|0><around*|(|x|)> exp<around*|(|-\<beta\> V<around*|(|x|)>|)>>.
+
+  <section|Drafts>
 
   <subsection|Least-Action Principle in Real World with Measurement Error>
 
@@ -309,8 +407,6 @@
   situation. But, the criticial difference is that, in quantum mechanics, the
   measurement error is intrinsic, determined by the action, rather than by
   the tools that take the measurements.
-
-  <section|Drafts>
 
   <subsection|Data Fitting Is Equivalent to Least-Action Principle
   (TODO)><label|section: Data Fitting Is Equivalent to Least-Action
@@ -897,16 +993,17 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|2.4|7>>
-    <associate|auto-11|<tuple|2.5|8>>
-    <associate|auto-12|<tuple|2.6|?>>
+    <associate|auto-11|<tuple|2.5|7>>
+    <associate|auto-12|<tuple|2.6|8>>
+    <associate|auto-13|<tuple|2.7|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|2|4>>
-    <associate|auto-6|<tuple|2.1|5>>
-    <associate|auto-7|<tuple|1|5>>
-    <associate|auto-8|<tuple|2.2|6>>
-    <associate|auto-9|<tuple|2.3|7>>
+    <associate|auto-6|<tuple|2.1|4>>
+    <associate|auto-7|<tuple|2.2|5>>
+    <associate|auto-8|<tuple|1|5>>
+    <associate|auto-9|<tuple|2.3|6>>
     <associate|equation:Generic Density|<tuple|4|4>>
     <associate|equation:Ltot|<tuple|8|5>>
     <associate|equation:Partition Function|<tuple|5|4>>
@@ -925,6 +1022,7 @@
     <associate|footnote-5|<tuple|5|7>>
     <associate|footnote-6|<tuple|6|8>>
     <associate|footnote-7|<tuple|7|9>>
+    <associate|footnote-8|<tuple|8|?>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
@@ -932,12 +1030,13 @@
     <associate|footnr-5|<tuple|5|7>>
     <associate|footnr-6|<tuple|6|8>>
     <associate|footnr-7|<tuple|7|9>>
+    <associate|footnr-8|<tuple|8|?>>
     <associate|section: A Brief Review of Least-Action
     Principle|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action
-    Principle|<tuple|2.1|4>>
+    Principle|<tuple|2.2|4>>
     <associate|section: Example: Extract Dynamics from Raw
-    Data|<tuple|2.3|6>>
+    Data|<tuple|2.4|6>>
   </collection>
 </references>
 
@@ -968,7 +1067,7 @@
       <with|mode|<quote|math>|x<rsub|1>> a local minimum of
       <with|mode|<quote|math>|V<around*|(|\<cdummy\>,\<theta\>|)>>, and
       <with|mode|<quote|math>|V<around*|(|\<cdummy\>,\<theta\>|)>> is
-      optimized to be the dashed green curve.>|<pageref|auto-6>>
+      optimized to be the dashed green curve.>|<pageref|auto-7>>
     </associate>
     <\associate|toc>
       1<space|2spc>Least-Action Principle
@@ -988,30 +1087,33 @@
       Real World with Measurement Error <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Data Fitting Is Equivalent
-      to Least-Action Principle (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5>>
+      2<space|2spc>Drafts <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-5>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Maximum-Entropy and
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Data Fitting Is Equivalent
+      to Least-Action Principle (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Maximum-Entropy and
       Least-Action Are Saddle Point of a Functional
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>>
-
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Example: Extract Dynamics
-      from Raw Data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Feed-Forward Neural
-      Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.3<space|2spc>Example: Extract Dynamics
+      from Raw Data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|1tab>|1.8<space|2spc>TODO: Structures in Nature
-      Arise from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.4<space|2spc>Example: Feed-Forward Neural
+      Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
 
-      <with|par-left|<quote|1tab>|1.9<space|2spc>TODO: Is There an Action for
-      a Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.5<space|2spc>TODO: Structures in Nature
+      Arise from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-11>>
+
+      <with|par-left|<quote|1tab>|2.6<space|2spc>TODO: Is There an Action for
+      a Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12>>
     </associate>
   </collection>
 </auxiliary>

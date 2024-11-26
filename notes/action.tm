@@ -17,8 +17,9 @@
   <math|p<around*|(|x,\<theta\>|)>>, where random variable <math|X> takes the
   value <math|x>.
 
-  <subsection|Least-Action Principle in Classical Mechamics and Its
-  Generalization><label|section: A Brief Review of Least-Action Principle>
+  <subsection|A Brief Review of Least-Action Principle in Classical
+  Mechanics><label|section: A Brief Review of Least-Action Principle in
+  Classical Mechamics>
 
   In physics, least-action principle gives the dynamics of the state of an
   evolutionary system, determining how it evolves with time. The state of an
@@ -151,19 +152,28 @@
 
   <\equation>
     <frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x<rsub|\<star\>>\|y|)>=0,<label|equation:least-action
-    principle>
+    principle v1>
   </equation>
 
   and that <math|x<rsub|\<star\>>> is the real world datum.
 
-  <subsection|Least-Action Principle in Statistical Mechanics and
-  Maximum-Entropy Principle>
+  There are, however, redundant degrees of freedom in action
+  <math|S<around*|(|\<cdummy\>\|y|)>>. We may construct multiple actions all
+  satisfying equation <reference|equation:least-action principle v1>. Knowing
+  the extremum of a function cannot imply the shape of the function. The
+  action has much more degrees of freedom than that is needed for revealing
+  the real world datum in classical mechanics. But, in statistical mechanics,
+  as we will see in section TODO, the action is completely determined by the
+  real world distribution (the correspondence of real world datum in
+  statistical mechanics), with nothing redundant.
+
+  <subsection|Least-Action Principle of Distribution Has No Redundancy>
 
   Dynamics in classical mechanics are always deterministic. That is, once the
   initial conditions (for initial value problem) or the boundaries (for
   boundary value problem) are fixed, then the path is fully determined, in
   which randomness is forbidden. There are, however, many phenomena in nature
-  that have intrinsic randomness. For example, Langevin process
+  that have <em|intrinsic> randomness. For example, Langevin process
   <math|\<mathd\>X=\<mu\><around*|(|x|)> \<mathd\>t+\<mathd\>W>, which was
   originally used to describe molecular movement, has a stochastic term
   <math|\<mathd\>W> obeying a normal distribution with variance proportional
@@ -173,7 +183,7 @@
   level of intrinsic uncertainty. For these cases, the real world datum is
   not simply a path, but a distribution of path. Precisely, given the
   conditions <math|y>, we use a distribution <math|Q<around*|(|y|)>> to
-  describe the real world datum that has intrinsic randomness.
+  describe real world phenomenon that has intrinsic randomness.
 
   For any density function <math|q<around*|(|x\|y|)>> and any
   <math|\<beta\>\<gtr\>0>, we can always define
@@ -187,8 +197,9 @@
   S<around*|(|x\|y|)>|)>/Z> where <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
   exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>>. This
   <math|S<around*|(|\<cdummy\>\|y|)>> has some properties that can be analog
-  to action. First, if <math|\<cal-X\>=\<bbb-R\><rsup|n>>, then we find, by
-  plugging in the definition of <math|S>,
+  to the action in classical mechanics. First, if
+  <math|\<cal-X\>=\<bbb-R\><rsup|n>>, then we find, by plugging in the
+  definition of <math|S>,
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x\|y|)>
@@ -200,7 +211,7 @@
     <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>q<around*|(|x\|y|)>.
   </equation*>
 
-  The integrand of the right most expression is a divergence, thus it results
+  The integrand of the right most expression is a divergence, so it results
   in a boundary integral. But since <math|q<around*|(|\<cdummy\>\|y|)>>, as a
   density function, is normalized, the boundary integral shall vanish. So, we
   conclude that
@@ -209,251 +220,72 @@
     \<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|\<cdummy\>\|y|)>|]>=0.
   </equation*>
 
-  This is the analogy to the action in classicical mechanics
-  <reference|equation:least-action principle>, where the minimum
-  <math|x<rsub|\<star\>>> is replaced by the expactation
+  This is analog to equation <reference|equation:least-action principle v1>,
+  where the minimum <math|x<rsub|\<star\>>> is replaced by the expectation
   <math|\<bbb-E\><rsub|Q<around*|(|y|)>>>. Secondly, in the limit
   <math|\<beta\>\<rightarrow\>+\<infty\>> while fixing <math|S>, the
   distribution <math|Q<around*|(|y|)>> becomes so sharp that it only samples
   the <math|x<rsub|\<star\>>> (recall section <reference|section: A Brief
-  Review of Probability> that distribution has a sampler) that minimizes
-  <math|S<around*|(|\<cdummy\>\|y|)>>, thus maximizes
-  <math|q<around*|(|\<cdummy\>\|y|)>>. For these reasons, we illustrate the
+  Review of Probability> that distribution has a sampler) that maximizes
+  <math|q<around*|(|\<cdummy\>\|y|)>>, thus minimizes
+  <math|S<around*|(|\<cdummy\>\|y|)>>. For these reasons, we illustrate the
   <math|S<around*|(|\<cdummy\>\|y|)>> defined by
   <math|q<around*|(|\<cdummy\>\|y|)>> as the action of
-  <math|Q<around*|(|y|)>>. TODO
+  <math|Q<around*|(|y|)>>. Contrary to the action in classical mechanics, the
+  <math|S<around*|(|\<cdummy\>\|y|)>> here is completely determined by the
+  real world distribution <math|Q<around*|(|y|)>> (because it is defined by
+  its density function <math|q<around*|(|\<cdummy\>\|y|)>>), without any
+  redundancy. This is the direct implication that distribution involves more
+  information than its most likely datum.
 
-  \;
+  <subsection|Data Fitting Is Equivalent to Least-Action Principle of
+  Distribution><label|section: Data Fitting Is Equivalent to Least-Action
+  Principle of Distribution>
 
-  \;
+  We are to figure out method to fit the real world distribution
+  <math|Q<around*|(|y|)>>, given some samples of <math|Q<around*|(|y|)>>. For
+  simplicity, we omit the condition <math|y> throughout this section.
 
-  Maximum entropy principle: Given distribution of prior knowledge
-  <math|P<rsub|0>>, and interactive part of action
-  <math|V:\<cal-X\>\<rightarrow\>\<bbb-R\>>, we have a functional of density
-  function <math|p>, as
-
-  <\equation*>
-    L<around*|(|p,\<beta\>,\<mu\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<around*|(|x|)> ln<frac|p<around*|(|x|)>|p<rsub|0><around*|(|x|)>>+\<beta\><around*|(|
-    <big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>
-    V<around*|(|x|)>-<wide|V|\<bar\>>|)>+\<mu\>
-    <around*|(|<big|int><rsub|\<cal-X\>>\<mathd\>x p<around*|(|x|)>-1|)>.
-  </equation*>
-
-  Variation on <math|p> gives
-
-  <\equation*>
-    <frac|\<delta\>L|\<delta\>p<around*|(|x|)>>=ln
-    <frac|p<around*|(|x|)>|p<rsub|0><around*|(|x|)>>+1+\<beta\>
-    V<around*|(|x|)>+\<mu\>.
-  </equation*>
-
-  Thus, combined with <math|\<partial\>L/\<partial\>\<beta\>=0> and
-  <math|\<partial\>L/\<partial\>\<mu\>=0>,
-  <math|\<delta\>L/\<delta\>p<around*|(|x|)>=0> gives
-  <math|p<around*|(|x|)>=p<rsub|0><around*|(|x|)> exp<around*|(|-\<beta\>
-  V<around*|(|x|)>|)>/Z> where <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-  p<rsub|0><around*|(|x|)> exp<around*|(|-\<beta\> V<around*|(|x|)>|)>>.
-
-  <section|Drafts>
-
-  <subsection|Least-Action Principle in Real World with Measurement Error>
-
-  Unfortunately, even though least-action principle is sufficient for
-  describing the <em|ideal> world, but in practice, when we take measurement,
-  errors are inevitable. What we get from measurement is a path
-  <math|x<rsub|\<star\>>+\<delta\>X>, where <math|\<delta\>X> is a random
-  variable. If we use the measured data for examining least-action principle,
-  then we will have
-
-  <\equation*>
-    <frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x<rsub|\<star\>>+\<delta\>X\|y|)>=<frac|\<partial\><rsup|2>S|\<partial\>x<rsup|\<alpha\>>\<partial\>x<rsup|\<beta\>>><around*|(|x<rsub|\<star\>>\|y|)>
-    \<delta\>X<rsup|\<alpha\>>+\<omicron\><around*|(|\<delta\>X|)>,
-  </equation*>
-
-  where we have used least-action principle <reference|equation:least-action
-  principle>. The leading term does not vanishes. It suggests that the
-  least-action principle <reference|equation:least-action principle> is not
-  sufficient for describing the <em|real> world, since all measurements have
-  random errors. We have to extend the least-action principle
-  <reference|equation:least-action principle> so as to consistent with
-  measurement error.
-
-  To do so, we first denote <math|Q<around*|(|y|)>> as the distribution of
-  real world data of an evolutionary system (such as harmonic oscillator)
-  with the given conditions <math|y>. Thus, an <math|x> sampled from
-  <math|Q<around*|(|y|)>> can be written as
-  <math|x<rsub|\<star\>>+\<delta\>x>, where <math|x<rsub|\<star\>>> is
-  <em|the unique> ideal world datum and <math|\<delta\>x> an instance of
-  random measurement error. Even though for each <math|x> sampled from
-  <math|Q<around*|(|y|)>>, <math|\<partial\><rsub|\<alpha\>>S<around*|(|x\|y|)>\<neq\>0>,
-  if we repeat the measurement multiple times, the expectation shall approach
-  to zero. That is,
-
-  <\equation*>
-    \<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|\<cdummy\>\|y|)>|]>=0.
-  </equation*>
-
-  Otherwise, we could not reveal how the system evolves in the ideal world,
-  as what we have done in physics. As an example, applied to harmonic
-  oscillator, it is <math|\<bbb-E\><rsub|Q<around*|(|x<rsub|0>,x<rsub|1>|)>><around*|[|<wide|x|\<ddot\>><around*|(|t|)>+\<omega\><rsup|2>
-  x<around*|(|t|)>|]>=0> for any <math|t\<in\><around*|(|0,1|)>>.
-
-  It indicates that the action <math|S<around*|(|\<cdummy\>\|y|)>> and the
-  distribution <math|Q<around*|(|y|)>> are related. An educated guess is
-  <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
-  S<around*|(|x\|y|)>|)>> for arbitrary <math|\<beta\>\<in\>\<bbb-R\>>, thus
-  <math|S=-<around*|(|1/\<beta\>|)> ln q+const>.<\footnote>
-    Now, the two notations meet each other in a coherent manner: one is
-    <math|q<around*|(|x\|y|)>> where the vertical line is used for
-    conditional probability; the other is <math|S<around*|(|x\|y|)>> where
-    the vertical line is used for separating variable and constant; and they
-    are equal.
-  </footnote> If so, then the expectation turns to be
-
-  <\equation*>
-    \<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|\<cdummy\>\|y|)>|]>=-\<beta\><rsup|-1>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x\|y|)>
-    <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>ln
-    q<around*|(|x\|y|)>=-\<beta\><rsup|-1>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>q<around*|(|x\|y|)>.
-  </equation*>
-
-  The integrand of the right hand side is a divergence, thus the integral is
-  a boundary term which vanishes since <math|q> is normalized (thus vanishes
-  at infinity). That is, if <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
-  S<around*|(|x\|y|)>|)>>, then we will naturally get
-  <math|\<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|\<partial\><rsub|\<alpha\>>S<around*|(|\<cdummy\>\|y|)>|]>=0>.
-  To ensure that <math|x<rsub|\<star\>>> locates in the minimum rather than
-  the maximum of <math|S<around*|(|\<cdummy\>\|y|)>>, we have to make
-  <math|\<beta\>\<gtr\>0>, then the minimum of <math|S> corresponding to the
-  maximum of <math|q>. We can use the <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
-  S<around*|(|x\|y|)>|)>> as a real world replacement of the least-action
-  principle (in the ideal world) claimed in section <reference|section: A
-  Brief Review of Least-Action Principle>. As a probabilistic model, it can
-  be directly generalized from the continuous alphabet
-  <math|\<bbb-R\><rsup|n>> to a generic alphabet <math|\<cal-X\>>, which may
-  be discrete. So, we have the following definition.
-
-  <\definition>
-    (TODO) Given the conditions <math|y>, let <math|Q<around*|(|y|)>> the
-    distribution of real world data with alphabet <math|\<cal-X\>>, and
-    <math|S<around*|(|\<cdummy\>\|y|)>> the action. <strong|Least-action
-    principle in real world> states that the density function of <math|Q> and
-    the action are related, in the form <math|q<around*|(|x\|y|)>=exp<around*|(|-\<beta\>
-    S<around*|(|x\|y|)>|)>/Z> for any <math|\<beta\>\<gtr\>0>, where
-    <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-    exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>> is the normalization
-    factor.
-  </definition>
-
-  To return to the ideal world, simply set
-  <math|\<beta\>\<rightarrow\>+\<infty\>> (notice that
-  <math|\<cal-X\>=\<bbb-R\><rsup|n>> is not essential). In this situation,
-  the density function <math|q<around*|(|x\|y|)>> becomes so sharp that its
-  distribution <math|Q<around*|(|y|)>> only samples the
-  <math|x<rsub|\<star\>>> (recall <math|x<rsub|\<star\>>> is the unique
-  minimum of <math|S<around*|(|\<cdummy\>\|y|)>>, thus the unique maximum of
-  <math|q<around*|(|\<cdummy\>\|y|)>>).
-
-  <\question>
-    Given <math|Q<around*|(|y|)>> and <math|S<around*|(|\<cdummy\>\|y|)>>, if
-    <math|\<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|\<partial\><rsub|\<alpha\>>S<around*|(|\<cdummy\>\|y|)>|]>=0>,
-    then can we conclude that <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
-    S<around*|(|x\|y|)>|)>>?
-  </question>
-
-  <\answer>
-    No, we cannot, since there is counter-example. For example, consider
-    one-dimensional and Gaussian, that is,
-    <math|q<around*|(|x|)>=<around*|(|1/<sqrt|2\<pi\> \<sigma\><rsup|2>>|)>
-    exp<around*|(|-x<rsup|2>/2\<sigma\><rsup|2>|)>>, where we have omitted
-    the conditions <math|y> for simplicity. Then,
-    <math|\<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|\<partial\><rsub|\<alpha\>>S<around*|(|x\|y|)>|]>=0>
-    becomes
-
-    <\equation*>
-      <big|int><rsub|\<bbb-R\>>\<mathd\>x q<around*|(|x|)>
-      <frac|\<mathd\>S|\<mathd\>x><around*|(|x|)>=0.
-    </equation*>
-
-    Since <math|q<around*|(|x|)>> is odd, this equality holds for any
-    <math|\<mathd\>S/\<mathd\>x> that is \ odd, thus for any <math|S> that is
-    even.
-  </answer>
-
-  In fact, the relation <math|q<around*|(|x\|y|)>\<propto\>exp<around*|(|-\<beta\>
-  S<around*|(|x\|y|)>|)>> is a little weird, since the
-  <math|Q<around*|(|y|)>> involves the information of measurement error,
-  which is caused by the tools used for measurement, at least for classicial
-  physics, but the <math|S<around*|(|x\|y|)>> is fully determined by the
-  dynamics in the ideal world. But, to make
-  <math|\<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|\<partial\><rsub|\<alpha\>>S<around*|(|\<cdummy\>\|y|)>|]>=0>,
-  the <math|S> and <math|Q> cannot be arbitrary. For example, if <math|Q> is
-  a normal distribution, then we would expect an even <math|S>. Thus, there
-  exists the situation where the action (determined by the dynamics) involves
-  odd terms (such as <math|x<rsup|3>>) and the measurement error (determined
-  by our tools) is Gaussian, such that <math|\<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|\<partial\><rsub|\<alpha\>>S<around*|(|\<cdummy\>\|y|)>|]>=0>
-  cannot be held.
-
-  Recall that, in quantum mechanics, <hlink|Ehrenfest
-  theorem|https://en.wikipedia.org/wiki/Ehrenfest_theorem> claims that, in
-  Heisenberg picture, <math|<around*|\<langle\>|\<psi\>\|<around*|(|\<mathd\>/\<mathd\>t|)>
-  <wide|x|^><around*|(|t|)>-<wide|p|^><around*|(|t|)>/m\|\<psi\>|\<rangle\>>=0>
-  and <math|<around*|\<langle\>|\<psi\>\|<around*|(|\<mathd\>/\<mathd\>t|)>
-  <wide|p|^><around*|(|t|)>+\<partial\>V<around*|(|<wide|x|^><around*|(|t|)>|)>\|\<psi\>|\<rangle\>>=0>
-  for any quantum state <math|\|\<psi\>\<rangle\>>. This is a little like our
-  situation. But, the criticial difference is that, in quantum mechanics, the
-  measurement error is intrinsic, determined by the action, rather than by
-  the tools that take the measurements.
-
-  <subsection|Data Fitting Is Equivalent to Least-Action Principle
-  (TODO)><label|section: Data Fitting Is Equivalent to Least-Action
-  Principle>
-
-  Let <math|P<around*|(|\<theta\>|)>> represent a parametrized distribution
-  of <math|X>, and <math|P<rsub|0>> a distribution of <math|X> that
-  represents prior knowledge as in the case of maximum-entropy principle. Let
-  <math|V<around*|(|x,\<theta\>|)>\<assign\>-ln
-  <around*|(|p<around*|(|x,\<theta\>|)>/p<rsub|0><around*|(|x|)>|)>-ln
-  Z<around*|(|\<theta\>|)>> with <math|Z<around*|(|\<theta\>|)>> to be
-  determined. Density <math|<wide|p|^>> is essential for defining <math|V>,
-  since <math|ln p<around*|(|x,\<theta\>|)>> is not well-defined (section
-  <reference|section: Shannon Entropy Fails for Continuous Random Variable>).
-  Then, we can re-formulate <math|p<around*|(|x,\<theta\>|)>> as
+  Let <math|S<around*|(|x,\<theta\>|)>> represent a parametrized function. We
+  have a density function
 
   <\equation>
-    p<around*|(|x,\<theta\>|)>=p<rsub|0><around*|(|x|)>
-    exp<around*|(|-V<around*|(|x,\<theta\>|)>|)>/Z<around*|(|\<theta\>|)>,<label|equation:Generic
-    Density>
+    p<around*|(|x,\<theta\>|)>\<assign\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>/Z<around*|(|\<theta\>|)>,<label|equation:generic
+    density>
   </equation>
 
-  and since <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
-  p<around*|(|x,\<theta\>|)>=1>,
+  where
 
   <\equation>
     Z<around*|(|\<theta\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<rsub|0><around*|(|x|)> exp<around*|(|-V<around*|(|x,\<theta\>|)>|)>.<label|equation:Partition
-    Function>
+    p<rsub|0><around*|(|x|)> exp<around*|(|-V<around*|(|x,\<theta\>|)>|)><label|equation:partition
+    function>
   </equation>
 
-  \;
-
-  As a generic form of a parameterized distribution, it can be used to fit
-  raw data that obeys an empirical distribution <math|Q>, by adjusting
-  parameter <math|\<theta\>>. To do so, we minimize the relative entropy
-  between <math|Q> and <math|P<around*|(|\<theta\>|)>>, which is defined as
+  for ensuring the normalization <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
+  p<around*|(|x,\<theta\>|)>=1>. What we have is an empirical distribution
+  <math|Q>.<\footnote>
+    The empirical distribution <math|Q> can be represented by either a
+    collection of datum <math|<around*|{|x<rsub|k>\|k=1,\<ldots\>,N|}>>, or a
+    distribution a the density function approximated by the Gaussian mixture
+    density <math|q<around*|(|x|)>\<assign\><around*|(|1/N|)>
+    <big|sum><rsub|x\<in\>Q>G<rsub|\<sigma\>><around*|(|x|)>>, where
+    <math|G<rsub|\<sigma\>><around*|(|x|)>> is Gaussian with zero mean and
+    variance <math|\<sigma\><rsup|2>>, and <math|0\<less\>\<sigma\>\<ll\>1>.
+  </footnote> And we are to adjust the parameters <math|\<theta\>> so that
+  <math|P<around*|(|\<theta\>|)>> (the distribution of the density function
+  <math|p<around*|(|\<cdummy\>,\<theta\>|)>>) mimics the empirical
+  distribution <math|Q>. To do so, we minimize the relative entropy between
+  <math|Q> and <math|P<around*|(|\<theta\>|)>>, which is defined as
   <math|H<around*|(|Q,P<around*|(|\<theta\>|)>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
   q<around*|(|x|)> ln <around*|(|q<around*|(|x|)>/p<around*|(|x,\<theta\>|)>|)>>.
-  Plugging equation <reference|equation:Generic Density> into
+  Plugging equation <reference|equation:generic density> into
   <math|H<around*|(|Q,P<around*|(|\<theta\>|)>|)>>, we have
 
   <\equation*>
     H<around*|(|Q,P<around*|(|\<theta\>|)>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> ln q<around*|(|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> ln p<rsub|0><around*|(|x|)>+<big|int><rsub|\<cal-X\>>\<mathd\>x
-    q<around*|(|x|)> V<around*|(|x,\<theta\>|)>+<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)> ln q<around*|(|x|)>+<big|int><rsub|\<cal-X\>>\<mathd\>x
+    q<around*|(|x|)> S<around*|(|x,\<theta\>|)>+<big|int><rsub|\<cal-X\>>\<mathd\>x
     q<around*|(|x|)> ln Z<around*|(|\<theta\>|)>.
   </equation*>
 
@@ -461,7 +293,7 @@
   function
 
   <\equation*>
-    L<around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|Q><around*|[|V<around*|(|\<cdummy\>,\<theta\>|)>|]>+ln
+    L<around*|(|\<theta\>|)>\<assign\>\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>+ln
     Z<around*|(|\<theta\>|)>.
   </equation*>
 
@@ -472,18 +304,18 @@
     Directly, we have
 
     <\equation*>
-      <frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>V|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>+Z<rsup|-1><around*|(|\<theta\>|)>
+      <frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>+Z<rsup|-1><around*|(|\<theta\>|)>
       <frac|\<partial\>Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>.
     </equation*>
 
     Since <math|Z<around*|(|\<theta\>|)>\<assign\><big|int>\<mathd\>x
-    p<rsub|0><around*|(|x|)> exp<around*|(|-V<around*|(|x,\<theta\>|)>|)>>,
+    p<rsub|0><around*|(|x|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>,
     we find
 
     <\equation*>
       <frac|\<partial\>Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=-<big|int>\<mathd\>x
-      p<rsub|0><around*|(|x|)> exp<around*|(|-V<around*|(|x,\<theta\>|)>|)>
-      <frac|\<partial\>V|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>,
+      p<rsub|0><around*|(|x|)> exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>
+      <frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>,
     </equation*>
 
     thus
@@ -491,19 +323,19 @@
     <\equation*>
       Z<rsup|-1><around*|(|\<theta\>|)> <frac|\<partial\>Z|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=-<big|int>\<mathd\>x
       <around*|[|p<rsub|0><around*|(|x|)>
-      exp<around*|(|-V<around*|(|x,\<theta\>|)>|)>
+      exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>
       Z<rsup|-1><around*|(|\<theta\>|)>|]>
-      <frac|\<partial\>V|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>=-<big|int>\<mathd\>x
-      p<around*|(|x,\<theta\>|)> \ <frac|\<partial\>V|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>,
+      <frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>=-<big|int>\<mathd\>x
+      p<around*|(|x,\<theta\>|)> \ <frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|x,\<theta\>|)>,
     </equation*>
 
     where in the last equality, we used the definition of
     <math|p<around*|(|x,\<theta\>|)>> (the blue parts). This final expression
-    is just the <math|-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<around*|(|\<partial\>V/\<partial\>\<theta\><rsup|\<alpha\>>|)><around*|(|\<cdummy\>,\<theta\>|)>|]>>.
+    is just the <math|-\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<around*|(|\<partial\>S/\<partial\>\<theta\><rsup|\<alpha\>>|)><around*|(|\<cdummy\>,\<theta\>|)>|]>>.
   </footnote> we find
 
   <\equation>
-    -<frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<frac|\<partial\>V|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>V|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>.<label|equation:data-fitting
+    -<frac|\<partial\>L|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<theta\>|)>=\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>-\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\>|)>|]>.<label|equation:data-fitting
     iteration>
   </equation>
 
@@ -511,67 +343,142 @@
   Then, we find that <math|\<theta\><rsub|\<star\>>> obeys
 
   <\equation>
-    \<bbb-E\><rsub|P<around*|(|\<theta\><rsub|\<star\>>|)>><around*|[|<frac|\<partial\>V|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>V|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>.<label|equation:data-fitting
+    \<bbb-E\><rsub|P<around*|(|\<theta\><rsub|\<star\>>|)>><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>=\<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>\<theta\><rsup|\<alpha\>>><around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>|]>.<label|equation:data-fitting
     result>
   </equation>
 
   It can be read from equation <reference|equation:data-fitting iteration>
   that minimizing <math|L> is to increase
-  <math|V<around*|(|\<cdummy\>,\<theta\>|)>> on the sampled points (the first
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> on the sampled points (the first
   term) while decrease it on data points (the second term). As figure
   <reference|figure: Least-Action> illustrates, this way of optimization will
   site real world data onto local minima of
-  <math|V<around*|(|\<cdummy\>,\<theta\>|)>>, <em|in statistical sense>.
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, <em|in statistical sense>.
 
-  <big-figure|<with|gr-mode|<tuple|edit|spline>|gr-frame|<tuple|scale|1.00001cm|<tuple|0.5gw|0.5gh>>|gr-geometry|<tuple|geometry|10|10|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-line-width|0.5ln|gr-dash-style|11100|gr-color|blue|<graphics||<with|arrow-end|\|\<gtr\>|<line|<point|-6|-3>|<point|-6.0|3.0>>>|<with|arrow-end|\|\<gtr\>|<line|<point|-6|-3>|<point|6.0|-3.0>>>|<math-at|V<around*|(|x,\<theta\>|)>|<point|-6.40049278190267|3.30061515056306>>|<math-at|x|<point|6.20000992178327|-3.1>>|<with|line-width|5ln|arrow-end|\<gtr\>|opacity|50%|color|red|<line|<point|-1.3|3.2>|<point|-1.3|1.7>>>|<with|line-width|5ln|color|blue|opacity|50%|arrow-begin|\<less\>|<line|<point|0.8|-0.83096059724234>|<point|0.8|-2.33096059724234>>>|<with|dash-style|11100|line-width|0.5ln|color|red|<line|<point|-1.3|1.4>|<point|-1.3|-3.0>>>|<with|color|red|<point|-1.3|1.41877>>|<with|color|red|<math-at|x<rsub|1>|<point|-1.4|-3.3>>>|<with|color|blue|<math-at|x<rsub|2>|<point|0.7|-3.3>>>|<with|dash-style|11100|line-width|0.5ln|color|blue|<line|<point|0.8|0.5>|<point|0.8|-3.0>>>|<with|color|blue|<point|0.8|-0.6>>|<with|color|dark
+  <big-figure|<with|gr-mode|<tuple|edit|spline>|gr-frame|<tuple|scale|1.00001cm|<tuple|0.5gw|0.5gh>>|gr-geometry|<tuple|geometry|10|10|center>|gr-grid|<tuple|empty>|gr-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-edit-grid-aspect|<tuple|<tuple|axes|none>|<tuple|1|none>|<tuple|10|none>>|gr-edit-grid|<tuple|empty>|gr-edit-grid-old|<tuple|cartesian|<point|0|0>|1>|gr-line-width|0.5ln|gr-dash-style|11100|gr-color|blue|<graphics||<with|arrow-end|\|\<gtr\>|<line|<point|-6|-3>|<point|-6.0|3.0>>>|<with|arrow-end|\|\<gtr\>|<line|<point|-6|-3>|<point|6.0|-3.0>>>|<math-at|S<around*|(|x,\<theta\>|)>|<point|-6.40049278190267|3.30061515056306>>|<math-at|x|<point|6.20000992178327|-3.1>>|<with|line-width|5ln|arrow-end|\<gtr\>|opacity|50%|color|red|<line|<point|-1.3|3.2>|<point|-1.3|1.7>>>|<with|line-width|5ln|color|blue|opacity|50%|arrow-begin|\<less\>|<line|<point|0.8|-0.83096059724234>|<point|0.8|-2.33096059724234>>>|<with|dash-style|11100|line-width|0.5ln|color|red|<line|<point|-1.3|1.4>|<point|-1.3|-3.0>>>|<with|color|red|<point|-1.3|1.41877>>|<with|color|red|<math-at|x<rsub|1>|<point|-1.4|-3.3>>>|<with|color|blue|<math-at|x<rsub|2>|<point|0.7|-3.3>>>|<with|dash-style|11100|line-width|0.5ln|color|blue|<line|<point|0.8|0.5>|<point|0.8|-3.0>>>|<with|color|blue|<point|0.8|-0.6>>|<with|color|dark
   cyan|dash-style|11100|<spline|<point|-5|1>|<point|-2.3|-0.7>|<point|0.8|0.5>|<point|3.04196914325401|2.48975575876838>|<point|4.2|2.2>>>|<with|color|dark
   cyan|<spline|<point|-5.04362277379988|-0.0748763911166967>|<point|-2.85798620872125|2.07284242554528>|<point|0.666826517619433|-0.580225885932565>|<point|3.38308005225473|1.9970400013229>|<point|4.21690671870091|2.62872686984274>>>>>|<label|figure:
   Least-Action> This figure illustrate how
   <math|min<rsub|\<theta\>>L<around*|(|\<theta\>|)>> will site a real world
-  datum onto a local minimum of <math|V<around*|(|\<cdummy\>,\<theta\>|)>>.
+  datum onto a local minimum of <math|S<around*|(|\<cdummy\>,\<theta\>|)>>.
   The green curve represents the current not-yet-optimized
-  <math|V<around*|(|\<cdummy\>,\<theta\>|)>>. The <math|x<rsub|1>> (red
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>>. The <math|x<rsub|1>> (red
   point) is a real world datum while <math|x<rsub|2>> (blue point), which is
-  currently a local minimum of <math|V<around*|(|\<cdummy\>,\<theta\>|)>>, is
+  currently a local minimum of <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, is
   not. Minimizing <math|L> by tuning <math|\<theta\>> pushes the
-  <math|\<bbb-E\><rsub|Q><around*|[|V<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+  <math|\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
   down to lower value, corresponding to the red downward double-arrow on
   <math|x<rsub|1>>. Also, since <math|x<rsub|2>> is a local minimum, the data
-  points sampled from <math|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-V<around*|(|x,\<theta\>|)>|)>>
+  points sampled from <math|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>
   will accumulate around <math|x<rsub|2>>. So, minimizing <math|L> also pulls
-  the <math|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|V<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+  the <math|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
   up to greater value, corresponding to the blue upward double-arrow on
   <math|x<rsub|2>>. Altogether, it makes <math|x<rsub|1>> a local minimum of
-  <math|V<around*|(|\<cdummy\>,\<theta\>|)>>, and
-  <math|V<around*|(|\<cdummy\>,\<theta\>|)>> is optimized to be the dashed
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>>, and
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> is optimized to be the dashed
   green curve.>
 
-  Least action principle states that, the real world data sits <em|exactly>
-  in the local minima of an scalar function, called <strong|action>. This
-  means, the partial derivative of action <math|S> on a real world datum
-  <math|x> vanishes: <math|\<partial\><rsub|\<alpha\>>S<around*|(|x|)>=0>.
+  In this way, we find an analytical distribution
+  <math|P<around*|(|\<theta\>|)>> that approximates the empirical
+  distribution <math|Q>. The <math|S<around*|(|\<cdummy\>,\<theta\>|)>> that
+  defines <math|P<around*|(|\<theta\>|)>> describes the interaction between
+  the different components of an entity. This entity may be of physics, like
+  a collection of particles. But it can also be words, genes, flock of birds,
+  and so on. For example, we can find out how words \Pinteract\Q with each
+  other.
 
-  If, for each <math|x> sampled from <math|Q>,
-  <math|<around*|(|\<partial\>S/\<partial\>x<rsup|\<alpha\>>|)><around*|(|x,\<theta\><rsub|\<star\>>|)>=0>,
-  where <math|S<around*|(|x,\<theta\>|)>\<assign\>-ln
-  p<around*|(|x,\<theta\>|)>+const>, then we would have
-  <math|\<bbb-E\><rsub|Q><around*|[|<around*|(|\<partial\>S/\<partial\>x<rsup|\<alpha\>>|)><around*|(|x,\<theta\><rsub|\<star\>>|)>|]>=0>
+  <section|Drafts>
 
-  \;
+  <subsection|Stochastic Harmonic Oscillator>
 
-  TODO: In this way, the <math|V<around*|(|\<cdummy\>,\<theta\>|)>> is
-  recognized as a parameterized action (in fact, it is the interactive part
-  of action, and the free part locates in the prior density
-  <math|p<rsub|0>>). It describes the interaction between the different
-  components of an entity. This entity may be of physics, like a collection
-  of particles. But it can also be words, genes, flock of birds, and so on.
-  For example, we can find out how words \Pinteract\Q with each other.
+  We use <math|S<rsub|HO>> as the action in
+  <math|q<around*|(|x\|y|)>=exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>>,
+  and conditions <math|y=<around*|(|x<rsub|0>,x<rsub|1>|)>>, the fixed
+  boundaries. Then, we have
+
+  <\small>
+    <\equation*>
+      q<around*|(|x\|x<rsub|0>,x<rsub|1>|)>\<propto\>exp<around*|(|-\<beta\>
+      S<rsub|HO><around*|(|x\|x<rsub|0>,x<rsub|1>|)>|)>=exp<around*|(|-<frac|\<beta\>
+      T|2><big|sum><rsub|i=0><rsup|T-1><around*|[|x<around*|(|<around*|(|i+1|)>/T|)>-x<around*|(|i/T|)>|]><rsup|2>+<frac|\<beta\>
+      \<omega\><rsup|2>|2T><big|sum><rsub|i=0><rsup|T>x<rsup|2><around*|(|i/T|)>|)>.
+    </equation*>
+  </small>
+
+  Denoting <math|x<around*|(|i/T|)>> by <math|z<rsup|i>>, then, by omitting
+  the term involving only constant <math|z<rsup|0>>, we find the first term
+  in the summation is <math|<around*|(|z<rsup|1>|)><rsup|2>-2z<rsup|0>
+  z<rsup|1>>. The second term is <math|<around*|(|z<rsup|2>|)><rsup|2>+<around*|(|1-<around*|(|\<omega\>/T|)><rsup|2>|)><around*|(|z<rsup|1>|)><rsup|2>-2z<rsup|2>
+  z<rsup|1>>. We add the <math|<around*|(|z<rsup|1>|)><rsup|2>> terms
+  together, resulting in <math|<around*|(|2-<around*|(|\<omega\>/T|)><rsup|2>|)>
+  <around*|(|z<rsup|1>|)><rsup|2>>, leaving <math|-2z<rsup|0> z<rsup|1>> in
+  the first term. The same for the rest terms in the summation, until the
+  last two, which are <math|<around*|(|z<rsup|T-1>|)><rsup|2>+<around*|(|1-<around*|(|\<omega\>/T|)><rsup|2>|)><around*|(|z<rsup|T-1>|)><rsup|2>-2z<rsup|T-2>
+  z<rsup|T-1>> and, by omitting the constant term
+  <math|<around*|(|z<rsup|T>|)><rsup|2>>,
+  <math|<around*|(|1-<around*|(|\<omega\>/T|)><rsup|2>|)><around*|(|z<rsup|T-1>|)><rsup|2>-2z<rsup|T-1>
+  z<rsup|T>>. Again, we add the <math|<around*|(|z<rsup|T-1>|)><rsup|2>>
+  terms together, resulting in <math|<around*|(|2-<around*|(|\<omega\>/T|)><rsup|2>|)>
+  <around*|(|z<rsup|T-1>|)><rsup|2>>, leaving <math|-2z<rsup|T-1> z<rsup|T>>
+  in the last term. So, we find the summation has the following matrix form:
+
+  <\small>
+    <\equation*>
+      <matrix|<tformat|<table|<row|<cell|z<rsup|1>>>|<row|<cell|z<rsup|2>>>|<row|<cell|\<vdots\>>>|<row|<cell|z<rsup|T-2>>>|<row|<cell|z<rsup|T-1>>>>>><rsup|t>
+      <around*|[|<matrix|<tformat|<table|<row|<cell|2-<around*|(|\<omega\>/T|)><rsup|2>>|<cell|-1>|<cell|>|<cell|>|<cell|>>|<row|<cell|-1>|<cell|2-<around*|(|\<omega\>/T|)><rsup|2>>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|\<ddots\>>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|2-<around*|(|\<omega\>/T|)><rsup|2>>|<cell|-1>>|<row|<cell|>|<cell|>|<cell|>|<cell|-1>|<cell|2-<around*|(|\<omega\>/T|)><rsup|2>>>>>>
+      <matrix|<tformat|<table|<row|<cell|z<rsup|1>>>|<row|<cell|z<rsup|2>>>|<row|<cell|\<vdots\>>>|<row|<cell|z<rsup|T-2>>>|<row|<cell|z<rsup|T-1>>>>>>-2
+      <matrix|<tformat|<table|<row|<cell|z<rsup|0>>>|<row|<cell|0>>|<row|<cell|\<vdots\>>>|<row|<cell|0>>|<row|<cell|z<rsup|T>>>>>>|]>.
+    </equation*>
+  </small>
+
+  Taking into account the factor <math|-\<beta\> T/2> in front of the
+  summation, we arrive at
+
+  <\equation*>
+    p<around*|(|z\|z<rsup|0>,z<rsup|T>|)>\<propto\>exp<around*|(|-<frac|\<beta\>|T><around*|[|<frac|1|2>z<rsup|t>
+    K z-z<rsup|t> b|]>|)>,
+  </equation*>
+
+  where <math|K> is the tridiagonal matrix
+
+  <\small>
+    <\equation*>
+      K\<assign\><matrix|<tformat|<table|<row|<cell|2-<around*|(|\<omega\>/T|)><rsup|2>>|<cell|-1>|<cell|>|<cell|>|<cell|>>|<row|<cell|-1>|<cell|2-<around*|(|\<omega\>/T|)><rsup|2>>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|\<ddots\>>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|2-<around*|(|\<omega\>/T|)><rsup|2>>|<cell|-1>>|<row|<cell|>|<cell|>|<cell|>|<cell|-1>|<cell|2-<around*|(|\<omega\>/T|)><rsup|2>>>>>>
+    </equation*>
+  </small>
+
+  and
+
+  <\equation*>
+    b\<assign\><matrix|<tformat|<table|<row|<cell|z<rsup|0>>|<cell|0>|<cell|\<cdots\>>|<cell|0>|<cell|z<rsup|T>>>>>><rsup|t>.
+  </equation*>
+
+  To compute the correlation <math|\<bbb-E\><rsub|Q<around*|(|z<rsup|0>,z<rsup|T>|)>><around*|[|z<rsup|1>
+  z<rsup|3>|]>>, we have to integrate out the <math|z<rsup|2>> that interacts
+  with both <math|z<rsup|1>> and <math|z<rsup|3>>. Notice that there is not
+  interaction between <math|z<rsup|1>> and <math|z<rsup|3>>. That is, we are
+  to calculate
+
+  <\equation*>
+    exp<around*|(|<frac|1|2><around*|[|<frac|\<beta\>|T>
+    <around*|(|2-<around*|(|\<omega\>/T|)><rsup|2>|)>|]>
+    <around*|(|z<rsup|2>|)><rsup|2>+<around*|[|<frac|\<beta\>|T><around*|(|z<rsup|1>+z<rsup|3>|)>|]>
+    z<rsup|2>|)>\<propto\>exp<around*|(|<frac|\<beta\>|2T><around*|(|2-<around*|(|\<omega\>/T|)><rsup|2>|)><rsup|-1>
+    <around*|[|<around*|(|z<rsup|1>|)><rsup|2>+<around*|(|z<rsup|3>|)><rsup|2>+2z<rsup|1>
+    z<rsup|3>|]>|)>.
+  </equation*>
+
+  Now, the <math|z<rsup|1>> and <math|z<rsup|3>> has an interactive term
+
+  <\equation*>
+    -<frac|z<rsup|1> z<rsup|3>|<around*|(|1-<around*|(|\<omega\>/T|)><rsup|2>/2|)>>.
+  </equation*>
 
   <subsection|Maximum-Entropy and Least-Action Are Saddle Point of a
-  Functional>
+  Functional (TODO)>
 
-  In fact, equations <reference|equation:Generic Density>,
-  <reference|equation:Partition Function>, and
+  In fact, equations <reference|equation:generic density>,
+  <reference|equation:partition function>, and
   <reference|equation:data-fitting result> can be regarded as an extremum of
   the functional (recall that <math|P<rsub|0>> is the distribution of prior
   knowledge and <math|Q> of dataset)
@@ -592,8 +499,8 @@
     </equation>
   </small>
 
-  Indeed, variance on <math|p> gives equation <reference|equation:Generic
-  Density>.<\footnote>
+  Indeed, variance on <math|p> gives equation <reference|equation:generic
+  density>.<\footnote>
     Explicitly, we have
 
     <\equation*>
@@ -608,7 +515,7 @@
       exp<around*|(|-V<around*|(|x,\<theta\>|)>|)>.
     </equation*>
   </footnote> Together with the partial derivative on <math|\<mu\>>, we get
-  equation <reference|equation:Partition Function>. Finally, partial
+  equation <reference|equation:partition function>. Finally, partial
   derivative on <math|\<theta\>> directly gives equation
   <reference|equation:data-fitting result>. In addition, decreasing the
   <math|L<around*|(|\<theta\>|)>> by iteration
@@ -678,9 +585,10 @@
 
   Corresponding to this free term, the interactive term <math|V> described in
   section <reference|section: Data Fitting Is Equivalent to Least-Action
-  Principle> is given by some ansatz. For example, we may suppose <math|V> to
-  be local. That is, there is a function <math|<with|font|cal|L><around*|(|x,t,\<theta\>|)>>
-  such that <math|V<around*|(|x,\<theta\>|)>=<around*|(|1/T|)><big|sum><rsub|t=1><rsup|T><with|font|cal|L><around*|(|x<around*|(|t|)>,t,\<theta\>|)>>.
+  Principle of Distribution> is given by some ansatz. For example, we may
+  suppose <math|V> to be local. That is, there is a function
+  <math|<with|font|cal|L><around*|(|x,t,\<theta\>|)>> such that
+  <math|V<around*|(|x,\<theta\>|)>=<around*|(|1/T|)><big|sum><rsub|t=1><rsup|T><with|font|cal|L><around*|(|x<around*|(|t|)>,t,\<theta\>|)>>.
   Or, we may suppose that there exist some symmetries about the system, such
   as autonomous and parity symmetry, which indicates
   <math|<with|font|cal|L><around*|(|x,t,\<theta\>|)>=<big|sum><rsub|n=1><rsup|+\<infty\>>\<theta\><rsub|n>
@@ -992,51 +900,49 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2.4|7>>
-    <associate|auto-11|<tuple|2.5|7>>
-    <associate|auto-12|<tuple|2.6|8>>
-    <associate|auto-13|<tuple|2.7|?>>
+    <associate|auto-10|<tuple|2.3|6>>
+    <associate|auto-11|<tuple|2.4|6>>
+    <associate|auto-12|<tuple|2.5|7>>
+    <associate|auto-13|<tuple|2.6|8>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|2|4>>
-    <associate|auto-6|<tuple|2.1|4>>
-    <associate|auto-7|<tuple|2.2|5>>
-    <associate|auto-8|<tuple|1|5>>
-    <associate|auto-9|<tuple|2.3|6>>
-    <associate|equation:Generic Density|<tuple|4|4>>
+    <associate|auto-5|<tuple|1.4|3>>
+    <associate|auto-6|<tuple|1|4>>
+    <associate|auto-7|<tuple|2|4>>
+    <associate|auto-8|<tuple|2.1|4>>
+    <associate|auto-9|<tuple|2.2|5>>
     <associate|equation:Ltot|<tuple|8|5>>
-    <associate|equation:Partition Function|<tuple|5|4>>
-    <associate|equation:V extremum|<tuple|9|6>>
-    <associate|equation:data-fitting iteration|<tuple|6|4>>
+    <associate|equation:V extremum|<tuple|9|5>>
+    <associate|equation:data-fitting iteration|<tuple|6|3>>
     <associate|equation:data-fitting result|<tuple|7|4>>
     <associate|equation:eom and action|<tuple|11|8>>
+    <associate|equation:generic density|<tuple|4|3>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
-    <associate|equation:least-action principle|<tuple|3|2>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
-    <associate|figure: Least-Action|<tuple|1|5>>
+    <associate|equation:least-action principle v1|<tuple|3|2>>
+    <associate|equation:partition function|<tuple|5|3>>
+    <associate|figure: Least-Action|<tuple|1|4>>
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|3>>
-    <associate|footnote-3|<tuple|3|4>>
-    <associate|footnote-4|<tuple|4|6>>
-    <associate|footnote-5|<tuple|5|7>>
+    <associate|footnote-3|<tuple|3|3>>
+    <associate|footnote-4|<tuple|4|5>>
+    <associate|footnote-5|<tuple|5|6>>
     <associate|footnote-6|<tuple|6|8>>
     <associate|footnote-7|<tuple|7|9>>
-    <associate|footnote-8|<tuple|8|?>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|3>>
-    <associate|footnr-3|<tuple|3|4>>
-    <associate|footnr-4|<tuple|4|6>>
-    <associate|footnr-5|<tuple|5|7>>
+    <associate|footnr-3|<tuple|3|3>>
+    <associate|footnr-4|<tuple|4|5>>
+    <associate|footnr-5|<tuple|5|6>>
     <associate|footnr-6|<tuple|6|8>>
     <associate|footnr-7|<tuple|7|9>>
-    <associate|footnr-8|<tuple|8|?>>
-    <associate|section: A Brief Review of Least-Action
-    Principle|<tuple|1.2|1>>
-    <associate|section: Data Fitting Is Equivalent to Least-Action
-    Principle|<tuple|2.2|4>>
+    <associate|section: A Brief Review of Least-Action Principle in Classical
+    Mechamics|<tuple|1.2|1>>
+    <associate|section: Data Fitting Is Equivalent to Least-Action Principle
+    of Distribution|<tuple|1.4|3>>
     <associate|section: Example: Extract Dynamics from Raw
-    Data|<tuple|2.4|6>>
+    Data|<tuple|2.3|6>>
   </collection>
 </references>
 
@@ -1046,28 +952,28 @@
       <tuple|normal|<surround|<hidden-binding|<tuple>|1>|| This figure
       illustrate how <with|mode|<quote|math>|min<rsub|\<theta\>>L<around*|(|\<theta\>|)>>
       will site a real world datum onto a local minimum of
-      <with|mode|<quote|math>|V<around*|(|\<cdummy\>,\<theta\>|)>>. The green
+      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>. The green
       curve represents the current not-yet-optimized
-      <with|mode|<quote|math>|V<around*|(|\<cdummy\>,\<theta\>|)>>. The
+      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>. The
       <with|mode|<quote|math>|x<rsub|1>> (red point) is a real world datum
       while <with|mode|<quote|math>|x<rsub|2>> (blue point), which is
-      currently a local minimum of <with|mode|<quote|math>|V<around*|(|\<cdummy\>,\<theta\>|)>>,
+      currently a local minimum of <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>,
       is not. Minimizing <with|mode|<quote|math>|L> by tuning
       <with|mode|<quote|math>|\<theta\>> pushes the
-      <with|mode|<quote|math>|\<bbb-E\><rsub|Q><around*|[|V<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+      <with|mode|<quote|math>|\<bbb-E\><rsub|Q><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
       down to lower value, corresponding to the red downward double-arrow on
       <with|mode|<quote|math>|x<rsub|1>>. Also, since
       <with|mode|<quote|math>|x<rsub|2>> is a local minimum, the data points
-      sampled from <with|mode|<quote|math>|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-V<around*|(|x,\<theta\>|)>|)>>
+      sampled from <with|mode|<quote|math>|p<around*|(|x,\<theta\>|)>\<propto\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>>
       will accumulate around <with|mode|<quote|math>|x<rsub|2>>. So,
       minimizing <with|mode|<quote|math>|L> also pulls the
-      <with|mode|<quote|math>|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|V<around*|(|\<cdummy\>,\<theta\>|)>|]>>
+      <with|mode|<quote|math>|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|S<around*|(|\<cdummy\>,\<theta\>|)>|]>>
       up to greater value, corresponding to the blue upward double-arrow on
       <with|mode|<quote|math>|x<rsub|2>>. Altogether, it makes
       <with|mode|<quote|math>|x<rsub|1>> a local minimum of
-      <with|mode|<quote|math>|V<around*|(|\<cdummy\>,\<theta\>|)>>, and
-      <with|mode|<quote|math>|V<around*|(|\<cdummy\>,\<theta\>|)>> is
-      optimized to be the dashed green curve.>|<pageref|auto-7>>
+      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>, and
+      <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>> is
+      optimized to be the dashed green curve.>|<pageref|auto-6>>
     </associate>
     <\associate|toc>
       1<space|2spc>Least-Action Principle
@@ -1078,42 +984,47 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|1.2<space|2spc>Least-Action Principle in
-      Physics and Its Generalization in Ideal World
+      <with|par-left|<quote|1tab>|1.2<space|2spc>A Brief Review of
+      Least-Action Principle in Classical Mechamics
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Least-Action Principle in
-      Real World with Measurement Error <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Least-Action Principle for
+      Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      2<space|2spc>Drafts <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Data Fitting Is Equivalent
+      to Least-Action Principle of Distribution
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|2.1<space|2spc>Data Fitting Is Equivalent
-      to Least-Action Principle (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6>>
+      2<space|2spc>Drafts <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>
+
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Stochastic Harmonic
+      Oscillator <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
 
       <with|par-left|<quote|1tab>|2.2<space|2spc>Maximum-Entropy and
-      Least-Action Are Saddle Point of a Functional
+      Least-Action Are Saddle Point of a Functional (TODO)
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>>
+      <no-break><pageref|auto-9>>
 
       <with|par-left|<quote|1tab>|2.3<space|2spc>Example: Extract Dynamics
       from Raw Data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <no-break><pageref|auto-10>>
 
       <with|par-left|<quote|1tab>|2.4<space|2spc>Example: Feed-Forward Neural
       Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
+      <no-break><pageref|auto-11>>
 
       <with|par-left|<quote|1tab>|2.5<space|2spc>TODO: Structures in Nature
       Arise from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
+      <no-break><pageref|auto-12>>
 
       <with|par-left|<quote|1tab>|2.6<space|2spc>TODO: Is There an Action for
       a Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
+      <no-break><pageref|auto-13>>
     </associate>
   </collection>
 </auxiliary>

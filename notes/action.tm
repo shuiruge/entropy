@@ -147,25 +147,26 @@
   not, where variables locate in a high-dimensional Euclidean space and,
   given some conditions, action is a scalar function on it. It states that
   the real world datum locates in the minimum of the action. Precisely, given
-  the conditions <math|y> and the action <math|S>, there is a at most one
+  the conditioned action <math|S> (we may hide the condition <math|y> into
+  <math|S> instead of explicitly writing it out), there is a at most one
   <math|x<rsub|\<star\>>> such that
 
   <\equation>
-    <frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x<rsub|\<star\>>\|y|)>=0,<label|equation:least-action
+    <frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x<rsub|\<star\>>|)>=0,<label|equation:least-action
     principle v1>
   </equation>
 
   and that <math|x<rsub|\<star\>>> is the real world datum.
 
-  There are, however, redundant degrees of freedom in action
-  <math|S<around*|(|\<cdummy\>\|y|)>>. We may construct multiple actions all
-  satisfying equation <reference|equation:least-action principle v1>. Knowing
-  the extremum of a function cannot imply the shape of the function. The
-  action has much more degrees of freedom than that is needed for revealing
-  the real world datum in classical mechanics. But, in statistical mechanics,
-  as we will see in section TODO, the action is completely determined by the
-  real world distribution (the correspondence of real world datum in
-  statistical mechanics), with nothing redundant.
+  There are, however, redundant degrees of freedom in action <math|S>. We may
+  construct multiple actions all satisfying equation
+  <reference|equation:least-action principle v1>. Knowing the extremum of a
+  function cannot imply the shape of the function. The action has much more
+  degrees of freedom than that is needed for revealing the real world datum
+  in classical mechanics. But, in statistical mechanics, as we will see in
+  section TODO, the action is completely determined by the real world
+  distribution (the correspondence of real world datum in statistical
+  mechanics), with nothing redundant.
 
   <subsection|Least-Action Principle of Distribution Has No Redundancy>
 
@@ -181,64 +182,259 @@
   randomness, which is the \Pfree will\Q of each bird, so is ant colony,
   human society, and any interactive system in which each element has some
   level of intrinsic uncertainty. For these cases, the real world datum is
-  not simply a path, but a distribution of path. Precisely, given the
-  conditions <math|y>, we use a distribution <math|Q<around*|(|y|)>> to
-  describe real world phenomenon that has intrinsic randomness.
+  not simply a path, but a distribution of path. Precisely, we use a
+  distribution <math|Q> to describe real world phenomenon that has intrinsic
+  randomness.
 
-  For any density function <math|q<around*|(|x\|y|)>> and any
+  For any density function <math|q<around*|(|x|)>> and any
   <math|\<beta\>\<gtr\>0>, we can always define
 
   <\equation*>
-    S<around*|(|x\|y|)>\<assign\>-*<around*|(|1/\<beta\>|)> ln
-    q<around*|(|x\|y|)>+const,
+    S<around*|(|x|)>\<assign\>-*<around*|(|1/\<beta\>|)> ln
+    q<around*|(|x|)>+const,
   </equation*>
 
-  up to an arbitrary constant. Thus, <math|q<around*|(|x\|y|)>=exp<around*|(|-\<beta\>
-  S<around*|(|x\|y|)>|)>/Z> where <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
-  exp<around*|(|-\<beta\> S<around*|(|x\|y|)>|)>>. This
-  <math|S<around*|(|\<cdummy\>\|y|)>> has some properties that can be analog
-  to the action in classical mechanics. First, if
-  <math|\<cal-X\>=\<bbb-R\><rsup|n>>, then we find, by plugging in the
+  up to an arbitrary constant. Thus, <math|q<around*|(|x|)>=exp<around*|(|-\<beta\>
+  S<around*|(|x|)>|)>/Z> where <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
+  exp<around*|(|-\<beta\> S<around*|(|x|)>|)>>. This <math|S> has some
+  properties that can be analog to the action in classical mechanics. First,
+  if <math|\<cal-X\>=\<bbb-R\><rsup|n>>, then we find, by plugging in the
   definition of <math|S>,
 
   <\equation*>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x\|y|)>
-    <frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x\|y|)>=-\<beta\><rsup|-1>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x\|y|)>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x|)>
+    <frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|x|)>=-\<beta\><rsup|-1>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x q<around*|(|x|)>
     <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>ln
-    q<around*|(|x\|y|)>=-\<beta\><rsup|-1>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>q<around*|(|x\|y|)>.
+    q<around*|(|x|)>=-\<beta\><rsup|-1> <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    <frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>>q<around*|(|x|)>.
   </equation*>
 
   The integrand of the right most expression is a divergence, so it results
-  in a boundary integral. But since <math|q<around*|(|\<cdummy\>\|y|)>>, as a
-  density function, is normalized, the boundary integral shall vanish. So, we
-  conclude that
+  in a boundary integral. But since <math|q>, as a density function, is
+  normalized, the boundary integral shall vanish. So, we conclude that
 
   <\equation*>
-    \<bbb-E\><rsub|Q<around*|(|y|)>><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>><around*|(|\<cdummy\>\|y|)>|]>=0.
+    \<bbb-E\><rsub|Q><around*|[|<frac|\<partial\>S|\<partial\>x<rsup|\<alpha\>>>|]>=0.
   </equation*>
 
   This is analog to equation <reference|equation:least-action principle v1>,
   where the minimum <math|x<rsub|\<star\>>> is replaced by the expectation
-  <math|\<bbb-E\><rsub|Q<around*|(|y|)>>>. Secondly, in the limit
+  <math|\<bbb-E\><rsub|Q>>. Secondly, in the limit
   <math|\<beta\>\<rightarrow\>+\<infty\>> while fixing <math|S>, the
-  distribution <math|Q<around*|(|y|)>> becomes so sharp that it only samples
-  the <math|x<rsub|\<star\>>> (recall section <reference|section: A Brief
-  Review of Probability> that distribution has a sampler) that maximizes
-  <math|q<around*|(|\<cdummy\>\|y|)>>, thus minimizes
-  <math|S<around*|(|\<cdummy\>\|y|)>>. For these reasons, we illustrate the
-  <math|S<around*|(|\<cdummy\>\|y|)>> defined by
-  <math|q<around*|(|\<cdummy\>\|y|)>> as the action of
-  <math|Q<around*|(|y|)>>. Contrary to the action in classical mechanics, the
-  <math|S<around*|(|\<cdummy\>\|y|)>> here is completely determined by the
-  real world distribution <math|Q<around*|(|y|)>> (because it is defined by
-  its density function <math|q<around*|(|\<cdummy\>\|y|)>>), without any
-  redundancy. This is the direct implication that distribution involves more
-  information than its most likely datum.
+  distribution <math|Q> becomes so sharp that it only samples the
+  <math|x<rsub|\<star\>>> (recall section <reference|section: A Brief Review
+  of Probability> that distribution has a sampler) that maximizes <math|q>,
+  thus minimizes <math|S>. For these reasons, we illustrate the <math|S>
+  defined by <math|q> as the action of <math|Q>. Contrary to the action in
+  classical mechanics, the <math|S> here is completely determined by the real
+  world distribution <math|Q> (because it is defined by its density function
+  <math|q>), without any redundancy. This is the direct implication that
+  distribution involves more information than its most likely datum.
 
-  <subsection|Data Fitting Is Equivalent to Least-Action Principle of
+  <subsection|Example: a Very Simple Stochastic Model>
+
+  We are to construct a stochastic model that is sufficiently simple to make
+  analytical calculation. Consider the density function
+
+  <\equation*>
+    q<around*|(|x|)>\<propto\>exp<around*|(|-<frac|\<beta\>|2>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>t <around*|[|<wide|x|\<dot\>><rsup|2><around*|(|t|)>-\<omega\><rsup|2>
+    x<rsup|2><around*|(|t|)>|]>|)>.
+  </equation*>
+
+  This action is not that of harmonic oscillator since the boundaries are not
+  completely fixed (this is the key of simplification) and the time runs over
+  <math|\<bbb-R\>>.
+
+  We follow the general strategy of dealing with integral that has
+  derivatives in integrand: Fourier transform. By Fourier transform, we can
+  decompose the interaction caused by derivative
+  <math|<wide|x|\<dot\>><around*|(|t|)>> into independent variables. By
+  denoting <math|<wide|x|^><around*|(|\<zeta\>|)>\<in\>\<bbb-C\>> the Fourier
+  coefficient of <math|x>,
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>t <wide|x|\<dot\>><rsup|2><around*|(|t|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>t
+    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\><rprime|'> <around*|(|-\<zeta\>
+    \<zeta\><rprime|'>|)>exp<around*|(|\<mathi\>
+    <around*|(|\<zeta\>+\<zeta\><rprime|'>|)> t|)>
+    <wide|x|^><around*|(|\<zeta\>|)> <wide|x|^><around*|(|\<zeta\><rprime|'>|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    \ \<zeta\><rsup|2> <wide|x|^><around*|(|\<zeta\>|)>
+    <wide|x|^><around*|(|-\<zeta\>|)>,
+  </equation*>
+
+  where we have used <math|<big|int><rsub|\<bbb-R\>>\<mathd\>t
+  exp<around*|(|i k t|)>=\<delta\><around*|(|k|)>>. Since
+  <math|x<around*|(|t|)>> is real, we have
+  <math|<wide|x|^><around*|(|-\<zeta\>|)>=<wide|<wide|x|^><around*|(|\<zeta\>|)>|\<bar\>>>,
+  thus
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>t <wide|x|\<dot\>><rsup|2><around*|(|t|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    \<zeta\><rsup|2> <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>=2
+    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\> \<zeta\><rsup|2>
+    <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>.
+  </equation*>
+
+  The same, we have <math|<big|int><rsub|0><rsup|1>\<mathd\>t
+  x<rsup|2><around*|(|t|)>=2 <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+  <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>>. In addition, we
+  decompose the complex number <math|<wide|x|^><around*|(|\<zeta\>|)>=a<around*|(|\<zeta\>|)>+\<mathi\>
+  b<around*|(|\<zeta\>|)>> with <math|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\>|)>\<in\>\<bbb-R\>>.
+  Altogether, we find
+
+  <\equation*>
+    q<around*|(|a,b|)>\<propto\>exp<around*|(|-\<beta\>
+    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>
+    <around*|[|a<rsup|2><around*|(|\<zeta\>|)>+b<rsup|2><around*|(|\<zeta\>|)>|]>|)>.
+  </equation*>
+
+  Now, we get discrete (but infinitely many) variables that do not interact
+  with each other.
+
+  After decomposing the variables, we are to compute how the information can
+  propagate along the time <math|t>. That is, the Pearson coefficient between
+  <math|x<around*|(|t|)>> and <math|x<around*|(|t<rprime|'>|)>> for
+  <math|t,t<rprime|'>\<in\><around*|(|0,1|)>>. The linearity of expectation
+  and the Fourier series gives
+
+  <\equation*>
+    \<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>|]>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    exp<around*|(|\<mathi\> \<zeta\> t|)>\<bbb-E\><rsub|Q><around*|[|<wide|x|^><around*|(|\<zeta\>|)>|]>.
+  </equation*>
+
+  Since all variables are Gaussian with zero mean, we have
+  <math|\<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>|]>=0>. Also,
+
+  <\small>
+    <\align>
+      <tformat|<table|<row|<cell|\<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>
+      x<around*|(|t<rprime|'>|)>|]>=>|<cell|<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+      <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> \<bbb-E\><rsub|Q><around*|[|<wide|x|^><around*|(|\<zeta\>|)>
+      <wide|x|^><around*|(|\<zeta\><rprime|'>|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|{|\<bbb-E\><rsub|Q><around*|[|a<around*|(|\<zeta\>|)>
+      a<around*|(|\<zeta\><rprime|'>|)>|]>-\<bbb-E\><rsub|Q><around*|[|b<around*|(|\<zeta\>|)>
+      b<around*|(|\<zeta\><rprime|'>|)>|]>|}>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|{|\<bbb-E\><rsub|Q><around*|[|a<around*|(|\<zeta\>|)>
+      a<around*|(|\<zeta\><rprime|'>|)>|]>+\<bbb-E\><rsub|Q><around*|[|b<around*|(|\<zeta\>|)>
+      b<around*|(|\<zeta\><rprime|'>|)>|]>|}>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|{|\<bbb-E\><rsub|Q><around*|[|a<around*|(|\<zeta\>|)>
+      a<around*|(|\<zeta\><rprime|'>|)>|]>+\<bbb-E\><rsub|Q><around*|[|b<around*|(|\<zeta\>|)>
+      b<around*|(|\<zeta\><rprime|'>|)>|]>|}>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|{|\<bbb-E\><rsub|Q><around*|[|a<around*|(|\<zeta\>|)>
+      a<around*|(|\<zeta\><rprime|'>|)>|]>-\<bbb-E\><rsub|Q><around*|[|b<around*|(|\<zeta\>|)>
+      b<around*|(|\<zeta\><rprime|'>|)>|]>|}>.>>>>
+    </align>
+  </small>
+
+  The variances can be read from <math|p<around*|(|x|)>>, which gives
+
+  <\equation*>
+    \<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>
+    x<around*|(|t<rprime|'>|)>|]>=<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+    <frac|exp<around*|(|\<mathi\> \<zeta\>
+    <around*|(|t-t<rprime|'>|)>|)>|2\<beta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>+<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><frac|exp<around*|(|-\<mathi\>
+    \<zeta\> <around*|(|t-t<rprime|'>|)>|)>|2\<beta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    <frac|exp<around*|(|\<mathi\> \<zeta\>
+    <around*|(|t-t<rprime|'>|)>|)>|2\<beta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>.
+  </equation*>
+
+  So, the covariance is
+
+  <\equation*>
+    Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=\<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>
+    x<around*|(|t<rprime|'>|)>|]>-\<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>|]>
+    \<bbb-E\><rsub|Q><around*|[|x<around*|(|t<rprime|'>|)>|]>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    <frac|exp<around*|(|\<mathi\> \<zeta\>
+    <around*|(|t-t<rprime|'>|)>|)>|2\<beta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>.
+  </equation*>
+
+  This integral, which results in the Yukawa potential, is very tricky. The
+  key is noticing the following integral
+
+  <\equation*>
+    <big|int><rsub|0><rsup|x>\<mathd\>u exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
+    u|)>=<frac|1-exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
+    x|)>|\<omega\>\<pm\>\<mathi\>\<zeta\>>.
+  </equation*>
+
+  When <math|\<omega\>\<gtr\>0>, let <math|x\<rightarrow\>+\<infty\>>, we
+  find
+
+  <\equation*>
+    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
+    exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
+    u|)>=<frac|1|\<omega\>\<pm\>\<mathi\>\<zeta\>><around*|[|1-lim<rsub|u\<rightarrow\>+\<infty\>>exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
+    u|)>|]>=<frac|1|\<omega\>\<pm\>\<mathi\>\<zeta\>>.
+  </equation*>
+
+  This relation helps convert the denominator in the covariance to
+  exponential, as
+
+  <\equation*>
+    <frac|1|\<zeta\><rsup|2>+\<omega\><rsup|2>>=<frac|1|2\<omega\>>
+    <around*|[|<frac|1|\<omega\>+\<mathi\>\<zeta\>>+<frac|1|\<omega\>-\<mathi\>\<zeta\>>|]>=<frac|1|2\<omega\>><around*|[|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
+    exp<around*|(|-<around*|(|\<omega\>+\<mathi\>\<zeta\>|)>
+    u|)>+<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
+    exp<around*|(|-<around*|(|\<omega\>-\<mathi\>\<zeta\>|)> u|)>|]>.
+  </equation*>
+
+  Plugging into the covariance, and exchanging the integrals
+  <math|<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>> and
+  <math|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u>, we get
+
+  \;
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\> <frac|exp<around*|(|\<mathi\>
+    \<zeta\> <around*|(|t-t<rprime|'>|)>|)>|\<zeta\><rsup|2>+\<omega\><rsup|2>>=<frac|1|2\<omega\>><big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
+    exp<around*|(|-\<omega\>u|)> <around*|[|<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    exp<around*|(|\<mathi\> \<zeta\> <around*|(|t-t<rprime|'>-u|)>|)>+<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    exp<around*|(|\<mathi\> \<zeta\> <around*|(|t-t<rprime|'>+u|)>|)>|]>.
+  </equation*>
+
+  Integration of <math|\<zeta\>> turns to be Dirac's delta functions, which
+  result in <math|<around*|(|1/2\<omega\>|)> exp<around*|(|-\<omega\>
+  <around*|\||t-t<rprime|'>|\|>|)>>. So, <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<around*|(|4\<beta\>
+  \<omega\>|)><rsup|-1><rsub|> exp<around*|(|-\<omega\>
+  <around*|\||t-t<rprime|'>|\|>|)>> with <math|\<omega\>\<gtr\>0>, from which
+  the Pearson coefficient reads
+
+  <\equation*>
+    Person<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=exp<around*|(|-\<omega\>
+    <around*|\||t-t<rprime|'>|\|>|)>,
+  </equation*>
+
+  which decreases exponentially with <math|<around*|\||t-t<rprime|'>|\|>>.
+  The decay rate is <math|1/\<omega\>>. The system is scale-free, which means
+  the decay rate is infinity, only in the limit
+  <math|\<omega\>\<rightarrow\>0>. (Notice that the trick does not hold for
+  <math|\<omega\>=0>, so we cannot say <math|\<omega\>=0>, but
+  <math|\<omega\>\<rightarrow\>0>.) This is plausible, since the action
+  becomes scale-invariant in and only in the same limit.
+
+  <\equation*>
+    .
+  </equation*>
+
+  \ <subsection|Data Fitting Is Equivalent to Least-Action Principle of
   Distribution><label|section: Data Fitting Is Equivalent to Least-Action
   Principle of Distribution>
 
@@ -900,18 +1096,20 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2.3|6>>
-    <associate|auto-11|<tuple|2.4|6>>
-    <associate|auto-12|<tuple|2.5|7>>
-    <associate|auto-13|<tuple|2.6|8>>
+    <associate|auto-10|<tuple|2.2|6>>
+    <associate|auto-11|<tuple|2.3|6>>
+    <associate|auto-12|<tuple|2.4|7>>
+    <associate|auto-13|<tuple|2.5|8>>
+    <associate|auto-14|<tuple|2.6|?>>
+    <associate|auto-15|<tuple|2.6|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
-    <associate|auto-6|<tuple|1|4>>
-    <associate|auto-7|<tuple|2|4>>
-    <associate|auto-8|<tuple|2.1|4>>
-    <associate|auto-9|<tuple|2.2|5>>
+    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-7|<tuple|1|4>>
+    <associate|auto-8|<tuple|2|4>>
+    <associate|auto-9|<tuple|2.1|5>>
     <associate|equation:Ltot|<tuple|8|5>>
     <associate|equation:V extremum|<tuple|9|5>>
     <associate|equation:data-fitting iteration|<tuple|6|3>>
@@ -940,7 +1138,7 @@
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechamics|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
-    of Distribution|<tuple|1.4|3>>
+    of Distribution|<tuple|1.5|3>>
     <associate|section: Example: Extract Dynamics from Raw
     Data|<tuple|2.3|6>>
   </collection>
@@ -985,12 +1183,12 @@
       <no-break><pageref|auto-2>>
 
       <with|par-left|<quote|1tab>|1.2<space|2spc>A Brief Review of
-      Least-Action Principle in Classical Mechamics
+      Least-Action Principle in Classical Mechanics
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Least-Action Principle for
-      Distribution <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>Least-Action Principle of
+      Distribution Has No Redundancy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
       <with|par-left|<quote|1tab>|1.4<space|2spc>Data Fitting Is Equivalent

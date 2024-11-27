@@ -295,74 +295,93 @@
   Now, we get discrete (but infinitely many) variables that do not interact
   with each other.
 
-  After decomposing the variables, we are to compute how the information can
-  propagate along the time <math|t>. That is, the Pearson coefficient between
+  After decomposing the variables, we are to compute how far will the
+  information propagate along the time-axis. Pearson coefficient between
   <math|x<around*|(|t|)>> and <math|x<around*|(|t<rprime|'>|)>> for
-  <math|t,t<rprime|'>\<in\><around*|(|0,1|)>>. The linearity of expectation
-  and the Fourier series gives
+  <math|t,t<rprime|'>\<in\><around*|(|0,1|)>> is one quantity that
+  characterizes our purpose. It is defined as
+  <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>/<sqrt|Var<rsub|Q><around*|[|x<around*|(|t|)>|]>
+  Var<rsub|Q><around*|[|x<around*|(|t<rprime|'>|)>|]>>>. Since
+  <math|Var<rsub|Q><around*|[|x<around*|(|t|)>|]>=Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t|)>|)>>,
+  all we need to do is calculating the covariance. Inserting the Fourier
+  transform of <math|x<around*|(|t|)>>, the bi-linearity of covariance gives
 
   <\equation*>
-    \<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>|]>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    exp<around*|(|\<mathi\> \<zeta\> t|)>\<bbb-E\><rsub|Q><around*|[|<wide|x|^><around*|(|\<zeta\>|)>|]>.
+    Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\><rprime|'>
+    exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+    \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>.
   </equation*>
 
-  Since all variables are Gaussian with zero mean, we have
-  <math|\<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>|]>=0>. Also,
+  Then, we use the real variables <math|a<around*|(|\<zeta\>|)>> and
+  <math|b<around*|(|\<zeta\>|)>> for which
+  <math|\<zeta\>\<in\><around*|[|0,+\<infty\>|)>>. This will separate the
+  integral into four parts:
 
   <\small>
     <\align>
-      <tformat|<table|<row|<cell|\<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>
-      x<around*|(|t<rprime|'>|)>|]>=>|<cell|<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-      <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> \<bbb-E\><rsub|Q><around*|[|<wide|x|^><around*|(|\<zeta\>|)>
-      <wide|x|^><around*|(|\<zeta\><rprime|'>|)>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <tformat|<table|<row|<cell|>|<cell|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
       <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
       exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> <around*|{|\<bbb-E\><rsub|Q><around*|[|a<around*|(|\<zeta\>|)>
-      a<around*|(|\<zeta\><rprime|'>|)>|]>-\<bbb-E\><rsub|Q><around*|[|b<around*|(|\<zeta\>|)>
-      b<around*|(|\<zeta\><rprime|'>|)>|]>|}>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
       <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
       exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> <around*|{|\<bbb-E\><rsub|Q><around*|[|a<around*|(|\<zeta\>|)>
-      a<around*|(|\<zeta\><rprime|'>|)>|]>+\<bbb-E\><rsub|Q><around*|[|b<around*|(|\<zeta\>|)>
-      b<around*|(|\<zeta\><rprime|'>|)>|]>|}>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
       <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
       exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> <around*|{|\<bbb-E\><rsub|Q><around*|[|a<around*|(|\<zeta\>|)>
-      a<around*|(|\<zeta\><rprime|'>|)>|]>+\<bbb-E\><rsub|Q><around*|[|b<around*|(|\<zeta\>|)>
-      b<around*|(|\<zeta\><rprime|'>|)>|]>|}>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|-\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
       <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
       exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> <around*|{|\<bbb-E\><rsub|Q><around*|[|a<around*|(|\<zeta\>|)>
-      a<around*|(|\<zeta\><rprime|'>|)>|]>-\<bbb-E\><rsub|Q><around*|[|b<around*|(|\<zeta\>|)>
-      b<around*|(|\<zeta\><rprime|'>|)>|]>|}>.>>>>
+      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|-\<zeta\><rprime|'>|)>|)>.>>>>
     </align>
   </small>
 
-  The variances can be read from <math|p<around*|(|x|)>>, which gives
+  Before replacing <math|<wide|x|^><around*|(|\<zeta\>|)>> by
+  <math|a<around*|(|\<zeta\>|)>+\<mathi\>b<around*|(|\<zeta\>|)>>, notice
+  that <math|a<around*|(|-\<zeta\>|)>=a<around*|(|\<zeta\>|)>> and
+  <math|b<around*|(|-\<zeta\>|)>=-b<around*|(|\<zeta\>|)>>, as a result of
+  <math|<wide|x|^><around*|(|-\<zeta\>|)>=<wide|<wide|x|^><around*|(|\<zeta\>|)>|\<bar\>>>.
+  Then we have, for example, <math|Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>-\<mathi\>
+  b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>+\<mathi\>
+  b<around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-\<mathi\>Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+\<mathi\>Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>>.
+  But since <math|a> and <math|b> are independent, we get
+  <math|Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>=0>,
+  and then <math|Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>>.
+  The same derivations for the rest three terms, and we find
+
+  <\small>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)><around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>.>>>>
+    </align>
+  </small>
+
+  The covariances can be read from <math|p<around*|(|x|)>>, as
+  <math|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>=\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>/<around*|[|2\<beta\>
+  <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>|]>>. The same for
+  <math|Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>>.
+  So, we arrive at
 
   <\equation*>
-    \<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>
-    x<around*|(|t<rprime|'>|)>|]>=<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+    Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
     <frac|exp<around*|(|\<mathi\> \<zeta\>
-    <around*|(|t-t<rprime|'>|)>|)>|2\<beta\>
+    <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
     <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>+<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><frac|exp<around*|(|-\<mathi\>
-    \<zeta\> <around*|(|t-t<rprime|'>|)>|)>|2\<beta\>
+    \<zeta\> <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
     <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
     <frac|exp<around*|(|\<mathi\> \<zeta\>
-    <around*|(|t-t<rprime|'>|)>|)>|2\<beta\>
-    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>.
-  </equation*>
-
-  So, the covariance is
-
-  <\equation*>
-    Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=\<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>
-    x<around*|(|t<rprime|'>|)>|]>-\<bbb-E\><rsub|Q><around*|[|x<around*|(|t|)>|]>
-    \<bbb-E\><rsub|Q><around*|[|x<around*|(|t<rprime|'>|)>|]>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    <frac|exp<around*|(|\<mathi\> \<zeta\>
-    <around*|(|t-t<rprime|'>|)>|)>|2\<beta\>
+    <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
     <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>.
   </equation*>
 
@@ -412,23 +431,27 @@
 
   Integration of <math|\<zeta\>> turns to be Dirac's delta functions, which
   result in <math|<around*|(|1/2\<omega\>|)> exp<around*|(|-\<omega\>
-  <around*|\||t-t<rprime|'>|\|>|)>>. So, <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<around*|(|4\<beta\>
+  <around*|\||t-t<rprime|'>|\|>|)>>. So, <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<around*|(|2\<beta\>
   \<omega\>|)><rsup|-1><rsub|> exp<around*|(|-\<omega\>
   <around*|\||t-t<rprime|'>|\|>|)>> with <math|\<omega\>\<gtr\>0>, from which
   the Pearson coefficient reads
 
   <\equation*>
-    Person<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=exp<around*|(|-\<omega\>
+    Pearson<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=exp<around*|(|-\<omega\>
     <around*|\||t-t<rprime|'>|\|>|)>,
   </equation*>
 
   which decreases exponentially with <math|<around*|\||t-t<rprime|'>|\|>>.
-  The decay rate is <math|1/\<omega\>>. The system is scale-free, which means
-  the decay rate is infinity, only in the limit
-  <math|\<omega\>\<rightarrow\>0>. (Notice that the trick does not hold for
-  <math|\<omega\>=0>, so we cannot say <math|\<omega\>=0>, but
+  The decay rate is <math|1/\<omega\>>.
+
+  Only in the limit <math|\<omega\>\<rightarrow\>0> is the system scale-free,
+  which means the decay rate is infinity. (Notice that the trick does not
+  hold for <math|\<omega\>=0>, so we cannot say <math|\<omega\>=0>, but
   <math|\<omega\>\<rightarrow\>0>.) This is plausible, since the action
-  becomes scale-invariant in and only in the same limit.
+  becomes scale-invariant in and only in the same limit, where there is no
+  dimensional constant (<math|\<omega\>> has dimension
+  <math|<around*|[|t|]><rsup|-1>>). So, an educated guess is that a system is
+  scale-free if and only if the action is scale-invariant.
 
   <\equation*>
     .
@@ -1084,6 +1107,33 @@
   t<rprime|'>>=\<delta\><rsup|t t<rprime|'>> exp<around*|(|\<gamma\> t/T|)>>
   (index is the frame number <math|t>, see section <reference|section:
   Example: Extract Dynamics from Raw Data>).
+
+  <subsection|>
+
+  Consider the Euler-Lagrange equation
+
+  <\equation*>
+    <frac|\<mathd\>|\<mathd\>t><frac|\<partial\>L|\<partial\><wide|x|\<dot\>>><around*|(|x,<wide|x|\<dot\>>,t|)>-<frac|\<partial\>L|\<partial\>x><around*|(|x,<wide|x|\<dot\>>,t|)>=0.
+  </equation*>
+
+  Then, we have
+
+  <\equation*>
+    <frac|\<partial\><rsup|2>L|\<partial\><wide|x|\<dot\>>\<partial\><wide|x|\<dot\>>><wide|x|\<ddot\>>+<frac|\<partial\><rsup|2>L|\<partial\>x\<partial\><wide|x|\<dot\>>><wide|x|\<dot\>>+<frac|\<partial\><rsup|2>L|\<partial\><wide|x|\<dot\>>\<partial\>t>-<frac|\<partial\>L|\<partial\>x>=0.
+  </equation*>
+
+  To make <math|<wide|x|\<ddot\>>> disappear, we must have
+  <math|\<partial\><rsup|2>L/\<partial\><wide|x|\<dot\>><rsup|2>=0>, this
+  implies <math|L<around*|(|x,<wide|x|\<dot\>>,t|)>=<wide|x|\<dot\>>
+  f<around*|(|x,t|)>+g<around*|(|x,t|)>>. But then,
+
+  <\equation*>
+    \<partial\><rsub|x>f<around*|(|x,t|)>
+    <wide|x|\<dot\>>+\<partial\><rsub|t>f<around*|(|x,t|)>-\<partial\><rsub|x>f<around*|(|x,t|)>
+    <wide|x|\<dot\>>-\<partial\><rsub|x>g<around*|(|x,t|)>=\<partial\><rsub|t>f<around*|(|x,t|)>-\<partial\><rsub|x>g<around*|(|x,t|)>=0.
+  </equation*>
+
+  The <math|<wide|x|\<dot\>>> disappears also.
 </body>
 
 <\initial>
@@ -1097,50 +1147,50 @@
   <\collection>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|2.2|6>>
-    <associate|auto-11|<tuple|2.3|6>>
-    <associate|auto-12|<tuple|2.4|7>>
+    <associate|auto-11|<tuple|2.3|7>>
+    <associate|auto-12|<tuple|2.4|8>>
     <associate|auto-13|<tuple|2.5|8>>
-    <associate|auto-14|<tuple|2.6|?>>
-    <associate|auto-15|<tuple|2.6|?>>
+    <associate|auto-14|<tuple|2.6|9>>
+    <associate|auto-15|<tuple|2.7|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
     <associate|auto-6|<tuple|1.5|4>>
-    <associate|auto-7|<tuple|1|4>>
-    <associate|auto-8|<tuple|2|4>>
-    <associate|auto-9|<tuple|2.1|5>>
-    <associate|equation:Ltot|<tuple|8|5>>
-    <associate|equation:V extremum|<tuple|9|5>>
-    <associate|equation:data-fitting iteration|<tuple|6|3>>
-    <associate|equation:data-fitting result|<tuple|7|4>>
-    <associate|equation:eom and action|<tuple|11|8>>
-    <associate|equation:generic density|<tuple|4|3>>
+    <associate|auto-7|<tuple|1|5>>
+    <associate|auto-8|<tuple|2|6>>
+    <associate|auto-9|<tuple|2.1|6>>
+    <associate|equation:Ltot|<tuple|8|7>>
+    <associate|equation:V extremum|<tuple|9|7>>
+    <associate|equation:data-fitting iteration|<tuple|6|5>>
+    <associate|equation:data-fitting result|<tuple|7|5>>
+    <associate|equation:eom and action|<tuple|11|9>>
+    <associate|equation:generic density|<tuple|4|4>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
-    <associate|equation:partition function|<tuple|5|3>>
-    <associate|figure: Least-Action|<tuple|1|4>>
+    <associate|equation:partition function|<tuple|5|4>>
+    <associate|figure: Least-Action|<tuple|1|5>>
     <associate|footnote-1|<tuple|1|2>>
-    <associate|footnote-2|<tuple|2|3>>
-    <associate|footnote-3|<tuple|3|3>>
-    <associate|footnote-4|<tuple|4|5>>
-    <associate|footnote-5|<tuple|5|6>>
-    <associate|footnote-6|<tuple|6|8>>
-    <associate|footnote-7|<tuple|7|9>>
+    <associate|footnote-2|<tuple|2|4>>
+    <associate|footnote-3|<tuple|3|5>>
+    <associate|footnote-4|<tuple|4|7>>
+    <associate|footnote-5|<tuple|5|8>>
+    <associate|footnote-6|<tuple|6|9>>
+    <associate|footnote-7|<tuple|7|10>>
     <associate|footnr-1|<tuple|1|2>>
-    <associate|footnr-2|<tuple|2|3>>
-    <associate|footnr-3|<tuple|3|3>>
-    <associate|footnr-4|<tuple|4|5>>
-    <associate|footnr-5|<tuple|5|6>>
-    <associate|footnr-6|<tuple|6|8>>
-    <associate|footnr-7|<tuple|7|9>>
+    <associate|footnr-2|<tuple|2|4>>
+    <associate|footnr-3|<tuple|3|5>>
+    <associate|footnr-4|<tuple|4|7>>
+    <associate|footnr-5|<tuple|5|8>>
+    <associate|footnr-6|<tuple|6|9>>
+    <associate|footnr-7|<tuple|7|10>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechamics|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
-    of Distribution|<tuple|1.5|3>>
+    of Distribution|<tuple|1.5|4>>
     <associate|section: Example: Extract Dynamics from Raw
-    Data|<tuple|2.3|6>>
+    Data|<tuple|2.3|7>>
   </collection>
 </references>
 
@@ -1171,7 +1221,7 @@
       <with|mode|<quote|math>|x<rsub|1>> a local minimum of
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>, and
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>> is
-      optimized to be the dashed green curve.>|<pageref|auto-6>>
+      optimized to be the dashed green curve.>|<pageref|auto-7>>
     </associate>
     <\associate|toc>
       1<space|2spc>Least-Action Principle
@@ -1191,38 +1241,42 @@
       Distribution Has No Redundancy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Data Fitting Is Equivalent
-      to Least-Action Principle of Distribution
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Example: a Very Simple
+      Stochastic Model <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Data Fitting Is Equivalent
+      to Least-Action Principle of Distribution
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
+
       2<space|2spc>Drafts <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7>
+      <no-break><pageref|auto-8>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>Stochastic Harmonic
       Oscillator <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-8>>
+      <no-break><pageref|auto-9>>
 
       <with|par-left|<quote|1tab>|2.2<space|2spc>Maximum-Entropy and
       Least-Action Are Saddle Point of a Functional (TODO)
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <no-break><pageref|auto-10>>
 
       <with|par-left|<quote|1tab>|2.3<space|2spc>Example: Extract Dynamics
       from Raw Data <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
+      <no-break><pageref|auto-11>>
 
       <with|par-left|<quote|1tab>|2.4<space|2spc>Example: Feed-Forward Neural
       Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
+      <no-break><pageref|auto-12>>
 
       <with|par-left|<quote|1tab>|2.5<space|2spc>TODO: Structures in Nature
       Arise from Maximum-Entropy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
+      <no-break><pageref|auto-13>>
 
       <with|par-left|<quote|1tab>|2.6<space|2spc>TODO: Is There an Action for
       a Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13>>
+      <no-break><pageref|auto-14>>
     </associate>
   </collection>
 </auxiliary>

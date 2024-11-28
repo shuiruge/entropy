@@ -453,8 +453,8 @@
     holds for any <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n\<times\>n>|)>>,
     thus <math|><math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>.
   </footnote> These conclusions are to be used in section <reference|section:
-  Detailed Balance Condition for Langevin Dynamics Lacks Source-Free Degree
-  of Freedom>.
+  Detailed Balance Condition for Langevin Process Lacks Source-Free Degree of
+  Freedom>.
 
   <subsection|Master Equation of Langevin Process Is Fokker-Planck Equation>
 
@@ -524,7 +524,8 @@
   <math|\<nu\>> is called <strong|free of source> or <strong|source-free>.
 
   <subsection|Detailed Balance Condition for Langevin Process Lacks
-  Source-Free Degree of Freedom>
+  Source-Free Degree of Freedom><label|section: Detailed Balance Condition
+  for Langevin Process Lacks Source-Free Degree of Freedom>
 
   After discussing stationary distribution of Fokker-Planck equation (as a
   master equation), we continue investigate when will Langevin process relax
@@ -694,7 +695,7 @@
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
     <associate|section: Detailed Balance Condition for Langevin Process Lacks
-    Source-Free Degree of Freedom|<tuple|1.7|5>>
+    Source-Free Degree of Freedom|<tuple|1.7|?>>
     <associate|section: Kramers-Moyal Expansion and Langevin
     Process|<tuple|1|1>>
     <associate|section: Spatial Expansion of Master Equation Gives

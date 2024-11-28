@@ -150,7 +150,7 @@
   non-negativity of <math|q<rsub|\<Delta\>t>> implies
   <math|r<around*|(|x,y|)>\<geqslant\>0> when <math|x\<neq\>y>. Since
   <math|p> is a density function of distribution, and density function is
-  defined to be positive (see section <reference|section: A Short Review of
+  defined to be positive (see section <reference|section: A Brief Review of
   Probability>), the equation <reference|equation:discrete time master
   equation v0> must conserve this positivity. We are to show that this is
   guaranteed by the master equation itself, without any extra condition
@@ -1128,39 +1128,39 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|4>>
-    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-6|<tuple|1.5|5>>
     <associate|auto-7|<tuple|1.6|6>>
-    <associate|auto-8|<tuple|1.7|8>>
-    <associate|auto-9|<tuple|1.8|9>>
+    <associate|auto-8|<tuple|1.7|9>>
+    <associate|auto-9|<tuple|1.8|10>>
     <associate|equation:Detailed Balance|<tuple|6|4>>
     <associate|equation:Detailed Balance for transition density|<tuple|7|4>>
-    <associate|equation:circle|<tuple|13|9>>
-    <associate|equation:define stationary density function|<tuple|12|9>>
+    <associate|equation:circle|<tuple|13|10>>
+    <associate|equation:define stationary density function|<tuple|12|10>>
     <associate|equation:discrete time master equation|<tuple|4|2>>
     <associate|equation:discrete time master equation v0|<tuple|2|1>>
-    <associate|equation:equation:metropolis-hastings|<tuple|10|8>>
+    <associate|equation:equation:metropolis-hastings|<tuple|10|9>>
     <associate|equation:master equation|<tuple|3|2>>
     <associate|equation:master equation v0|<tuple|2|1>>
-    <associate|equation:metropolis-hastings origin|<tuple|11|8>>
+    <associate|equation:metropolis-hastings origin|<tuple|11|9>>
     <associate|equation:relative entropy derivative|<tuple|9|5>>
     <associate|equation:transition density normalization|<tuple|1|1>>
     <associate|equation:transition rate determines transition
     density|<tuple|5|3>>
     <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|5>>
-    <associate|footnote-3|<tuple|3|5>>
+    <associate|footnote-3|<tuple|3|6>>
     <associate|footnote-4|<tuple|4|7>>
-    <associate|footnote-5|<tuple|5|?>>
+    <associate|footnote-5|<tuple|5|8>>
     <associate|footnr-1|<tuple|1|3>>
     <associate|footnr-2|<tuple|2|5>>
-    <associate|footnr-3|<tuple|3|5>>
+    <associate|footnr-3|<tuple|3|6>>
     <associate|footnr-4|<tuple|4|7>>
-    <associate|footnr-5|<tuple|5|?>>
+    <associate|footnr-5|<tuple|5|8>>
     <associate|section: Detailed Balance Condition and Connectivity
-    Monotonically Reduce Relative Entropy|<tuple|1.5|4>>
+    Monotonically Reduce Relative Entropy|<tuple|1.5|5>>
     <associate|section: Detailed Balance Provides Stationary
     Distribution|<tuple|1.4|4>>
-    <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|8>>
+    <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|9>>
     <associate|section: Master Equation Describes the Evolution of Markov
     Process|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative

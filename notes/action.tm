@@ -19,7 +19,7 @@
 
   <subsection|A Brief Review of Least-Action Principle in Classical
   Mechanics><label|section: A Brief Review of Least-Action Principle in
-  Classical Mechamics>
+  Classical Mechanics>
 
   In physics, least-action principle gives the dynamics of the state of an
   evolutionary system, determining how it evolves with time. The state of an
@@ -519,45 +519,44 @@
   Distribution><label|section: Data Fitting Is Equivalent to Least-Action
   Principle of Distribution>
 
-  We are to figure out method to fit the real world distribution
-  <math|Q<around*|(|y|)>>, given some samples of <math|Q<around*|(|y|)>>. For
-  simplicity, we omit the condition <math|y> throughout this section.
+  Given a collection of real world data, we are to find a distribution that
+  fits the data. These data can be seen as samples from an unknown
+  distribution which characterizes the real world. We are to figure out a
+  method to fit the real world distribution by given some samples of it.
 
-  Let <math|S<around*|(|x,\<theta\>|)>> represent a parametrized function. We
-  have a density function
+  Let <math|P<around*|(|\<theta\>|)>> represent a parametrized distribution
+  with parameters <math|\<theta\>>. From its density function,
+  <math|p<around*|(|\<cdummy\>,\<theta\>|)>>, we get a parameterized action
+  <math|S<around*|(|\<cdummy\>,\<theta\>|)>> such that
 
   <\equation>
-    p<around*|(|x,\<theta\>|)>\<assign\>exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>/Z<around*|(|\<theta\>|)>,<label|equation:generic
+    p<around*|(|x,\<theta\>|)>=exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>/Z<around*|(|\<theta\>|)>,<label|equation:generic
     density>
   </equation>
 
-  where
+  where <math|Z<around*|(|\<theta\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
+  exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>> for ensuring the
+  normalization <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
+  p<around*|(|x,\<theta\>|)>=1>. This is consistent with the action defined
+  in section <reference|section: Least-Action Principle of Distribution Has
+  No Redundancy>, except that the action here is parameterized, and that we
+  omit the constant <math|\<beta\>> since it is irrelevant throughout this
+  section.
 
-  <\equation>
-    Z<around*|(|\<theta\>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    p<rsub|0><around*|(|x|)> exp<around*|(|-V<around*|(|x,\<theta\>|)>|)><label|equation:partition
-    function>
-  </equation>
-
-  for ensuring the normalization <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
-  p<around*|(|x,\<theta\>|)>=1>. What we have is an empirical distribution
-  <math|Q>.<\footnote>
-    The empirical distribution <math|Q> can be represented by either a
-    collection of datum <math|<around*|{|x<rsub|k>\|k=1,\<ldots\>,N|}>>, or a
-    distribution a the density function approximated by the Gaussian mixture
-    density <math|q<around*|(|x|)>\<assign\><around*|(|1/N|)>
-    <big|sum><rsub|x\<in\>Q>G<rsub|\<sigma\>><around*|(|x|)>>, where
-    <math|G<rsub|\<sigma\>><around*|(|x|)>> is Gaussian with zero mean and
-    variance <math|\<sigma\><rsup|2>>, and <math|0\<less\>\<sigma\>\<ll\>1>.
-  </footnote> And we are to adjust the parameters <math|\<theta\>> so that
-  <math|P<around*|(|\<theta\>|)>> (the distribution of the density function
-  <math|p<around*|(|\<cdummy\>,\<theta\>|)>>) mimics the empirical
-  distribution <math|Q>. To do so, we minimize the relative entropy between
-  <math|Q> and <math|P<around*|(|\<theta\>|)>>, which is defined as
+  What we have is a collection of data, sampled from an unknown distribution
+  <math|Q>. And we are to adjust the parameters <math|\<theta\>> so that
+  <math|P<around*|(|\<theta\>|)>> approximates <math|Q>. To do so, we
+  minimize the relative entropy between <math|Q> and
+  <math|P<around*|(|\<theta\>|)>>, which is defined as
   <math|H<around*|(|Q,P<around*|(|\<theta\>|)>|)>\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
   q<around*|(|x|)> ln <around*|(|q<around*|(|x|)>/p<around*|(|x,\<theta\>|)>|)>>.
-  Plugging equation <reference|equation:generic density> into
-  <math|H<around*|(|Q,P<around*|(|\<theta\>|)>|)>>, we have
+  This expression is formal. Since we do not know the density function of
+  <math|Q>, all that we can do with <math|Q> is computing the expectation
+  <math|\<bbb-E\><rsub|Q><around*|[|f|]>=<around*|(|1/<around*|\||Q|\|>|)><big|sum><rsub|x\<in\>Q>f<around*|(|x|)>>
+  for any function <math|f>, where we use <math|Q> as a set of data. With
+  this realization, we have, after plugging equation
+  <reference|equation:generic density> into
+  <math|H<around*|(|Q,P<around*|(|\<theta\>|)>|)>>,
 
   <\equation*>
     H<around*|(|Q,P<around*|(|\<theta\>|)>|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -574,8 +573,10 @@
     q<around*|(|x|)> S<around*|(|x,\<theta\>|)>+ln Z<around*|(|\<theta\>|)>.
   </equation*>
 
-  We can find the <math|\<theta\><rsub|\<star\>>\<assign\>argmin L> by
-  iteratively updating <math|\<theta\>> along the direction
+  The parameters that minimize <math|L<around*|(|\<theta\>|)>> also minimize
+  <math|H<around*|(|Q,P<around*|(|\<theta\>|)>|)>>, and vice versa. We can
+  find the <math|\<theta\><rsub|\<star\>>\<assign\>argmin L> by iteratively
+  updating <math|\<theta\>> along the direction
   <math|-\<partial\>L/\<partial\>\<theta\>>. To calculate
   <math|-\<partial\>L/\<partial\>\<theta\>>, we start at
 
@@ -614,6 +615,8 @@
     result>
   </equation>
 
+  \;
+
   It can be read from equation <reference|equation:data-fitting iteration>
   that minimizing <math|L> is to increase
   <math|S<around*|(|\<cdummy\>,\<theta\>|)>> on the sampled points (the first
@@ -651,8 +654,72 @@
   defines <math|P<around*|(|\<theta\>|)>> describes the interaction between
   the different components of an entity. This entity may be of physics, like
   a collection of particles. But it can also be words, genes, flock of birds,
-  and so on. For example, we can find out how words \Pinteract\Q with each
-  other.
+  and so on.
+
+  As an example, if we want to get the action that characterizes the
+  stochastic dynamics of starling flocks, we take movies for many flocks.
+  Each movie is a series of frames that log the positions of each bird at
+  each time instant. These movies provide the real world data. The
+  parameterized action <math|S> can be expressed by a neural network. Then,
+  iterating by equation <reference|equation:data-fitting iteration> until
+  <math|<around*|\<\|\|\>|\<partial\>L/\<partial\>\<theta\>|\<\|\|\>>> has
+  been small enough gives an <math|S<around*|(|\<cdummy\>,\<theta\><rsub|\<star\>>|)>>
+  that mimics the stochastic dynamics of starling flocks. To compute the
+  expectation <math|\<bbb-E\><rsub|P<around*|(|\<theta\>|)>><around*|[|\<ldots\>|]>>
+  in equation <reference|equation:data-fitting iteration>, we can employ
+  Monte-Carlo simulation with the transition rate satisfying detailed balance
+  condition with <math|P<around*|(|\<theta\>|)>> as the stationary
+  distribution. For continuous random variables, Monte-Carlo simulation with
+  Langevin dynamics (section <reference|section: Detailed Balance Condition
+  for Langevin Process Lacks Source-Free Degree of Freedom>) is efficient;
+  and for discrete random variables, Metropolis-Hastings (section
+  <reference|section: Example: Metropolis-Hastings Algorithm>) is available.
+
+  <subsection|Structures in Nature Arise from Least-Action Principle>
+
+  There are many structures in nature. The structure of vascular system is a
+  simple instance. A more complicated structure appears in the bases along
+  chromosome. Why does these structures arise in nature?
+
+  The vascular system is fine-tuned so as to minimize the frictional loss.
+  The chromosome that determines the phenotype of an organism is also
+  fine-tuned such that the disorder is minimal. These examples indicate that
+  structure appears in minimizing cost.
+
+  Early in 1997, physicist Geoffrey West, ecologist James Brown, and
+  biologist Brian Enquist proposed a theory (now it is called WBE theory)
+  that explains how the fractal structures arise in vascular system of
+  mammals.<\footnote>
+    <with|font-shape|italic|A General Model for the Origin of Allometric
+    Scaling Laws in Biology>. DOI: 10.1126/SCIENCE.276.5309.122
+  </footnote> To do so, they <em|derived> an objective that quantifies the
+  cost of transporting blood. They found that the fractal structure of
+  vascular appears naturally by minimizing this cost. Also arises the
+  power-law relationship between the basal metabolic rate and the body size
+  of mammal, which was first observed by Max Kleiber in 1930 and now named by
+  <hlink|Kleiber's law|https://en.wikipedia.org/wiki/Kleiber%27s_law>. Later,
+  they applied their theory to many areas that has no superficial
+  relationship with biology, such as gross domestic product of city, and
+  predicted the correct value of power-law index. In WBE theory, the system
+  under consideration has to be \Plarge\Q, in the sense that the
+  configuration (defined in section <reference|section: A Brief Review of
+  Least-Action Principle in Classical Mechanics>) has a large number of
+  components. Interestingly, the quantitative results obtained by minimizing
+  the cost are also held by a large variety of phenomena in nature. For
+  example, different phenomena may share the same power-law index. This
+  property is called <strong|universality>.
+
+  Inspired by WBE theory, we regard the cost as an action. Instead of
+  deriving a cost/action as WBE does, we can use the technique declared in
+  section <reference|section: Data Fitting Is Equivalent to Least-Action
+  Principle of Distribution> to reveal one if we have obtained sufficiently
+  many observed data. In machine learning perspective, data fitting is also
+  seen as pattern mining. It reveals the statistically significant patterns
+  hidden in the data. These patterns are the structures frequently appear in
+  nature, and they locate in the minima of an objective, as WBE theory
+  claimed, an action.
+
+  TODO
 </body>
 
 <\initial>
@@ -671,22 +738,20 @@
     <associate|auto-5|<tuple|1.4|3>>
     <associate|auto-6|<tuple|1.5|5>>
     <associate|auto-7|<tuple|1|6>>
-    <associate|equation:data-fitting iteration|<tuple|6|6>>
-    <associate|equation:data-fitting result|<tuple|7|6>>
+    <associate|auto-8|<tuple|1.6|7>>
+    <associate|equation:data-fitting iteration|<tuple|5|6>>
+    <associate|equation:data-fitting result|<tuple|6|6>>
     <associate|equation:generic density|<tuple|4|5>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
-    <associate|equation:partition function|<tuple|5|5>>
     <associate|figure: Least-Action|<tuple|1|6>>
     <associate|footnote-1|<tuple|1|2>>
-    <associate|footnote-2|<tuple|2|5>>
-    <associate|footnote-3|<tuple|3|6>>
+    <associate|footnote-2|<tuple|2|7>>
     <associate|footnr-1|<tuple|1|2>>
-    <associate|footnr-2|<tuple|2|5>>
-    <associate|footnr-3|<tuple|3|6>>
+    <associate|footnr-2|<tuple|2|7>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
-    Mechamics|<tuple|1.2|1>>
+    Mechanics|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
     of Distribution|<tuple|1.5|5>>
     <associate|section: Least-Action Principle of Distribution Has No
@@ -750,6 +815,10 @@
       to Least-Action Principle of Distribution
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Structures in Nature Arise
+      from Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
     </associate>
   </collection>
 </auxiliary>

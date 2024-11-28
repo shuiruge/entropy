@@ -168,7 +168,9 @@
   distribution (the correspondence of real world datum in statistical
   mechanics), with nothing redundant.
 
-  <subsection|Least-Action Principle of Distribution Has No Redundancy>
+  <subsection|Least-Action Principle of Distribution Has No
+  Redundancy><label|section: Least-Action Principle of Distribution Has No
+  Redundancy>
 
   Dynamics in classical mechanics are always deterministic. That is, once the
   initial conditions (for initial value problem) or the boundaries (for
@@ -232,10 +234,37 @@
   <math|q>), without any redundancy. This is the direct implication that
   distribution involves more information than its most likely datum.
 
-  <subsection|Example: a Very Simple Stochastic Model>
+  <subsection|Example: How Far Will Information Propagate in a Stochastic
+  System?>
 
-  We are to construct a stochastic model that is sufficiently simple to make
-  analytical calculation. Consider the density function
+  We are to construct a stochastic system to examine how far will information
+  propagate from one side of the system to the other. For example, consider a
+  <math|3>-dimensional random variable <math|X=<around*|(|X<rsup|1>,X<rsup|2>,X<rsup|3>|)>>
+  in which there are interactions between <math|X<rsup|1>> and
+  <math|X<rsup|2>>, and between <math|X<rsup|2>> and <math|X<rsup|3>>, but
+  not (directly) between <math|X<rsup|1>> and <math|X<rsup|3>>. It means that
+  the action <math|S<around*|(|x|)>> that characterizes the distribution of
+  <math|X> (see section <reference|section: Least-Action Principle of
+  Distribution Has No Redundancy>) has the property that
+  <math|\<partial\><rsub|1>\<partial\><rsub|2>S<around*|(|x|)>> and
+  <math|\<partial\><rsub|2>\<partial\><rsub|3>S<around*|(|x|)>> are not
+  always zero but <math|\<partial\><rsub|1>\<partial\><rsub|3>S<around*|(|x|)>>
+  is Even though, there is indirect interaction between <math|X<rsup|1>> and
+  <math|X<rsup|3>>, through <math|X<rsup|2>>. But, this is not like
+  deterministic system, such as a string, where information from one side can
+  be safely propagated to the other side. Stochastic system has randomness.
+  Information of <math|X<rsup|1>> is propagated to <math|X<rsup|2>> by the
+  interaction between them. But, before propagating from <math|X<rsup|2>> to
+  <math|X<rsup|3>>, the information will be interrupted by the stochastic
+  fluctuation of <math|X<rsup|2>>. So, the information of <math|X<rsup|1>>
+  shrinks when it arrives at <math|X<rsup|3>>. It is how rumor spreads among
+  people: rumor soon changes its face, becoming anything but itself. We
+  wonder, if the propagation continues, along the chain of interaction, how
+  far will it arrive before completely lost?
+
+  We are to examine this on an explicit stochastic system. The system shall
+  be sufficiently simple so as to make analytical calculation. Consider the
+  density function
 
   <\equation*>
     q<around*|(|x|)>\<propto\>exp<around*|(|-<frac|\<beta\>|2>
@@ -245,14 +274,14 @@
 
   This action is not that of harmonic oscillator since the boundaries are not
   completely fixed (this is the key of simplification) and the time runs over
-  <math|\<bbb-R\>>.
+  <math|\<bbb-R\>>. It turns out that discrete system is more complicated
+  than this.
 
   We follow the general strategy of dealing with integral that has
-  derivatives in integrand: Fourier transform. By Fourier transform, we can
-  decompose the interaction caused by derivative
-  <math|<wide|x|\<dot\>><around*|(|t|)>> into independent variables. By
-  denoting <math|<wide|x|^><around*|(|\<zeta\>|)>\<in\>\<bbb-C\>> the Fourier
-  coefficient of <math|x>,
+  derivatives in integrand: Fourier transform, by which we can decompose the
+  interaction caused by derivative <math|<wide|x|\<dot\>><around*|(|t|)>>
+  into independent variables. Denoting <math|<wide|x|^><around*|(|\<zeta\>|)>\<in\>\<bbb-C\>>
+  as the Fourier coefficient of <math|x>, we have
 
   <\equation*>
     <big|int><rsub|\<bbb-R\>>\<mathd\>t <wide|x|\<dot\>><rsup|2><around*|(|t|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>t
@@ -269,7 +298,9 @@
   exp<around*|(|i k t|)>=\<delta\><around*|(|k|)>>. Since
   <math|x<around*|(|t|)>> is real, we have
   <math|<wide|x|^><around*|(|-\<zeta\>|)>=<wide|<wide|x|^><around*|(|\<zeta\>|)>|\<bar\>>>,
-  thus
+  and only the <math|<wide|x|^><around*|(|\<zeta\>|)>>s with
+  <math|\<zeta\>\<in\><around*|[|0,+\<infty\>|)>> are independent variables.
+  Thus,
 
   <\equation*>
     <big|int><rsub|\<bbb-R\>>\<mathd\>t <wide|x|\<dot\>><rsup|2><around*|(|t|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
@@ -282,7 +313,8 @@
   x<rsup|2><around*|(|t|)>=2 <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
   <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>>. In addition, we
   decompose the complex number <math|<wide|x|^><around*|(|\<zeta\>|)>=a<around*|(|\<zeta\>|)>+\<mathi\>
-  b<around*|(|\<zeta\>|)>> with <math|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\>|)>\<in\>\<bbb-R\>>.
+  b<around*|(|\<zeta\>|)>> with <math|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\>|)>\<in\>\<bbb-R\>>,
+  thus <math|<around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>=a<rsup|2><around*|(|\<zeta\>|)>+b<rsup|2><around*|(|\<zeta\>|)>>.
   Altogether, we find
 
   <\equation*>
@@ -367,11 +399,36 @@
     </align>
   </small>
 
-  The covariances can be read from <math|p<around*|(|x|)>>, as
-  <math|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>=\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>/<around*|[|2\<beta\>
-  <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>|]>>. The same for
-  <math|Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>>.
-  So, we arrive at
+  The covariances can be read from <math|p<around*|(|x|)>>. To do so, we
+  discretize the expression in the exponential of <math|p<around*|(|x|)>>, as
+
+  <\equation*>
+    -\<beta\><big|sum><rsub|n=0><rsup|+\<infty\>>\<Delta\>\<zeta\>
+    <around*|(|\<zeta\><rsub|n><rsup|2>+\<omega\><rsup|2>|)>
+    <around*|[|a<rsup|2><around*|(|\<zeta\><rsub|n>|)>+b<rsup|2><around*|(|\<zeta\><rsub|n>|)>|]>,
+  </equation*>
+
+  where <math|\<zeta\><rsub|n>\<assign\>n \<Delta\>\<zeta\>.> As a normal
+  distribution, the covariance <math|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\><rsub|n>|)>,a<around*|(|\<zeta\><rsub|n<rprime|'>>|)>|)>=\<delta\><rsub|n,n<rprime|'>>/<around*|[|2\<beta\>
+  \<Delta\>\<zeta\> <around*|(|\<zeta\><rsub|n><rsup|2>+\<omega\><rsup|2>|)>|]>>.
+  When <math|\<Delta\>\<zeta\>\<rightarrow\>0>,
+  <math|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>> becomes Dirac's
+  delta function <math|\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>>.
+  This can be realized as follow. For any function <math|f>, we have
+  <math|f<around*|(|\<zeta\><rsub|n<rprime|'>>|)>=<big|sum><rsub|n>f<around*|(|\<zeta\><rsub|n>|)>
+  \<delta\><rsub|n,n<rprime|'>>=<big|sum><rsub|n>\<Delta\>\<zeta\>
+  f<around*|(|\<zeta\><rsub|n>|)> <around*|(|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>|)>>,
+  which becomes <math|<big|int>\<mathd\>\<zeta\> f<around*|(|\<zeta\>|)>
+  \<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>> as
+  <math|\<Delta\>\<zeta\>\<rightarrow\>0>. Thus,
+  <math|<around*|(|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>|)>> is
+  recognized as <math|\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>>.
+  So, we get <math|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>=\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>/<around*|[|2\<beta\>
+  <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>|]>>. The same,
+  <math|Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>=\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>/<around*|[|2\<beta\>
+  <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>|]>>. Plugging these to
+  <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>,
+  the first and the last lines vanish, and we arrive at
 
   <\equation*>
     Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
@@ -445,19 +502,15 @@
   The decay rate is <math|1/\<omega\>>.
 
   Only in the limit <math|\<omega\>\<rightarrow\>0> is the system scale-free,
-  which means the decay rate is infinity. (Notice that the trick does not
-  hold for <math|\<omega\>=0>, so we cannot say <math|\<omega\>=0>, but
-  <math|\<omega\>\<rightarrow\>0>.) This is plausible, since the action
-  becomes scale-invariant in and only in the same limit, where there is no
+  which means the information can propagate to the edge of the system (which
+  is infinity in our case). This is plausible, since the action becomes
+  scale-invariant in and only in the same limit, where there is no
   dimensional constant (<math|\<omega\>> has dimension
-  <math|<around*|[|t|]><rsup|-1>>). So, an educated guess is that a system is
-  scale-free if and only if the action is scale-invariant.
+  <math|<around*|[|t|]><rsup|-1>>). So, an educated guess is that a
+  stochastic system is scale-free if and only if the action is
+  scale-invariant.
 
-  <\equation*>
-    .
-  </equation*>
-
-  \ <subsection|Data Fitting Is Equivalent to Least-Action Principle of
+  <subsection|Data Fitting Is Equivalent to Least-Action Principle of
   Distribution><label|section: Data Fitting Is Equivalent to Least-Action
   Principle of Distribution>
 
@@ -1146,51 +1199,53 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|2.2|6>>
+    <associate|auto-10|<tuple|2.2|7>>
     <associate|auto-11|<tuple|2.3|7>>
     <associate|auto-12|<tuple|2.4|8>>
-    <associate|auto-13|<tuple|2.5|8>>
+    <associate|auto-13|<tuple|2.5|9>>
     <associate|auto-14|<tuple|2.6|9>>
-    <associate|auto-15|<tuple|2.7|?>>
+    <associate|auto-15|<tuple|2.7|11>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
-    <associate|auto-6|<tuple|1.5|4>>
-    <associate|auto-7|<tuple|1|5>>
+    <associate|auto-6|<tuple|1.5|5>>
+    <associate|auto-7|<tuple|1|6>>
     <associate|auto-8|<tuple|2|6>>
     <associate|auto-9|<tuple|2.1|6>>
     <associate|equation:Ltot|<tuple|8|7>>
     <associate|equation:V extremum|<tuple|9|7>>
     <associate|equation:data-fitting iteration|<tuple|6|5>>
     <associate|equation:data-fitting result|<tuple|7|5>>
-    <associate|equation:eom and action|<tuple|11|9>>
-    <associate|equation:generic density|<tuple|4|4>>
+    <associate|equation:eom and action|<tuple|11|10>>
+    <associate|equation:generic density|<tuple|4|5>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
-    <associate|equation:partition function|<tuple|5|4>>
-    <associate|figure: Least-Action|<tuple|1|5>>
+    <associate|equation:partition function|<tuple|5|5>>
+    <associate|figure: Least-Action|<tuple|1|6>>
     <associate|footnote-1|<tuple|1|2>>
-    <associate|footnote-2|<tuple|2|4>>
+    <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|5>>
     <associate|footnote-4|<tuple|4|7>>
     <associate|footnote-5|<tuple|5|8>>
-    <associate|footnote-6|<tuple|6|9>>
+    <associate|footnote-6|<tuple|6|10>>
     <associate|footnote-7|<tuple|7|10>>
     <associate|footnr-1|<tuple|1|2>>
-    <associate|footnr-2|<tuple|2|4>>
+    <associate|footnr-2|<tuple|2|5>>
     <associate|footnr-3|<tuple|3|5>>
     <associate|footnr-4|<tuple|4|7>>
     <associate|footnr-5|<tuple|5|8>>
-    <associate|footnr-6|<tuple|6|9>>
+    <associate|footnr-6|<tuple|6|10>>
     <associate|footnr-7|<tuple|7|10>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechamics|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
-    of Distribution|<tuple|1.5|4>>
+    of Distribution|<tuple|1.5|5>>
     <associate|section: Example: Extract Dynamics from Raw
     Data|<tuple|2.3|7>>
+    <associate|section: Least-Action Principle of Distribution Has No
+    Redundancy|<tuple|1.3|?>>
   </collection>
 </references>
 
@@ -1277,6 +1332,10 @@
       <with|par-left|<quote|1tab>|2.6<space|2spc>TODO: Is There an Action for
       a Dynamical System? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-14>>
+
+      <with|par-left|<quote|1tab>|2.7<space|2spc>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-15>>
     </associate>
   </collection>
 </auxiliary>

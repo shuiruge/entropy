@@ -679,7 +679,7 @@
 
   There are many structures in nature. The structure of vascular system is a
   simple instance. A more complicated structure appears in the bases along
-  chromosome. Why does these structures arise in nature?
+  chromosome. Why do these structures arise in nature?
 
   The vascular system is fine-tuned so as to minimize the frictional loss.
   The chromosome that determines the phenotype of an organism is also

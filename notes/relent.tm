@@ -61,7 +61,7 @@
   p<around*|(|y,z|)>> if <math|X> is of continuum, and the same for mass
   function. We <strong|marginalize> <math|Z> so as to get <math|P<rsub|Y>>.
 
-  <subsection|Shannon Entropy Is Plausible for Discrete Variable>
+  <subsection|Shannon Entropy Is Plausible for Discrete Random Variable>
 
   The Shannon entropy is well-defined for discrete random variable. Let
   <math|X> a discrete random variables with alphabet

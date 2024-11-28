@@ -853,15 +853,15 @@
   where, by master equation <reference|equation:master equation>,
   <math|<around*|(|\<partial\>/\<partial\>t|)> ln
   p<around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|x,y|)>
-  p<around*|(|y,t|)>/p<around*|(|x,t|)>>. The same for
-  <math|\<Delta\>H<rsub|1>>, which results in
+  p<around*|(|y,t|)>/p<around*|(|x,t|)>>. For <math|\<Delta\>H<rsub|2>>, we
+  insert equation <reference|equation:relative entropy derivative> after
+  Taylor expanding <math|q<rsub|\<Delta\>t>> by <math|\<Delta\>t>, and obtain
 
   <\equation*>
-    \<Delta\>H<rsub|2>=\<Delta\>t <frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>+\<omicron\><around*|(|\<Delta\>t|)>,
+    \<Delta\>H<rsub|2>=\<Delta\>t <frac|\<mathd\>|\<mathd\>t>H<around*|(|P<around*|(|t|)>,\<Pi\>|)>+\<omicron\><around*|(|\<Delta\>t|)>.
   </equation*>
 
-  where we have inserted equation <reference|equation:relative entropy
-  derivative>. We find <math|\<Delta\>H<rsub|1>> converges with speed
+  We find <math|\<Delta\>H<rsub|1>> converges with speed
   <math|\<Delta\>t<rsup|2>> while <math|\<Delta\>H<rsub|2>> has speed
   <math|\<Delta\>t>.
 

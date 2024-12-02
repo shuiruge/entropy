@@ -191,10 +191,10 @@
   For any density function <math|q<around*|(|x|)>> and any
   <math|\<beta\>\<gtr\>0>, we can always define
 
-  <\equation*>
+  <\equation>
     S<around*|(|x|)>\<assign\>-*<around*|(|1/\<beta\>|)> ln
-    q<around*|(|x|)>+const,
-  </equation*>
+    q<around*|(|x|)>+const,<label|equation:action of distribution>
+  </equation>
 
   up to an arbitrary constant. Thus, <math|q<around*|(|x|)>=exp<around*|(|-\<beta\>
   S<around*|(|x|)>|)>/Z> where <math|Z\<assign\><big|int><rsub|\<cal-X\>>\<mathd\>x
@@ -511,9 +511,7 @@
   example, the Wilson-Fisher fixed point is an instance where the stochastic
   system is scale-free but the action is not scale-invariant (see <hlink|this
   post|https://physics.stackexchange.com/questions/360989/are-fixed-points-of-rg-evolution-really-scale-invariant>).
-  It arises from the stochastic property of the system, thus ceases in the
-  limit <math|\<beta\>\<rightarrow\>+\<infty\>>, in which the system reduces
-  to be deterministic.
+  We will examine this in section TODO.
 
   <subsection|Data Fitting Is Equivalent to Least-Action Principle of
   Distribution><label|section: Data Fitting Is Equivalent to Least-Action
@@ -538,10 +536,9 @@
   exp<around*|(|-S<around*|(|x,\<theta\>|)>|)>> for ensuring the
   normalization <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
   p<around*|(|x,\<theta\>|)>=1>. This is consistent with the action defined
-  in section <reference|section: Least-Action Principle of Distribution Has
-  No Redundancy>, except that the action here is parameterized, and that we
-  omit the constant <math|\<beta\>> since it is irrelevant throughout this
-  section.
+  by equation <reference|equation:action of distribution>, except that the
+  action here is parameterized, and that we omit the constant <math|\<beta\>>
+  since it is irrelevant throughout this section.
 
   What we have is a collection of data, sampled from an unknown distribution
   <math|Q>. And we are to adjust the parameters <math|\<theta\>> so that
@@ -675,16 +672,11 @@
   and for discrete random variables, Metropolis-Hastings (section
   <reference|section: Example: Metropolis-Hastings Algorithm>) is available.
 
-  <subsection|Structures in Nature Arise from Least-Action Principle>
+  <subsection|Structures in Nature May Arise from Least-Action Principle>
 
   There are many structures in nature. The structure of vascular system is a
   simple instance. A more complicated structure appears in the bases along
   chromosome. Why do these structures arise in nature?
-
-  The vascular system is fine-tuned so as to minimize the frictional loss.
-  The chromosome that determines the phenotype of an organism is also
-  fine-tuned such that the disorder is minimal. These examples indicate that
-  structure appears in minimizing cost.
 
   Early in 1997, physicist Geoffrey West, ecologist James Brown, and
   biologist Brian Enquist proposed a theory (now it is called WBE theory)
@@ -698,16 +690,9 @@
   power-law relationship between the basal metabolic rate and the body size
   of mammal, which was first observed by Max Kleiber in 1930 and now named by
   <hlink|Kleiber's law|https://en.wikipedia.org/wiki/Kleiber%27s_law>. Later,
-  they applied their theory to many areas that has no superficial
-  relationship with biology, such as gross domestic product of city, and
-  predicted the correct value of power-law index. In WBE theory, the system
-  under consideration has to be \Plarge\Q, in the sense that the
-  configuration (defined in section <reference|section: A Brief Review of
-  Least-Action Principle in Classical Mechanics>) has a large number of
-  components. Interestingly, the quantitative results obtained by minimizing
-  the cost are also held by a large variety of phenomena in nature. For
-  example, different phenomena may share the same power-law index. This
-  property is called <strong|universality>.
+  they applied their theory to many areas that have no superficial
+  relationship with biology, such as gross domestic product of city. They
+  successfully predicted some observed quantities in these areas.
 
   Inspired by WBE theory, we regard the cost as an action. Instead of
   deriving a cost/action as WBE does, we can use the technique declared in
@@ -719,7 +704,172 @@
   nature, and they locate in the minima of an objective, as WBE theory
   claimed, an action.
 
+  An interesting aspect of WBE theory is that the quantitative results
+  obtained by minimizing the cost in one system are also held by a large
+  variety of systems in nature. For example, different systems may share the
+  same power-law index. This property is called <strong|universality>. Where
+  does univerality come from?
+
+  In 1975, physcist Mitchell Feigenbaum computed two constants, now named as
+  Feigenbaum constants, when he was studying the logistic map. Then in the
+  late of 1970s, physicsts found that Feigenbaum constants also appear in
+  many other areas such as turbulence and Mandelbrot set: Feigenbaum
+  constants are universal. Feigenbaum himself gave a \Pproof\Q of how this
+  universality appears. The technique he used was invented by his collage in
+  Cornell University, Kenneth Wilson, called renormalization group. With this
+  technique, Feigenbaum constructed a functional iterative equation, and
+  found his constants as the Taylor coefficients of the non-trivial fixed
+  point of the functional iterative equation. But, Feigenbaum said little
+  about where this functional iterative equation comes from. He neither gave
+  a rigerous derivation of the equation, nor argued why this equation holds
+  also for other systems.
+
+  Generally, universality comes from a \Pcomplex\Q system, a system whose
+  configuration (defined in section <reference|section: A Brief Review of
+  Least-Action Principle in Classical Mechanics>) has a large number of
+  components, such as starling flocks or ant colony. In such systems, each
+  component can only interact with several \Pneighbors\Q. But, when a local
+  perturbation (for example, caused by a predator) appears, its information
+  soon propagates throughout the whole system, and the system reacts to the
+  perturbation as a large complex organism, which is where the name
+  \Pcomplex\Q emerges. Phenomenon that information propagates throughout the
+  whole system without decay is called <strong|criticality>. This is
+  important for starling flocks or ant colony to survive, and the cost will
+  be strongly related to the appearance of criticality.
+
   TODO
+
+  <subsection|Example: Action of Feed-forward Neural Network and More>
+
+  In deep learning, a feed-forward network is a supervised model that
+  computes the output <math|y\<in\>\<bbb-R\><rsup|n<rsub|L>>> from input
+  <math|x\<in\>\<bbb-R\><rsup|n<rsub|0>>>. To do so, it computes a series of
+  intermediate quantities called hidden variables
+  <math|<around*|(|h<rsub|1>,\<ldots\>,h<rsub|L-1>|)>> with
+  <math|h<rsub|l>\<in\>\<bbb-R\><rsup|n<rsub|l>>> iteratively by
+
+  <\equation>
+    h<rsub|l+1>=f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>,<label|equation:feed-forward
+    neural network>
+  </equation>
+
+  where <math|f<around*|(|\<cdummy\>,\<theta\><rsub|l>|)>:\<bbb-R\><rsup|n<rsub|l-1>>\<rightarrow\>\<bbb-R\><rsup|n<rsub|l>>>
+  with <math|\<theta\><rsub|l>> its parameters. By denoting
+  <math|h<rsub|0>\<assign\>x> and <math|h<rsub|L>\<assign\>y>, we have
+  <math|l\<in\><around*|{|0,\<ldots\>,L|}>>.
+
+  To investigate feed-forward neural network under probabilistic perspective,
+  we have to construct the distribution of random variables
+  <math|<around*|(|H<rsub|0>,\<ldots\>,H<rsub|L>|)>> where <math|H<rsub|l>>
+  denotes the output of the <math|l>-th layer, <math|H<rsub|0>> the input,
+  and <math|H<rsub|L>> the output. We assume that <math|H<rsub|l+1>> obeys
+  the normal distribution with mean given by the deterministic iteration and
+  a fixed variance <math|\<epsilon\>> (shared for all components of
+  <math|H<rsub|l+1>>), as
+
+  <\equation>
+    H<rsub|l+1>\<sim\><with|font|cal|N><around*|(|f<around*|(|H<rsub|l>,\<theta\><rsub|l+1>|)>,\<epsilon\>|)>,<label|equation:gaussianity>
+  </equation>
+
+  where <math|<with|font|cal|N><around*|(|\<mu\>,\<sigma\><rsup|2>|)>>
+  denotes a normal distribution with mean <math|\<mu\>> and variance
+  <math|\<sigma\><rsup|2>>. It has the conditional density function
+
+  <\equation*>
+    q<around*|(|h<rsub|l+1>\|h<rsub|l>|)>=<around*|(|<frac|1|<sqrt|<around*|(|2\<mathpi\>|)>
+    \<epsilon\>><rsup|>>|)><rsup|n<rsub|l+1>>\<times\>exp<around*|(|-<frac|<around*|(|h<rsub|l+1>-f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>|2
+    \<epsilon\>>|)>.
+  </equation*>
+
+  To obtain the whole density function, we first notice that
+  <math|q<around*|(|h<rsub|1>\|h<rsub|0>|)>
+  q<around*|(|h<rsub|0>|)>=q<around*|(|h<rsub|0>,h<rsub|1>|)>>. And since
+  <math|q<around*|(|h<rsub|2>\|h<rsub|1>|)>> is not explicitly dependent on
+  <math|h<rsub|0>>, <math|q<around*|(|h<rsub|2>\|h<rsub|1>|)>=q<around*|(|h<rsub|2>\|h<rsub|0>,h<rsub|1>|)>>
+  holds for any <math|h<rsub|0>>. Then, <math|q<around*|(|h<rsub|2>\|h<rsub|1>|)>q<around*|(|h<rsub|1>\|h<rsub|0>|)>
+  q<around*|(|h<rsub|0>|)>=q<around*|(|h<rsub|2>\|h<rsub|0>,h<rsub|1>|)>
+  q<around*|(|h<rsub|0>,h<rsub|1>|)>=q<around*|(|h<rsub|0>,h<rsub|1>,h<rsub|2>|)>>.
+  Repeating this step, we will find
+
+  <\equation*>
+    q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>|)>=q<around*|(|h<rsub|L>\|h<rsub|L-1>|)>\<cdots\>q<around*|(|h<rsub|1>\|h<rsub|0>|)>
+    q<around*|(|h<rsub|0>|)>.
+  </equation*>
+
+  Plugging in <math|q<around*|(|h<rsub|l+1>\|h<rsub|l>|)>> and explicitly put
+  <math|\<theta\>> into <math|q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>|)>>,
+  we arrive at
+
+  <\equation*>
+    -ln q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>,\<theta\>|)>=<frac|1|2
+    \<epsilon\>><big|sum><rsub|l=0><rsup|L-1><around*|(|h<rsub|l+1>-f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>+const.
+  </equation*>
+
+  By equation <reference|equation:action of distribution> (setting
+  <math|\<beta\>=1>), the action of feed-forward neural network is recognized
+  as
+
+  <\equation*>
+    S<around*|(|h,\<theta\>|)>=<frac|1|2 \<epsilon\>><big|sum><rsub|l=0><rsup|L-1><around*|(|h<rsub|l+1>-f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>.
+  </equation*>
+
+  \;
+
+  We are to compare this action with that appearing in classical mechanics.
+  To do so, we introduce <math|g<around*|(|x,\<theta\>|)>\<assign\><around*|(|f<around*|(|x,\<theta\>|)>-x|)>/\<epsilon\>>,
+  thus <math|h<rsub|l+1>=h<rsub|l>+\<epsilon\>
+  g<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>>. It is recognized as residual
+  structure in deep learning, which was proposed by Kaiming He and others in
+  2015 for dealing with the issues caused by increasing the number of layers,
+  <math|L>. So, equivalently,
+
+  <\equation*>
+    -ln q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>,\<theta\>|)>=<frac|\<epsilon\>|2><big|sum><rsub|l=0><rsup|L-1><around*|(|<frac|h<rsub|l+1>-h<rsub|l>|\<epsilon\>>-g<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>.
+  </equation*>
+
+  Comparing with classical mechanics, we can interpret <math|\<epsilon\>> as
+  a tiny time interval and <math|<around*|(|h<rsub|l+1>-h<rsub|l>|)>/\<epsilon\>>
+  as \Pvelocity\Q. It motives us to consider its continuous version
+
+  <\equation*>
+    -ln q<around*|(|h|)>=<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
+    <around*|[|<wide|h|\<dot\>><around*|(|t|)>-g<around*|(|h<around*|(|t|)>,t|)>|]><rsup|2>,
+  </equation*>
+
+  where we have replaced <math|\<epsilon\>> by <math|\<mathd\>t>,
+  <math|<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>|)>> by
+  <math|h<around*|(|t|)>> with <math|t\<in\><around*|[|0,1|]>>, and absorbed
+  <math|\<theta\><around*|(|t|)>> into <math|g> so as to make it comparable
+  with classical mechanics. To get the Lagrange <math|L>, which is defined by
+  <math|S<around*|(|h|)>=<big|int><rsub|0><rsup|1>\<mathd\>t
+  L<around*|(|h<around*|(|t|)>,<wide|h|\<dot\>><around*|(|t|)>,t|)>>, we
+  expand the integrand and find
+
+  <\equation*>
+    L<around*|(|h,<wide|h|\<dot\>>,t|)>=<frac|1|2><wide|h|\<dot\>><rsup|2>-<wide|h|\<dot\>>
+    g<around*|(|h,t|)>+<frac|1|2>g<rsup|2><around*|(|h,t|)>.
+  </equation*>
+
+  Euler-Lagrange equation <math|<around*|(|\<mathd\>/\<mathd\>t|)>\<partial\>L/\<partial\><wide|h|\<dot\>>=\<partial\>L/\<partial\>h>
+  gives
+
+  <\equation*>
+    <wide|h|\<ddot\>>=g<around*|(|h,t|)>+\<partial\><rsub|t>g<around*|(|h,t|)>.
+  </equation*>
+
+  When the feed-forward neural network shares weights crossing layers,
+  <math|g<around*|(|h,t|)>> will be independent of <math|t>, and we will get
+  <math|<wide|h|\<ddot\>>=g<around*|(|h|)>>, a typical second-order equation
+  of motion with the \Pforce\Q <math|g>.
+
+  This action, however, can be applied to many other areas that are
+  irrelevant to machine learning, since equation
+  <reference|equation:feed-forward neural network> is much more general. The
+  assumption of Gaussianity <reference|equation:gaussianity> together with
+  interpreting its variance as time interval reminds us of the Langevin
+  dynamics (see section <reference|section: Transition Density of Langevin
+  Process Is Approximately Gaussian>) where the Wiener process is Gaussian
+  with variance <math|\<mathd\>t>. TODO
 </body>
 
 <\initial>
@@ -739,9 +889,13 @@
     <associate|auto-6|<tuple|1.5|5>>
     <associate|auto-7|<tuple|1|6>>
     <associate|auto-8|<tuple|1.6|7>>
-    <associate|equation:data-fitting iteration|<tuple|5|6>>
-    <associate|equation:data-fitting result|<tuple|6|6>>
-    <associate|equation:generic density|<tuple|4|5>>
+    <associate|auto-9|<tuple|1.7|7>>
+    <associate|equation:action of distribution|<tuple|4|?>>
+    <associate|equation:data-fitting iteration|<tuple|6|6>>
+    <associate|equation:data-fitting result|<tuple|7|6>>
+    <associate|equation:feed-forward neural network|<tuple|8|?>>
+    <associate|equation:gaussianity|<tuple|9|?>>
+    <associate|equation:generic density|<tuple|5|5>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
@@ -819,6 +973,10 @@
       <with|par-left|<quote|1tab>|1.6<space|2spc>Structures in Nature Arise
       from Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Action of
+      Feed-forward Neural Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
     </associate>
   </collection>
 </auxiliary>

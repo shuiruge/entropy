@@ -1,6 +1,6 @@
 <TeXmacs|2.1.4>
 
-<style|generic>
+<style|book>
 
 <\body>
   <section|Drafts>
@@ -531,10 +531,196 @@
   </equation*>
 
   The <math|<wide|x|\<dot\>>> disappears also.
+
+  But, if consider a real Lagrangian with complex coordinates, for example,
+
+  <\equation*>
+    L<around*|(|z,<wide|z|\<bar\>>,<wide|z|\<dot\>>,<wide|<wide|z|\<bar\>>|\<dot\>>,t|)>=<frac|\<mathi\>|2><around*|(|<wide|z|\<bar\>>
+    <wide|z|\<dot\>>-<wide|<wide|z|\<bar\>>|\<dot\>>
+    z|)>-f<around*|(|z,<wide|z|\<bar\>>|)>,
+  </equation*>
+
+  for some <math|a\<in\>\<bbb-R\>>. Then, we have
+
+  <\equation*>
+    <frac|\<partial\>L|\<partial\><wide|z|\<dot\>>>=<frac|\<mathi\>
+    <wide|z|\<bar\>>|2>
+  </equation*>
+
+  and
+
+  <\equation*>
+    <frac|\<partial\>L|\<partial\>z>=-<frac|\<mathi\>
+    <wide|<wide|z|\<bar\>>|\<dot\>>|2>-\<partial\>f<around*|(|z,<wide|z|\<bar\>>|)>,
+  </equation*>
+
+  thus Euler-Lagrange equation
+
+  <\equation*>
+    <frac|\<mathd\>|\<mathd\>t><frac|\<partial\>L|\<partial\><wide|z|\<dot\>>>-<frac|\<partial\>L|\<partial\>z>=\<mathi\>
+    <wide|<wide|z|\<bar\>>|\<dot\>>+\<partial\><rsub|>f<around*|(|z,<wide|z|\<bar\>>|)>.
+  </equation*>
+
+  The same for variation on <math|<wide|z|\<bar\>>>, which gives
+
+  <\equation*>
+    <frac|\<mathd\>|\<mathd\>t><frac|\<partial\>L|\<partial\><wide|<wide|z|\<bar\>>|\<dot\>>>-<frac|\<partial\>L|\<partial\><wide|z|\<bar\>>>=-\<mathi\>
+    <wide|z|\<dot\>>+<wide|\<partial\>|\<bar\>>f<around*|(|z,<wide|z|\<bar\>>|)>.
+  </equation*>
+
+  Then, for making them equal, demand that
+  <math|<wide|\<partial\>|\<bar\>>f<around*|(|z,<wide|z|\<bar\>>|)>> is a
+  real function of <math|z>. This calls for a symmetry between <math|z> and
+  <math|<wide|z|\<bar\>>> in <math|f>, such as
+  <math|f<around*|(|z,<wide|z|\<bar\>>|)>=g<around*|(|z|)>
+  g<around*|(|<wide|z|\<bar\>>|)>> that gives
+  <math|<wide|g<rprime|'><around*|(|z|)>|\<bar\>>=g<rprime|'><around*|(|<wide|z|\<bar\>>|)>>.
+  If <math|g<rprime|'>> is a real polynomial, then this relation holds. In
+  this case, the two equations conjugate to each other, and we get only one
+  restriction to the variables.
+
+  Interestingly, since <math|g<rprime|'>> is a real polynomial,
+  <math|\<mathi\> <wide|z|\<dot\>>=g<rprime|'><around*|(|<wide|z|\<bar\>>|)>>
+
+  Going back to real variables, consider multiple variables, for example,
+
+  <\equation*>
+    L<around*|(|x,y,<wide|x|\<dot\>>,<wide|y|\<dot\>>,t|)>=<wide|x|\<dot\>>
+    f<around*|(|y,t|)>+<wide|y|\<dot\>> g<around*|(|x,t|)>+h<around*|(|x,y,t|)>.
+  </equation*>
+
+  We have,
+
+  <\equation*>
+    <frac|\<mathd\>|\<mathd\>t><frac|\<partial\>L|\<partial\><wide|x|\<dot\>>>-<frac|\<partial\>L|\<partial\>x>=<around*|[|\<partial\><rsub|y>f<around*|(|y,t|)>-\<partial\><rsub|x>g<around*|(|x,t|)>|]>
+    <wide|y|\<dot\>>+\<partial\><rsub|t>f<around*|(|y,t|)>-\<partial\><rsub|x>h<around*|(|x,y,t|)>=0
+  </equation*>
+
+  and
+
+  <\equation*>
+    <frac|\<mathd\>|\<mathd\>t><frac|\<partial\>L|\<partial\><wide|y|\<dot\>>>-<frac|\<partial\>L|\<partial\>y>=<around*|[|\<partial\><rsub|x>g<around*|(|x,t|)>-\<partial\><rsub|y>f<around*|(|y,t|)>|]>
+    <wide|x|\<dot\>>+\<partial\><rsub|t>g<around*|(|x,t|)>-\<partial\><rsub|y>h<around*|(|x,y,t|)>=0.
+  </equation*>
+
+  The first order terms <math|<wide|x|\<dot\>>> and <math|<wide|y|\<dot\>>>
+  survive as long as <math|\<partial\><rsub|x>g<around*|(|x,t|)>\<neq\>\<partial\><rsub|y>f<around*|(|y,t|)>>.
+  The only possibility that <math|\<partial\><rsub|x>g<around*|(|x,t|)>\<equiv\>\<partial\><rsub|y>f<around*|(|y,t|)>>
+  is that <math|g<around*|(|x,t|)>=a<around*|(|t|)> x+b<around*|(|t|)>> and
+  <math|f<around*|(|y,t|)>=a<around*|(|t|)> x+c<around*|(|t|)>>.
+
+  <subsection|Feed-forward Neural Network>
+
+  The deterministic feed-forward neural network satisfies the iterative
+  relation
+
+  <\equation*>
+    h<rsub|l+1>=f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>,
+  </equation*>
+
+  where <math|f<around*|(|\<cdummy\>,\<theta\><rsub|l>|)>:\<bbb-R\><rsup|n<rsub|l-1>>\<rightarrow\>\<bbb-R\><rsup|n<rsub|l>>>
+  with <math|\<theta\><rsub|l>\<assign\><around*|(|W<rsub|l>,b<rsub|l>|)>>.
+  The initial value <math|h<rsub|0>=x> is the input.
+
+  To investigate feed-forward neural network under probabilistic perspective,
+  we have to construct the distribution of random variables
+  <math|<around*|(|H<rsub|0>,\<ldots\>,H<rsub|L>|)>> where <math|H<rsub|l>>
+  denotes the output of <math|l>-th layer, <math|H<rsub|0>> is the input, and
+  <math|H<rsub|L>> is the output. Based on the deterministic iteration, we
+  can construct a probabilistic version by assuming that <math|H<rsub|l+1>>
+  obeys the normal distribution with mean given by the deterministic
+  iteration and a fixed variance <math|\<epsilon\>> (shared for all
+  components of <math|H<rsub|l+1>>)
+
+  <\equation*>
+    H<rsub|l+1>\<sim\><with|font|cal|N><around*|(|f<around*|(|H<rsub|l>,\<theta\><rsub|l+1>|)>,\<epsilon\>|)>.
+  </equation*>
+
+  So, the conditional density function
+
+  <\equation*>
+    q<around*|(|h<rsub|l+1>\|h<rsub|l>|)>=<around*|(|<frac|1|<sqrt|<around*|(|2\<mathpi\>|)>
+    \<epsilon\>><rsup|>>|)><rsup|n<rsub|l+1>>\<times\>exp<around*|(|-<frac|<around*|(|h<rsub|l+1>-f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>|2
+    \<epsilon\>>|)>.
+  </equation*>
+
+  To obtain the whole density function, we first notice that
+  <math|q<around*|(|h<rsub|1>\|h<rsub|0>|)>
+  q<around*|(|h<rsub|0>|)>=q<around*|(|h<rsub|0>,h<rsub|1>|)>>. Since
+  <math|q<around*|(|h<rsub|2>\|h<rsub|1>|)>> is not explicitly dependent on
+  <math|h<rsub|0>>, <math|q<around*|(|h<rsub|2>\|h<rsub|1>|)>\<equiv\>q<around*|(|h<rsub|2>\|h<rsub|0>,h<rsub|1>|)>>
+  holds for any <math|h<rsub|0>>. Then,
+
+  <\equation*>
+    q<around*|(|h<rsub|2>\|h<rsub|1>|)>q<around*|(|h<rsub|1>\|h<rsub|0>|)>
+    q<around*|(|h<rsub|0>|)>=q<around*|(|h<rsub|2>\|h<rsub|0>,h<rsub|1>|)>
+    q<around*|(|h<rsub|0>,h<rsub|1>|)>=q<around*|(|h<rsub|0>,h<rsub|1>,h<rsub|2>|)>.
+  </equation*>
+
+  Repeating this step, we will find
+
+  <\equation*>
+    q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>|)>=q<around*|(|h<rsub|L>\|h<rsub|L-1>|)>\<cdots\>q<around*|(|h<rsub|1>\|h<rsub|0>|)>
+    q<around*|(|h<rsub|0>|)>.
+  </equation*>
+
+  Plugging in <math|q<around*|(|h<rsub|l+1>\|h<rsub|l>|)>> and add
+  <math|\<theta\>> to <math|q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>|)>>, we
+  arrive at
+
+  <\equation*>
+    -ln q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>,\<theta\>|)>=<frac|1|2
+    \<epsilon\>><big|sum><rsub|l=0><rsup|L-1><around*|(|h<rsub|l+1>-f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>.
+  </equation*>
+
+  If the feed-forward neural network has a residual structure defined as
+  <math|h<rsub|l+1>=h<rsub|l>+\<epsilon\>
+  g<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>>, that is,
+  <math|g<around*|(|x,\<theta\>|)>\<assign\><around*|(|f<around*|(|x,\<theta\>|)>-x|)>/\<epsilon\>>,
+  then we have
+
+  <\equation*>
+    -ln q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>,\<theta\>|)>=<frac|\<epsilon\>|2><big|sum><rsub|l=0><rsup|L-1><around*|(|<frac|h<rsub|l+1>-h<rsub|l>|\<epsilon\>>-g<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>,
+  </equation*>
+
+  where <math|<around*|(|h<rsub|l+1>-h<rsub|l>|)>/\<epsilon\>> can be
+  explained as \Pvelocity\Q with <math|\<epsilon\>> a tiny time interval. The
+  continuous version would be
+
+  <\equation*>
+    -ln q<around*|(|h,t|)>=<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
+    <around*|[|<wide|h|\<dot\>><around*|(|t|)>-g<around*|(|h<around*|(|t|)>,t|)>|]><rsup|2>,
+  </equation*>
+
+  where we have absorbed <math|\<theta\><around*|(|t|)>> to <math|g> for
+  making it comparable with an action in classical mechanics. Expanding the
+  integrand, we find <math|-ln q<around*|(|h,t|)>=<big|int><rsub|0><rsup|1>\<mathd\>t
+  L<around*|(|h<around*|(|t|)>,<wide|h|\<dot\>><around*|(|t|)>,t|)>> with
+
+  <\equation*>
+    L<around*|(|h,<wide|h|\<dot\>>,t|)>=<frac|1|2><wide|h|\<dot\>><rsup|2>-<wide|h|\<dot\>>
+    g<around*|(|h,t|)>+<frac|1|2>g<rsup|2><around*|(|h,t|)>.
+  </equation*>
+
+  The Euler-Lagrange equation is
+
+  <\equation*>
+    <wide|h|\<ddot\>>=g<around*|(|h,t|)>+\<partial\><rsub|t>g<around*|(|h,t|)>.
+  </equation*>
+
+  When the feed-forward neural network shares weights crossing layers, then
+  <math|g<around*|(|h,t|)>> is independent of <math|t>, resulting in
+
+  <\equation*>
+    <wide|h|\<ddot\>>=g<around*|(|h|)>.
+  </equation*>
+
+  \;
 </body>
 
 <\initial>
   <\collection>
+    <associate|bg-color|#c7edcc>
     <associate|page-medium|paper>
   </collection>
 </initial>
@@ -546,12 +732,13 @@
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
-    <associate|auto-6|<tuple|1.5|4>>
+    <associate|auto-6|<tuple|1.5|3>>
     <associate|auto-7|<tuple|1.6|4>>
     <associate|auto-8|<tuple|1.7|5>>
-    <associate|equation:Ltot|<tuple|1|2>>
+    <associate|auto-9|<tuple|1.8|6>>
+    <associate|equation:Ltot|<tuple|1|1>>
     <associate|equation:V extremum|<tuple|2|2>>
-    <associate|equation:eom and action|<tuple|4|5>>
+    <associate|equation:eom and action|<tuple|4|4>>
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|4>>
@@ -568,9 +755,8 @@
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Drafts>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-1><vspace|0.5fn>
+      1<space|2spc>Drafts <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-1>
 
       <with|par-left|<quote|1tab>|1.1<space|2spc>Stochastic Harmonic
       Oscillator <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
@@ -600,6 +786,10 @@
       <with|par-left|<quote|1tab>|1.7<space|2spc>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|1.8<space|2spc>Feed-forward Neural Network
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
     </associate>
   </collection>
 </auxiliary>

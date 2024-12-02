@@ -157,7 +157,8 @@
   <with|font-series|bold|Kramers\UMoyal expansion>.
 
   <subsection|Transition Density of Langevin Process Is Approximately
-  Gaussian>
+  Gaussian><label|section: Transition Density of Langevin Process Is
+  Approximately Gaussian>
 
   Spatial connectivity enables us to investigate the most general
   distribution of continuous random variable, the normal distribution. Given
@@ -695,11 +696,13 @@
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
     <associate|section: Detailed Balance Condition for Langevin Process Lacks
-    Source-Free Degree of Freedom|<tuple|1.7|?>>
+    Source-Free Degree of Freedom|<tuple|1.7|5>>
     <associate|section: Kramers-Moyal Expansion and Langevin
     Process|<tuple|1|1>>
     <associate|section: Spatial Expansion of Master Equation Gives
     Kramers-Moyal Expansion|<tuple|1.2|1>>
+    <associate|section: Transition Density of Langevin Process Is
+    Approximately Gaussian|<tuple|1.3|?>>
   </collection>
 </references>
 

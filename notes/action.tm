@@ -672,7 +672,8 @@
   and for discrete random variables, Metropolis-Hastings (section
   <reference|section: Example: Metropolis-Hastings Algorithm>) is available.
 
-  <subsection|Structures in Nature May Arise from Least-Action Principle>
+  <subsection|History: Structures in Nature Arise from Least-Action
+  Principle>
 
   There are many structures in nature. The structure of vascular system is a
   simple instance. A more complicated structure appears in the bases along
@@ -743,26 +744,26 @@
 
   TODO
 
-  <subsection|Example: Action of Iterative Equation and Deep Learning>
-
-  <subsubsection|A Probabilistic Model for Iterative Equation>
+  <subsection|Iterative Equation Has an Action with Friction and Driven
+  Force><label|section: Iterative Equation Has an Action with Friction and
+  Driven Force>
 
   We are to build a probabilistic model for the series of variables that
-  obeying an iterative equation. Let <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>>
-  with <math|x<rsub|i>\<in\>\<bbb-R\><rsup|n<rsub|i>>> obey the iterative
-  equation
+  obeying iterative equation. The most generic form of iterative equation is
 
   <\equation>
-    x<rsup|\<alpha\>><rsub|i+1>=f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>,<label|equation:generic
+    x<rsub|i+1>=f<rsub|i><around*|(|x<rsub|i>|)>,<label|equation:generic
     iterative equation>
   </equation>
 
-  where <math|f<rsub|i>:\<bbb-R\><rsup|n<rsub|i>>\<rightarrow\>\<bbb-R\><rsup|n<rsub|i+1>>>.
-  To generalize this to probability theory, we construct a distribution of
+  where <math|i\<in\><around*|{|0,\<ldots\>,N|}>> and
+  <math|f<rsub|i>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>. To
+  generalize this to probability theory, we construct a distribution of
   random variables <math|<around*|(|X<rsub|0>,\<ldots\>,X<rsub|N>|)>> by
-  assuming that <math|X<rsub|i+1>> obeys the normal distribution with mean
-  given by the iterative equation and a fixed variance <math|\<epsilon\>>
-  (shared for all components of <math|X<rsub|i>>), as
+  assuming that <math|X<rsub|i+1>> obeys the normal distribution with the
+  mean given by the iterative equation <reference|equation:generic iterative
+  equation> and a fixed variance <math|\<epsilon\>> (shared by all components
+  of <math|X<rsub|i+1>>), as
 
   <\equation>
     X<rsub|i+1>\<sim\><with|font|cal|N><around*|(|f<rsub|l><around*|(|X<rsub|i>|)>,\<epsilon\>|)>,<label|equation:gaussianity>
@@ -774,13 +775,11 @@
 
   <\equation*>
     q<around*|(|x<rsub|i+1>\|x<rsub|i>|)>=<around*|(|<frac|1|<sqrt|<around*|(|2\<mathpi\>|)>
-    \<epsilon\>><rsup|>>|)><rsup|n<rsub|i+1>>\<times\>exp<around*|(|-<big|sum><rsub|\<alpha\>=1><rsup|n<rsub|i+1>><frac|<around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>|2
+    \<epsilon\>><rsup|>>|)><rsup|n>\<times\>exp<around*|(|-<big|sum><rsub|\<alpha\>=1><rsup|n><frac|<around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>|2
     \<epsilon\>>|)>.
   </equation*>
 
-  To obtain the whole density function, we first notice that
-  <math|q<around*|(|x<rsub|1>\|x<rsub|0>|)>
-  q<around*|(|x<rsub|0>|)>=q<around*|(|x<rsub|0>,x<rsub|1>|)>>. And since
+  To obtain the whole density function, we first notice that, since
   <math|q<around*|(|x<rsub|2>\|x<rsub|1>|)>> is not explicitly dependent on
   <math|x<rsub|0>>, <math|q<around*|(|x<rsub|2>\|x<rsub|1>|)>=q<around*|(|x<rsub|2>\|x<rsub|0>,x<rsub|1>|)>>
   holds for any <math|x<rsub|0>>. Then, <math|q<around*|(|x<rsub|2>\|x<rsub|1>|)>q<around*|(|x<rsub|1>\|x<rsub|0>|)>
@@ -796,27 +795,27 @@
 
   <\equation*>
     -ln q<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>\|x<rsub|0>|)>=<frac|1|2
-    \<epsilon\>><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n<rsub|i+1>><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>+const.
+    \<epsilon\>><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>+const.
   </equation*>
 
   If regard <math|x<rsub|0>> as condition, then equation
   <reference|equation:action of distribution> (setting <math|\<beta\>=1>)
-  gives an action
+  gives the action
 
   <\equation*>
-    S<around*|(|x|)>=<frac|1|2 \<epsilon\>><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n<rsub|i+1>><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>.
+    S<around*|(|x\|x<rsub|0>|)>=<frac|1|2
+    \<epsilon\>><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>.
   </equation*>
 
-  <subsubsection|Comparing with Classical Mechanics and Langevin Dynamics>
+  \;
 
   We are to compare this action with that appearing in classical mechanics.
-  To do so, we set <math|n<rsub|0>,\<ldots\>,n<rsub|N>> all equal to some
-  <math|n>, and then introduce <math|g<rsup|\<alpha\>><rsub|i><around*|(|x|)>\<assign\><around*|(|f<rsub|i><rsup|\<alpha\>><around*|(|x|)>-x<rsup|\<alpha\>>|)>/\<epsilon\>>,
+  To do so, we introduce <math|g<rsup|\<alpha\>><rsub|i><around*|(|x|)>\<assign\><around*|(|f<rsub|i><rsup|\<alpha\>><around*|(|x|)>-x<rsup|\<alpha\>>|)>/\<epsilon\>>,
   thus <math|x<rsup|\<alpha\>><rsub|i+1>=x<rsup|\<alpha\>><rsub|i>+\<epsilon\>
   g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>>. So, equivalently,
 
   <\equation*>
-    S<around*|(|x|)>=<frac|\<epsilon\>|2><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n<rsub|i+1>><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|)><rsup|2>.
+    S<around*|(|x\|x<rsub|0>|)>=<frac|\<epsilon\>|2><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|)><rsup|2>.
   </equation*>
 
   Comparing with classical mechanics, we can interpret <math|\<epsilon\>> as
@@ -824,7 +823,7 @@
   as \Pvelocity\Q. It motives us to consider its continuous version
 
   <\equation*>
-    S<around*|(|h|)>=<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
+    S<around*|(|x\|x<rsub|0>|)>=<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
     <big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>-g<rsup|\<alpha\>><around*|(|x<around*|(|t|)>,t|)>|]><rsup|2>,
   </equation*>
 
@@ -832,7 +831,7 @@
   <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>> by
   <math|x<around*|(|t|)>> with <math|t\<in\><around*|[|0,1|]>>, and
   <math|g<rsub|i>> by <math|g<around*|(|\<cdummy\>,t|)>>. To get the Lagrange
-  <math|L>, which is defined by <math|S<around*|(|x|)>=<big|int><rsub|0><rsup|1>\<mathd\>t
+  <math|L>, which is defined by <math|S<around*|(|x\|x<rsub|0>|)>=<big|int><rsub|0><rsup|1>\<mathd\>t
   L<around*|(|x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,t|)>>, we
   expand the integrand and find
 
@@ -882,7 +881,7 @@
 
   When <math|g> is independent of <math|t>, it becomes Langevin dynamics.
 
-  <subsubsection|Action of Feed-Forward Network>
+  <subsection|Example: Action in Deep Learning>
 
   In deep learning, a feed-forward network is a supervised model that
   computes the output <math|y\<in\>\<bbb-R\><rsup|n<rsub|L>>> from input
@@ -897,12 +896,16 @@
 
   where <math|f<rsub|l>:\<bbb-R\><rsup|n<rsub|l>>\<rightarrow\>\<bbb-R\><rsup|n<rsub|l+1>>>.
   By denoting <math|h<rsub|0>\<assign\>x> and <math|h<rsub|L>\<assign\>y>, we
-  have <math|l\<in\><around*|{|0,\<ldots\>,L|}>>. This is consistent with
-  equation <reference|equation:generic iterative equation>, thus the previous
-  discussion also holds for deep learning. The definition of <math|g> is
-  recognized as the residual structure in deep learning, proposed by Kaiming
-  He and others in 2015 for dealing with the issues caused by increasing the
-  number of layers.
+  have <math|l\<in\><around*|{|0,\<ldots\>,L|}>>. This naive structure
+  suffers many issues caused by increasing the number of layers. In 2015,
+  Kaiming He and others proposed a residual structure, in which all the
+  <math|n<rsub|l>>s are equal, and <math|h<rsup|\<alpha\>><rsub|l+1>=h<rsub|l><rsup|\<alpha\>>+\<epsilon\>
+  g<rsup|\<alpha\>><rsub|l><around*|(|h<rsub|l>|)>>. This is consistent with
+  the discussion in section <reference|section: Iterative Equation Has an
+  Action with Friction and Driven Force>, thus the results obtained there
+  also holds for deep learning.
+
+  TODO
 
   \;
 </body>
@@ -917,11 +920,12 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.6.2|?>>
-    <associate|auto-11|<tuple|1.7|?>>
-    <associate|auto-12|<tuple|1.7.1|?>>
-    <associate|auto-13|<tuple|1.7.2|?>>
-    <associate|auto-14|<tuple|1.7.3|?>>
+    <associate|auto-10|<tuple|1.6.2|7>>
+    <associate|auto-11|<tuple|1.7|7>>
+    <associate|auto-12|<tuple|1.8|7>>
+    <associate|auto-13|<tuple|1.8|8>>
+    <associate|auto-14|<tuple|1.8|9>>
+    <associate|auto-15|<tuple|1.8.1|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -933,7 +937,7 @@
     <associate|equation:action of distribution|<tuple|4|2>>
     <associate|equation:data-fitting iteration|<tuple|6|6>>
     <associate|equation:data-fitting result|<tuple|7|6>>
-    <associate|equation:gaussianity|<tuple|9|7>>
+    <associate|equation:gaussianity|<tuple|9|8>>
     <associate|equation:generic density|<tuple|5|5>>
     <associate|equation:generic iterative equation|<tuple|8|7>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
@@ -948,6 +952,8 @@
     Mechanics|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
     of Distribution|<tuple|1.5|5>>
+    <associate|section: Iterative Equation Has an Action with Friction and
+    Driven Force|<tuple|1.7|?>>
     <associate|section: Least-Action Principle of Distribution Has No
     Redundancy|<tuple|1.3|2>>
   </collection>
@@ -1014,9 +1020,29 @@
       Arise from Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
+      <with|par-left|<quote|2tab>|1.6.1<space|2spc>WBE Theory and
+      Universality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
+
+      <with|par-left|<quote|2tab>|1.6.2<space|2spc>Renormalization Group and
+      Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
       <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Action of Iterative
       Equation and Deep Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <no-break><pageref|auto-11>>
+
+      <with|par-left|<quote|2tab>|1.7.1<space|2spc>A Probabilistic Model for
+      Iterative Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12>>
+
+      <with|par-left|<quote|2tab>|1.7.2<space|2spc>Comparing with Classical
+      Mechanics and Langevin Dynamics <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-13>>
+
+      <with|par-left|<quote|2tab>|1.7.3<space|2spc>Action of Feed-Forward
+      Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14>>
     </associate>
   </collection>
 </auxiliary>

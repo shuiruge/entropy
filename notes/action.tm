@@ -678,6 +678,8 @@
   simple instance. A more complicated structure appears in the bases along
   chromosome. Why do these structures arise in nature?
 
+  <subsubsection|WBE Theory and Universality>
+
   Early in 1997, physicist Geoffrey West, ecologist James Brown, and
   biologist Brian Enquist proposed a theory (now it is called WBE theory)
   that explains how the fractal structures arise in vascular system of
@@ -708,11 +710,13 @@
   obtained by minimizing the cost in one system are also held by a large
   variety of systems in nature. For example, different systems may share the
   same power-law index. This property is called <strong|universality>. Where
-  does univerality come from?
+  does universality come from?
 
-  In 1975, physcist Mitchell Feigenbaum computed two constants, now named as
+  <subsubsection|Renormalization Group and Criticality>
+
+  In 1975, physicist Mitchell Feigenbaum computed two constants, now named as
   Feigenbaum constants, when he was studying the logistic map. Then in the
-  late of 1970s, physicsts found that Feigenbaum constants also appear in
+  late of 1970s, physicists found that Feigenbaum constants also appear in
   many other areas such as turbulence and Mandelbrot set: Feigenbaum
   constants are universal. Feigenbaum himself gave a \Pproof\Q of how this
   universality appears. The technique he used was invented by his collage in
@@ -721,7 +725,7 @@
   found his constants as the Taylor coefficients of the non-trivial fixed
   point of the functional iterative equation. But, Feigenbaum said little
   about where this functional iterative equation comes from. He neither gave
-  a rigerous derivation of the equation, nor argued why this equation holds
+  a rigorous derivation of the equation, nor argued why this equation holds
   also for other systems.
 
   Generally, universality comes from a \Pcomplex\Q system, a system whose
@@ -739,36 +743,29 @@
 
   TODO
 
-  <subsection|Example: Action of Feed-forward Neural Network and More>
+  <subsection|Example: Action of Iterative Equation and Deep Learning>
 
-  In deep learning, a feed-forward network is a supervised model that
-  computes the output <math|y\<in\>\<bbb-R\><rsup|n<rsub|L>>> from input
-  <math|x\<in\>\<bbb-R\><rsup|n<rsub|0>>>. To do so, it computes a series of
-  intermediate quantities called hidden variables
-  <math|<around*|(|h<rsub|1>,\<ldots\>,h<rsub|L-1>|)>> with
-  <math|h<rsub|l>\<in\>\<bbb-R\><rsup|n<rsub|l>>> iteratively by
+  <subsubsection|A Probabilistic Model for Iterative Equation>
+
+  We are to build a probabilistic model for the series of variables that
+  obeying an iterative equation. Let <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>>
+  with <math|x<rsub|i>\<in\>\<bbb-R\><rsup|n<rsub|i>>> obey the iterative
+  equation
 
   <\equation>
-    h<rsub|l+1>=f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>,<label|equation:feed-forward
-    neural network>
+    x<rsup|\<alpha\>><rsub|i+1>=f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>,<label|equation:generic
+    iterative equation>
   </equation>
 
-  where <math|f<around*|(|\<cdummy\>,\<theta\><rsub|l>|)>:\<bbb-R\><rsup|n<rsub|l-1>>\<rightarrow\>\<bbb-R\><rsup|n<rsub|l>>>
-  with <math|\<theta\><rsub|l>> its parameters. By denoting
-  <math|h<rsub|0>\<assign\>x> and <math|h<rsub|L>\<assign\>y>, we have
-  <math|l\<in\><around*|{|0,\<ldots\>,L|}>>.
-
-  To investigate feed-forward neural network under probabilistic perspective,
-  we have to construct the distribution of random variables
-  <math|<around*|(|H<rsub|0>,\<ldots\>,H<rsub|L>|)>> where <math|H<rsub|l>>
-  denotes the output of the <math|l>-th layer, <math|H<rsub|0>> the input,
-  and <math|H<rsub|L>> the output. We assume that <math|H<rsub|l+1>> obeys
-  the normal distribution with mean given by the deterministic iteration and
-  a fixed variance <math|\<epsilon\>> (shared for all components of
-  <math|H<rsub|l+1>>), as
+  where <math|f<rsub|i>:\<bbb-R\><rsup|n<rsub|i>>\<rightarrow\>\<bbb-R\><rsup|n<rsub|i+1>>>.
+  To generalize this to probability theory, we construct a distribution of
+  random variables <math|<around*|(|X<rsub|0>,\<ldots\>,X<rsub|N>|)>> by
+  assuming that <math|X<rsub|i+1>> obeys the normal distribution with mean
+  given by the iterative equation and a fixed variance <math|\<epsilon\>>
+  (shared for all components of <math|X<rsub|i>>), as
 
   <\equation>
-    H<rsub|l+1>\<sim\><with|font|cal|N><around*|(|f<around*|(|H<rsub|l>,\<theta\><rsub|l+1>|)>,\<epsilon\>|)>,<label|equation:gaussianity>
+    X<rsub|i+1>\<sim\><with|font|cal|N><around*|(|f<rsub|l><around*|(|X<rsub|i>|)>,\<epsilon\>|)>,<label|equation:gaussianity>
   </equation>
 
   where <math|<with|font|cal|N><around*|(|\<mu\>,\<sigma\><rsup|2>|)>>
@@ -776,100 +773,138 @@
   <math|\<sigma\><rsup|2>>. It has the conditional density function
 
   <\equation*>
-    q<around*|(|h<rsub|l+1>\|h<rsub|l>|)>=<around*|(|<frac|1|<sqrt|<around*|(|2\<mathpi\>|)>
-    \<epsilon\>><rsup|>>|)><rsup|n<rsub|l+1>>\<times\>exp<around*|(|-<frac|<around*|(|h<rsub|l+1>-f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>|2
+    q<around*|(|x<rsub|i+1>\|x<rsub|i>|)>=<around*|(|<frac|1|<sqrt|<around*|(|2\<mathpi\>|)>
+    \<epsilon\>><rsup|>>|)><rsup|n<rsub|i+1>>\<times\>exp<around*|(|-<big|sum><rsub|\<alpha\>=1><rsup|n<rsub|i+1>><frac|<around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>|2
     \<epsilon\>>|)>.
   </equation*>
 
   To obtain the whole density function, we first notice that
-  <math|q<around*|(|h<rsub|1>\|h<rsub|0>|)>
-  q<around*|(|h<rsub|0>|)>=q<around*|(|h<rsub|0>,h<rsub|1>|)>>. And since
-  <math|q<around*|(|h<rsub|2>\|h<rsub|1>|)>> is not explicitly dependent on
-  <math|h<rsub|0>>, <math|q<around*|(|h<rsub|2>\|h<rsub|1>|)>=q<around*|(|h<rsub|2>\|h<rsub|0>,h<rsub|1>|)>>
-  holds for any <math|h<rsub|0>>. Then, <math|q<around*|(|h<rsub|2>\|h<rsub|1>|)>q<around*|(|h<rsub|1>\|h<rsub|0>|)>
-  q<around*|(|h<rsub|0>|)>=q<around*|(|h<rsub|2>\|h<rsub|0>,h<rsub|1>|)>
-  q<around*|(|h<rsub|0>,h<rsub|1>|)>=q<around*|(|h<rsub|0>,h<rsub|1>,h<rsub|2>|)>>.
+  <math|q<around*|(|x<rsub|1>\|x<rsub|0>|)>
+  q<around*|(|x<rsub|0>|)>=q<around*|(|x<rsub|0>,x<rsub|1>|)>>. And since
+  <math|q<around*|(|x<rsub|2>\|x<rsub|1>|)>> is not explicitly dependent on
+  <math|x<rsub|0>>, <math|q<around*|(|x<rsub|2>\|x<rsub|1>|)>=q<around*|(|x<rsub|2>\|x<rsub|0>,x<rsub|1>|)>>
+  holds for any <math|x<rsub|0>>. Then, <math|q<around*|(|x<rsub|2>\|x<rsub|1>|)>q<around*|(|x<rsub|1>\|x<rsub|0>|)>
+  q<around*|(|x<rsub|0>|)>=q<around*|(|x<rsub|2>\|x<rsub|0>,x<rsub|1>|)>
+  q<around*|(|x<rsub|0>,x<rsub|1>|)>=q<around*|(|x<rsub|0>,x<rsub|1>,x<rsub|2>|)>>.
   Repeating this step, we will find
 
   <\equation*>
-    q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>|)>=q<around*|(|h<rsub|L>\|h<rsub|L-1>|)>\<cdots\>q<around*|(|h<rsub|1>\|h<rsub|0>|)>
-    q<around*|(|h<rsub|0>|)>.
+    q<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>\|x<rsub|0>|)>=q<around*|(|x<rsub|N>\|x<rsub|N-1>|)>\<cdots\>q<around*|(|x<rsub|1>\|x<rsub|0>|)>.
   </equation*>
 
-  Plugging in <math|q<around*|(|h<rsub|l+1>\|h<rsub|l>|)>> and explicitly put
-  <math|\<theta\>> into <math|q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>|)>>,
-  we arrive at
+  Plugging in <math|q<around*|(|x<rsub|i+1>\|x<rsub|i>|)>>, we arrive at
 
   <\equation*>
-    -ln q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>,\<theta\>|)>=<frac|1|2
-    \<epsilon\>><big|sum><rsub|l=0><rsup|L-1><around*|(|h<rsub|l+1>-f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>+const.
+    -ln q<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>\|x<rsub|0>|)>=<frac|1|2
+    \<epsilon\>><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n<rsub|i+1>><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>+const.
   </equation*>
 
-  By equation <reference|equation:action of distribution> (setting
-  <math|\<beta\>=1>), the action of feed-forward neural network is recognized
-  as
+  If regard <math|x<rsub|0>> as condition, then equation
+  <reference|equation:action of distribution> (setting <math|\<beta\>=1>)
+  gives an action
 
   <\equation*>
-    S<around*|(|h,\<theta\>|)>=<frac|1|2 \<epsilon\>><big|sum><rsub|l=0><rsup|L-1><around*|(|h<rsub|l+1>-f<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>.
+    S<around*|(|x|)>=<frac|1|2 \<epsilon\>><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n<rsub|i+1>><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>.
   </equation*>
 
-  \;
+  <subsubsection|Comparing with Classical Mechanics and Langevin Dynamics>
 
   We are to compare this action with that appearing in classical mechanics.
-  To do so, we introduce <math|g<around*|(|x,\<theta\>|)>\<assign\><around*|(|f<around*|(|x,\<theta\>|)>-x|)>/\<epsilon\>>,
-  thus <math|h<rsub|l+1>=h<rsub|l>+\<epsilon\>
-  g<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>>. It is recognized as residual
-  structure in deep learning, which was proposed by Kaiming He and others in
-  2015 for dealing with the issues caused by increasing the number of layers,
-  <math|L>. So, equivalently,
+  To do so, we set <math|n<rsub|0>,\<ldots\>,n<rsub|N>> all equal to some
+  <math|n>, and then introduce <math|g<rsup|\<alpha\>><rsub|i><around*|(|x|)>\<assign\><around*|(|f<rsub|i><rsup|\<alpha\>><around*|(|x|)>-x<rsup|\<alpha\>>|)>/\<epsilon\>>,
+  thus <math|x<rsup|\<alpha\>><rsub|i+1>=x<rsup|\<alpha\>><rsub|i>+\<epsilon\>
+  g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>>. So, equivalently,
 
   <\equation*>
-    -ln q<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>,\<theta\>|)>=<frac|\<epsilon\>|2><big|sum><rsub|l=0><rsup|L-1><around*|(|<frac|h<rsub|l+1>-h<rsub|l>|\<epsilon\>>-g<around*|(|h<rsub|l>,\<theta\><rsub|l+1>|)>|)><rsup|2>.
+    S<around*|(|x|)>=<frac|\<epsilon\>|2><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n<rsub|i+1>><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|)><rsup|2>.
   </equation*>
 
   Comparing with classical mechanics, we can interpret <math|\<epsilon\>> as
-  a tiny time interval and <math|<around*|(|h<rsub|l+1>-h<rsub|l>|)>/\<epsilon\>>
+  a tiny time interval and <math|<around*|(|x<rsub|i+1>-x<rsub|i>|)>/\<epsilon\>>
   as \Pvelocity\Q. It motives us to consider its continuous version
 
   <\equation*>
-    -ln q<around*|(|h|)>=<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
-    <around*|[|<wide|h|\<dot\>><around*|(|t|)>-g<around*|(|h<around*|(|t|)>,t|)>|]><rsup|2>,
+    S<around*|(|h|)>=<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
+    <big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>-g<rsup|\<alpha\>><around*|(|x<around*|(|t|)>,t|)>|]><rsup|2>,
   </equation*>
 
   where we have replaced <math|\<epsilon\>> by <math|\<mathd\>t>,
-  <math|<around*|(|h<rsub|0>,\<ldots\>,h<rsub|L>|)>> by
-  <math|h<around*|(|t|)>> with <math|t\<in\><around*|[|0,1|]>>, and absorbed
-  <math|\<theta\><around*|(|t|)>> into <math|g> so as to make it comparable
-  with classical mechanics. To get the Lagrange <math|L>, which is defined by
-  <math|S<around*|(|h|)>=<big|int><rsub|0><rsup|1>\<mathd\>t
-  L<around*|(|h<around*|(|t|)>,<wide|h|\<dot\>><around*|(|t|)>,t|)>>, we
+  <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>> by
+  <math|x<around*|(|t|)>> with <math|t\<in\><around*|[|0,1|]>>, and
+  <math|g<rsub|i>> by <math|g<around*|(|\<cdummy\>,t|)>>. To get the Lagrange
+  <math|L>, which is defined by <math|S<around*|(|x|)>=<big|int><rsub|0><rsup|1>\<mathd\>t
+  L<around*|(|x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,t|)>>, we
   expand the integrand and find
 
   <\equation*>
-    L<around*|(|h,<wide|h|\<dot\>>,t|)>=<frac|1|2><wide|h|\<dot\>><rsup|2>-<wide|h|\<dot\>>
-    g<around*|(|h,t|)>+<frac|1|2>g<rsup|2><around*|(|h,t|)>.
+    L<around*|(|x,<wide|x|\<dot\>>,t|)>=<big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2><around*|(|<wide|x|\<dot\>><rsup|\<alpha\>>|)><rsup|2>-<wide|x|\<dot\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><around*|(|x,t|)>+<frac|1|2><around*|(|g<rsup|\<alpha\>>|)><rsup|2><around*|(|x,t|)>|]>.
   </equation*>
 
-  Euler-Lagrange equation <math|<around*|(|\<mathd\>/\<mathd\>t|)>\<partial\>L/\<partial\><wide|h|\<dot\>>=\<partial\>L/\<partial\>h>
-  gives
+  For calculating Euler-Lagrange equation
+  <math|<around*|(|\<mathd\>/\<mathd\>t|)>\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=\<partial\>L/\<partial\>x<rsup|\<alpha\>>>,
+  we have <math|\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=<wide|x|\<dot\>><rsup|\<alpha\>>-g<rsup|\<alpha\>><around*|(|x,t|)>>
+  and <math|\<partial\>L/\<partial\>x<rsup|\<alpha\>>=<big|sum><rsub|\<beta\>=1><rsup|n><around*|[|-<wide|x|\<dot\>><rsup|\<beta\>>+g<rsup|\<beta\>><around*|(|x,t|)>|]>
+  \<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>>. We have
+  denoted <math|\<partial\><rsub|\<alpha\>>g<rsup|\<beta\>>\<assign\>\<partial\>g<rsup|\<beta\>>/\<partial\>x<rsup|\<alpha\>>>,
+  and will employ <math|\<partial\><rsub|t>g> for
+  <math|\<partial\>g/\<partial\>t>. Thus, Euler-Lagrange equation becomes
 
   <\equation*>
-    <wide|h|\<ddot\>>=g<around*|(|h,t|)>+\<partial\><rsub|t>g<around*|(|h,t|)>.
+    <wide|x|\<ddot\>><rsup|\<alpha\>>=<big|sum><rsub|\<beta\>=1><rsup|n><around*|[|\<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><around*|(|x,t|)>-\<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>|]>
+    <wide|x|\<dot\>><rsup|\<beta\>>+<big|sum><rsub|\<beta\>=1><rsup|n>g<rsup|\<beta\>><around*|(|x,t|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>+\<partial\><rsub|t>g<rsup|\<alpha\>><around*|(|x,t|)>.
   </equation*>
 
-  When the feed-forward neural network shares weights crossing layers,
-  <math|g<around*|(|h,t|)>> will be independent of <math|t>, and we will get
-  <math|<wide|h|\<ddot\>>=g<around*|(|h|)>>, a typical second-order equation
-  of motion with the \Pforce\Q <math|g>.
+  The first term in the right hand side is recognized as a friction, which is
+  proportional to the curl of <math|g>. The rest terms are driving force.
+  When <math|g> is independent of <math|t> (in which case the feed-forward
+  neural network shares weights crossing layers), it becomes a gradient of
+  potential <math|<around*|(|1/2|)>g<rsup|2><around*|(|x|)>>.
 
-  This action, however, can be applied to many other areas that are
-  irrelevant to machine learning, since equation
-  <reference|equation:feed-forward neural network> is much more general. The
-  assumption of Gaussianity <reference|equation:gaussianity> together with
-  interpreting its variance as time interval reminds us of the Langevin
+  The assumption of Gaussianity <reference|equation:gaussianity> together
+  with interpreting its variance as time interval reminds us of the Langevin
   dynamics (see section <reference|section: Transition Density of Langevin
   Process Is Approximately Gaussian>) where the Wiener process is Gaussian
-  with variance <math|\<mathd\>t>. TODO
+  with variance <math|\<mathd\>t>. They do have relation. The assumption can
+  be re-written as <math|X<rsup|\<alpha\>><rsub|i+1>-X<rsup|\<alpha\>><rsub|i>=\<Delta\>t
+  g<rsub|i><rsup|\<alpha\>><around*|(|X<rsub|i>|)>+\<Delta\>W<rsub|i><rsup|\<alpha\>>>,
+  where we have formally replaced <math|\<epsilon\>> by <math|\<Delta\>t>
+  (indicating time interval), and <math|\<Delta\>W<rsub|i><rsup|\<alpha\>>>
+  obeys the normal distribution with zero mean and variance
+  <math|\<Delta\>t>. This is the difference version of the stochastic
+  differential equation
+
+  <\equation*>
+    \<mathd\>X<rsup|\<alpha\>>=g<rsup|\<alpha\>><around*|(|X,t|)>
+    \<mathd\>t+\<mathd\>W<rsup|\<alpha\>>.
+  </equation*>
+
+  When <math|g> is independent of <math|t>, it becomes Langevin dynamics.
+
+  <subsubsection|Action of Feed-Forward Network>
+
+  In deep learning, a feed-forward network is a supervised model that
+  computes the output <math|y\<in\>\<bbb-R\><rsup|n<rsub|L>>> from input
+  <math|x\<in\>\<bbb-R\><rsup|n<rsub|0>>>. To do so, it iteratively computes
+  a series of intermediate quantities called hidden variables
+  <math|<around*|(|h<rsub|1>,\<ldots\>,h<rsub|L-1>|)>> with
+  <math|h<rsub|l>\<in\>\<bbb-R\><rsup|n<rsub|l>>> by
+
+  <\equation*>
+    h<rsup|\<alpha\>><rsub|l+1>=f<rsup|\<alpha\>><rsub|l><around*|(|h<rsub|l>|)>,
+  </equation*>
+
+  where <math|f<rsub|l>:\<bbb-R\><rsup|n<rsub|l>>\<rightarrow\>\<bbb-R\><rsup|n<rsub|l+1>>>.
+  By denoting <math|h<rsub|0>\<assign\>x> and <math|h<rsub|L>\<assign\>y>, we
+  have <math|l\<in\><around*|{|0,\<ldots\>,L|}>>. This is consistent with
+  equation <reference|equation:generic iterative equation>, thus the previous
+  discussion also holds for deep learning. The definition of <math|g> is
+  recognized as the residual structure in deep learning, proposed by Kaiming
+  He and others in 2015 for dealing with the issues caused by increasing the
+  number of layers.
+
+  \;
 </body>
 
 <\initial>
@@ -882,6 +917,11 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|1.6.2|?>>
+    <associate|auto-11|<tuple|1.7|?>>
+    <associate|auto-12|<tuple|1.7.1|?>>
+    <associate|auto-13|<tuple|1.7.2|?>>
+    <associate|auto-14|<tuple|1.7.3|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -889,13 +929,13 @@
     <associate|auto-6|<tuple|1.5|5>>
     <associate|auto-7|<tuple|1|6>>
     <associate|auto-8|<tuple|1.6|7>>
-    <associate|auto-9|<tuple|1.7|7>>
-    <associate|equation:action of distribution|<tuple|4|?>>
+    <associate|auto-9|<tuple|1.6.1|7>>
+    <associate|equation:action of distribution|<tuple|4|2>>
     <associate|equation:data-fitting iteration|<tuple|6|6>>
     <associate|equation:data-fitting result|<tuple|7|6>>
-    <associate|equation:feed-forward neural network|<tuple|8|?>>
-    <associate|equation:gaussianity|<tuple|9|?>>
+    <associate|equation:gaussianity|<tuple|9|7>>
     <associate|equation:generic density|<tuple|5|5>>
+    <associate|equation:generic iterative equation|<tuple|8|7>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
@@ -970,12 +1010,12 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Structures in Nature Arise
-      from Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Structures in Nature May
+      Arise from Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Action of
-      Feed-forward Neural Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Action of Iterative
+      Equation and Deep Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
     </associate>
   </collection>

@@ -168,11 +168,11 @@
   <math|q<rsub|\<Delta\>t><around*|(|x<rprime|'>\|x|)>> the normal
   distribution of <math|x<rprime|'>-x> with mean value
   <math|\<mu\><around*|(|x|)> \<Delta\>t> and variance
-  <math|2\<Sigma\><around*|(|x|)>\<Delta\>t>. That is,
+  <math|\<Sigma\><around*|(|x|)>\<Delta\>t>. That is,
 
   <\equation*>
-    q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=<frac|1|<sqrt|<around*|(|4\<mathpi\>
-    \<Delta\>t|)><rsup|n> det \<Sigma\><around*|(|x|)>>>exp<around*|(|-<frac|1|4\<Delta\>t>
+    q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=<frac|1|<sqrt|<around*|(|2\<mathpi\>
+    \<Delta\>t|)><rsup|n> det \<Sigma\><around*|(|x|)>>>exp<around*|(|-<frac|1|2\<Delta\>t>
     <around*|[|\<Sigma\><rsup|-1><around*|(|x|)>|]><rsub|\<alpha\>\<beta\>>
     <around*|(|\<epsilon\><rsup|\<alpha\>>-\<mu\><rsup|\<alpha\>><around*|(|x|)>
     \<Delta\>t|)> <around*|(|\<epsilon\><rsup|\<beta\>>-\<mu\><rsup|\<beta\>><around*|(|x|)>
@@ -186,21 +186,23 @@
   <with|font-series|bold|Langevin process>.
 
   In many textures, Langevin process is written by a stochastic differential
-  equation (again, we use capital letters for random variables)
+  equation (again, we use capital letters for random variables) TODO
 
   <\equation*>
-    \<mathd\>X<rsup|\<alpha\>>=\<mu\><rsup|\<alpha\>><around*|(|x|)>\<mathd\>t+\<mathd\>W<rsup|\<alpha\>><around*|(|x|)>,
+    \<mathd\>X<rsup|\<alpha\>>=\<mu\><rsup|\<alpha\>><around*|(|X|)>\<mathd\>t+C<rsup|\<alpha\>><rsub|\<beta\>><around*|(|X|)>
+    \<mathd\>W<rsup|\<alpha\>>,
   </equation*>
 
-  where <math|\<mathd\>W<rsup|\<alpha\>><around*|(|x|)>>, called
-  <strong|Wiener process>, is a random variable obeying the normal
-  distribution with zero mean and variance <math|2 \<Sigma\><around*|(|x|)>
-  \<mathd\>t>. This stochastic differential equation is an formal equivalent
-  of <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>> when
-  <math|\<Delta\>t\<rightarrow\>\<mathd\>t> and
+  where <math|\<mathd\>W<rsup|\<alpha\>>>, called <strong|Wiener process>, is
+  a random variable obeying the normal distribution with zero mean and
+  variance <math|\<mathd\>t>. This stochastic differential equation is an
+  formal equivalent of <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>>
+  when <math|\<Delta\>t\<rightarrow\>\<mathd\>t> and
   <math|\<epsilon\>\<rightarrow\>\<mathd\>x>.
 
-  <subsection|Transition Rate of Langevin Process Is a Generalized Function>
+  <subsection|Transition Rate of Langevin Process Is a Generalized
+  Function><label|section: Transition Rate of Langevin Process Is a
+  Generalized Function>
 
   In this section, we calculate the the transition rate of Langevin process
   from transition density. The <math|\<Delta\>t> appears in many places in
@@ -253,7 +255,7 @@
     q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>
     f<around*|(|\<epsilon\>|)>=f<around*|(|0|)>+\<Delta\>t<around*|[|
     \<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>|]>+\<omicron\><around*|(|\<Delta\>t|)>,
   </equation*>
 
@@ -280,7 +282,7 @@
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     r<around*|(|x+\<epsilon\>,x|)> f<around*|(|\<epsilon\>|)>=\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>.
   </equation*>
 
@@ -324,12 +326,12 @@
   </footnote>
 
   <\equation*>
-    -<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     \<mu\><rsup|\<alpha\>><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
-    f<around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    f<around*|(|\<epsilon\>|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     \<mu\><rsup|\<alpha\>><around*|(|x|)> \<delta\><around*|(|\<epsilon\>|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|\<epsilon\>|)>=\<mu\><rsup|\<alpha\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>f<around*|(|\<epsilon\>|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>f<around*|(|0|)>,
   </equation*>
 
@@ -349,7 +351,7 @@
 
   <\equation>
     r<around*|(|x+\<epsilon\>,x|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>.<label|equation:Langevin
     transition rate>
   </equation>
@@ -463,7 +465,7 @@
   Langevin process. Since Langevin process applies to continuous random
   variable, we can use Kramers-Moyal expansion to evaluate its master
   equation. Directly, we have <math|K<rsup|\<alpha\>><around*|(|x|)>=\<mu\><rsup|\<alpha\>><around*|(|x|)>>,
-  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>=2\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>>,
+  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>=\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>>,
   and higher orders are all vanishing (<math|K> was defined in section
   <reference|section: Spatial Expansion of Master Equation Gives
   Kramers-Moyal Expansion>). For example, the integral
@@ -481,7 +483,7 @@
 
   <\equation>
     <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=-\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    p<around*|(|x,t|)>|)>+\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    p<around*|(|x,t|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     p<around*|(|x,t|)>|)>.<label|equation:Fokker-Planck equation>
   </equation>
 
@@ -497,7 +499,7 @@
 
   <\equation*>
     -\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|)>+\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>=0,
   </equation*>
 
@@ -505,7 +507,7 @@
 
   <\equation>
     \<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>=\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>=<frac|1|2>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>+\<nu\><rsup|\<alpha\>><around*|(|x|)>,<label|equation:stationary
     Fokker-Planck equation>
   </equation>
@@ -541,7 +543,7 @@
 
   <\equation*>
     r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>,
   </equation*>
 
@@ -551,14 +553,16 @@
     <tformat|<table|<row|<cell|>|<cell|r<around*|(|x,x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)>>>|<row|<cell|=>|<cell|r<around*|(|<around*|(|x+\<epsilon\>|)>-\<epsilon\>,x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)>>>|<row|<cell|=>|<cell|-\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-\<epsilon\>|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-\<epsilon\>|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-\<epsilon\>|)>>>|<row|<cell|=>|<cell|\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>,>>>>
   </align>
 
-  where in the last line, we use <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>=-\<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>>
-  and <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>.
+  where in the last line, we have used <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>=-\<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>>
+  and <math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>
+  (derived in the end of section <reference|section: Transition Rate of
+  Langevin Process Is a Generalized Function>).
 
   As generalized functions, we are to examine these two expressions by using
   an arbitrary test function <math|f>. Thus, for the left hand side,
@@ -569,7 +573,7 @@
     f<around*|(|\<epsilon\>|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
-    f<around*|(|\<epsilon\>|)>+<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    f<around*|(|\<epsilon\>|)>+<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)> \<pi\><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>
     f<around*|(|\<epsilon\>|)>.
@@ -583,7 +587,7 @@
     r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>
     f<around*|(|\<epsilon\>|)>=<with|color|dark
     cyan|\<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>>.
   </equation*>
 
@@ -595,30 +599,29 @@
       r<around*|(|x,x+\<epsilon\>|)> \<pi\><around*|(|x+\<epsilon\>|)>
       f<around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
       \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
-      f<around*|(|\<epsilon\>|)>+<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+      f<around*|(|\<epsilon\>|)>+<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
       \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
       \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>
       f<around*|(|\<epsilon\>|)>.
     </equation*>
   </small>
 
-  Again, integration by parts results in (again, the <math|\<partial\>> is
-  applied on <math|\<epsilon\>>)
+  Again, integration by parts results in (again, the <math|\<partial\>>
+  operator is applied on <math|\<epsilon\>>)
 
   <\align>
     <tformat|<table|<row|<cell|>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     r<around*|(|x,x+\<epsilon\>|)> \<pi\><around*|(|x+\<epsilon\>|)>
     f<around*|(|\<epsilon\>|)>>>|<row|<cell|=>|<cell|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<delta\><around*|(|\<epsilon\>|)><frac|\<partial\>|\<partial\>\<epsilon\><rsup|\<alpha\>>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>>>|<row|<cell|+>|<cell|<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     \<delta\><around*|(|\<epsilon\>|)><frac|\<partial\><rsup|2>|\<partial\>\<epsilon\><rsup|\<alpha\>>\<partial\>\<epsilon\><rsup|\<beta\>>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>>>|<row|<cell|=>|<cell|-\<partial\><rsub|\<alpha\>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|]> f<around*|(|0|)>-<with|color|dark
     cyan|\<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>>>>|<row|<cell|+>|<cell|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|]> f<around*|(|0|)>+2
-    \<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>>>>|<row|<cell|+>|<cell|<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|]> f<around*|(|0|)>+\<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|]> \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<with|color|dark
-    cyan|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    cyan|<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>>.>>>>
   </align>
 
@@ -631,7 +634,7 @@
 
   <\equation*>
     -\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|)>+\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>=0,
   </equation*>
 
@@ -639,7 +642,7 @@
 
   <\equation*>
     -\<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>+
-    \<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    <frac|1|2>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>=0.
   </equation*>
 
@@ -648,7 +651,7 @@
   Langevin process to be
 
   <\equation>
-    \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>=
+    \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>=<frac|1|2>
     \<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>.<label|equation:detailed balance condition for
     Langevin>
@@ -665,6 +668,20 @@
   source-free degree of freedom that appears in the stationary condition>.
   The lost degree of freedom is the cost of ensuring that any initial
   distribution will finally relax to the stationary.
+
+  <subsection|* Wiener Process Is Almost Everywhere in Nature><label|section:
+  * Wiener Process Is Almost Everywhere in Nature>
+
+  In section <reference|section: Transition Density of Langevin Process Is
+  Approximately Gaussian>, we have introduced Wiener process
+  <math|\<mathd\>W<around*|(|x|)>> that obeys the normal distribution with
+  zero mean and variance <math|2\<Sigma\><around*|(|x|)> \<mathd\>t>. This
+  was first discovered in 1827, when botanist Robert Brown noticed that
+  pollen particles automatically shakes in water. This phenomenon was first
+  explained by Albert Einstein in 1905. He argued that the pollen particles
+  are constantly hitted by water molecules. Untill 1918, Norbert Wiener
+  constructed a mathematical theory about this stochastic process. Wiener's
+  theory is an elegant application of central limit theorem. TODO
 </body>
 
 <\initial>
@@ -684,6 +701,7 @@
     <associate|auto-6|<tuple|1.5|4>>
     <associate|auto-7|<tuple|1.6|4>>
     <associate|auto-8|<tuple|1.7|5>>
+    <associate|auto-9|<tuple|1.8|6>>
     <associate|equation:Fokker-Planck equation|<tuple|3|4>>
     <associate|equation:Kramers-Moyal expansion|<tuple|1|2>>
     <associate|equation:Langevin transition rate|<tuple|2|3>>
@@ -695,6 +713,8 @@
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
+    <associate|section: * Wiener Process Is Almost Everywhere in
+    Nature|<tuple|1.8|6>>
     <associate|section: Detailed Balance Condition for Langevin Process Lacks
     Source-Free Degree of Freedom|<tuple|1.7|5>>
     <associate|section: Kramers-Moyal Expansion and Langevin
@@ -702,7 +722,9 @@
     <associate|section: Spatial Expansion of Master Equation Gives
     Kramers-Moyal Expansion|<tuple|1.2|1>>
     <associate|section: Transition Density of Langevin Process Is
-    Approximately Gaussian|<tuple|1.3|?>>
+    Approximately Gaussian|<tuple|1.3|2>>
+    <associate|section: Transition Rate of Langevin Process Is a Generalized
+    Function|<tuple|1.4|?>>
   </collection>
 </references>
 
@@ -743,6 +765,10 @@
       for Langevin Process Lacks Source-Free Degree of Freedom
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|1.8<space|2spc>* Wiener Process Is Almost
+      Everywhere in Nature <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
     </associate>
   </collection>
 </auxiliary>

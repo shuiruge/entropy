@@ -138,6 +138,8 @@
     time master equation>
   </equation>
 
+  \;
+
   Before finishing this section, we discuss the demanded conditions for
   transition rate. The normalization of transition density
   <reference|equation:transition density normalization> implies that
@@ -189,19 +191,24 @@
 
   \ We can use the master equation <reference|equation:master equation> to
   calculate <math|\<partial\><rsup|n>p/\<partial\>t<rsup|n>> for any
-  <math|n>. Indeed, for <math|n=2>,
+  <math|n>. For <math|n=2>, by inserting master equation
+  <reference|equation:master equation> (to the blue term), we have
 
-  <\align>
-    <tformat|<table|<row|<cell|>|<cell|<frac|\<partial\><rsup|2>p|\<partial\>t<rsup|2>><around*|(|z,t|)>>>|<row|<cell|<around*|{|insert
-    equation <reference|equation:master equation>|}>=>|<cell|<frac|\<partial\>|\<partial\>t><big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|z,y|)> p<around*|(|y,t|)>>>|<row|<cell|<around*|{|exchange
-    limits|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y r<around*|(|z,y|)>
-    <frac|\<partial\>p|\<partial\>t><around*|(|y,t|)>>>|<row|<cell|<around*|{|insert
-    equation <reference|equation:master equation>|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|z,y|)> <big|int><rsub|\<cal-X\>>\<mathd\>x r<around*|(|y,x|)>
-    p<around*|(|x,t|)>>>|<row|<cell|<around*|{|rearrange|}>=>|<cell|<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
-    r<around*|(|z,y|)> \ r<around*|(|y,x|)> p<around*|(|x,t|)>.>>>>
-  </align>
+  <\equation*>
+    <frac|\<partial\><rsup|2>p|\<partial\>t<rsup|2>><around*|(|z,t|)>=<frac|\<partial\>|\<partial\>t><with|color|blue|<frac|\<partial\>p|\<partial\>t><around*|(|z,t|)>>=<frac|\<partial\>|\<partial\>t><with|color|blue|<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> p<around*|(|y,t|)>>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> <with|color|dark cyan|<frac|\<partial\>p|\<partial\>t><around*|(|y,t|)>>.
+  </equation*>
+
+  We then insert master equation <reference|equation:master equation> again
+  (to the green term), and find
+
+  <\equation*>
+    <frac|\<partial\><rsup|2>p|\<partial\>t<rsup|2>><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> <with|color|dark cyan|<big|int><rsub|\<cal-X\>>\<mathd\>x
+    r<around*|(|y,x|)> p<around*|(|x,t|)>>=<big|int><rsub|\<cal-X\>>\<mathd\>x<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> \ r<around*|(|y,x|)> p<around*|(|x,t|)>.
+  </equation*>
 
   Following the same steps, it can be generalized to higher order
   derivatives, as
@@ -217,31 +224,43 @@
   <math|q<rsub|\<Delta\>t>>, thus <math|r>, is independent of <math|t>: a
   Markovian property.
 
-  Also, Taylor expand the both sides of equation <reference|equation:discrete
-  time master equation> by <math|\<Delta\>t> gives, at
-  <math|<around*|(|\<Delta\>t|)><rsup|n+1>> order,
+  On the other hand, Taylor expand the both sides of equation
+  <reference|equation:discrete time master equation> by <math|\<Delta\>t>
+  gives, at <math|<around*|(|\<Delta\>t|)><rsup|n+1>> order,
 
   <\equation*>
     <frac|\<partial\><rsup|n+1>p|\<partial\>t<rsup|n+1>><around*|(|z,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>x
-    lim<rsub|\<Delta\>t\<rightarrow\>0><frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>p<around*|(|x,t|)>.
+    q<rsup|<around*|(|n+1|)>><rsub|0><around*|(|z\|x|)>p<around*|(|x,t|)>,
   </equation*>
 
-  So,<math|> we arrive at
+  where, for simplifying notation, we have denoted the <math|n>th-order
+  derivatives of <math|q<rsub|\<Delta\>t>> by
+
+  <\equation*>
+    q<rsup|<around*|(|n|)>><rsub|\<Delta\>t><around*|(|x\|y|)>\<assign\>lim<rsub|s\<rightarrow\>\<Delta\>t><frac|\<mathd\><rsup|n>q<rsub|s>|\<mathd\>s<rsup|n>><around*|(|x\|y|)>.
+  </equation*>
+
+  So,<math|> by equaling the two expressions of
+  <math|<around*|(|\<partial\><rsup|n+1>p/\<partial\>t<rsup|n+1>|)><around*|(|z,t|)>>,
+  we find
 
   <\equation*>
     <big|int><rsub|\<cal-X\>>\<mathd\>x<around*|[|
-    lim<rsub|\<Delta\>t\<rightarrow\>0><frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
-    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>|]>p<around*|(|x,t|)>=0,
+    q<rsup|<around*|(|n+1|)>><rsub|0><around*|(|z\|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>|]>p<around*|(|x,t|)>=0
   </equation*>
 
-  which holds for all <math|p<around*|(|x,t|)>>, thus
+  For <math|n=1,2,\<ldots\>>. This holds for all <math|p<around*|(|x,t|)>>,
+  thus
 
   <\equation*>
-    lim<rsub|\<Delta\>t\<rightarrow\>0><frac|\<partial\><rsup|n+1>q<rsub|\<Delta\>t>|\<partial\><around*|(|\<Delta\>t|)><rsup|n+1>><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
-    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>,
+    q<rsup|<around*|(|n+1|)>><rsub|0><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>.
   </equation*>
 
-  or say<\footnote>
+  Recalling that <math|q<rsub|\<Delta\>t><around*|(|z\|x|)>=\<delta\><around*|(|z-x|)>+r<around*|(|z,x|)>
+  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>, we have the Taylor
+  expansion of <math|q<rsub|\<Delta\>t>>, as<\footnote>
     Another derivation uses exponential mapping. By regarding <math|p> a
     time-dependent element in functional space, and <math|r> as a linear
     operator, it becomes (we add a hat for indicating operator, using dot
@@ -295,7 +314,7 @@
   time-interval transition density.>
 
   This may be a little weird at the first sight. For example, consider
-  another transition density <math|q<rprime|'><rsub|\<Delta\>t><around*|(|y\|x|)>=q<rsub|\<Delta\>t><around*|(|y\|x|)>+f<around*|(|y,x|)>
+  <math|q<rprime|'><rsub|\<Delta\>t><around*|(|y\|x|)>\<assign\>q<rsub|\<Delta\>t><around*|(|y\|x|)>+f<around*|(|y,x|)>
   \<Delta\>t<rsup|2>>, where <math|f> is any function ensuring that
   <math|q<rprime|'><rsub|\<Delta\>t>> is non-negative and normalized (thus
   <math|<big|int><rsub|\<cal-X\>>\<mathd\>y f<around*|(|y,x|)>=0>). Following
@@ -306,8 +325,9 @@
     q<rprime|'><rsub|\<Delta\>t><around*|(|z\|x|)>p<around*|(|x,t|)>
   </equation*>
 
-  also leads to equation <reference|equation:master equation>, the same
-  <math|r> as that of <math|q<rsub|\<Delta\>t>>. So, we should have
+  also leads to the (continuous time) master equation
+  <reference|equation:master equation> with the same <math|r> as that of
+  <math|q<rsub|\<Delta\>t>>. So, we should have
   <math|q<rprime|'><rsub|\<Delta\>t>=q<rsub|\<Delta\>t>>, which means
   <math|f> is not free, but should vanish.
 
@@ -333,7 +353,8 @@
     q<rsub|\<Delta\>t><around*|(|y\|x|)>p<around*|(|x,t|)>.>>>>
   </align>
 
-  Thus,
+  By equaling the two expressions of <math|p<around*|(|z,t+\<Delta\>t+\<Delta\>t<rprime|'>|)>>,
+  we find
 
   <\equation*>
     <big|int><rsub|\<cal-X\>>\<mathd\>x<around*|[|q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|z\|x|)>-<big|int><rsub|\<cal-X\>>\<mathd\>y
@@ -343,15 +364,86 @@
 
   Since <math|p<around*|(|x,t|)>> can be arbitrary, we arrive at
 
-  <\equation*>
+  <\equation>
     q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
     q<rsub|\<Delta\>t<rprime|'>><around*|(|z\|y|)>
-    q<rsub|\<Delta\>t><around*|(|y\|x|)>.
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>.<label|equation:transition rate
+    determines transition density v2>
+  </equation>
+
+  This provides an addition restriction to the transition density.
+
+  Interestingly, obeying equation <reference|equation:transition rate
+  determines transition density v2> is sufficient for
+  <math|q<rsub|\<Delta\>t>> to satisfy equation
+  <reference|equation:transition rate determines transition density>.
+  Precisely, let <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>> is a function
+  that is smooth on <math|\<Delta\>t> with
+  <math|q<rsub|0><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>>, we are to
+  show that, if <math|q<rsub|\<Delta\>t>> satisfies equation
+  <reference|equation:transition rate determines transition density v2>, then
+  it will obey equation <reference|equation:transition rate determines
+  transition density>. To do so, we take derivative on equation
+  <reference|equation:transition rate determines transition density v2> by
+  <math|\<Delta\>t<rprime|'>> at <math|\<Delta\>t<rprime|'>=0>, resulting in
+
+  <\equation*>
+    q<rsup|<around*|(|1|)>><rsub|\<Delta\>t><around*|(|z\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> q<rsub|\<Delta\>t><around*|(|y\|x|)>,
   </equation*>
 
-  This provides an addition restriction to the transition density. Indeed,
-  not every transition density, as a function of time interval
-  <math|\<Delta\>t>, can satisfy this relation.
+  where <math|r<around*|(|z,y|)>\<assign\>q<rsub|0><rsup|<around*|(|1|)>><around*|(|z\|y|)>>.
+  Then, we are to Taylor expand both sides by <math|\<Delta\>t>. On the right
+  hand side, we have
+
+  <\equation*>
+    q<rsub|\<Delta\>t><around*|(|y\|x|)>=\<delta\><around*|(|y-x|)>+<big|sum><rsub|n=1><rsup|+\<infty\>><frac|<around*|(|\<Delta\>t|)><rsup|n>|n!>
+    q<rsup|<around*|(|n|)>><rsub|0><around*|(|y\|x|)>,
+  </equation*>
+
+  and on the left hand side,
+
+  <\equation*>
+    q<rsup|<around*|(|1|)>><rsub|\<Delta\>t><around*|(|z\|x|)>=<big|sum><rsub|n=0><rsup|+\<infty\>><frac|<around*|(|\<Delta\>t|)><rsup|n>|n!>
+    q<rsup|<around*|(|n+1|)>><rsub|0><around*|(|z\|x|)>.
+  </equation*>
+
+  So, we get the Taylor expansion on both sides. At
+  <math|<around*|(|\<Delta\>t|)><rsup|0>> order,
+
+  <\equation*>
+    q<rsup|<around*|(|1|)>><rsub|0><around*|(|y\|x|)>=r<around*|(|y,x|)>,
+  </equation*>
+
+  which is just the definition of <math|r>. At
+  <math|<around*|(|\<Delta\>t|)><rsup|1>> order,
+
+  <\equation*>
+    q<rsup|<around*|(|2|)>><rsub|0><around*|(|y\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> q<rsup|<around*|(|1|)>><rsub|0><around*|(|y\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    r<around*|(|z,y|)> r<around*|(|y,x|)>.
+  </equation*>
+
+  Iteratively at <math|<around*|(|\<Delta\>t|)><rsup|n+1>> order, we will
+  find
+
+  <\equation*>
+    q<rsup|<around*|(|n+1|)>><rsub|0><around*|(|y\|x|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|1>\<cdots\><big|int><rsub|\<cal-X\>>\<mathd\>y<rsub|n>
+    r<around*|(|z,y<rsub|n>|)> r<around*|(|y<rsub|n>,y<rsub|n-1>|)>\<cdots\>r<around*|(|y<rsub|1>,x|)>
+  </equation*>
+
+  again. And this implies equation <reference|equation:transition rate
+  determines transition density>. So, we conclude this paragraph as follow:
+  <em|obeying equation <reference|equation:transition rate determines
+  transition density v2> is the sufficient and essential condition for a
+  function <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>>, which is smooth on
+  <math|\<Delta\>t> with <math|q<rsub|0><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>>,
+  to satisfy equation <reference|equation:transition rate determines
+  transition density>; additionally, if <math|q<rsub|\<Delta\>t><around*|(|x\|y|)>>
+  is non-negative and normalized on <math|x> (namely,
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x
+  q<rsub|\<Delta\>t><around*|(|x\|y|)>=1>), then <math|q<rsub|\<Delta\>t>> is
+  a transition density>.
 
   <subsection|Detailed Balance Provides Stationary
   Distribution><label|section: Detailed Balance Provides Stationary
@@ -1124,6 +1216,7 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|1.9|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -1132,20 +1225,22 @@
     <associate|auto-7|<tuple|1.6|6>>
     <associate|auto-8|<tuple|1.7|9>>
     <associate|auto-9|<tuple|1.8|10>>
-    <associate|equation:Detailed Balance|<tuple|6|4>>
-    <associate|equation:Detailed Balance for transition density|<tuple|7|4>>
-    <associate|equation:circle|<tuple|13|10>>
-    <associate|equation:define stationary density function|<tuple|12|10>>
+    <associate|equation:Detailed Balance|<tuple|7|4>>
+    <associate|equation:Detailed Balance for transition density|<tuple|8|4>>
+    <associate|equation:circle|<tuple|14|10>>
+    <associate|equation:define stationary density function|<tuple|13|10>>
     <associate|equation:discrete time master equation|<tuple|4|2>>
     <associate|equation:discrete time master equation v0|<tuple|2|1>>
-    <associate|equation:equation:metropolis-hastings|<tuple|10|9>>
+    <associate|equation:equation:metropolis-hastings|<tuple|11|9>>
     <associate|equation:master equation|<tuple|3|2>>
     <associate|equation:master equation v0|<tuple|2|1>>
-    <associate|equation:metropolis-hastings origin|<tuple|11|9>>
-    <associate|equation:relative entropy derivative|<tuple|9|5>>
+    <associate|equation:metropolis-hastings origin|<tuple|12|9>>
+    <associate|equation:relative entropy derivative|<tuple|10|5>>
     <associate|equation:transition density normalization|<tuple|1|1>>
     <associate|equation:transition rate determines transition
     density|<tuple|5|3>>
+    <associate|equation:transition rate determines transition density
+    v2|<tuple|6|?>>
     <associate|footnote-1|<tuple|1|3>>
     <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|6>>

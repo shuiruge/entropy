@@ -744,9 +744,8 @@
 
   TODO
 
-  <subsection|Iterative Equation Has an Action with Friction and Driven
-  Force><label|section: Iterative Equation Has an Action with Friction and
-  Driven Force>
+  <subsection|Iterative Equation Has an Action with Friction><label|section:
+  Iterative Equation Has an Action with Friction>
 
   We are to build a probabilistic model for the series of variables that
   obeying iterative equation. The most generic form of iterative equation is
@@ -785,6 +784,8 @@
   holds for any <math|x<rsub|0>>. Then, <math|q<around*|(|x<rsub|2>\|x<rsub|1>|)>q<around*|(|x<rsub|1>\|x<rsub|0>|)>
   q<around*|(|x<rsub|0>|)>=q<around*|(|x<rsub|2>\|x<rsub|0>,x<rsub|1>|)>
   q<around*|(|x<rsub|0>,x<rsub|1>|)>=q<around*|(|x<rsub|0>,x<rsub|1>,x<rsub|2>|)>>.
+  Dividing <math|q<around*|(|x<rsub|0>|)>> on both sides, we get
+  <math|q<around*|(|x<rsub|1>,x<rsub|2>\|x<rsub|0>|)>=q<around*|(|x<rsub|2>\|x<rsub|1>|)>q<around*|(|x<rsub|1>\|x<rsub|0>|)>>.
   Repeating this step, we will find
 
   <\equation*>
@@ -798,9 +799,9 @@
     \<epsilon\>><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>+const.
   </equation*>
 
-  If regard <math|x<rsub|0>> as condition, then equation
+  If regard <math|x<rsub|0>> as the condition, then equation
   <reference|equation:action of distribution> (setting <math|\<beta\>=1>)
-  gives the action
+  defines the action
 
   <\equation*>
     S<around*|(|x\|x<rsub|0>|)>=<frac|1|2
@@ -814,40 +815,57 @@
   thus <math|x<rsup|\<alpha\>><rsub|i+1>=x<rsup|\<alpha\>><rsub|i>+\<epsilon\>
   g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>>. So, equivalently,
 
-  <\equation*>
-    S<around*|(|x\|x<rsub|0>|)>=<frac|\<epsilon\>|2><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|)><rsup|2>.
-  </equation*>
+  <\equation>
+    S<around*|(|x\|x<rsub|0>|)>=<frac|\<epsilon\>|2><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|)><rsup|2>.<label|equation:action
+    of iterative equation>
+  </equation>
 
   Comparing with classical mechanics, we can interpret <math|\<epsilon\>> as
   a tiny time interval and <math|<around*|(|x<rsub|i+1>-x<rsub|i>|)>/\<epsilon\>>
-  as \Pvelocity\Q. It motives us to consider its continuous version
+  as \Pvelocity\Q. It motives us to consider its continuous version. To do
+  so, we assume that the <math|\<epsilon\>> is very small and <math|N> is
+  sufficiently large, so that the <math|\<epsilon\> N\<sim\>1>. Then, we
+  simply replace <math|\<epsilon\>> by <math|\<mathd\>t>, and the series
+  <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>> becomes
+  <math|x<around*|(|t|)>> with <math|t\<in\><around*|[|0,t<rsub|f>|]>>, where
+  <math|t<rsub|f>\<assign\>\<epsilon\> N>, and <math|x<rsub|0>> becomes
+  <math|x<around*|(|0|)>>. Accordingly, <math|g<rsub|i><around*|(|x<rsub|i>|)>>
+  becomes <math|g<around*|(|x<around*|(|t|)>,t|)>>. So, we get the continuous
+  version of equation <reference|equation:action of iterative equation>, as
 
   <\equation*>
-    S<around*|(|x\|x<rsub|0>|)>=<frac|1|2><big|int><rsub|0><rsup|1>\<mathd\>t
+    S<around*|(|x\|x<around*|(|0|)>|)>=<frac|1|2><big|int><rsub|0><rsup|t<rsub|f>>\<mathd\>t
     <big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>-g<rsup|\<alpha\>><around*|(|x<around*|(|t|)>,t|)>|]><rsup|2>,
   </equation*>
 
-  where we have replaced <math|\<epsilon\>> by <math|\<mathd\>t>,
-  <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>> by
-  <math|x<around*|(|t|)>> with <math|t\<in\><around*|[|0,1|]>>, and
-  <math|g<rsub|i>> by <math|g<around*|(|\<cdummy\>,t|)>>. To get the Lagrange
-  <math|L>, which is defined by <math|S<around*|(|x\|x<rsub|0>|)>=<big|int><rsub|0><rsup|1>\<mathd\>t
+  To get the Lagrange <math|L>, which is defined by
+  <math|S<around*|(|x\|x<around*|(|0|)>|)>=<big|int>\<mathd\>t
   L<around*|(|x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,t|)>>, we
   expand the integrand and find
 
-  <\equation*>
+  <\equation>
     L<around*|(|x,<wide|x|\<dot\>>,t|)>=<big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2><around*|(|<wide|x|\<dot\>><rsup|\<alpha\>>|)><rsup|2>-<wide|x|\<dot\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><around*|(|x,t|)>+<frac|1|2><around*|(|g<rsup|\<alpha\>>|)><rsup|2><around*|(|x,t|)>|]>.
-  </equation*>
+    g<rsup|\<alpha\>><around*|(|x,t|)>+<frac|1|2><around*|(|g<rsup|\<alpha\>>|)><rsup|2><around*|(|x,t|)>|]>.<label|equation:lagrangian
+    of iterative equation>
+  </equation>
 
-  For calculating Euler-Lagrange equation
-  <math|<around*|(|\<mathd\>/\<mathd\>t|)>\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=\<partial\>L/\<partial\>x<rsup|\<alpha\>>>,
-  we have <math|\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=<wide|x|\<dot\>><rsup|\<alpha\>>-g<rsup|\<alpha\>><around*|(|x,t|)>>
+  For evaluating Euler-Lagrange equation, we have to fix the boundary
+  <math|x<around*|(|t<rsub|f>|)>> (recall <math|x<around*|(|0|)>> has been
+  fixed), since Euler-Lagrange equation is derived from variation with fixed
+  boundaries. It indicates to consider the expectation
+  <math|\<bbb-E\><rsub|Q<around*|(|x<rsub|0>|)>><around*|[|\<delta\><around*|(|x<around*|(|t<rsub|f>|)>-x<rsub|f>|)>|]>>
+  for any <math|x<rsub|f>\<in\>\<bbb-R\><rsup|n>>. As usual, we use
+  <math|Q<around*|(|x<rsub|0>|)>> for the distribution of the density
+  <math|q<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>\|x<rsub|0>|)>>. Given the
+  boundary values at <math|t=0> and <math|t=t<rsub|f>>, we have
+  <math|\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=<wide|x|\<dot\>><rsup|\<alpha\>>-g<rsup|\<alpha\>><around*|(|x,t|)>>
   and <math|\<partial\>L/\<partial\>x<rsup|\<alpha\>>=<big|sum><rsub|\<beta\>=1><rsup|n><around*|[|-<wide|x|\<dot\>><rsup|\<beta\>>+g<rsup|\<beta\>><around*|(|x,t|)>|]>
-  \<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>>. We have
-  denoted <math|\<partial\><rsub|\<alpha\>>g<rsup|\<beta\>>\<assign\>\<partial\>g<rsup|\<beta\>>/\<partial\>x<rsup|\<alpha\>>>,
+  \<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>>, where we
+  have denoted <math|\<partial\><rsub|\<alpha\>>g<rsup|\<beta\>>\<assign\>\<partial\>g<rsup|\<beta\>>/\<partial\>x<rsup|\<alpha\>>>,
   and will employ <math|\<partial\><rsub|t>g> for
-  <math|\<partial\>g/\<partial\>t>. Thus, Euler-Lagrange equation becomes
+  <math|\<partial\>g/\<partial\>t>. Thus, Euler-Lagrange equation
+  <math|<around*|(|\<mathd\>/\<mathd\>t|)>\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=\<partial\>L/\<partial\>x<rsup|\<alpha\>>>
+  becomes
 
   <\equation*>
     <wide|x|\<ddot\>><rsup|\<alpha\>>=<big|sum><rsub|\<beta\>=1><rsup|n><around*|[|\<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><around*|(|x,t|)>-\<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>|]>
@@ -857,19 +875,16 @@
 
   The first term in the right hand side is recognized as a friction, which is
   proportional to the curl of <math|g>. The rest terms are driving force.
-  When <math|g> is independent of <math|t> (in which case the feed-forward
-  neural network shares weights crossing layers), it becomes a gradient of
-  potential <math|<around*|(|1/2|)>g<rsup|2><around*|(|x|)>>.
 
   The assumption of Gaussianity <reference|equation:gaussianity> together
-  with interpreting its variance as time interval reminds us of the Langevin
-  dynamics (see section <reference|section: Transition Density of Langevin
-  Process Is Approximately Gaussian>) where the Wiener process is Gaussian
-  with variance <math|\<mathd\>t>. They do have relation. The assumption can
-  be re-written as <math|X<rsup|\<alpha\>><rsub|i+1>-X<rsup|\<alpha\>><rsub|i>=\<Delta\>t
+  with interpreting its variance as time interval reminds us of the standard
+  Wiener process, which is Gaussian with zero mean and time interval as
+  variance (see section <reference|section: * Wiener Process Is Almost
+  Everywhere in Nature>). The assumption can be re-written as
+  <math|X<rsup|\<alpha\>><rsub|i+1>-X<rsup|\<alpha\>><rsub|i>=\<Delta\>t
   g<rsub|i><rsup|\<alpha\>><around*|(|X<rsub|i>|)>+\<Delta\>W<rsub|i><rsup|\<alpha\>>>,
   where we have formally replaced <math|\<epsilon\>> by <math|\<Delta\>t>
-  (indicating time interval), and <math|\<Delta\>W<rsub|i><rsup|\<alpha\>>>
+  (hinting for time interval), and <math|\<Delta\>W<rsub|i><rsup|\<alpha\>>>
   obeys the normal distribution with zero mean and variance
   <math|\<Delta\>t>. This is the difference version of the stochastic
   differential equation
@@ -881,13 +896,65 @@
 
   When <math|g> is independent of <math|t>, it becomes Langevin dynamics.
 
+  <subsection|Renormalization Group Transformation>
+
+  Let us start at the action of iterative equation <reference|equation:action
+  of iterative equation>. Define <math|y<rsub|i>=<around*|(|x<rsub|2i+1>+x<rsub|2i>|)>/2>
+  and <math|z<rsub|i>=<around*|(|x<rsub|2i+1>-x<rsub|2i>|)>/2>. Thus,
+  <math|x<rsub|2i>=y<rsub|i>-z<rsub|i>> and
+  <math|x<rsub|2i+1>=y<rsub|i>+z<rsub|i>>. Then, for example,
+  <math|\<mathd\>x<rsub|2i>\<wedge\>\<mathd\>x<rsub|2i+1>=<around*|(|\<mathd\>y<rsub|i>-\<mathd\>z<rsub|i>|)>\<wedge\><around*|(|\<mathd\>y<rsub|i>+\<mathd\>z<rsub|i>|)>=2
+  \<mathd\>y<rsub|i>\<wedge\>\<mathd\>z<rsub|i>>. Then we marginalize the
+  <math|z> components in <math|q<around*|(|x\|x<rsub|0>|)>>.
+
+  As an example, we marginalize the <math|z<rsub|0>> component. It appears in
+  <math|i=0,1> terms. That is, we are to compute
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|0><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|1>
+    exp<around*|(|-<frac|\<epsilon\>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<around*|(|<frac|x<rsup|\<alpha\>><rsub|1>-x<rsup|\<alpha\>><rsub|0>|\<epsilon\>>-g<rsub|0><rsup|\<alpha\>><around*|(|x<rsub|0>|)>|)><rsup|2>+<around*|(|<frac|x<rsup|\<alpha\>><rsub|2>-x<rsup|\<alpha\>><rsub|1>|\<epsilon\>>-g<rsub|1><rsup|\<alpha\>><around*|(|x<rsub|1>|)>|)><rsup|2>|]>|)>.
+  </equation*>
+
+  Inserting the relation between <math|x> and <math|<around*|(|y,z|)>>, it
+  becomes
+
+  <\equation*>
+    2<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsub|0><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>z<rsub|0>
+    exp<around*|(|-<frac|\<epsilon\>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<around*|(|<frac|z<rsub|0><rsup|\<alpha\>>|\<epsilon\>>-g<rsub|0><rsup|\<alpha\>><around*|(|y<rsub|0>-z<rsub|0>|)>|)><rsup|2>+<around*|(|<frac|z<rsub|1><rsup|\<alpha\>>|\<epsilon\>>-g<rsub|1><rsup|\<alpha\>><around*|(|y<rsub|0>+z<rsub|0>|)>|)><rsup|2>|]>|)>.
+  </equation*>
+
+  Expanding the term in the <math|<around*|[|\<ldots\>|]>> gives
+
+  <\equation*>
+    -<frac|z<rsub|0><rsup|2>|2\<epsilon\>>+z<rsub|0>\<cdot\>g<rsub|0><around*|(|y<rsub|0>-z<rsub|0>|)>-<frac|\<epsilon\>|2>g<rsub|0><rsup|2><around*|(|y<rsub|0>-z<rsub|0>|)>+z<rsub|1>\<cdot\>g<rsub|1><around*|(|y<rsub|0>+z<rsub|0>|)>-<frac|\<epsilon\>|2>g<rsub|1><rsup|2><around*|(|y<rsub|0>+z<rsub|0>|)>.
+  </equation*>
+
+  So, we find a Gaussian integral with variance <math|\<epsilon\>>. The
+  <math|<big|int>\<mathd\>z<rsub|0> exp<around*|(|\<cdots\>|)>> factor
+  becomes
+
+  <\equation*>
+    \<bbb-E\><rsub|<with|font|cal|N><around*|(|0,\<epsilon\>|)>><around*|[|z<rsub|0>\<cdot\>g<rsub|0><around*|(|y<rsub|0>-z<rsub|0>|)>-<frac|\<epsilon\>|2>g<rsub|0><rsup|2><around*|(|y<rsub|0>-z<rsub|0>|)>+z<rsub|1>\<cdot\>g<rsub|1><around*|(|y<rsub|0>+z<rsub|0>|)>-<frac|\<epsilon\>|2>g<rsub|1><rsup|2><around*|(|y<rsub|0>+z<rsub|0>|)>|]>.
+  </equation*>
+
+  Taylor expanding <math|g<rsub|0>> and <math|g<rsub|1>> gives
+  <math|z<rsub|0>\<cdot\>g<rsub|0><around*|(|y<rsub|0>-z<rsub|0>|)>=z<rsub|0><rsup|\<alpha\>>
+  \<partial\><rsub|\<beta\>>g<rsub|\<alpha\>><around*|(|y<rsub|0>|)>
+  z<rsub|0><rsup|\<beta\>>>, <math|g<rsub|0><around*|(|y<rsub|0>-z<rsub|0>|)>>
+
+  <\equation*>
+    z<rsub|1>\<cdot\>g<rsub|1><around*|(|y<rsub|0>|)>+<around*|[|\<partial\>g<around*|(|y<rsub|0>|)>+z<rsub|1>\<cdot\>\<partial\><rsup|2>g<rsub|1><around*|(|y<rsub|0>|)>-<frac|1|2><around*|(|g<rsub|0><rsup|2><around*|(|y<rsub|0>|)>+g<rsub|1><rsup|2><around*|(|y<rsub|0>|)>|)>|]>\<epsilon\>+\<omicron\><around*|(|\<epsilon\>|)>.
+  </equation*>
+
   <subsection|Example: Action in Deep Learning>
 
   In deep learning, a feed-forward network is a supervised model that
   computes the output <math|y\<in\>\<bbb-R\><rsup|n<rsub|L>>> from input
-  <math|x\<in\>\<bbb-R\><rsup|n<rsub|0>>>. To do so, it iteratively computes
-  a series of intermediate quantities called hidden variables
-  <math|<around*|(|h<rsub|1>,\<ldots\>,h<rsub|L-1>|)>> with
+  <math|x\<in\>\<bbb-R\><rsup|n<rsub|0>>>. (In some cases, such as natural
+  language process, <math|x> is the embedding vector; and for classification
+  task, <math|y> is the logits, the input of softmax function.) It
+  iteratively computes a series of intermediate quantities called hidden
+  variables <math|<around*|(|h<rsub|1>,\<ldots\>,h<rsub|L-1>|)>> with
   <math|h<rsub|l>\<in\>\<bbb-R\><rsup|n<rsub|l>>> by
 
   <\equation*>
@@ -902,10 +969,39 @@
   <math|n<rsub|l>>s are equal, and <math|h<rsup|\<alpha\>><rsub|l+1>=h<rsub|l><rsup|\<alpha\>>+\<epsilon\>
   g<rsup|\<alpha\>><rsub|l><around*|(|h<rsub|l>|)>>. This is consistent with
   the discussion in section <reference|section: Iterative Equation Has an
-  Action with Friction and Driven Force>, thus the results obtained there
-  also holds for deep learning.
+  Action with Friction>, thus the results obtained there also holds for deep
+  learning. And we get an action of feed-forward network as equation
+  <reference|equation:action of iterative equation> and its Lagrangian (in
+  continuous version) <reference|equation:lagrangian of iterative equation>.
 
-  TODO
+  For perceptrons, <math|g<rsup|\<alpha\>><around*|(|x,t|)>=\<sigma\><around*|(|W<rsup|\<alpha\>><rsub|\<beta\>><around*|(|t|)>
+  x<rsup|\<beta\>>+b<rsup|\<alpha\>><around*|(|t|)>|)>> for some activation
+  function <math|\<sigma\>:\<bbb-R\>\<rightarrow\>\<bbb-R\>>, such as sigmoid
+  function <math|1/<around*|(|1+exp<around*|(|-x|)>|)>>. We first, for
+  simplicity, consider the situation where <math|b=0> and the feed-forward
+  network (such as <name|Albert>) share weights which means <math|W> is
+  independent of <math|t>. After this simplifications, we get an action
+  (recall <math|h<rsub|0>=x>)
+
+  <\equation>
+    S<around*|(|h\|h<rsub|0>|)>=<frac|\<epsilon\>|2><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|h<rsup|\<alpha\>><rsub|l+1>-h<rsup|\<alpha\>><rsub|l>|\<epsilon\>>-\<sigma\><around*|(|W<rsup|\<alpha\>><rsub|\<beta\>>
+    h<rsup|\<beta\>>|)>|)><rsup|2>.
+  </equation>
+
+  If <math|W\<cdot\>h> is small enough, then we can safely Taylor expand
+  <math|\<sigma\>> at zero, as
+
+  <\equation*>
+    \<sigma\><around*|(|x|)>=<frac|1|2>+<frac|x|4>-<frac|x<rsup|3>|48>+\<cdots\>.
+  </equation*>
+
+  The leading order approximation <math|\<sigma\><around*|(|x|)>\<approx\>1/2+x/4>
+  makes <math|S<around*|(|h\|h<rsub|0>|)>> Gaussian. Explicitly, we have
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|<big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\>>-<frac|1|2>-<frac|W<rsup|\<alpha\>><rsub|\<beta\>>
+    x<rsub|i><rsup|\<beta\>>|4>|)><rsup|2>>>|<row|<cell|=>|<cell|<big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>|\<epsilon\>>-<around*|(|<frac|\<delta\><rsup|\<alpha\>><rsub|\<beta\>>|\<epsilon\>>+<frac|W<rsup|\<alpha\>><rsub|\<beta\>>|4>|)>x<rsub|i><rsup|\<beta\>>-<frac|1|2>|)><rsup|2>>>>>
+  </align>
 
   \;
 </body>
@@ -922,10 +1018,8 @@
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|1.6.2|7>>
     <associate|auto-11|<tuple|1.7|7>>
-    <associate|auto-12|<tuple|1.8|7>>
-    <associate|auto-13|<tuple|1.8|8>>
-    <associate|auto-14|<tuple|1.8|9>>
-    <associate|auto-15|<tuple|1.8.1|?>>
+    <associate|auto-12|<tuple|1.8|9>>
+    <associate|auto-13|<tuple|1.9|9>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -935,12 +1029,14 @@
     <associate|auto-8|<tuple|1.6|7>>
     <associate|auto-9|<tuple|1.6.1|7>>
     <associate|equation:action of distribution|<tuple|4|2>>
+    <associate|equation:action of iterative equation|<tuple|10|8>>
     <associate|equation:data-fitting iteration|<tuple|6|6>>
     <associate|equation:data-fitting result|<tuple|7|6>>
     <associate|equation:gaussianity|<tuple|9|8>>
     <associate|equation:generic density|<tuple|5|5>>
     <associate|equation:generic iterative equation|<tuple|8|7>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
+    <associate|equation:lagrangian of iterative equation|<tuple|11|8>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
     <associate|figure: Least-Action|<tuple|1|6>>
@@ -952,8 +1048,8 @@
     Mechanics|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
     of Distribution|<tuple|1.5|5>>
-    <associate|section: Iterative Equation Has an Action with Friction and
-    Driven Force|<tuple|1.7|?>>
+    <associate|section: Iterative Equation Has an Action with
+    Friction|<tuple|1.7|7>>
     <associate|section: Least-Action Principle of Distribution Has No
     Redundancy|<tuple|1.3|2>>
   </collection>
@@ -1016,8 +1112,9 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Structures in Nature May
-      Arise from Least-Action Principle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.6<space|2spc>History: Structures in
+      Nature Arise from Least-Action Principle
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
       <with|par-left|<quote|2tab>|1.6.1<space|2spc>WBE Theory and
@@ -1028,21 +1125,17 @@
       Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Action of Iterative
-      Equation and Deep Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Iterative Equation Has an
+      Action with Friction <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-11>>
 
-      <with|par-left|<quote|2tab>|1.7.1<space|2spc>A Probabilistic Model for
-      Iterative Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.8<space|2spc>Renormalization Group
+      Transformation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-12>>
 
-      <with|par-left|<quote|2tab>|1.7.2<space|2spc>Comparing with Classical
-      Mechanics and Langevin Dynamics <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.9<space|2spc>Example: Action in Deep
+      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
-
-      <with|par-left|<quote|2tab>|1.7.3<space|2spc>Action of Feed-Forward
-      Network <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14>>
     </associate>
   </collection>
 </auxiliary>

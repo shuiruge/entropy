@@ -761,21 +761,21 @@
   random variables <math|<around*|(|X<rsub|0>,\<ldots\>,X<rsub|N>|)>> by
   assuming that <math|X<rsub|i+1>> obeys the normal distribution with the
   mean given by the iterative equation <reference|equation:generic iterative
-  equation> and a fixed variance <math|\<epsilon\>> (shared by all components
-  of <math|X<rsub|i+1>>), as
+  equation> and variance <math|\<epsilon\><rsub|i>>, as
 
   <\equation>
-    X<rsub|i+1>\<sim\><with|font|cal|N><around*|(|f<rsub|l><around*|(|X<rsub|i>|)>,\<epsilon\>|)>,<label|equation:gaussianity>
+    X<rsub|i+1>\<sim\><with|font|cal|N><around*|(|f<rsub|i><around*|(|X<rsub|i>|)>,\<epsilon\><rsub|i>\<bbb-1\>|)>,<label|equation:gaussianity>
   </equation>
 
-  where <math|<with|font|cal|N><around*|(|\<mu\>,\<sigma\><rsup|2>|)>>
-  denotes a normal distribution with mean <math|\<mu\>> and variance
-  <math|\<sigma\><rsup|2>>. It has the conditional density function
+  where <math|<with|font|cal|N><around*|(|\<mu\>,\<Sigma\>|)>> denotes a
+  multivariate normal distribution with mean <math|\<mu\>> and covariance
+  <math|\<Sigma\>>, and <math|\<bbb-1\>> denotes the identity matrix. It has
+  the conditional density function
 
   <\equation*>
     q<around*|(|x<rsub|i+1>\|x<rsub|i>|)>=<around*|(|<frac|1|<sqrt|<around*|(|2\<mathpi\>|)>
-    \<epsilon\>><rsup|>>|)><rsup|n>\<times\>exp<around*|(|-<big|sum><rsub|\<alpha\>=1><rsup|n><frac|<around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>|2
-    \<epsilon\>>|)>.
+    \<epsilon\><rsub|i>><rsup|>>|)><rsup|n>\<times\>exp<around*|(|-<big|sum><rsub|\<alpha\>=1><rsup|n><frac|<around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>|2
+    \<epsilon\><rsub|i>>|)>.
   </equation*>
 
   To obtain the whole density function, we first notice that, since
@@ -795,8 +795,8 @@
   Plugging in <math|q<around*|(|x<rsub|i+1>\|x<rsub|i>|)>>, we arrive at
 
   <\equation*>
-    -ln q<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>\|x<rsub|0>|)>=<frac|1|2
-    \<epsilon\>><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>+const.
+    -ln q<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>\|x<rsub|0>|)>=<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|1|2
+    \<epsilon\><rsub|i>><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>+const.
   </equation*>
 
   If regard <math|x<rsub|0>> as the condition, then equation
@@ -804,8 +804,8 @@
   defines the action
 
   <\equation*>
-    S<around*|(|x\|x<rsub|0>|)>=<frac|1|2
-    \<epsilon\>><big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>.
+    S<around*|(|x\|x<rsub|0>|)>=<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|1|2
+    \<epsilon\><rsub|i>><around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>.
   </equation*>
 
   \;
@@ -816,22 +816,24 @@
   g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>>. So, equivalently,
 
   <\equation>
-    S<around*|(|x\|x<rsub|0>|)>=<frac|\<epsilon\>|2><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|)><rsup|2>.<label|equation:action
+    S<around*|(|x\|x<rsub|0>|)>=<big|sum><rsub|i=0><rsup|N-1><frac|\<epsilon\><rsub|i>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\><rsub|i>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|)><rsup|2>.<label|equation:action
     of iterative equation>
   </equation>
 
-  Comparing with classical mechanics, we can interpret <math|\<epsilon\>> as
-  a tiny time interval and <math|<around*|(|x<rsub|i+1>-x<rsub|i>|)>/\<epsilon\>>
-  as \Pvelocity\Q. It motives us to consider its continuous version. To do
-  so, we assume that the <math|\<epsilon\>> is very small and <math|N> is
-  sufficiently large, so that the <math|\<epsilon\> N\<sim\>1>. Then, we
-  simply replace <math|\<epsilon\>> by <math|\<mathd\>t>, and the series
-  <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>> becomes
+  Comparing with classical mechanics, we can interpret
+  <math|\<epsilon\><rsub|i>> as a tiny time interval and
+  <math|<around*|(|x<rsub|i+1>-x<rsub|i>|)>/\<epsilon\><rsub|i>> as
+  \Pvelocity\Q. It motives us to consider its continuous version. To do so,
+  we assume that the <math|\<epsilon\>> is very small and <math|N> is
+  sufficiently large, so that the <math|<big|sum><rsub|i=0><rsup|N-1>\<epsilon\><rsub|i>\<sim\>1>.
+  Then, we simply replace <math|\<epsilon\>> by <math|\<mathd\>t>, and the
+  series <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>> becomes
   <math|x<around*|(|t|)>> with <math|t\<in\><around*|[|0,t<rsub|f>|]>>, where
-  <math|t<rsub|f>\<assign\>\<epsilon\> N>, and <math|x<rsub|0>> becomes
-  <math|x<around*|(|0|)>>. Accordingly, <math|g<rsub|i><around*|(|x<rsub|i>|)>>
-  becomes <math|g<around*|(|x<around*|(|t|)>,t|)>>. So, we get the continuous
-  version of equation <reference|equation:action of iterative equation>, as
+  <math|t<rsub|f>\<assign\><big|sum><rsub|i=0><rsup|N-1>\<epsilon\><rsub|i>>,
+  and <math|x<rsub|0>> becomes <math|x<around*|(|0|)>>. Accordingly,
+  <math|g<rsub|i><around*|(|x<rsub|i>|)>> becomes
+  <math|g<around*|(|x<around*|(|t|)>,t|)>>. So, we get the continuous version
+  of equation <reference|equation:action of iterative equation>, as
 
   <\equation*>
     S<around*|(|x\|x<around*|(|0|)>|)>=<frac|1|2><big|int><rsub|0><rsup|t<rsub|f>>\<mathd\>t
@@ -881,20 +883,21 @@
   Wiener process, which is Gaussian with zero mean and time interval as
   variance (see section <reference|section: * Wiener Process Is Almost
   Everywhere in Nature>). The assumption can be re-written as
-  <math|X<rsup|\<alpha\>><rsub|i+1>-X<rsup|\<alpha\>><rsub|i>=\<Delta\>t
+  <math|X<rsup|\<alpha\>><rsub|i+1>-X<rsup|\<alpha\>><rsub|i>=\<Delta\>t<rsub|i>
   g<rsub|i><rsup|\<alpha\>><around*|(|X<rsub|i>|)>+\<Delta\>W<rsub|i><rsup|\<alpha\>>>,
-  where we have formally replaced <math|\<epsilon\>> by <math|\<Delta\>t>
-  (hinting for time interval), and <math|\<Delta\>W<rsub|i><rsup|\<alpha\>>>
-  obeys the normal distribution with zero mean and variance
-  <math|\<Delta\>t>. This is the difference version of the stochastic
-  differential equation
+  where we have formally replaced <math|\<epsilon\><rsub|i>> by
+  <math|\<Delta\>t<rsub|i>> (hinting for time interval), and
+  <math|\<Delta\>W<rsub|i><rsup|\<alpha\>>> obeys the normal distribution
+  with zero mean and variance <math|\<Delta\>t>. This is the difference
+  version of the stochastic differential equation
 
   <\equation*>
     \<mathd\>X<rsup|\<alpha\>>=g<rsup|\<alpha\>><around*|(|X,t|)>
     \<mathd\>t+\<mathd\>W<rsup|\<alpha\>>.
   </equation*>
 
-  When <math|g> is independent of <math|t>, it becomes Langevin dynamics.
+  When <math|g> is independent of <math|t>, it becomes Langevin dynamics, and
+  the sequence <math|X<around*|(|t|)>> becomes Markovian.
 
   <subsection|Renormalization Group Transformation>
 

@@ -19,8 +19,8 @@
 
   Follow the conventions in section <reference|section: Master Equation,
   Detailed Balance, and Relative Entropy>. In addition, we employ the
-  Einstein's convention of summation. That is, we omit the sum notation for
-  the duplicated indices as long as they are \Pbalanced\Q. For example,
+  <strong|Einstein convention>. That is, we omit the sum notation for the
+  duplicated indices as long as they are \Pbalanced\Q. For example,
   <math|x<rsub|\<alpha\>> y<rsup|\<alpha\>>> represents
   <math|<big|sum><rsub|\<alpha\>>x<rsub|\<alpha\>> y<rsup|\<alpha\>>>. The
   <math|\<alpha\>> appears twice in the expression, once in subscript (the
@@ -181,12 +181,48 @@
 
   When <math|\<Delta\>t> is sufficiently small, <math|q<rsub|\<Delta\>t>> can
   be approximately regarded as a transition density (section
-  <reference|section: Transition Rate Determines Transition Density>). The
-  corresponding Markov process is called <strong|Langevin dynamics> or
-  <with|font-series|bold|Langevin process>.
+  <reference|section: Transition Rate Determines Transition
+  Density>).<\footnote>
+    Will <math|q<rsub|\<Delta\>t>> be a transition density for arbitrary
+    positive <math|\<Delta\>t>? In section <reference|Transition Rate
+    Determines Transition Density>, we have shown that
+    <math|q<rsub|\<Delta\>t>> is a transition density if and only if
+    <math|q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|x\|z|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t<rprime|'>><around*|(|x\|y|)>
+    q<rsub|\<Delta\>t><around*|(|y\|z|)>>. By inserting the
+    <math|q<rsub|\<Delta\>t>> of Langevin process, we find the right hand
+    side proprotional to
+
+    <\equation*>
+      exp<around*|(|-<frac|1|2\<Delta\>t<rprime|'>>
+      \<Sigma\><rsup|-1><around*|(|y|)> <around*|(|x-y-\<mu\><around*|(|y|)>
+      \<Delta\>t<rprime|'>|)> <around*|(|x-y-\<mu\><around*|(|y|)>
+      \<Delta\>t<rprime|'>|)>-<frac|1|2\<Delta\>t>
+      \<Sigma\><rsup|-1><around*|(|z|)> <around*|(|y-z-\<mu\><around*|(|z|)>
+      \<Delta\>t|)> <around*|(|y-z-\<mu\><around*|(|z|)> \<Delta\>t|)>|)>.
+    </equation*>
+
+    In this expression, <math|y> appears in many places, including
+    <math|\<Sigma\><rsup|-1><around*|(|y|)>> and
+    <math|\<mu\><around*|(|y|)>>. Thus, that in the exponential is not
+    quadratic on <math|y>. It is hard to expect that integrating over
+    <math|y> will give a result that is proportional to
+
+    <\equation*>
+      exp<around*|(|-<frac|1|2<around*|(|\<Delta\>t+\<Delta\>t<rprime|'>|)>>
+      \<Sigma\><rsup|-1><around*|(|z|)> <around*|[|x-z-\<mu\><around*|(|z|)>
+      <around*|(|\<Delta\>t+\<Delta\>t<rprime|'>|)>|]>
+      <around*|[|x-z-\<mu\><around*|(|z|)>
+      <around*|(|\<Delta\>t+\<Delta\>t<rprime|'>|)>|]>|)>.
+    </equation*>
+
+    So, we prefer to guess that <math|q<rsub|\<Delta\>t>> is not a transition
+    density for arbitrary positive <math|\<Delta\>t>.
+  </footnote> The corresponding Markov process is called <strong|Langevin
+  dynamics> or <with|font-series|bold|Langevin process>.
 
   In many textures, Langevin process is written by a stochastic differential
-  equation (again, we use capital letters for random variables) TODO
+  equation (again, we use capital letters for random variables)
 
   <\equation*>
     \<mathd\>X<rsup|\<alpha\>>=\<mu\><rsup|\<alpha\>><around*|(|X|)>\<mathd\>t+C<rsup|\<alpha\>><rsub|\<beta\>><around*|(|X|)>
@@ -195,9 +231,30 @@
 
   where <math|\<mathd\>W<rsup|\<alpha\>>>, called <strong|Wiener process>, is
   a random variable obeying the normal distribution with zero mean and
-  variance <math|\<mathd\>t>. This stochastic differential equation is an
-  formal equivalent of <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>>
-  when <math|\<Delta\>t\<rightarrow\>\<mathd\>t> and
+  variance <math|\<mathd\>t>. The matrix-valued field <math|C<around*|(|x|)>>
+  that factorizes <math|\<Sigma\><around*|(|x|)>> by
+  <math|\<Sigma\><around*|(|x|)>=C<rsup|T><around*|(|x|)> C<around*|(|x|)>>
+  is called <strong|Cholesky factorization>, named by the French militory
+  officer André-Louis Cholesky, died at age 31.<\footnote>
+    Cholesky factorization is always valid for a positive definite symmetric
+    matrix. Given any <math|x>, since <math|\<Sigma\><around*|(|x|)>> is real
+    and symmetric matrix, we have orthogonal decomposition
+    <math|\<Sigma\><around*|(|x|)>=E<rsup|T><around*|(|x|)>
+    \<Lambda\><around*|(|x|)> E<around*|(|x|)>>, where
+    <math|E<around*|(|x|)>> is orthogonal matrix and
+    <math|\<Lambda\><around*|(|x|)>> is diagonal. Since
+    <math|\<Sigma\><around*|(|x|)>> is also positive definite, we have
+    <math|\<Lambda\><rsup|\<alpha\>\<alpha\>><around*|(|x|)>\<gtr\>0> for all
+    <math|\<alpha\>>. Then, define <math|C<around*|(|x|)>\<assign\><sqrt|\<Lambda\><around*|(|x|)>>
+    E<around*|(|x|)>> which gives <math|C<rsup|T><around*|(|x|)>
+    C<around*|(|x|)>=<around*|(|E<rsup|T><around*|(|x|)>
+    <sqrt|\<Lambda\><around*|(|x|)>>|)> <around*|(|<sqrt|\<Lambda\><around*|(|x|)>>
+    E<around*|(|x|)>|)>=E<rsup|T><around*|(|x|)> \<Lambda\><around*|(|x|)>
+    E<around*|(|x|)>=\<Sigma\><around*|(|x|)>>. That is,
+    <math|\<Sigma\><around*|(|x|)>> is factorized by <math|C<around*|(|x|)>>.
+  </footnote> This stochastic differential equation is an formal equivalence
+  of <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>> when
+  <math|\<Delta\>t\<rightarrow\>\<mathd\>t> and
   <math|\<epsilon\>\<rightarrow\>\<mathd\>x>.
 
   <subsection|Transition Rate of Langevin Process Is a Generalized
@@ -456,7 +513,7 @@
     holds for any <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n\<times\>n>|)>>,
     thus <math|><math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>=\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|x|)>>.
   </footnote> These conclusions are to be used in section <reference|section:
-  Detailed Balance Condition for Langevin Process Lacks Source-Free Degree of
+  Detailed Balance Condition of Langevin Process Lacks Source-Free Degree of
   Freedom>.
 
   <subsection|Master Equation of Langevin Process Is Fokker-Planck Equation>
@@ -491,11 +548,13 @@
   found by Adriaan Fokker and Max Planck in 1914 and 1917 respectively, or
   <strong|Kolmogorov forward equation>, independently discovered in 1931.
 
-  <subsection|Stationary Solution of Fokker-Planck Equation>
+  <subsection|Stationary Solution of Langevin Process Has Source-Free Degree
+  of Freedom>
 
-  Fokker-Planck equation <reference|equation:Fokker-Planck equation> has
-  stationary solution <math|\<Pi\>> which satisfies (since there is only one
-  variable <math|x>, we use <math|\<partial\>> instead of <math|\<nabla\>>)
+  The master equation of Langevin process (equation
+  <reference|equation:Fokker-Planck equation>) has stationary solution
+  <math|\<Pi\>> which satisfies (since there is only one variable <math|x>,
+  we use <math|\<partial\>> instead of <math|\<nabla\>>)
 
   <\equation*>
     -\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
@@ -526,9 +585,9 @@
   \<nabla\>\<cdot\>v<around*|(|x|)>=0>, thus conflicts. Such a vector field
   <math|\<nu\>> is called <strong|free of source> or <strong|source-free>.
 
-  <subsection|Detailed Balance Condition for Langevin Process Lacks
-  Source-Free Degree of Freedom><label|section: Detailed Balance Condition
-  for Langevin Process Lacks Source-Free Degree of Freedom>
+  <subsection|Detailed Balance Condition of Langevin Process Lacks
+  Source-Free Degree of Freedom><label|section: Detailed Balance Condition of
+  Langevin Process Lacks Source-Free Degree of Freedom>
 
   After discussing stationary distribution of Fokker-Planck equation (as a
   master equation), we continue investigate when will Langevin process relax
@@ -657,8 +716,8 @@
     Langevin>
   </equation>
 
-  Comparing with the stationary Fokker-Planck equation
-  <reference|equation:stationary Fokker-Planck equation>, the source-free
+  Comparing with the stationary solution of Langevin process (equation
+  <reference|equation:stationary Fokker-Planck equation>), the source-free
   vector field <math|\<nu\>> is absent here. Recall in section
   <reference|section: Detailed Balance Provides Stationary Distribution>
   where detailed balance condition was first encountered, we said that
@@ -675,13 +734,29 @@
   In section <reference|section: Transition Density of Langevin Process Is
   Approximately Gaussian>, we have introduced Wiener process
   <math|\<mathd\>W<around*|(|x|)>> that obeys the normal distribution with
-  zero mean and variance <math|2\<Sigma\><around*|(|x|)> \<mathd\>t>. This
-  was first discovered in 1827, when botanist Robert Brown noticed that
-  pollen particles automatically shakes in water. This phenomenon was first
+  zero mean and variance <math|\<Sigma\><around*|(|x|)> \<mathd\>t>. This was
+  first discovered in 1827, when botanist Robert Brown noticed that pollen
+  particles automatically shakes in water. This phenomenon was first
   explained by Albert Einstein in 1905. He argued that the pollen particles
   are constantly hitted by water molecules. Untill 1918, Norbert Wiener
   constructed a mathematical theory about this stochastic process. Wiener's
-  theory is an elegant application of central limit theorem. TODO
+  theory is an elegant application of central limit theorem.
+
+  Consider the Gaussian conditional density function
+
+  <\equation*>
+    q<rsub|\<Delta\>t><around*|(|x\|y|)>=<frac|1|<sqrt|2\<mathpi\>
+    \<Delta\>t>> exp<around*|(|-<frac|<around*|(|x-y|)><rsup|2>|2\<Delta\>t>|)>,
+  </equation*>
+
+  we have
+
+  <\equation*>
+    q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|x\|z|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+    q<rsub|\<Delta\>t><around*|(|x\|y|)> q<rsub|\<Delta\>t<rprime|'>><around*|(|y\|z|)>.
+  </equation*>
+
+  \;
 </body>
 
 <\initial>
@@ -710,12 +785,16 @@
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|3>>
     <associate|footnote-3|<tuple|3|4>>
+    <associate|footnote-4|<tuple|4|?>>
+    <associate|footnote-5|<tuple|5|?>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|3>>
     <associate|footnr-3|<tuple|3|4>>
+    <associate|footnr-4|<tuple|4|?>>
+    <associate|footnr-5|<tuple|5|?>>
     <associate|section: * Wiener Process Is Almost Everywhere in
     Nature|<tuple|1.8|6>>
-    <associate|section: Detailed Balance Condition for Langevin Process Lacks
+    <associate|section: Detailed Balance Condition of Langevin Process Lacks
     Source-Free Degree of Freedom|<tuple|1.7|5>>
     <associate|section: Kramers-Moyal Expansion and Langevin
     Process|<tuple|1|1>>
@@ -724,7 +803,7 @@
     <associate|section: Transition Density of Langevin Process Is
     Approximately Gaussian|<tuple|1.3|2>>
     <associate|section: Transition Rate of Langevin Process Is a Generalized
-    Function|<tuple|1.4|?>>
+    Function|<tuple|1.4|2>>
   </collection>
 </references>
 
@@ -758,11 +837,12 @@
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|1.6<space|2spc>Stationary Solution of
-      Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Langevin Process Has Source-Free Degree of Freedom
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
       <with|par-left|<quote|1tab>|1.7<space|2spc>Detailed Balance Condition
-      for Langevin Process Lacks Source-Free Degree of Freedom
+      of Langevin Process Lacks Source-Free Degree of Freedom
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 

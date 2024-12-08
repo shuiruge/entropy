@@ -236,7 +236,7 @@
   <math|\<Sigma\><around*|(|x|)>=C<rsup|T><around*|(|x|)> C<around*|(|x|)>>
   is called <strong|Cholesky factorization>, named by the French militory
   officer André-Louis Cholesky, died at age 31.<\footnote>
-    Cholesky factorization is always valid for a positive definite symmetric
+    Cholesky factorization is always valid for positive definite symmetric
     matrix. Given any <math|x>, since <math|\<Sigma\><around*|(|x|)>> is real
     and symmetric matrix, we have orthogonal decomposition
     <math|\<Sigma\><around*|(|x|)>=E<rsup|T><around*|(|x|)>

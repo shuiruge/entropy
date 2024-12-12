@@ -234,285 +234,6 @@
   <math|q>), without any redundancy. This is the direct implication that
   distribution involves more information than its most likely datum.
 
-  <subsection|Example: How Far Will Information Propagate in a Stochastic
-  System?>
-
-  We are to construct a stochastic system to examine how far will information
-  propagate from one side of the system to the other. For example, consider a
-  <math|3>-dimensional random variable <math|X=<around*|(|X<rsup|1>,X<rsup|2>,X<rsup|3>|)>>
-  in which there are interactions between <math|X<rsup|1>> and
-  <math|X<rsup|2>>, and between <math|X<rsup|2>> and <math|X<rsup|3>>, but
-  not (directly) between <math|X<rsup|1>> and <math|X<rsup|3>>. It means that
-  the action <math|S<around*|(|x|)>> that characterizes the distribution of
-  <math|X> (see section <reference|section: Least-Action Principle of
-  Distribution Has No Redundancy>) has the property that
-  <math|\<partial\><rsub|1>\<partial\><rsub|2>S<around*|(|x|)>> and
-  <math|\<partial\><rsub|2>\<partial\><rsub|3>S<around*|(|x|)>> are not
-  always zero but <math|\<partial\><rsub|1>\<partial\><rsub|3>S<around*|(|x|)>>
-  is Even though, there is indirect interaction between <math|X<rsup|1>> and
-  <math|X<rsup|3>>, through <math|X<rsup|2>>. But, this is not like
-  deterministic system, such as a string, where information from one side can
-  be safely propagated to the other side. Stochastic system has randomness.
-  Information of <math|X<rsup|1>> is propagated to <math|X<rsup|2>> by the
-  interaction between them. But, before propagating from <math|X<rsup|2>> to
-  <math|X<rsup|3>>, the information will be interrupted by the stochastic
-  fluctuation of <math|X<rsup|2>>. So, the information of <math|X<rsup|1>>
-  shrinks when it arrives at <math|X<rsup|3>>. It is how rumor spreads among
-  people: rumor soon changes its face, becoming anything but itself. We
-  wonder, if the propagation continues, along the chain of interaction, how
-  far will it arrive before completely lost?
-
-  We are to examine this on an explicit stochastic system. The system shall
-  be sufficiently simple so as to make analytical calculation. Consider the
-  density function
-
-  <\equation*>
-    q<around*|(|x|)>\<propto\>exp<around*|(|-<frac|\<beta\>|2>
-    <big|int><rsub|\<bbb-R\>>\<mathd\>t <around*|[|<wide|x|\<dot\>><rsup|2><around*|(|t|)>-\<omega\><rsup|2>
-    x<rsup|2><around*|(|t|)>|]>|)>.
-  </equation*>
-
-  This action is not that of harmonic oscillator since the boundaries are not
-  completely fixed (this is the key of simplification) and the time runs over
-  <math|\<bbb-R\>>. It turns out that discrete system is more complicated
-  than this.
-
-  We follow the general strategy of dealing with integral that has
-  derivatives in integrand: Fourier transform, by which we can decompose the
-  interaction caused by derivative <math|<wide|x|\<dot\>><around*|(|t|)>>
-  into independent variables. Denoting <math|<wide|x|^><around*|(|\<zeta\>|)>\<in\>\<bbb-C\>>
-  as the Fourier coefficient of <math|x>, we have
-
-  <\equation*>
-    <big|int><rsub|\<bbb-R\>>\<mathd\>t <wide|x|\<dot\>><rsup|2><around*|(|t|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>t
-    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\><rprime|'> <around*|(|-\<zeta\>
-    \<zeta\><rprime|'>|)>exp<around*|(|\<mathi\>
-    <around*|(|\<zeta\>+\<zeta\><rprime|'>|)> t|)>
-    <wide|x|^><around*|(|\<zeta\>|)> <wide|x|^><around*|(|\<zeta\><rprime|'>|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    \ \<zeta\><rsup|2> <wide|x|^><around*|(|\<zeta\>|)>
-    <wide|x|^><around*|(|-\<zeta\>|)>,
-  </equation*>
-
-  where we have used <math|<big|int><rsub|\<bbb-R\>>\<mathd\>t
-  exp<around*|(|i k t|)>=\<delta\><around*|(|k|)>>. Since
-  <math|x<around*|(|t|)>> is real, we have
-  <math|<wide|x|^><around*|(|-\<zeta\>|)>=<wide|<wide|x|^><around*|(|\<zeta\>|)>|\<bar\>>>,
-  and only the <math|<wide|x|^><around*|(|\<zeta\>|)>>s with
-  <math|\<zeta\>\<in\><around*|[|0,+\<infty\>|)>> are independent variables.
-  Thus,
-
-  <\equation*>
-    <big|int><rsub|\<bbb-R\>>\<mathd\>t <wide|x|\<dot\>><rsup|2><around*|(|t|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    \<zeta\><rsup|2> <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>=2
-    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\> \<zeta\><rsup|2>
-    <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>.
-  </equation*>
-
-  The same, we have <math|<big|int><rsub|0><rsup|1>\<mathd\>t
-  x<rsup|2><around*|(|t|)>=2 <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-  <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>>. In addition, we
-  decompose the complex number <math|<wide|x|^><around*|(|\<zeta\>|)>=a<around*|(|\<zeta\>|)>+\<mathi\>
-  b<around*|(|\<zeta\>|)>> with <math|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\>|)>\<in\>\<bbb-R\>>,
-  thus <math|<around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>=a<rsup|2><around*|(|\<zeta\>|)>+b<rsup|2><around*|(|\<zeta\>|)>>.
-  Altogether, we find
-
-  <\equation*>
-    q<around*|(|a,b|)>\<propto\>exp<around*|(|-\<beta\>
-    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>
-    <around*|[|a<rsup|2><around*|(|\<zeta\>|)>+b<rsup|2><around*|(|\<zeta\>|)>|]>|)>.
-  </equation*>
-
-  Now, we get discrete (but infinitely many) variables that do not interact
-  with each other.
-
-  After decomposing the variables, we are to compute how far will the
-  information propagate along the time-axis. Pearson coefficient between
-  <math|x<around*|(|t|)>> and <math|x<around*|(|t<rprime|'>|)>> for
-  <math|t,t<rprime|'>\<in\><around*|(|0,1|)>> is one quantity that
-  characterizes our purpose. It is defined as
-  <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>/<sqrt|Var<rsub|Q><around*|[|x<around*|(|t|)>|]>
-  Var<rsub|Q><around*|[|x<around*|(|t<rprime|'>|)>|]>>>. Since
-  <math|Var<rsub|Q><around*|[|x<around*|(|t|)>|]>=Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t|)>|)>>,
-  all we need to do is calculating the covariance. Inserting the Fourier
-  transform of <math|x<around*|(|t|)>>, the bi-linearity of covariance gives
-
-  <\equation*>
-    Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\><rprime|'>
-    exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
-    \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>.
-  </equation*>
-
-  Then, we use the real variables <math|a<around*|(|\<zeta\>|)>> and
-  <math|b<around*|(|\<zeta\>|)>> for which
-  <math|\<zeta\>\<in\><around*|[|0,+\<infty\>|)>>. This will separate the
-  integral into four parts:
-
-  <\small>
-    <\align>
-      <tformat|<table|<row|<cell|>|<cell|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|-\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|-\<zeta\><rprime|'>|)>|)>.>>>>
-    </align>
-  </small>
-
-  Before replacing <math|<wide|x|^><around*|(|\<zeta\>|)>> by
-  <math|a<around*|(|\<zeta\>|)>+\<mathi\>b<around*|(|\<zeta\>|)>>, notice
-  that <math|a<around*|(|-\<zeta\>|)>=a<around*|(|\<zeta\>|)>> and
-  <math|b<around*|(|-\<zeta\>|)>=-b<around*|(|\<zeta\>|)>>, as a result of
-  <math|<wide|x|^><around*|(|-\<zeta\>|)>=<wide|<wide|x|^><around*|(|\<zeta\>|)>|\<bar\>>>.
-  Then we have, for example, <math|Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>-\<mathi\>
-  b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>+\<mathi\>
-  b<around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-\<mathi\>Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+\<mathi\>Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>>.
-  But since <math|a> and <math|b> are independent, we get
-  <math|Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>=0>,
-  and then <math|Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>>.
-  The same derivations for the rest three terms, and we find
-
-  <\small>
-    <\align>
-      <tformat|<table|<row|<cell|>|<cell|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
-      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
-      \<zeta\><rprime|'> t<rprime|'>|)><around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>.>>>>
-    </align>
-  </small>
-
-  The covariances can be read from <math|p<around*|(|x|)>>. To do so, we
-  discretize the expression in the exponential of <math|p<around*|(|x|)>>, as
-
-  <\equation*>
-    -\<beta\><big|sum><rsub|n=0><rsup|+\<infty\>>\<Delta\>\<zeta\>
-    <around*|(|\<zeta\><rsub|n><rsup|2>+\<omega\><rsup|2>|)>
-    <around*|[|a<rsup|2><around*|(|\<zeta\><rsub|n>|)>+b<rsup|2><around*|(|\<zeta\><rsub|n>|)>|]>,
-  </equation*>
-
-  where <math|\<zeta\><rsub|n>\<assign\>n \<Delta\>\<zeta\>.> As a normal
-  distribution, the covariance <math|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\><rsub|n>|)>,a<around*|(|\<zeta\><rsub|n<rprime|'>>|)>|)>=\<delta\><rsub|n,n<rprime|'>>/<around*|[|2\<beta\>
-  \<Delta\>\<zeta\> <around*|(|\<zeta\><rsub|n><rsup|2>+\<omega\><rsup|2>|)>|]>>.
-  When <math|\<Delta\>\<zeta\>\<rightarrow\>0>,
-  <math|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>> becomes Dirac's
-  delta function <math|\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>>.
-  This can be realized as follow. For any function <math|f>, we have
-  <math|f<around*|(|\<zeta\><rsub|n<rprime|'>>|)>=<big|sum><rsub|n>f<around*|(|\<zeta\><rsub|n>|)>
-  \<delta\><rsub|n,n<rprime|'>>=<big|sum><rsub|n>\<Delta\>\<zeta\>
-  f<around*|(|\<zeta\><rsub|n>|)> <around*|(|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>|)>>,
-  which becomes <math|<big|int>\<mathd\>\<zeta\> f<around*|(|\<zeta\>|)>
-  \<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>> as
-  <math|\<Delta\>\<zeta\>\<rightarrow\>0>. Thus,
-  <math|<around*|(|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>|)>> is
-  recognized as <math|\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>>.
-  So, we get <math|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>=\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>/<around*|[|2\<beta\>
-  <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>|]>>. The same,
-  <math|Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>=\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>/<around*|[|2\<beta\>
-  <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>|]>>. Plugging these to
-  <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>,
-  the first and the last lines vanish, and we arrive at
-
-  <\equation*>
-    Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
-    <frac|exp<around*|(|\<mathi\> \<zeta\>
-    <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
-    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>+<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><frac|exp<around*|(|-\<mathi\>
-    \<zeta\> <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
-    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    <frac|exp<around*|(|\<mathi\> \<zeta\>
-    <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
-    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>.
-  </equation*>
-
-  This integral, which results in the Yukawa potential, is very tricky. The
-  key is noticing the following integral
-
-  <\equation*>
-    <big|int><rsub|0><rsup|x>\<mathd\>u exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
-    u|)>=<frac|1-exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
-    x|)>|\<omega\>\<pm\>\<mathi\>\<zeta\>>.
-  </equation*>
-
-  When <math|\<omega\>\<gtr\>0>, let <math|x\<rightarrow\>+\<infty\>>, we
-  find
-
-  <\equation*>
-    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
-    exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
-    u|)>=<frac|1|\<omega\>\<pm\>\<mathi\>\<zeta\>><around*|[|1-lim<rsub|u\<rightarrow\>+\<infty\>>exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
-    u|)>|]>=<frac|1|\<omega\>\<pm\>\<mathi\>\<zeta\>>.
-  </equation*>
-
-  This relation helps convert the denominator in the covariance to
-  exponential, as
-
-  <\equation*>
-    <frac|1|\<zeta\><rsup|2>+\<omega\><rsup|2>>=<frac|1|2\<omega\>>
-    <around*|[|<frac|1|\<omega\>+\<mathi\>\<zeta\>>+<frac|1|\<omega\>-\<mathi\>\<zeta\>>|]>=<frac|1|2\<omega\>><around*|[|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
-    exp<around*|(|-<around*|(|\<omega\>+\<mathi\>\<zeta\>|)>
-    u|)>+<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
-    exp<around*|(|-<around*|(|\<omega\>-\<mathi\>\<zeta\>|)> u|)>|]>.
-  </equation*>
-
-  Plugging into the covariance, and exchanging the integrals
-  <math|<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>> and
-  <math|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u>, we get
-
-  \;
-
-  <\equation*>
-    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\> <frac|exp<around*|(|\<mathi\>
-    \<zeta\> <around*|(|t-t<rprime|'>|)>|)>|\<zeta\><rsup|2>+\<omega\><rsup|2>>=<frac|1|2\<omega\>><big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
-    exp<around*|(|-\<omega\>u|)> <around*|[|<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    exp<around*|(|\<mathi\> \<zeta\> <around*|(|t-t<rprime|'>-u|)>|)>+<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
-    exp<around*|(|\<mathi\> \<zeta\> <around*|(|t-t<rprime|'>+u|)>|)>|]>.
-  </equation*>
-
-  Integration of <math|\<zeta\>> turns to be Dirac's delta functions, which
-  result in <math|<around*|(|1/2\<omega\>|)> exp<around*|(|-\<omega\>
-  <around*|\||t-t<rprime|'>|\|>|)>>. So, <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<around*|(|2\<beta\>
-  \<omega\>|)><rsup|-1><rsub|> exp<around*|(|-\<omega\>
-  <around*|\||t-t<rprime|'>|\|>|)>> with <math|\<omega\>\<gtr\>0>, from which
-  the Pearson coefficient reads
-
-  <\equation*>
-    Pearson<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=exp<around*|(|-\<omega\>
-    <around*|\||t-t<rprime|'>|\|>|)>,
-  </equation*>
-
-  which decreases exponentially with <math|<around*|\||t-t<rprime|'>|\|>>.
-  The decay rate is <math|1/\<omega\>>.
-
-  Only in the limit <math|\<omega\>\<rightarrow\>0> is the system scale-free,
-  which means the information can propagate to the edge of the system (which
-  is infinity in our case). This is plausible, since the action becomes
-  scale-invariant in and only in the same limit, where there is no
-  dimensional constant (<math|\<omega\>> has dimension
-  <math|<around*|[|t|]><rsup|-1>>). But, we cannot say that a stochastic
-  system is scale-free if and only if the action is scale-invariant. As an
-  example, the Wilson-Fisher fixed point is an instance where the stochastic
-  system is scale-free but the action is not scale-invariant (see <hlink|this
-  post|https://physics.stackexchange.com/questions/360989/are-fixed-points-of-rg-evolution-really-scale-invariant>).
-  We will examine this in section TODO.
-
   <subsection|Data Fitting Is Equivalent to Least-Action Principle of
   Distribution><label|section: Data Fitting Is Equivalent to Least-Action
   Principle of Distribution>
@@ -876,7 +597,7 @@
   <reference|equation:action of iterative equation> becomes
 
   <\equation>
-    S<around*|(|x\|x<rsub|0>|)>=<big|sum><rsub|i=0><rsup|N-1><frac|\<Delta\>t<rsub|i>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t<rsub|i>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|)><rsup|2>.<label|equation:action
+    S<around*|(|x\|x<rsub|0>|)>=<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|\<Delta\>t<rsub|i>|2><around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t<rsub|i>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]><rsup|2>.<label|equation:action
     of iterative equation v2>
   </equation>
 
@@ -908,7 +629,7 @@
 
   <\equation>
     L<around*|(|x,<wide|x|\<dot\>>,t|)>=<big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2><around*|(|<wide|x|\<dot\>><rsup|\<alpha\>>|)><rsup|2>-<wide|x|\<dot\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><around*|(|x,t|)>+<frac|1|2><around*|(|g<rsup|\<alpha\>>|)><rsup|2><around*|(|x,t|)>|]>.<label|equation:lagrangian
+    g<rsup|\<alpha\>><around*|(|x,t|)>+<frac|1|2><around*|(|g<rsup|\<alpha\>><around*|(|x,t|)>|)><rsup|2>|]>.<label|equation:lagrangian
     of iterative equation>
   </equation>
 
@@ -940,84 +661,811 @@
   The first term in the right hand side is recognized as <em|friction,
   proportional to the curl of <math|g>>. The rest are driving force.
 
+  <subsection|How Far Will Information Propagate in Stochastic Iterative
+  Equation?><label|section: How Far Will Information Propagate in Stochastic
+  Iterative Equation?>
+
+  We are to determine how far information will propagate during the iteration
+  of a stochastic iterative equation (see section <reference|section:
+  Iterative Equation With Normal Distribution Gives an Action>). For this
+  kind of problem, physicists have invented a technique called
+  renormalization group. This technique was first proposed by Murray
+  Gell-Mann and Francis Low in 1954, applied to quantum field theory of
+  fundamental particles. Following this research, Kenneth Wilson, who is a
+  PhD student of Gell-Mann, started his malathion in 1961. Wilson published
+  his first paper on renormalization group eigher years later, in 1969. This
+  technique was then further developed and applied to many areas in and even
+  out of physics, such as neural science.
+
+  To show how it works, we start with an action that is generalized from
+  action <reference|equation:action of iterative equation v2>, which is
+
+  <\equation*>
+    S<around*|(|x|)>=<big|sum><rsub|i=-\<infty\>><rsup|+\<infty\>><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|<around*|(|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|)><rsup|2>|2\<epsilon\>>-<around*|(|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|)>
+    \<varphi\><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>+\<epsilon\>
+    \<xi\><rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i+1>,x<rsub|i>|)>|]>,
+  </equation*>
+
+  where <math|\<varphi\><rsub|i>,\<psi\><rsub|i>:\<bbb-R\><rsup|n>\<times\>\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
+  Comparing with action <reference|equation:action of iterative equation v2>,
+  <math|\<varphi\><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>=g<rsub|i><around*|(|x<rsub|i>|)>>
+  and <math|\<xi\><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>=g<rsup|2><rsub|i><around*|(|x<rsub|i>|)>/2>.
+  There are another two difference between these two actions. Here, we do not
+  fix boundary (namely, the condition <math|x<rsub|0>> in
+  <math|S<around*|(|x\|x<rsub|0>|)>>), and let the index <math|i> run from
+  <math|-\<infty\>> to <math|+\<infty\>> rather than from <math|0> to
+  <math|N>. As we will see later in this section, these differences are
+  crucial for renormalization group. In the end of this section, we will show
+  how to add the condition back and restrict the range of index <math|i>.
+
+  Renormalization group technique bases on the fact that there are as many
+  even numbers as integers. This is a famous result that was first claimed by
+  Georg Cantor. For our purpose, we marginalize all the variable
+  <math|x<rsub|i>> in <math|q<around*|(|x|)>> where <math|i> is odd. Namely,
+  we are to compute an \Peffective action\Q <math|S<rprime|'>> defined by
+
+  <\equation*>
+    S<rprime|'><around*|(|x<rprime|'>|)>\<assign\>ln<around*|[|<big|prod><rsub|i\<in\>\<bbb-Z\>><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|2i+1>
+    exp<around*|(|-S<around*|(|x|)>|)>|]>,
+  </equation*>
+
+  where <math|x<rprime|'>\<assign\><around*|(|\<ldots\>,x<rsub|-4>,x<rsub|-2>,x<rsub|0>,x<rsub|2>,x<rsub|4>,\<ldots\>|)>>
+  contains only the variables with even index.
+
+  Given <math|i>, we are to show how to marginalize
+  <math|x<rsub|2i+1><rsup|\<alpha\>>>. The integral is
+  <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsup|\<alpha\>><rsub|2i+1>exp<around*|(|\<Sigma\><rsub|\<alpha\>=1><rsup|n>J<rsup|\<alpha\>>|)>>
+  with
+
+  <\align>
+    <tformat|<table|<row|<cell|J<rsup|\<alpha\>>\<assign\>>|<cell|-<frac|<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>|2\<epsilon\>>-<frac|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)><rsup|2>|2\<epsilon\>>>>|<row|<cell|>|<cell|+<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)>
+    \<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)>
+    \<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>|<row|<cell|>|<cell|-\<epsilon\>
+    \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>-\<epsilon\>
+    \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>>>
+  </align>
+
+  First, noticing the identity<\footnote>
+    Directly, expand <math|<around*|(|x-y|)><rsup|2>+<around*|(|y-z|)><rsup|2>=x<rsup|2>-2x
+    y+y<rsup|2>+y<rsup|2>-2y z+z<rsup|2>>. Then, collect the <math|y> terms
+    together, as <math|2<around*|(|y<rsup|2>-<around*|(|x+z|)>
+    y|)>=2<around*|(|y-<around*|(|x+z|)> y+<around*|(|x+z|)><rsup|2>/4|)>-<around*|(|x+z|)><rsup|2>/2=2<around*|(|y-<around*|(|x+z|)>/2|)><rsup|2>-<around*|(|x+z|)><rsup|2>/2>,
+    in which the last term can be further combined with the rest terms
+    <math|x<rsup|2>+z<rsup|2>>, as <math|-<around*|(|x+z|)><rsup|2>/2+x<rsup|2>+z<rsup|2>=<around*|(|x-z|)><rsup|2>/2>.
+    Altogether, we find
+
+    <\equation*>
+      <around*|(|x-y|)><rsup|2>+<around*|(|y-z|)><rsup|2>=2<around*|(|y-<frac|x+z|2>|)><rsup|2>+<frac|1|2><around*|(|x-z|)><rsup|2>.
+    </equation*>
+  </footnote>
+
+  <\equation*>
+    <around*|(|x-y|)><rsup|2>+<around*|(|y-z|)><rsup|2>=2<around*|(|y-<frac|x+z|2>|)><rsup|2>+<frac|1|2><around*|(|x-z|)><rsup|2>,
+  </equation*>
+
+  we replace <math|x\<rightarrow\>x<rsup|\<alpha\>><rsub|2i>>,
+  <math|y\<rightarrow\>x<rsup|\<alpha\>><rsub|2i+1>>, and
+  <math|z\<rightarrow\>x<rsup|\<alpha\>><rsub|2i+2>>, and find (colors
+  indicates where the terms come from)
+
+  <\align>
+    <tformat|<table|<row|<cell|J<rsup|\<alpha\>>=>|<cell|-<frac|1|\<epsilon\>><around*|[|x<rsup|\<alpha\>><rsub|2i+1>-<frac|x<rsup|\<alpha\>><rsub|2i>+
+    x<rsup|\<alpha\>><rsub|2i+2>|2>|]><rsup|2>>>|<row|<cell|>|<cell|+<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)>
+    \<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)>
+    \<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>|<row|<cell|>|<cell|-\<epsilon\>
+    \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>-\<epsilon\>
+    \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>|<row|<cell|>|<cell|-<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i>-
+    x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>.>>>>
+  </align>
+
+  The first line is quardratic in <math|x<rsup|\<alpha\>><rsub|2i+1>> and
+  proportional to <math|1/\<epsilon\>>. In the integral, this term can be
+  seen as the Gaussian part. It suggests to define
+  <math|<wide|y|\<bar\>>\<assign\><around*|(|x<rsub|2i+2>+ x<rsub|2i>|)>/2>
+  and <math|y\<assign\>x<rsub|2i+1>-<wide|y|\<bar\>>>. <math|>And the
+  integral becomes
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    exp<around*|(|-<frac|1|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|y<rsup|\<alpha\>>|<sqrt|\<epsilon\>/2>>|)><rsup|2>+\<cdots\>|)>.
+  </equation*>
+
+  It means the <math|y> obeys a normal distribution with zero mean and
+  diagonal covariance <math|\<Sigma\><rsub|\<alpha\>\<beta\>>=<around*|(|\<epsilon\>/2|)>
+  \<delta\><rsub|\<alpha\>\<beta\>>>. Using this notation, the second line
+  becomes (by <math|x<rsub|2i+1>=y+<wide|y|\<bar\>>>)
+
+  <\small>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|<around*|(|y<rsup|\<alpha\>>+<wide|y|\<bar\>><rsup|\<alpha\>>-x<rsup|\<alpha\>><rsub|2i>|)>
+      \<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|y+<wide|y|\<bar\>>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-y<rsup|\<alpha\>>-<wide|y|\<bar\>><rsup|\<alpha\>>|)>
+      \<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,y+<wide|y|\<bar\>>|)>>>|<row|<cell|=>|<cell|<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
+      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|2>y<rsup|\<beta\>>
+      <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
+      y<rsup|\<beta\>> <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|4>y<rsup|\<beta\>>
+      y<rsup|\<gamma\>> <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|\<cdots\>,>>>>
+    </align>
+  </small>
+
+  where we have omit the <math|\<omicron\><around*|(|\<epsilon\>|)>> terms
+  (notice that <math|<around*|\||y<rsup|\<alpha\>>|\|>=<with|font|cal|O><around*|(|<sqrt|\<epsilon\>>|)>>).
+  Also up to <math|\<omicron\><around*|(|\<epsilon\>|)>>, we find the third
+  line
+
+  <\equation*>
+    -\<epsilon\> \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
+    \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>.
+  </equation*>
+
+  The last line is invariant since it does not involve <math|x<rsub|2i+1>>,
+  or <math|y>. Altogether, up to <math|\<omicron\><around*|(|\<epsilon\>|)>>,
+  we find <math|J<rsup|\<alpha\>>=-<frac|1|\<epsilon\>><around*|(|y<rsup|\<alpha\>>|)><rsup|2>+V<rsup|\<alpha\>><around*|(|y|)>+I<rsup|\<alpha\>>>
+  with the \Pinteractive part\Q
+
+  <\small>
+    <\align>
+      <tformat|<table|<row|<cell|V<rsup|\<alpha\>><around*|(|y|)>\<assign\>>|<cell|y<rsup|\<alpha\>>
+      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|2>y<rsup|\<beta\>>
+      <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
+      y<rsup|\<beta\>> <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|4>y<rsup|\<beta\>>
+      y<rsup|\<gamma\>> <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>>>
+    </align>
+  </small>
+
+  and the \Pindependent part\Q
+
+  <\small>
+    <\equation*>
+      I<rsup|\<alpha\>>\<assign\>-<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i>-
+      x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>+<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>-\<epsilon\>
+      \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
+      \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>.
+    </equation*>
+  </small>
+
+  The integral becomes
+
+  <\equation*>
+    exp<around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>I<rsup|\<alpha\>>|)>\<times\><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    exp<around*|(|-<frac|1|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|y<rsup|\<alpha\>>|<sqrt|\<epsilon\>/2>>|)><rsup|2>+<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>|)>.
+  </equation*>
+
+  TODO
+
+  \;
+
+  The last line is independent of <math|x<rsup|\<alpha\>><rsub|2i+1>>. The
+  rest terms are collected in the second line, which can be regarded as
+  interactive part. We are to expand the integral by <math|\<epsilon\>>. To
+  do so, we need to further simplify the notations. The Gaussian part
+  indicates that the random variable <math|X<rsup|\<alpha\>><rsub|2i+1>> of
+  <math|x<rsup|\<alpha\>><rsub|2i+1>> is centered at the mean of
+  <math|x<rsub|2i+2><rsup|\<alpha\>>> and <math|x<rsup|\<alpha\>><rsub|2i>>,
+  with variance <math|<sqrt|\<epsilon\>/2>>. Thus, define
+  <math|y\<assign\>x<rsub|2i+1>-<wide|y|\<bar\>>> where
+  <math|<wide|y|\<bar\>><rsup|\<alpha\>>\<assign\><around*|(|x<rsup|\<alpha\>><rsub|2i+2>+
+  x<rsup|\<alpha\>><rsub|2i>|)>/2>. Then, up to
+  <math|\<omicron\><around*|(|\<epsilon\>|)>> (notice that
+  <math|y\<sim\><sqrt|\<epsilon\>/2>>), the <with|color|dark cyan|second
+  line> can be expanded as
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|<around*|[|x<rsup|\<alpha\>><rsub|2i+2>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+x<rsup|\<alpha\>><rsub|2i+2>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<frac|1|2>x<rsup|\<alpha\>><rsub|2i+2>
+    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|]>>>|<row|<cell|->|<cell|<around*|[|y<rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<frac|1|2><wide|y|\<bar\>><rsup|\<alpha\>>
+    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>-<frac|\<epsilon\>|2><around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>.>>>>
+  </align>
+
+  It can be re-collected as
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|x<rsup|\<alpha\>><rsub|2i+2>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>-<frac|\<epsilon\>|2><around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>>>|<row|<cell|+>|<cell|x<rsup|\<alpha\>><rsub|2i+2>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<wide|y|\<bar\>><rsup|\<alpha\>>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>>>|<row|<cell|+>|<cell|<frac|1|2>x<rsup|\<alpha\>><rsub|2i+2>
+    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|1|2><wide|y|\<bar\>><rsup|\<alpha\>>
+    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>.>>>>
+  </align>
+
+  The first line does not involve <math|y>. The second line is linear in
+  <math|y> and the last line is quardratic in <math|y>. So, <math|I> can be
+  separated into three parts:
+
+  <\equation*>
+    J=-<frac|1|\<epsilon\>><around*|(|y<rsup|\<alpha\>>|)><rsup|2>+V+I,
+  </equation*>
+
+  which are the Gaussian part, the interactive parts which involves the last
+  two lines in this expression
+
+  <\align>
+    <tformat|<table|<row|<cell|V\<assign\>>|<cell|x<rsup|\<alpha\>><rsub|2i+2>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<wide|y|\<bar\>><rsup|\<alpha\>>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>>>|<row|<cell|+>|<cell|<frac|1|2>x<rsup|\<alpha\>><rsub|2i+2>
+    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
+    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|1|2><wide|y|\<bar\>><rsup|\<alpha\>>
+    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>,>>>>
+  </align>
+
+  and the irrelavent part
+
+  <\equation*>
+    I\<assign\>-<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-
+    x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>+<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsub|2i><rsup|\<alpha\>>|)>
+    <around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]>
+    -<frac|\<epsilon\>|2><around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-<frac|\<epsilon\>|2><around*|(|g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|)><rsup|2>.
+  </equation*>
+
+  So the integral is
+
+  <\equation*>
+    exp<around*|(|I|)>\<times\><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsup|\<alpha\>>
+    exp<around*|(|-<frac|1|\<epsilon\>><around*|(|y<rsup|\<alpha\>>|)><rsup|2>+V|)>,
+  </equation*>
+
+  and we can expand the integrand by the interactive part, as
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsup|\<alpha\>>
+    exp<around*|(|-<frac|1|\<epsilon\>><around*|(|y<rsup|\<alpha\>>|)><rsup|2>+V|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsup|\<alpha\>>
+    exp<around*|(|-<frac|1|2><around*|(|<frac|y<rsup|\<alpha\>>|<sqrt|\<epsilon\>/2>>|)><rsup|2>|)>
+    <around*|(|1+V+<frac|1|2>V<rsup|2>+\<cdots\>|)>.
+  </equation*>
+
+  Since <math|\<bbb-E\><around*|[|y|]>=0> and
+  <math|\<bbb-E\><around*|[|y<rsup|\<alpha\>>y<rsup|\<beta\>>|]>=\<delta\><rsup|\<alpha\>\<beta\>>
+  \<epsilon\>/2>, we find
+
+  <\equation*>
+    \<bbb-E\><around*|[|V|]>=<frac|\<epsilon\>|4>x<rsup|\<alpha\>><rsub|2i+2>
+    \<partial\><rsup|2><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|\<epsilon\>|2>\<partial\><rsub|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|\<epsilon\>|4><wide|y|\<bar\>><rsup|\<alpha\>>
+    \<partial\><rsub|\<alpha\>><rsup|2>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>=<frac|\<epsilon\>|8><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+    \<partial\><rsup|2><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|\<epsilon\>|2>\<partial\><rsub|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+  </equation*>
+
+  and up to <math|\<omicron\><around*|(|\<epsilon\>|)>> (note the Einstein
+  convention!),
+
+  <\equation*>
+    <frac|1|2>\<bbb-E\><around*|[|V<rsup|2>|]>=<frac|1|2>\<bbb-E\><around*|[|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>
+    y<rsup|\<beta\>>y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
+    y<rsup|\<alpha\>> y<rsup|\<beta\>> g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
+    <wide|y|\<bar\>><rsup|\<alpha\>> y<rsup|\<beta\>>y<rsup|\<gamma\>>
+    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+x<rsup|\<alpha\>><rsub|2i+2>
+    y<rsup|\<alpha\>> y<rsup|\<beta\>> g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
+    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
+    y<rsup|\<alpha\>> <around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+<wide|y|\<bar\>><rsup|\<alpha\>>
+    y<rsup|\<alpha\>> y<rsup|\<beta\>> g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
+    y<rsup|\<alpha\>> g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>+<around*|(|<wide|y|\<bar\>><rsup|\<alpha\>>|)><rsup|2>
+    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<wide|y|\<bar\>><rsup|\<alpha\>>
+    y<rsup|\<alpha\>> y<rsup|\<beta\>> g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
+    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
+    y<rsup|\<alpha\>> <around*|(|g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|)><rsup|2>|]>=<frac|\<epsilon\>|4><around*|[|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-x<rsup|\<alpha\>><rsub|2i+2>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
+    <wide|y|\<bar\>><rsup|\<alpha\>> <around*|(|\<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+x<rsup|\<alpha\>><rsub|2i+2>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>+<around*|(|<wide|y|\<bar\>><rsup|\<alpha\>>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<around*|(|g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|)><rsup|2>|]>.
+  </equation*>
+
+  So, the irrelavent terms becomes
+
+  <\align>
+    <tformat|<table|<row|<cell|I\<rightarrow\>>|<cell|-<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-
+    x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>+<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsub|2i><rsup|\<alpha\>>|)>
+    <around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]>
+    -<frac|\<epsilon\>|4><around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]><rsup|2>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|8><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+    \<partial\><rsup|2><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|\<epsilon\>|2>\<partial\><rsub|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|4><around*|[|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-x<rsup|\<alpha\>><rsub|2i+2>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
+    <wide|y|\<bar\>><rsup|\<alpha\>> <around*|(|\<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+x<rsup|\<alpha\>><rsub|2i+2>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>+<around*|(|<wide|y|\<bar\>><rsup|\<alpha\>>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|]>.>>>>
+  </align>
+
+  So, we find the term with indices <math|\<alpha\>> and <math|2i> in
+  effective action
+
+  <\equation*>
+    S<rprime|'><around*|(|x<rprime|'>|)>\<supset\><frac|1|2><around*|[|<frac|1|2\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-
+    x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>-<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsub|2i><rsup|\<alpha\>>|)>
+    <around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]>+<frac|\<epsilon\>|2><around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]><rsup|2>|]>+\<epsilon\>
+    I<rprime|'>,
+  </equation*>
+
+  where (TODO: deal with the red term, which is the unique term that does not
+  involve <math|\<partial\>g>)
+
+  <\equation*>
+    I<rprime|'>\<assign\><frac|1|8><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+    \<partial\><rsup|2><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|1|2>\<partial\><rsub|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<frac|1|4><around*|[|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-x<rsup|\<alpha\>><rsub|2i+2>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
+    <wide|y|\<bar\>><rsup|\<alpha\>> <around*|(|\<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+x<rsup|\<alpha\>><rsub|2i+2>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<with|color|red|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>>+<around*|(|<wide|y|\<bar\>><rsup|\<alpha\>>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-<wide|y|\<bar\>><rsup|\<alpha\>>
+    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
+    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|]>.
+  </equation*>
+
+  By re-scaling <math|x<rprime|'><rsub|i>\<assign\><sqrt|2> x<rsub|i>>
+  (recall that <math|i> is even) and <math|g<rprime|'><rsub|i><around*|(|x<rprime|'>|)>\<assign\><sqrt|2>
+  g<rsub|i><around*|(|x|)>>, we find
+
+  <\equation*>
+    S<rprime|'><around*|(|x<rprime|'>|)>\<supset\><frac|\<epsilon\>|2><around*|[|<frac|x<rprime|'><rsup|\<alpha\>><rsub|2i+2>-
+    x<rprime|'><rsup|\<alpha\>><rsub|2i>|\<epsilon\>>-g<rprime|'><rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>><rprime|'>|)>-g<rprime|'><rsup|\<alpha\>><rsub|2i><around*|(|x<rprime|'><rsub|2i>|)>|]><rsup|2>+\<epsilon\>
+    I<rprime|'>.
+  </equation*>
+
+  Comparing with the term with index <math|\<alpha\>> and <math|2i> in
+  <math|S<around*|(|x|)>>, we find the expression in
+  <math|<around*|[|\<ldots\>|]>> is formally the same, with the
+  <math|g<rsub|2i><around*|(|x<rsub|2i>|)>> replaced by
+  <math|g<rprime|'><rsup|\<alpha\>><rsub|2i+1><around*|(|<around*|(|x<rprime|'><rsub|2i+2>+x<rprime|'><rsub|2i>|)>/2|)>+g<rprime|'><rsup|\<alpha\>><rsub|2i><around*|(|x<rprime|'><rsub|2i>|)>>
+  (recall <math|<wide|y|\<bar\>>=<around*|(|x<rprime|'><rsub|2i+2>+x<rprime|'><rsub|2i>|)>/2>).
+
+  <section|Others>
+
+  <subsection|Example: How Far Will Information Propagate in a Stochastic
+  System?><label|section: Example: How Far Will Information Propagate in a
+  Stochastic System?>
+
+  We are to construct a stochastic system to examine how far will information
+  propagate from one side of the system to the other. For example, consider a
+  <math|3>-dimensional random variable <math|X=<around*|(|X<rsup|1>,X<rsup|2>,X<rsup|3>|)>>
+  in which there are interactions between <math|X<rsup|1>> and
+  <math|X<rsup|2>>, and between <math|X<rsup|2>> and <math|X<rsup|3>>, but
+  not (directly) between <math|X<rsup|1>> and <math|X<rsup|3>>. It means that
+  the action <math|S<around*|(|x|)>> that characterizes the distribution of
+  <math|X> (see section <reference|section: Least-Action Principle of
+  Distribution Has No Redundancy>) has the property that
+  <math|\<partial\><rsub|1>\<partial\><rsub|2>S<around*|(|x|)>> and
+  <math|\<partial\><rsub|2>\<partial\><rsub|3>S<around*|(|x|)>> are not
+  always zero but <math|\<partial\><rsub|1>\<partial\><rsub|3>S<around*|(|x|)>>
+  is Even though, there is indirect interaction between <math|X<rsup|1>> and
+  <math|X<rsup|3>>, through <math|X<rsup|2>>. But, this is not like
+  deterministic system, such as a string, where information from one side can
+  be safely propagated to the other side. Stochastic system has randomness.
+  Information of <math|X<rsup|1>> is propagated to <math|X<rsup|2>> by the
+  interaction between them. But, before propagating from <math|X<rsup|2>> to
+  <math|X<rsup|3>>, the information will be interrupted by the stochastic
+  fluctuation of <math|X<rsup|2>>. So, the information of <math|X<rsup|1>>
+  shrinks when it arrives at <math|X<rsup|3>>. It is how rumor spreads among
+  people: rumor soon changes its face, becoming anything but itself. We
+  wonder, if the propagation continues, along the chain of interaction, how
+  far will it arrive before completely lost?
+
+  We are to examine this on an explicit stochastic system. The system shall
+  be sufficiently simple so as to make analytical calculation. Consider the
+  density function
+
+  <\equation*>
+    q<around*|(|x|)>\<propto\>exp<around*|(|-<frac|\<beta\>|2>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>t <around*|[|<wide|x|\<dot\>><rsup|2><around*|(|t|)>-\<omega\><rsup|2>
+    x<rsup|2><around*|(|t|)>|]>|)>.
+  </equation*>
+
+  This action is not that of harmonic oscillator since the boundaries are not
+  completely fixed (this is the key of simplification) and the time runs over
+  <math|\<bbb-R\>>. It turns out that discrete system is more complicated
+  than this.
+
+  We follow the general strategy of dealing with integral that has
+  derivatives in integrand: Fourier transform, by which we can decompose the
+  interaction caused by derivative <math|<wide|x|\<dot\>><around*|(|t|)>>
+  into independent variables. Denoting <math|<wide|x|^><around*|(|\<zeta\>|)>\<in\>\<bbb-C\>>
+  as the Fourier coefficient of <math|x>, we have
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>t <wide|x|\<dot\>><rsup|2><around*|(|t|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>t
+    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\><rprime|'> <around*|(|-\<zeta\>
+    \<zeta\><rprime|'>|)>exp<around*|(|\<mathi\>
+    <around*|(|\<zeta\>+\<zeta\><rprime|'>|)> t|)>
+    <wide|x|^><around*|(|\<zeta\>|)> <wide|x|^><around*|(|\<zeta\><rprime|'>|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    \ \<zeta\><rsup|2> <wide|x|^><around*|(|\<zeta\>|)>
+    <wide|x|^><around*|(|-\<zeta\>|)>,
+  </equation*>
+
+  where we have used <math|<big|int><rsub|\<bbb-R\>>\<mathd\>t
+  exp<around*|(|i k t|)>=\<delta\><around*|(|k|)>>. Since
+  <math|x<around*|(|t|)>> is real, we have
+  <math|<wide|x|^><around*|(|-\<zeta\>|)>=<wide|<wide|x|^><around*|(|\<zeta\>|)>|\<bar\>>>,
+  and only the <math|<wide|x|^><around*|(|\<zeta\>|)>>s with
+  <math|\<zeta\>\<in\><around*|[|0,+\<infty\>|)>> are independent variables.
+  Thus,
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>t <wide|x|\<dot\>><rsup|2><around*|(|t|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    \<zeta\><rsup|2> <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>=2
+    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\> \<zeta\><rsup|2>
+    <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>.
+  </equation*>
+
+  The same, we have <math|<big|int><rsub|0><rsup|1>\<mathd\>t
+  x<rsup|2><around*|(|t|)>=2 <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+  <around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>>. In addition, we
+  decompose the complex number <math|<wide|x|^><around*|(|\<zeta\>|)>=a<around*|(|\<zeta\>|)>+\<mathi\>
+  b<around*|(|\<zeta\>|)>> with <math|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\>|)>\<in\>\<bbb-R\>>,
+  thus <math|<around*|\||<wide|x|^><around*|(|\<zeta\>|)>|\|><rsup|2>=a<rsup|2><around*|(|\<zeta\>|)>+b<rsup|2><around*|(|\<zeta\>|)>>.
+  Altogether, we find
+
+  <\equation*>
+    q<around*|(|a,b|)>\<propto\>exp<around*|(|-\<beta\>
+    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>
+    <around*|[|a<rsup|2><around*|(|\<zeta\>|)>+b<rsup|2><around*|(|\<zeta\>|)>|]>|)>.
+  </equation*>
+
+  Now, we get discrete (but infinitely many) variables that do not interact
+  with each other.
+
+  After decomposing the variables, we are to compute how far will the
+  information propagate along the time-axis. Pearson coefficient between
+  <math|x<around*|(|t|)>> and <math|x<around*|(|t<rprime|'>|)>> for
+  <math|t,t<rprime|'>\<in\><around*|(|0,1|)>> is one quantity that
+  characterizes our purpose. It is defined as
+  <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>/<sqrt|Var<rsub|Q><around*|[|x<around*|(|t|)>|]>
+  Var<rsub|Q><around*|[|x<around*|(|t<rprime|'>|)>|]>>>. Since
+  <math|Var<rsub|Q><around*|[|x<around*|(|t|)>|]>=Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t|)>|)>>,
+  all we need to do is calculating the covariance. Inserting the Fourier
+  transform of <math|x<around*|(|t|)>>, the bi-linearity of covariance gives
+
+  <\equation*>
+    Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\><rprime|'>
+    exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+    \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>.
+  </equation*>
+
+  Then, we use the real variables <math|a<around*|(|\<zeta\>|)>> and
+  <math|b<around*|(|\<zeta\>|)>> for which
+  <math|\<zeta\>\<in\><around*|[|0,+\<infty\>|)>>. This will separate the
+  integral into four parts:
+
+  <\small>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|\<zeta\>|)>,<wide|x|^><around*|(|-\<zeta\><rprime|'>|)>|)>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|-\<zeta\><rprime|'>|)>|)>.>>>>
+    </align>
+  </small>
+
+  Before replacing <math|<wide|x|^><around*|(|\<zeta\>|)>> by
+  <math|a<around*|(|\<zeta\>|)>+\<mathi\>b<around*|(|\<zeta\>|)>>, notice
+  that <math|a<around*|(|-\<zeta\>|)>=a<around*|(|\<zeta\>|)>> and
+  <math|b<around*|(|-\<zeta\>|)>=-b<around*|(|\<zeta\>|)>>, as a result of
+  <math|<wide|x|^><around*|(|-\<zeta\>|)>=<wide|<wide|x|^><around*|(|\<zeta\>|)>|\<bar\>>>.
+  Then we have, for example, <math|Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>-\<mathi\>
+  b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>+\<mathi\>
+  b<around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-\<mathi\>Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+\<mathi\>Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>>.
+  But since <math|a> and <math|b> are independent, we get
+  <math|Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>=0>,
+  and then <math|Cov<rsub|Q><around*|(|<wide|x|^><around*|(|-\<zeta\>|)>,<wide|x|^><around*|(|\<zeta\><rprime|'>|)>|)>=Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>>.
+  The same derivations for the rest three terms, and we find
+
+  <\small>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)> <around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>+Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>>>|<row|<cell|+>|<cell|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+      <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><rprime|'>
+      exp<around*|(|-\<mathi\> \<zeta\> t|)> exp<around*|(|-\<mathi\>
+      \<zeta\><rprime|'> t<rprime|'>|)><around*|[|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>-Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>|]>.>>>>
+    </align>
+  </small>
+
+  The covariances can be read from <math|p<around*|(|x|)>>. To do so, we
+  discretize the expression in the exponential of <math|p<around*|(|x|)>>, as
+
+  <\equation*>
+    -\<beta\><big|sum><rsub|n=0><rsup|+\<infty\>>\<Delta\>\<zeta\>
+    <around*|(|\<zeta\><rsub|n><rsup|2>+\<omega\><rsup|2>|)>
+    <around*|[|a<rsup|2><around*|(|\<zeta\><rsub|n>|)>+b<rsup|2><around*|(|\<zeta\><rsub|n>|)>|]>,
+  </equation*>
+
+  where <math|\<zeta\><rsub|n>\<assign\>n \<Delta\>\<zeta\>.> As a normal
+  distribution, the covariance <math|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\><rsub|n>|)>,a<around*|(|\<zeta\><rsub|n<rprime|'>>|)>|)>=\<delta\><rsub|n,n<rprime|'>>/<around*|[|2\<beta\>
+  \<Delta\>\<zeta\> <around*|(|\<zeta\><rsub|n><rsup|2>+\<omega\><rsup|2>|)>|]>>.
+  When <math|\<Delta\>\<zeta\>\<rightarrow\>0>,
+  <math|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>> becomes Dirac's
+  delta function <math|\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>>.
+  This can be realized as follow. For any function <math|f>, we have
+  <math|f<around*|(|\<zeta\><rsub|n<rprime|'>>|)>=<big|sum><rsub|n>f<around*|(|\<zeta\><rsub|n>|)>
+  \<delta\><rsub|n,n<rprime|'>>=<big|sum><rsub|n>\<Delta\>\<zeta\>
+  f<around*|(|\<zeta\><rsub|n>|)> <around*|(|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>|)>>,
+  which becomes <math|<big|int>\<mathd\>\<zeta\> f<around*|(|\<zeta\>|)>
+  \<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>> as
+  <math|\<Delta\>\<zeta\>\<rightarrow\>0>. Thus,
+  <math|<around*|(|\<delta\><rsub|n,n<rprime|'>>/\<Delta\>\<zeta\>|)>> is
+  recognized as <math|\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>>.
+  So, we get <math|Cov<rsub|Q><around*|(|a<around*|(|\<zeta\>|)>,a<around*|(|\<zeta\><rprime|'>|)>|)>=\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>/<around*|[|2\<beta\>
+  <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>|]>>. The same,
+  <math|Cov<rsub|Q><around*|(|b<around*|(|\<zeta\>|)>,b<around*|(|\<zeta\><rprime|'>|)>|)>=\<delta\><around*|(|\<zeta\>-\<zeta\><rprime|'>|)>/<around*|[|2\<beta\>
+  <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>|]>>. Plugging these to
+  <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>>,
+  the first and the last lines vanish, and we arrive at
+
+  <\equation*>
+    Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+    <frac|exp<around*|(|\<mathi\> \<zeta\>
+    <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>+<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\><frac|exp<around*|(|-\<mathi\>
+    \<zeta\> <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>=<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    <frac|exp<around*|(|\<mathi\> \<zeta\>
+    <around*|(|t-t<rprime|'>|)>|)>|\<beta\>
+    <around*|(|\<zeta\><rsup|2>+\<omega\><rsup|2>|)>>.
+  </equation*>
+
+  This integral, which results in the Yukawa potential, is very tricky. The
+  key is noticing the following integral
+
+  <\equation*>
+    <big|int><rsub|0><rsup|x>\<mathd\>u exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
+    u|)>=<frac|1-exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
+    x|)>|\<omega\>\<pm\>\<mathi\>\<zeta\>>.
+  </equation*>
+
+  When <math|\<omega\>\<gtr\>0>, let <math|x\<rightarrow\>+\<infty\>>, we
+  find
+
+  <\equation*>
+    <big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
+    exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
+    u|)>=<frac|1|\<omega\>\<pm\>\<mathi\>\<zeta\>><around*|[|1-lim<rsub|u\<rightarrow\>+\<infty\>>exp<around*|(|-<around*|(|\<omega\>\<pm\>\<mathi\>\<zeta\>|)>
+    u|)>|]>=<frac|1|\<omega\>\<pm\>\<mathi\>\<zeta\>>.
+  </equation*>
+
+  This relation helps convert the denominator in the covariance to
+  exponential, as
+
+  <\equation*>
+    <frac|1|\<zeta\><rsup|2>+\<omega\><rsup|2>>=<frac|1|2\<omega\>>
+    <around*|[|<frac|1|\<omega\>+\<mathi\>\<zeta\>>+<frac|1|\<omega\>-\<mathi\>\<zeta\>>|]>=<frac|1|2\<omega\>><around*|[|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
+    exp<around*|(|-<around*|(|\<omega\>+\<mathi\>\<zeta\>|)>
+    u|)>+<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
+    exp<around*|(|-<around*|(|\<omega\>-\<mathi\>\<zeta\>|)> u|)>|]>.
+  </equation*>
+
+  Plugging into the covariance, and exchanging the integrals
+  <math|<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>> and
+  <math|<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u>, we get
+
+  \;
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\> <frac|exp<around*|(|\<mathi\>
+    \<zeta\> <around*|(|t-t<rprime|'>|)>|)>|\<zeta\><rsup|2>+\<omega\><rsup|2>>=<frac|1|2\<omega\>><big|int><rsub|0><rsup|+\<infty\>>\<mathd\>u
+    exp<around*|(|-\<omega\>u|)> <around*|[|<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    exp<around*|(|\<mathi\> \<zeta\> <around*|(|t-t<rprime|'>-u|)>|)>+<big|int><rsub|\<bbb-R\>>\<mathd\>\<zeta\>
+    exp<around*|(|\<mathi\> \<zeta\> <around*|(|t-t<rprime|'>+u|)>|)>|]>.
+  </equation*>
+
+  Integration of <math|\<zeta\>> turns to be Dirac's delta functions, which
+  result in <math|<around*|(|1/2\<omega\>|)> exp<around*|(|-\<omega\>
+  <around*|\||t-t<rprime|'>|\|>|)>>. So, <math|Cov<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=<around*|(|2\<beta\>
+  \<omega\>|)><rsup|-1><rsub|> exp<around*|(|-\<omega\>
+  <around*|\||t-t<rprime|'>|\|>|)>> with <math|\<omega\>\<gtr\>0>, from which
+  the Pearson coefficient reads
+
+  <\equation*>
+    Pearson<rsub|Q><around*|(|x<around*|(|t|)>,x<around*|(|t<rprime|'>|)>|)>=exp<around*|(|-\<omega\>
+    <around*|\||t-t<rprime|'>|\|>|)>,
+  </equation*>
+
+  which decreases exponentially with <math|<around*|\||t-t<rprime|'>|\|>>.
+  The decay rate is <math|1/\<omega\>>.
+
+  Only in the limit <math|\<omega\>\<rightarrow\>0> is the system scale-free,
+  which means the information can propagate to the edge of the system (which
+  is infinity in our case). This is plausible, since the action becomes
+  scale-invariant in and only in the same limit, where there is no
+  dimensional constant (<math|\<omega\>> has dimension
+  <math|<around*|[|t|]><rsup|-1>>). But, we cannot say that a stochastic
+  system is scale-free if and only if the action is scale-invariant. As an
+  example, the Wilson-Fisher fixed point is an instance where the stochastic
+  system is scale-free but the action is not scale-invariant (see <hlink|this
+  post|https://physics.stackexchange.com/questions/360989/are-fixed-points-of-rg-evolution-really-scale-invariant>).
+  We will examine this in section TODO.
+
   <subsection|Renormalization Group Transformation>
 
-  For simplicity, we first analysis the renormalization group transformation
-  for the action <reference|equation:action of iterative equation v2> but
-  with free boundaries. The boundary <math|x<rsub|0>> can be obtained by
-  integration with a Dirac's delta function
-  <math|\<delta\><around*|(|x<around*|(|0|)>-x<rsub|0>|)>.> At first, we set
-  the dimension <math|n=1> and <math|\<Delta\>t<rsub|i>=\<epsilon\>> for any
-  <math|i>. So, the action is expanded to be
+  We are to study the criticality in the action of iterative equation. That
+  is, we are to determine how far information will propagate during the
+  iteration. We have studied an example in section <reference|section:
+  Example: How Far Will Information Propagate in a Stochastic System?>.
+  Physicists have invented a technique for dealing with this kind of
+  problems, called renormalization group. This technique was mainly developed
+  by Kenneth Wilson. To show how it works, we start with the Lagrangian
+  <reference|equation:lagrangian of iterative equation>. The action is
+  <math|S<around*|(|x|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>t
+  L<around*|(|x<around*|(|t|)>,<wide|x|\<dot\>><around*|(|t|)>,t|)>>, and the
+  density function <math|q<around*|(|x|)>\<propto\>exp<around*|(|-S<around*|(|x|)>|)>>.
+  Notice that there are two differences between this setting and that of
+  iterative equation in section <reference|section: Action of Iterative
+  Equation Has Friction>. One is that the time <math|t> runs over
+  <math|\<bbb-R\>> instead of a bounded range
+  <math|<around*|[|0,t<rsub|f>|]>>. As we will see later in this section,
+  this difference is crucial for renormalization group technique. The other
+  difference is that this action does not have condition, such as the initial
+  value <math|x<around*|(|0|)>>. This is not a problem since we can always
+  add a condition by integrating with Dirac's delta function, such as
+  <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<around*|(|0|)>
+  exp<around*|(|-S<around*|(|x|)>|)> \<delta\><around*|(|x<around*|(|0|)>-x<rsub|0>|)>>
+  for fixing <math|x<around*|(|0|)>> to <math|x<rsub|0>>. So, the action
+  under consideration is
 
   <\equation*>
-    S<around*|(|x|)>=<big|sum><rsub|i=0><rsup|N-1><frac|\<epsilon\>|2><around*|(|<frac|x<rsub|i+1>-x<rsub|i>|\<epsilon\>>-g<rsub|i><around*|(|x<rsub|i>|)>|)><rsup|2>=<big|sum><rsub|i=0><rsup|N-1><around*|[|<frac|x<rsub|i+1><rsup|2>|2\<epsilon\>>+<frac|x<rsub|i><rsup|2>|2\<epsilon\>>-<frac|x<rsub|i+1>
-    x<rsub|i>|\<epsilon\>>-x<rsub|i+1> g<rsub|i><around*|(|x<rsub|i>|)>+x<rsub|i>
-    g<rsub|i><around*|(|x<rsub|i>|)>+<frac|\<epsilon\>
-    g<rsub|i><rsup|2><around*|(|x<rsub|i>|)>|2>|]>.
+    S<around*|(|x|)>=<big|int><rsub|\<bbb-R\>>\<mathd\>t<big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2><around*|(|<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>|)><rsup|2>-<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>
+    g<rsup|\<alpha\>><around*|(|x<around*|(|t|)>,t|)>+<frac|1|2><around*|(|g<rsup|\<alpha\>><around*|(|x<around*|(|t|)>,t|)>|)><rsup|2>|]>.
   </equation*>
 
-  When <math|\<epsilon\>> is sufficiently small, the first three terms
-  dominates the action.
+  We further separate <math|S<around*|(|x|)>> into two parts, the Gaussian
+  part <math|<around*|(|1/2|)><big|int><rsub|\<bbb-R\>>\<mathd\>t<big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>|)><rsup|2>>
+  and \Pinteractive\Q part <math|<big|int><rsub|\<bbb-R\>>\<mathd\>t<big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|-<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>
+  g<rsup|\<alpha\>><around*|(|x<around*|(|t|)>,t|)>+<around*|(|1/2|)><around*|(|g<rsup|\<alpha\>><around*|(|x<around*|(|t|)>,t|)>|)><rsup|2>|]>>.
 
-  Define <math|y<rsub|i>\<assign\><around*|(|x<rsub|2i+1>+x<rsub|2i>|)>/2>
-  and <math|z<rsub|i>\<assign\><around*|(|x<rsub|2i+1>-x<rsub|2i>|)>/2>.
-  Thus, <math|x<rsub|2i>=y<rsub|i>-z<rsub|i>> and
-  <math|x<rsub|2i+1>=y<rsub|i>+z<rsub|i>>. Then, for example,
-  <math|\<mathd\>x<rsub|2i>\<wedge\>\<mathd\>x<rsub|2i+1>=<around*|(|\<mathd\>y<rsub|i>-\<mathd\>z<rsub|i>|)>\<wedge\><around*|(|\<mathd\>y<rsub|i>+\<mathd\>z<rsub|i>|)>=2
-  \<mathd\>y<rsub|i>\<wedge\>\<mathd\>z<rsub|i>>. Then we marginalize the
-  <math|z> components in the density function
-  <math|q<around*|(|x|)>\<propto\>exp<around*|(|-S<around*|(|x|)>|)>>. The
-  action becomes TODO
-
-  <subsection|Renormalization Group Transformation (Drafts)>
-
-  Let us start at the action of iterative equation <reference|equation:action
-  of iterative equation>. Define <math|y<rsub|i>=<around*|(|x<rsub|2i+1>+x<rsub|2i>|)>/2>
-  and <math|z<rsub|i>=<around*|(|x<rsub|2i+1>-x<rsub|2i>|)>/2>. Thus,
-  <math|x<rsub|2i>=y<rsub|i>-z<rsub|i>> and
-  <math|x<rsub|2i+1>=y<rsub|i>+z<rsub|i>>. Then, for example,
-  <math|\<mathd\>x<rsub|2i>\<wedge\>\<mathd\>x<rsub|2i+1>=<around*|(|\<mathd\>y<rsub|i>-\<mathd\>z<rsub|i>|)>\<wedge\><around*|(|\<mathd\>y<rsub|i>+\<mathd\>z<rsub|i>|)>=2
-  \<mathd\>y<rsub|i>\<wedge\>\<mathd\>z<rsub|i>>. Then we marginalize the
-  <math|z> components in <math|q<around*|(|x\|x<rsub|0>|)>>.
-
-  As an example, we marginalize the <math|z<rsub|0>> component. It appears in
-  <math|i=0,1> terms. That is, we are to compute
+  We follow the same strategy in section <reference|section: Example: How Far
+  Will Information Propagate in a Stochastic System?>, in which
+  <math|<wide|x|^><rsup|\<alpha\>><around*|(|\<zeta\>|)>\<in\>\<bbb-C\>>
+  denotes the Fourier coefficient of <math|x<rsup|\<alpha\>>>, and only the
+  <math|<wide|x|^><rsup|\<alpha\>><around*|(|\<zeta\>|)>>s with
+  <math|\<zeta\>\<in\><around*|[|0,+\<infty\>|)>> are independent variables
+  since <math|x<rsup|\<alpha\>>> is real. After decomposing
+  <math|<wide|x|^><rsup|\<alpha\>><around*|(|\<zeta\>|)>=a<rsup|\<alpha\>><around*|(|\<zeta\>|)>+\<mathi\>
+  b<rsup|\<alpha\>><around*|(|\<zeta\>|)>> with
+  <math|a<rsup|\<alpha\>><around*|(|\<zeta\>|)>,b<rsup|\<alpha\>><around*|(|\<zeta\>|)>\<in\>\<bbb-R\>>,
+  we find <math|x<rsup|\<alpha\>><around*|(|t|)>=<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+  <around*|{|a<rsup|\<alpha\>><around*|(|\<zeta\>|)>
+  <around*|[|exp<around*|(|\<mathi\>\<zeta\> t|)>+exp<around*|(|-\<mathi\>
+  \<zeta\>t|)>|]>+\<mathi\>b<rsup|\<alpha\>><around*|(|\<zeta\>|)>
+  <around*|[|exp<around*|(|\<mathi\>\<zeta\>
+  t|)>-exp<around*|(|-\<mathi\>\<zeta\> t|)>|]>|}>>. Inserting the expansion
+  <math|exp<around*|(|\<mathi\>\<zeta\> t|)>=cos<around*|(|\<zeta\>
+  t|)>+\<mathi\> sin<around*|(|\<zeta\>t|)>>, we arrive at
 
   <\equation*>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|0><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|1>
-    exp<around*|(|-<frac|\<epsilon\>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<around*|(|<frac|x<rsup|\<alpha\>><rsub|1>-x<rsup|\<alpha\>><rsub|0>|\<epsilon\>>-g<rsub|0><rsup|\<alpha\>><around*|(|x<rsub|0>|)>|)><rsup|2>+<around*|(|<frac|x<rsup|\<alpha\>><rsub|2>-x<rsup|\<alpha\>><rsub|1>|\<epsilon\>>-g<rsub|1><rsup|\<alpha\>><around*|(|x<rsub|1>|)>|)><rsup|2>|]>|)>.
+    x<rsup|\<alpha\>><around*|(|t|)>=2<big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+    <around*|[|a<rsup|\<alpha\>><around*|(|\<zeta\>|)>
+    cos<around*|(|\<zeta\>t|)>- b<rsup|\<alpha\>><around*|(|\<zeta\>|)>
+    sin<around*|(|\<zeta\> t|)>|]>.
   </equation*>
 
-  Inserting the relation between <math|x> and <math|<around*|(|y,z|)>>, it
-  becomes
+  We directly copy the result in section <reference|section: Example: How Far
+  Will Information Propagate in a Stochastic System?>, where the Gaussian
+  part becomes
 
   <\equation*>
-    2<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsub|0><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>z<rsub|0>
-    exp<around*|(|-<frac|\<epsilon\>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<around*|(|<frac|z<rsub|0><rsup|\<alpha\>>|\<epsilon\>>-g<rsub|0><rsup|\<alpha\>><around*|(|y<rsub|0>-z<rsub|0>|)>|)><rsup|2>+<around*|(|<frac|z<rsub|1><rsup|\<alpha\>>|\<epsilon\>>-g<rsub|1><rsup|\<alpha\>><around*|(|y<rsub|0>+z<rsub|0>|)>|)><rsup|2>|]>|)>.
+    <frac|1|2><big|sum><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>t
+    <around*|(|<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>|)><rsup|2>=<big|sum><rsub|\<alpha\>=1><rsup|n><big|int><rsub|0><rsup|+\<infty\>>\<mathd\>\<zeta\>
+    \<zeta\><rsup|2> <around*|[|<around*|(|a<rsup|\<alpha\>><around*|(|\<zeta\>|)>|)><rsup|2>+<around*|(|b<rsup|\<alpha\>><around*|(|\<zeta\>|)>|)><rsup|2>|]>.
   </equation*>
 
-  Expanding the term in the <math|<around*|[|\<ldots\>|]>> gives
+  \;
+
+  The key point of renormalization group is using a cut-off. Explicitly,
+  instead of considering all <math|\<zeta\>>-components in
+  <math|<around*|[|0,+\<infty\>|)>>, we restrict to
+  <math|\<zeta\>\<in\><around*|[|0,\<Lambda\>|]>> for some cut-off
+  <math|\<Lambda\>\<gtr\>0>, thus <math|x<rsup|\<alpha\>><around*|(|t|)>> is
+  cut to <math|x<rsub|\<Lambda\>><rsup|\<alpha\>><around*|(|t|)>=2<big|int><rsub|0><rsup|\<Lambda\>>\<mathd\>\<zeta\>
+  <around*|[|a<rsup|\<alpha\>><around*|(|\<zeta\>|)>
+  cos<around*|(|\<zeta\>t|)>- b<rsup|\<alpha\>><around*|(|\<zeta\>|)>
+  sin<around*|(|\<zeta\> t|)>|]>>. In this situation, the action shall be
+  denoted by <math|S<rsub|\<Lambda\>>>. We have
+  <math|lim<rsub|\<Lambda\>\<rightarrow\>+\<infty\>>S<rsub|\<Lambda\>>=S>.
+  Renormalization group calculates a functional differential equation of
+  <math|\<Lambda\>\<mathd\>S<rsub|\<Lambda\>>/\<mathd\>\<Lambda\>>. But, all
+  we have known is the action with <math|\<Lambda\>\<rightarrow\>+\<infty\>>.
+  What is the form of action for finite <math|\<Lambda\>>? We make the
+  assumption that it has the form in Fourier coefficients
 
   <\equation*>
-    -<frac|z<rsub|0><rsup|2>|2\<epsilon\>>+z<rsub|0>\<cdot\>g<rsub|0><around*|(|y<rsub|0>-z<rsub|0>|)>-<frac|\<epsilon\>|2>g<rsub|0><rsup|2><around*|(|y<rsub|0>-z<rsub|0>|)>+z<rsub|1>\<cdot\>g<rsub|1><around*|(|y<rsub|0>+z<rsub|0>|)>-<frac|\<epsilon\>|2>g<rsub|1><rsup|2><around*|(|y<rsub|0>+z<rsub|0>|)>.
+    S<rsub|\<Lambda\>><around*|(|a,b|)>=<big|sum><rsub|\<alpha\>=1><rsup|n><big|int><rsub|0><rsup|\<Lambda\>>\<mathd\>\<zeta\>
+    \<zeta\><rsup|2> <around*|[|<around*|(|a<rsup|\<alpha\>><around*|(|\<zeta\>|)>|)><rsup|2>+<around*|(|b<rsup|\<alpha\>><around*|(|\<zeta\>|)>|)><rsup|2>|]>+V<rsub|\<Lambda\>><around*|(|a,b|)>.
   </equation*>
 
-  So, we find a Gaussian integral with variance <math|\<epsilon\>>. The
-  <math|<big|int>\<mathd\>z<rsub|0> exp<around*|(|\<cdots\>|)>> factor
-  becomes
+  where <math|V<rsub|\<Lambda\>>> is a generic function of
+  <math|a<around*|(|\<zeta\>|)>> and <math|b<around*|(|\<zeta\>|)>> with
+  <math|\<zeta\>\<in\><around*|[|0,\<Lambda\>|]>>. For calculating
+  <math|\<Lambda\>\<mathd\>S<rsub|\<Lambda\>>/\<mathd\>\<Lambda\>>, we use
+  the fact that the density function (written in Fourier coefficients)
+  <math|q<around*|(|a,b|)>\<propto\>exp<around*|(|-S<rsub|\<Lambda\>><around*|(|x|)>|)>>
+  is independent on <math|\<Lambda\>>. After all, <math|S<rsub|\<Lambda\>>>
+  represents for the same distribution <math|Q> for different
+  <math|\<Lambda\>>. It means, by marginalizing.
+
+  \ Then, seperating <math|x<rsup|\<alpha\>><around*|(|t|)>> as
+  <math|x<rsup|\<alpha\>><rsub|\<less\>><around*|(|t|)>+x<rsub|\<gtr\>><rsup|\<alpha\>><around*|(|t|)>>
+  where <math|x<rsub|\<gtr\>><around*|(|t|)>\<assign\>2<big|int><rsub|\<Lambda\>><rsup|\<Lambda\>+\<delta\>\<Lambda\>>\<mathd\>\<zeta\>
+  <around*|[|a<rsup|\<alpha\>><around*|(|\<zeta\>|)>
+  cos<around*|(|\<zeta\>t|)>- b<rsup|\<alpha\>><around*|(|\<zeta\>|)>
+  sin<around*|(|\<zeta\> t|)>|]>>. Integrating <math|x<rsub|\<gtr\>>> in
+  density function gives
 
   <\equation*>
-    \<bbb-E\><rsub|<with|font|cal|N><around*|(|0,\<epsilon\>|)>><around*|[|z<rsub|0>\<cdot\>g<rsub|0><around*|(|y<rsub|0>-z<rsub|0>|)>-<frac|\<epsilon\>|2>g<rsub|0><rsup|2><around*|(|y<rsub|0>-z<rsub|0>|)>+z<rsub|1>\<cdot\>g<rsub|1><around*|(|y<rsub|0>+z<rsub|0>|)>-<frac|\<epsilon\>|2>g<rsub|1><rsup|2><around*|(|y<rsub|0>+z<rsub|0>|)>|]>.
+    <big|int>D<around*|[|x<rsub|\<gtr\>>|]>
+    exp<around*|(|-S<rsub|\<Lambda\>+\<delta\>\<Lambda\>><around*|(|x|)>|)>=exp<around*|(|-S<rsub|\<Lambda\>><around*|(|x<rsub|\<less\>>|)>|)>
+    <big|int>D<around*|[|x<rsub|\<gtr\>>|]>
+    exp<around*|(|-S<rsub|\<Lambda\>+\<delta\>\<Lambda\>><around*|(|x<rsub|\<less\>>,x<rsub|\<gtr\>>|)>+S<rsub|\<Lambda\>><around*|(|x<rsub|\<less\>>|)>|)>.
   </equation*>
 
-  Taylor expanding <math|g<rsub|0>> and <math|g<rsub|1>> gives
-  <math|z<rsub|0>\<cdot\>g<rsub|0><around*|(|y<rsub|0>-z<rsub|0>|)>=z<rsub|0><rsup|\<alpha\>>
-  \<partial\><rsub|\<beta\>>g<rsub|\<alpha\>><around*|(|y<rsub|0>|)>
-  z<rsub|0><rsup|\<beta\>>>, <math|g<rsub|0><around*|(|y<rsub|0>-z<rsub|0>|)>>
+  We have,
 
   <\equation*>
-    z<rsub|1>\<cdot\>g<rsub|1><around*|(|y<rsub|0>|)>+<around*|[|\<partial\>g<around*|(|y<rsub|0>|)>+z<rsub|1>\<cdot\>\<partial\><rsup|2>g<rsub|1><around*|(|y<rsub|0>|)>-<frac|1|2><around*|(|g<rsub|0><rsup|2><around*|(|y<rsub|0>|)>+g<rsub|1><rsup|2><around*|(|y<rsub|0>|)>|)>|]>\<epsilon\>+\<omicron\><around*|(|\<epsilon\>|)>.
+    S<rsub|\<Lambda\>+\<delta\>\<Lambda\>><around*|(|x<rsub|\<less\>>,x<rsub|\<gtr\>>|)>-S<rsub|\<Lambda\>><around*|(|x<rsub|\<less\>>|)>=<big|sum><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<Lambda\>><rsup|\<Lambda\>+\<delta\>\<Lambda\>>\<mathd\>\<zeta\>
+    \<zeta\><rsup|2> <around*|[|<around*|(|a<rsup|\<alpha\>><around*|(|\<zeta\>|)>|)><rsup|2>+<around*|(|b<rsup|\<alpha\>><around*|(|\<zeta\>|)>|)><rsup|2>|]>+V<rsub|\<Lambda\>+\<delta\>\<Lambda\>><around*|(|x<rsub|\<less\>>,x<rsub|\<gtr\>>|)>-V<rsub|\<Lambda\>><around*|(|x<rsub|\<less\>>|)>.
   </equation*>
 
   <subsection|Example: Action in Deep Learning>
@@ -1076,8 +1524,6 @@
     <tformat|<table|<row|<cell|>|<cell|<big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<epsilon\>>-<frac|1|2>-<frac|W<rsup|\<alpha\>><rsub|\<beta\>>
     x<rsub|i><rsup|\<beta\>>|4>|)><rsup|2>>>|<row|<cell|=>|<cell|<big|sum><rsub|l=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|x<rsup|\<alpha\>><rsub|i+1>|\<epsilon\>>-<around*|(|<frac|\<delta\><rsup|\<alpha\>><rsub|\<beta\>>|\<epsilon\>>+<frac|W<rsup|\<alpha\>><rsub|\<beta\>>|4>|)>x<rsub|i><rsup|\<beta\>>-<frac|1|2>|)><rsup|2>>>>>
   </align>
-
-  \;
 </body>
 
 <\initial>
@@ -1090,45 +1536,52 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.6.2|7>>
-    <associate|auto-11|<tuple|1.7|7>>
-    <associate|auto-12|<tuple|1.8|8>>
-    <associate|auto-13|<tuple|1.9|9>>
-    <associate|auto-14|<tuple|1.10|9>>
-    <associate|auto-15|<tuple|1.11|10>>
+    <associate|auto-10|<tuple|1.6|5>>
+    <associate|auto-11|<tuple|1.7|6>>
+    <associate|auto-12|<tuple|1.8|7>>
+    <associate|auto-13|<tuple|2|10>>
+    <associate|auto-14|<tuple|2.1|10>>
+    <associate|auto-15|<tuple|2.2|12>>
+    <associate|auto-16|<tuple|2.3|13>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
-    <associate|auto-6|<tuple|1.5|5>>
-    <associate|auto-7|<tuple|1|6>>
-    <associate|auto-8|<tuple|1.6|7>>
-    <associate|auto-9|<tuple|1.6.1|7>>
+    <associate|auto-6|<tuple|1|4>>
+    <associate|auto-7|<tuple|1.5|4>>
+    <associate|auto-8|<tuple|1.5.1|5>>
+    <associate|auto-9|<tuple|1.5.2|5>>
     <associate|equation:action of distribution|<tuple|4|2>>
-    <associate|equation:action of iterative equation|<tuple|10|8>>
-    <associate|equation:action of iterative equation v2|<tuple|11|8>>
-    <associate|equation:data-fitting iteration|<tuple|6|6>>
-    <associate|equation:data-fitting result|<tuple|7|6>>
-    <associate|equation:gaussianity|<tuple|9|8>>
-    <associate|equation:generic density|<tuple|5|5>>
-    <associate|equation:generic iterative equation|<tuple|8|7>>
+    <associate|equation:action of iterative equation|<tuple|10|6>>
+    <associate|equation:action of iterative equation v2|<tuple|11|6>>
+    <associate|equation:data-fitting iteration|<tuple|6|3>>
+    <associate|equation:data-fitting result|<tuple|7|4>>
+    <associate|equation:gaussianity|<tuple|9|6>>
+    <associate|equation:generic density|<tuple|5|3>>
+    <associate|equation:generic iterative equation|<tuple|8|5>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
-    <associate|equation:lagrangian of iterative equation|<tuple|12|9>>
+    <associate|equation:lagrangian of iterative equation|<tuple|12|7>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
-    <associate|figure: Least-Action|<tuple|1|6>>
+    <associate|figure: Least-Action|<tuple|1|4>>
     <associate|footnote-1|<tuple|1|2>>
-    <associate|footnote-2|<tuple|2|7>>
+    <associate|footnote-2|<tuple|2|5>>
+    <associate|footnote-3|<tuple|3|8>>
     <associate|footnr-1|<tuple|1|2>>
-    <associate|footnr-2|<tuple|2|7>>
+    <associate|footnr-2|<tuple|2|5>>
+    <associate|footnr-3|<tuple|3|8>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechanics|<tuple|1.2|1>>
     <associate|section: Action of Iterative Equation Has
-    Friction|<tuple|1.8|8>>
+    Friction|<tuple|1.7|6>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
-    of Distribution|<tuple|1.5|5>>
+    of Distribution|<tuple|1.4|3>>
+    <associate|section: Example: How Far Will Information Propagate in a
+    Stochastic System?|<tuple|2.1|10>>
+    <associate|section: How Far Will Information Propagate in Stochastic
+    Iterative Equation?|<tuple|1.8|7>>
     <associate|section: Iterative Equation With Normal Distribution Gives an
-    Action|<tuple|1.7|7>>
+    Action|<tuple|1.6|5>>
     <associate|section: Least-Action Principle of Distribution Has No
     Redundancy|<tuple|1.3|2>>
   </collection>
@@ -1161,7 +1614,7 @@
       <with|mode|<quote|math>|x<rsub|1>> a local minimum of
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>>, and
       <with|mode|<quote|math>|S<around*|(|\<cdummy\>,\<theta\>|)>> is
-      optimized to be the dashed green curve.>|<pageref|auto-7>>
+      optimized to be the dashed green curve.>|<pageref|auto-6>>
     </associate>
     <\associate|toc>
       1<space|2spc>Least-Action Principle
@@ -1181,49 +1634,53 @@
       Distribution Has No Redundancy <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Example: How Far Will
-      Information Propagate in a Stochastic System?
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Data Fitting Is Equivalent
+      to Least-Action Principle of Distribution
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Data Fitting Is Equivalent
-      to Least-Action Principle of Distribution
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-6>>
-
-      <with|par-left|<quote|1tab>|1.6<space|2spc>* History: Structures in
+      <with|par-left|<quote|1tab>|1.5<space|2spc>* History: Structures in
       Nature Arise from Least-Action Principle
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|2tab>|1.5.1<space|2spc>WBE Theory and
+      Universality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|2tab>|1.6.1<space|2spc>WBE Theory and
-      Universality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|2tab>|1.5.2<space|2spc>Renormalization Group and
+      Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|2tab>|1.6.2<space|2spc>Renormalization Group and
-      Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
-
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Iterative Equation With
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Iterative Equation With
       Normal Distribution Gives an Action
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Action of Iterative Equation
+      Has Friction <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-11>>
 
-      <with|par-left|<quote|1tab>|1.8<space|2spc>Action of Iterative Equation
-      Has Friction <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.8<space|2spc>How Far Will Information
+      Propagate in Stochastic Iterative Equation?
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-12>>
 
-      <with|par-left|<quote|1tab>|1.9<space|2spc>Renormalization Group
-      Transformation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13>>
+      2<space|2spc>Others <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-13>
 
-      <with|par-left|<quote|1tab>|1.10<space|2spc>Renormalization Group
-      Transformation (Drafts) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Example: How Far Will
+      Information Propagate in a Stochastic System?
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-14>>
 
-      <with|par-left|<quote|1tab>|1.11<space|2spc>Example: Action in Deep
-      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Renormalization Group
+      Transformation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-15>>
+
+      <with|par-left|<quote|1tab>|2.3<space|2spc>Example: Action in Deep
+      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-16>>
     </associate>
   </collection>
 </auxiliary>

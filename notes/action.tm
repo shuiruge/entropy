@@ -680,13 +680,14 @@
   To show how it works, we start with an action that is generalized from
   action <reference|equation:action of iterative equation v2>, which is
 
-  <\equation*>
+  <\equation>
     S<around*|(|x|)>=<big|sum><rsub|i=-\<infty\>><rsup|+\<infty\>><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|<around*|(|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|)><rsup|2>|2\<epsilon\>>-<around*|(|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|)>
     \<varphi\><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>+\<epsilon\>
-    \<xi\><rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i+1>,x<rsub|i>|)>|]>,
-  </equation*>
+    \<xi\><rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i+1>,x<rsub|i>|)>|]>,<label|equation:rg
+    action>
+  </equation>
 
-  where <math|\<varphi\><rsub|i>,\<psi\><rsub|i>:\<bbb-R\><rsup|n>\<times\>\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
+  where <math|\<varphi\><rsub|i>,\<xi\><rsub|i>:\<bbb-R\><rsup|n>\<times\>\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
   Comparing with action <reference|equation:action of iterative equation v2>,
   <math|\<varphi\><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>=g<rsub|i><around*|(|x<rsub|i>|)>>
   and <math|\<xi\><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>=g<rsup|2><rsub|i><around*|(|x<rsub|i>|)>/2>.
@@ -705,27 +706,30 @@
   we are to compute an \Peffective action\Q <math|S<rprime|'>> defined by
 
   <\equation*>
-    S<rprime|'><around*|(|x<rprime|'>|)>\<assign\>ln<around*|[|<big|prod><rsub|i\<in\>\<bbb-Z\>><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|2i+1>
+    S<rprime|'><around*|(|x|)>\<assign\>-ln<around*|[|<big|prod><rsub|i\<in\>\<bbb-Z\>><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|2i+1>
     exp<around*|(|-S<around*|(|x|)>|)>|]>,
   </equation*>
 
-  where <math|x<rprime|'>\<assign\><around*|(|\<ldots\>,x<rsub|-4>,x<rsub|-2>,x<rsub|0>,x<rsub|2>,x<rsub|4>,\<ldots\>|)>>
-  contains only the variables with even index.
+  where <math|S<rprime|'><around*|(|\<ldots\>,x<rsub|-4>,x<rsub|-2>,x<rsub|0>,x<rsub|2>,x<rsub|4>,\<ldots\>|)>>
+  contains only the variables with even index. Interestingly, it is to be
+  revealed that, by a proper re-scaling of <math|x>, <math|S<rprime|'>> has
+  exactly the same format as <math|S>.
 
-  Given <math|i>, we are to show how to marginalize
-  <math|x<rsub|2i+1><rsup|\<alpha\>>>. The integral is
-  <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsup|\<alpha\>><rsub|2i+1>exp<around*|(|\<Sigma\><rsub|\<alpha\>=1><rsup|n>J<rsup|\<alpha\>>|)>>
-  with
+  Given <math|i>, we are to show how to marginalize <math|x<rsub|2i+1>>. This
+  variables appear in two terms in action <reference|equation:rg action>,
+  with indices <math|2i+1> and <math|2i>. So, we are to integrate
+  <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|2i+1>exp<around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>J<rsup|\<alpha\>>|)>>
+  where
 
   <\align>
     <tformat|<table|<row|<cell|J<rsup|\<alpha\>>\<assign\>>|<cell|-<frac|<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>|2\<epsilon\>>-<frac|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)><rsup|2>|2\<epsilon\>>>>|<row|<cell|>|<cell|+<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)>
     \<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)>
     \<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>|<row|<cell|>|<cell|-\<epsilon\>
     \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>-\<epsilon\>
-    \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>>>
+    \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>.>>>>
   </align>
 
-  First, noticing the identity<\footnote>
+  First, we have an algebric identity<\footnote>
     Directly, expand <math|<around*|(|x-y|)><rsup|2>+<around*|(|y-z|)><rsup|2>=x<rsup|2>-2x
     y+y<rsup|2>+y<rsup|2>-2y z+z<rsup|2>>. Then, collect the <math|y> terms
     together, as <math|2<around*|(|y<rsup|2>-<around*|(|x+z|)>
@@ -737,16 +741,22 @@
     <\equation*>
       <around*|(|x-y|)><rsup|2>+<around*|(|y-z|)><rsup|2>=2<around*|(|y-<frac|x+z|2>|)><rsup|2>+<frac|1|2><around*|(|x-z|)><rsup|2>.
     </equation*>
+
+    If replace <math|x\<rightarrow\>x<rsup|\<alpha\>><rsub|2i>>,
+    <math|y\<rightarrow\>x<rsup|\<alpha\>><rsub|2i+1>>, and
+    <math|z\<rightarrow\>x<rsup|\<alpha\>><rsub|2i+2>>, then we get what we
+    need.
   </footnote>
 
   <\equation*>
-    <around*|(|x-y|)><rsup|2>+<around*|(|y-z|)><rsup|2>=2<around*|(|y-<frac|x+z|2>|)><rsup|2>+<frac|1|2><around*|(|x-z|)><rsup|2>,
+    <frac|<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>|2\<epsilon\>>+<frac|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)><rsup|2>|2\<epsilon\>>=<frac|1|\<epsilon\>><around*|[|x<rsup|\<alpha\>><rsub|2i+1>-<frac|x<rsup|\<alpha\>><rsub|2i>+
+    x<rsup|\<alpha\>><rsub|2i+2>|2>|]><rsup|2>+<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i>-
+    x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>.
   </equation*>
 
-  we replace <math|x\<rightarrow\>x<rsup|\<alpha\>><rsub|2i>>,
-  <math|y\<rightarrow\>x<rsup|\<alpha\>><rsub|2i+1>>, and
-  <math|z\<rightarrow\>x<rsup|\<alpha\>><rsub|2i+2>>, and find (colors
-  indicates where the terms come from)
+  Remark that the second term looks like the first term in action
+  <reference|equation:rg action>, except for an <math|1/2> factor. Then,
+  <math|J<rsup|\<alpha\>>> becomes
 
   <\align>
     <tformat|<table|<row|<cell|J<rsup|\<alpha\>>=>|<cell|-<frac|1|\<epsilon\>><around*|[|x<rsup|\<alpha\>><rsub|2i+1>-<frac|x<rsup|\<alpha\>><rsub|2i>+
@@ -758,22 +768,27 @@
     x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>.>>>>
   </align>
 
-  The first line is quardratic in <math|x<rsup|\<alpha\>><rsub|2i+1>> and
-  proportional to <math|1/\<epsilon\>>. In the integral, this term can be
-  seen as the Gaussian part. It suggests to define
-  <math|<wide|y|\<bar\>>\<assign\><around*|(|x<rsub|2i+2>+ x<rsub|2i>|)>/2>
-  and <math|y\<assign\>x<rsub|2i+1>-<wide|y|\<bar\>>>. <math|>And the
-  integral becomes
+  The first line is a quardratic form of <math|x<rsub|2i+1>>. It suggests
+  that we shall treat the integral as a perturbation to the Gaussian
+  integral, and use perturbative method to integrate it out. Following this
+  strategy, we define <math|<wide|y|\<bar\>>\<assign\><around*|(|x<rsub|2i+2>+
+  x<rsub|2i>|)>/2> and <math|y\<assign\>x<rsub|2i+1>-<wide|y|\<bar\>>>.
+  <math|>And the integral becomes
 
   <\equation*>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|2i+1>exp<around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>J<rsup|\<alpha\>>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
     exp<around*|(|-<frac|1|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|y<rsup|\<alpha\>>|<sqrt|\<epsilon\>/2>>|)><rsup|2>+\<cdots\>|)>.
   </equation*>
 
   It means the <math|y> obeys a normal distribution with zero mean and
   diagonal covariance <math|\<Sigma\><rsub|\<alpha\>\<beta\>>=<around*|(|\<epsilon\>/2|)>
-  \<delta\><rsub|\<alpha\>\<beta\>>>. Using this notation, the second line
-  becomes (by <math|x<rsub|2i+1>=y+<wide|y|\<bar\>>>)
+  \<delta\><rsub|\<alpha\>\<beta\>>>.
+
+  Now, we are to process the other lines in <math|J<rsup|\<alpha\>>>. Using
+  <math|x<rsub|2i+1>=y+<wide|y|\<bar\>>> and
+  <math|<wide|y|\<bar\>>-x<rsub|2i>=x<rsub|2i+2>-<wide|y|\<bar\>>=<around*|(|x<rsub|2i+2>-x<rsub|2i>|)>/2>,
+  the second line can be expanded, up to <math|<with|font|cal|O><around*|(|\<epsilon\><rsup|3/2>|)>>,
+  as
 
   <\small>
     <\align>
@@ -786,23 +801,27 @@
       <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
       y<rsup|\<beta\>> <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|4>y<rsup|\<beta\>>
       y<rsup|\<gamma\>> <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|\<cdots\>,>>>>
+      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>,>>>>
     </align>
   </small>
 
-  where we have omit the <math|\<omicron\><around*|(|\<epsilon\>|)>> terms
-  (notice that <math|<around*|\||y<rsup|\<alpha\>>|\|>=<with|font|cal|O><around*|(|<sqrt|\<epsilon\>>|)>>).
-  Also up to <math|\<omicron\><around*|(|\<epsilon\>|)>>, we find the third
-  line
+  where we have estimated <math|y> as <math|<sqrt|\<epsilon\>>>. We denote
+  <math|\<partial\>\<varphi\>> as the partial derivative taken on the first
+  argument, and <math|\<partial\><rprime|'>\<varphi\>> on the second. Notice
+  that we have used Einstein convention in this expansion (see the
+  conventions in section <reference|section: Kramers-Moyal Expansion and
+  Langevin Process>), hidden the summation of indices <math|\<beta\>> and
+  <math|\<gamma\>>. Also up to <math|<with|font|cal|O><around*|(|\<epsilon\><rsup|3/2>|)>>,
+  the third line simply becomes (the color is for later usage)
+  <math|<with|color|red|-\<epsilon\> \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
+  \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>>>.
+  Altogether, the integral becomes
 
   <\equation*>
-    -\<epsilon\> \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
-    \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>.
+    exp<around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>I<rsup|\<alpha\>>|)>\<times\><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    exp<around*|(|-<frac|1|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|y<rsup|\<alpha\>>|<sqrt|\<epsilon\>/2>>|)><rsup|2>+<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>+<with|font|cal|O><around*|(|\<epsilon\><rsup|3/2>|)>|)>,
   </equation*>
 
-  The last line is invariant since it does not involve <math|x<rsub|2i+1>>,
-  or <math|y>. Altogether, up to <math|\<omicron\><around*|(|\<epsilon\>|)>>,
-  we find <math|J<rsup|\<alpha\>>=-<frac|1|\<epsilon\>><around*|(|y<rsup|\<alpha\>>|)><rsup|2>+V<rsup|\<alpha\>><around*|(|y|)>+I<rsup|\<alpha\>>>
   with the \Pinteractive part\Q
 
   <\small>
@@ -813,11 +832,12 @@
       <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
       y<rsup|\<beta\>> <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|4>y<rsup|\<beta\>>
       y<rsup|\<gamma\>> <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>>>
+      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>,>>>>
     </align>
   </small>
 
-  and the \Pindependent part\Q
+  which involves <math|y> and has the order <math|<sqrt|\<epsilon\>>>, and
+  the \Pindependent part\Q
 
   <\small>
     <\equation*>
@@ -825,237 +845,121 @@
       x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>+<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
       <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>-\<epsilon\>
       \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
-      \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>.
+      \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>,
     </equation*>
   </small>
 
-  The integral becomes
+  which is independent of <math|y>. Perturbative method Taylor expands the
+  second factor as
 
   <\equation*>
-    exp<around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>I<rsup|\<alpha\>>|)>\<times\><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
-    exp<around*|(|-<frac|1|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<frac|y<rsup|\<alpha\>>|<sqrt|\<epsilon\>/2>>|)><rsup|2>+<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>|)>.
+    \<bbb-E\><rsub|Y><around*|[|1+<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>+<frac|1|2><around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>|)><rsup|2>+<with|font|cal|O><around*|(|\<epsilon\><rsup|3/2>|)>|]>,
   </equation*>
 
-  TODO
+  where <math|\<bbb-E\><rsub|Y><around*|[|\<ldots\>|]>> is defined by the
+  Gaussian integral of <math|y>. We will neglect the constant factor
+  <math|<around*|(|\<mathpi\> \<epsilon\>|)><rsup|-n/2>>, so that
+  <math|\<bbb-E\><rsub|Y><around*|[|1|]>=1>. This constant factor can be
+  absorbed into the action as a irrelavent constant term. Plugging in the
+  definition of <math|V<rsup|\<alpha\>><around*|(|y|)>> with
+  <math|\<bbb-E\><rsub|Y><around*|[|y<rsup|\<alpha\>>|]>=0> and
+  <math|\<bbb-E\><rsub|Y><around*|[|y<rsup|\<alpha\>>
+  y<rsup|\<beta\>>|]>=\<delta\><rsub|\<alpha\>\<beta\>> \<epsilon\>/2>, we
+  get (color for later usage)
 
-  \;
+  <\small>
+    <with|color|dark green|<\equation*>
+      <big|sum><rsub|\<alpha\>=1><rsup|n>\<bbb-E\><around*|[|V<rsup|\<alpha\>><around*|(|y|)>|]>=<frac|\<epsilon\>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<alpha\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>+<frac|1|4>
+      <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<Delta\>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<Delta\><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>|]>,
+    </equation*>>
+  </small>
 
-  The last line is independent of <math|x<rsup|\<alpha\>><rsub|2i+1>>. The
-  rest terms are collected in the second line, which can be regarded as
-  interactive part. We are to expand the integral by <math|\<epsilon\>>. To
-  do so, we need to further simplify the notations. The Gaussian part
-  indicates that the random variable <math|X<rsup|\<alpha\>><rsub|2i+1>> of
-  <math|x<rsup|\<alpha\>><rsub|2i+1>> is centered at the mean of
-  <math|x<rsub|2i+2><rsup|\<alpha\>>> and <math|x<rsup|\<alpha\>><rsub|2i>>,
-  with variance <math|<sqrt|\<epsilon\>/2>>. Thus, define
-  <math|y\<assign\>x<rsub|2i+1>-<wide|y|\<bar\>>> where
-  <math|<wide|y|\<bar\>><rsup|\<alpha\>>\<assign\><around*|(|x<rsup|\<alpha\>><rsub|2i+2>+
-  x<rsup|\<alpha\>><rsub|2i>|)>/2>. Then, up to
-  <math|\<omicron\><around*|(|\<epsilon\>|)>> (notice that
-  <math|y\<sim\><sqrt|\<epsilon\>/2>>), the <with|color|dark cyan|second
-  line> can be expanded as
+  where the Laplacian <math|\<Delta\><rprime|'>\<assign\><big|sum><rsub|\<alpha\>=1><rsup|n>\<partial\><rsub|\<alpha\>><rsup|2>>,
+  the same for <math|\<Delta\><rprime|'>>. Also, we have (color for later
+  usage)<\footnote>
+    We have <math|\<bbb-E\><rsub|Y><around*|[|<around*|(|1/2|)><around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>|)><rsup|2>|]>=<around*|(|1/2|)><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>=1><rsup|n>\<bbb-E\><rsub|Y><around*|[|V<rsup|\<alpha\>><around*|(|y|)>
+    V<rsup|\<alpha\><rprime|'>><around*|(|y|)>|]>>, where
 
-  <\align>
-    <tformat|<table|<row|<cell|>|<cell|<around*|[|x<rsup|\<alpha\>><rsub|2i+2>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+x<rsup|\<alpha\>><rsub|2i+2>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<frac|1|2>x<rsup|\<alpha\>><rsub|2i+2>
-    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|]>>>|<row|<cell|->|<cell|<around*|[|y<rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<frac|1|2><wide|y|\<bar\>><rsup|\<alpha\>>
-    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>-<frac|\<epsilon\>|2><around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>.>>>>
-  </align>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|\<bbb-E\><rsub|Y><around*|[|V<rsup|\<alpha\>><around*|(|y|)>V<rsup|\<alpha\><rprime|'>><around*|(|y|)>|]>>>|<row|<cell|=>|<cell|<frac|\<delta\><rsub|\<alpha\>\<alpha\><rprime|'>>
+      \<epsilon\>|2> <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><rsup|2>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|4>
+      <around*|(|x<rsup|\<alpha\><rprime|'>><rsub|2i+2>-x<rsup|\<alpha\><rprime|'>><rsub|2i>|)>
+      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|[|\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<alpha\>><rprime|'>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|4>
+      <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|[|\<partial\><rsub|\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<alpha\><rprime|'>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|8>
+      <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|(|x<rsup|\<alpha\><rprime|'>><rsub|2i+2>-x<rsup|\<alpha\><rprime|'>><rsub|2i>|)>
+      <big|sum><rsub|\<beta\>=1><rsup|n><around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>.>>>>
+    </align>
 
-  It can be re-collected as
+    \;
+  </footnote>
 
-  <\align>
-    <tformat|<table|<row|<cell|>|<cell|x<rsup|\<alpha\>><rsub|2i+2>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>-<frac|\<epsilon\>|2><around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>>>|<row|<cell|+>|<cell|x<rsup|\<alpha\>><rsub|2i+2>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<wide|y|\<bar\>><rsup|\<alpha\>>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>>>|<row|<cell|+>|<cell|<frac|1|2>x<rsup|\<alpha\>><rsub|2i+2>
-    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|1|2><wide|y|\<bar\>><rsup|\<alpha\>>
-    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>.>>>>
-  </align>
+  <with|color|dark blue|<\small>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|\<bbb-E\><around*|[|<frac|1|2><around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>|)><rsup|2>|]>>>|<row|<cell|=>|<cell|<frac|\<epsilon\>|4><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><rsup|2>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|4><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<alpha\><rprime|'>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|[|\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|16><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>,\<beta\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|(|x<rsup|\<alpha\><rprime|'>><rsub|2i+2>-x<rsup|\<alpha\><rprime|'>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>>>
+    </align>
+  </small>>
 
-  The first line does not involve <math|y>. The second line is linear in
-  <math|y> and the last line is quardratic in <math|y>. So, <math|I> can be
-  separated into three parts:
+  Plugging all these back to the integral, and defining
+  <math|x<rprime|'><rsub|i>=x<rsub|2i>/<sqrt|2>> for all <math|i>, we find,
+  (up to an irrelavent constant term),
+
+  <\small>
+    <\equation*>
+      -ln<around*|[|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|2i+1>exp<around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>J<rsup|\<alpha\>>|)>|]>=<big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2\<epsilon\>><around*|(|x<rprime|'><rsup|\<alpha\>><rsub|i+1>-
+      x<rprime|'><rsup|\<alpha\>><rsub|i>|)><rsup|2>-<around*|(|x<rprime|'><rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|)>
+      \<varphi\><rprime|'><rsub|i><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>+\<epsilon\>
+      \<xi\><rprime|'><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>|]>,
+    </equation*>
+  </small>
+
+  where
 
   <\equation*>
-    J=-<frac|1|\<epsilon\>><around*|(|y<rsup|\<alpha\>>|)><rsup|2>+V+I,
+    \<varphi\><rprime|'><rsub|i><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>\<assign\><frac|1|<sqrt|2>><around*|[|\<varphi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
   </equation*>
 
-  which are the Gaussian part, the interactive parts which involves the last
-  two lines in this expression
+  and
 
-  <\align>
-    <tformat|<table|<row|<cell|V\<assign\>>|<cell|x<rsup|\<alpha\>><rsub|2i+2>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<wide|y|\<bar\>><rsup|\<alpha\>>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>>>|<row|<cell|+>|<cell|<frac|1|2>x<rsup|\<alpha\>><rsub|2i+2>
-    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
-    y<rsup|\<beta\>> \<partial\><rsub|\<beta\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|1|2><wide|y|\<bar\>><rsup|\<alpha\>>
-    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>,>>>>
-  </align>
+  <\small>
+    <\equation*>
+      \<xi\><rprime|'><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>\<assign\><with|color|red|\<xi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+
+      \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>><with|color|dark
+      green|-<frac|1|2><around*|[|\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<alpha\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>><with|color|dark
+      blue|-<frac|1|4><around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><rsup|2>><with|color|dark
+      green|-<frac|1|8><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<Delta\>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<Delta\><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>><with|color|dark
+      blue|-<frac|1|4><big|sum><rsub|\<alpha\><rprime|'>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<alpha\><rprime|'>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|[|\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>-<frac|1|16><big|sum><rsub|\<alpha\><rprime|'>,\<beta\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|(|x<rsup|\<alpha\><rprime|'>><rsub|2i+2>-x<rsup|\<alpha\><rprime|'>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>+<with|font|cal|O><around*|(|<sqrt|\<epsilon\>>|)>,
+    </equation*>
+  </small>
 
-  and the irrelavent part
+  where we have indicated the source of the terms by color. This is held for
+  all <math|i>, thus we arrive at
 
   <\equation*>
-    I\<assign\>-<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-
-    x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>+<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsub|2i><rsup|\<alpha\>>|)>
-    <around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]>
-    -<frac|\<epsilon\>|2><around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-<frac|\<epsilon\>|2><around*|(|g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|)><rsup|2>.
+    S<rprime|'><around*|(|x<rprime|'>|)>=<big|sum><rsub|i=-\<infty\>><rsup|+\<infty\>><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2\<epsilon\>><around*|(|x<rprime|'><rsup|\<alpha\>><rsub|i+1>-
+    x<rprime|'><rsup|\<alpha\>><rsub|i>|)><rsup|2>-<around*|(|x<rprime|'><rsup|\<alpha\>><rsub|i+1>-x<rprime|'><rsup|\<alpha\>><rsub|i>|)>
+    \<varphi\><rprime|'><rsub|i><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>+\<epsilon\>
+    \<xi\><rprime|'><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>|]>,
   </equation*>
 
-  So the integral is
-
-  <\equation*>
-    exp<around*|(|I|)>\<times\><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsup|\<alpha\>>
-    exp<around*|(|-<frac|1|\<epsilon\>><around*|(|y<rsup|\<alpha\>>|)><rsup|2>+V|)>,
-  </equation*>
-
-  and we can expand the integrand by the interactive part, as
-
-  <\equation*>
-    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsup|\<alpha\>>
-    exp<around*|(|-<frac|1|\<epsilon\>><around*|(|y<rsup|\<alpha\>>|)><rsup|2>+V|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsup|\<alpha\>>
-    exp<around*|(|-<frac|1|2><around*|(|<frac|y<rsup|\<alpha\>>|<sqrt|\<epsilon\>/2>>|)><rsup|2>|)>
-    <around*|(|1+V+<frac|1|2>V<rsup|2>+\<cdots\>|)>.
-  </equation*>
-
-  Since <math|\<bbb-E\><around*|[|y|]>=0> and
-  <math|\<bbb-E\><around*|[|y<rsup|\<alpha\>>y<rsup|\<beta\>>|]>=\<delta\><rsup|\<alpha\>\<beta\>>
-  \<epsilon\>/2>, we find
-
-  <\equation*>
-    \<bbb-E\><around*|[|V|]>=<frac|\<epsilon\>|4>x<rsup|\<alpha\>><rsub|2i+2>
-    \<partial\><rsup|2><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|\<epsilon\>|2>\<partial\><rsub|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|\<epsilon\>|4><wide|y|\<bar\>><rsup|\<alpha\>>
-    \<partial\><rsub|\<alpha\>><rsup|2>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>=<frac|\<epsilon\>|8><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-    \<partial\><rsup|2><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|\<epsilon\>|2>\<partial\><rsub|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-  </equation*>
-
-  and up to <math|\<omicron\><around*|(|\<epsilon\>|)>> (note the Einstein
-  convention!),
-
-  <\equation*>
-    <frac|1|2>\<bbb-E\><around*|[|V<rsup|2>|]>=<frac|1|2>\<bbb-E\><around*|[|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>
-    y<rsup|\<beta\>>y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
-    y<rsup|\<alpha\>> y<rsup|\<beta\>> g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
-    <wide|y|\<bar\>><rsup|\<alpha\>> y<rsup|\<beta\>>y<rsup|\<gamma\>>
-    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+x<rsup|\<alpha\>><rsub|2i+2>
-    y<rsup|\<alpha\>> y<rsup|\<beta\>> g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
-    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
-    y<rsup|\<alpha\>> <around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+<wide|y|\<bar\>><rsup|\<alpha\>>
-    y<rsup|\<alpha\>> y<rsup|\<beta\>> g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-y<rsup|\<alpha\>>
-    y<rsup|\<alpha\>> g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>+<around*|(|<wide|y|\<bar\>><rsup|\<alpha\>>|)><rsup|2>
-    y<rsup|\<beta\>> y<rsup|\<gamma\>> \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<gamma\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<wide|y|\<bar\>><rsup|\<alpha\>>
-    y<rsup|\<alpha\>> y<rsup|\<beta\>> g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
-    \<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+y<rsup|\<alpha\>>
-    y<rsup|\<alpha\>> <around*|(|g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|)><rsup|2>|]>=<frac|\<epsilon\>|4><around*|[|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-x<rsup|\<alpha\>><rsub|2i+2>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
-    <wide|y|\<bar\>><rsup|\<alpha\>> <around*|(|\<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+x<rsup|\<alpha\>><rsub|2i+2>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<around*|(|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>+<around*|(|<wide|y|\<bar\>><rsup|\<alpha\>>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<around*|(|g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|)><rsup|2>|]>.
-  </equation*>
-
-  So, the irrelavent terms becomes
-
-  <\align>
-    <tformat|<table|<row|<cell|I\<rightarrow\>>|<cell|-<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-
-    x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>+<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsub|2i><rsup|\<alpha\>>|)>
-    <around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]>
-    -<frac|\<epsilon\>|4><around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]><rsup|2>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|8><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-    \<partial\><rsup|2><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|\<epsilon\>|2>\<partial\><rsub|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|4><around*|[|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-x<rsup|\<alpha\>><rsub|2i+2>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
-    <wide|y|\<bar\>><rsup|\<alpha\>> <around*|(|\<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+x<rsup|\<alpha\>><rsub|2i+2>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>+<around*|(|<wide|y|\<bar\>><rsup|\<alpha\>>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|]>.>>>>
-  </align>
-
-  So, we find the term with indices <math|\<alpha\>> and <math|2i> in
-  effective action
-
-  <\equation*>
-    S<rprime|'><around*|(|x<rprime|'>|)>\<supset\><frac|1|2><around*|[|<frac|1|2\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-
-    x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>-<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsub|2i><rsup|\<alpha\>>|)>
-    <around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]>+<frac|\<epsilon\>|2><around*|[|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>|]><rsup|2>|]>+\<epsilon\>
-    I<rprime|'>,
-  </equation*>
-
-  where (TODO: deal with the red term, which is the unique term that does not
-  involve <math|\<partial\>g>)
-
-  <\equation*>
-    I<rprime|'>\<assign\><frac|1|8><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-    \<partial\><rsup|2><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-<frac|1|2>\<partial\><rsub|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<frac|1|4><around*|[|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-x<rsup|\<alpha\>><rsub|2i+2>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>-x<rsup|\<alpha\>><rsub|2i+2>
-    <wide|y|\<bar\>><rsup|\<alpha\>> <around*|(|\<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>+x<rsup|\<alpha\>><rsub|2i+2>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>+<with|color|red|g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>>+<around*|(|<wide|y|\<bar\>><rsup|\<alpha\>>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|)><rsup|2>-<wide|y|\<bar\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i>|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>>|)>|]>.
-  </equation*>
-
-  By re-scaling <math|x<rprime|'><rsub|i>\<assign\><sqrt|2> x<rsub|i>>
-  (recall that <math|i> is even) and <math|g<rprime|'><rsub|i><around*|(|x<rprime|'>|)>\<assign\><sqrt|2>
-  g<rsub|i><around*|(|x|)>>, we find
-
-  <\equation*>
-    S<rprime|'><around*|(|x<rprime|'>|)>\<supset\><frac|\<epsilon\>|2><around*|[|<frac|x<rprime|'><rsup|\<alpha\>><rsub|2i+2>-
-    x<rprime|'><rsup|\<alpha\>><rsub|2i>|\<epsilon\>>-g<rprime|'><rsup|\<alpha\>><rsub|2i+1><around*|(|<wide|y|\<bar\>><rprime|'>|)>-g<rprime|'><rsup|\<alpha\>><rsub|2i><around*|(|x<rprime|'><rsub|2i>|)>|]><rsup|2>+\<epsilon\>
-    I<rprime|'>.
-  </equation*>
-
-  Comparing with the term with index <math|\<alpha\>> and <math|2i> in
-  <math|S<around*|(|x|)>>, we find the expression in
-  <math|<around*|[|\<ldots\>|]>> is formally the same, with the
-  <math|g<rsub|2i><around*|(|x<rsub|2i>|)>> replaced by
-  <math|g<rprime|'><rsup|\<alpha\>><rsub|2i+1><around*|(|<around*|(|x<rprime|'><rsub|2i+2>+x<rprime|'><rsub|2i>|)>/2|)>+g<rprime|'><rsup|\<alpha\>><rsub|2i><around*|(|x<rprime|'><rsub|2i>|)>>
-  (recall <math|<wide|y|\<bar\>>=<around*|(|x<rprime|'><rsub|2i+2>+x<rprime|'><rsub|2i>|)>/2>).
+  which has exactly the same format as <math|S> (equation
+  <reference|equation:rg action>).
 
   <section|Others>
 
@@ -1563,13 +1467,16 @@
     <associate|equation:lagrangian of iterative equation|<tuple|12|7>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
+    <associate|equation:rg action|<tuple|13|?>>
     <associate|figure: Least-Action|<tuple|1|4>>
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|8>>
+    <associate|footnote-4|<tuple|4|?>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|5>>
     <associate|footnr-3|<tuple|3|8>>
+    <associate|footnr-4|<tuple|4|?>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechanics|<tuple|1.2|1>>
     <associate|section: Action of Iterative Equation Has

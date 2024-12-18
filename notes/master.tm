@@ -87,8 +87,14 @@
   that
 
   <\equation*>
-    q<rsub|t\<rightarrow\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>.
+    q<rsub|t\<rightarrow\>t><around*|(|x\|y|)>=\<delta\><around*|(|x-y|)>,
   </equation*>
+
+  where <math|\<delta\><around*|(|x-y|)>> indicates Kronecker's delta
+  function when <math|\<cal-X\>> is discrete, or Dirac's delta function when
+  <math|\<cal-X\>> is continuous. Delta function has the property that
+  <math|<big|int><rsub|\<cal-X\>>\<mathd\>x \<delta\><around*|(|x-y|)>
+  f<around*|(|x|)>=f<around*|(|y|)>> for any <math|f>.
 
   \;
 
@@ -98,11 +104,11 @@
   is smooth on <math|t<rprime|'>>. Taking derivative on <math|t<rprime|'>>
   and then setting <math|t<rprime|'>> to <math|t>, we have
 
-  <\equation*>
+  <\equation>
     <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
     r<rsub|t><around*|(|x,y|)>p<around*|(|y,t|)>,<label|equation:master
     equation v0>
-  </equation*>
+  </equation>
 
   where <math|r<rsub|t><around*|(|x,y|)>\<assign\>lim<rsub|t<rprime|'>\<rightarrow\>t><around*|(|\<partial\>q<rsub|t\<rightarrow\>t<rprime|'>>/\<partial\>t<rprime|'>|)><around*|(|x\|y|)>>,
   called <strong|transition rate>. It is called the <strong|continuous time
@@ -1216,55 +1222,54 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.9|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|4>>
+    <associate|auto-5|<tuple|1.4|5>>
     <associate|auto-6|<tuple|1.5|5>>
-    <associate|auto-7|<tuple|1.6|6>>
+    <associate|auto-7|<tuple|1.6|7>>
     <associate|auto-8|<tuple|1.7|9>>
     <associate|auto-9|<tuple|1.8|10>>
-    <associate|equation:Detailed Balance|<tuple|7|4>>
-    <associate|equation:Detailed Balance for transition density|<tuple|8|4>>
-    <associate|equation:circle|<tuple|14|10>>
-    <associate|equation:define stationary density function|<tuple|13|10>>
-    <associate|equation:discrete time master equation|<tuple|4|2>>
+    <associate|equation:Detailed Balance|<tuple|8|5>>
+    <associate|equation:Detailed Balance for transition density|<tuple|9|5>>
+    <associate|equation:circle|<tuple|15|10>>
+    <associate|equation:define stationary density function|<tuple|14|10>>
+    <associate|equation:discrete time master equation|<tuple|5|2>>
     <associate|equation:discrete time master equation v0|<tuple|2|1>>
-    <associate|equation:equation:metropolis-hastings|<tuple|11|9>>
-    <associate|equation:master equation|<tuple|3|2>>
-    <associate|equation:master equation v0|<tuple|2|1>>
-    <associate|equation:metropolis-hastings origin|<tuple|12|9>>
-    <associate|equation:relative entropy derivative|<tuple|10|5>>
+    <associate|equation:equation:metropolis-hastings|<tuple|12|9>>
+    <associate|equation:master equation|<tuple|4|2>>
+    <associate|equation:master equation v0|<tuple|3|2>>
+    <associate|equation:metropolis-hastings origin|<tuple|13|9>>
+    <associate|equation:relative entropy derivative|<tuple|11|6>>
     <associate|equation:transition density normalization|<tuple|1|1>>
     <associate|equation:transition rate determines transition
-    density|<tuple|5|3>>
+    density|<tuple|6|3>>
     <associate|equation:transition rate determines transition density
-    v2|<tuple|6|?>>
+    v2|<tuple|7|4>>
     <associate|footnote-1|<tuple|1|3>>
-    <associate|footnote-2|<tuple|2|5>>
-    <associate|footnote-3|<tuple|3|6>>
+    <associate|footnote-2|<tuple|2|6>>
+    <associate|footnote-3|<tuple|3|7>>
     <associate|footnote-4|<tuple|4|7>>
     <associate|footnote-5|<tuple|5|8>>
     <associate|footnr-1|<tuple|1|3>>
-    <associate|footnr-2|<tuple|2|5>>
-    <associate|footnr-3|<tuple|3|6>>
+    <associate|footnr-2|<tuple|2|6>>
+    <associate|footnr-3|<tuple|3|7>>
     <associate|footnr-4|<tuple|4|7>>
     <associate|footnr-5|<tuple|5|8>>
     <associate|section: Detailed Balance Condition and Connectivity
     Monotonically Reduce Relative Entropy|<tuple|1.5|5>>
     <associate|section: Detailed Balance Provides Stationary
-    Distribution|<tuple|1.4|4>>
+    Distribution|<tuple|1.4|5>>
     <associate|section: Example: Metropolis-Hastings Algorithm|<tuple|1.7|9>>
     <associate|section: Master Equation Describes the Evolution of Markov
     Process|<tuple|1.2|1>>
     <associate|section: Master Equation, Detailed Balance, and Relative
     Entropy|<tuple|1|1>>
     <associate|section: Monte-Carlo Simulation and Guarantee of
-    Relaxation|<tuple|1.6|6>>
+    Relaxation|<tuple|1.6|7>>
     <associate|section: Transition Rate Determines Transition
     Density|<tuple|1.3|2>>
-    <associate|theorem: relaxation|<tuple|1|6>>
+    <associate|theorem: relaxation|<tuple|1|7>>
   </collection>
 </references>
 

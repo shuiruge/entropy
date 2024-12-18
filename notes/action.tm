@@ -163,10 +163,10 @@
   <reference|equation:least-action principle v1>. Knowing the extremum of a
   function cannot imply the shape of the function. The action has much more
   degrees of freedom than that is needed for revealing the real world datum
-  in classical mechanics. But, in statistical mechanics, as we will see in
-  section TODO, the action is completely determined by the real world
-  distribution (the correspondence of real world datum in statistical
-  mechanics), with nothing redundant.
+  in classical mechanics. But combined with uncertainty, as we will see in
+  section <reference|section: Least-Action Principle of Distribution Has No
+  Redundancy>, action is completely determined by the real world distribution
+  (the correspondence of real world datum), with nothing redundant.
 
   <subsection|Least-Action Principle of Distribution Has No
   Redundancy><label|section: Least-Action Principle of Distribution Has No
@@ -230,7 +230,7 @@
   thus minimizes <math|S>. For these reasons, we illustrate the <math|S>
   defined by <math|q> as the action of <math|Q>. Contrary to the action in
   classical mechanics, the <math|S> here is completely determined by the real
-  world distribution <math|Q> (because it is defined by its density function
+  world distribution <math|Q> (because it is defined by the density function
   <math|q>), without any redundancy. This is the direct implication that
   distribution involves more information than its most likely datum.
 
@@ -392,78 +392,6 @@
   for Langevin Process Lacks Source-Free Degree of Freedom>) is efficient;
   and for discrete random variables, Metropolis-Hastings (section
   <reference|section: Example: Metropolis-Hastings Algorithm>) is available.
-
-  <subsection|* History: Structures in Nature Arise from Least-Action
-  Principle>
-
-  There are many structures in nature. The structure of vascular system is a
-  simple instance. A more complicated structure appears in the bases along
-  chromosome. Why do these structures arise in nature?
-
-  <subsubsection|WBE Theory and Universality>
-
-  Early in 1997, physicist Geoffrey West, ecologist James Brown, and
-  biologist Brian Enquist proposed a theory (now it is called WBE theory)
-  that explains how the fractal structures arise in vascular system of
-  mammals.<\footnote>
-    <with|font-shape|italic|A General Model for the Origin of Allometric
-    Scaling Laws in Biology>. DOI: 10.1126/SCIENCE.276.5309.122
-  </footnote> To do so, they <em|derived> an objective that quantifies the
-  cost of transporting blood. They found that the fractal structure of
-  vascular appears naturally by minimizing this cost. Also arises the
-  power-law relationship between the basal metabolic rate and the body size
-  of mammal, which was first observed by Max Kleiber in 1930 and now named by
-  <hlink|Kleiber's law|https://en.wikipedia.org/wiki/Kleiber%27s_law>. Later,
-  they applied their theory to many areas that have no superficial
-  relationship with biology, such as gross domestic product of city. They
-  successfully predicted some observed quantities in these areas.
-
-  Inspired by WBE theory, we regard the cost as an action. Instead of
-  deriving a cost/action as WBE does, we can use the technique declared in
-  section <reference|section: Data Fitting Is Equivalent to Least-Action
-  Principle of Distribution> to reveal one if we have obtained sufficiently
-  many observed data. In machine learning perspective, data fitting is also
-  seen as pattern mining. It reveals the statistically significant patterns
-  hidden in the data. These patterns are the structures frequently appear in
-  nature, and they locate in the minima of an objective, as WBE theory
-  claimed, an action.
-
-  An interesting aspect of WBE theory is that the quantitative results
-  obtained by minimizing the cost in one system are also held by a large
-  variety of systems in nature. For example, different systems may share the
-  same power-law index. This property is called <strong|universality>. Where
-  does universality come from?
-
-  <subsubsection|Renormalization Group and Criticality>
-
-  In 1975, physicist Mitchell Feigenbaum computed two constants, now named as
-  Feigenbaum constants, when he was studying the logistic map. Then in the
-  late of 1970s, physicists found that Feigenbaum constants also appear in
-  many other areas such as turbulence and Mandelbrot set: Feigenbaum
-  constants are universal. Feigenbaum himself gave a \Pproof\Q of how this
-  universality appears. The technique he used was invented by his collage in
-  Cornell University, Kenneth Wilson, called renormalization group. With this
-  technique, Feigenbaum constructed a functional iterative equation, and
-  found his constants as the Taylor coefficients of the non-trivial fixed
-  point of the functional iterative equation. But, Feigenbaum said little
-  about where this functional iterative equation comes from. He neither gave
-  a rigorous derivation of the equation, nor argued why this equation holds
-  also for other systems.
-
-  Generally, universality comes from a \Pcomplex\Q system, a system whose
-  configuration (defined in section <reference|section: A Brief Review of
-  Least-Action Principle in Classical Mechanics>) has a large number of
-  components, such as starling flocks or ant colony. In such systems, each
-  component can only interact with several \Pneighbors\Q. But, when a local
-  perturbation (for example, caused by a predator) appears, its information
-  soon propagates throughout the whole system, and the system reacts to the
-  perturbation as a large complex organism, which is where the name
-  \Pcomplex\Q emerges. Phenomenon that information propagates throughout the
-  whole system without decay is called <strong|criticality>. This is
-  important for starling flocks or ant colony to survive, and the cost will
-  be strongly related to the appearance of criticality.
-
-  TODO
 
   <subsection|Iterative Equation With Normal Distribution Gives an
   Action><label|section: Iterative Equation With Normal Distribution Gives an
@@ -887,9 +815,9 @@
     </equation*>>
   </small>
 
-  where the Laplacian <math|\<Delta\><rprime|'>\<assign\><big|sum><rsub|\<alpha\>=1><rsup|n>\<partial\><rsub|\<alpha\>><rsup|2>>,
-  the same for <math|\<Delta\><rprime|'>>. Also, we have (color for later
-  usage)<\footnote>
+  where the Laplacian <math|\<Delta\><rprime|'>\<assign\><big|sum><rsub|\<alpha\>=1><rsup|n>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<alpha\>>>,
+  and the same <math|\<Delta\><rprime|'>\<assign\><big|sum><rsub|\<alpha\>=1><rsup|n>\<partial\><rprime|'><rsub|\<alpha\>>\<partial\><rprime|'><rsub|\<alpha\>>>.
+  Also, we have (color for later usage)<\footnote>
     We have <math|\<bbb-E\><rsub|Y><around*|[|<around*|(|1/2|)><around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>|)><rsup|2>|]>=<around*|(|1/2|)><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>=1><rsup|n>\<bbb-E\><rsub|Y><around*|[|V<rsup|\<alpha\>><around*|(|y|)>
     V<rsup|\<alpha\><rprime|'>><around*|(|y|)>|]>>, where
 
@@ -1011,6 +939,78 @@
   <\equation*>
     \<sigma\><around*|(|x|)>=<frac|1|2>+<frac|x|4>-<frac|x<rsup|3>|48>+\<cdots\>.
   </equation*>
+
+  <subsection|* History: Structures in Nature Arise from Least-Action
+  Principle>
+
+  There are many structures in nature. The structure of vascular system is a
+  simple instance. A more complicated structure appears in the bases along
+  chromosome. Why do these structures arise in nature?
+
+  <subsubsection|WBE Theory and Universality>
+
+  Early in 1997, physicist Geoffrey West, ecologist James Brown, and
+  biologist Brian Enquist proposed a theory (now it is called WBE theory)
+  that explains how the fractal structures arise in vascular system of
+  mammals.<\footnote>
+    <with|font-shape|italic|A General Model for the Origin of Allometric
+    Scaling Laws in Biology>. DOI: 10.1126/SCIENCE.276.5309.122
+  </footnote> To do so, they <em|derived> an objective that quantifies the
+  cost of transporting blood. They found that the fractal structure of
+  vascular appears naturally by minimizing this cost. Also arises the
+  power-law relationship between the basal metabolic rate and the body size
+  of mammal, which was first observed by Max Kleiber in 1930 and now named by
+  <hlink|Kleiber's law|https://en.wikipedia.org/wiki/Kleiber%27s_law>. Later,
+  they applied their theory to many areas that have no superficial
+  relationship with biology, such as gross domestic product of city. They
+  successfully predicted some observed quantities in these areas.
+
+  Inspired by WBE theory, we regard the cost as an action. Instead of
+  deriving a cost/action as WBE does, we can use the technique declared in
+  section <reference|section: Data Fitting Is Equivalent to Least-Action
+  Principle of Distribution> to reveal one if we have obtained sufficiently
+  many observed data. In machine learning perspective, data fitting is also
+  seen as pattern mining. It reveals the statistically significant patterns
+  hidden in the data. These patterns are the structures frequently appear in
+  nature, and they locate in the minima of an objective, as WBE theory
+  claimed, an action.
+
+  An interesting aspect of WBE theory is that the quantitative results
+  obtained by minimizing the cost in one system are also held by a large
+  variety of systems in nature. For example, different systems may share the
+  same power-law index. This property is called <strong|universality>. Where
+  does universality come from?
+
+  <subsubsection|Renormalization Group and Criticality>
+
+  In 1975, physicist Mitchell Feigenbaum computed two constants, now named as
+  Feigenbaum constants, when he was studying the logistic map. Then in the
+  late of 1970s, physicists found that Feigenbaum constants also appear in
+  many other areas such as turbulence and Mandelbrot set: Feigenbaum
+  constants are universal. Feigenbaum himself gave a \Pproof\Q of how this
+  universality appears. The technique he used was invented by his collage in
+  Cornell University, Kenneth Wilson, called renormalization group. With this
+  technique, Feigenbaum constructed a functional iterative equation, and
+  found his constants as the Taylor coefficients of the non-trivial fixed
+  point of the functional iterative equation. But, Feigenbaum said little
+  about where this functional iterative equation comes from. He neither gave
+  a rigorous derivation of the equation, nor argued why this equation holds
+  also for other systems.
+
+  Generally, universality comes from a \Pcomplex\Q system, a system whose
+  configuration (defined in section <reference|section: A Brief Review of
+  Least-Action Principle in Classical Mechanics>) has a large number of
+  components, such as starling flocks or ant colony. In such systems, each
+  component can only interact with several \Pneighbors\Q. But, when a local
+  perturbation (for example, caused by a predator) appears, its information
+  soon propagates throughout the whole system, and the system reacts to the
+  perturbation as a large complex organism, which is where the name
+  \Pcomplex\Q emerges. Phenomenon that information propagates throughout the
+  whole system without decay is called <strong|criticality>. This is
+  important for starling flocks or ant colony to survive, and the cost will
+  be strongly related to the appearance of criticality.
+
+  TODO
 </body>
 
 <\initial>
@@ -1023,51 +1023,59 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.6|5>>
-    <associate|auto-11|<tuple|1.7|6>>
-    <associate|auto-12|<tuple|1.8|7>>
-    <associate|auto-13|<tuple|1.9|10>>
+    <associate|auto-10|<tuple|1.8|6>>
+    <associate|auto-11|<tuple|1.9|6>>
+    <associate|auto-12|<tuple|1.9.1|7>>
+    <associate|auto-13|<tuple|1.9.2|8>>
+    <associate|auto-14|<tuple|1.10|10>>
+    <associate|auto-15|<tuple|1.11|11>>
+    <associate|auto-16|<tuple|1.11.1|11>>
+    <associate|auto-17|<tuple|1.11.2|11>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
     <associate|auto-6|<tuple|1|4>>
     <associate|auto-7|<tuple|1.5|4>>
-    <associate|auto-8|<tuple|1.5.1|5>>
-    <associate|auto-9|<tuple|1.5.2|5>>
+    <associate|auto-8|<tuple|1.6|5>>
+    <associate|auto-9|<tuple|1.7|6>>
     <associate|equation:action of distribution|<tuple|4|2>>
-    <associate|equation:action of iterative equation|<tuple|10|6>>
-    <associate|equation:action of iterative equation v2|<tuple|11|6>>
+    <associate|equation:action of iterative equation|<tuple|10|7>>
+    <associate|equation:action of iterative equation v2|<tuple|11|7>>
     <associate|equation:data-fitting iteration|<tuple|6|3>>
-    <associate|equation:data-fitting result|<tuple|7|4>>
+    <associate|equation:data-fitting result|<tuple|7|3>>
     <associate|equation:gaussianity|<tuple|9|6>>
     <associate|equation:generic density|<tuple|5|3>>
-    <associate|equation:generic iterative equation|<tuple|8|5>>
+    <associate|equation:generic iterative equation|<tuple|8|6>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
-    <associate|equation:lagrangian of iterative equation|<tuple|12|7>>
+    <associate|equation:lagrangian of iterative equation|<tuple|12|8>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
-    <associate|equation:rg action|<tuple|13|7>>
-    <associate|equation:rg integral|<tuple|14|?>>
+    <associate|equation:rg action|<tuple|13|8>>
+    <associate|equation:rg integral|<tuple|14|8>>
     <associate|figure: Least-Action|<tuple|1|4>>
     <associate|footnote-1|<tuple|1|2>>
-    <associate|footnote-2|<tuple|2|5>>
-    <associate|footnote-3|<tuple|3|8>>
-    <associate|footnote-4|<tuple|4|9>>
+    <associate|footnote-2|<tuple|2|6>>
+    <associate|footnote-3|<tuple|3|9>>
+    <associate|footnote-4|<tuple|4|10>>
+    <associate|footnote-5|<tuple|5|11>>
     <associate|footnr-1|<tuple|1|2>>
-    <associate|footnr-2|<tuple|2|5>>
-    <associate|footnr-3|<tuple|3|8>>
-    <associate|footnr-4|<tuple|4|9>>
+    <associate|footnr-2|<tuple|2|6>>
+    <associate|footnr-3|<tuple|3|9>>
+    <associate|footnr-4|<tuple|4|10>>
+    <associate|footnr-5|<tuple|5|11>>
+    <associate|section: * Wiener Process Is Almost Everywhere in
+    Nature|<tuple|1.5|4>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechanics|<tuple|1.2|1>>
     <associate|section: Action of Iterative Equation Has
-    Friction|<tuple|1.7|6>>
+    Friction|<tuple|1.6|7>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
     of Distribution|<tuple|1.4|3>>
     <associate|section: How Far Will Information Propagate in Stochastic
-    Iterative Equation?|<tuple|1.8|7>>
+    Iterative Equation?|<tuple|1.7|8>>
     <associate|section: Iterative Equation With Normal Distribution Gives an
-    Action|<tuple|1.6|5>>
+    Action|<tuple|1.5|6>>
     <associate|section: Least-Action Principle of Distribution Has No
     Redundancy|<tuple|1.3|2>>
   </collection>
@@ -1125,36 +1133,52 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>* History: Structures in
-      Nature Arise from Least-Action Principle
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Wiener Process Is Almost
+      Everywhere in Nature (Drafts) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|2tab>|1.5.1<space|2spc>WBE Theory and
-      Universality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|2tab>|1.5.1<space|2spc>Random Walk
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|2tab>|1.5.2<space|2spc>Renormalization Group and
-      Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|2tab>|1.5.2<space|2spc>Drafts
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Iterative Equation With
-      Normal Distribution Gives an Action
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Difference Equation With
+      Wiener Process Gives an Action <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Action of Iterative Equation
-      Has Friction <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Iterative Equation With
+      Normal Distribution Gives an Action
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-11>>
 
-      <with|par-left|<quote|1tab>|1.8<space|2spc>How Far Will Information
-      Propagate in Stochastic Iterative Equation?
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.8<space|2spc>Action of Iterative Equation
+      Has Friction <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-12>>
 
-      <with|par-left|<quote|1tab>|1.9<space|2spc>Example: Action in Deep
-      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.9<space|2spc>How Far Will Information
+      Propagate in Stochastic Iterative Equation?
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
+
+      <with|par-left|<quote|1tab>|1.10<space|2spc>Example: Action in Deep
+      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14>>
+
+      <with|par-left|<quote|1tab>|1.11<space|2spc>* History: Structures in
+      Nature Arise from Least-Action Principle
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-15>>
+
+      <with|par-left|<quote|2tab>|1.11.1<space|2spc>WBE Theory and
+      Universality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-16>>
+
+      <with|par-left|<quote|2tab>|1.11.2<space|2spc>Renormalization Group and
+      Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-17>>
     </associate>
   </collection>
 </auxiliary>

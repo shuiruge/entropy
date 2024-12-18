@@ -138,11 +138,11 @@
   that samples <math|\<epsilon\>>). We denote it by (<math|K> for the leading
   consonant of \Pcorrelation\Q)
 
-  <\equation*>
+  <\equation>
     K<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>\<assign\><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     <around*|(|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|)>
-    \<omega\><around*|(|x,\<epsilon\>|)>.
-  </equation*>
+    \<omega\><around*|(|x,\<epsilon\>|)>.<label|equation:km correlation>
+  </equation>
 
   Finally, we arrive at
 
@@ -150,112 +150,244 @@
     <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|sum><rsub|k=1><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
     <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
     <around*|[|K<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>
-    p<around*|(|x,t|)>|]>.<label|equation:Kramers-Moyal expansion>
+    p<around*|(|x,t|)>|]>.<label|equation:km expansion>
   </equation>
 
   This Taylor expansion of master equation is called the
   <with|font-series|bold|Kramers\UMoyal expansion>.
 
-  <subsection|Transition Density of Langevin Process Is Approximately
-  Gaussian><label|section: Transition Density of Langevin Process Is
-  Approximately Gaussian>
+  <subsection|From Brownian Motion to Central Limit Theorem><label|section:
+  From Brownian Motion to Central Limit Theorem>
 
-  Spatial connectivity enables us to investigate the most general
-  distribution of continuous random variable, the normal distribution. Given
-  <math|\<mu\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> and
-  <math|\<Sigma\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>,
-  which is positive definite and symmetric, let
-  <math|q<rsub|\<Delta\>t><around*|(|x<rprime|'>\|x|)>> the normal
-  distribution of <math|x<rprime|'>-x> with mean value
-  <math|\<mu\><around*|(|x|)> \<Delta\>t> and variance
-  <math|\<Sigma\><around*|(|x|)>\<Delta\>t>. That is,
+  One important application of Kramers\UMoyal expansion is Brownian motion.
+  In 1827, botanist Robert Brown noticed that pollen particles automatically
+  shakes in water. This phenomenon was first explained by Albert Einstein in
+  1905. He argued that the pollen particles are constantly stricken by water
+  molecules.
+
+  We are to quantitatively determine how a pollen particle moves in water.
+  The random movement of a pollen particle can be characterized by a
+  transition density <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>>,
+  where the pollen particle transits from <math|x> to <math|x+\<epsilon\>>
+  during time interval <math|\<Delta\>t>. For this transition density, we
+  make two assumptions. The first comes from the observation that the pool
+  under the microscope of Brown is much broader than the diameter of water
+  molecule, and the temperature of water is uniform, so that a water molecule
+  cannot distinguish where it locates, just like a boat floating on the
+  ocean, because every place is the same. It indicates that the transition is
+  homogeneous, namely, <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>>
+  does not depend on <math|x>. It, then, implies that the transition rate
+  <math|r<around*|(|x+\<epsilon\>,x|)>> is independent of <math|x>. This
+  landscape also gives the other assumption that every direction is the same
+  too: the transition is also isotropic. It indicates that
+  <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>
+  \<epsilon\><rsup|\<alpha\>>=0> for each <math|\<alpha\>>, since the water
+  molecule cannot distinguish the direction
+  <math|-\<epsilon\><rsup|\<alpha\>>> from
+  <math|\<epsilon\><rsup|\<alpha\>>>. With these two assumptions, the
+  Kramers\UMoyal expansion <reference|equation:km expansion> becomes
 
   <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<big|sum><rsub|k=2><rsup|+\<infty\>><frac|<around*|(|-1|)><rsup|k>|k!>
+    K<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>>
+    <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|1>>>\<cdots\><frac|\<partial\>|\<partial\>x<rsup|\<alpha\><rsub|k>>>|)>
+    p<around*|(|x,t|)>,
+  </equation*>
+
+  where the <math|k> starts at <math|2> (since the assumption
+  <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>
+  \<epsilon\><rsup|\<alpha\>>=0> implies <math|K<rsup|\<alpha\>><around*|(|x|)>=0>)
+  and the <math|K<rsup|\<alpha\><rsup|1>\<cdots\>\<alpha\><rsup|k>><around*|(|x|)>\<assign\><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+  <around*|(|\<epsilon\><rsup|\<alpha\><rsub|1>>\<cdots\>\<epsilon\><rsup|\<alpha\><rsub|k>>|)>
+  r<around*|(|x+\<epsilon\>\|x|)>> is constant now (because the
+  <math|r<around*|(|x+\<epsilon\>,x|)>> is independent of <math|x>).
+
+  Now, we are to examine the <math|K> carefully. It is determined by
+  transition rate, that is, by the transition where <math|\<mathLaplace\>t>
+  is infinitesimal (at least sufficiently small). In this situation, there
+  will be at most one water molecule that strikes the pollen particle, so
+  that the typical scale of <math|\<epsilon\>> is extremely tiny (much
+  smaller than the capacity of Brown's microscope). So, we have
+  <math|K<rsup|\<alpha\><rsub|1>\<cdots\>\<alpha\><rsub|k>>\<gg\>K<rsup|\<alpha\><rsub|1>\<cdots\>\<alpha\><rsub|k>
+  \<alpha\><rsub|k+1>>> for any <math|k\<geqslant\>2> since the later
+  contains more <math|\<epsilon\>> (<math|k=1> is not so because
+  <math|K<rsup|\<alpha\>>=0>). This leads to a valid approximation
+
+  <\equation*>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=<frac|1|2>
+    K<rsup|\<alpha\>\<beta\>> <around*|(|<frac|\<partial\>|\<partial\>x<rsup|\<alpha\>>><frac|\<partial\>|\<partial\>x<rsup|\<beta\>>>|)>
+    p<around*|(|x,t|)>,
+  </equation*>
+
+  where only the leading term <math|k=2> remains. This equation is the famous
+  heat equation, first developed by French mathematician Joseph Fourier in
+  1822. For initial value <math|p<around*|(|x,0|)>>, it has the solution
+
+  <\equation*>
+    p<around*|(|x,t|)>=<frac|1|<sqrt|<around*|(|2\<mathpi\>t|)><rsup|n>
+    det<around*|(|K|)>>><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+    exp<around*|(|-<frac|1|2t><around*|(|K<rsup|-1>|)><rsub|\<alpha\>\<beta\>>
+    <around*|(|x<rsup|\<alpha\>>-y<rsup|\<alpha\>>|)>
+    <around*|(|x<rsup|\<beta\>>-y<rsup|\<beta\>>|)>|)> p<around*|(|y,0|)>,
+  </equation*>
+
+  where the factor <math|1/<sqrt|\<cdots\>>> comes from normalization
+  <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x p<around*|(|x,t|)>=1>.
+  Recall the (discrete time) master equation <reference|equation:discrete
+  time master equation>, <math|p<around*|(|x,\<Delta\>t|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
+  q<rsub|\<Delta\>t><around*|(|x\|y|)> p<around*|(|y,0|)>>. The transition
+  rate of pollen particle can be readily read out as
+
+  <\equation>
     q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=<frac|1|<sqrt|<around*|(|2\<mathpi\>
-    \<Delta\>t|)><rsup|n> det \<Sigma\><around*|(|x|)>>>exp<around*|(|-<frac|1|2\<Delta\>t>
-    <around*|[|\<Sigma\><rsup|-1><around*|(|x|)>|]><rsub|\<alpha\>\<beta\>>
-    <around*|(|\<epsilon\><rsup|\<alpha\>>-\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<Delta\>t|)> <around*|(|\<epsilon\><rsup|\<beta\>>-\<mu\><rsup|\<beta\>><around*|(|x|)>
+    \<Delta\>t|)><rsup|n> det<around*|(|K|)>>>
+    exp<around*|(|-<frac|1|2\<Delta\>t><around*|(|K<rsup|-1>|)><rsub|\<alpha\>\<beta\>>
+    \<epsilon\><rsup|\<alpha\>> \<epsilon\><rsup|\<beta\>>|)>.<label|equation:wiener
+    process>
+  </equation>
+
+  The phenomenon that this transition density describes is called
+  <strong|Brownian motion>. Even though the techniques used for deriving this
+  transition density had been mature when Brown first observed this
+  phenomenon, but almost one hundred years after Brown's discover, in 1918,
+  Norbert Wiener first constructed a complete mathematical theory for this
+  stochastic process. So, it is also called <strong|Wiener process>.
+
+  The transition rate <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>>
+  can be seen as an accumulation of a series tiny transitions, each is caused
+  by one strike from a water molecule. The strike obeys a distribution which
+  is identical (each water molecule behaves in the same way, as a result of
+  homogeneity) and independent (since each strike is individual) with zero
+  mean (as a result of isotropy). This distribution, however, is unknown.
+  Although, we find that the accumulative effect always obeys a normal
+  distribution. We can abstract this and conclude that, for any independently
+  identically distributed <math|n>-dimensional random variables
+  <math|<around*|(|X<rsub|1>,\<ldots\>,X<rsub|N>|)>> with zero mean (thus
+  each <math|X<rsub|i>> is one strike), the accumulation
+  <math|Y\<assign\>X<rsub|1>+\<cdots\>+X<rsub|N>> tends to obey a normal
+  distribution as <math|N> is large enough. The mean of <math|Y> can be
+  calculated by the linearity of expectation, as
+  <math|\<bbb-E\><around*|[|Y|]>=\<bbb-E\><around*|[|X<rsub|1>|]>+\<cdots\>+\<bbb-E\><around*|[|X<rsub|N>|]>=0>.
+  And because of independency, we have <math|\<bbb-E\><around*|[|Y<rsup|\<alpha\>>
+  Y<rsup|\<beta\>>|]>=\<bbb-E\><around*|[|X<rsub|1><rsup|\<alpha\>>
+  X<rsub|1><rsup|\<beta\>>|]>+\<cdots\>+\<bbb-E\><around*|[|X<rsub|N><rsup|\<alpha\>>
+  X<rsub|N><rsup|\<beta\>>|]>>. Let <math|\<Sigma\><rsup|\<alpha\>\<beta\>>=\<bbb-E\><around*|[|X<rsub|i><rsup|\<alpha\>>
+  X<rsup|\<beta\>><rsub|i>|]>>, which is the same for all <math|i> because
+  <math|X<rsub|i>>s are identical, we find
+  <math|\<bbb-E\><around*|[|Y<rsup|\<alpha\>> Y<rsup|\<beta\>>|]>=N
+  \<Sigma\><rsup|\<alpha\>\<beta\>>>. This is the <strong|central limit
+  theorem>, the most famous theorem in probability theory. Now, we have found
+  for central limit theorem a physical description, the Brownian motion, and
+  found it as a corollary of Kramers\UMoyal expansion.
+
+  <subsection|Langevin Process Arises in the Difference of Scales>
+
+  There are many levels of scale in Nature. From the lifetime of universe to
+  the lifetime of human. From the movement of a bird to the movement of
+  molecule. We are to formulate the general mathematical description for the
+  system in which multiple scales are involved.
+
+  A typical example is the Brownian motion described in section
+  <reference|section: From Brownian Motion to Central Limit Theorem>. Of
+  course, each molecule moves the pollen particle in such a tiny distance
+  that cannot be observed by a microscope made in the 19th century. What
+  Brown noticed was not a pollen particle shaken by a single water molecule,
+  but an accumulation of strikes by a large group of water molecules. So,
+  this phenomenon involves two different scales: the scale of pollen
+  particles, and the scale of movement of water molecules, which is much
+  smaller than the frontier.
+
+  If we replace the pollen particles by paramecia, then the scales remain. In
+  the perspective of water molecule, homogeneity and isotropy still hold. So,
+  the contribution from the constant striking of water molecules obeys the
+  transition density of Wiener process <reference|equation:wiener process>.
+  But in the perspective of paramecium, both homogeneity and isotropy break.
+  Unlike pollen particle, a paramecium can swim along a direction (maybe,
+  there is food on this direction), thus isotropy breaks. In the perspective
+  of the paramecium, which is much larger than water molecules, the pool is
+  not like an ocean anymore, but a pond. So, after arriving at another place
+  in the pool, it can feel the change of environment (such as the temperature
+  of water), thus homogeneity breaks.
+
+  This pattern arises in many aspects in Nature in which two scales exist
+  simultaneously: one scale is smaller, being homogeneous and isotropic,
+  while the other is greater, breaking homogeneity and isotropy. The greater
+  scale obeys a deterministic behavior, characterized by a dynamical system
+  <math|\<mathd\>x<rsup|\<alpha\>>/\<mathd\>t=f<rsup|\<alpha\>><around*|(|x|)>>,
+  or difference equation <math|x<rsup|\<alpha\>><around*|(|t+\<Delta\>t|)>=x<rsup|\<alpha\>><around*|(|t|)>+f<rsup|\<alpha\>><around*|(|x<around*|(|t|)>|)>
+  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>> for some small but still
+  finite time interval <math|\<Delta\>t>. While the smaller scale contributes
+  randomness to the movement of the greater one by the accumulative effect
+  <math|\<Delta\>W<rsup|\<alpha\>>>, which is proven to obey a normal
+  distribution with zero mean and covariance
+  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)> \<Delta\>t>. Notice that,
+  since the homogeneity has broken at the greater scale,
+  <math|K<rsup|\<alpha\>\<beta\>>> will explicitly depends on position
+  <math|x>. Altogether, the whole effect can be characterized by
+
+  <\equation*>
+    x<rsup|\<alpha\>><around*|(|t+\<Delta\>t|)>=x<rsup|\<alpha\>><around*|(|t|)>+f<rsup|\<alpha\>><around*|(|x<around*|(|t|)>|)>
+    \<Delta\>t+\<Delta\>W<rsup|\<alpha\>>.
+  </equation*>
+
+  Or say,
+
+  <\equation*>
+    q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>\<assign\><frac|1|<sqrt|<around*|(|2\<mathpi\>
+    \<Delta\>t|)><rsup|n> det K<around*|(|x|)>>>exp<around*|(|-<frac|1|2\<Delta\>t>
+    <around*|[|K<rsup|-1><around*|(|x|)>|]><rsub|\<alpha\>\<beta\>>
+    <around*|(|\<epsilon\><rsup|\<alpha\>>-f<rsup|\<alpha\>><around*|(|x|)>
+    \<Delta\>t|)> <around*|(|\<epsilon\><rsup|\<beta\>>-f<rsup|\<beta\>><around*|(|x|)>
     \<Delta\>t|)>|)>.
   </equation*>
 
   When <math|\<Delta\>t> is sufficiently small, <math|q<rsub|\<Delta\>t>> can
-  be approximately regarded as a transition density (section
-  <reference|section: Transition Rate Determines Transition
-  Density>).<\footnote>
-    Will <math|q<rsub|\<Delta\>t>> be a transition density for arbitrary
-    positive <math|\<Delta\>t>? In section <reference|Transition Rate
-    Determines Transition Density>, we have shown that
-    <math|q<rsub|\<Delta\>t>> is a transition density if and only if
-    <math|q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|x\|z|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
+  be approximately regarded as a transition density (the essential and
+  sufficient condition for <math|q<rsub|\<Delta\>t>> to be a transition
+  density was discussed in section <reference|section: Transition Rate
+  Determines Transition Density>).<\footnote>
+    Is <math|q<rsub|\<Delta\>t>> a transition density? In section
+    <reference|Transition Rate Determines Transition Density>, we have shown
+    that <math|q<rsub|\<Delta\>t>> is a transition density if and only if
+    <math|q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|x\|z|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y
     q<rsub|\<Delta\>t<rprime|'>><around*|(|x\|y|)>
     q<rsub|\<Delta\>t><around*|(|y\|z|)>>. By inserting the
-    <math|q<rsub|\<Delta\>t>> of Langevin process, we find the right hand
-    side proprotional to
+    <math|q<rsub|\<Delta\>t>> of Langevin process, we find the integrand in
+    the right hand side proportional to
 
     <\equation*>
-      exp<around*|(|-<frac|1|2\<Delta\>t<rprime|'>>
-      \<Sigma\><rsup|-1><around*|(|y|)> <around*|(|x-y-\<mu\><around*|(|y|)>
-      \<Delta\>t<rprime|'>|)> <around*|(|x-y-\<mu\><around*|(|y|)>
-      \<Delta\>t<rprime|'>|)>-<frac|1|2\<Delta\>t>
-      \<Sigma\><rsup|-1><around*|(|z|)> <around*|(|y-z-\<mu\><around*|(|z|)>
-      \<Delta\>t|)> <around*|(|y-z-\<mu\><around*|(|z|)> \<Delta\>t|)>|)>.
+      \ q<rsub|\<Delta\>t<rprime|'>><around*|(|x\|y|)>=<frac|1|<sqrt|<around*|(|2\<mathpi\>
+      \<Delta\>t<rprime|'>|)><rsup|n> det
+      K<around*|(|y|)>>>exp<around*|(|-<frac|1|2\<Delta\>t<rprime|'>>
+      K<rsup|-1><around*|(|y|)> <around*|(|x-y-f<around*|(|y|)>
+      \<Delta\>t<rprime|'>|)> <around*|(|x-y-f<around*|(|y|)>
+      \<Delta\>t<rprime|'>|)>|)>,
     </equation*>
 
-    In this expression, <math|y> appears in many places, including
-    <math|\<Sigma\><rsup|-1><around*|(|y|)>> and
-    <math|\<mu\><around*|(|y|)>>. Thus, that in the exponential is not
-    quadratic on <math|y>. It is hard to expect that integrating over
-    <math|y> will give a result that is proportional to
+    in which <math|y> appears in many places, including <math|det
+    K<around*|(|y|)>>, <math|K<rsup|-1><around*|(|y|)>>, and
+    <math|f<around*|(|y|)>>. Thus, that in the exponential is not quadratic
+    on <math|y>. It is hard to expect that integrating over <math|y> will
+    give a result that is proportional to
 
     <\equation*>
       exp<around*|(|-<frac|1|2<around*|(|\<Delta\>t+\<Delta\>t<rprime|'>|)>>
-      \<Sigma\><rsup|-1><around*|(|z|)> <around*|[|x-z-\<mu\><around*|(|z|)>
+      K<rsup|-1><around*|(|z|)> <around*|[|x-z-f<around*|(|z|)>
       <around*|(|\<Delta\>t+\<Delta\>t<rprime|'>|)>|]>
-      <around*|[|x-z-\<mu\><around*|(|z|)>
-      <around*|(|\<Delta\>t+\<Delta\>t<rprime|'>|)>|]>|)>.
+      <around*|[|x-z-f<around*|(|z|)> <around*|(|\<Delta\>t+\<Delta\>t<rprime|'>|)>|]>|)>.
     </equation*>
 
-    So, we prefer to guess that <math|q<rsub|\<Delta\>t>> is not a transition
-    density for arbitrary positive <math|\<Delta\>t>.
+    So, an educated guess is that <math|q<rsub|\<Delta\>t>> is not a
+    transition density, but just an approximation of some transition density
+    when <math|\<Delta\>t> is sufficiently small. Remark that, when
+    <math|f=0> and <math|K> is constant, it is straight-forward to show that
+    <math|q<rsub|\<Delta\>t>> is indeed a transition density.
   </footnote> The corresponding Markov process is called <strong|Langevin
   dynamics> or <with|font-series|bold|Langevin process>.
 
-  In many textures, Langevin process is written by a stochastic differential
-  equation (again, we use capital letters for random variables)
-
-  <\equation*>
-    \<mathd\>X<rsup|\<alpha\>>=\<mu\><rsup|\<alpha\>><around*|(|X|)>\<mathd\>t+C<rsup|\<alpha\>><rsub|\<beta\>><around*|(|X|)>
-    \<mathd\>W<rsup|\<alpha\>>,
-  </equation*>
-
-  where <math|\<mathd\>W<rsup|\<alpha\>>>, called <strong|Wiener process>, is
-  a random variable obeying the normal distribution with zero mean and
-  variance <math|\<mathd\>t>. The matrix-valued field <math|C<around*|(|x|)>>
-  that factorizes <math|\<Sigma\><around*|(|x|)>> by
-  <math|\<Sigma\><around*|(|x|)>=C<rsup|T><around*|(|x|)> C<around*|(|x|)>>
-  is called <strong|Cholesky factorization>, named by the French militory
-  officer André-Louis Cholesky, died at age 31.<\footnote>
-    Cholesky factorization is always valid for positive definite symmetric
-    matrix. Given any <math|x>, since <math|\<Sigma\><around*|(|x|)>> is real
-    and symmetric matrix, we have orthogonal decomposition
-    <math|\<Sigma\><around*|(|x|)>=E<rsup|T><around*|(|x|)>
-    \<Lambda\><around*|(|x|)> E<around*|(|x|)>>, where
-    <math|E<around*|(|x|)>> is orthogonal matrix and
-    <math|\<Lambda\><around*|(|x|)>> is diagonal. Since
-    <math|\<Sigma\><around*|(|x|)>> is also positive definite, we have
-    <math|\<Lambda\><rsup|\<alpha\>\<alpha\>><around*|(|x|)>\<gtr\>0> for all
-    <math|\<alpha\>>. Then, define <math|C<around*|(|x|)>\<assign\><sqrt|\<Lambda\><around*|(|x|)>>
-    E<around*|(|x|)>> which gives <math|C<rsup|T><around*|(|x|)>
-    C<around*|(|x|)>=<around*|(|E<rsup|T><around*|(|x|)>
-    <sqrt|\<Lambda\><around*|(|x|)>>|)> <around*|(|<sqrt|\<Lambda\><around*|(|x|)>>
-    E<around*|(|x|)>|)>=E<rsup|T><around*|(|x|)> \<Lambda\><around*|(|x|)>
-    E<around*|(|x|)>=\<Sigma\><around*|(|x|)>>. That is,
-    <math|\<Sigma\><around*|(|x|)>> is factorized by <math|C<around*|(|x|)>>.
-  </footnote> This stochastic differential equation is an formal equivalence
-  of <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>> when
-  <math|\<Delta\>t\<rightarrow\>\<mathd\>t> and
-  <math|\<epsilon\>\<rightarrow\>\<mathd\>x>.
+  TODO
 
   <subsection|Transition Rate of Langevin Process Is a Generalized
   Function><label|section: Transition Rate of Langevin Process Is a
@@ -265,22 +397,22 @@
   from transition density. The <math|\<Delta\>t> appears in many places in
   transition density, and directly Taylor expanding <math|q<rsub|\<Delta\>t>>
   by <math|\<Delta\>t> is very hard. Instead, we employ an arbitrary test
-  function <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\>|)>>,<\footnote>
-    The <math|S> represents Schwarts space, which is a functional space in
-    which any function <math|f:X\<rightarrow\>Y> is smooth and rapidly falls
-    to zero in the region far from origin. For example, Gaussian function
-    (the density function of normal distribution) is in
-    <math|S<around*|(|\<bbb-R\>,\<bbb-R\>|)>>.
-  </footnote> and Taylor expand <math|f> by its variable
+  function <math|\<varphi\>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\>> in
+  <strong|Schwarts space>, which is a functional space in which function is
+  smooth and rapidly falls to zero in the region far from origin. For
+  example, Gaussian function (the density function of normal distribution) is
+  in Schwarts space <math|S<around*|(|\<bbb-R\>,\<bbb-R\>|)>> (the first
+  <math|\<bbb-R\>> represents for domain and the second for codomain). Then,
+  we Taylor expand <math|f> by its variable
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>
-    f<around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<varphi\><around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)><around*|[|
-    f<around*|(|0|)>+\<epsilon\><rsup|\<alpha\>>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<frac|1|2>\<epsilon\><rsup|\<alpha\>>
-    \<epsilon\><rsup|\<beta\>> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>+\<cdots\>|]>
+    \<varphi\><around*|(|0|)>+\<epsilon\><rsup|\<alpha\>>
+    \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|0|)>+<frac|1|2>\<epsilon\><rsup|\<alpha\>>
+    \<epsilon\><rsup|\<beta\>> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\><around*|(|0|)>+\<cdots\>|]>
   </equation*>
 
   These Gaussian integrals result in
@@ -288,8 +420,7 @@
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>
-    \<epsilon\><rsup|\<alpha\>>=\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<Delta\>t
+    \<epsilon\><rsup|\<alpha\>>=f<rsup|\<alpha\>><around*|(|x|)> \<Delta\>t
   </equation*>
 
   and (recall the relation between covariance and mean,
@@ -299,9 +430,9 @@
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>
-    \<epsilon\><rsup|\<alpha\>> \<epsilon\><rsup|\<beta\>>=\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<Delta\>t+\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<mu\><rsup|\<beta\>><around*|(|x|)> \<Delta\>t<rsup|2>=\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<epsilon\><rsup|\<alpha\>> \<epsilon\><rsup|\<beta\>>=K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<Delta\>t+f<rsup|\<alpha\>><around*|(|x|)>
+    f<rsup|\<beta\>><around*|(|x|)> \<Delta\>t<rsup|2>=K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>.
   </equation*>
 
@@ -310,10 +441,9 @@
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>
-    f<around*|(|\<epsilon\>|)>=f<around*|(|0|)>+\<Delta\>t<around*|[|
-    \<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>|]>+\<omicron\><around*|(|\<Delta\>t|)>,
+    \<varphi\><around*|(|\<epsilon\>|)>=\<varphi\><around*|(|0|)>+\<Delta\>t<around*|[|
+    f<rsup|\<alpha\>><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|0|)>+<frac|1|2>K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\><around*|(|0|)>|]>+\<omicron\><around*|(|\<Delta\>t|)>,
   </equation*>
 
   as <math|\<Delta\>t\<rightarrow\>0> (for example,
@@ -321,7 +451,7 @@
   q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)><around*|[|
   \<epsilon\><rsup|\<alpha\>> \<epsilon\><rsup|\<beta\>>
   \<epsilon\><rsup|\<gamma\>> \<epsilon\><rsup|\<delta\>>
-  \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<partial\><rsub|\<delta\>>f<around*|(|0|)>|]>=<with|font|cal|O><around*|(|\<Delta\>t<rsup|2>|)>=\<omicron\><around*|(|\<Delta\>t|)>>).
+  \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<partial\><rsub|\<delta\>>\<varphi\><around*|(|0|)>|]>=<with|font|cal|O><around*|(|\<Delta\>t<rsup|2>|)>=\<omicron\><around*|(|\<Delta\>t|)>>).
   On the other hand, if we Taylor expand <math|q<rsub|\<Delta\>t>> by
   <math|\<Delta\>t> as <math|q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=\<delta\><around*|(|\<epsilon\>|)>+r<around*|(|x+\<epsilon\>,x|)>
   \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>>, where <math|r> is the
@@ -330,17 +460,17 @@
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>
-    f<around*|(|\<epsilon\>|)>=f<around*|(|0|)>+\<Delta\>t<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    r<around*|(|x+\<epsilon\>,x|)> f<around*|(|\<epsilon\>|)>+\<omicron\><around*|(|\<Delta\>t|)>.
+    \<varphi\><around*|(|\<epsilon\>|)>=\<varphi\><around*|(|0|)>+\<Delta\>t<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    r<around*|(|x+\<epsilon\>,x|)> \<varphi\><around*|(|\<epsilon\>|)>+\<omicron\><around*|(|\<Delta\>t|)>.
   </equation*>
 
   From the terms proportional to <math|\<Delta\>t>, we recognize
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    r<around*|(|x+\<epsilon\>,x|)> f<around*|(|\<epsilon\>|)>=\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>.
+    r<around*|(|x+\<epsilon\>,x|)> \<varphi\><around*|(|\<epsilon\>|)>=f<rsup|\<alpha\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|0|)>+<frac|1|2>K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\><around*|(|0|)>.
   </equation*>
 
   Noticing the integration by parts<\footnote>
@@ -384,31 +514,30 @@
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
-    f<around*|(|\<epsilon\>|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<mu\><rsup|\<alpha\>><around*|(|x|)> \<delta\><around*|(|\<epsilon\>|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|\<epsilon\>|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>,
+    f<rsup|\<alpha\>><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
+    \<varphi\><around*|(|\<epsilon\>|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    f<rsup|\<alpha\>><around*|(|x|)> \<delta\><around*|(|\<epsilon\>|)>
+    \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|\<epsilon\>|)>=-f<rsup|\<alpha\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|0|)>,
   </equation*>
 
   and
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>
-    f<around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<delta\><around*|(|\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|\<epsilon\>|)>=\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>,
+    \<varphi\><around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<delta\><around*|(|\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\><around*|(|\<epsilon\>|)>=K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\><around*|(|0|)>,
   </equation*>
 
   we get
 
   <\equation>
-    r<around*|(|x+\<epsilon\>,x|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    r<around*|(|x+\<epsilon\>,x|)>=-f<rsup|\<alpha\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>.<label|equation:Langevin
     transition rate>
   </equation>
@@ -419,10 +548,10 @@
 
   For example, to evaluate <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>>,
   we have to employ an arbitrary test function
-  <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n>|)>>, and
-  calculate <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  <math|\<varphi\>\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n>|)>>,
+  and calculate <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
   \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
-  f<rsup|\<alpha\>><around*|(|x|)>>. First, notice that
+  \<varphi\><rsup|\<alpha\>><around*|(|x|)>>. First, notice that
   <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>> is in fact
   <math|<around*|(|\<partial\><rsub|\<alpha\>>\<delta\>|)><around*|(|-x|)>>
   and that <math|<around*|(|\<partial\>\<delta\>/\<partial\>x<rsup|\<alpha\>>|)><around*|(|-x|)>=-<around*|(|\<partial\>/\<partial\>x<rsup|\<alpha\>>|)>\<delta\><around*|(|-x|)>>,
@@ -431,36 +560,36 @@
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
     \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
-    f<rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<varphi\><rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
     <around*|(|\<partial\><rsub|\<alpha\>>\<delta\>|)><around*|(|-x|)>
-    f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+    \<varphi\><rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
     \<partial\><rsub|\<alpha\>><around*|[|\<delta\><around*|(|-x|)>|]>
-    f<rsup|\<alpha\>><around*|(|x|)>.
+    \<varphi\><rsup|\<alpha\>><around*|(|x|)>.
   </equation*>
 
   Then, integration by parts gives <math|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
   \<partial\><rsub|\<alpha\>><around*|[|\<delta\><around*|(|-x|)>|]>
-  f<rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-  \<delta\><around*|(|-x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>>.
+  \<varphi\><rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<delta\><around*|(|-x|)> \<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><around*|(|x|)>>.
   After inserting the relation <math|\<delta\><around*|(|x|)>=\<delta\><around*|(|-x|)>>,
   we arrive at <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
   \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
-  f<rsup|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>>.
+  \<varphi\><rsup|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><around*|(|0|)>>.
   On the other hand, we have, by integration by parts,
   <math|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
   \<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>
-  f<rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-  \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>f<rsup|\<alpha\>><around*|(|0|)>>.
+  \<varphi\><rsup|\<alpha\>><around*|(|x|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<delta\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><around*|(|x|)>=\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><around*|(|0|)>>.
   Altogether, we find <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
   \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>
-  f<rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
+  \<varphi\><rsup|\<alpha\>><around*|(|x|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
   \<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>
-  f<rsup|\<alpha\>><around*|(|x|)>>, for any
-  <math|f\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n>|)>>. Thus,
-  <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>> is evaluated to
-  be <math|-\<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>>. That is,
-  <em|<math|\<partial\><rsub|\<alpha\>>\<delta\>> is odd>. Following the same
-  process, we can show that <em|<math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\>>
+  \<varphi\><rsup|\<alpha\>><around*|(|x|)>>, for any
+  <math|\<varphi\>\<in\>S<around*|(|\<bbb-R\><rsup|n>,\<bbb-R\><rsup|n>|)>>.
+  Thus, <math|\<partial\><rsub|\<alpha\>>\<delta\><around*|(|-x|)>> is
+  evaluated to be <math|-\<partial\><rsub|\<alpha\>>\<delta\><around*|(|x|)>>.
+  That is, <em|<math|\<partial\><rsub|\<alpha\>>\<delta\>> is odd>. Following
+  the same process, we can show that <em|<math|\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\>>
   is even>.<\footnote>
     We are to calculate <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-x|)>
@@ -521,11 +650,11 @@
   After discussing transition rate, we turn to the master equation of
   Langevin process. Since Langevin process applies to continuous random
   variable, we can use Kramers-Moyal expansion to evaluate its master
-  equation. Directly, we have <math|K<rsup|\<alpha\>><around*|(|x|)>=\<mu\><rsup|\<alpha\>><around*|(|x|)>>,
-  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>=\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>>,
-  and higher orders are all vanishing (<math|K> was defined in section
-  <reference|section: Spatial Expansion of Master Equation Gives
-  Kramers-Moyal Expansion>). For example, the integral
+  equation. Directly, we have <math|K<rsup|\<alpha\>><around*|(|x|)>=f<rsup|\<alpha\>><around*|(|x|)>>,
+  and those with order (the number of superscripts) higher than
+  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>> are all vanishing (<math|K>
+  was defined in section <reference|section: Spatial Expansion of Master
+  Equation Gives Kramers-Moyal Expansion>). For example, the integral
   <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
   <around*|(|\<epsilon\><rsup|\<alpha\>> \<epsilon\><rsup|\<beta\>>
   \<epsilon\><rsup|\<gamma\>>|)> q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=\<omicron\><around*|(|\<Delta\>t|)>>.
@@ -536,11 +665,11 @@
   (derived in section <reference|section: Spatial Expansion of Master
   Equation Gives Kramers-Moyal Expansion>), we find
   <math|K<rsup|\<alpha\>\<beta\>\<gamma\>><around*|(|x|)>=0>. Thus,
-  Kramers-Moyal expansion <reference|equation:Kramers-Moyal expansion> reads
+  Kramers-Moyal expansion <reference|equation:km expansion> reads
 
   <\equation>
-    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=-\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    p<around*|(|x,t|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    <frac|\<partial\>p|\<partial\>t><around*|(|x,t|)>=-\<partial\><rsub|\<alpha\>><around*|(|f<rsup|\<alpha\>><around*|(|x|)>
+    p<around*|(|x,t|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     p<around*|(|x,t|)>|)>.<label|equation:Fokker-Planck equation>
   </equation>
 
@@ -557,16 +686,15 @@
   we use <math|\<partial\>> instead of <math|\<nabla\>>)
 
   <\equation*>
-    -\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    -\<partial\><rsub|\<alpha\>><around*|(|f<rsup|\<alpha\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>=0,
   </equation*>
 
   which means
 
   <\equation>
-    \<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>=<frac|1|2>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    f<rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>=<frac|1|2>\<partial\><rsub|\<beta\>><around*|(|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>+\<nu\><rsup|\<alpha\>><around*|(|x|)>,<label|equation:stationary
     Fokker-Planck equation>
   </equation>
@@ -601,8 +729,8 @@
   side,
 
   <\equation*>
-    r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>=-\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>=-f<rsup|\<alpha\>><around*|(|x|)>
+    \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>,
   </equation*>
 
@@ -611,10 +739,10 @@
   <\align>
     <tformat|<table|<row|<cell|>|<cell|r<around*|(|x,x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)>>>|<row|<cell|=>|<cell|r<around*|(|<around*|(|x+\<epsilon\>|)>-\<epsilon\>,x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)>>>|<row|<cell|=>|<cell|-\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-\<epsilon\>|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-\<epsilon\>|)>>>|<row|<cell|=>|<cell|\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)>>>|<row|<cell|=>|<cell|-f<rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|-\<epsilon\>|)>+<frac|1|2>K<rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|-\<epsilon\>|)>>>|<row|<cell|=>|<cell|f<rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>+<frac|1|2>K<rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
     \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>,>>>>
   </align>
 
@@ -624,18 +752,18 @@
   Langevin Process Is a Generalized Function>).
 
   As generalized functions, we are to examine these two expressions by using
-  an arbitrary test function <math|f>. Thus, for the left hand side,
+  an arbitrary test function <math|\<varphi\>>. Thus, for the left hand side,
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>
-    f<around*|(|\<epsilon\>|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
+    \<varphi\><around*|(|\<epsilon\>|)>=-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    f<rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
-    f<around*|(|\<epsilon\>|)>+<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)> \<pi\><around*|(|x|)>
+    \<varphi\><around*|(|\<epsilon\>|)>+<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    K<rsup|\<alpha\>\<beta\>><around*|(|x|)> \<pi\><around*|(|x|)>
     \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>
-    f<around*|(|\<epsilon\>|)>.
+    \<varphi\><around*|(|\<epsilon\>|)>.
   </equation*>
 
   Integration by parts gives (note that the <math|\<partial\>> is applied on
@@ -644,10 +772,10 @@
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>
-    f<around*|(|\<epsilon\>|)>=<with|color|dark
-    cyan|\<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>>.
+    \<varphi\><around*|(|\<epsilon\>|)>=<with|color|dark
+    cyan|f<rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|0|)>+<frac|1|2>K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\><around*|(|0|)>>.
   </equation*>
 
   The right hand side is a little complicated,
@@ -656,12 +784,13 @@
     <\equation*>
       <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
       r<around*|(|x,x+\<epsilon\>|)> \<pi\><around*|(|x+\<epsilon\>|)>
-      f<around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
+      \<varphi\><around*|(|\<epsilon\>|)>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+      f<rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
       \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<delta\><around*|(|\<epsilon\>|)>
-      f<around*|(|\<epsilon\>|)>+<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-      \<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+      \<varphi\><around*|(|\<epsilon\>|)>+<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+      K<rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
       \<pi\><around*|(|x+\<epsilon\>|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<delta\><around*|(|\<epsilon\>|)>
-      f<around*|(|\<epsilon\>|)>.
+      \<varphi\><around*|(|\<epsilon\>|)>.
     </equation*>
   </small>
 
@@ -671,47 +800,48 @@
   <\align>
     <tformat|<table|<row|<cell|>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
     r<around*|(|x,x+\<epsilon\>|)> \<pi\><around*|(|x+\<epsilon\>|)>
-    f<around*|(|\<epsilon\>|)>>>|<row|<cell|=>|<cell|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<delta\><around*|(|\<epsilon\>|)><frac|\<partial\>|\<partial\>\<epsilon\><rsup|\<alpha\>>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>>>|<row|<cell|+>|<cell|<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
-    \<delta\><around*|(|\<epsilon\>|)><frac|\<partial\><rsup|2>|\<partial\>\<epsilon\><rsup|\<alpha\>>\<partial\>\<epsilon\><rsup|\<beta\>>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
-    \<pi\><around*|(|x+\<epsilon\>|)> f<around*|(|\<epsilon\>|)>|]>>>|<row|<cell|=>|<cell|-\<partial\><rsub|\<alpha\>><around*|[|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|]> f<around*|(|0|)>-<with|color|dark
-    cyan|\<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
-    \<partial\><rsub|\<alpha\>>f<around*|(|0|)>>>>|<row|<cell|+>|<cell|<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|]> f<around*|(|0|)>+\<partial\><rsub|\<beta\>><around*|[|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|]> \<partial\><rsub|\<alpha\>>f<around*|(|0|)>+<with|color|dark
-    cyan|<frac|1|2>\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
-    \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>f<around*|(|0|)>>.>>>>
+    \<varphi\><around*|(|\<epsilon\>|)>>>|<row|<cell|=>|<cell|-<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>\<delta\><around*|(|\<epsilon\>|)><frac|\<partial\>|\<partial\>\<epsilon\><rsup|\<alpha\>>><around*|[|f<rsup|\<alpha\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<varphi\><around*|(|\<epsilon\>|)>|]>>>|<row|<cell|+>|<cell|<frac|1|2><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+    \<delta\><around*|(|\<epsilon\>|)><frac|\<partial\><rsup|2>|\<partial\>\<epsilon\><rsup|\<alpha\>>\<partial\>\<epsilon\><rsup|\<beta\>>><around*|[|K<rsup|\<alpha\>\<beta\>><around*|(|x+\<epsilon\>|)>
+    \<pi\><around*|(|x+\<epsilon\>|)> \<varphi\><around*|(|\<epsilon\>|)>|]>>>|<row|<cell|=>|<cell|-\<partial\><rsub|\<alpha\>><around*|[|f<rsup|\<alpha\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|]> \<varphi\><around*|(|0|)>-<with|color|dark
+    cyan|f<rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|0|)>>>>|<row|<cell|+>|<cell|<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|[|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|]> \<varphi\><around*|(|0|)>+\<partial\><rsub|\<beta\>><around*|[|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|]> \<partial\><rsub|\<alpha\>>\<varphi\><around*|(|0|)>+<with|color|dark
+    cyan|<frac|1|2>K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    \<pi\><around*|(|x|)> \<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>>\<varphi\><around*|(|0|)>>.>>>>
   </align>
 
   By equaling <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
   r<around*|(|x+\<epsilon\>,x|)> \<pi\><around*|(|x|)>
-  f<around*|(|\<epsilon\>|)>> and <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+  \<varphi\><around*|(|\<epsilon\>|)>> and
+  <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
   r<around*|(|x,x+\<epsilon\>|)> \<pi\><around*|(|x+\<epsilon\>|)>
-  f<around*|(|\<epsilon\>|)>>, since <math|f> is arbitrary, we find, for the
-  <math|f<around*|(|0|)>> terms,
+  \<varphi\><around*|(|\<epsilon\>|)>>, since <math|\<varphi\>> is arbitrary,
+  we find, for the <math|\<varphi\><around*|(|0|)>> terms,
 
   <\equation*>
-    -\<partial\><rsub|\<alpha\>><around*|(|\<mu\><rsup|\<alpha\>><around*|(|x|)>
-    \<pi\><around*|(|x|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    -\<partial\><rsub|\<alpha\>><around*|(|f<rsup|\<alpha\>><around*|(|x|)>
+    \<pi\><around*|(|x|)>|)>+<frac|1|2>\<partial\><rsub|\<alpha\>>\<partial\><rsub|\<beta\>><around*|(|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>=0,
   </equation*>
 
-  and for <math|\<partial\>f<around*|(|0|)>> terms,
+  and for <math|\<partial\>\<varphi\><around*|(|0|)>> terms,
 
   <\equation*>
-    -\<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>+
-    <frac|1|2>\<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    -f<rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>+
+    <frac|1|2>\<partial\><rsub|\<beta\>><around*|(|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>=0.
   </equation*>
 
-  The <math|\<partial\>\<partial\>f<around*|(|0|)>> terms vanishes
+  The <math|\<partial\>\<partial\>\<varphi\><around*|(|0|)>> terms vanishes
   automatically. Altogether, we find the detailed balance condition for
   Langevin process to be
 
   <\equation>
-    \<mu\><rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>=<frac|1|2>
-    \<partial\><rsub|\<beta\>><around*|(|\<Sigma\><rsup|\<alpha\>\<beta\>><around*|(|x|)>
+    f<rsup|\<alpha\>><around*|(|x|)> \<pi\><around*|(|x|)>=<frac|1|2>
+    \<partial\><rsub|\<beta\>><around*|(|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>
     \<pi\><around*|(|x|)>|)>.<label|equation:detailed balance condition for
     Langevin>
   </equation>
@@ -727,36 +857,6 @@
   source-free degree of freedom that appears in the stationary condition>.
   The lost degree of freedom is the cost of ensuring that any initial
   distribution will finally relax to the stationary.
-
-  <subsection|* Wiener Process Is Almost Everywhere in Nature><label|section:
-  * Wiener Process Is Almost Everywhere in Nature>
-
-  In section <reference|section: Transition Density of Langevin Process Is
-  Approximately Gaussian>, we have introduced Wiener process
-  <math|\<mathd\>W<around*|(|x|)>> that obeys the normal distribution with
-  zero mean and variance <math|\<Sigma\><around*|(|x|)> \<mathd\>t>. This was
-  first discovered in 1827, when botanist Robert Brown noticed that pollen
-  particles automatically shakes in water. This phenomenon was first
-  explained by Albert Einstein in 1905. He argued that the pollen particles
-  are constantly hitted by water molecules. Untill 1918, Norbert Wiener
-  constructed a mathematical theory about this stochastic process. Wiener's
-  theory is an elegant application of central limit theorem.
-
-  Consider the Gaussian conditional density function
-
-  <\equation*>
-    q<rsub|\<Delta\>t><around*|(|x\|y|)>=<frac|1|<sqrt|2\<mathpi\>
-    \<Delta\>t>> exp<around*|(|-<frac|<around*|(|x-y|)><rsup|2>|2\<Delta\>t>|)>,
-  </equation*>
-
-  we have
-
-  <\equation*>
-    q<rsub|\<Delta\>t+\<Delta\>t<rprime|'>><around*|(|x\|z|)>=<big|int><rsub|\<cal-X\>>\<mathd\>y
-    q<rsub|\<Delta\>t><around*|(|x\|y|)> q<rsub|\<Delta\>t<rprime|'>><around*|(|y\|z|)>.
-  </equation*>
-
-  \;
 </body>
 
 <\initial>
@@ -772,38 +872,34 @@
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
-    <associate|auto-5|<tuple|1.4|2>>
+    <associate|auto-5|<tuple|1.4|3>>
     <associate|auto-6|<tuple|1.5|4>>
-    <associate|auto-7|<tuple|1.6|4>>
-    <associate|auto-8|<tuple|1.7|5>>
+    <associate|auto-7|<tuple|1.6|6>>
+    <associate|auto-8|<tuple|1.7|6>>
     <associate|auto-9|<tuple|1.8|6>>
-    <associate|equation:Fokker-Planck equation|<tuple|3|4>>
-    <associate|equation:Kramers-Moyal expansion|<tuple|1|2>>
-    <associate|equation:Langevin transition rate|<tuple|2|3>>
-    <associate|equation:detailed balance condition for Langevin|<tuple|5|5>>
-    <associate|equation:stationary Fokker-Planck equation|<tuple|4|4>>
-    <associate|footnote-1|<tuple|1|2>>
-    <associate|footnote-2|<tuple|2|3>>
-    <associate|footnote-3|<tuple|3|4>>
-    <associate|footnote-4|<tuple|4|?>>
-    <associate|footnote-5|<tuple|5|?>>
-    <associate|footnr-1|<tuple|1|2>>
-    <associate|footnr-2|<tuple|2|3>>
-    <associate|footnr-3|<tuple|3|4>>
-    <associate|footnr-4|<tuple|4|?>>
-    <associate|footnr-5|<tuple|5|?>>
-    <associate|section: * Wiener Process Is Almost Everywhere in
-    Nature|<tuple|1.8|6>>
+    <associate|equation:Fokker-Planck equation|<tuple|5|6>>
+    <associate|equation:Langevin transition rate|<tuple|4|5>>
+    <associate|equation:detailed balance condition for Langevin|<tuple|7|7>>
+    <associate|equation:km correlation|<tuple|1|2>>
+    <associate|equation:km expansion|<tuple|2|2>>
+    <associate|equation:stationary Fokker-Planck equation|<tuple|6|6>>
+    <associate|equation:wiener process|<tuple|3|3>>
+    <associate|footnote-1|<tuple|1|4>>
+    <associate|footnote-2|<tuple|2|5>>
+    <associate|footnote-3|<tuple|3|5>>
+    <associate|footnr-1|<tuple|1|4>>
+    <associate|footnr-2|<tuple|2|5>>
+    <associate|footnr-3|<tuple|3|5>>
     <associate|section: Detailed Balance Condition of Langevin Process Lacks
-    Source-Free Degree of Freedom|<tuple|1.7|5>>
+    Source-Free Degree of Freedom|<tuple|1.8|6>>
+    <associate|section: From Brownian Motion to Central Limit
+    Theorem|<tuple|1.3|2>>
     <associate|section: Kramers-Moyal Expansion and Langevin
     Process|<tuple|1|1>>
     <associate|section: Spatial Expansion of Master Equation Gives
     Kramers-Moyal Expansion|<tuple|1.2|1>>
-    <associate|section: Transition Density of Langevin Process Is
-    Approximately Gaussian|<tuple|1.3|2>>
     <associate|section: Transition Rate of Langevin Process Is a Generalized
-    Function|<tuple|1.4|2>>
+    Function|<tuple|1.5|4>>
   </collection>
 </references>
 
@@ -823,31 +919,30 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|1.3<space|2spc>Transition Density of
-      Langevin Process Is Approximately Gaussian
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.3<space|2spc>From Brownian Motion to
+      Central Limit Theorem <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|1.4<space|2spc>Transition Rate of Langevin
-      Process Is a Generalized Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.4<space|2spc>Langevin Process Arises in
+      the Difference of Scales <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Master Equation of Langevin
-      Process Is Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.5<space|2spc>Transition Rate of Langevin
+      Process Is a Generalized Function <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Stationary Solution of
-      Langevin Process Has Source-Free Degree of Freedom
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.6<space|2spc>Master Equation of Langevin
+      Process Is Fokker-Planck Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Detailed Balance Condition
-      of Langevin Process Lacks Source-Free Degree of Freedom
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Stationary Solution of
+      Langevin Process Has Source-Free Degree of Freedom
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|1tab>|1.8<space|2spc>* Wiener Process Is Almost
-      Everywhere in Nature <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.8<space|2spc>Detailed Balance Condition
+      of Langevin Process Lacks Source-Free Degree of Freedom
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
     </associate>
   </collection>

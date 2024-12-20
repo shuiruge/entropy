@@ -393,51 +393,30 @@
   and for discrete random variables, Metropolis-Hastings (section
   <reference|section: Example: Metropolis-Hastings Algorithm>) is available.
 
-  <subsection|Iterative Equation With Normal Distribution Gives an
-  Action><label|section: Iterative Equation With Normal Distribution Gives an
-  Action>
+  <subsection|The Action of Langevin Process Has Friction><label|section: The
+  Action of Langevin Process Has Friction>
 
-  We are to build a probabilistic model for the series of variables that
-  obeying iterative equation. The most generic form of iterative equation is
+  We are to find the action of Langevin process. Its transition density is
+  approximated by the conditional density function (we have employed Einstein
+  convention for summing over <math|\<alpha\>> and <math|\<beta\>> indices)
 
-  <\equation>
-    x<rsub|i+1>=f<rsub|i><around*|(|x<rsub|i>|)>,<label|equation:generic
-    iterative equation>
-  </equation>
+  <\small>
+    <\equation*>
+      q<around*|(|x<rsub|i+1>\|x<rsub|i>|)>\<assign\><frac|1|<sqrt|<around*|(|2\<mathpi\>
+      \<Delta\>t|)><rsup|n> det K<around*|(|x<rsub|i>|)>>>exp<around*|(|-<frac|1|2\<Delta\>t>
+      <around*|[|K<rsup|-1><around*|(|x<rsub|i>|)>|]><rsub|\<alpha\>\<beta\>>
+      <around*|[|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
+      \<Delta\>t|]> <around*|[|x<rsup|\<beta\>><rsub|i+1>-x<rsup|\<beta\>><rsub|i>-f<rsup|\<beta\>><around*|(|x<rsub|i>|)>
+      \<Delta\>t|]>|)>,
+    </equation*>
+  </small>
 
-  where <math|i\<in\><around*|{|0,\<ldots\>,N|}>> and
-  <math|f<rsub|i>:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>. Notice
-  that the domain and codomain (target) of <math|f<rsub|i>> is the same.
-  Thus, the equation iteratively maps from <math|\<bbb-R\><rsup|n>> to
-  itself.
-
-  To generalize this to probability theory, we regard the iterative series
-  <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>> as random variables
-  <math|<around*|(|X<rsub|0>,\<ldots\>,X<rsub|N>|)>>. Since the iterative
-  equation computes <math|x<rsub|i+1>> from <math|x<rsub|i>>, we are to
-  construct a conditional distribution that samples <math|x<rsub|i+1>> from
-  <math|x<rsub|i>> which uses <math|f<rsub|i><around*|(|x<rsub|i>|)>> as
-  parameter. What is the distribution? In practice, any distribution is
-  possible. But we have to limit our vision for being explicit. Because
-  normal distribution is most common in nature, we use normal distribution
-  for our purpose so as to <em|make our discussion most generic>. Namely, we
-  assume that <math|X<rsub|i+1>> obeys the normal distribution with the mean
-  given by the iterative equation <reference|equation:generic iterative
-  equation> and covariance <math|\<Sigma\><rsub|i>>, that is,
-
-  <\equation>
-    X<rsub|i+1>\<sim\><with|font|cal|N><around*|(|f<rsub|i><around*|(|X<rsub|i>|)>,\<Sigma\><rsub|i>|)>,<label|equation:gaussianity>
-  </equation>
-
-  It has the conditional density function
-
-  <\equation*>
-    q<around*|(|x<rsub|i+1>\|x<rsub|i>|)>=<frac|1|<sqrt|<around*|(|2\<mathpi\>|)><rsup|n>
-    det<around*|(|\<Sigma\><rsub|i>|)>><rsup|>>
-    exp<around*|(|-<frac|1|2><around*|(|\<Sigma\><rsub|i><rsup|-1>|)><rsub|\<alpha\>\<beta\>>
-    <around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)>
-    <around*|(|x<rsup|\<beta\>><rsub|i+1>-f<rsup|\<beta\>><rsub|i><around*|(|x<rsub|i>|)>|)>|)>.
-  </equation*>
+  where <math|f:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>> is a smooth
+  vector field and <math|K:\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n\<times\>n>>,
+  as a smooth matrix-valued field, is positive definite and symmetric. The
+  iterative step <math|i\<in\><around*|{|0,1,2,\<ldots\>|}>>. And for
+  simplicity, we have neglected the subscript <math|\<Delta\>t> in <math|q>,
+  regarding it as an arbitrarily given parameter.
 
   To obtain the whole density function, we first notice that, since
   <math|q<around*|(|x<rsub|2>\|x<rsub|1>|)>> is not explicitly dependent on
@@ -454,11 +433,12 @@
   </equation*>
 
   Plugging in <math|q<around*|(|x<rsub|i+1>\|x<rsub|i>|)>>, we arrive at
+  (after some algebraic manipulation)
 
   <\equation*>
-    -ln q<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>\|x<rsub|0>|)>=<frac|1|2><big|sum><rsub|i=0><rsup|N-1><around*|(|\<Sigma\><rsub|i><rsup|-1>|)><rsub|\<alpha\>\<beta\>>
-    <around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)>
-    <around*|(|x<rsup|\<beta\>><rsub|i+1>-f<rsup|\<beta\>><rsub|i><around*|(|x<rsub|i>|)>|)>+const.
+    -ln q<around*|(|x<rsub|1>,\<ldots\>,x<rsub|N>\|x<rsub|0>|)>=<frac|\<Delta\>t|2><big|sum><rsub|i=0><rsup|N-1><around*|[|K<rsup|-1><around*|(|x<rsub|i>|)>|]><rsub|\<alpha\>\<beta\>>
+    <around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]>
+    <around*|[|<frac|x<rsup|\<beta\>><rsub|i+1>-x<rsup|\<beta\>><rsub|i>|\<Delta\>t>-f<rsup|\<beta\>><around*|(|x<rsub|i>|)>|]>+const.
   </equation*>
 
   If regard <math|x<rsub|0>> as the condition, then equation
@@ -466,90 +446,40 @@
   defines the action
 
   <\equation>
-    S<around*|(|x\|x<rsub|0>|)>=<frac|1|2><big|sum><rsub|i=0><rsup|N-1><around*|(|\<Sigma\><rsub|i><rsup|-1>|)><rsub|\<alpha\>\<beta\>>
-    <around*|(|x<rsup|\<alpha\>><rsub|i+1>-f<rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i>|)>|)>
-    <around*|(|x<rsup|\<beta\>><rsub|i+1>-f<rsup|\<beta\>><rsub|i><around*|(|x<rsub|i>|)>|)>.<label|equation:action
-    of iterative equation>
+    S<around*|(|x\|x<rsub|0>|)>=<frac|\<Delta\>t|2><big|sum><rsub|i=0><rsup|N-1><around*|[|K<rsup|-1><around*|(|x<rsub|i>|)>|]><rsub|\<alpha\>\<beta\>>
+    <around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]>
+    <around*|[|<frac|x<rsup|\<beta\>><rsub|i+1>-x<rsup|\<beta\>><rsub|i>|\<Delta\>t>-f<rsup|\<beta\>><around*|(|x<rsub|i>|)>|]>.<label|equation:action
+    of langevin process>
   </equation>
 
-  There are, however, gauges in the action. We can choose a \Pbetter\Q
-  coordinates so that the covariance <math|\<Sigma\><rsub|i>> becomes an
-  identity matrix. To do so, we decompose
-  <math|\<Sigma\><rsub|i>=E<rsub|i><rsup|T> \<Lambda\><rsub|i> E<rsub|i>>,
-  where the matrix <math|E<rsub|i>> is orthogonal and
-  <math|\<Lambda\><rsub|i>> diagonal. Since <math|\<Sigma\><rsub|i>> is
-  positive definite, the diagonal elements of <math|\<Lambda\><rsub|i>> are
-  all positive. Then, we transform <math|x<rsub|i+1>> to
-  <math|<wide|x|~><rsub|i+1>\<assign\><sqrt|\<Lambda\><rsub|i>> E<rsub|i>
-  x<rsub|i+1>>, so does <math|<wide|f|~><rsub|i><around*|(|<wide|x|~><rsub|i>|)>\<assign\><sqrt|\<Lambda\><rsub|i>>
-  E<rsub|i> f<rsub|i><around*|(|x<rsub|i>|)>>. This gives (we employ matrix
-  notations for simplicity)
-
-  <\align>
-    <tformat|<table|<row|<cell|S<around*|(|x\|x<rsub|0>|)>=>|<cell|<frac|1|2><big|sum><rsub|i=0><rsup|N-1><around*|[|<sqrt|\<Lambda\><rsub|i>>
-    E<rsub|i> <around*|(|<wide|x|~><rsub|i+1>-<wide|f|~><rsub|i><around*|(|<wide|x|~><rsub|i>|)>|)>|]><rsup|T>
-    <around*|[|E<rsub|i> \<Lambda\><rsup|-1><rsub|i> E<rsup|T><rsub|i>|]>
-    <around*|[|<sqrt|\<Lambda\><rsub|i>> E<rsub|i>
-    <around*|(|<wide|x|~><rsub|i+1>-<wide|f|~><rsub|i><around*|(|<wide|x|~><rsub|i>|)>|)>|]>>>|<row|<cell|=>|<cell|<frac|1|2><big|sum><rsub|i=0><rsup|N-1><around*|(|<wide|x|~><rsub|i+1>-<wide|f|~><rsub|i><around*|(|<wide|x|~><rsub|i>|)>|)><rsup|T>
-    <around*|(|<wide|x|~><rsub|i+1>-<wide|f|~><rsub|i><around*|(|<wide|x|~><rsub|i>|)>|)>,>>>>
-  </align>
-
-  which is an action of <math|x<rprime|'>> with an identity covariance, that
-  is,
-
-  <\equation*>
-    S<around*|(|<wide|x|~>\|<wide|x|~><rsub|0>|)>=<frac|1|2><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|<wide|x|~><rsub|i+1><rsup|\<alpha\>>-<wide|f|~><rsup|\<alpha\>><rsub|i><around*|(|<wide|x|~><rsub|i>|)>|)><rsup|2>.
-  </equation*>
-
-  Remark that we cannot use non-linear coordinate transformation, such as
-  <math|<wide|x|~><rsub|i>\<assign\>\<varphi\><rsub|i><around*|(|x<rsub|i>|)>>
-  where <math|\<varphi\>> is a non-linear diffeomorphism, since this will
-  introduce <math|x>-dependent factors <math|det<around*|(|\<partial\>\<varphi\><rsub|i>/\<partial\>x<rsub|i>|)>>
-  in the integral <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\><wide|x|~><rsub|i>>
-  which in turn contributes to <math|q<around*|(|<wide|x|~>\|<wide|x|~><rsub|0>|)>>
-  an extra non-constant factor, then modifies the formation of action.
-
-  <subsection|Action of Iterative Equation Has Friction><label|section:
-  Action of Iterative Equation Has Friction>
-
-  We are to compare action <reference|equation:action of iterative equation>
-  with that appearing in classical mechanics. To do so, we define
-  <math|g<rsup|\<alpha\>><rsub|i><around*|(|x|)>\<assign\><around*|(|f<rsub|i><rsup|\<alpha\>><around*|(|x|)>-x<rsup|\<alpha\>>|)>/\<Delta\>t<rsub|i>>
-  for some <math|\<Delta\>t<rsub|i>\<gtr\>0>. thus
-  <math|x<rsup|\<alpha\>><rsub|i+1>=x<rsup|\<alpha\>><rsub|i>+\<Delta\>t<rsub|i>
-  g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>>. We assume that
-  <math|g<rsub|i>> is independent of <math|\<Delta\>t<rsub|i>>. This is the
-  case for solving differential equation <math|\<mathd\>x/\<mathd\>t=g<around*|(|x,t|)>>
-  using Euler's iterative method. We further assume that the covariance
-  matrix <math|<around*|(|\<Sigma\><rsub|i>|)><rsup|\<alpha\>\<beta\>>=\<delta\><rsup|\<alpha\>\<beta\>>
-  \<Delta\>t<rsub|i>>. Remind that this is a Wiener process (defined in
-  section TODO). \ In this situation, the action <reference|equation:action
-  of iterative equation> becomes
+  We are to compare action <reference|equation:action of langevin process>
+  with that appearing in classical mechanics. To do so, we choose a proper
+  coordinate at each iterative step, such that
+  <math|K<around*|(|x<rsub|i>|)>> becomes an identity matrix. In this
+  situation, the action <reference|equation:action of langevin process>
+  becomes
 
   <\equation>
-    S<around*|(|x\|x<rsub|0>|)>=<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|\<Delta\>t<rsub|i>|2><around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t<rsub|i>>-g<rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]><rsup|2>.<label|equation:action
-    of iterative equation v2>
+    S<around*|(|x\|x<rsub|0>|)>=<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|\<Delta\>t|2><around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]><rsup|2>.<label|equation:action
+    of langevin process v2>
   </equation>
 
-  Comparing with classical mechanics, we can interpret
-  <math|\<Delta\>t<rsub|i>> as a tiny time interval and
-  <math|<around*|(|x<rsub|i+1>-x<rsub|i>|)>/\<Delta\>t<rsub|i>> as
-  \Pvelocity\Q. It motives us to consider its continuous version. To do so,
-  we assume that the <math|\<Delta\>t<rsub|i>>s are all very small and
-  <math|N> is sufficiently large, so that
-  <math|<big|sum><rsub|i=0><rsup|N-1>\<Delta\>t<rsub|i>\<sim\>1>. Then, we
-  simply replace <math|\<Delta\>t<rsub|i>> by <math|\<mathd\>t>, and the
+  Comparing with classical mechanics, we can interpret <math|\<Delta\>t> as a
+  tiny time interval and <math|<around*|(|x<rsub|i+1>-x<rsub|i>|)>/\<Delta\>t>
+  as \Pvelocity\Q. It motives us to consider its continuous version. To do
+  so, we assume that the <math|\<Delta\>t> is very small and <math|N> is
+  sufficiently large, so that <math|N \<Delta\>t=<with|font|cal|O><around*|(|1|)>>.
+  Then, we simply replace <math|\<Delta\>t> by <math|\<mathd\>t>, and the
   series <math|<around*|(|x<rsub|0>,\<ldots\>,x<rsub|N>|)>> becomes
   <math|x<around*|(|t|)>> with <math|t\<in\><around*|[|0,t<rsub|f>|]>>, where
-  <math|t<rsub|f>\<assign\><big|sum><rsub|i=0><rsup|N-1>\<Delta\>t<rsub|i>>,
-  and <math|x<rsub|0>> becomes <math|x<around*|(|0|)>>. Accordingly,
-  <math|g<rsub|i><around*|(|x<rsub|i>|)>> becomes
-  <math|g<around*|(|x<around*|(|t|)>,t|)>>. So, we get the continuous version
-  of equation <reference|equation:action of iterative equation v2>, as
+  <math|t<rsub|f>\<assign\>N \<Delta\>t>, and <math|x<rsub|0>> becomes
+  <math|x<around*|(|0|)>>. Accordingly, <math|f<around*|(|x<rsub|i>|)>>
+  becomes <math|f<around*|(|x<around*|(|t|)>|)>>. So, we get the continuous
+  version of equation <reference|equation:action of langevin process v2>, as
 
   <\equation*>
     S<around*|(|x\|x<around*|(|0|)>|)>=<frac|1|2><big|int><rsub|0><rsup|t<rsub|f>>\<mathd\>t
-    <big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>-g<rsup|\<alpha\>><around*|(|x<around*|(|t|)>,t|)>|]><rsup|2>.
+    <big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<wide|x|\<dot\>><rsup|\<alpha\>><around*|(|t|)>-f<rsup|\<alpha\>><around*|(|x<around*|(|t|)>|)>|]><rsup|2>.
   </equation*>
 
   To get the Lagrange <math|L>, which is defined by
@@ -559,8 +489,8 @@
 
   <\equation>
     L<around*|(|x,<wide|x|\<dot\>>,t|)>=<big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2><around*|(|<wide|x|\<dot\>><rsup|\<alpha\>>|)><rsup|2>-<wide|x|\<dot\>><rsup|\<alpha\>>
-    g<rsup|\<alpha\>><around*|(|x,t|)>+<frac|1|2><around*|(|g<rsup|\<alpha\>><around*|(|x,t|)>|)><rsup|2>|]>.<label|equation:lagrangian
-    of iterative equation>
+    f<rsup|\<alpha\>><around*|(|x|)>+<frac|1|2><around*|(|f<rsup|\<alpha\>><around*|(|x|)>|)><rsup|2>|]>.<label|equation:lagrangian
+    of langevin process>
   </equation>
 
   \;
@@ -575,21 +505,21 @@
   <math|x<rsub|f>\<in\>\<bbb-R\><rsup|n>>. Given the boundary values at
   <math|t=0> and <math|t=t<rsub|f>>, variation on <math|x<around*|(|t|)>>
   gives the Euler-Lagrange equation <math|<around*|(|\<mathd\>/\<mathd\>t|)>\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=\<partial\>L/\<partial\>x<rsup|\<alpha\>>>.
-  We have <math|\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=<wide|x|\<dot\>><rsup|\<alpha\>>-g<rsup|\<alpha\>><around*|(|x,t|)>>
-  and <math|\<partial\>L/\<partial\>x<rsup|\<alpha\>>=<big|sum><rsub|\<beta\>=1><rsup|n><around*|[|-<wide|x|\<dot\>><rsup|\<beta\>>+g<rsup|\<beta\>><around*|(|x,t|)>|]>
-  \<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>>, where we
-  have denoted <math|\<partial\><rsub|\<alpha\>>g<rsup|\<beta\>>\<assign\>\<partial\>g<rsup|\<beta\>>/\<partial\>x<rsup|\<alpha\>>>,
-  and will employ <math|\<partial\><rsub|t>g> for
-  <math|\<partial\>g/\<partial\>t>. Thus, Euler-Lagrange equation becomes
+  We have <math|\<partial\>L/\<partial\><wide|x|\<dot\>><rsup|\<alpha\>>=<wide|x|\<dot\>><rsup|\<alpha\>>-f<rsup|\<alpha\>><around*|(|x|)>>
+  and <math|\<partial\>L/\<partial\>x<rsup|\<alpha\>>=<big|sum><rsub|\<beta\>=1><rsup|n><around*|[|-<wide|x|\<dot\>><rsup|\<beta\>>+f<rsup|\<beta\>><around*|(|x|)>|]>
+  \<partial\><rsub|\<alpha\>>f<rsup|\<beta\>><around*|(|x|)>>, where we have
+  denoted <math|\<partial\><rsub|\<alpha\>>f<rsup|\<beta\>>\<assign\>\<partial\>f<rsup|\<beta\>>/\<partial\>x<rsup|\<alpha\>>>.
+  Thus, Euler-Lagrange equation becomes
 
   <\equation*>
-    <wide|x|\<ddot\>><rsup|\<alpha\>>=<big|sum><rsub|\<beta\>=1><rsup|n><around*|[|\<partial\><rsub|\<beta\>>g<rsup|\<alpha\>><around*|(|x,t|)>-\<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>|]>
-    <wide|x|\<dot\>><rsup|\<beta\>>+<big|sum><rsub|\<beta\>=1><rsup|n>g<rsup|\<beta\>><around*|(|x,t|)>
-    \<partial\><rsub|\<alpha\>>g<rsup|\<beta\>><around*|(|x,t|)>+\<partial\><rsub|t>g<rsup|\<alpha\>><around*|(|x,t|)>.
+    <wide|x|\<ddot\>><rsup|\<alpha\>>=<big|sum><rsub|\<beta\>=1><rsup|n><around*|[|\<partial\><rsub|\<beta\>>f<rsup|\<alpha\>><around*|(|x|)>-\<partial\><rsub|\<alpha\>>f<rsup|\<beta\>><around*|(|x|)>|]>
+    <wide|x|\<dot\>><rsup|\<beta\>>+<big|sum><rsub|\<beta\>=1><rsup|n>f<rsup|\<beta\>><around*|(|x|)>
+    \<partial\><rsub|\<alpha\>>f<rsup|\<beta\>><around*|(|x|)>.
   </equation*>
 
   The first term in the right hand side is recognized as <em|friction,
-  proportional to the curl of <math|g>>. The rest are driving force.
+  proportional to the curl of <math|f>>. The second term represents a driving
+  force.
 
   <subsection|How Far Will Information Propagate in Stochastic Iterative
   Equation?><label|section: How Far Will Information Propagate in Stochastic
@@ -608,19 +538,19 @@
   out of physics, such as neural science.
 
   To show how it works, we start with an action that is generalized from
-  action <reference|equation:action of iterative equation v2>, which is
+  action <reference|equation:action of langevin process v2>, which is
 
   <\equation>
     S<around*|(|x|)>=<big|sum><rsub|i=-\<infty\>><rsup|+\<infty\>><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|<around*|(|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|)><rsup|2>|2\<epsilon\>>-<around*|(|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|)>
-    \<varphi\><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>+\<epsilon\>
-    \<xi\><rsub|i><rsup|\<alpha\>><around*|(|x<rsub|i+1>,x<rsub|i>|)>|]>,<label|equation:rg
+    \<varphi\><rsup|\<alpha\>><around*|(|x<rsub|i+1>,x<rsub|i>|)>+\<epsilon\>
+    \<xi\><rsup|\<alpha\>><around*|(|x<rsub|i+1>,x<rsub|i>|)>|]>,<label|equation:rg
     action>
   </equation>
 
-  where <math|\<varphi\><rsub|i>,\<xi\><rsub|i>:\<bbb-R\><rsup|n>\<times\>\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
-  Comparing with action <reference|equation:action of iterative equation v2>,
-  <math|\<epsilon\>=\<Delta\>t<rsub|i>>, <math|\<varphi\><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>=g<rsub|i><around*|(|x<rsub|i>|)>>,
-  and <math|\<xi\><rsub|i><around*|(|x<rsub|i+1>,x<rsub|i>|)>=g<rsup|2><rsub|i><around*|(|x<rsub|i>|)>/2>.
+  where <math|\<varphi\>,\<xi\>:\<bbb-R\><rsup|n>\<times\>\<bbb-R\><rsup|n>\<rightarrow\>\<bbb-R\><rsup|n>>.
+  Comparing with action <reference|equation:action of langevin process v2>,
+  <math|\<epsilon\>=\<Delta\>t>, <math|\<varphi\><around*|(|x<rsub|i+1>,x<rsub|i>|)>=f<around*|(|x<rsub|i>|)>>,
+  and <math|\<xi\><around*|(|x<rsub|i+1>,x<rsub|i>|)>=f<rsup|2><around*|(|x<rsub|i>|)>/2>.
   There are another two differences between them. Here, we do not fix
   boundary (namely, the condition <math|x<rsub|0>> in
   <math|S<around*|(|x\|x<rsub|0>|)>>), and let the index <math|i> run from
@@ -653,15 +583,15 @@
 
   <\align>
     <tformat|<table|<row|<cell|J<rsup|\<alpha\>>\<assign\>>|<cell|-<frac|<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)><rsup|2>|2\<epsilon\>>-<frac|<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)><rsup|2>|2\<epsilon\>>>>|<row|<cell|>|<cell|+<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)>
-    \<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)>
-    \<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>|<row|<cell|>|<cell|-\<epsilon\>
-    \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>-\<epsilon\>
-    \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>.>>>>
+    \<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)>
+    \<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>|<row|<cell|>|<cell|-\<epsilon\>
+    \<xi\><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>-\<epsilon\>
+    \<xi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>.>>>>
   </align>
 
   This integral is hard to calculate. A general strategy is using
   perturbative method. In our situation, <math|\<epsilon\>> serves as the
-  small quantity for perburbation.
+  small quantity for perturbation.
 
   First, we have an algebraic identity<\footnote>
     Directly, expand <math|<around*|(|x-y|)><rsup|2>+<around*|(|y-z|)><rsup|2>=x<rsup|2>-2x
@@ -696,10 +626,10 @@
     <tformat|<table|<row|<cell|J<rsup|\<alpha\>>=>|<cell|-<frac|1|\<epsilon\>><around*|[|x<rsup|\<alpha\>><rsub|2i+1>-<frac|x<rsup|\<alpha\>><rsub|2i>+
     x<rsup|\<alpha\>><rsub|2i+2>|2>|]><rsup|2>-<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i>-
     x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>>>|<row|<cell|>|<cell|+<around*|(|x<rsup|\<alpha\>><rsub|2i+1>-x<rsup|\<alpha\>><rsub|2i>|)>
-    \<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)>
-    \<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>|<row|<cell|>|<cell|-\<epsilon\>
-    \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>-\<epsilon\>
-    \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>.>>>>
+    \<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i+1>|)>
+    \<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>>>|<row|<cell|>|<cell|-\<epsilon\>
+    \<xi\><rsup|\<alpha\>><around*|(|x<rsub|2i+1>,x<rsub|2i>|)>-\<epsilon\>
+    \<xi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,x<rsub|2i+1>|)>.>>>>
   </align>
 
   The first term is a quadratic form of <math|x<rsub|2i+1>>. It suggests that
@@ -730,15 +660,15 @@
   <\small>
     <\align>
       <tformat|<table|<row|<cell|>|<cell|<around*|(|y<rsup|\<alpha\>>+<wide|y|\<bar\>><rsup|\<alpha\>>-x<rsup|\<alpha\>><rsub|2i>|)>
-      \<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|y+<wide|y|\<bar\>>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-y<rsup|\<alpha\>>-<wide|y|\<bar\>><rsup|\<alpha\>>|)>
-      \<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,y+<wide|y|\<bar\>>|)>>>|<row|<cell|=>|<cell|<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
-      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|2>y<rsup|\<beta\>>
+      \<varphi\><rsup|\<alpha\>><around*|(|y+<wide|y|\<bar\>>,x<rsub|2i>|)>+<around*|(|x<rsup|\<alpha\>><rsub|2i+2>-y<rsup|\<alpha\>>-<wide|y|\<bar\>><rsup|\<alpha\>>|)>
+      \<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,y+<wide|y|\<bar\>>|)>>>|<row|<cell|=>|<cell|<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
+      <around*|[|\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|2>y<rsup|\<beta\>>
       <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
-      y<rsup|\<beta\>> <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|4>y<rsup|\<beta\>>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
+      y<rsup|\<beta\>> <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|4>y<rsup|\<beta\>>
       y<rsup|\<gamma\>> <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>,>>>>
+      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>,>>>>
     </align>
   </small>
 
@@ -749,8 +679,8 @@
   <reference|section: Kramers-Moyal Expansion and Langevin Process>), hiding
   the summations of indices <math|\<beta\>> and <math|\<gamma\>>. Also up to
   <math|<with|font|cal|O><around*|(|\<epsilon\><rsup|3/2>|)>>, the third line
-  simply becomes <math|-\<epsilon\> \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
-  \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>>.
+  simply becomes <math|-\<epsilon\> \<xi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
+  \<xi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>>.
   Altogether, the integral becomes
 
   <\small>
@@ -765,12 +695,12 @@
   <\small>
     <\align>
       <tformat|<table|<row|<cell|V<rsup|\<alpha\>><around*|(|y|)>\<assign\>>|<cell|y<rsup|\<alpha\>>
-      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|2>y<rsup|\<beta\>>
+      <around*|[|\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|2>y<rsup|\<beta\>>
       <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
-      y<rsup|\<beta\>> <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|4>y<rsup|\<beta\>>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|y<rsup|\<alpha\>>
+      y<rsup|\<beta\>> <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>+<frac|1|4>y<rsup|\<beta\>>
       y<rsup|\<gamma\>> <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>,>>>>
+      <around*|[|\<partial\><rsub|\<beta\>>\<partial\><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<partial\><rprime|'><rsub|\<gamma\>>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>,>>>>
     </align>
   </small>
 
@@ -781,9 +711,9 @@
     <\equation*>
       I<rsup|\<alpha\>>\<assign\>-<frac|1|4\<epsilon\>><around*|(|x<rsup|\<alpha\>><rsub|2i>-
       x<rsup|\<alpha\>><rsub|2i+2>|)><rsup|2>+<frac|1|2><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><with|color|red|-\<epsilon\>
-      \<xi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
-      \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>>,
+      <around*|[|\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><with|color|red|-\<epsilon\>
+      \<xi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<epsilon\>
+      \<xi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>>,
     </equation*>
   </small>
 
@@ -809,9 +739,9 @@
 
   <\small>
     <with|color|dark green|<\equation*>
-      <big|sum><rsub|\<alpha\>=1><rsup|n>\<bbb-E\><around*|[|V<rsup|\<alpha\>><around*|(|y|)>|]>=<frac|\<epsilon\>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<alpha\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>+<frac|1|4>
+      <big|sum><rsub|\<alpha\>=1><rsup|n>\<bbb-E\><around*|[|V<rsup|\<alpha\>><around*|(|y|)>|]>=<frac|\<epsilon\>|2><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<alpha\>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>+<frac|1|4>
       <around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<Delta\>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<Delta\><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>|]>,
+      <around*|[|\<Delta\>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<Delta\><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>|]>,
     </equation*>>
   </small>
 
@@ -841,12 +771,12 @@
 
   <with|color|dark blue|<\small>
     <\align>
-      <tformat|<table|<row|<cell|>|<cell|\<bbb-E\><around*|[|<frac|1|2><around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>|)><rsup|2>|]>>>|<row|<cell|=>|<cell|<frac|\<epsilon\>|4><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><rsup|2>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|4><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<alpha\><rprime|'>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
-      <around*|[|\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|16><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>,\<beta\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <tformat|<table|<row|<cell|>|<cell|\<bbb-E\><around*|[|<frac|1|2><around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>V<rsup|\<alpha\>><around*|(|y|)>|)><rsup|2>|]>>>|<row|<cell|=>|<cell|<frac|\<epsilon\>|4><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><rsup|2>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|4><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<alpha\><rprime|'>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|[|\<varphi\><rsup|\<alpha\><rprime|'>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\><rprime|'>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>|<row|<cell|+>|<cell|<frac|\<epsilon\>|16><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>,\<beta\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
       <around*|(|x<rsup|\<alpha\><rprime|'>><rsub|2i+2>-x<rsup|\<alpha\><rprime|'>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>>>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\><rprime|'>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\><rprime|'>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>>>>
     </align>
   </small>>
 
@@ -858,33 +788,33 @@
     <\equation*>
       -ln<around*|[|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|2i+1>exp<around*|(|<big|sum><rsub|\<alpha\>=1><rsup|n>J<rsup|\<alpha\>>|)>|]>=<big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2\<epsilon\>><around*|(|x<rprime|'><rsup|\<alpha\>><rsub|i+1>-
       x<rprime|'><rsup|\<alpha\>><rsub|i>|)><rsup|2>-<around*|(|x<rprime|'><rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|)>
-      \<varphi\><rprime|'><rsub|i><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>+\<epsilon\>
-      \<xi\><rprime|'><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>|]>,
+      \<varphi\><rprime|'><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>+\<epsilon\>
+      \<xi\><rprime|'><rsup|\<alpha\>><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>|]>,
     </equation*>
   </small>
 
   where
 
   <\equation*>
-    \<varphi\><rprime|'><rsub|i><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>\<assign\><frac|1|<sqrt|2>><around*|[|\<varphi\><rsub|2i><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+    \<varphi\><rprime|'><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>\<assign\><frac|1|<sqrt|2>><around*|[|\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
   </equation*>
 
   and
 
   <\small>
     <\equation*>
-      \<xi\><rprime|'><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>\<assign\><with|color|red|\<xi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+
-      \<xi\><rsub|2i+1><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>><with|color|dark
-      green|-<frac|1|2><around*|[|\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<alpha\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>><with|color|dark
-      blue|-<frac|1|4><around*|[|\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><rsup|2>><with|color|dark
+      \<xi\><rprime|'><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>\<assign\><with|color|red|\<xi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+
+      \<xi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>><with|color|dark
+      green|-<frac|1|2><around*|[|\<partial\><rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<partial\><rsub|\<alpha\>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>><with|color|dark
+      blue|-<frac|1|4><around*|[|\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]><rsup|2>><with|color|dark
       green|-<frac|1|8><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<Delta\>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<Delta\><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>><with|color|dark
+      <around*|[|\<Delta\>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<Delta\><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>><with|color|dark
       blue|-<frac|1|4><big|sum><rsub|\<alpha\><rprime|'>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<alpha\><rprime|'>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
-      <around*|[|\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>-<frac|1|16><big|sum><rsub|\<alpha\><rprime|'>,\<beta\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|[|\<partial\><rsub|\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<alpha\><rprime|'>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
+      <around*|[|\<varphi\><rsup|\<alpha\><rprime|'>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>-\<varphi\><rsup|\<alpha\><rprime|'>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>-<frac|1|16><big|sum><rsub|\<alpha\><rprime|'>,\<beta\>=1><rsup|n><around*|(|x<rsup|\<alpha\>><rsub|2i+2>-x<rsup|\<alpha\>><rsub|2i>|)>
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>
       <around*|(|x<rsup|\<alpha\><rprime|'>><rsub|2i+2>-x<rsup|\<alpha\><rprime|'>><rsub|2i>|)>
-      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\><rprime|'>><rsub|2i+1><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>+<with|font|cal|O><around*|(|<sqrt|\<epsilon\>>|)>,
+      <around*|[|\<partial\><rsub|\<beta\>>\<varphi\><rsup|\<alpha\><rprime|'>><around*|(|<wide|y|\<bar\>>,x<rsub|2i>|)>+\<partial\><rsub|\<beta\>><rprime|'>\<varphi\><rsup|\<alpha\><rprime|'>><around*|(|x<rsub|2i+2>,<wide|y|\<bar\>>|)>|]>>+<with|font|cal|O><around*|(|<sqrt|\<epsilon\>>|)>,
     </equation*>
   </small>
 
@@ -894,8 +824,8 @@
   <\equation*>
     S<rprime|'><around*|(|x<rprime|'>|)>=<big|sum><rsub|i=-\<infty\>><rsup|+\<infty\>><big|sum><rsub|\<alpha\>=1><rsup|n><around*|[|<frac|1|2\<epsilon\>><around*|(|x<rprime|'><rsup|\<alpha\>><rsub|i+1>-
     x<rprime|'><rsup|\<alpha\>><rsub|i>|)><rsup|2>-<around*|(|x<rprime|'><rsup|\<alpha\>><rsub|i+1>-x<rprime|'><rsup|\<alpha\>><rsub|i>|)>
-    \<varphi\><rprime|'><rsub|i><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>+\<epsilon\>
-    \<xi\><rprime|'><rsup|\<alpha\>><rsub|i><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>|]>,
+    \<varphi\><rprime|'><rsup|\<alpha\>><around*|(|x<rprime|'><rsub|i+1>,x<rprime|'><rsub|i>|)>+\<epsilon\>
+    \<xi\><rprime|'><rsup|\<alpha\>><around*|(|x<rsub|i+1><rprime|'>,x<rsub|i><rprime|'>|)>|]>,
   </equation*>
 
   which has exactly the same format as <math|S> (equation
@@ -1023,14 +953,9 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|1.8|6>>
-    <associate|auto-11|<tuple|1.9|6>>
-    <associate|auto-12|<tuple|1.9.1|7>>
-    <associate|auto-13|<tuple|1.9.2|8>>
-    <associate|auto-14|<tuple|1.10|10>>
-    <associate|auto-15|<tuple|1.11|11>>
-    <associate|auto-16|<tuple|1.11.1|11>>
-    <associate|auto-17|<tuple|1.11.2|11>>
+    <associate|auto-10|<tuple|1.8|8>>
+    <associate|auto-11|<tuple|1.8.1|8>>
+    <associate|auto-12|<tuple|1.8.2|9>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -1038,46 +963,38 @@
     <associate|auto-6|<tuple|1|4>>
     <associate|auto-7|<tuple|1.5|4>>
     <associate|auto-8|<tuple|1.6|5>>
-    <associate|auto-9|<tuple|1.7|6>>
+    <associate|auto-9|<tuple|1.7|8>>
     <associate|equation:action of distribution|<tuple|4|2>>
-    <associate|equation:action of iterative equation|<tuple|10|7>>
-    <associate|equation:action of iterative equation v2|<tuple|11|7>>
+    <associate|equation:action of langevin process|<tuple|8|5>>
+    <associate|equation:action of langevin process v2|<tuple|9|5>>
     <associate|equation:data-fitting iteration|<tuple|6|3>>
     <associate|equation:data-fitting result|<tuple|7|3>>
-    <associate|equation:gaussianity|<tuple|9|6>>
     <associate|equation:generic density|<tuple|5|3>>
-    <associate|equation:generic iterative equation|<tuple|8|6>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
-    <associate|equation:lagrangian of iterative equation|<tuple|12|8>>
+    <associate|equation:lagrangian of langevin process|<tuple|10|5>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
-    <associate|equation:rg action|<tuple|13|8>>
-    <associate|equation:rg integral|<tuple|14|8>>
+    <associate|equation:rg action|<tuple|11|6>>
+    <associate|equation:rg integral|<tuple|12|6>>
     <associate|figure: Least-Action|<tuple|1|4>>
     <associate|footnote-1|<tuple|1|2>>
     <associate|footnote-2|<tuple|2|6>>
-    <associate|footnote-3|<tuple|3|9>>
-    <associate|footnote-4|<tuple|4|10>>
-    <associate|footnote-5|<tuple|5|11>>
+    <associate|footnote-3|<tuple|3|7>>
+    <associate|footnote-4|<tuple|4|8>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|6>>
-    <associate|footnr-3|<tuple|3|9>>
-    <associate|footnr-4|<tuple|4|10>>
-    <associate|footnr-5|<tuple|5|11>>
-    <associate|section: * Wiener Process Is Almost Everywhere in
-    Nature|<tuple|1.5|4>>
+    <associate|footnr-3|<tuple|3|7>>
+    <associate|footnr-4|<tuple|4|8>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechanics|<tuple|1.2|1>>
-    <associate|section: Action of Iterative Equation Has
-    Friction|<tuple|1.6|7>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
     of Distribution|<tuple|1.4|3>>
     <associate|section: How Far Will Information Propagate in Stochastic
-    Iterative Equation?|<tuple|1.7|8>>
-    <associate|section: Iterative Equation With Normal Distribution Gives an
-    Action|<tuple|1.5|6>>
+    Iterative Equation?|<tuple|1.6|5>>
     <associate|section: Least-Action Principle of Distribution Has No
     Redundancy|<tuple|1.3|2>>
+    <associate|section: The Action of Langevin Process Has
+    Friction|<tuple|1.5|4>>
   </collection>
 </references>
 
@@ -1133,52 +1050,31 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|1.5<space|2spc>Wiener Process Is Almost
-      Everywhere in Nature (Drafts) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.5<space|2spc>The Action of Langevin
+      Process Has Friction <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|2tab>|1.5.1<space|2spc>Random Walk
+      <with|par-left|<quote|1tab>|1.6<space|2spc>How Far Will Information
+      Propagate in Stochastic Iterative Equation?
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|2tab>|1.5.2<space|2spc>Drafts
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Action in Deep
+      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>Difference Equation With
-      Wiener Process Gives an Action <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-10>>
-
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Iterative Equation With
-      Normal Distribution Gives an Action
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-11>>
-
-      <with|par-left|<quote|1tab>|1.8<space|2spc>Action of Iterative Equation
-      Has Friction <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-12>>
-
-      <with|par-left|<quote|1tab>|1.9<space|2spc>How Far Will Information
-      Propagate in Stochastic Iterative Equation?
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-13>>
-
-      <with|par-left|<quote|1tab>|1.10<space|2spc>Example: Action in Deep
-      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14>>
-
-      <with|par-left|<quote|1tab>|1.11<space|2spc>* History: Structures in
+      <with|par-left|<quote|1tab>|1.8<space|2spc>* History: Structures in
       Nature Arise from Least-Action Principle
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-15>>
+      <no-break><pageref|auto-10>>
 
-      <with|par-left|<quote|2tab>|1.11.1<space|2spc>WBE Theory and
+      <with|par-left|<quote|2tab>|1.8.1<space|2spc>WBE Theory and
       Universality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-16>>
+      <no-break><pageref|auto-11>>
 
-      <with|par-left|<quote|2tab>|1.11.2<space|2spc>Renormalization Group and
+      <with|par-left|<quote|2tab>|1.8.2<space|2spc>Renormalization Group and
       Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-17>>
+      <no-break><pageref|auto-12>>
     </associate>
   </collection>
 </auxiliary>

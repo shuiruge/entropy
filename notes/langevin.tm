@@ -262,18 +262,23 @@
   homogeneity) and independent (since each strike is individual) with zero
   mean (as a result of isotropy). This distribution, however, is unknown.
   Although, we find that the accumulative effect always obeys a normal
-  distribution. We can abstract this and conclude that, for any independently
-  identically distributed <math|n>-dimensional random variables
-  <math|<around*|(|X<rsub|1>,\<ldots\>,X<rsub|N>|)>> with zero mean (thus
-  each <math|X<rsub|i>> is one strike), the accumulation
-  <math|Y\<assign\>X<rsub|1>+\<cdots\>+X<rsub|N>> tends to obey a normal
-  distribution as <math|N> is large enough. The mean of <math|Y> can be
-  calculated by the linearity of expectation, as
+  distribution. We can abstract this and conclude a corollary as follow.
+
+  <\corollary>
+    For any independently identically distributed <math|n>-dimensional random
+    variables <math|<around*|(|X<rsub|1>,\<ldots\>,X<rsub|N>|)>> with zero
+    mean (thus each <math|X<rsub|i>> is one strike), the accumulation
+    <math|Y\<assign\>X<rsub|1>+\<cdots\>+X<rsub|N>> tends to obey a normal
+    distribution as <math|N> is large enough.
+  </corollary>
+
+  Each <math|X<rsub|i>> can be seen as a strike by water molecule. Further,
+  the mean of <math|Y> can be calculated by the linearity of expectation, as
   <math|\<bbb-E\><around*|[|Y|]>=\<bbb-E\><around*|[|X<rsub|1>|]>+\<cdots\>+\<bbb-E\><around*|[|X<rsub|N>|]>=0>.
   And because of independency, we have <math|\<bbb-E\><around*|[|Y<rsup|\<alpha\>>
   Y<rsup|\<beta\>>|]>=\<bbb-E\><around*|[|X<rsub|1><rsup|\<alpha\>>
   X<rsub|1><rsup|\<beta\>>|]>+\<cdots\>+\<bbb-E\><around*|[|X<rsub|N><rsup|\<alpha\>>
-  X<rsub|N><rsup|\<beta\>>|]>>. Let <math|\<Sigma\><rsup|\<alpha\>\<beta\>>=\<bbb-E\><around*|[|X<rsub|i><rsup|\<alpha\>>
+  X<rsub|N><rsup|\<beta\>>|]>>. Let <math|\<Sigma\><rsup|\<alpha\>\<beta\>>\<assign\>\<bbb-E\><around*|[|X<rsub|i><rsup|\<alpha\>>
   X<rsup|\<beta\>><rsub|i>|]>>, which is the same for all <math|i> because
   <math|X<rsub|i>>s are identical, we find
   <math|\<bbb-E\><around*|[|Y<rsup|\<alpha\>> Y<rsup|\<beta\>>|]>=N
@@ -282,7 +287,8 @@
   for central limit theorem a physical description, the Brownian motion, and
   found it as a corollary of Kramers\UMoyal expansion.
 
-  <subsection|Langevin Process Arises in the Difference of Scales>
+  <subsection|Langevin Process Arises in the Difference of
+  Scales><label|section: Langevin Process Arises in the Difference of Scales>
 
   There are many levels of scale in Nature. From the lifetime of universe to
   the lifetime of human. From the movement of a bird to the movement of
@@ -291,13 +297,13 @@
 
   A typical example is the Brownian motion described in section
   <reference|section: From Brownian Motion to Central Limit Theorem>. Of
-  course, each molecule moves the pollen particle in such a tiny distance
-  that cannot be observed by a microscope made in the 19th century. What
-  Brown noticed was not a pollen particle shaken by a single water molecule,
-  but an accumulation of strikes by a large group of water molecules. So,
-  this phenomenon involves two different scales: the scale of pollen
-  particles, and the scale of movement of water molecules, which is much
-  smaller than the frontier.
+  course, each water molecule moves the pollen particle in such a tiny
+  distance that cannot be observed by a microscope made in the 19th century.
+  What Brown noticed was not a pollen particle shaken by a single water
+  molecule, but an accumulation of strikes by a large group of water
+  molecules. So, this phenomenon involves two different scales: the scale of
+  pollen particles, and the scale of movement of water molecules, which is
+  much smaller than the frontier.
 
   If we replace the pollen particles by paramecia, then the scales remain. In
   the perspective of water molecule, homogeneity and isotropy still hold. So,
@@ -306,42 +312,56 @@
   But in the perspective of paramecium, both homogeneity and isotropy break.
   Unlike pollen particle, a paramecium can swim along a direction (maybe,
   there is food on this direction), thus isotropy breaks. In the perspective
-  of the paramecium, which is much larger than water molecules, the pool is
+  of the paramecium, which is much larger than a water molecule, the pool is
   not like an ocean anymore, but a pond. So, after arriving at another place
   in the pool, it can feel the change of environment (such as the temperature
   of water), thus homogeneity breaks.
 
-  This pattern arises in many aspects in Nature in which two scales exist
+  This pattern arises in many areas of Nature in which two scales coexist
   simultaneously: one scale is smaller, being homogeneous and isotropic,
   while the other is greater, breaking homogeneity and isotropy. The greater
   scale obeys a deterministic behavior, characterized by a dynamical system
   <math|\<mathd\>x<rsup|\<alpha\>>/\<mathd\>t=f<rsup|\<alpha\>><around*|(|x|)>>,
-  or difference equation <math|x<rsup|\<alpha\>><around*|(|t+\<Delta\>t|)>=x<rsup|\<alpha\>><around*|(|t|)>+f<rsup|\<alpha\>><around*|(|x<around*|(|t|)>|)>
-  \<Delta\>t+\<omicron\><around*|(|\<Delta\>t|)>> for some small but still
-  finite time interval <math|\<Delta\>t>. While the smaller scale contributes
-  randomness to the movement of the greater one by the accumulative effect
-  <math|\<Delta\>W<rsup|\<alpha\>>>, which is proven to obey a normal
-  distribution with zero mean and covariance
-  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)> \<Delta\>t>. Notice that,
-  since the homogeneity has broken at the greater scale,
+  or difference equation <math|x<rsup|\<alpha\>><rsub|i+1>=x<rsup|\<alpha\>><rsub|i>+f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
+  \<Delta\>t> for some small but still finite time interval <math|\<Delta\>t>
+  (the subscripts denote the iterative steps). While the smaller scale
+  contributes to the movement of the greater one by the accumulative random
+  effect <math|\<Delta\>W<rsub|i><rsup|\<alpha\>>>, which is proven to obey a
+  normal distribution with zero mean and covariance
+  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x<rsub|i>|)> \<Delta\>t>. Notice
+  that, since the homogeneity has broken at the greater scale,
   <math|K<rsup|\<alpha\>\<beta\>>> will explicitly depends on position
   <math|x>. Altogether, the whole effect can be characterized by
 
   <\equation*>
-    x<rsup|\<alpha\>><around*|(|t+\<Delta\>t|)>=x<rsup|\<alpha\>><around*|(|t|)>+f<rsup|\<alpha\>><around*|(|x<around*|(|t|)>|)>
-    \<Delta\>t+\<Delta\>W<rsup|\<alpha\>>.
+    X<rsup|\<alpha\>><rsub|i+1>=X<rsup|\<alpha\>><rsub|i>+f<rsup|\<alpha\>><around*|(|X<rsub|i>|)>
+    \<Delta\>t+\<Delta\>W<rsub|i><rsup|\<alpha\>>,
   </equation*>
 
-  Or say,
+  where we use capital character for <math|x<rsub|i>> and <math|x<rsub|i+1>>
+  since there has been randomness in them. The density function of
+  <math|\<Delta\>W<rsub|i>> is
 
   <\equation*>
-    q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>\<assign\><frac|1|<sqrt|<around*|(|2\<mathpi\>
-    \<Delta\>t|)><rsup|n> det K<around*|(|x|)>>>exp<around*|(|-<frac|1|2\<Delta\>t>
-    <around*|[|K<rsup|-1><around*|(|x|)>|]><rsub|\<alpha\>\<beta\>>
-    <around*|(|\<epsilon\><rsup|\<alpha\>>-f<rsup|\<alpha\>><around*|(|x|)>
-    \<Delta\>t|)> <around*|(|\<epsilon\><rsup|\<beta\>>-f<rsup|\<beta\>><around*|(|x|)>
-    \<Delta\>t|)>|)>.
+    q<rsub|\<Delta\>t><around*|(|\<Delta\>w<rsub|i>|)>=<frac|1|<sqrt|<around*|(|2\<mathpi\>
+    \<Delta\>t|)><rsup|n> det K<around*|(|x<rsub|i>|)>>>exp<around*|(|-<frac|1|2\<Delta\>t>
+    <around*|[|K<rsup|-1><around*|(|x<rsub|i>|)>|]><rsub|\<alpha\>\<beta\>>
+    \<Delta\>w<rsub|i><rsup|\<alpha\>> \<Delta\>w<rsub|i><rsup|\<beta\>>|)>.
   </equation*>
+
+  Plugging in <math|\<Delta\>w<rsub|i>=x<rsub|i+1>-x<rsub|i>-f<around*|(|x|)>
+  \<Delta\>t>, we find the conditional density function
+
+  <\small>
+    <\equation>
+      q<rsub|\<Delta\>t><around*|(|x<rsub|i+1>\|x<rsub|i>|)>\<assign\><frac|1|<sqrt|<around*|(|2\<mathpi\>
+      \<Delta\>t|)><rsup|n> det K<around*|(|x<rsub|i>|)>>>exp<around*|(|-<frac|1|2\<Delta\>t>
+      <around*|[|K<rsup|-1><around*|(|x<rsub|i>|)>|]><rsub|\<alpha\>\<beta\>>
+      <around*|[|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
+      \<Delta\>t|]> <around*|[|x<rsup|\<beta\>><rsub|i+1>-x<rsup|\<beta\>><rsub|i>-f<rsup|\<beta\>><around*|(|x<rsub|i>|)>
+      \<Delta\>t|]>|)>.<label|equation:langevin process>
+    </equation>
+  </small>
 
   When <math|\<Delta\>t> is sufficiently small, <math|q<rsub|\<Delta\>t>> can
   be approximately regarded as a transition density (the essential and
@@ -385,9 +405,13 @@
     <math|f=0> and <math|K> is constant, it is straight-forward to show that
     <math|q<rsub|\<Delta\>t>> is indeed a transition density.
   </footnote> The corresponding Markov process is called <strong|Langevin
-  dynamics> or <with|font-series|bold|Langevin process>.
+  dynamics> or <with|font-series|bold|Langevin process>. In many textures, it
+  is written in a formal expression
 
-  TODO
+  <\equation*>
+    \<mathd\>X<rsup|\<alpha\>>=f<rsup|\<alpha\>><around*|(|X|)>
+    \<mathd\>t+\<mathd\>W<rsup|\<alpha\>>.
+  </equation*>
 
   <subsection|Transition Rate of Langevin Process Is a Generalized
   Function><label|section: Transition Rate of Langevin Process Is a
@@ -653,12 +677,14 @@
   equation. Directly, we have <math|K<rsup|\<alpha\>><around*|(|x|)>=f<rsup|\<alpha\>><around*|(|x|)>>,
   and those with order (the number of superscripts) higher than
   <math|K<rsup|\<alpha\>\<beta\>><around*|(|x|)>> are all vanishing (<math|K>
-  was defined in section <reference|section: Spatial Expansion of Master
+  is defined in section <reference|section: Spatial Expansion of Master
   Equation Gives Kramers-Moyal Expansion>). For example, the integral
   <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
   <around*|(|\<epsilon\><rsup|\<alpha\>> \<epsilon\><rsup|\<beta\>>
-  \<epsilon\><rsup|\<gamma\>>|)> q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=\<omicron\><around*|(|\<Delta\>t|)>>.
-  By relation <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
+  \<epsilon\><rsup|\<gamma\>>|)> q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=<with|font|cal|O><around*|(|\<Delta\>t<rsup|3/2>|)>>,
+  which can be easily realized by the estimation
+  <math|\<epsilon\>=<with|font|cal|O><around*|(|<sqrt|\<Delta\>t>|)>>. By
+  relation <math|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<epsilon\>
   <around*|(|\<epsilon\><rsup|\<alpha\>> \<epsilon\><rsup|\<beta\>>
   \<epsilon\><rsup|\<gamma\>>|)> q<rsub|\<Delta\>t><around*|(|x+\<epsilon\>\|x|)>=\<Delta\>t
   K<rsup|\<alpha\>\<beta\>\<gamma\>><around*|(|x|)>+\<omicron\><around*|(|\<Delta\>t|)>>
@@ -877,13 +903,14 @@
     <associate|auto-7|<tuple|1.6|6>>
     <associate|auto-8|<tuple|1.7|6>>
     <associate|auto-9|<tuple|1.8|6>>
-    <associate|equation:Fokker-Planck equation|<tuple|5|6>>
-    <associate|equation:Langevin transition rate|<tuple|4|5>>
-    <associate|equation:detailed balance condition for Langevin|<tuple|7|7>>
+    <associate|equation:Fokker-Planck equation|<tuple|6|6>>
+    <associate|equation:Langevin transition rate|<tuple|5|5>>
+    <associate|equation:detailed balance condition for Langevin|<tuple|8|7>>
     <associate|equation:km correlation|<tuple|1|2>>
     <associate|equation:km expansion|<tuple|2|2>>
-    <associate|equation:stationary Fokker-Planck equation|<tuple|6|6>>
-    <associate|equation:wiener process|<tuple|3|3>>
+    <associate|equation:langevin process|<tuple|4|4>>
+    <associate|equation:stationary Fokker-Planck equation|<tuple|7|6>>
+    <associate|equation:wiener process|<tuple|3|2>>
     <associate|footnote-1|<tuple|1|4>>
     <associate|footnote-2|<tuple|2|5>>
     <associate|footnote-3|<tuple|3|5>>
@@ -896,6 +923,8 @@
     Theorem|<tuple|1.3|2>>
     <associate|section: Kramers-Moyal Expansion and Langevin
     Process|<tuple|1|1>>
+    <associate|section: Langevin Process Arises in the Difference of
+    Scales|<tuple|1.4|3>>
     <associate|section: Spatial Expansion of Master Equation Gives
     Kramers-Moyal Expansion|<tuple|1.2|1>>
     <associate|section: Transition Rate of Langevin Process Is a Generalized

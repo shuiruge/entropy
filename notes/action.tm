@@ -456,8 +456,9 @@
 
   Another derivation comes from physicists Parisi and Sourlas.<\footnote>
     <with|font-shape|italic|Random Magnetic Fields, Supersymmetry, and
-    Negative Dimensions> by Parisi and Sourlas, 1979. DOI:
-    10.1103/PhysRevLett.43.744.
+    Negative Dimensions> by Parisi and Sourlas, 1979. And
+    <with|font-shape|italic|Supersymmetric Field Theories and Stochastic
+    Differential Equations>, also by Parisi and Sourlas, 1982.
   </footnote> They cleverly introduced a test function
   <math|\<varphi\>:\<bbb-R\><rsup|N\<times\>n>\<rightarrow\>\<bbb-R\>> and
   examine the expectation on it. Explicitly, given <math|x<rsub|0>>, they

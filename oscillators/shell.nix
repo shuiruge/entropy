@@ -2,7 +2,7 @@
 
 with import <nixpkgs> { };
 let
-  pythonPackages = python3Packages;
+  pythonPackages = python311Packages;
 in pkgs.mkShell rec {
   name = "oscillators";
   buildInputs = [

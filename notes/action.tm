@@ -454,10 +454,118 @@
 
   \;
 
+  Another derivation comes from Parisi and Sourlas.<\footnote>
+    <with|font-shape|italic|Random Magnetic Fields, Supersymmetry, and
+    Negative Dimensions> by Parisi and Sourlas, 1979. DOI:
+    10.1103/PhysRevLett.43.744.
+  </footnote> They cleverly introduced a test function
+  <math|\<varphi\>:\<bbb-R\><rsup|N\<times\>n>\<rightarrow\>\<bbb-R\>> and
+  examine the expectation on it. Explicitly, given <math|x<rsub|0>>, they
+  consider the random variables <math|X\<assign\><around*|(|X<rsub|1>,\<ldots\>,X<rsub|N>|)>>
+  as a whole. The randomness comes from the sequence of Wiener process
+  <math|\<Delta\>W\<assign\><around*|(|\<Delta\>W<rsub|0>,\<ldots\>,\<Delta\>W<rsub|N-1>|)>>,
+  with <math|\<bbb-E\><around*|[|\<Delta\>W<rsub|i><rsup|\<alpha\>>|]>=0> and
+  <math|\<bbb-E\><around*|[|\<Delta\>W<rsub|i><rsup|\<alpha\>>
+  \<Delta\>W<rsub|j><rsup|\<beta\>>|]>=\<delta\><rsub|i j> \<Delta\>t> (they
+  assume <math|K<around*|(|x|)>> to be identity matrix for any <math|x>).
+  Then, we examine the expectation <math|\<bbb-E\><rsub|\<Delta\>w\<sim\>\<Delta\>W><around*|[|\<varphi\><around*|(|x<around*|(|\<Delta\>w|)>|)>|]>>,
+  or explicitly,
+
+  <\equation*>
+    <big|int>D<around*|[|\<Delta\>w|]> \ exp<around*|(|-<frac|\<Delta\>w<rsup|2>|2
+    \<Delta\>t>|)> \<varphi\><around*|(|x<around*|(|\<Delta\>w|)>|)>,
+  </equation*>
+
+  where we have employed the notation <math|<big|int>D<around*|[|\<Delta\>w|]>\<assign\><big|prod><rsub|i=0><rsup|N-1><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\><around*|(|\<Delta\>w<rsub|i>|)>
+  <around*|[|<around*|(|2\<mathpi\> \<Delta\>t|)><rsup|n>|]><rsup|-1/2>> and
+  <math|\<Delta\>w<rsup|2>\<assign\><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|\<Delta\>w<rsup|\<alpha\>><rsub|i>|)><rsup|2>>.
+  The <math|x<around*|(|\<Delta\>w|)>> is given by the iteration with
+  <math|x<rsub|0>> fixed
+
+  <\equation*>
+    x<rsub|i+1><rsup|\<alpha\>>=x<rsup|\<alpha\>><rsub|i>+f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
+    \<Delta\>t+\<Delta\>w<rsub|i><rsup|\<alpha\>>.
+  </equation*>
+
+  The expectation can be re-written as
+
+  <\equation*>
+    <big|int>D<around*|[|\<Delta\>w|]><around*|[|<big|int>D<around*|[|y|]>
+    \<delta\><around*|(|y-\<Delta\>w|)> exp<around*|(|-<frac|y<rsup|2>|2
+    \<Delta\>t>|)> \<varphi\><around*|(|x<around*|(|y|)>|)>|]>,
+  </equation*>
+
+  where <math|<big|int>D<around*|[|y|]>> is the same as
+  <math|<big|int>D<around*|[|\<Delta\>w|]>>. Now, recall the property of
+  Dirac's delta function on <math|\<bbb-R\><rsup|m>>, for any function
+  <math|g:\<bbb-R\><rsup|m>\<rightarrow\>\<bbb-R\><rsup|m>> and test function
+  <math|\<psi\>:\<bbb-R\><rsup|m>\<rightarrow\>\<bbb-R\>>,
+
+  <\equation*>
+    <big|int><rsub|\<bbb-R\><rsup|m>>\<mathd\>x
+    \<delta\><around*|(|g<around*|(|x|)>-z|)>
+    <around*|\||det<frac|\<partial\>g|\<partial\>x>|\|><around*|(|x|)>
+    \<psi\><around*|(|g<around*|(|x|)>|)>=<big|int><rsub|g<around*|(|\<bbb-R\><rsup|m>|)>>\<mathd\>y
+    \<delta\><around*|(|y-z|)> \<psi\><around*|(|y|)>.
+  </equation*>
+
+  If we replace <math|g<around*|(|x|)>> by <math|\<Delta\>w<around*|(|x|)>>,
+  <math|z> by <math|\<Delta\>w>, and <math|\<psi\><around*|(|y|)>> by
+  <math|exp<around*|(|-y<rsup|2>/<around*|(|2\<Delta\>t|)>|)>
+  \<varphi\><around*|(|x<around*|(|y|)>|)>>, and notice that
+  <math|x<rsub|i+1>\<in\>\<bbb-R\><rsup|n>> makes
+  <math|\<Delta\>w<rsub|i>\<in\>\<bbb-R\><rsup|n>> (which corresponds to the
+  <math|g<around*|(|\<bbb-R\><rsup|m>|)>>), then the property reduces to
+
+  <\equation*>
+    <big|int>D<around*|[|x|]> \<delta\><around*|(|\<Delta\>w<around*|(|x|)>-\<Delta\>w|)>
+    <around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|><around*|(|x|)>
+    exp<around*|(|-<frac|\<Delta\>w<around*|(|x|)><rsup|2>|2 \<Delta\>t>|)>
+    \<varphi\><around*|(|x|)>=<big|int>D<around*|[|y|]>
+    \<delta\><around*|(|y-\<Delta\>w|)> exp<around*|(|-<frac|y<rsup|2>|2
+    \<Delta\>t>|)> \<varphi\><around*|(|x<around*|(|y|)>|)>.
+  </equation*>
+
+  The right hand side is the integrand in the expectation. So, the
+  expectation becomes
+
+  <\equation*>
+    <big|int>D<around*|[|\<Delta\>w|]><big|int>D<around*|[|x|]>
+    \<delta\><around*|(|\<Delta\>w<around*|(|x|)>-\<Delta\>w|)>
+    <around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|><around*|(|x|)>
+    exp<around*|(|-<frac|\<Delta\>w<around*|(|x|)><rsup|2>|2 \<Delta\>t>|)>
+    \<varphi\><around*|(|x|)>.
+  </equation*>
+
+  Integrating over <math|\<Delta\>w> gives
+
+  <\equation*>
+    \<bbb-E\><rsub|\<Delta\>W><around*|[|\<varphi\>\<circ\>x|]>=<big|int>D<around*|[|x|]>
+    <around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|><around*|(|x|)>
+    exp<around*|(|-<frac|\<Delta\>w<around*|(|x|)><rsup|2>|2 \<Delta\>t>|)>
+    \<varphi\><around*|(|x|)>.
+  </equation*>
+
+  So, the density function can be read out as
+
+  <\equation*>
+    q<around*|(|x|)>=<around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|><around*|(|x|)>
+    exp<around*|(|-<frac|\<Delta\>w<around*|(|x|)><rsup|2>|2 \<Delta\>t>|)>.
+  </equation*>
+
+  Plugging in the definition of <math|\<Delta\>w<around*|(|x|)><rsup|2>>, we
+  find
+
+  <\equation*>
+    q<around*|(|x|)>=<around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x><around*|(|x|)>|\|>\<times\>exp<around*|(|-<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|\<Delta\>t|2><around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]><rsup|2>|)>.
+  </equation*>
+
+  We find an extra factor <math|<around*|\||\<partial\>\<Delta\>w/\<partial\>x|\|>>.
+  What is the problem??
+
   We are to compare action <reference|equation:action of langevin process>
-  with that appearing in classical mechanics. To do so, we choose a proper
-  coordinate at each iterative step, such that
-  <math|K<around*|(|x<rsub|i>|)>> becomes an identity matrix. In this
+  with that appearing in classical mechanics. For simplicity, we suppose
+  <math|K<around*|(|x|)>> to be identity matrix for any <math|x>. In this
   situation, the action <reference|equation:action of langevin process>
   becomes
 
@@ -954,10 +1062,12 @@
 
 <\references>
   <\collection>
+    <associate|authors-section-content|<tuple|8|?>>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|1.8|9>>
     <associate|auto-11|<tuple|1.8.1|9>>
     <associate|auto-12|<tuple|1.8.2|9>>
+    <associate|auto-13|<tuple|0.8.2|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
@@ -983,10 +1093,13 @@
     <associate|footnote-2|<tuple|2|7>>
     <associate|footnote-3|<tuple|3|8>>
     <associate|footnote-4|<tuple|4|9>>
+    <associate|footnote-5|<tuple|5|?>>
+    <associate|footnr-0|<tuple|2|?>>
     <associate|footnr-1|<tuple|1|2>>
     <associate|footnr-2|<tuple|2|7>>
     <associate|footnr-3|<tuple|3|8>>
     <associate|footnr-4|<tuple|4|9>>
+    <associate|footnr-5|<tuple|5|?>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechanics|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle

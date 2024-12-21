@@ -328,29 +328,30 @@
   contributes to the movement of the greater one by the accumulative random
   effect <math|\<Delta\>W<rsub|i><rsup|\<alpha\>>>, which is proven to obey a
   normal distribution with zero mean and covariance
-  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x<rsub|i>|)> \<Delta\>t>. Notice
-  that, since the homogeneity has broken at the greater scale,
-  <math|K<rsup|\<alpha\>\<beta\>>> will explicitly depends on position
-  <math|x>. Altogether, the whole effect can be characterized by
+  <math|K<rsup|\<alpha\>\<beta\>><around*|(|x<rsub|i>|)> \<Delta\>t> (proved
+  in section <reference|section: From Brownian Motion to Central Limit
+  Theorem>). Notice that, since the homogeneity has broken at the greater
+  scale, <math|K<rsup|\<alpha\>\<beta\>>> will explicitly depends on position
+  <math|x>. So, the total effect is
 
-  <\equation*>
-    X<rsup|\<alpha\>><rsub|i+1>=X<rsup|\<alpha\>><rsub|i>+f<rsup|\<alpha\>><around*|(|X<rsub|i>|)>
-    \<Delta\>t+\<Delta\>W<rsub|i><rsup|\<alpha\>>,
-  </equation*>
+  <\equation>
+    x<rsup|\<alpha\>><rsub|i+1>=x<rsup|\<alpha\>><rsub|i>+f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
+    \<Delta\>t+\<Delta\>w<rsub|i><rsup|\<alpha\>>,<label|equation:langevin
+    process v0>
+  </equation>
 
-  where we use capital character for <math|x<rsub|i>> and <math|x<rsub|i+1>>
-  since there has been randomness in them. The density function of
-  <math|\<Delta\>W<rsub|i>> is
+  where <math|\<Delta\>w<rsub|i>> is sampled from the distribution of
+  <math|\<Delta\>W<rsub|i>>.
 
-  <\equation*>
-    q<rsub|\<Delta\>t><around*|(|\<Delta\>w<rsub|i>|)>=<frac|1|<sqrt|<around*|(|2\<mathpi\>
-    \<Delta\>t|)><rsup|n> det K<around*|(|x<rsub|i>|)>>>exp<around*|(|-<frac|1|2\<Delta\>t>
-    <around*|[|K<rsup|-1><around*|(|x<rsub|i>|)>|]><rsub|\<alpha\>\<beta\>>
-    \<Delta\>w<rsub|i><rsup|\<alpha\>> \<Delta\>w<rsub|i><rsup|\<beta\>>|)>.
-  </equation*>
-
-  Plugging in <math|\<Delta\>w<rsub|i>=x<rsub|i+1>-x<rsub|i>-f<around*|(|x|)>
-  \<Delta\>t>, we find the conditional density function
+  We are to determine the conditional probability of <math|x<rsub|i+1>> given
+  <math|x<rsub|i>>, where the randomness of <math|x<rsub|i+1>> comes from
+  that of <math|\<Delta\>W<rsub|i>>. We know that a linear combination of
+  random variables that obey normal distribution also obeys a normal
+  distribution. Then, since <math|x<rsub|i+1>> is linear with
+  <math|\<Delta\>w<rsub|i>>, we have <math|X<rsub|i+1>> (the random version
+  of <math|x<rsub|i+1>>) will also obey a normal distribution when
+  <math|x<rsub|i>> is fixed, with the conditional density function on
+  <math|\<bbb-R\><rsup|n>>
 
   <\small>
     <\equation>
@@ -406,12 +407,15 @@
     <math|q<rsub|\<Delta\>t>> is indeed a transition density.
   </footnote> The corresponding Markov process is called <strong|Langevin
   dynamics> or <with|font-series|bold|Langevin process>. In many textures, it
-  is written in a formal expression
+  is written in
 
   <\equation*>
     \<mathd\>X<rsup|\<alpha\>>=f<rsup|\<alpha\>><around*|(|X|)>
-    \<mathd\>t+\<mathd\>W<rsup|\<alpha\>>.
+    \<mathd\>t+\<mathd\>W<rsup|\<alpha\>>,
   </equation*>
+
+  which is a formal re-formulation of equation <reference|equation:langevin
+  process v0>.
 
   <subsection|Transition Rate of Langevin Process Is a Generalized
   Function><label|section: Transition Rate of Langevin Process Is a
@@ -903,13 +907,14 @@
     <associate|auto-7|<tuple|1.6|6>>
     <associate|auto-8|<tuple|1.7|6>>
     <associate|auto-9|<tuple|1.8|6>>
-    <associate|equation:Fokker-Planck equation|<tuple|6|6>>
-    <associate|equation:Langevin transition rate|<tuple|5|5>>
-    <associate|equation:detailed balance condition for Langevin|<tuple|8|7>>
+    <associate|equation:Fokker-Planck equation|<tuple|7|6>>
+    <associate|equation:Langevin transition rate|<tuple|6|5>>
+    <associate|equation:detailed balance condition for Langevin|<tuple|9|7>>
     <associate|equation:km correlation|<tuple|1|2>>
     <associate|equation:km expansion|<tuple|2|2>>
-    <associate|equation:langevin process|<tuple|4|4>>
-    <associate|equation:stationary Fokker-Planck equation|<tuple|7|6>>
+    <associate|equation:langevin process|<tuple|5|4>>
+    <associate|equation:langevin process v0|<tuple|4|?>>
+    <associate|equation:stationary Fokker-Planck equation|<tuple|8|6>>
     <associate|equation:wiener process|<tuple|3|2>>
     <associate|footnote-1|<tuple|1|4>>
     <associate|footnote-2|<tuple|2|5>>

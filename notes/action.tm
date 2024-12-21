@@ -393,8 +393,8 @@
   and for discrete random variables, Metropolis-Hastings (section
   <reference|section: Example: Metropolis-Hastings Algorithm>) is available.
 
-  <subsection|The Action of Langevin Process Has Friction><label|section: The
-  Action of Langevin Process Has Friction>
+  <subsection|The Action of Langevin Process Is Gaussian><label|section: The
+  Action of Langevin Process Is Gaussian>
 
   We are to find the action of Langevin process. Its transition density is
   approximated by the conditional density function (we have employed Einstein
@@ -454,7 +454,7 @@
 
   \;
 
-  Another derivation comes from Parisi and Sourlas.<\footnote>
+  Another derivation comes from physicists Parisi and Sourlas.<\footnote>
     <with|font-shape|italic|Random Magnetic Fields, Supersymmetry, and
     Negative Dimensions> by Parisi and Sourlas, 1979. DOI:
     10.1103/PhysRevLett.43.744.
@@ -467,27 +467,39 @@
   with <math|\<bbb-E\><around*|[|\<Delta\>W<rsub|i><rsup|\<alpha\>>|]>=0> and
   <math|\<bbb-E\><around*|[|\<Delta\>W<rsub|i><rsup|\<alpha\>>
   \<Delta\>W<rsub|j><rsup|\<beta\>>|]>=\<delta\><rsub|i j> \<Delta\>t> (they
-  assume <math|K<around*|(|x|)>> to be identity matrix for any <math|x>).
-  Then, we examine the expectation <math|\<bbb-E\><rsub|\<Delta\>w\<sim\>\<Delta\>W><around*|[|\<varphi\><around*|(|x<around*|(|\<Delta\>w|)>|)>|]>>,
-  or explicitly,
+  assume <math|K<around*|(|x|)>> to be identity matrix for any <math|x>). So,
+  the expectation on <math|X> equals to the expectation on <math|\<Delta\>W>.
+  That is,
 
   <\equation*>
-    <big|int>D<around*|[|\<Delta\>w|]> \ exp<around*|(|-<frac|\<Delta\>w<rsup|2>|2
-    \<Delta\>t>|)> \<varphi\><around*|(|x<around*|(|\<Delta\>w|)>|)>,
+    \<bbb-E\><rsub|x\<sim\>X><around*|[|\<varphi\><around*|(|x|)>|]>=\<bbb-E\><rsub|\<Delta\>w\<sim\>\<Delta\>W><around*|[|\<varphi\><around*|(|x<around*|(|\<Delta\>w|)>|)>|]>,
   </equation*>
 
-  where we have employed the notation <math|<big|int>D<around*|[|\<Delta\>w|]>\<assign\><big|prod><rsub|i=0><rsup|N-1><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\><around*|(|\<Delta\>w<rsub|i>|)>
-  <around*|[|<around*|(|2\<mathpi\> \<Delta\>t|)><rsup|n>|]><rsup|-1/2>> and
-  <math|\<Delta\>w<rsup|2>\<assign\><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|\<Delta\>w<rsup|\<alpha\>><rsub|i>|)><rsup|2>>.
-  The <math|x<around*|(|\<Delta\>w|)>> is given by the iteration with
-  <math|x<rsub|0>> fixed
+  where function <math|x<around*|(|\<Delta\>w|)>> is given by the iteration
+  with <math|x<rsub|0>> fixed
 
   <\equation*>
     x<rsub|i+1><rsup|\<alpha\>>=x<rsup|\<alpha\>><rsub|i>+f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
     \<Delta\>t+\<Delta\>w<rsub|i><rsup|\<alpha\>>.
   </equation*>
 
-  The expectation can be re-written as
+  This equality can be explicitly written as (seen as a definition of
+  <math|q<around*|(|x\|x<rsub|0>|)>>?)
+
+  <\equation*>
+    <big|int>D<around*|[|x|]> q<around*|(|x\|x<rsub|0>|)>
+    \<varphi\><around*|(|x|)>=<big|int>D<around*|[|\<Delta\>w|]>
+    exp<around*|(|-<frac|\<Delta\>w<rsup|2>|2 \<Delta\>t>|)>
+    \<varphi\><around*|(|x<around*|(|\<Delta\>w|)>|)>,
+  </equation*>
+
+  where we have simplified the notations by denoting
+  <math|<big|int>D<around*|[|x|]>\<assign\><big|prod><rsub|i=1><rsup|N><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x<rsub|i>>,
+  <math|<big|int>D<around*|[|\<Delta\>w|]>\<assign\><big|prod><rsub|i=0><rsup|N-1><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\><around*|(|\<Delta\>w<rsub|i>|)>
+  <around*|[|<around*|(|2\<mathpi\> \<Delta\>t|)><rsup|n>|]><rsup|-1/2>>, and
+  <math|\<Delta\>w<rsup|2>\<assign\><big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><around*|(|\<Delta\>w<rsup|\<alpha\>><rsub|i>|)><rsup|2>>.
+  Now, we calculate the <math|q<around*|(|x\|x<rsub|0>|)>>. The right hand
+  side can be re-written as
 
   <\equation*>
     <big|int>D<around*|[|\<Delta\>w|]><around*|[|<big|int>D<around*|[|y|]>
@@ -495,16 +507,16 @@
     \<Delta\>t>|)> \<varphi\><around*|(|x<around*|(|y|)>|)>|]>,
   </equation*>
 
-  where <math|<big|int>D<around*|[|y|]>> is the same as
-  <math|<big|int>D<around*|[|\<Delta\>w|]>>. Now, recall the property of
-  Dirac's delta function on <math|\<bbb-R\><rsup|m>>, for any function
+  where <math|<big|int>D<around*|[|y|]>\<assign\><big|prod><rsub|i=0><rsup|N-1><big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>y<rsub|i>>.
+  Now, recall the property of Dirac's delta function on
+  <math|\<bbb-R\><rsup|m>>, for any function
   <math|g:\<bbb-R\><rsup|m>\<rightarrow\>\<bbb-R\><rsup|m>> and test function
   <math|\<psi\>:\<bbb-R\><rsup|m>\<rightarrow\>\<bbb-R\>>,
 
   <\equation*>
     <big|int><rsub|\<bbb-R\><rsup|m>>\<mathd\>x
     \<delta\><around*|(|g<around*|(|x|)>-z|)>
-    <around*|\||det<frac|\<partial\>g|\<partial\>x>|\|><around*|(|x|)>
+    <around*|\||<frac|\<partial\>g|\<partial\>x>|\|><around*|(|x|)>
     \<psi\><around*|(|g<around*|(|x|)>|)>=<big|int><rsub|g<around*|(|\<bbb-R\><rsup|m>|)>>\<mathd\>y
     \<delta\><around*|(|y-z|)> \<psi\><around*|(|y|)>.
   </equation*>
@@ -526,17 +538,18 @@
     \<Delta\>t>|)> \<varphi\><around*|(|x<around*|(|y|)>|)>.
   </equation*>
 
-  The right hand side is the integrand in the expectation. So, the
-  expectation becomes
+  The right hand side is the integrand in the expectation to be calculated.
+  So, the expectation becomes
 
   <\equation*>
-    <big|int>D<around*|[|\<Delta\>w|]><big|int>D<around*|[|x|]>
+    \<bbb-E\><rsub|\<Delta\>W><around*|[|\<varphi\>\<circ\>x|]>=<big|int>D<around*|[|\<Delta\>w|]><big|int>D<around*|[|x|]>
     \<delta\><around*|(|\<Delta\>w<around*|(|x|)>-\<Delta\>w|)>
     <around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|><around*|(|x|)>
     exp<around*|(|-<frac|\<Delta\>w<around*|(|x|)><rsup|2>|2 \<Delta\>t>|)>
-    \<varphi\><around*|(|x|)>.
+    \<varphi\><around*|(|x|)>,
   </equation*>
 
+  where we used the relation <math|\<varphi\><around*|(|x<around*|(|\<Delta\>w<around*|(|x|)>|)>|)>=\<varphi\><around*|(|x|)>>.
   Integrating over <math|\<Delta\>w> gives
 
   <\equation*>
@@ -546,28 +559,56 @@
     \<varphi\><around*|(|x|)>.
   </equation*>
 
-  So, the density function can be read out as
+  From the equality of expectations, <math|q<around*|(|x\|x<rsub|0>|)>> can
+  be read out as
 
   <\equation*>
-    q<around*|(|x|)>=<around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|><around*|(|x|)>
+    q<around*|(|x\|x<rsub|0>|)>=<around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|><around*|(|x|)>
     exp<around*|(|-<frac|\<Delta\>w<around*|(|x|)><rsup|2>|2 \<Delta\>t>|)>.
   </equation*>
 
-  Plugging in the definition of <math|\<Delta\>w<around*|(|x|)><rsup|2>>, we
-  find
+  Plugging in the definition of <math|\<Delta\>w<around*|(|x|)>>, we finally
+  arrive at
 
   <\equation*>
-    q<around*|(|x|)>=<around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x><around*|(|x|)>|\|>\<times\>exp<around*|(|-<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|\<Delta\>t|2><around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]><rsup|2>|)>.
+    q<around*|(|x\|x<rsub|0>|)>=<around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|><around*|(|x|)>\<times\>exp<around*|(|-<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|\<Delta\>t|2><around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]><rsup|2>|)>.
   </equation*>
 
-  We find an extra factor <math|<around*|\||\<partial\>\<Delta\>w/\<partial\>x|\|>>.
+  We get an extra factor <math|<around*|\||\<partial\>\<Delta\>w/\<partial\>x|\|>>.
+  Since <math|\<Delta\>w<rsub|i><rsup|\<alpha\>>=x<rsub|i+1><rsup|\<alpha\>>-x<rsup|\<alpha\>><rsub|i>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
+  \<Delta\>t>, we have (recall that <math|i\<in\><around*|{|1,\<ldots\>,N|}>>,
+  <math|j\<in\><around*|{|0,\<ldots\>,N-1|}>>, and
+  <math|\<alpha\>,\<beta\>\<in\><around*|{|1,\<ldots\>,n|}>>, thus the
+  Jacobian <math|\<partial\>\<Delta\>W/\<partial\>x> is an <math|N
+  n\<times\>N n>-matrix)
+
+  <\equation*>
+    <frac|\<partial\>\<Delta\>w<rsup|\<alpha\>><rsub|i>|\<partial\>x<rsup|\<beta\>><rsub|j>>=\<delta\><rsup|\<alpha\>><rsub|\<beta\>>
+    \<delta\><rsub|i+1><rsup|j>-\<delta\><rsup|\<alpha\>><rsub|\<beta\>>
+    \<delta\><rsup|j><rsub|i>-\<delta\><rsup|j><rsub|i>
+    \<partial\><rsub|\<beta\>>f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
+    \<Delta\>t,
+  </equation*>
+
+  thus
+
+  <\equation*>
+    <around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|>=?
+  </equation*>
+
   What is the problem??
 
+  <subsection|* Langevin Process Has Dissipation><label|section: Langevin
+  Process Has Dissipation>
+
   We are to compare action <reference|equation:action of langevin process>
-  with that appearing in classical mechanics. For simplicity, we suppose
-  <math|K<around*|(|x|)>> to be identity matrix for any <math|x>. In this
-  situation, the action <reference|equation:action of langevin process>
-  becomes
+  with that appearing in classical mechanics. To make the compute simple, we
+  directly employ Euler-Lagrange equation. The reader who does not familiar
+  with it shall skip this section.
+
+  For simplicity, we suppose <math|K<around*|(|x|)>> to be identity matrix
+  for any <math|x>. In this situation, the action <reference|equation:action
+  of langevin process> becomes
 
   <\equation>
     S<around*|(|x\|x<rsub|0>|)>=<big|sum><rsub|i=0><rsup|N-1><big|sum><rsub|\<alpha\>=1><rsup|n><frac|\<Delta\>t|2><around*|[|<frac|x<rsup|\<alpha\>><rsub|i+1>-x<rsup|\<alpha\>><rsub|i>|\<Delta\>t>-f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>|]><rsup|2>.<label|equation:action
@@ -631,21 +672,19 @@
   proportional to the curl of <math|f>>. The second term represents a driving
   force.
 
-  <subsection|How Far Will Information Propagate in Stochastic Iterative
-  Equation?><label|section: How Far Will Information Propagate in Stochastic
-  Iterative Equation?>
+  <subsection|How Far Will Information Propagate in Langevin
+  Process?><label|section: How Far Will Information Propagate in Langevin
+  Process?>
 
   We are to determine how far information will propagate during the iteration
-  of a stochastic iterative equation (see section <reference|section:
-  Iterative Equation With Normal Distribution Gives an Action>). For this
-  kind of problem, physicists have invented a technique called
-  renormalization group. This technique was first proposed by Murray
-  Gell-Mann and Francis Low in 1954, applied to quantum field theory of
-  fundamental particles. Following this research, Kenneth Wilson, who was a
-  PhD student of Gell-Mann, started his malathion in 1961. He published his
-  first paper on renormalization group eight years later, in 1969. This
-  technique was then further developed and applied to many areas in and even
-  out of physics, such as neural science.
+  of Langevin process (see section TODO). For this kind of problem,
+  physicists have invented a technique called renormalization group. This
+  technique was first proposed by Murray Gell-Mann and Francis Low in 1954,
+  applied to quantum field theory of fundamental particles. Following this
+  research, Kenneth Wilson, who was a PhD student of Gell-Mann, started his
+  malathion in 1961. He published his first paper on renormalization group
+  eight years later, in 1969. This technique was then further developed and
+  applied to many areas in and even out of physics, such as neural science.
 
   To show how it works, we start with an action that is generalized from
   action <reference|equation:action of langevin process v2>, which is
@@ -941,7 +980,7 @@
   which has exactly the same format as <math|S> (equation
   <reference|equation:rg action>).
 
-  <subsection|Example: Action in Deep Learning>
+  <subsection|Example: Action in Deep Learning (TODO)>
 
   In deep learning, a feed-forward network is a supervised model that
   computes the output <math|y\<in\>\<bbb-R\><rsup|n<rsub|L>>> from input
@@ -1062,54 +1101,54 @@
 
 <\references>
   <\collection>
-    <associate|authors-section-content|<tuple|8|?>>
     <associate|auto-1|<tuple|1|1>>
     <associate|auto-10|<tuple|1.8|9>>
-    <associate|auto-11|<tuple|1.8.1|9>>
-    <associate|auto-12|<tuple|1.8.2|9>>
-    <associate|auto-13|<tuple|0.8.2|?>>
+    <associate|auto-11|<tuple|1.9|10>>
+    <associate|auto-12|<tuple|1.9.1|10>>
+    <associate|auto-13|<tuple|1.9.2|10>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|1.2|1>>
     <associate|auto-4|<tuple|1.3|2>>
     <associate|auto-5|<tuple|1.4|3>>
     <associate|auto-6|<tuple|1|4>>
-    <associate|auto-7|<tuple|1.5|5>>
+    <associate|auto-7|<tuple|1.5|4>>
     <associate|auto-8|<tuple|1.6|6>>
-    <associate|auto-9|<tuple|1.7|8>>
+    <associate|auto-9|<tuple|1.7|7>>
     <associate|equation:action of distribution|<tuple|4|2>>
     <associate|equation:action of langevin process|<tuple|8|5>>
-    <associate|equation:action of langevin process v2|<tuple|9|5>>
-    <associate|equation:data-fitting iteration|<tuple|6|4>>
-    <associate|equation:data-fitting result|<tuple|7|4>>
+    <associate|equation:action of langevin process v2|<tuple|9|6>>
+    <associate|equation:data-fitting iteration|<tuple|6|3>>
+    <associate|equation:data-fitting result|<tuple|7|3>>
     <associate|equation:generic density|<tuple|5|3>>
     <associate|equation:harmonic oscillator action|<tuple|1|1>>
-    <associate|equation:lagrangian of langevin process|<tuple|10|5>>
+    <associate|equation:lagrangian of langevin process|<tuple|10|6>>
     <associate|equation:least-action principle v0|<tuple|2|1>>
     <associate|equation:least-action principle v1|<tuple|3|2>>
-    <associate|equation:rg action|<tuple|11|6>>
-    <associate|equation:rg integral|<tuple|12|6>>
+    <associate|equation:rg action|<tuple|11|7>>
+    <associate|equation:rg integral|<tuple|12|7>>
     <associate|figure: Least-Action|<tuple|1|4>>
     <associate|footnote-1|<tuple|1|2>>
-    <associate|footnote-2|<tuple|2|7>>
-    <associate|footnote-3|<tuple|3|8>>
+    <associate|footnote-2|<tuple|2|5>>
+    <associate|footnote-3|<tuple|3|7>>
     <associate|footnote-4|<tuple|4|9>>
-    <associate|footnote-5|<tuple|5|?>>
-    <associate|footnr-0|<tuple|2|?>>
+    <associate|footnote-5|<tuple|5|10>>
     <associate|footnr-1|<tuple|1|2>>
-    <associate|footnr-2|<tuple|2|7>>
-    <associate|footnr-3|<tuple|3|8>>
+    <associate|footnr-2|<tuple|2|5>>
+    <associate|footnr-3|<tuple|3|7>>
     <associate|footnr-4|<tuple|4|9>>
-    <associate|footnr-5|<tuple|5|?>>
+    <associate|footnr-5|<tuple|5|10>>
     <associate|section: A Brief Review of Least-Action Principle in Classical
     Mechanics|<tuple|1.2|1>>
     <associate|section: Data Fitting Is Equivalent to Least-Action Principle
     of Distribution|<tuple|1.4|3>>
-    <associate|section: How Far Will Information Propagate in Stochastic
-    Iterative Equation?|<tuple|1.6|6>>
+    <associate|section: How Far Will Information Propagate in Langevin
+    Process?|<tuple|1.7|7>>
+    <associate|section: Langevin Process Has Dissipation|<tuple|1.6|6>>
     <associate|section: Least-Action Principle of Distribution Has No
     Redundancy|<tuple|1.3|2>>
-    <associate|section: The Action of Langevin Process Has
-    Friction|<tuple|1.5|5>>
+    <associate|section: The Action of Langevin Process|<tuple|1.5|4>>
+    <associate|section: The Action of Langevin Process Is
+    Gaussian|<tuple|1.5|?>>
   </collection>
 </references>
 
@@ -1166,30 +1205,33 @@
       <no-break><pageref|auto-5>>
 
       <with|par-left|<quote|1tab>|1.5<space|2spc>The Action of Langevin
-      Process Has Friction <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Process (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|1tab>|1.6<space|2spc>How Far Will Information
-      Propagate in Stochastic Iterative Equation?
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.6<space|2spc>* Langevin Process Has
+      Dissipation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|1tab>|1.7<space|2spc>Example: Action in Deep
-      Learning <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.7<space|2spc>How Far Will Information
+      Propagate in Langevin Process? <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
 
-      <with|par-left|<quote|1tab>|1.8<space|2spc>* History: Structures in
-      Nature Arise from Least-Action Principle
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.8<space|2spc>Example: Action in Deep
+      Learning (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
 
-      <with|par-left|<quote|2tab>|1.8.1<space|2spc>WBE Theory and
-      Universality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|1.9<space|2spc>* History: Structures in
+      Nature Arise from Least-Action Principle
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-11>>
 
-      <with|par-left|<quote|2tab>|1.8.2<space|2spc>Renormalization Group and
-      Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|2tab>|1.9.1<space|2spc>WBE Theory and
+      Universality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-12>>
+
+      <with|par-left|<quote|2tab>|1.9.2<space|2spc>Renormalization Group and
+      Criticality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-13>>
     </associate>
   </collection>
 </auxiliary>

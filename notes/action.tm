@@ -587,24 +587,20 @@
     \<delta\><rsub|i+1><rsup|j>-\<delta\><rsup|\<alpha\>><rsub|\<beta\>>
     \<delta\><rsup|j><rsub|i>-\<delta\><rsup|j><rsub|i>
     \<partial\><rsub|\<beta\>>f<rsup|\<alpha\>><around*|(|x<rsub|i>|)>
-    \<Delta\>t,
+    \<Delta\>t.
   </equation*>
 
-  thus
-
-  <\equation*>
-    <around*|\||<frac|\<partial\>\<Delta\>w|\<partial\>x>|\|>=?
-  </equation*>
-
-  What is the problem??
+  Thus, using the identity <math|det A=exp<around*|(|tr ln<around*|(|A|)>|)>>
+  for any matrix <math|A>, we get an extra term in
+  <math|S<around*|(|x\|x<rsub|0>|)>> as TODO. What is the problem??
 
   <subsection|* Langevin Process Has Dissipation><label|section: Langevin
   Process Has Dissipation>
 
   We are to compare action <reference|equation:action of langevin process>
   with that appearing in classical mechanics. To make the compute simple, we
-  directly employ Euler-Lagrange equation. The reader who does not familiar
-  with it shall skip this section.
+  directly employ Euler-Lagrange equation. Readers who are not familiar with
+  it may skip this section.
 
   For simplicity, we suppose <math|K<around*|(|x|)>> to be identity matrix
   for any <math|x>. In this situation, the action <reference|equation:action
@@ -1146,9 +1142,8 @@
     <associate|section: Langevin Process Has Dissipation|<tuple|1.6|6>>
     <associate|section: Least-Action Principle of Distribution Has No
     Redundancy|<tuple|1.3|2>>
-    <associate|section: The Action of Langevin Process|<tuple|1.5|4>>
     <associate|section: The Action of Langevin Process Is
-    Gaussian|<tuple|1.5|?>>
+    Gaussian|<tuple|1.5|4>>
   </collection>
 </references>
 
@@ -1205,7 +1200,7 @@
       <no-break><pageref|auto-5>>
 
       <with|par-left|<quote|1tab>|1.5<space|2spc>The Action of Langevin
-      Process (TODO) <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      Process Is Gaussian <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
       <with|par-left|<quote|1tab>|1.6<space|2spc>* Langevin Process Has
